@@ -1,0 +1,8 @@
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+if [ -z "$KDEDIRS" ]; then
+   export KDEDIRS=/usr/share/security-misc/
+else
+   export KDEDIRS=/usr/share/security-misc/:$KDEDIRS
+fi
