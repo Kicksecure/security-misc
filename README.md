@@ -1,4 +1,7 @@
-# Enables Menubar in Dolphin by default #
+# enhances misc security settings #
+
+- deactivates previews in Dolphin
+- deactivates previews in Nautilus
 
 This package only takes effect for newly created user accounts. Not for
 existing user accounts. This package is most useful to help Linux distribution
