@@ -1,3 +1,15 @@
+commit c47f9697b4af46f713e49eb026f1c5ab4b77ad20
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 15 04:14:00 2015 +0000
+
+    deactivate preview in Nautilus
+
+commit 4b7d8a4bd88bd7b8a904d0b48fddf2803457ab47
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 15 02:00:39 2015 +0000
+
+    bumped changelog version
+
 commit d3ccf0eeaf9802fa09e70633efb45dcc2b767cba
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 15 02:00:24 2015 +0000
