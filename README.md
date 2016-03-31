@@ -2,8 +2,10 @@
 
 - deactivates previews in Dolphin
 - deactivates previews in Nautilus
+- deactivates TCP timestamps
+- deactivates Netfilter's connection tracking helper
 
-This package only takes effect for newly created user accounts. Not for
+Changes to the file browser only take effect for newly created user accounts. Not for
 existing user accounts. This package is most useful to help Linux distribution
 maintainers setting divergent defaults.
 
