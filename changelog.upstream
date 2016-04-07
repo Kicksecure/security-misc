@@ -1,3 +1,85 @@
+commit 9d7ad9e97ed6b341e72ed6d6d2104c840c73b37f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 31 15:53:40 2016 +0000
+
+    fixed package description and package description linitan warnings
+
+commit d5e61eb4b12106f9ee3fdf8938686e89a8c7e465
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 31 15:36:59 2016 +0000
+
+    added 'Replaces: tcp-timestamps-disable'
+    
+    https://phabricator.whonix.org/T486
+
+commit 7b54755841907c2b86b12eed5035860e17445193
+Merge: 10c87b8 be086ae
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 31 15:35:07 2016 +0000
+
+    merged tcp-timestamps-disable package into security-misc package
+    
+    disable conntrack helper for better security
+    
+    https://phabricator.whonix.org/T486
+
+commit be086aea597ff5e4db29f56fa57399c67568d4b6
+Merge: 10c87b8 d0eceae
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 31 15:34:17 2016 +0000
+
+    Merge pull request #1 from HulaHoopWhonix/patch-1
+    
+    Create tcp_timestamps.conf
+
+commit d0eceae0c84a42bce4ade28c593fd6ba002a67b9
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 03:18:38 2016 +0000
+
+    Update README.md
+
+commit 989f2f54e22ff676df83463edaca439a4695af49
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 03:18:05 2016 +0000
+
+    Update control
+
+commit c7d88571e48fface5fc24d7d471724303e374f37
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 03:16:10 2016 +0000
+
+    Update control
+
+commit 27200cd98f6d2be7e55765a8d17a075299db7b2e
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 02:57:15 2016 +0000
+
+    Update README.md
+
+commit 92d738db56f048f2ee5de0239ddd6ba141373f99
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 02:53:12 2016 +0000
+
+    Create nf_conntrack_helper.conf
+
+commit 5992a7f026b1ee22c1ab82411048b58e89ed0dc2
+Author: HulaHoopWhonix <bancfc@openmailbox.org>
+Date:   Thu Mar 31 02:48:06 2016 +0000
+
+    Create tcp_timestamps.conf
+
+commit 10c87b84e2d3b0eec7a6a3d283d3b1e02f080e58
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 15 21:05:03 2015 +0000
+
+    updated README.md
+
+commit ba7b06ce302006a12fe7886c4338b5e44a571fa2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 15 04:16:14 2015 +0000
+
+    bumped changelog version
+
 commit c47f9697b4af46f713e49eb026f1c5ab4b77ad20
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 15 04:14:00 2015 +0000
