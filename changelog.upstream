@@ -1,3 +1,17 @@
+commit 192d1e0cee505a59c5f62d01022562b12ca6646e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 25 23:19:54 2016 +0000
+
+    /etc/sysctl.d/nf_conntrack_helper.conf disabled for now as it needs more work
+    
+    https://phabricator.whonix.org/T486
+
+commit 492ce128909cfda8645738b092fd9e8722c64aa0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 7 22:54:45 2016 +0000
+
+    bumped changelog version
+
 commit 9d7ad9e97ed6b341e72ed6d6d2104c840c73b37f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:53:40 2016 +0000
