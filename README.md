@@ -1,14 +1,12 @@
 # enhances misc security settings #
 
-- deactivates previews in Dolphin
-- deactivates previews in Nautilus
-- deactivates TCP timestamps
-- deactivates Netfilter's connection tracking helper
-.
-Changes to the file browser only take effect for newly created user accounts. Not for
-existing user accounts. This package is most useful to help Linux distribution
-maintainers setting divergent defaults.
-.
+The following settings are changed:
+
+deactivates previews in Dolphin;
+deactivates previews in Nautilus;
+deactivates TCP timestamps;
+deactivates Netfilter's connection tracking helper;
+
 TCP time stamps (rfc 1323) allow for tracking clock
 information with millisecond resolution. This may or may not allow an
 attacker to learn information about the system clock at such
@@ -20,29 +18,29 @@ system has been running, and to distinguish several
 systems running behind NAT and using the same IP address. It might
 also allow to look for clocks that match an expected value to find the
 public IP used by a user.
-.
+
 Hence, this package disables this feature by shipping the
 /etc/sysctl.d/tcp_timestamps.conf configuration file.
-.
+
 Note that TCP time stamps normally have some usefulness. They are
 needed for:
-.
+
 * the TCP protection against wrapped sequence numbers; however, to
-  trigger a wrap, one needs to send roughly 2^32 packets in one
-  minute:  as said in rfc 1700, "The current recommended default
-  time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
-  So, this probably won't be a practical problem in the context
-  of Anonymity Distributions.
-.
+trigger a wrap, one needs to send roughly 2^32 packets in one
+minute:  as said in rfc 1700, "The current recommended default
+time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
+So, this probably won't be a practical problem in the context
+of Anonymity Distributions.
+
 * "Round-Trip Time Measurement", which is only useful when the user
-  manages to saturate their connection. When using Anonymity Distributions,
-  probably the limiting factor for transmission speed is rarely the capacity
-  of the user connection.
-.
-Netfilter's connection tracking helper module increases kernel attack 
-surface by enabling superfluous functionality such as IRC parsing in 
+manages to saturate their connection. When using Anonymity Distributions,
+probably the limiting factor for transmission speed is rarely the capacity
+of the user connection.
+
+Netfilter's connection tracking helper module increases kernel attack
+surface by enabling superfluous functionality such as IRC parsing in
 the kernel (!)
-.
+
 Hence, this package disables this feature by shipping the
 /etc/sysctl.d/nf_conntrack_helper.conf configuration file.
 
@@ -93,7 +91,7 @@ gpg --export 916B8D99C38EAF5E8ADC7A2A8D66066A2EEACCDA | sudo apt-key add -
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb http://sourceforge.net/projects/whonixdevelopermetafiles/files/internal/ wheezy main" > /etc/apt/sources.list.d/whonix.list
+echo "deb http://deb.whonix.org jessie main" > /etc/apt/sources.list.d/whonix.list
 ```
 
 4\. Update your package lists.
