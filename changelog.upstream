@@ -1,3 +1,23 @@
+commit 4416ea5cf904b296749ad53a7a04b0b6d40b5bcf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 21 17:42:55 2016 +0000
+
+    readme
+
+commit 6cda8b1496795422d4c0bfcea2ea2bf29c32daa0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 10 16:10:30 2016 +0000
+
+    disable conntrack helper for better security
+    
+    https://phabricator.whonix.org/T486
+
+commit 0d66fc60b9ea65e826560986698c11cea7ca4ea6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 25 23:27:58 2016 +0000
+
+    bumped changelog version
+
 commit 192d1e0cee505a59c5f62d01022562b12ca6646e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Apr 25 23:19:54 2016 +0000
