@@ -1,0 +1,38 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## Required to run apt-get update as user 'whonixcheck' (non-root).
+## Required for whonixcheck function check_operating_system.
+## Exception to run /usr/lib/apt-get-update as user 'whonixcheck'.
+## is defined in /etc/sudoers.d/.
+
+sigterm_trap() {
+   if [ "$lastpid" = "" ]; then
+      exit 143
+   fi
+   ps -p "$lastpid"
+   if [ ! "$?" = "0" ]; then
+      ## Already terminated.
+      exit 143
+   fi
+   kill -sigterm "$lastpid"
+   exit 143
+}
+
+trap "sigterm_trap" SIGTERM
+
+timeout_after="120"
+kill_after="10"
+
+timeout \
+   --kill-after="$kill_after" \
+   "$timeout_after" \
+   /usr/lib/apt-get-wrapper update &
+
+lastpid="$!"
+wait "$lastpid"
+
+exit "$?"
