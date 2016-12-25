@@ -8,7 +8,7 @@ sigterm_trap() {
    if [ "$lastpid" = "" ]; then
       exit 143
    fi
-   ps -p "$lastpid"
+   ps -p "$lastpid" >/dev/null 2>&1
    if [ ! "$?" = "0" ]; then
       ## Already terminated.
       exit 143
@@ -17,7 +17,7 @@ sigterm_trap() {
    exit 143
 }
 
-trap "sigterm_trap" SIGTERM
+trap "sigterm_trap" SIGTERM SIGINT
 
 timeout_after="120"
 kill_after="10"
