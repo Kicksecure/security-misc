@@ -25,7 +25,7 @@ kill_after="10"
 timeout \
    --kill-after="$kill_after" \
    "$timeout_after" \
-   /usr/lib/apt-get-wrapper update &
+   /usr/lib/security-misc/apt-get-wrapper update &
 
 lastpid="$!"
 wait "$lastpid"
