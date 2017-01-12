@@ -1,3 +1,33 @@
+commit 0cf6524f0fac00c1b9bde836b7e7cc62cb3e41f4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 25 02:33:44 2016 +0000
+
+    apt-get-update: implement SIGINIT trap; hide 'ps' output
+
+commit c4089d8d4017f713631fbc5f09ccf7047dcb7008
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 25 01:36:04 2016 +0000
+
+    update path to /usr/lib/security-misc/apt-get-wrapper
+
+commit 7b01fb934140afdcd8f7275c92cd557a1080d18e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 25 01:35:17 2016 +0000
+
+    remove obsolete comments
+
+commit 8160cfe1d720707895172a18608366ddd65f9ec6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 25 01:29:31 2016 +0000
+
+    moved apt-get-update and apt-get-wrapper from whonixcheck to security-misc
+
+commit 7b3ef3a00f28592852ee701d4ce3803348de6999
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 10 02:30:50 2016 +0000
+
+    bumped changelog version
+
 commit 4416ea5cf904b296749ad53a7a04b0b6d40b5bcf
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 21 17:42:55 2016 +0000
