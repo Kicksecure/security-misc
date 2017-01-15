@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 9), faketime, genmkfile
 Homepage: https://github.com/Whonix/security-misc
 Vcs-Browser: https://github.com/Whonix/security-misc
 Vcs-Git: https://github.com/Whonix/security-misc.git
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 
 Package: security-misc
 Architecture: all
