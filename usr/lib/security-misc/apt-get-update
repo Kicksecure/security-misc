@@ -19,7 +19,7 @@ sigterm_trap() {
 
 trap "sigterm_trap" SIGTERM SIGINT
 
-timeout_after="120"
+timeout_after="240"
 kill_after="10"
 
 timeout \
