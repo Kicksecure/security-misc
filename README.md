@@ -16,7 +16,7 @@ somewhere between the attacked system and the destination server.
 It may allow an attacker to find out how long a given
 system has been running, and to distinguish several
 systems running behind NAT and using the same IP address. It might
-also allow to look for clocks that match an expected value to find the
+also allow one to look for clocks that match an expected value to find the
 public IP used by a user.
 
 Hence, this package disables this feature by shipping the
