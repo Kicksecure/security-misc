@@ -27,7 +27,7 @@ tee "$logfile" < "$tee_fifo" &
 tee_pid="$!"
 
 apt-get \
-   ${1+"$@"} \
+   "$@" \
    1> "$tee_fifo" \
    2> "$tee_fifo" \
    &
