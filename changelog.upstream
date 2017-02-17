@@ -1,3 +1,59 @@
+commit c59d15d48f1950697d4e1da13282688f4f483ea5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 15 20:46:22 2017 +0000
+
+    Debian stretch / kde plasma5 fix: KDEDIRS -> XDG_CONFIG_DIRS
+    
+    https://phabricator.whonix.org/T633
+
+commit bddbba84a6fad680359bc8eee0c395fcc4d79ca9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 14 17:30:31 2017 +0000
+
+    "$@"
+
+commit 9b0d3e34fc8e1981cf59b17aed8abcc38052fc61
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 14 02:37:08 2017 +0000
+
+    add usr/lib/security-misc/apt-get-update-sanity-test
+    
+    a CVE-2016-1252 sanity test script
+
+commit 5e076415536e1513463c59dba6e8afc4e90b7f1a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 13 17:26:59 2017 +0000
+
+    readme
+
+commit 0bb059093f7b4940836057b069bbec3a51ed91ac
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 10 15:47:52 2017 +0000
+
+    remove faketime from Build-Depends:
+    
+    since no longer used for reproducible builds
+
+commit be8084ad1c136ee4a18cb24abcc0c14c522b8089
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 10 15:35:25 2017 +0000
+
+    remove debian/gain-root-command workaround
+
+commit 90f175e117d9ca2b84072bee129539569143e10c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 8 14:26:26 2017 +0000
+
+    double apt-get-update wrapper timeout from 120 to 240 seconds
+    
+    since it takes a bit longer than 120 seconds for me on a fast connection
+
+commit 1e66e03da14ae2e3f7b315e443836c35f954b84f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jan 15 15:35:31 2017 +0000
+
+    bumped changelog version
+
 commit d80d576953ccea7f183bfe4b1e13655ebc03e557
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jan 15 13:11:38 2017 +0000
