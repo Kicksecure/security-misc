@@ -18,7 +18,7 @@ true "
 
 case "$1" in
     configure)
-        glib-compile-schemas /usr/share/glib-2.0/schemas
+        glib-compile-schemas /usr/share/glib-2.0/schemas || true
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
