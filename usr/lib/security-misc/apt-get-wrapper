@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## This file is part of Whonix.
-## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## Copyright (C) 2012 - 2017 Patrick Schleizer <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
 set -e
@@ -15,34 +15,27 @@ cleanup() {
 }
 
 temp_dir="$(mktemp --directory)"
-
 logfile="$temp_dir/log"
-tee_fifo="$temp_dir/tee_fifo"
 
 trap "cleanup" EXIT
 
-mkfifo "$tee_fifo"
+## TODO
+exec 2>&1
 
-tee "$logfile" < "$tee_fifo" &
-tee_pid="$!"
+exec 3>&1
+exec 1> >(tee -a "$logfile")
 
-apt-get \
-   "$@" \
-   1> "$tee_fifo" \
-   2> "$tee_fifo" \
-   &
+## TODO
+#exec 4>&2
+#exec 2> >(tee -a "$logfile")
 
-apt_get_pid="$!"
+unbuffer apt-get "$@"
 
-wait "$tee_pid"
-wait "$apt_get_pid"
 apt_get_exit_code="$?"
 
 if [ ! "$apt_get_exit_code" = "0" ]; then
    exit "$apt_get_exit_code"
 fi
-
-log="$(cat "$logfile")"
 
 while read -r -d $'\n' line; do
    line_lower_case="${line,,}"
