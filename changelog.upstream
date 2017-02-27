@@ -1,3 +1,59 @@
+commit 966e90ebe2d5cd930ebb9367fdbcd0f8e46a0adb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 00:17:36 2017 +0000
+
+    add missing dependency tcl8.6 (which is required by unbuffer [package expect])
+
+commit 5653b7732ae47b7e8e38e2c363aff4ef724c0484
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Feb 26 23:57:17 2017 +0000
+
+    fix, show progress during apt-get-wrapper
+    
+    fix, propagate signals to apt-get child process
+
+commit 49cde21078ccc9f623add6f587ee719843647ee7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 21 19:54:41 2017 +0000
+
+    Whonix 14 KDE plasma 5 fixes
+    
+    https://phabricator.whonix.org/T633
+
+commit 0228e87d477f634d1e1db7c1cf6f213275d40dd9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Feb 19 22:37:10 2017 +0000
+
+    minor
+
+commit dfe8a569b639dd09ef4cd7f35c05efd7ea080406
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Feb 19 22:32:04 2017 +0000
+
+    override glib-compile-schemas with || true in postinst
+    
+    https://phabricator.whonix.org/T500
+
+commit 5ba2a5b6ff53df37ad38f082ad86ff2227158d93
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Feb 19 22:25:28 2017 +0000
+
+    disable previews in nautilus by default for better security
+    
+    copied solution by @unman
+    
+    https://github.com/QubesOS/qubes-issues/issues/1108
+    
+    https://github.com/QubesOS/qubes-core-agent-linux/pull/39
+    
+    https://phabricator.whonix.org/T500
+
+commit 91adab0d1bab6c6b31903f1e165944b3f8c8adb1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 17 14:08:56 2017 +0000
+
+    bumped changelog version
+
 commit c59d15d48f1950697d4e1da13282688f4f483ea5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 15 20:46:22 2017 +0000
