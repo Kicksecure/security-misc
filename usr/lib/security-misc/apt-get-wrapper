@@ -41,12 +41,6 @@ while read -r -d $'\n' line; do
       exit 125
    fi
    if [ "$first_two" = "w:" ]; then
-      first_nine="${line_lower_case:0:9}"
-      if [ "$first_nine" = "w: target" ]; then
-         if echo "$line" | grep -q "is configured multiple times in" ; then
-            continue
-         fi
-      fi
       exit 125
    fi
 done < <( echo "$log" )
