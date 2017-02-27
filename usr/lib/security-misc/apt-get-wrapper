@@ -32,6 +32,8 @@ fi
 
 log="$(cat "$logfile")"
 
+## W: Target Contents-deb-legacy (Contents-all) is configured multiple times in /etc/apt/sources.list:1 and /etc/apt/sources.list:2'
+
 while read -r -d $'\n' line; do
    line_lower_case="${line,,}"
    first_two="${line_lower_case:0:2}"
@@ -39,14 +41,11 @@ while read -r -d $'\n' line; do
       exit 125
    fi
    if [ "$first_two" = "w:" ]; then
-      first_twelve="${line_lower_case:0:12}"
-      if [ "$first_twelve" = "w: duplicate" ]; then
-         continue
-      fi
-      skip_summary_line="W: You may want to run apt-get update to correct these problems"
-      skip_summary_line_lower_case="${skip_summary_line,,}"
-      if [ "$line_lower_case" = "$skip_summary_line_lower_case" ]; then
-         continue
+      first_nine="${line_lower_case:0:9}"
+      if [ "$first_nine" = "w: target" ]; then
+         if echo "$line" | grep -q "is configured multiple times in" ; then
+            continue
+         fi
       fi
       exit 125
    fi
