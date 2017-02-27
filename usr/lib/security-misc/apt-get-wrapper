@@ -19,19 +19,8 @@ logfile="$temp_dir/log"
 
 trap "cleanup" EXIT
 
-## TODO
-exec 2>&1
-
-exec 3>&1
-exec 1> >(tee -a "$logfile")
-
-## TODO
-#exec 4>&2
-#exec 2> >(tee -a "$logfile")
-
-unbuffer apt-get "$@"
-
-apt_get_exit_code="$?"
+apt_get_exit_code="0"
+unbuffer apt-get "$@" 1> >(tee -a "$logfile") 2> >(tee -a "$logfile" >&2) || { apt_get_exit_code="$?"; true; };
 
 if [ ! "$apt_get_exit_code" = "0" ]; then
    exit "$apt_get_exit_code"
