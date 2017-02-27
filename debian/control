@@ -1,4 +1,4 @@
-## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## Copyright (C) 2012 - 2017 Patrick Schleizer <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
 Source: security-misc
@@ -13,7 +13,7 @@ Standards-Version: 3.9.8
 
 Package: security-misc
 Architecture: all
-Depends: expect, tcl8.6, ${misc:Depends}
+Depends: python, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
  The following settings are changed:

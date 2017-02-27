@@ -20,11 +20,17 @@ logfile="$temp_dir/log"
 trap "cleanup" EXIT
 
 apt_get_exit_code="0"
-unbuffer apt-get "$@" 1> >(tee -a "$logfile") 2> >(tee -a "$logfile" >&2) || { apt_get_exit_code="$?"; true; };
+
+python -c 'import pty, sys; pty.spawn(sys.argv[1:])' \
+   | apt-get "$@" 2>&1 \
+   | tee -a "$logfile" \
+   || { apt_get_exit_code="$?"; true; };
 
 if [ ! "$apt_get_exit_code" = "0" ]; then
    exit "$apt_get_exit_code"
 fi
+
+log="$(cat "$logfile")"
 
 while read -r -d $'\n' line; do
    line_lower_case="${line,,}"
