@@ -21,6 +21,11 @@ trap "cleanup" EXIT
 
 apt_get_exit_code="0"
 
+## Thanks to:
+## dmw
+## http://stackoverflow.com/a/26263980/2605155
+## for the python way to create a pty.
+
 python -c 'import pty, sys; pty.spawn(sys.argv[1:])' \
    | apt-get "$@" 2>&1 \
    | tee -a "$logfile" \
