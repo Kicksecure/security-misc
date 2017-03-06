@@ -1,3 +1,57 @@
+commit 99bb1e877ec84bf7d3c6873f0369aed2fb92be4b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Mar 6 15:00:33 2017 +0000
+
+    "$@"
+
+commit f6bc1884855d84599ee731f694e0073f1df73ce1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 28 15:22:54 2017 +0100
+
+    comment
+
+commit 18e23af784e69e1bd40725a23acac9aaa3b167ab
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 23:59:37 2017 +0000
+
+    cleanup
+
+commit 6195450eb2721d987f185f127a5435e8c7f798cc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 23:57:04 2017 +0000
+
+    No longer ignore duplicate apt sources in apt-get-wrapper.
+    
+    No longer acceptable because these generate lots of noise in the terminal.
+
+commit 191918027c1971bfb871abb438c4917e5b98bb74
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 23:43:02 2017 +0000
+
+    adjust apt-get-wrapper for Debian stretch's apt-get
+
+commit 2130b4c654ae5e3f94e7febe00a47e3969858770
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 23:16:32 2017 +0000
+
+    use python rather than unbuffer
+    
+    because unbuffer eats exit code when process is killed
+
+commit cc351165dc78a8b7158a2b9bfdd9e4f0b3866239
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 19:36:38 2017 +0000
+
+    apt-get-wrapper:
+    - fix exit code handling
+    - code simplification
+
+commit 1fb48e3548499d8a2891ec40314ffad8b6f1811e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 27 02:04:00 2017 +0000
+
+    bumped changelog version
+
 commit 966e90ebe2d5cd930ebb9367fdbcd0f8e46a0adb
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 27 00:17:36 2017 +0000
