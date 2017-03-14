@@ -42,7 +42,7 @@ surface by enabling superfluous functionality such as IRC parsing in
 the kernel (!)
 
 Hence, this package disables this feature by shipping the
-/etc/sysctl.d/nf_conntrack_helper.conf configuration file.
+/etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
 
 (This package description has been [automatically](https://github.com/Whonix/whonix-developer-meta-files/blob/master/debug-steps/packaging-helper-script) extracted and mirrored from `debian/control`.)
 
