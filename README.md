@@ -7,7 +7,7 @@ deactivates previews in Nautilus;
 deactivates TCP timestamps;
 deactivates Netfilter's connection tracking helper;
 
-TCP time stamps (rfc 1323) allow for tracking clock
+TCP time stamps (RFC 1323) allow for tracking clock
 information with millisecond resolution. This may or may not allow an
 attacker to learn information about the system clock at such
 a resolution, depending on various issues such as network lag.
@@ -27,7 +27,7 @@ needed for:
 
 * the TCP protection against wrapped sequence numbers; however, to
 trigger a wrap, one needs to send roughly 2^32 packets in one
-minute:  as said in rfc 1700, "The current recommended default
+minute:  as said in RFC 1700, "The current recommended default
 time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
 So, this probably won't be a practical problem in the context
 of Anonymity Distributions.
@@ -39,10 +39,10 @@ of the user connection.
 
 Netfilter's connection tracking helper module increases kernel attack
 surface by enabling superfluous functionality such as IRC parsing in
-the kernel (!)
+the kernel. (!)
 
 Hence, this package disables this feature by shipping the
-/etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
+/etc/sysctl.d/nf_conntrack_helper.conf configuration file.
 
 (This package description has been [automatically](https://github.com/Whonix/whonix-developer-meta-files/blob/master/debug-steps/packaging-helper-script) extracted and mirrored from `debian/control`.)
 
