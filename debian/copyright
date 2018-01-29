@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
-Copyright: 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+Copyright: 2012 - 2018 Patrick Schleizer <adrelanos@riseup.net>
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
