@@ -1,3 +1,15 @@
+commit 73e5319711b897beb8fecae57f7552d764e438e5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Sep 14 10:46:00 2018 +0000
+
+    'Depends: libglib2.0-bin' - contains glib-compile-schemas (required by postinst)
+
+commit 64b5e55d8cfc27c56c64b56837e7cf291a5473e0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 27 16:49:44 2018 +0000
+
+    bumped changelog version
+
 commit 1211aee0206b0d829b1101348b2a9836996ceef9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Aug 21 05:18:37 2018 +0800
