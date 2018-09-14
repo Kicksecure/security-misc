@@ -13,7 +13,7 @@ Standards-Version: 3.9.8
 
 Package: security-misc
 Architecture: all
-Depends: python, ${misc:Depends}
+Depends: python, libglib2.0-bin, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
  The following settings are changed:
