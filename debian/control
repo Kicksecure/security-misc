@@ -20,6 +20,7 @@ Description: enhances misc security settings
  .
  deactivates previews in Dolphin;
  deactivates previews in Nautilus;
+ deactivates thumbnails in Thunar;
  deactivates TCP timestamps;
  deactivates Netfilter's connection tracking helper;
  .
