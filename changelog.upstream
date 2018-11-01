@@ -1,3 +1,21 @@
+commit 4ecd32ef9996442532b78ae1d46694d0e452cec0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 31 02:26:13 2018 -0400
+
+    description
+
+commit 008a97d9e7f891a706a277c8e9bb2e3a958d1e63
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 31 02:22:43 2018 -0400
+
+    disable previews in thunar
+
+commit 256e4bac52d6c93a957ef47d07be2b7a0add8435
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Sep 14 13:20:11 2018 +0000
+
+    bumped changelog version
+
 commit 73e5319711b897beb8fecae57f7552d764e438e5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Sep 14 10:46:00 2018 +0000
