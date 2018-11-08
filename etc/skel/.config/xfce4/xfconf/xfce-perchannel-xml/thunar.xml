@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Configuration for Thunar. Shows hidden icons, disables volume management, changes date style to iso format, disables thumbnails. -->
+<!-- Configuration for Thunar. Changes date style to iso format, disables thumbnails. -->
 
 <channel name="thunar" version="1.0">
-  <property name="last-show-hidden" type="bool" value="true"/>
-  <property name="misc-volume-management" type="bool" value="false"/>
   <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_ISO"/>
   <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_NEVER"/>
 </channel>
