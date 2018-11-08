@@ -1,3 +1,37 @@
+commit 0c020af885b3dfb2924102e6cf41a5af114cc140
+Merge: f9e1877 6f240c0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 8 09:53:47 2018 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 6f240c0c4c88df2946fdd673f833ee05dd8340bb
+Merge: f9e1877 f84f988
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 8 04:53:25 2018 -0500
+
+    Merge pull request #4 from Algernon-01/master
+    
+    Enable hidden files and volume management again.
+
+commit f84f988118e30a2a3d4d74ed008c1a626c35c365
+Author: Algernon-01 <33966997+Algernon-01@users.noreply.github.com>
+Date:   Thu Nov 8 07:22:35 2018 +0000
+
+    Enabled hidden files and volume management.
+
+commit 5aebf292149cca72cba3416c0de0f927d76d3281
+Author: Algernon-01 <33966997+Algernon-01@users.noreply.github.com>
+Date:   Fri Nov 2 10:16:09 2018 +0000
+
+    Security and general settings for Thunar.
+
+commit f9e18772d72abeb1d14e3dc2740950f91900ee69
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 1 07:42:29 2018 +0000
+
+    bumped changelog version
+
 commit 4ecd32ef9996442532b78ae1d46694d0e452cec0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Oct 31 02:26:13 2018 -0400
