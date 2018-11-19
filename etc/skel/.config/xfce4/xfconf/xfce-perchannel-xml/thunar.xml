@@ -9,6 +9,6 @@
   <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_ISO"/>
   <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_NEVER"/>
   <property name="hidden-bookmarks" type="array">
-    <value type="string" value="network://"/>
+    <value type="string" value="network:///"/>
   </property>
 </channel>
