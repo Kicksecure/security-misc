@@ -1,3 +1,23 @@
+commit 63b080f40bab38bdb1c91519b90c3988640970d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 19 06:27:52 2018 -0500
+
+    fix hiding network bookmark in thunar by default
+    
+    Thanks to @Algernon for suggesting the fix!
+
+commit daf7fc002b2d946c2946b9effe3fecc5cebe4cf2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 19 03:08:20 2018 -0500
+
+    Disables network bookmark by default.
+
+commit 2bd6dabc7c523d7680917753e61130cf78d7067e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 8 09:55:41 2018 +0000
+
+    bumped changelog version
+
 commit 0c020af885b3dfb2924102e6cf41a5af114cc140
 Merge: f9e1877 6f240c0
 Author: Patrick Schleizer <adrelanos@riseup.net>
