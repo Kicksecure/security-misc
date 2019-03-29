@@ -2,7 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 
 Files: *
 Copyright: 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
-License: GPL-3+-with-whonix-additional-terms
+License: GPL-3+-with-additional-terms-1
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
@@ -21,9 +21,6 @@ License: GPL-3+-with-whonix-additional-terms
  `/usr/share/common-licenses/GPL-3'.
  .
  ADDITIONAL TERMS APPLICABLE per GNU GPL version 3 section 7
- .
- Notwithstanding any other provision of this License,
- in addition, the this program is also subject to certain additional terms.
  .
  1. Replacement of Section 15.  Section 15 of the GPL shall be deleted in its
  entirety and replaced with the following:
