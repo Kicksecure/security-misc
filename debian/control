@@ -5,11 +5,11 @@ Source: security-misc
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@riseup.net>
-Build-Depends: debhelper (>= 9), genmkfile
+Build-Depends: debhelper (>= 12), genmkfile
 Homepage: https://github.com/Whonix/security-misc
 Vcs-Browser: https://github.com/Whonix/security-misc
 Vcs-Git: https://github.com/Whonix/security-misc.git
-Standards-Version: 3.9.8
+Standards-Version: 4.3.0
 
 Package: security-misc
 Architecture: all
