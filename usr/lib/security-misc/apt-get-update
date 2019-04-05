@@ -12,7 +12,7 @@ sigterm_trap() {
       ## Already terminated.
       exit 143
    fi
-   kill -sigterm "$lastpid"
+   kill -s sigterm "$lastpid"
    exit 143
 }
 
