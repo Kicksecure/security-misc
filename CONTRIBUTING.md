@@ -1,7 +1,13 @@
-Conditions for Contributions to Whonix are not part of Whonix's license.
+Conditions for Contributions to Whonix
 
-Any changes you pull into this source will be also licensed under GPL v3 or any
-later. Additionally you grant ENCRYPTED SUPPORT LP the right to re-license your
-work under a different license. If that is not acceptable, you can either fork
-this source under GPL v3 or any later or contact ENCRYPTED SUPPORT LP. Contact
-ENCRYPTED SUPPORT LP, if you require this source code under different license.
+By contributing to Whonix, you acknowledge that you have read, understood and agreed to our Privacy Policy, Cookie Policy, Terms of Service, and E-Sign Consent.
+
+https://www.whonix.org/wiki/Privacy_Policy
+
+https://www.whonix.org/wiki/Cookie_Policy
+
+https://www.whonix.org/wiki/Terms_of_Service
+
+https://www.whonix.org/wiki/E-Sign_Consent
+
+Conditions for Contributions to Whonix are not part of Whonix's license.
