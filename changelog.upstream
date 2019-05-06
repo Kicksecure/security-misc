@@ -1,3 +1,61 @@
+commit f917c27a197d49b7bcdbfe065fe0696792d05350
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon May 6 05:51:14 2019 -0400
+
+    remove trailing spaces
+
+commit 83e12f8e89cf0269daeca36946cdef07e23075b3
+Merge: 74cdecf 5177444
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon May 6 05:50:35 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5177444d624a8a935c461ebe1065d451d2f8da0f
+Merge: 74cdecf 02e8888
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon May 6 05:46:03 2019 -0400
+
+    Merge pull request #5 from madaidan/patch-1
+    
+    More kernel hardening
+
+commit 02e8888b0bc4f0dfadccbebc9e6e75849d32ba76
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun May 5 20:17:33 2019 +0000
+
+    Update 40_kernel_hardening.cfg
+
+commit 3695d7491ef8a7af81c0c2aad0babc48ec30af81
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun May 5 14:42:03 2019 +0000
+
+    Create 40_kernel_hardening.cfg
+
+commit d2ca85c6860322a35ef0eb347c01c9f21dcf144f
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun May 5 14:36:30 2019 +0000
+
+    Create mmap_aslr.conf
+
+commit 197c1120a9f9f9a38548e4341d12b404fe72fde9
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun May 5 14:35:42 2019 +0000
+
+    Create harden_bpf.conf
+
+commit 351db0ef7f0e0eee09496ba56ec13d07ae84761e
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun May 5 14:34:41 2019 +0000
+
+    Create kptr_restrict.conf
+
+commit 74cdecfd6b86c4932be2f3b6677ff023c6d52053
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 3 11:34:25 2019 +0000
+
+    bumped changelog version
+
 commit 09c35d5da251c190febaeb3437e151612597375d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri May 3 10:56:56 2019 +0000
