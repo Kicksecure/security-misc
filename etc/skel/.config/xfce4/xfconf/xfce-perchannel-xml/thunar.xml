@@ -4,6 +4,7 @@
 <!-- Changes date style to iso format. -->
 <!-- Disable thumbnails. -->
 <!-- Disable network bookmark by default. -->
+<!-- Disable thunar-volman by default. -->
 
 <channel name="thunar" version="1.0">
   <property name="misc-date-style" type="string" value="THUNAR_DATE_STYLE_ISO"/>
@@ -11,4 +12,5 @@
   <property name="hidden-bookmarks" type="array">
     <value type="string" value="network:///"/>
   </property>
+  <property name="misc-volume-management" type="bool" value="false"/>
 </channel>
