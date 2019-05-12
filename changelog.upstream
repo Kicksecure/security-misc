@@ -1,3 +1,15 @@
+commit c040117fe47acad2e5c76baa55d42a6ec9223955
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun May 12 10:50:34 2019 +0000
+
+    lintian
+
+commit 26fe4305a1fd072a8608f62a30129ad249203684
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun May 12 10:48:27 2019 +0000
+
+    bumped changelog version
+
 commit 06b86229a4e1cc45a9bbe21c9a4c3e2a16fb82dc
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun May 12 02:58:45 2019 -0400
