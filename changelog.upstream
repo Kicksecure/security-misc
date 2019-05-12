@@ -1,3 +1,36 @@
+commit 06b86229a4e1cc45a9bbe21c9a4c3e2a16fb82dc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun May 12 02:58:45 2019 -0400
+
+    update path to pre.bsh
+
+commit 137bc073c5d65988cce832336ebee5c47071e732
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed May 8 21:38:25 2019 -0400
+
+    port to /etc/xdg/xfce4/xfconf/xfce-perchannel-xml
+    
+    https://forums.whonix.org/t/whonix-xfce-development/6213/84?u=patrick
+
+commit 3bd4da6794067708f517b099548c0aa2a2b65146
+Merge: c80b746 b00a264
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed May 8 21:32:29 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b00a264ce27c48584879d85275a3fa3f19030906
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed May 8 21:29:36 2019 -0400
+
+    Disable thunar-volman by default.
+
+commit c80b7465bfb9164fb300dea71c38f58672199b17
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon May 6 09:58:44 2019 +0000
+
+    bumped changelog version
+
 commit f917c27a197d49b7bcdbfe065fe0696792d05350
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon May 6 05:51:14 2019 -0400
