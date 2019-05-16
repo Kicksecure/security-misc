@@ -1,3 +1,37 @@
+commit a2b184e5bb9942aa63a36fb918b203053a53f1e4
+Merge: 71bf635 7d7b899
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 16 19:53:27 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7d7b899dd13f7123822bf269a639c68ff5cb737e
+Merge: 71bf635 b814f33
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 16 19:52:52 2019 +0000
+
+    Merge pull request #6 from madaidan/patch-2
+    
+    Even more kernel hardening
+
+commit b814f338b803ae33380551919b00144bb63a53b8
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu May 16 16:33:03 2019 +0000
+
+    Update tcp_hardening.conf
+
+commit e6794721bd181f8884cd3817b5ae3c6c58747ae7
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu May 16 16:29:20 2019 +0000
+
+    Update ptrace_scope.conf
+
+commit 71bf63511b2cf2ca955900b85a536e4b3adf4c66
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun May 12 11:08:32 2019 +0000
+
+    bumped changelog version
+
 commit c040117fe47acad2e5c76baa55d42a6ec9223955
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun May 12 10:50:34 2019 +0000
@@ -36,6 +70,30 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed May 8 21:29:36 2019 -0400
 
     Disable thunar-volman by default.
+
+commit a4852ad6c8260c68d9c1024e09a9487a8e2e1f61
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon May 6 20:37:53 2019 +0000
+
+    Create fs_protected.conf
+
+commit 0296e51e06d94cea598fcad3bdbfa165e519a47b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon May 6 15:46:37 2019 +0000
+
+    Create ptrace_scope.conf
+
+commit 2923fc96ef9ee96a3149c8b2f781402c65e106b9
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon May 6 15:45:53 2019 +0000
+
+    Create tcp_hardening.conf
+
+commit 4216299ee847da0bdf4c714451a70b69f5881d8c
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon May 6 15:42:55 2019 +0000
+
+    Create kexec.conf
 
 commit c80b7465bfb9164fb300dea71c38f58672199b17
 Author: Patrick Schleizer <adrelanos@riseup.net>
