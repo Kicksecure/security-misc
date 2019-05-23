@@ -1,3 +1,31 @@
+commit 0a200e09ecf745d23e5e880d521f1aec2a7b25a9
+Merge: 65d7eb8 244234c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 23 18:25:47 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 244234c8b709a425feed4f3cfb87389f4fb2c6f5
+Merge: 65d7eb8 7177c60
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 23 22:25:13 2019 +0000
+
+    Merge pull request #7 from madaidan/patch-3
+    
+    Disable uncommon network protocols
+
+commit 7177c6041a9b086a4cb90504a492136b4da732a2
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu May 16 20:30:49 2019 +0000
+
+    Create uncommon-network-protocols.conf
+
+commit 65d7eb81a6b84afcbf0692265f6d7a4b4599017b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 16 20:25:46 2019 +0000
+
+    bumped changelog version
+
 commit a2b184e5bb9942aa63a36fb918b203053a53f1e4
 Merge: 71bf635 7d7b899
 Author: Patrick Schleizer <adrelanos@riseup.net>
