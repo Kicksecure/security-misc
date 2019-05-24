@@ -4,6 +4,7 @@ The following settings are changed:
 
 deactivates previews in Dolphin;
 deactivates previews in Nautilus;
+deactivates thumbnails in Thunar;
 deactivates TCP timestamps;
 deactivates Netfilter's connection tracking helper;
 
@@ -54,7 +55,7 @@ sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg adv --keyserver hkp://i
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb http://deb.whonix.org buster main" | sudo tee /etc/apt/sources.list.d/whonix.list
+echo "deb http://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
 ```
 
 4\. Update your package lists.
@@ -78,6 +79,6 @@ Replace `apparmor-profile-torbrowser` with the actual name of this package with 
 * [Free Forum Support](https://forums.whonix.org)
 * [Professional Support](https://www.whonix.org/wiki/Professional_Support)
 
-## Payments ##
+## Donate ##
 
-`security-misc` requires [payments](https://www.whonix.org/wiki/Payments) to stay alive!
+`security-misc` requires [donations](https://www.whonix.org/wiki/Donate) to stay alive!
