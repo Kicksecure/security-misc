@@ -1,6 +1,6 @@
-## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
-version=3
-opts=filenamemangle=s/.+\/v?(.*)\.tar\.gz/<project>-$1.tar.gz/ \
-  https://github.com/Whonix/security-misc/tags .*/v?(\d[\d\.]+)\.tar\.gz
+version=4
+opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/security-misc-$1\.tar\.gz/ \
+  https://github.com/Whonix/security-misc/tags .*/v?(\d\S+)\.tar\.gz
