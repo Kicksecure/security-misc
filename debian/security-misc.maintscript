@@ -2,4 +2,6 @@
 ## See the file COPYING for copying conditions.
 
 ## Was moved to /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
-rm_conffile /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+## Reverted due to package file conflict.
+## https://github.com/QubesOS/qubes-issues/issues/1885#issuecomment-500200375
+#rm_conffile /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
