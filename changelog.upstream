@@ -1,3 +1,29 @@
+commit 8b5e84d76a762b6c8cac8626245d5311afbea221
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 9 10:24:53 2019 +0000
+
+    cleanup, delete debian/security-misc.maintscript to fix lintian warning
+
+commit f9acd890a703ce375ed07ad9e1be2bed019e49a3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 9 10:24:24 2019 +0000
+
+    lintian
+
+commit 49873e8e0286f7604399c7e857c7714271991956
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 9 10:06:58 2019 +0000
+
+    solve package file conflict
+    
+    https://github.com/QubesOS/qubes-issues/issues/1885#issuecomment-500200375
+
+commit d5127e716632af2f494e9b41571c44a56a887667
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 8 11:32:12 2019 +0000
+
+    bumped changelog version
+
 commit 9fe58728102f92d0584ef128c53f5e99d3956d92
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 8 00:05:35 2019 -0400
