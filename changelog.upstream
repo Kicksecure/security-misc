@@ -1,3 +1,41 @@
+commit 0a5b15ff45dc1b30867b0093d238b95dde7c0810
+Merge: ca1aa1e f9dc1b6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 21 04:05:50 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit f9dc1b6322961ff0e6c7a5be122f9d1031ba87ea
+Merge: ca1aa1e 2e81885
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jun 20 23:54:58 2019 -0400
+
+    Merge pull request #8 from marmarek/packaging
+    
+    qubes-builder integration
+
+commit 2e81885f691201e2229dadfd5ec7b554980ac689
+Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+Date:   Fri Jun 21 04:52:01 2019 +0200
+
+    Add rpm packaging
+    
+    QubesOS/qubes-issues#1885
+
+commit 27e68a39fe005a58cac02336fc6c468a4b2f5d31
+Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+Date:   Fri Jun 21 04:51:33 2019 +0200
+
+    Add Makefile.builder for qubes-builder (Debian)
+    
+    QubesOS/qubes-issues#1885
+
+commit ca1aa1e577179d92f4ec002221b8c4207e6ce1d6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 10 15:42:58 2019 +0000
+
+    bumped changelog version
+
 commit 8b5e84d76a762b6c8cac8626245d5311afbea221
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 9 10:24:53 2019 +0000
