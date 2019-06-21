@@ -1,0 +1,96 @@
+Name:		security-misc
+Version:	@VERSION@
+Release:	1%{?dist}
+Summary:	enhances misc security settings
+
+License:	GPL-3+-with-additional-terms-1
+URL:		https://github.com/Whonix/security-misc
+Source0:	%{name}-%{version}.tar.xz
+
+BuildRequires: dpkg-dev
+BuildRequires: genmkfile
+Requires:	make
+BuildArch:  noarch
+
+%description
+The following settings are changed:
+
+deactivates previews in Dolphin;
+deactivates previews in Nautilus;
+deactivates thumbnails in Thunar;
+deactivates TCP timestamps;
+deactivates Netfilter's connection tracking helper;
+
+TCP time stamps (RFC 1323) allow for tracking clock
+information with millisecond resolution. This may or may not allow an
+attacker to learn information about the system clock at such
+a resolution, depending on various issues such as network lag.
+This information is available to anyone who monitors the network
+somewhere between the attacked system and the destination server.
+It may allow an attacker to find out how long a given
+system has been running, and to distinguish several
+systems running behind NAT and using the same IP address. It might
+also allow one to look for clocks that match an expected value to find the
+public IP used by a user.
+
+Hence, this package disables this feature by shipping the
+/etc/sysctl.d/tcp_timestamps.conf configuration file.
+
+Note that TCP time stamps normally have some usefulness. They are
+needed for:
+
+* the TCP protection against wrapped sequence numbers; however, to
+  trigger a wrap, one needs to send roughly 2^32 packets in one
+  minute:  as said in RFC 1700, "The current recommended default
+  time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
+  So, this probably won't be a practical problem in the context
+  of Anonymity Distributions.
+
+* "Round-Trip Time Measurement", which is only useful when the user
+  manages to saturate their connection. When using Anonymity Distributions,
+  probably the limiting factor for transmission speed is rarely the capacity
+  of the user connection.
+
+Netfilter's connection tracking helper module increases kernel attack
+surface by enabling superfluous functionality such as IRC parsing in
+the kernel. (!)
+
+Hence, this package disables this feature by shipping the
+/etc/sysctl.d/nf_conntrack_helper.conf configuration file.
+
+%prep
+%setup -q
+
+
+%build
+make %{?_smp_mflags}
+
+
+%install
+%make_install
+
+
+%files
+%license    debian/copyright
+/etc/X11/Xsession.d/50security-misc
+/etc/default/grub.d/40_kernel_hardening.cfg
+/etc/modprobe.d/30_nf_conntrack_helper_disable.conf
+/etc/modprobe.d/uncommon-network-protocols.conf
+/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+/etc/sysctl.d/fs_protected.conf
+/etc/sysctl.d/harden_bpf.conf
+/etc/sysctl.d/kexec.conf
+/etc/sysctl.d/kptr_restrict.conf
+/etc/sysctl.d/mmap_aslr.conf
+/etc/sysctl.d/ptrace_scope.conf
+/etc/sysctl.d/tcp_hardening.conf
+/etc/sysctl.d/tcp_timestamps.conf
+/usr/lib/security-misc/apt-get-update
+/usr/lib/security-misc/apt-get-update-sanity-test
+/usr/lib/security-misc/apt-get-wrapper
+/usr/share/glib-2.0/schemas/30_security-misc.gschema.override
+/usr/share/lintian/overrides/security-misc
+/usr/share/security-misc/dolphinrc
+
+%changelog
+@CHANGELOG@
