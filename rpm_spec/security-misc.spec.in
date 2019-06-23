@@ -85,6 +85,7 @@ make %{?_smp_mflags}
 /etc/sysctl.d/ptrace_scope.conf
 /etc/sysctl.d/tcp_hardening.conf
 /etc/sysctl.d/tcp_timestamps.conf
+/etc/sysctl.d/tcp_sack.conf
 /usr/lib/security-misc/apt-get-update
 /usr/lib/security-misc/apt-get-update-sanity-test
 /usr/lib/security-misc/apt-get-wrapper
