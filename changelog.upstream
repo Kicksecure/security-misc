@@ -1,3 +1,31 @@
+commit ae50d8134294d3746235d383c18fc187c18717d7
+Merge: 5269cfe cd7172c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 03:59:58 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit cd7172c00cbf0cb69e159b6159ef0bfff663a507
+Merge: 5269cfe 807ac7d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 07:59:35 2019 +0000
+
+    Merge pull request #9 from madaidan/patch-5
+    
+    Disables SACK.
+
+commit 807ac7d65916071e4294f42d62b8b2353255c4bc
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jun 22 16:08:30 2019 +0000
+
+    Create tcp_sack.conf
+
+commit 5269cfeef99b500e4aa7c883434f3d5554559d16
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 21 05:40:04 2019 +0000
+
+    bumped changelog version
+
 commit 0a5b15ff45dc1b30867b0093d238b95dde7c0810
 Merge: ca1aa1e f9dc1b6
 Author: Patrick Schleizer <adrelanos@riseup.net>
