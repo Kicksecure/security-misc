@@ -60,3 +60,38 @@ Description: enhances misc security settings
  .
  Hence, this package disables this feature by shipping the
  /etc/sysctl.d/nf_conntrack_helper.conf configuration file.
+ 
+ Kernel symbols in /proc/kallsyms are hidden to prevent malware from
+ reading them and using them to learn more about what to attack on your system.
+ 
+ Kexec is disabled as it can be used for live patching of the running kernel.
+ 
+ The BPF JIT compiler is restricted to the root user and is hardened.
+ 
+ ASLR effectiveness for mmap is increased.
+ 
+ The ptrace system call is restricted to the root user only.
+ 
+ The TCP/IP stack is hardened.
+ 
+ This package makes some data spoofing attacks harder.
+ 
+ SACK is disabled as it is commonly exploited and is rarely used.
+ 
+ This package disables the merging of slabs of similar sizes to prevent an
+ attacker from exploiting them.
+ 
+ Sanity checks, redzoning, and memory poisoning are enabled.
+ 
+ The kernel now panics on uncorrectable errors in ECC memory which could
+ be exploited.
+ 
+ Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
+ KASLR effectiveness.
+ 
+ SMT is disabled as it can be used to exploit the MDS vulnerability.
+ 
+ All mitigations for the MDS vulnerability are enabled.
+ 
+ DCCP, SCTP, TIPC and RDS are blacklisted as they are rarely used and may have
+ unknown vulnerabilities.
