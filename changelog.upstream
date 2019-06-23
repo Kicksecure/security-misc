@@ -1,3 +1,75 @@
+commit 7806af14193f195e825678471ba65c64e07d7d0a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 19:51:53 2019 +0000
+
+    readme
+
+commit 4e32438d75726014573b35c9b101abf59dfc3ba4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 19:47:05 2019 +0000
+
+    debian/control syntax fix
+
+commit a098b18560e30ef238f693bf8f05933489027dd4
+Merge: 2a62899 90d676e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 19:46:30 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 90d676ec1864bd915310673d134d62d10a17a42f
+Merge: 2a62899 1a07d90
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 19:45:31 2019 +0000
+
+    Merge pull request #12 from madaidan/patch-8
+    
+    Update control
+
+commit 1a07d90ed2da597db6d58c5f2da6dc3b32a8104b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 23 19:26:03 2019 +0000
+
+    Update control
+
+commit 2a6289980e07d1d9c263f2d5abfc3b9e37c5054f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 18:46:52 2019 +0000
+
+    syntax fix
+    
+    GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mds=full,nosmt"
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/70
+
+commit f1147318c04642f355eae96786c26ec1cb53977c
+Merge: cd73466 aec6da2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 18:45:41 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit aec6da28e9ac4f8289d7b7aaa77bcef2562cda74
+Merge: cd73466 2178fb3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 18:45:24 2019 +0000
+
+    Merge pull request #10 from madaidan/patch-6
+    
+    Enable more kernel hardening parameters
+
+commit 2178fb37a85808df0c455f7dd76fc72516d6ff28
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 23 17:54:34 2019 +0000
+
+    Add more kernel hardening parameters
+
+commit cd7346699c10e258d5af5f51ad56493e98e4eb1a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 23 12:22:13 2019 +0000
+
+    bumped changelog version
+
 commit 60334797d003f63606645220fbc66393eb30cde0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 09:00:12 2019 +0000
