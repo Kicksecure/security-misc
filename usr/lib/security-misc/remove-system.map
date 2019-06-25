@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Removes the System.map files as they are only used for debugging or malware.
+if [ -f /boot/System.map-* ]; then
+  rm /boot/System.map-*
+fi
