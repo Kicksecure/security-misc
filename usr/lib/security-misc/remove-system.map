@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Removes the System.map files as they are only used for debugging or malware.
-if [ -f /boot/System.map-* ]; then
-  rm /boot/System.map-*
-fi
+for file in /boot/System.map-*
+do
+  if [ -f "${file}" ]; then
+    rm "${file}"
+  fi
+done
