@@ -1,9 +1,14 @@
 #!/bin/bash
 
+## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+shopt -s nullglob
+
 # Removes the System.map files as they are only used for debugging or malware.
-for file in /boot/System.map-*
+for filename in /boot/System.map-*
 do
-  if [ -f "${file}" ]; then
-    rm "${file}"
+  if [ -f "${filename}" ]; then
+    rm -f "${filename}"
   fi
 done
