@@ -3,7 +3,7 @@ Description=Removes the System.map files
 
 [Service]
 Type=oneshot
-Execstart=/usr/lib/security-misc/remove-system.map
+ExecStart=/usr/lib/security-misc/remove-system.map
 
 [Install]
 WantedBy=multi-user.target
