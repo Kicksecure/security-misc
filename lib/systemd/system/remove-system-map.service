@@ -1,0 +1,9 @@
+[Unit]
+Description=Removes the System.map files
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/security-misc/remove-system.map
+
+[Install]
+WantedBy=multi-user.target
