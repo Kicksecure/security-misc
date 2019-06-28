@@ -97,13 +97,13 @@ Description: enhances misc security settings
  .
  DCCP, SCTP, TIPC and RDS are blacklisted as they are rarely used and may have
  unknown vulnerabilities.
- 
+ .
  The kernel logs are restricted to root only.
- 
+ .
  A systemd service clears System.map on boot as these contain kernel symbols that could be useful to an attacker.
- 
+ .
  The SysRq key is restricted to only allow shutdowns/reboots.
- 
+ .
  The thunderbolt and firewire modules are blacklisted as they can be used for DMA (Direct Memory Access) attacks.
- 
+ .
  IOMMU is enabled with a boot parameter to prevent DMA attacks.
