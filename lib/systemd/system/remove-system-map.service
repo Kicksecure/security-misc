@@ -1,5 +1,6 @@
 [Unit]
 Description=Removes the System.map files
+Documentation=https://github.com/Whonix/security-misc
 
 [Service]
 Type=oneshot
