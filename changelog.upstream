@@ -1,3 +1,21 @@
+commit 36c2b1d28391ac2ea0f995fd0a348eecbe833a6c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 28 07:18:30 2019 +0000
+
+    fix lintian warning
+
+commit a978fe10001a8c1a9a6a3179d9fc5dc9ed433bc2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 28 07:17:35 2019 +0000
+
+    chmod +x usr/lib/security-misc/remove-system.map
+
+commit fe69dc6173e8a3e45ff7996597e9e50f09033279
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 28 07:09:35 2019 +0000
+
+    bumped changelog version
+
 commit 6a6afc347ad80bd133438a27e2dc64a1b54c784a
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 03:02:49 2019 -0400
