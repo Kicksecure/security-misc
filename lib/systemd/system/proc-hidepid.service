@@ -1,5 +1,6 @@
 [Unit]
 Description=Mounts /proc with hidepid=2
+Documentation=https://github.com/Whonix/security-misc
 Requires=local-fs.target
 After=local-fs.target
 
