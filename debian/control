@@ -23,6 +23,8 @@ Description: enhances misc security settings
  deactivates thumbnails in Thunar;
  deactivates TCP timestamps;
  deactivates Netfilter's connection tracking helper;
+ implements some kernel hardening;
+ prevents DMA attacks;
  .
  TCP time stamps (RFC 1323) allow for tracking clock
  information with millisecond resolution. This may or may not allow an
@@ -59,7 +61,7 @@ Description: enhances misc security settings
  the kernel. (!)
  .
  Hence, this package disables this feature by shipping the
- /etc/sysctl.d/nf_conntrack_helper.conf configuration file.
+ /etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
  .
  Kernel symbols in /proc/kallsyms are hidden to prevent malware from
  reading them and using them to learn more about what to attack on your system.
@@ -95,3 +97,13 @@ Description: enhances misc security settings
  .
  DCCP, SCTP, TIPC and RDS are blacklisted as they are rarely used and may have
  unknown vulnerabilities.
+ .
+ The kernel logs are restricted to root only.
+ .
+ A systemd service clears System.map on boot as these contain kernel symbols that could be useful to an attacker.
+ .
+ The SysRq key is restricted to only allow shutdowns/reboots.
+ .
+ The thunderbolt and firewire modules are blacklisted as they can be used for DMA (Direct Memory Access) attacks.
+ .
+ IOMMU is enabled with a boot parameter to prevent DMA attacks.
