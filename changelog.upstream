@@ -1,3 +1,43 @@
+commit befa03fea80c53bac3c4b1bb530be2f965ce6157
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 29 10:34:48 2019 +0000
+
+    fix lintian warning
+
+commit 250919b821a00c93ee4fe7d92f6f3ed812110aac
+Merge: ecf5d80 60e6dfc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 29 06:06:02 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 60e6dfcbff08dd4526e60c3302741e40d98c8b3e
+Merge: ecf5d80 9e9c854
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 29 10:05:34 2019 +0000
+
+    Merge pull request #15 from madaidan/patch-11
+    
+    Update control
+
+commit 9e9c854d274d7322759a9e5d2c49bcbd60e63e0d
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Jun 28 11:34:35 2019 +0000
+
+    Update control
+
+commit b26d861dffdbca124322cbfbda99ab71a3142e06
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Jun 28 11:33:48 2019 +0000
+
+    Update control
+
+commit ecf5d80fdf0e8f997afa88f8d788a7df88008afc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 28 07:20:53 2019 +0000
+
+    bumped changelog version
+
 commit 36c2b1d28391ac2ea0f995fd0a348eecbe833a6c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 07:18:30 2019 +0000
