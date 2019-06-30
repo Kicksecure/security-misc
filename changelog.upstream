@@ -1,3 +1,14 @@
+commit b8ace6e3f6a94268e0f63907e62bf968445ae548
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 07:21:31 2019 -0400
+
+    bump
+
+commit f3a48009878e0edb033633d609f82a167cd8e616
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 08:23:51 2019 +0000
+
+    bumped changelog version
 
 commit 85f61758c5b6d8b6a57d140a9f3795769a3ed183
 Author: Patrick Schleizer <adrelanos@riseup.net>
@@ -18,7 +29,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:10:28 2019 +0000
 
     Merge pull request #17 from madaidan/patch-13
-
+    
     Disable coredumps
 
 commit 67de5247c8e7cd68c851a3d62168e9de69000afe
@@ -34,7 +45,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:09:23 2019 +0000
 
     Merge pull request #16 from madaidan/patch-12
-
+    
     Mount /proc with hidepid=2
 
 commit dbfb9e1cdf1e042c8985e2e69b7f5f5f1eaed860
@@ -116,7 +127,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 29 10:05:34 2019 +0000
 
     Merge pull request #15 from madaidan/patch-11
-
+    
     Update control
 
 commit 9e9c854d274d7322759a9e5d2c49bcbd60e63e0d
@@ -174,7 +185,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:59:16 2019 +0000
 
     Merge pull request #14 from madaidan/patch-10
-
+    
     Add some hardening for other distributions
 
 commit 5e02100e34776bf410ba05d7a3f7ee7f696ca0fc
@@ -183,7 +194,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:58:32 2019 +0000
 
     Merge pull request #13 from madaidan/patch-9
-
+    
     Remove System.map and restrict the SysRq key.
 
 commit 7e12e16dc0513f0a6936e576e3c8fa8ee44509d2
@@ -192,7 +203,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:57:42 2019 +0000
 
     Merge pull request #11 from madaidan/patch-7
-
+    
     Protect against DMA attacks
 
 commit 3801a53a9e01aafa3783276059a7907f5b20b96e
@@ -274,7 +285,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 19:45:31 2019 +0000
 
     Merge pull request #12 from madaidan/patch-8
-
+    
     Update control
 
 commit 1a07d90ed2da597db6d58c5f2da6dc3b32a8104b
@@ -288,9 +299,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:46:52 2019 +0000
 
     syntax fix
-
+    
     GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mds=full,nosmt"
-
+    
     https://forums.whonix.org/t/kernel-hardening/7296/70
 
 commit f1147318c04642f355eae96786c26ec1cb53977c
@@ -306,7 +317,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:45:24 2019 +0000
 
     Merge pull request #10 from madaidan/patch-6
-
+    
     Enable more kernel hardening parameters
 
 commit 641407c8e9c728429ec86e7c89e431896d88e116
@@ -358,7 +369,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 07:59:35 2019 +0000
 
     Merge pull request #9 from madaidan/patch-5
-
+    
     Disables SACK.
 
 commit 807ac7d65916071e4294f42d62b8b2353255c4bc
@@ -386,7 +397,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jun 20 23:54:58 2019 -0400
 
     Merge pull request #8 from marmarek/packaging
-
+    
     qubes-builder integration
 
 commit 2e81885f691201e2229dadfd5ec7b554980ac689
@@ -394,7 +405,7 @@ Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 Date:   Fri Jun 21 04:52:01 2019 +0200
 
     Add rpm packaging
-
+    
     QubesOS/qubes-issues#1885
 
 commit 27e68a39fe005a58cac02336fc6c468a4b2f5d31
@@ -402,7 +413,7 @@ Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 Date:   Fri Jun 21 04:51:33 2019 +0200
 
     Add Makefile.builder for qubes-builder (Debian)
-
+    
     QubesOS/qubes-issues#1885
 
 commit ca1aa1e577179d92f4ec002221b8c4207e6ce1d6
@@ -428,7 +439,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 9 10:06:58 2019 +0000
 
     solve package file conflict
-
+    
     https://github.com/QubesOS/qubes-issues/issues/1885#issuecomment-500200375
 
 commit d5127e716632af2f494e9b41571c44a56a887667
@@ -474,7 +485,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 23 22:25:13 2019 +0000
 
     Merge pull request #7 from madaidan/patch-3
-
+    
     Disable uncommon network protocols
 
 commit 7177c6041a9b086a4cb90504a492136b4da732a2
@@ -502,7 +513,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 16 19:52:52 2019 +0000
 
     Merge pull request #6 from madaidan/patch-2
-
+    
     Even more kernel hardening
 
 commit b814f338b803ae33380551919b00144bb63a53b8
@@ -546,7 +557,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed May 8 21:38:25 2019 -0400
 
     port to /etc/xdg/xfce4/xfconf/xfce-perchannel-xml
-
+    
     https://forums.whonix.org/t/whonix-xfce-development/6213/84?u=patrick
 
 commit 3bd4da6794067708f517b099548c0aa2a2b65146
@@ -611,7 +622,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon May 6 05:46:03 2019 -0400
 
     Merge pull request #5 from madaidan/patch-1
-
+    
     More kernel hardening
 
 commit 02e8888b0bc4f0dfadccbebc9e6e75849d32ba76
@@ -709,18 +720,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Mar 1 14:32:41 2019 +0000
 
     add improved legal protections clauses
-
+    
     The license for software created by Whonix is the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version with additional terms applicable per GNU GPL version 3 section 7.
-
+    
     The additional terms are based on the Doom 3 license which is Debian refers to as `GPL-3+-with-id-software-additional-terms`, which is Debian DFSG [1] (The Debian Free Software Guidelines) approved and which is therefore suitable for Debian `main`. Whonix made applied minimal changes to it:
-
+    
     * Rewrite `The Doom 3 BFG Edition GPL Source Code` to the more common `this program` which is used throughout the GPL.
     * Added a "trump clause" [2], in other words, any conflicts or disputes between the additional terms and the GPLv3 shall be resolved in favor of the GPLv3 by adding `Notwithstanding any other provision of this License` (as mentioned in GPL FAQ [3]) at the beginning of the additional terms.
-
+    
     [1] https://www.debian.org/social_contract#guidelines
     [2] https://www.fsf.org/news/canonical-updated-licensing-terms
     [3] https://www.gnu.org/licenses/gpl-faq.html#v3Notwithstanding
-
+    
     For more considerations, see also:
     https://www.whonix.org/wiki/Dev/Licensing
 
@@ -735,7 +746,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 19 06:27:52 2018 -0500
 
     fix hiding network bookmark in thunar by default
-
+    
     Thanks to @Algernon for suggesting the fix!
 
 commit daf7fc002b2d946c2946b9effe3fecc5cebe4cf2
@@ -763,7 +774,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 8 04:53:25 2018 -0500
 
     Merge pull request #4 from Algernon-01/master
-
+    
     Enable hidden files and volume management again.
 
 commit f84f988118e30a2a3d4d74ed008c1a626c35c365
@@ -887,7 +898,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Mar 14 13:42:37 2017 +0000
 
     Merge pull request #2 from HulaHoopWhonix/patch-2
-
+    
     Update README.md
 
 commit 6e5e5d6ea65a0fee4c76e5ad74c444344ff1f462
@@ -925,7 +936,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 27 23:57:04 2017 +0000
 
     No longer ignore duplicate apt sources in apt-get-wrapper.
-
+    
     No longer acceptable because these generate lots of noise in the terminal.
 
 commit 191918027c1971bfb871abb438c4917e5b98bb74
@@ -939,7 +950,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 27 23:16:32 2017 +0000
 
     use python rather than unbuffer
-
+    
     because unbuffer eats exit code when process is killed
 
 commit cc351165dc78a8b7158a2b9bfdd9e4f0b3866239
@@ -967,7 +978,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 26 23:57:17 2017 +0000
 
     fix, show progress during apt-get-wrapper
-
+    
     fix, propagate signals to apt-get child process
 
 commit 49cde21078ccc9f623add6f587ee719843647ee7
@@ -975,7 +986,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 21 19:54:41 2017 +0000
 
     Whonix 14 KDE plasma 5 fixes
-
+    
     https://phabricator.whonix.org/T633
 
 commit 0228e87d477f634d1e1db7c1cf6f213275d40dd9
@@ -989,7 +1000,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 19 22:32:04 2017 +0000
 
     override glib-compile-schemas with || true in postinst
-
+    
     https://phabricator.whonix.org/T500
 
 commit 5ba2a5b6ff53df37ad38f082ad86ff2227158d93
@@ -997,13 +1008,13 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 19 22:25:28 2017 +0000
 
     disable previews in nautilus by default for better security
-
+    
     copied solution by @unman
-
+    
     https://github.com/QubesOS/qubes-issues/issues/1108
-
+    
     https://github.com/QubesOS/qubes-core-agent-linux/pull/39
-
+    
     https://phabricator.whonix.org/T500
 
 commit 91adab0d1bab6c6b31903f1e165944b3f8c8adb1
@@ -1017,7 +1028,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 15 20:46:22 2017 +0000
 
     Debian stretch / kde plasma5 fix: KDEDIRS -> XDG_CONFIG_DIRS
-
+    
     https://phabricator.whonix.org/T633
 
 commit bddbba84a6fad680359bc8eee0c395fcc4d79ca9
@@ -1031,7 +1042,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 14 02:37:08 2017 +0000
 
     add usr/lib/security-misc/apt-get-update-sanity-test
-
+    
     a CVE-2016-1252 sanity test script
 
 commit 5e076415536e1513463c59dba6e8afc4e90b7f1a
@@ -1045,7 +1056,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 10 15:47:52 2017 +0000
 
     remove faketime from Build-Depends:
-
+    
     since no longer used for reproducible builds
 
 commit be8084ad1c136ee4a18cb24abcc0c14c522b8089
@@ -1059,7 +1070,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 8 14:26:26 2017 +0000
 
     double apt-get-update wrapper timeout from 120 to 240 seconds
-
+    
     since it takes a bit longer than 120 seconds for me on a fast connection
 
 commit 1e66e03da14ae2e3f7b315e443836c35f954b84f
@@ -1127,7 +1138,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 10 16:10:30 2016 +0000
 
     disable conntrack helper for better security
-
+    
     https://phabricator.whonix.org/T486
 
 commit 0d66fc60b9ea65e826560986698c11cea7ca4ea6
@@ -1141,7 +1152,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Apr 25 23:19:54 2016 +0000
 
     /etc/sysctl.d/nf_conntrack_helper.conf disabled for now as it needs more work
-
+    
     https://phabricator.whonix.org/T486
 
 commit 492ce128909cfda8645738b092fd9e8722c64aa0
@@ -1161,7 +1172,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:36:59 2016 +0000
 
     added 'Replaces: tcp-timestamps-disable'
-
+    
     https://phabricator.whonix.org/T486
 
 commit 7b54755841907c2b86b12eed5035860e17445193
@@ -1170,9 +1181,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:35:07 2016 +0000
 
     merged tcp-timestamps-disable package into security-misc package
-
+    
     disable conntrack helper for better security
-
+    
     https://phabricator.whonix.org/T486
 
 commit be086aea597ff5e4db29f56fa57399c67568d4b6
@@ -1181,7 +1192,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:34:17 2016 +0000
 
     Merge pull request #1 from HulaHoopWhonix/patch-1
-
+    
     Create tcp_timestamps.conf
 
 commit d0eceae0c84a42bce4ade28c593fd6ba002a67b9
