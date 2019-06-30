@@ -109,3 +109,6 @@ Description: enhances misc security settings
  DMA (Direct Memory Access) attacks.
  .
  IOMMU is enabled with a boot parameter to prevent DMA attacks.
+ .
+ A systemd service mounts /proc with hidepid=2 at boot to prevent users from seeing each other's processes.
+ .
