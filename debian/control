@@ -108,4 +108,6 @@ Description: enhances misc security settings
  The thunderbolt and firewire modules are blacklisted as they can be used for
  DMA (Direct Memory Access) attacks.
  .
+ Coredumps are disabled as they may contain important information such as encryption keys or passwords.
+ .
  IOMMU is enabled with a boot parameter to prevent DMA attacks.
