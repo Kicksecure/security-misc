@@ -148,7 +148,7 @@ TTYPERM		0600
 #
 ERASECHAR	0177
 KILLCHAR	025
-UMASK		  022
+UMASK		  006
 
 #
 # Password aging controls:
