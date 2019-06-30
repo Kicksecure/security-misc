@@ -22,5 +22,6 @@ session	requisite			pam_deny.so
 session	required			pam_permit.so
 # and here are more per-package modules (the "Additional" block)
 session	required	pam_unix.so 
-session	optional	pam_systemd.so 
+session	optional	pam_systemd.so
+session optional  pam_umask.so usergroups
 # end of pam-auth-update config
