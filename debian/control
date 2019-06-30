@@ -110,7 +110,8 @@ Description: enhances misc security settings
  .
  IOMMU is enabled with a boot parameter to prevent DMA attacks.
  .
- Coredumps are disabled as they may contain important information such as encryption keys or passwords.
+ Coredumps are disabled as they may contain important information such as
+ encryption keys or passwords.
  .
- A systemd service mounts /proc with hidepid=2 at boot to prevent users from seeing each other's processes.
- .
+ A systemd service mounts /proc with hidepid=2 at boot to prevent users from
+ seeing each other's processes.
