@@ -1,3 +1,101 @@
+commit 85f61758c5b6d8b6a57d140a9f3795769a3ed183
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 04:11:38 2019 -0400
+
+    fix package description
+
+commit e47339706170c92b8db44f014942ea7d94d1ff9e
+Merge: 24b19c5 ec78a3e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 04:11:12 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ec78a3e42e23a270a245dc254046ac1d7fc6ceec
+Merge: 9525ff8 67de524
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 08:10:28 2019 +0000
+
+    Merge pull request #17 from madaidan/patch-13
+    
+    Disable coredumps
+
+commit 67de5247c8e7cd68c851a3d62168e9de69000afe
+Merge: dbfb9e1 9525ff8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 08:10:04 2019 +0000
+
+    Merge branch 'master' into patch-13
+
+commit 9525ff87c6ae3cd6538a0a8f294e6b8610e79a32
+Merge: 24b19c5 22267c8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 30 08:09:23 2019 +0000
+
+    Merge pull request #16 from madaidan/patch-12
+    
+    Mount /proc with hidepid=2
+
+commit dbfb9e1cdf1e042c8985e2e69b7f5f5f1eaed860
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:21:46 2019 +0000
+
+    Update control
+
+commit 024a698249392bdc6ebd362a2c978bc0e02bd55f
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:20:38 2019 +0000
+
+    Update control
+
+commit 230ef34db45c1c7d980abfd8bd4770ec336ae4bf
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:19:04 2019 +0000
+
+    Create disable-coredumps.conf
+
+commit 1bf802f8469a4ffc36cccca1ea6fc6f92ea6af8a
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:16:50 2019 +0000
+
+    Create coredumps.conf
+
+commit f040081a5998fddd1ea4bc30140e41c405842371
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:13:52 2019 +0000
+
+    Prevent setuid processes from creating coredumps.
+
+commit c6b669f1a53bfef08a82994422f9e1b627a937d5
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Jun 30 00:11:13 2019 +0000
+
+    Create disable-coredumps.conf
+
+commit 22267c895b15e10c98bae365ef2bef12f95454aa
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jun 29 22:30:41 2019 +0000
+
+    Update control
+
+commit a2c676ed48782f86e8b58d39f8bec4cd37a47cf5
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jun 29 22:28:41 2019 +0000
+
+    Update proc-hidepid.service
+
+commit dcf57bebf0d28089045a29477f26ad35d1041392
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jun 29 22:27:24 2019 +0000
+
+    Create proc-hidepid.service
+
+commit 24b19c597685233e3ebc7a5200bf929319f8a63f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jun 29 10:35:13 2019 +0000
+
+    bumped changelog version
+
 commit befa03fea80c53bac3c4b1bb530be2f965ce6157
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 29 10:34:48 2019 +0000
