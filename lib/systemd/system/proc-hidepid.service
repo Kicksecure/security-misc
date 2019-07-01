@@ -11,6 +11,7 @@ After=local-fs.target
 Type=oneshot
 ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
 
+## Disabled since not working in Qubes.
 #ProtectSystem=strict
 #ProtectHome=true
 #ProtectKernelTunables=true
@@ -19,13 +20,14 @@ ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
 #PrivateTmp=true
 #PrivateMounts=true
 #PrivateDevices=true
-#PrivateNetwork=true
 #MemoryDenyWriteExecute=true
 #NoNewPrivileges=true
 #RestrictRealtime=true
 #SystemCallArchitectures=native
 #RestrictNamespaces=true
 #SystemCallFilter=mount munmap access read open close stat fstat lstat mmap mprotect brk rt_sigaction rt_sigprocmask execve readlink getrlimit getuid getgid geteuid getegid statfs prctl arch_prctl set_tid_address newfstatat set_robust_list openat mkdir
+
+PrivateNetwork=true
 
 [Install]
 WantedBy=multi-user.target
