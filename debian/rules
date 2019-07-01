@@ -6,7 +6,7 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@
+	dh $@ --with=config-package
 
 override_dh_installchangelogs:
 	dh_installchangelogs changelog.upstream upstream
