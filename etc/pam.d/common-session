@@ -25,3 +25,5 @@ session	required	pam_unix.so
 session	optional	pam_systemd.so 
 session	optional	pam_cgfs.so -c freezer,memory,name=systemd
 # end of pam-auth-update config
+session optional pam_umask.so usergroups
+
