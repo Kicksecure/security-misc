@@ -10,21 +10,22 @@ After=local-fs.target
 [Service]
 Type=oneshot
 ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
-ProtectSystem=strict
-ProtectHome=true
-ProtectKernelTunables=true
-ProtectKernelModules=true
-ProtectControlGroups=true
-PrivateTmp=true
-PrivateMounts=true
-PrivateDevices=true
-PrivateNetwork=true
-MemoryDenyWriteExecute=true
-NoNewPrivileges=true
-RestrictRealtime=true
-SystemCallArchitectures=native
-RestrictNamespaces=true
-SystemCallFilter=mount munmap access read open close stat fstat lstat mmap mprotect brk rt_sigaction rt_sigprocmask execve readlink getrlimit getuid getgid geteuid getegid statfs prctl arch_prctl set_tid_address newfstatat set_robust_list openat mkdir
+
+#ProtectSystem=strict
+#ProtectHome=true
+#ProtectKernelTunables=true
+#ProtectKernelModules=true
+#ProtectControlGroups=true
+#PrivateTmp=true
+#PrivateMounts=true
+#PrivateDevices=true
+#PrivateNetwork=true
+#MemoryDenyWriteExecute=true
+#NoNewPrivileges=true
+#RestrictRealtime=true
+#SystemCallArchitectures=native
+#RestrictNamespaces=true
+#SystemCallFilter=mount munmap access read open close stat fstat lstat mmap mprotect brk rt_sigaction rt_sigprocmask execve readlink getrlimit getuid getgid geteuid getegid statfs prctl arch_prctl set_tid_address newfstatat set_robust_list openat mkdir
 
 [Install]
 WantedBy=multi-user.target
