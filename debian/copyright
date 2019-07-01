@@ -72,7 +72,9 @@ License: GPL-3+-with-additional-terms-1
  ATTORNEYS' FEES AND EXPENSES) OR ANY OTHER LIABILITY ARISING FROM, RELATED TO OR
  IN CONNECTION WITH YOUR ASSUMPTIONS OF LIABILITY.
  .
- Files: etc/login.defs.security-misc
+
+Files: etc/login.defs.security-misc
+Copyright:
  This is Debian GNU/Linux's prepackaged version of the shadow utilities.
  .
  It was downloaded from: <ftp://ftp.pld.org.pl/software/shadow/>.
@@ -91,7 +93,7 @@ License: GPL-3+-with-additional-terms-1
  .
  Parts of this software are copyright 2000 - 2007, Tomasz Kłoczko.
  All rights reserved.
- .
+License: shadow-license
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
