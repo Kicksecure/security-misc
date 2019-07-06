@@ -1,3 +1,15 @@
+commit 3cd1a5ec094cff0151c888418b7b14d5413eb353
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 6 13:56:00 2019 +0000
+
+    fix lintian warning
+
+commit b73cdfd7cc3918633459315f5d9867f6a8798208
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 6 13:53:10 2019 +0000
+
+    bumped changelog version
+
 commit 7b0b9da32c660e527741a56543c78ee3ac93d541
 Merge: 6df7b3c 649878f
 Author: Patrick Schleizer <adrelanos@riseup.net>
