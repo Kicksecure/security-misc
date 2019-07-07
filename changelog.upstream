@@ -1,3 +1,23 @@
+commit 673aab6bc2b41d1a0d1829ce200d7b5c3d9e7067
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 22:18:47 2019 +0000
+
+    shut up pam-auth-update
+
+commit 67ff83262bd74d467cd92e8a15d13e0c4ca38b5b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 21:31:56 2019 +0000
+
+    move to pam-auth-update --force
+    
+    --package hangs in Qubes updater since it starts whiptail for interactive dpkg configuration dialog.
+
+commit 8399a1136788dfbbfd5dfb5c11356776e90326cc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 21:11:08 2019 +0000
+
+    bumped changelog version
+
 commit d4c79cce69d454202304a7d8369fa7b0f1c50946
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 21:09:26 2019 +0000
