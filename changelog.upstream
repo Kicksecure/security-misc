@@ -1,3 +1,41 @@
+commit d4c79cce69d454202304a7d8369fa7b0f1c50946
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 21:09:26 2019 +0000
+
+    add "Depends: libpam-runtime" so pam-auth-update is available
+    
+    for Debian maintainer script
+
+commit f68b96241c6afc7dffa8831f35d38bf1bf49508a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 21:08:28 2019 +0000
+
+    comment
+
+commit 91fb21aafbab4811ac2055decae0fc58f624c259
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 16:51:40 2019 -0400
+
+    Due to error:
+    Jul 07 20:35:39 host sudo[16090]: PAM unable to dlopen(pam_cgfs.so): /lib/security/pam_cgfs.so: cannot open shared object file: No such file or directory
+    Jul 07 20:35:39 host sudo[16090]: PAM adding faulty module: pam_cgfs.so
+    
+    run:
+    pam-auth-update --package
+    from Debian maintainer scripts
+
+commit e543c4bf82568dbe00cbeaa850c9f09dd9166e32
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 16:37:46 2019 -0400
+
+    apparmor fixes (this broke whonixcheck apparmor profile)
+
+commit 8f4a5f33b9aaaec95d834bb2d6b65c8bcd995e03
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 09:39:12 2019 +0000
+
+    bumped changelog version
+
 commit 3558a9949fe9924d027b267152125b33e25085c8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 09:37:25 2019 +0000
