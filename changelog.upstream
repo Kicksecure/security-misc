@@ -1,3 +1,19 @@
+commit 3558a9949fe9924d027b267152125b33e25085c8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 09:37:25 2019 +0000
+
+    Enable APT seccomp sandboxing.
+    
+    Thanks to @torjunkie for the suggestion!
+    
+    https://forums.whonix.org/t/apt-seccomp-bpf-sandboxing/7702
+
+commit 93e81b433036ef2f226d0a2b1422034aba54ea3a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 6 13:56:28 2019 +0000
+
+    bumped changelog version
+
 commit 3cd1a5ec094cff0151c888418b7b14d5413eb353
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 6 13:56:00 2019 +0000
