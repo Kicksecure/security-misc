@@ -16,17 +16,18 @@ true "
 "
 
 ## pam-auth-update is usually used in postinst and prerm.
-#grep -r -l pam-auth-update /var/lib/dpkg/info
-# /var/lib/dpkg/info/libpam-runtime.postinst
-# /var/lib/dpkg/info/libpam-runtime.prerm
-# /var/lib/dpkg/info/libpam-cap:amd64.postinst
-# /var/lib/dpkg/info/libpam-cap:amd64.prerm
-# /var/lib/dpkg/info/libpam-systemd:amd64.postinst
-# /var/lib/dpkg/info/libpam-systemd:amd64.prerm
-# /var/lib/dpkg/info/libpam-cgfs.postinst
-# /var/lib/dpkg/info/libpam-cgfs.prerm
-# /var/lib/dpkg/info/libpam-gnome-keyring:amd64.postinst
-# /var/lib/dpkg/info/libpam-gnome-keyring:amd64.prerm
+## Added extra space after /var to avoid lintian false positive warning.
+#grep -r -l pam-auth-update /var /lib/dpkg/info
+# /var /lib/dpkg/info/libpam-runtime.postinst
+# /var /lib/dpkg/info/libpam-runtime.prerm
+# /var /lib/dpkg/info/libpam-cap:amd64.postinst
+# /var /lib/dpkg/info/libpam-cap:amd64.prerm
+# /var /lib/dpkg/info/libpam-systemd:amd64.postinst
+# /var /lib/dpkg/info/libpam-systemd:amd64.prerm
+# /var /lib/dpkg/info/libpam-cgfs.postinst
+# /var /lib/dpkg/info/libpam-cgfs.prerm
+# /var /lib/dpkg/info/libpam-gnome-keyring:amd64.postinst
+# /var /lib/dpkg/info/libpam-gnome-keyring:amd64.prerm
 
 ## Jul 07 20:35:39 host sudo[16090]: PAM unable to dlopen(pam_cgfs.so): /lib/security/pam_cgfs.so: cannot open shared object file: No such file or directory
 ## Jul 07 20:35:39 host sudo[16090]: PAM adding faulty module: pam_cgfs.so
