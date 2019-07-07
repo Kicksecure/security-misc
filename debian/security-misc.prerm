@@ -15,19 +15,18 @@ true "
 #####################################################################
 "
 
-case "$1" in
-    configure)
-        glib-compile-schemas /usr/share/glib-2.0/schemas || true
-    ;;
-
-    abort-upgrade|abort-remove|abort-deconfigure)
-    ;;
-
-    *)
-        echo "$DPKG_MAINTSCRIPT_NAME called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
-esac
+## pam-auth-update is usually used in postinst and prerm.
+#grep -r -l pam-auth-update /var/lib/dpkg/info
+# /var/lib/dpkg/info/libpam-runtime.postinst
+# /var/lib/dpkg/info/libpam-runtime.prerm
+# /var/lib/dpkg/info/libpam-cap:amd64.postinst
+# /var/lib/dpkg/info/libpam-cap:amd64.prerm
+# /var/lib/dpkg/info/libpam-systemd:amd64.postinst
+# /var/lib/dpkg/info/libpam-systemd:amd64.prerm
+# /var/lib/dpkg/info/libpam-cgfs.postinst
+# /var/lib/dpkg/info/libpam-cgfs.prerm
+# /var/lib/dpkg/info/libpam-gnome-keyring:amd64.postinst
+# /var/lib/dpkg/info/libpam-gnome-keyring:amd64.prerm
 
 ## Jul 07 20:35:39 host sudo[16090]: PAM unable to dlopen(pam_cgfs.so): /lib/security/pam_cgfs.so: cannot open shared object file: No such file or directory
 ## Jul 07 20:35:39 host sudo[16090]: PAM adding faulty module: pam_cgfs.so
