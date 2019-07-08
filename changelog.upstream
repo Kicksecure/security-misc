@@ -1,3 +1,17 @@
+commit 223b6918339dc53b8ff8499d3d52210ee07e24a8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 23:39:58 2019 +0000
+
+    add 'Depends: libpam-cgfs'
+    
+    https://forums.whonix.org/t/change-default-umask/7416/30?u=patrick
+
+commit d31a16f264ea23a2fc890ffd6664deac3f4c4bdf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 7 23:00:27 2019 +0000
+
+    bumped changelog version
+
 commit 673aab6bc2b41d1a0d1829ce200d7b5c3d9e7067
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 22:18:47 2019 +0000
