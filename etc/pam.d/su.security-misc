@@ -12,7 +12,7 @@ auth       sufficient pam_rootok.so
 # denying "root" user, unless she's a member of "foo" or explicitly
 # permitted earlier by e.g. "sufficient pam_rootok.so").
 # (Replaces the `SU_WHEEL_ONLY' option from login.defs)
-# auth       required   pam_wheel.so
+auth       required   pam_wheel.so
 
 # Uncomment this if you want wheel members to be able to
 # su without a password.
