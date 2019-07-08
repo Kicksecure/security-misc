@@ -118,3 +118,6 @@ Description: enhances misc security settings
  .
  The default umask is changed to 006. This allows only the owner and group to
  read and write to newly created files.
+ .
+ The kernel now panics on oopses to prevent it from continuing running a
+ flawed process.
