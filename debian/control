@@ -97,7 +97,7 @@ Description: enhances misc security settings
  .
  All mitigations for the MDS vulnerability are enabled.
  .
- DCCP, SCTP, TIPC, RDS and HDLC are blacklisted as they are rarely used and
+ DCCP, SCTP, TIPC, RDS, HDLC, ax25, netrom, x25, rose, decnet, econet and af_80215 are blacklisted as they are rarely used and
  may have unknown vulnerabilities.
  .
  The kernel logs are restricted to root only.
