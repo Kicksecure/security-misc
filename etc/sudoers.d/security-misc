@@ -2,3 +2,4 @@
 ## See the file COPYING for copying conditions.
 
 user ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
+%sudo ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
