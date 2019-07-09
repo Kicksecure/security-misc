@@ -25,6 +25,8 @@ Description: enhances misc security settings
  deactivates Netfilter's connection tracking helper;
  implements some kernel hardening;
  prevents DMA attacks;
+ restricts access to the root account;
+ increases the amount of hashing rounds used by shadow;
  .
  TCP time stamps (RFC 1323) allow for tracking clock
  information with millisecond resolution. This may or may not allow an
@@ -121,3 +123,12 @@ Description: enhances misc security settings
  .
  The kernel now panics on oopses to prevent it from continuing running a
  flawed process.
+ .
+ Su is restricted to only users within the root group which prevents users from
+ using su to gain root access or switch user accounts.
+ .
+ Logging into the root account from a terminal is prevented.
+ .
+ The amount of hashing rounds used by shadow is bumped to 65536. This increases
+ the security of hashed passwords.
+
