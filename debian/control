@@ -97,46 +97,30 @@ Description: enhances misc security settings
  .
  All mitigations for the MDS vulnerability are enabled.
  .
- Uncommon network protocols are blacklisted in /etc/modprobe.d/uncommon-network-protocols.conf as they are rarely used and
+ Uncommon network protocols are blacklisted in
+ /etc/modprobe.d/uncommon-network-protocols.conf as they are rarely used and
  may have unknown vulnerabilities.
  .
- The network protocols that are blacklisted are
+ The network protocols that are blacklisted are:
  .
- * DCCP - Datagram Congestion Control Protocol
- .
- * SCTP - Stream Control Transmission Protocol
- .
- * RDS - Reliable Datagram Sockets
- .
- * TIPC - Transparent Inter-process Communication
- .
- * HDLC - High-Level Data Link Control
- .
- * AX25 - Amateur X.25
- .
- * NetRom
- .
- * X25
- .
- * ROSE
- .
- * DECnet
- .
- * Econet
- .
- * af_802154 - IEEE 802.15.4
- .
- * IPX - Internetwork Packet Exchange
- .
- * AppleTalk
- .
- * PSNAP - Subnetwork Access Protocol
- .
- * p8023 - Novell raw IEEE 802.3
- .
- * LLC - IEEE 802.2
- .
- * p8022 - IEEE 802.2
+  * DCCP - Datagram Congestion Control Protocol
+  * SCTP - Stream Control Transmission Protocol
+  * RDS - Reliable Datagram Sockets
+  * TIPC - Transparent Inter-process Communication
+  * HDLC - High-Level Data Link Control
+  * AX25 - Amateur X.25
+  * NetRom
+  * X25
+  * ROSE
+  * DECnet
+  * Econet
+  * af_802154 - IEEE 802.15.4
+  * IPX - Internetwork Packet Exchange
+  * AppleTalk
+  * PSNAP - Subnetwork Access Protocol
+  * p8023 - Novell raw IEEE 802.3
+  * LLC - IEEE 802.2
+  * p8022 - IEEE 802.2
  .
  The kernel logs are restricted to root only.
  .
