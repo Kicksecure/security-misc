@@ -1,3 +1,187 @@
+commit bea98474ba8a189b4c174ce6613547b8f377de68
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 07:07:21 2019 +0000
+
+    chmod +x usr/lib/security-misc/panic-on-oops
+
+commit 0057c0dd8c4d4b85f07949c1c1e61608769e82f1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 07:07:01 2019 +0000
+
+    fix lintian warning
+
+commit 2a893c0562438aaf0c34a25538a8e21bb11ba197
+Merge: 3df6a44 a54500c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 06:50:35 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a54500c6f18719520ae66c335870d3e8f03e9e14
+Merge: 7d3a615 1e4d349
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 06:41:37 2019 +0000
+
+    Merge pull request #23 from madaidan/patch-18
+    
+    Blacklist more uncommon network protocols
+
+commit 7d3a61564dc01b899466defe957a7bc65d38dc89
+Merge: 3df6a44 932524c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 06:41:08 2019 +0000
+
+    Merge pull request #24 from madaidan/patch-19
+    
+    Move disable-coredumps.conf to correct position
+
+commit 932524cbd1b15df06bd4e395dc391dd489ba100f
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Jul 10 15:28:48 2019 +0000
+
+    Move disable-coredumps.conf to correct position
+
+commit 1e4d3495167c0305ec1fce8568658a06750df674
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Jul 10 14:28:39 2019 +0000
+
+    Update control
+
+commit 4058e283a542900e7c8bcc060012d7c33964e36a
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Jul 10 14:27:19 2019 +0000
+
+    Blacklist more uncommon network protocols
+
+commit d70440aaeda5f1a1ab0459d02f5f5e56c808bbde
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Jul 9 21:57:37 2019 +0000
+
+    Remove duplicate
+
+commit a8b44c75f9ca6df1460ce0feca647f2f370f8833
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Jul 9 21:57:07 2019 +0000
+
+    Update control
+
+commit 2d27bdd808374a71cd9d7187326be99420411583
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Jul 9 21:55:37 2019 +0000
+
+    Blacklist more uncommon network protocols
+
+commit 3df6a44e98e93ecea6c6b6fa00c7fb05cbcfc0a5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 06:56:23 2019 -0400
+
+    also allow members of group sudo to run /usr/lib/security-misc/panic-on-oops
+
+commit 5fb500ac32a8935ef989770b2b9d17df4fa1698c
+Merge: 8793708 e4bb770
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 06:55:27 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e4bb77037e9327eea7b8fd92961192613d6e0763
+Merge: a9441e7 0f15303
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 10:54:48 2019 +0000
+
+    Merge pull request #21 from madaidan/patch-16
+    
+    Make the kernel panic on oopses
+
+commit 0f15303eb4dd5701cae5b3985be47918e2e4700a
+Merge: 45f8102 a9441e7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 10:54:24 2019 +0000
+
+    Merge branch 'master' into patch-16
+
+commit 8793708906d037746a2e946177d8a4d1884b391a
+Merge: 50c00fc a9441e7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 03:23:26 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a9441e7be4794e88f782f1ff5dd95f00e3928279
+Merge: 50c00fc 24b326d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 9 07:21:47 2019 +0000
+
+    Merge pull request #22 from madaidan/patch-17
+    
+    Restrict access to the root account
+
+commit 24b326d906375bb543b936936519231f51154dcd
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:24:41 2019 +0000
+
+    Update control
+
+commit 24d9eadcb267b34ce31981d841e58d4e2c769793
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:19:59 2019 +0000
+
+    Use 65536 hashing rounds
+
+commit 86117d957763a4dd07fb9a84c07a2934a02d32f8
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:19:19 2019 +0000
+
+    Create common-password.security-misc
+
+commit 8ad9a54b094a4a15ef726f513e38c953cc247b80
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:17:17 2019 +0000
+
+    Don't allow root login from a terminal
+
+commit 890298a3c882000a8351186521e9c1852dec298a
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:15:56 2019 +0000
+
+    Restrict su to users in the root group
+
+commit 38099a2a5d830a522fd51b9d9953ae47a14c5289
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:11:17 2019 +0000
+
+    Create su.security-misc
+
+commit 45f8102d565512938e5c533ffcd4cc06ea68b580
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:04:47 2019 +0000
+
+    Update control
+
+commit 2a1742705563c264b3ea634345373cce2986d283
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 23:01:30 2019 +0000
+
+    Create security-misc
+
+commit 4ac700ded0cca668f585ea466e167f055783e28d
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 22:59:39 2019 +0000
+
+    Create 50panic_on_oops
+
+commit 52c61011d4000b49edb0783fcca05952b0da7ee2
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Jul 8 22:58:56 2019 +0000
+
+    Create panic-on-oops
+
+commit 50c00fcfa13b436e0bba4e1065f0bf94605c1654
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 8 00:23:52 2019 +0000
+
+    bumped changelog version
+
 commit 223b6918339dc53b8ff8499d3d52210ee07e24a8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 23:39:58 2019 +0000
