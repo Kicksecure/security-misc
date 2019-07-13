@@ -28,35 +28,6 @@ Description: enhances misc security settings
  restricts access to the root account;
  increases the amount of hashing rounds used by shadow;
  .
- TCP time stamps (RFC 1323) allow for tracking clock
- information with millisecond resolution. This may or may not allow an
- attacker to learn information about the system clock at such
- a resolution, depending on various issues such as network lag.
- This information is available to anyone who monitors the network
- somewhere between the attacked system and the destination server.
- It may allow an attacker to find out how long a given
- system has been running, and to distinguish several
- systems running behind NAT and using the same IP address. It might
- also allow one to look for clocks that match an expected value to find the
- public IP used by a user.
- .
- Hence, this package disables this feature by shipping the
- /etc/sysctl.d/tcp_timestamps.conf configuration file.
- .
- Note that TCP time stamps normally have some usefulness. They are
- needed for:
- .
-  * the TCP protection against wrapped sequence numbers; however, to
-   trigger a wrap, one needs to send roughly 2^32 packets in one
-   minute:  as said in RFC 1700, "The current recommended default
-   time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
-   So, this probably won't be a practical problem in the context
-   of Anonymity Distributions.
-  * "Round-Trip Time Measurement", which is only useful when the user
-   manages to saturate their connection. When using Anonymity Distributions,
-   probably the limiting factor for transmission speed is rarely the capacity
-   of the user connection.
- .
  Netfilter's connection tracking helper module increases kernel attack
  surface by enabling superfluous functionality such as IRC parsing in
  the kernel. (!) Hence, this package disables this feature by shipping the
@@ -155,3 +126,32 @@ Description: enhances misc security settings
  using su to gain root access or switch user accounts.
  .
  Logging into the root account from a terminal is prevented.
+ .
+ TCP time stamps (RFC 1323) allow for tracking clock
+ information with millisecond resolution. This may or may not allow an
+ attacker to learn information about the system clock at such
+ a resolution, depending on various issues such as network lag.
+ This information is available to anyone who monitors the network
+ somewhere between the attacked system and the destination server.
+ It may allow an attacker to find out how long a given
+ system has been running, and to distinguish several
+ systems running behind NAT and using the same IP address. It might
+ also allow one to look for clocks that match an expected value to find the
+ public IP used by a user.
+ .
+ Hence, this package disables this feature by shipping the
+ /etc/sysctl.d/tcp_timestamps.conf configuration file.
+ .
+ Note that TCP time stamps normally have some usefulness. They are
+ needed for:
+ .
+  * the TCP protection against wrapped sequence numbers; however, to
+   trigger a wrap, one needs to send roughly 2^32 packets in one
+   minute:  as said in RFC 1700, "The current recommended default
+   time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
+   So, this probably won't be a practical problem in the context
+   of Anonymity Distributions.
+  * "Round-Trip Time Measurement", which is only useful when the user
+   manages to saturate their connection. When using Anonymity Distributions,
+   probably the limiting factor for transmission speed is rarely the capacity
+   of the user connection.
