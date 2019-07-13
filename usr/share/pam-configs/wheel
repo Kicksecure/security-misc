@@ -1,0 +1,6 @@
+Name: group root membership required to use su (by package security-misc)
+Default: yes
+Priority: 260
+Auth-Type: Primary
+Auth:
+	required	pam_wheel.so
