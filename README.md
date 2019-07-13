@@ -7,43 +7,14 @@ deactivates previews in Nautilus;
 deactivates thumbnails in Thunar;
 deactivates TCP timestamps;
 deactivates Netfilter's connection tracking helper;
-
-TCP time stamps (RFC 1323) allow for tracking clock
-information with millisecond resolution. This may or may not allow an
-attacker to learn information about the system clock at such
-a resolution, depending on various issues such as network lag.
-This information is available to anyone who monitors the network
-somewhere between the attacked system and the destination server.
-It may allow an attacker to find out how long a given
-system has been running, and to distinguish several
-systems running behind NAT and using the same IP address. It might
-also allow one to look for clocks that match an expected value to find the
-public IP used by a user.
-
-Hence, this package disables this feature by shipping the
-/etc/sysctl.d/tcp_timestamps.conf configuration file.
-
-Note that TCP time stamps normally have some usefulness. They are
-needed for:
-
-* the TCP protection against wrapped sequence numbers; however, to
-trigger a wrap, one needs to send roughly 2^32 packets in one
-minute:  as said in RFC 1700, "The current recommended default
-time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
-So, this probably won't be a practical problem in the context
-of Anonymity Distributions.
-
-* "Round-Trip Time Measurement", which is only useful when the user
-manages to saturate their connection. When using Anonymity Distributions,
-probably the limiting factor for transmission speed is rarely the capacity
-of the user connection.
+implements some kernel hardening;
+prevents DMA attacks;
+restricts access to the root account;
 
 Netfilter's connection tracking helper module increases kernel attack
 surface by enabling superfluous functionality such as IRC parsing in
-the kernel. (!)
-
-Hence, this package disables this feature by shipping the
-/etc/sysctl.d/nf_conntrack_helper.conf configuration file.
+the kernel. (!) Hence, this package disables this feature by shipping the
+/etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
 
 Kernel symbols in /proc/kallsyms are hidden to prevent malware from
 reading them and using them to learn more about what to attack on your system.
@@ -77,8 +48,96 @@ SMT is disabled as it can be used to exploit the MDS vulnerability.
 
 All mitigations for the MDS vulnerability are enabled.
 
-DCCP, SCTP, TIPC and RDS are blacklisted as they are rarely used and may have
-unknown vulnerabilities.
+Uncommon network protocols are blacklisted in
+/etc/modprobe.d/uncommon-network-protocols.conf as they are rarely used and
+may have unknown vulnerabilities.
+
+The network protocols that are blacklisted are:
+
+* DCCP - Datagram Congestion Control Protocol
+* SCTP - Stream Control Transmission Protocol
+* RDS - Reliable Datagram Sockets
+* TIPC - Transparent Inter-process Communication
+* HDLC - High-Level Data Link Control
+* AX25 - Amateur X.25
+* NetRom
+* X25
+* ROSE
+* DECnet
+* Econet
+* af_802154 - IEEE 802.15.4
+* IPX - Internetwork Packet Exchange
+* AppleTalk
+* PSNAP - Subnetwork Access Protocol
+* p8023 - Novell raw IEEE 802.3
+* LLC - IEEE 802.2
+* p8022 - IEEE 802.2
+
+The kernel logs are restricted to root only.
+
+A systemd service clears System.map on boot as these contain kernel symbols
+that could be useful to an attacker.
+
+The SysRq key is restricted to only allow shutdowns/reboots.
+
+The thunderbolt and firewire modules are blacklisted as they can be used for
+DMA (Direct Memory Access) attacks.
+
+IOMMU is enabled with a boot parameter to prevent DMA attacks.
+
+Coredumps are disabled as they may contain important information such as
+encryption keys or passwords.
+
+A systemd service mounts /proc with hidepid=2 at boot to prevent users from
+seeing each other's processes.
+
+The default umask is changed to 006. This allows only the owner and group to
+read and write to newly created files.
+
+Removes read, write and execute access for others for all users who have home
+folders under folder /home by running for example "chmod o-rwx /home/user"
+during package installation or upgrade. This will be done only once per folder
+in folder /home so users who wish to relax file permissions are free to do so.
+This is to protect previously created files in user home folder which were
+previously created with lax file permissions prior installation of this
+package.
+
+The kernel now panics on oopses to prevent it from continuing running a
+flawed process.
+
+Su is restricted to only users within the root group which prevents users from
+using su to gain root access or switch user accounts.
+
+Logging into the root account from a terminal is prevented.
+
+TCP time stamps (RFC 1323) allow for tracking clock
+information with millisecond resolution. This may or may not allow an
+attacker to learn information about the system clock at such
+a resolution, depending on various issues such as network lag.
+This information is available to anyone who monitors the network
+somewhere between the attacked system and the destination server.
+It may allow an attacker to find out how long a given
+system has been running, and to distinguish several
+systems running behind NAT and using the same IP address. It might
+also allow one to look for clocks that match an expected value to find the
+public IP used by a user.
+
+Hence, this package disables this feature by shipping the
+/etc/sysctl.d/tcp_timestamps.conf configuration file.
+
+Note that TCP time stamps normally have some usefulness. They are
+needed for:
+
+* the TCP protection against wrapped sequence numbers; however, to
+trigger a wrap, one needs to send roughly 2^32 packets in one
+minute:  as said in RFC 1700, "The current recommended default
+time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
+So, this probably won't be a practical problem in the context
+of Anonymity Distributions.
+* "Round-Trip Time Measurement", which is only useful when the user
+manages to saturate their connection. When using Anonymity Distributions,
+probably the limiting factor for transmission speed is rarely the capacity
+of the user connection.
 ## How to install `security-misc` using apt-get ##
 
 1\. Add [Whonix's Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key).
