@@ -158,6 +158,3 @@ Description: enhances misc security settings
  using su to gain root access or switch user accounts.
  .
  Logging into the root account from a terminal is prevented.
- .
- The amount of hashing rounds used by shadow is bumped to 65536. This increases
- the security of hashed passwords.
