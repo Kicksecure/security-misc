@@ -1,3 +1,15 @@
+commit 1d8a0dbec7ca5418b1c4fa70ae14a063c94bd119
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 14:57:51 2019 +0000
+
+    remove no longer shipped files in etc/pam.d/*
+
+commit 8e5d45352eaacd9ee4ae1357efb7d4f393dedf9b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 14:55:31 2019 +0000
+
+    bumped changelog version
+
 commit cb668459e81d74baf28ac43173bb50c7210e37a4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 10:35:10 2019 -0400
