@@ -26,7 +26,6 @@ Description: enhances misc security settings
  implements some kernel hardening;
  prevents DMA attacks;
  restricts access to the root account;
- increases the amount of hashing rounds used by shadow;
  .
  Netfilter's connection tracking helper module increases kernel attack
  surface by enabling superfluous functionality such as IRC parsing in
