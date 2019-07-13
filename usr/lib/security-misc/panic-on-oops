@@ -3,5 +3,12 @@
 ## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+   ## pre.bsh would `source` the following folders:
+   ## /etc/panic-on-oops_pre.d/*.conf
+   ## /usr/local/etc/panic-on-oops_pre.d/*.conf
+   source /usr/lib/helper-scripts/pre.bsh
+fi
+
 # Makes the kernel panic on oopses.
 sysctl kernel.panic_on_oops=1
