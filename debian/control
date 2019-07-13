@@ -46,14 +46,13 @@ Description: enhances misc security settings
  Note that TCP time stamps normally have some usefulness. They are
  needed for:
  .
- * the TCP protection against wrapped sequence numbers; however, to
+  * the TCP protection against wrapped sequence numbers; however, to
    trigger a wrap, one needs to send roughly 2^32 packets in one
    minute:  as said in RFC 1700, "The current recommended default
    time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
    So, this probably won't be a practical problem in the context
    of Anonymity Distributions.
- .
- * "Round-Trip Time Measurement", which is only useful when the user
+  * "Round-Trip Time Measurement", which is only useful when the user
    manages to saturate their connection. When using Anonymity Distributions,
    probably the limiting factor for transmission speed is rarely the capacity
    of the user connection.
