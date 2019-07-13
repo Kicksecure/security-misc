@@ -3,4 +3,4 @@ Default: yes
 Priority: 256
 Session-Type: Additional
 Session:
-	optional pam_umask.so usergroups
+	optional	pam_umask.so	usergroups
