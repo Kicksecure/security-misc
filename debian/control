@@ -143,6 +143,14 @@ Description: enhances misc security settings
  The default umask is changed to 006. This allows only the owner and group to
  read and write to newly created files.
  .
+ Removes read, write and execute access for others for all users who have home
+ folders under folder /home by running for example "chmod o-rwx /home/user"
+ during package installation or upgrade. This will be done only once per folder
+ in folder /home so users who wish to relax file permissions are free to do so.
+ This is to protect previously created files in user home folder which were
+ previously created with lax file permissions prior installation of this
+ package.
+ .
  The kernel now panics on oopses to prevent it from continuing running a
  flawed process.
  .
