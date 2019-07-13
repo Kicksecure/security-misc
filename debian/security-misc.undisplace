@@ -1,5 +1,0 @@
-## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
-## See the file COPYING for copying conditions.
-
-/etc/pam.d/common-session-noninteractive.security-misc
-/etc/pam.d/common-session.security-misc
