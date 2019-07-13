@@ -1,3 +1,45 @@
+commit cb668459e81d74baf28ac43173bb50c7210e37a4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 10:35:10 2019 -0400
+
+    port umask from /etc/pam.d to /usr/share/pam-configs implementation
+    
+    https://forums.whonix.org/t/change-default-umask/7416
+
+commit ac25733de871b0da5ef42e2e0283a44d94ac3112
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 14:01:53 2019 +0000
+
+    remove etc/pam.d/common-password.security-misc rounds=65536
+    
+    due to unclean implementation, see:
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/37
+
+commit 69b97981f3b5e4efc75954d6957659f1bb8e7d18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 12:33:51 2019 +0000
+
+    convert etc/pam.d/su.security-misc to usr/share/pam-configs/wheel
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/32
+
+commit 4079632d1aed4f3e50ea21de674a9b6d537d3e05
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 11:41:37 2019 +0000
+
+    remove modifying to /etc/pam.d directly (unrelased)
+    config-package-dev displace /etc/securetty
+    remove trailing spaces
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/31
+
+commit cdb7c6f7eb8e61bd203c9a4cb755da0b97cc9a3d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jul 11 18:28:04 2019 +0000
+
+    bumped changelog version
+
 commit aee6b346359db4973fdc80d565f7a6972bb884a0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 18:26:17 2019 +0000
