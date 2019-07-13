@@ -1,3 +1,68 @@
+commit c13485f532203dbb3675d367be3bc16811719442
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:29:10 2019 +0000
+
+    readme
+
+commit ea90f95f1c7b8200db222e42a5f72221212a71e1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:26:40 2019 +0000
+
+    cleanup
+
+commit ea8b22ee78439a3cd5f7305f9588940320740ab9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:26:14 2019 +0000
+
+    shuffle
+
+commit ca7e0e0161d6eaa2a166d7a7a26e5577f5a4dd6a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:25:08 2019 +0000
+
+    description
+
+commit ffb5a9c48201dc38a886cbd26753ff56b1ed832a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:23:39 2019 +0000
+
+    formatting
+
+commit 41675ddcff4d561282db9b43d2d9f993a39600c8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:21:34 2019 +0000
+
+    removed: The amount of hashing rounds used by shadow is bumped to 65536.
+    This increases the security of hashed passwords.
+    
+    Since we do not do that currently.
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/37
+
+commit 3f031a297dc2d54346e9c9b3d566c3fa3a469240
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:20:14 2019 +0000
+
+     Removes read, write and execute access for others for all users who have home
+     folders under folder /home by running for example "chmod o-rwx /home/user"
+     during package installation or upgrade. This will be done only once per folder
+     in folder /home so users who wish to relax file permissions are free to do so.
+     This is to protect previously created files in user home folder which were
+     previously created with lax file permissions prior installation of this
+     package.
+
+commit 4740e8b3357914aee16079b980b8861376cd222c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 16:13:55 2019 +0000
+
+    cleanup
+
+commit 834fcc4671a50f10426a62cb5986d79f991903b8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 15:17:16 2019 +0000
+
+    bumped changelog version
+
 commit e9eb38b5dbbddffb12103c14edc3745e239365a5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 15:04:09 2019 +0000
