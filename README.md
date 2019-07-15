@@ -1,57 +1,60 @@
 # enhances misc security settings #
 
-The following settings are changed:
+kernel hardening;
 
-deactivates previews in Dolphin;
-deactivates previews in Nautilus;
-deactivates thumbnails in Thunar;
-deactivates TCP timestamps;
-deactivates Netfilter's connection tracking helper;
-implements some kernel hardening;
-prevents DMA attacks;
-restricts access to the root account;
-
+* deactivates Netfilter's connection tracking helper
 Netfilter's connection tracking helper module increases kernel attack
 surface by enabling superfluous functionality such as IRC parsing in
 the kernel. (!) Hence, this package disables this feature by shipping the
 /etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
 
-Kernel symbols in /proc/kallsyms are hidden to prevent malware from
+* Kernel symbols in /proc/kallsyms are hidden to prevent malware from
 reading them and using them to learn more about what to attack on your system.
 
-Kexec is disabled as it can be used for live patching of the running kernel.
+* Kexec is disabled as it can be used for live patching of the running
+kernel.
 
-The BPF JIT compiler is restricted to the root user and is hardened.
+* ASLR effectiveness for mmap is increased.
 
-ASLR effectiveness for mmap is increased.
+* The TCP/IP stack is hardened.
 
-The ptrace system call is restricted to the root user only.
+* his package makes some data spoofing attacks harder.
 
-The TCP/IP stack is hardened.
+* SACK is disabled as it is commonly exploited and is rarely used.
 
-This package makes some data spoofing attacks harder.
-
-SACK is disabled as it is commonly exploited and is rarely used.
-
-This package disables the merging of slabs of similar sizes to prevent an
+* This package disables the merging of slabs of similar sizes to prevent an
 attacker from exploiting them.
 
-Sanity checks, redzoning, and memory poisoning are enabled.
+* Sanity checks, redzoning, and memory poisoning are enabled.
 
-The kernel now panics on uncorrectable errors in ECC memory which could
+* The kernel now panics on uncorrectable errors in ECC memory which could
 be exploited.
 
-Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
+* Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
-SMT is disabled as it can be used to exploit the MDS vulnerability.
+* SMT is disabled as it can be used to exploit the MDS vulnerability.
 
-All mitigations for the MDS vulnerability are enabled.
+* All mitigations for the MDS vulnerability are enabled.
 
-Uncommon network protocols are blacklisted in
-/etc/modprobe.d/uncommon-network-protocols.conf as they are rarely used and
-may have unknown vulnerabilities.
+* The SysRq key is restricted to only allow shutdowns/reboots.
+A systemd service clears System.map on boot as these contain kernel symbols
+that could be useful to an attacker.
 
+* Coredumps are disabled as they may contain important information such as
+encryption keys or passwords.
+
+* The thunderbolt and firewire modules are blacklisted as they can be used
+for DMA (Direct Memory Access) attacks.
+
+* IOMMU is enabled with a boot parameter to prevent DMA attacks.
+
+* The kernel now panics on oopses to prevent it from continuing running a
+flawed process.
+
+Uncommon network protocols are blacklisted:
+These are rarely used and may have unknown vulnerabilities.
+/etc/modprobe.d/uncommon-network-protocols.conf
 The network protocols that are blacklisted are:
 
 * DCCP - Datagram Congestion Control Protocol
@@ -73,42 +76,39 @@ The network protocols that are blacklisted are:
 * LLC - IEEE 802.2
 * p8022 - IEEE 802.2
 
-The kernel logs are restricted to root only.
+user restrictions:
 
-A systemd service clears System.map on boot as these contain kernel symbols
-that could be useful to an attacker.
-
-The SysRq key is restricted to only allow shutdowns/reboots.
-
-The thunderbolt and firewire modules are blacklisted as they can be used for
-DMA (Direct Memory Access) attacks.
-
-IOMMU is enabled with a boot parameter to prevent DMA attacks.
-
-Coredumps are disabled as they may contain important information such as
-encryption keys or passwords.
-
-A systemd service mounts /proc with hidepid=2 at boot to prevent users from
+* A systemd service mounts /proc with hidepid=2 at boot to prevent users from
 seeing each other's processes.
 
-The default umask is changed to 006. This allows only the owner and group to
-read and write to newly created files.
+* The kernel logs are restricted to root only.
 
-Removes read, write and execute access for others for all users who have home
-folders under folder /home by running for example "chmod o-rwx /home/user"
+* The BPF JIT compiler is restricted to the root user and is hardened.
+
+* The ptrace system call is restricted to the root user only.
+
+restricts access to the root account:
+
+* Su is restricted to only users within the root group which prevents users
+from using su to gain root access or switch user accounts.
+
+* Logging into the root account from a terminal is prevented.
+
+access rights restrictions:
+
+* The default umask is changed to 006. This allows only the owner and group
+to read and write to newly created files.
+
+* Removes read, write and execute access for others for all users who have
+home folders under folder /home by running for example
+"chmod o-rwx /home/user"
 during package installation or upgrade. This will be done only once per folder
 in folder /home so users who wish to relax file permissions are free to do so.
 This is to protect previously created files in user home folder which were
 previously created with lax file permissions prior installation of this
 package.
 
-The kernel now panics on oopses to prevent it from continuing running a
-flawed process.
-
-Su is restricted to only users within the root group which prevents users from
-using su to gain root access or switch user accounts.
-
-Logging into the root account from a terminal is prevented.
+Disables TCP Time Stamps:
 
 TCP time stamps (RFC 1323) allow for tracking clock
 information with millisecond resolution. This may or may not allow an
@@ -138,6 +138,12 @@ of Anonymity Distributions.
 manages to saturate their connection. When using Anonymity Distributions,
 probably the limiting factor for transmission speed is rarely the capacity
 of the user connection.
+
+Application specific hardening:
+
+* deactivates previews in Dolphin;
+* deactivates previews in Nautilus;
+* deactivates thumbnails in Thunar;
 ## How to install `security-misc` using apt-get ##
 
 1\. Add [Whonix's Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key).
