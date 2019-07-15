@@ -16,12 +16,6 @@ Architecture: all
 Depends: python, libglib2.0-bin, libpam-runtime, libpam-cgfs, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
- Application specific hardening:
- .
-  * deactivates previews in Dolphin;
-  * deactivates previews in Nautilus;
-  * deactivates thumbnails in Thunar;
- .
  kernel hardening;
  .
   * deactivates Netfilter's connection tracking helper
@@ -160,3 +154,9 @@ Description: enhances misc security settings
    manages to saturate their connection. When using Anonymity Distributions,
    probably the limiting factor for transmission speed is rarely the capacity
    of the user connection.
+ .
+ Application specific hardening:
+ .
+  * deactivates previews in Dolphin;
+  * deactivates previews in Nautilus;
+  * deactivates thumbnails in Thunar;
