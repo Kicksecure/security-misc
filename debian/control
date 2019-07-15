@@ -37,11 +37,7 @@ Description: enhances misc security settings
  .
  Kexec is disabled as it can be used for live patching of the running kernel.
  .
- The BPF JIT compiler is restricted to the root user and is hardened.
- .
  ASLR effectiveness for mmap is increased.
- .
- The ptrace system call is restricted to the root user only.
  .
  The TCP/IP stack is hardened.
  .
@@ -91,10 +87,14 @@ Description: enhances misc security settings
  .
  The kernel logs are restricted to root only.
  .
- A systemd service clears System.map on boot as these contain kernel symbols
- that could be useful to an attacker.
+ The BPF JIT compiler is restricted to the root user and is hardened.
+ .
+ The ptrace system call is restricted to the root user only.
  .
  The SysRq key is restricted to only allow shutdowns/reboots.
+ .
+ A systemd service clears System.map on boot as these contain kernel symbols
+ that could be useful to an attacker.
  .
  The thunderbolt and firewire modules are blacklisted as they can be used for
  DMA (Direct Memory Access) attacks.
