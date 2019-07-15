@@ -1,3 +1,59 @@
+commit f21fa8d95d19665e1cb1320062007472284bd9b8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 15 13:03:30 2019 +0000
+
+    readme
+
+commit 5c741d2149f12554e63d0fcb0d129cbbdad66569
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 15 13:02:30 2019 +0000
+
+    shuffle
+
+commit d247b7534b9e3a161fdba296c32dd85b7e91a665
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 15 13:01:46 2019 +0000
+
+    sort description by categories
+
+commit 168ea5a660561fdaa438fdf88f6cecf1f2677324
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 15 08:48:17 2019 -0400
+
+    shuffle
+
+commit 2f276cdb10aedf0d30c01d25e50b17cac7d1c62c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 15 08:44:28 2019 -0400
+
+    set back to default group "root" rather than group "sudo" membership required to use su
+    
+    since root login will be locked by default anyhow
+    
+    Thanks to @madaidan for providing the rationale!
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/42
+
+commit 6d1e8ac9a4657bb3d49a9674ce3a1500350d4bba
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 14 11:16:49 2019 +0000
+
+    description
+
+commit ffb61f43ea8011d71cf9c5bba1e277a2f825eea7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 14 11:11:59 2019 +0000
+
+    fix, add 'group=sudo' and 'debug' for debugging
+    
+    https://forums.whonix.org/t/restrict-root-access/7658
+
+commit 1731196c9fda93233917bcf6dba48834be03a448
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 13 18:51:32 2019 +0000
+
+    bumped changelog version
+
 commit 6af2d7facb391724d48dece28c1a34f4aaaf3929
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 18:12:25 2019 +0000
