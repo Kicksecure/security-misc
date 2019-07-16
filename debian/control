@@ -16,7 +16,7 @@ Architecture: all
 Depends: python, libglib2.0-bin, libpam-runtime, libpam-cgfs, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
- kernel hardening;
+ kernel hardening:
  .
   * deactivates Netfilter's connection tracking helper
  Netfilter's connection tracking helper module increases kernel attack
@@ -157,7 +157,7 @@ Description: enhances misc security settings
  .
  Application specific hardening:
  .
-  * Enable APT seccomp-BPF sandboxing. /etc/apt/apt.conf.d/40sandbox
-  * deactivates previews in Dolphin;
-  * deactivates previews in Nautilus;
-  * deactivates thumbnails in Thunar;
+  * Enables APT seccomp-BPF sandboxing. /etc/apt/apt.conf.d/40sandbox
+  * Deactivates previews in Dolphin.
+  * Deactivates previews in Nautilus.
+  * Deactivates thumbnails in Thunar.
