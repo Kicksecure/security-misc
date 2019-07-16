@@ -157,6 +157,7 @@ Description: enhances misc security settings
  .
  Application specific hardening:
  .
+  * Enable APT seccomp-BPF sandboxing. /etc/apt/apt.conf.d/40sandbox
   * deactivates previews in Dolphin;
   * deactivates previews in Nautilus;
   * deactivates thumbnails in Thunar;
