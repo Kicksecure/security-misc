@@ -1,3 +1,74 @@
+commit 08d37471d486f13aebeb2c355280f3b207eb044b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:06:17 2019 +0000
+
+    readme
+
+commit c0a4a10d6b89000735227f51464cc1ce76f8419b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:05:11 2019 +0000
+
+    description
+
+commit 7352b2ac31d7fde7e15da044c7f7279d7eddc8ae
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:03:54 2019 +0000
+
+    description
+
+commit b153e8f7df1f2a8e815b910aa6962ae3abe80755
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:02:48 2019 +0000
+
+    fix path
+
+commit 4bf2360b9579b12775487e4215af5afa1c180f04
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:02:27 2019 +0000
+
+    description
+
+commit 9f2e300e72263380a0a99e59efe636652f4a8ce1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 20:48:33 2019 +0000
+
+    description
+
+commit d044780c04e0bcfc9d91a0cf6fc26d9f778bb50d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 20:42:14 2019 +0000
+
+    description
+
+commit 75e5714d183b8ad08bc7a96643b2a38727620530
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 20:40:01 2019 +0000
+
+    description
+
+commit 8c2f983578a0af63258bfe7e2b95f230e43df860
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 20:39:42 2019 +0000
+
+    description
+
+commit 2299ed041f101f1fa9711d83a31ad6e8d07d3023
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 20:36:51 2019 +0000
+
+    passwordless recovery / emergency console
+    
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
+    https://salsa.debian.org/ah/user-setup/commit/bc5ca2de85ec27845d0b46059cb7cc02bae7b44d
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/46
+
+commit 50036b2934410b57936a4909d022d436cd27cdfc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 19:13:57 2019 +0000
+
+    bumped changelog version
+
 commit 3f9437f1ecfd292f06ce021f12cb5430da280f84
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 17 14:25:19 2019 -0400
