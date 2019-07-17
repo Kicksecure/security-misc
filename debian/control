@@ -105,7 +105,7 @@ Description: enhances misc security settings
  .
  restricts access to the root account:
  .
-  * Su is restricted to only users within the root group which prevents users
+  * Su is restricted to only users within the sudo group which prevents users
  from using su to gain root access or switch user accounts.
  .
   * Logging into the root account from a virtual, serial, whatnot console is
