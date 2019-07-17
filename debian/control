@@ -152,6 +152,8 @@ Description: enhances misc security settings
  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
  Adverse security effects can be prevented by setting up BIOS password
  protection, grub password protection and/or full disk encryption.
+ /etc/systemd/system/emergency.service.d/override.conf
+ /etc/systemd/system/rescue.service.d/override.conf
  .
  Disables TCP Time Stamps:
  .
