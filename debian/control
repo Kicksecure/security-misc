@@ -107,9 +107,12 @@ Description: enhances misc security settings
  .
   * Su is restricted to only users within the sudo group which prevents users
  from using su to gain root access or switch user accounts.
+ /usr/share/pam-configs/wheel
+ (Which results in a change in /etc/pam.d/common-auth.)
  .
   * Logging into the root account from a virtual, serial, whatnot console is
- prevented by clearning /etc/securetty.
+ prevented by shipping an existing and empty /etc/securetty.
+ (Deletion of /etc/securetty has a different effect.)
  /etc/securetty.security-misc
  .
  access rights restrictions:
