@@ -4,4 +4,4 @@
 alias /etc/pam.d/common-session -> /etc/pam.d//etc/pam.d/common-session.security-misc,
 alias /etc/pam.d/common-session-noninteractive -> /etc/pam.d/common-session-noninteractive.security-misc,
 alias /etc/login.defs -> /etc/login.defs.security-misc,
-
+alias /etc/securetty -> /etc/securetty.security-misc,
