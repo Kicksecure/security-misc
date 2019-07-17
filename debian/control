@@ -135,6 +135,24 @@ Description: enhances misc security settings
  previously created with lax file permissions prior installation of this
  package.
  .
+ access rights relaxations:
+ .
+ This package does (not yet) lock the root account password.
+ It is not clear that would be sane in such a package.
+ It is recommended to lock and expire the root account.
+ In new Whonix builds, root account will be locked by package
+ anon-base-files.
+ https://www.whonix.org/wiki/Root
+ https://www.whonix.org/wiki/Dev/Permissions
+ https://forums.whonix.org/t/restrict-root-access/7658
+ However, a locked root password will break rescue and emergency shell.
+ Therefore this package enables passwordless resuce and emergency shell.
+ This is the same solution that Debian will likely addapt for Debian
+ installer.
+ https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
+ Adverse security effects can be prevented by setting up BIOS password
+ protection, grub password protection and/or full disk encryption.
+ .
  Disables TCP Time Stamps:
  .
  TCP time stamps (RFC 1323) allow for tracking clock
