@@ -137,7 +137,7 @@ Description: enhances misc security settings
  .
  access rights relaxations:
  .
- This package does (not yet) lock the root account password.
+ This package does (not yet) automatically lock the root account password.
  It is not clear that would be sane in such a package.
  It is recommended to lock and expire the root account.
  In new Whonix builds, root account will be locked by package
