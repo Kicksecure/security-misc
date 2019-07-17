@@ -1,6 +1,6 @@
 # enhances misc security settings #
 
-kernel hardening;
+kernel hardening:
 
 * deactivates Netfilter's connection tracking helper
 Netfilter's connection tracking helper module increases kernel attack
@@ -89,15 +89,26 @@ seeing each other's processes.
 
 restricts access to the root account:
 
-* Su is restricted to only users within the root group which prevents users
+* Su is restricted to only users within the sudo group which prevents users
 from using su to gain root access or switch user accounts.
+/usr/share/pam-configs/wheel
+(Which results in a change in /etc/pam.d/common-auth.)
 
-* Logging into the root account from a terminal is prevented.
+* Logging into the root account from a virtual, serial, whatnot console is
+prevented by shipping an existing and empty /etc/securetty.
+(Deletion of /etc/securetty has a different effect.)
+/etc/securetty.security-misc
 
 access rights restrictions:
 
 * The default umask is changed to 006. This allows only the owner and group
 to read and write to newly created files.
+/etc/login.defs.security-misc
+
+* Enables pam_umask.so usergroups so group permissions are same as user
+permissions. Debian by default uses User Private Groups (UPG).
+https://wiki.debian.org/UserPrivateGroups
+/usr/share/pam-configs/usergroups
 
 * Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
@@ -107,6 +118,26 @@ in folder /home so users who wish to relax file permissions are free to do so.
 This is to protect previously created files in user home folder which were
 previously created with lax file permissions prior installation of this
 package.
+
+access rights relaxations:
+
+This package does (not yet) automatically lock the root account password.
+It is not clear that would be sane in such a package.
+It is recommended to lock and expire the root account.
+In new Whonix builds, root account will be locked by package
+anon-base-files.
+https://www.whonix.org/wiki/Root
+https://www.whonix.org/wiki/Dev/Permissions
+https://forums.whonix.org/t/restrict-root-access/7658
+However, a locked root password will break rescue and emergency shell.
+Therefore this package enables passwordless resuce and emergency shell.
+This is the same solution that Debian will likely addapt for Debian
+installer.
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
+Adverse security effects can be prevented by setting up BIOS password
+protection, grub password protection and/or full disk encryption.
+/etc/systemd/system/emergency.service.d/override.conf
+/etc/systemd/system/rescue.service.d/override.conf
 
 Disables TCP Time Stamps:
 
@@ -141,9 +172,10 @@ of the user connection.
 
 Application specific hardening:
 
-* deactivates previews in Dolphin;
-* deactivates previews in Nautilus;
-* deactivates thumbnails in Thunar;
+* Enables APT seccomp-BPF sandboxing. /etc/apt/apt.conf.d/40sandbox
+* Deactivates previews in Dolphin.
+* Deactivates previews in Nautilus.
+* Deactivates thumbnails in Thunar.
 ## How to install `security-misc` using apt-get ##
 
 1\. Add [Whonix's Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key).
