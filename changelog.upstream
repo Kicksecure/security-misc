@@ -1,3 +1,15 @@
+commit 1c7441ddf194fd54f40f1b0d16c408fd29d49b9e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:16:14 2019 +0000
+
+    alias /etc/securetty -> /etc/securetty.security-misc,
+
+commit 940054d53ff9b7027f414268370245627675a60a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:08:23 2019 +0000
+
+    bumped changelog version
+
 commit 08d37471d486f13aebeb2c355280f3b207eb044b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 17 21:06:17 2019 +0000
