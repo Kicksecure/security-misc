@@ -1,3 +1,17 @@
+commit 3f9437f1ecfd292f06ce021f12cb5430da280f84
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 14:25:19 2019 -0400
+
+    Revert "set back to default group "root" rather than group "sudo" membership required to use su"
+    
+    This reverts commit 2f276cdb10aedf0d30c01d25e50b17cac7d1c62c.
+
+commit 1b772c6a9aac9e6c203c0c89b49e589a2b6e83d3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jul 16 19:45:52 2019 +0000
+
+    bumped changelog version
+
 commit 2499ae0890bb524d3756e6135d5d6986e74210ed
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 16 07:28:50 2019 -0400
