@@ -72,13 +72,21 @@ make %{?_smp_mflags}
 
 %files
 %license    debian/copyright
+/etc/X11/Xsession.d/50panic_on_oops
 /etc/X11/Xsession.d/50security-misc
+/etc/apparmor.d/tunables/home.d/security-misc
+/etc/apt/apt.conf.d/40sandbox
 /etc/default/grub.d/40_enable_iommu.cfg
 /etc/default/grub.d/40_kernel_hardening.cfg
+/etc/login.defs.security-misc
 /etc/modprobe.d/30_nf_conntrack_helper_disable.conf
 /etc/modprobe.d/blacklist-dma.conf
 /etc/modprobe.d/uncommon-network-protocols.conf
+/etc/securetty.security-misc
+/etc/security/limits.d/disable-coredumps.conf
 /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+/etc/sudoers.d/security-misc
+/etc/sysctl.d/coredumps.conf
 /etc/sysctl.d/dmesg_restrict.conf
 /etc/sysctl.d/fs_protected.conf
 /etc/sysctl.d/harden_bpf.conf
@@ -86,18 +94,26 @@ make %{?_smp_mflags}
 /etc/sysctl.d/kptr_restrict.conf
 /etc/sysctl.d/mmap_aslr.conf
 /etc/sysctl.d/ptrace_scope.conf
+/etc/sysctl.d/suid_dumpable.conf
 /etc/sysctl.d/sysrq.conf
 /etc/sysctl.d/tcp_hardening.conf
-/etc/sysctl.d/tcp_timestamps.conf
 /etc/sysctl.d/tcp_sack.conf
+/etc/sysctl.d/tcp_timestamps.conf
+/etc/systemd/system/emergency.service.d/override.conf
+/etc/systemd/system/rescue.service.d/override.conf
+/lib/systemd/coredump.conf.d/disable-coredumps.conf
+/lib/systemd/system/proc-hidepid.service
+/lib/systemd/system/remove-system-map.service
 /usr/lib/security-misc/apt-get-update
 /usr/lib/security-misc/apt-get-update-sanity-test
 /usr/lib/security-misc/apt-get-wrapper
+/usr/lib/security-misc/panic-on-oops
 /usr/lib/security-misc/remove-system.map
 /usr/share/glib-2.0/schemas/30_security-misc.gschema.override
 /usr/share/lintian/overrides/security-misc
+/usr/share/pam-configs/usergroups
+/usr/share/pam-configs/wheel
 /usr/share/security-misc/dolphinrc
-/lib/systemd/system/remove-system-map.service
 
 %changelog
 @CHANGELOG@
