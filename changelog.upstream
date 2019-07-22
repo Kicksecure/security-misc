@@ -1,3 +1,39 @@
+commit f38f307b37d2efb036c5b4e85f48921b0acfadeb
+Merge: 8c538ba b2582fb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 21 09:12:33 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b2582fbd4c2364c7bca95b4038eec2ef2a2fae41
+Merge: 8c538ba 077899c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 21 12:40:37 2019 +0000
+
+    Merge pull request #26 from fepitre/fix-files
+    
+    Fix files
+
+commit 077899c23d518416cd9ee801a3607585d3a51aab
+Author: Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org>
+Date:   Sun Jul 21 11:23:06 2019 +0200
+
+    Add .gitignore
+
+commit 5fbe7537613a2034d80983e095cdd8d2971b1bcc
+Author: Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org>
+Date:   Sun Jul 21 11:19:35 2019 +0200
+
+    spec: update %files section
+    
+    QubesOS/qubes-issues#1885
+
+commit 8c538ba318e5524d07034f2f718e4b5ae483176d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 17 21:38:26 2019 +0000
+
+    bumped changelog version
+
 commit 1c7441ddf194fd54f40f1b0d16c408fd29d49b9e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 17 21:16:14 2019 +0000
