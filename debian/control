@@ -105,7 +105,7 @@ Description: enhances misc security settings
  .
  restricts access to the root account:
  .
-  * Su is restricted to only users within the sudo group which prevents users
+  * `su` is restricted to only users within the sudo group which prevents users
  from using su to gain root access or switch user accounts.
  /usr/share/pam-configs/security-misc
  (Which results in a change in /etc/pam.d/common-auth.)
