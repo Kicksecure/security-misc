@@ -55,6 +55,8 @@ case "$1" in
     ;;
 esac
 
+addgroup root sudo
+
 pam-auth-update --package
 
 home_folder_access_rights_lockdown

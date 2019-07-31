@@ -110,6 +110,11 @@ Description: enhances misc security settings
  /usr/share/pam-configs/security-misc
  (Which results in a change in /etc/pam.d/common-auth.)
  .
+ * Add user `root` to group `sudo`.
+ .
+ * Lock user accounts after 5 failed login attempts using pam_tally2.
+ /usr/share/pam-configs/security-misc
+ .
   * Logging into the root account from a virtual, serial, whatnot console is
  prevented by shipping an existing and empty /etc/securetty.
  (Deletion of /etc/securetty has a different effect.)
