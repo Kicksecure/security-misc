@@ -111,6 +111,7 @@ Description: enhances misc security settings
  (Which results in a change in /etc/pam.d/common-auth.)
  .
  * Add user `root` to group `sudo`.
+ debian/security-misc.postinst
  .
  * Lock user accounts after 5 failed login attempts using pam_tally2.
  /usr/share/pam-configs/security-misc
@@ -139,6 +140,7 @@ Description: enhances misc security settings
  This is to protect previously created files in user home folder which were
  previously created with lax file permissions prior installation of this
  package.
+ debian/security-misc.postinst
  .
  access rights relaxations:
  .
