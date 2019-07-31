@@ -1,3 +1,15 @@
+commit 89d32402b2dd2182dc6e7788d41708eaaeeb02c1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 14:52:29 2019 -0400
+
+    fix, do not use "," inside /usr/share/pam-configs files
+
+commit 864de10659d0145ae8883b98b1746a7debc9492a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 15:17:51 2019 +0000
+
+    bumped changelog version
+
 commit 47368ae4fccc85ab3197f07316b03c123187f9a2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 31 15:15:30 2019 +0000
