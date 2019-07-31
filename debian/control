@@ -69,6 +69,9 @@ Description: enhances misc security settings
   * The kernel now panics on oopses to prevent it from continuing running a
  flawed process.
  .
+  * Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
+ a history of [security concerns](https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns).
+ .
  Uncommon network protocols are blacklisted:
  These are rarely used and may have unknown vulnerabilities.
  /etc/modprobe.d/uncommon-network-protocols.conf
