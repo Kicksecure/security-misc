@@ -89,10 +89,17 @@ seeing each other's processes.
 
 restricts access to the root account:
 
-* Su is restricted to only users within the sudo group which prevents users
-from using su to gain root access or switch user accounts.
-/usr/share/pam-configs/wheel
-(Which results in a change in /etc/pam.d/common-auth.)
+* `su` is restricted to only users within the group `sudo` which prevents
+users from using `su` to gain root access or to switch user accounts.
+/usr/share/pam-configs/security-misc
+(Which results in a change in file `/etc/pam.d/common-auth`.)
+
+* Add user `root` to group `sudo`. This is required to make above work so
+login as a user in a virtual console is still possible.
+debian/security-misc.postinst
+
+* Lock user accounts after 5 failed login attempts using pam_tally2.
+/usr/share/pam-configs/security-misc
 
 * Logging into the root account from a virtual, serial, whatnot console is
 prevented by shipping an existing and empty /etc/securetty.
@@ -118,6 +125,7 @@ in folder /home so users who wish to relax file permissions are free to do so.
 This is to protect previously created files in user home folder which were
 previously created with lax file permissions prior installation of this
 package.
+debian/security-misc.postinst
 
 access rights relaxations:
 
