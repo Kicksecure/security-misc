@@ -1,3 +1,63 @@
+commit ac1220e14bd9428420cf01ef68e5acb690b6afa4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:32:59 2019 +0000
+
+    depend on sudo so group sudo exists during postinst
+
+commit 09f75fb1ff03d7a95951a0f6bcb9d84f1744b583
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:32:36 2019 +0000
+
+    description
+
+commit 2ad087dcd9e4fd3e747a47577b9d4ba1088d6a33
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:30:40 2019 +0000
+
+    description
+
+commit 404f597c0aaddeef3c8c555d2d7f5a9993f9e512
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:29:42 2019 +0000
+
+    description
+
+commit c921872016672073927fce34ed764263c8d6db5b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:27:13 2019 +0000
+
+    description
+
+commit 39e1b1c5f0622c062f12c532400ca170d3eb789f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 07:26:25 2019 +0000
+
+    update file path
+
+commit cf906687561acee7f61fdf100b801d670a74a94f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 03:25:02 2019 -0400
+
+    lock user accounts after 5 failed authentication attempts using pam_tally2
+
+commit 3e29761560085f9e3d84250e29a2ea5e34766432
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 03:17:06 2019 -0400
+
+    debug at the end
+
+commit 5cdb3edb321046bf9dc09e91665e63faf16e9786
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 03:16:41 2019 -0400
+
+    usr/share/pam-configs/wheel -> usr/share/pam-configs/security-misc
+
+commit 031a1c8751504b00f131fd8d518f59b975353369
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 22 01:16:18 2019 +0000
+
+    bumped changelog version
+
 commit f38f307b37d2efb036c5b4e85f48921b0acfadeb
 Merge: 8c538ba b2582fb
 Author: Patrick Schleizer <adrelanos@riseup.net>
