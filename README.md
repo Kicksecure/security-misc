@@ -186,16 +186,24 @@ Application specific hardening:
 * Deactivates thumbnails in Thunar.
 ## How to install `security-misc` using apt-get ##
 
-1\. Add [Whonix's Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key).
+1\. Download [Whonix's Signing Key]().
 
 ```
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg adv --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys 916B8D99C38EAF5E8ADC7A2A8D66066A2EEACCDA
+wget https://www.whonix.org/patrick.asc
+```
+
+Users can [check Whonix Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key) for better security.
+
+2\. Add Whonix's signing key.
+
+```
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg add ~/patrick.asc
 ```
 
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb http://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
+echo "deb https://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
 ```
 
 4\. Update your package lists.
