@@ -1,3 +1,30 @@
+commit 1fe3036a4903588b89edd82e7097a665271fd27f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:13:43 2019 +0000
+
+    readme
+
+commit e076470f68dc18908c5ab1889232aaaa0fcb9f3d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:04:58 2019 +0000
+
+    renamed:    usr/share/pam-configs/usergroups -> usr/share/pam-configs/usergroups-security-misc
+
+commit 830111e99aa6f45688c4ba00a7f41ea323f15f2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:04:22 2019 +0000
+
+    split usr/share/pam-configs/security-misc
+    into
+    usr/share/pam-configs/tally2-security-misc
+    usr/share/pam-configs/wheel-security-misc
+
+commit 5d0aec1321b4f46f1834ba9ad166d2445a995fbb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 19:12:27 2019 +0000
+
+    bumped changelog version
+
 commit 89d32402b2dd2182dc6e7788d41708eaaeeb02c1
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 31 14:52:29 2019 -0400
