@@ -1,3 +1,40 @@
+commit a2fa18c38159161418edcdaacb1baad215f5d31d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 07:07:28 2019 -0400
+
+    pam_tally2.so deny=100
+    
+    during testing, due to issues
+    
+    https://github.com/Whonix/security-misc/commit/d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
+    
+    https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698/12
+
+commit d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 06:06:39 2019 -0400
+
+    effectively (not directly) add "required        pam_tally2.so debug" to /etc/pam.d/common-account
+    
+    This is required because otherwise something like "sudo bash" would count as a
+    failed login for pam_tally2 even though it was successful.
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=707660
+    
+    https://forums.whonix.org/t/restrict-root-access/7658
+
+commit 0f896a9d8d6f7c125311a0e226755f8a00214f3c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 06:05:37 2019 -0400
+
+    add onerr=fail audit to pam_tally2
+
+commit a703865dcf736996a58e6f684fc02f0e9dfa8cc7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 12:02:41 2019 +0000
+
+    bumped changelog version
+
 commit 1fe3036a4903588b89edd82e7097a665271fd27f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Aug 1 11:13:43 2019 +0000
