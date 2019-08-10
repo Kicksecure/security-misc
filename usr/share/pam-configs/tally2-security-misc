@@ -3,4 +3,4 @@ Default: yes
 Priority: 260
 Auth-Type: Primary
 Auth:
-	required	pam_tally2.so deny=5 debug
+	required	pam_tally2.so deny=5 onerr=fail audit debug
