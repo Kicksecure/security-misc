@@ -134,6 +134,10 @@ Description: enhances misc security settings
  https://wiki.debian.org/UserPrivateGroups
  /usr/share/pam-configs/usergroups
  .
+  * Create home directory on login with umask 006 using
+ pam_mkhomedir.so umask=006
+ /usr/share/pam-configs/mkhomedir-security-misc
+ .
   * Removes read, write and execute access for others for all users who have
  home folders under folder /home by running for example
  "chmod o-rwx /home/user"
