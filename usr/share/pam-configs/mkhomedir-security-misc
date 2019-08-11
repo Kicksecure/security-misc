@@ -1,4 +1,4 @@
-Name: Create home directory on login
+Name: Create home directory on login (by package security-misc)
 Default: yes
 Priority: 0
 Session-Type: Additional
