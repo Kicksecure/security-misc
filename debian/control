@@ -108,7 +108,7 @@ Description: enhances misc security settings
  .
   * `su` is restricted to only users within the group `sudo` which prevents
  users from using `su` to gain root access or to switch user accounts.
- /usr/share/pam-configs/security-misc
+ /usr/share/pam-configs/wheel-security-misc
  (Which results in a change in file `/etc/pam.d/common-auth`.)
  .
  * Add user `root` to group `sudo`. This is required to make above work so
@@ -116,7 +116,7 @@ Description: enhances misc security settings
  debian/security-misc.postinst
  .
  * Lock user accounts after 5 failed login attempts using pam_tally2.
- /usr/share/pam-configs/security-misc
+ /usr/share/pam-configs/tally2-security-misc
  .
   * Logging into the root account from a virtual, serial, whatnot console is
  prevented by shipping an existing and empty /etc/securetty.
@@ -132,7 +132,7 @@ Description: enhances misc security settings
   * Enables pam_umask.so usergroups so group permissions are same as user
  permissions. Debian by default uses User Private Groups (UPG).
  https://wiki.debian.org/UserPrivateGroups
- /usr/share/pam-configs/usergroups
+ /usr/share/pam-configs/usergroups-security-misc
  .
   * Create home directory on login with umask 006 using
  pam_mkhomedir.so umask=006
