@@ -1,3 +1,52 @@
+commit 52cee9128316d649ba7ffa9600d0fdc33c99a9a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 11:39:32 2019 +0000
+
+    readme
+
+commit aacd9c7679b05b7ee59df484f21a24fe7aa5901d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:34:38 2019 +0000
+
+    description
+
+commit c0b5c70de498d891e4edd5b9af2292909be36776
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:33:22 2019 +0000
+
+    description
+
+commit 2f37a66fd009c9cba423c0f95833a71c8669af46
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:31:29 2019 +0000
+
+    description
+
+commit e83ec79a25d09b2467e2389959d87267bab7f1f0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:30:51 2019 +0000
+
+    enable usr/share/pam-configs/mkhomedir-security-misc by default
+
+commit 1eb806a03ef25bb387fa80f45dd6509925437048
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:29:49 2019 +0000
+
+    pam_mkhomedir.so umask=006
+
+commit c50eb3c9b07b9e54951eb08206db6d28383f6cdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:28:55 2019 +0000
+
+    add usr/share/pam-configs/mkhomedir-security-misc based on
+    /usr/share/pam-configs/mkhomedir
+
+commit 75769151cd7980042357f18c5567adab2a031049
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 11:37:02 2019 +0000
+
+    bumped changelog version
+
 commit a2fa18c38159161418edcdaacb1baad215f5d31d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 10 07:07:28 2019 -0400
