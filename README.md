@@ -91,7 +91,7 @@ restricts access to the root account:
 
 * `su` is restricted to only users within the group `sudo` which prevents
 users from using `su` to gain root access or to switch user accounts.
-/usr/share/pam-configs/security-misc
+/usr/share/pam-configs/wheel-security-misc
 (Which results in a change in file `/etc/pam.d/common-auth`.)
 
 * Add user `root` to group `sudo`. This is required to make above work so
@@ -99,7 +99,7 @@ login as a user in a virtual console is still possible.
 debian/security-misc.postinst
 
 * Lock user accounts after 5 failed login attempts using pam_tally2.
-/usr/share/pam-configs/security-misc
+/usr/share/pam-configs/tally2-security-misc
 
 * Logging into the root account from a virtual, serial, whatnot console is
 prevented by shipping an existing and empty /etc/securetty.
@@ -115,7 +115,11 @@ to read and write to newly created files.
 * Enables pam_umask.so usergroups so group permissions are same as user
 permissions. Debian by default uses User Private Groups (UPG).
 https://wiki.debian.org/UserPrivateGroups
-/usr/share/pam-configs/usergroups
+/usr/share/pam-configs/usergroups-security-misc
+
+* Create home directory on login with umask 006 using
+pam_mkhomedir.so umask=006
+/usr/share/pam-configs/mkhomedir-security-misc
 
 * Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
