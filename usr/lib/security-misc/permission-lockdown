@@ -1,6 +1,32 @@
 #!/bin/bash
 
-set -x
+## Doing this for all users would create many issues.
+# /usr/lib/security-misc/permission-lockdown: user: root | chmod o-rwx "/root"
+# /usr/lib/security-misc/permission-lockdown: user: daemon | chmod o-rwx "/usr/sbin"
+# /usr/lib/security-misc/permission-lockdown: user: bin | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: sys | chmod o-rwx "/dev"
+# /usr/lib/security-misc/permission-lockdown: user: sync | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: games | chmod o-rwx "/usr/games"
+# /usr/lib/security-misc/permission-lockdown: user: man | chmod o-rwx "/var/cache/man"
+# /usr/lib/security-misc/permission-lockdown: user: mail | chmod o-rwx "/var/mail"
+# /usr/lib/security-misc/permission-lockdown: user: proxy | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: backup | chmod o-rwx "/var/backups"
+# /usr/lib/security-misc/permission-lockdown: user: systemd-timesync | chmod o-rwx "/run/systemd"
+# /usr/lib/security-misc/permission-lockdown: user: systemd-network | chmod o-rwx "/run/systemd/netif"
+# /usr/lib/security-misc/permission-lockdown: user: messagebus | chmod o-rwx "/var/run/dbus"
+# /usr/lib/security-misc/permission-lockdown: user: tinyproxy | chmod o-rwx "/run/tinyproxy"
+# /usr/lib/security-misc/permission-lockdown: user: rtkit | chmod o-rwx "/proc"
+# /usr/lib/security-misc/permission-lockdown: user: colord | chmod o-rwx "/var/lib/colord"
+# /usr/lib/security-misc/permission-lockdown: user: Debian-exim | chmod o-rwx "/var/spool/exim4"
+# /usr/lib/security-misc/permission-lockdown: user: debian-tor | chmod o-rwx "/var/lib/tor"
+# /usr/lib/security-misc/permission-lockdown: user: stunnel4 | chmod o-rwx "/var/run/stunnel4"
+# /usr/lib/security-misc/permission-lockdown: user: iodine | chmod o-rwx "/var/run/iodine"
+# /usr/lib/security-misc/permission-lockdown: user: apt-cacher-ng | chmod o-rwx "/var/cache/apt-cacher-ng"
+# /usr/lib/security-misc/permission-lockdown: user: statd | chmod o-rwx "/var/lib/nfs"
+# /usr/lib/security-misc/permission-lockdown: user: timidity | chmod o-rwx "/etc/timidity"
+# /usr/lib/security-misc/permission-lockdown: user: uuidd | chmod o-rwx "/run/uuidd"
+# /usr/lib/security-misc/permission-lockdown: user: _rpc | chmod o-rwx "/run/rpcbind"
+# /usr/lib/security-misc/permission-lockdown: user: geoclue | chmod o-rwx "/var/lib/geoclue"
 
 home_folder_access_rights_lockdown() {
    mkdir -p /var/cache/security-misc/state-files
