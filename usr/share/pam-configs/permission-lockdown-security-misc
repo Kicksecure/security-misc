@@ -1,0 +1,6 @@
+Name: prevent others from reading one's home folder (by package security-misc)
+Default: yes
+Priority: 500
+Session-Type: Additional
+Session:
+	optional	pam_exec.so	debug seteuid log=/var/log/permission-lockdown-security-misc /usr/lib/security-misc/permission-lockdown
