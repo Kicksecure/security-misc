@@ -1,3 +1,128 @@
+commit 2875adb7221769dcd23ef701dae8b9ad24708590
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 10:07:55 2019 +0000
+
+    readme
+
+commit 01b3a0bfaeda0dad87644ad8d54c61e07dd501f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:52:53 2019 +0000
+
+    description
+
+commit 547ba91d799780487782cdd8088c556d978494e8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:45:30 2019 +0000
+
+    sanity test
+
+commit dee195d89e94ff343cec60308cbbb5464d2a7b18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:40:41 2019 +0000
+
+    description
+
+commit 799acad724977dea220c2228f9da0db3d6b5170e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:39:43 2019 +0000
+
+    skip, if not a folder
+
+commit 6321ff5ad5938a929d4a997b4f1b03db2ac4b5fd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:38:44 2019 +0000
+
+    refactoring
+
+commit 15094cab4fbbb1fd0c20bd8241ea20bd6c0bd331
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:36:30 2019 +0000
+
+    avoid ' character in usr/share/pam-configs; in description
+
+commit 97d1945e61053efd3b73fb9f761b3ea1c9271cdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:32:58 2019 +0000
+
+    no log needed, informative output to stdout instead
+
+commit a085d46c567b0b5dbbaddd8f3e5873d87d904c4a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:31:58 2019 +0000
+
+    change priories so "pam_umask.so usergroups umask=006" runs before pam_exec.so /usr/lib/security-misc/permission-lockdown
+
+commit f8c828b69a8f52108d19af4076e718930b5dcd07
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:19:02 2019 -0400
+
+    output
+
+commit e5da6d9699de1d3c4aaefee7d301a4c47f33e4bd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:17:54 2019 -0400
+
+    copyright
+
+commit 1595789d7c310c80196345e06b6bacc8fb7c0baf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:17:16 2019 -0400
+
+    comment
+
+commit ce06fdf91103afbaf84523ce998570af733b5bbe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:15:53 2019 -0400
+
+    formatting
+
+commit 21489111d107023f150988137180154ba62e1ff2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 08:34:03 2019 +0000
+
+    run permission lockdown during pam
+    
+    https://forums.whonix.org/t/change-default-umask/7416
+
+commit 42f2d5f6664f15baebdaf200a5690cf32cdbe284
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:39:28 2019 +0000
+
+    description
+
+commit 52df8dc0149d597c3106daa7112a01db444e34f1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:37:21 2019 +0000
+
+    optional        pam_umask.so    usergroups umask=006
+
+commit f210294f4091b6a09c902a446b125c26022c5d2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:24:24 2019 +0000
+
+    description
+
+commit dbea7d1511d8e1b2604960d37146ec931d9dfe15
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:22:14 2019 +0000
+
+    add hook etc/kernel/postinst.d/30_remove-system-map to remove system.map
+    
+    on kernel package upgrade;
+    
+    self-document this package: during upgrade the following will be written
+    to stdout:
+    
+    Setting up linux-image-4.19.0-5-amd64 (4.19.37-5+deb10u2) ...
+    /etc/kernel/postinst.d/30_remove-system-map:
+    removed '/boot/System.map-4.19.0-5-amd64
+
+commit f1d8cbc9fb2b800205923cce77a8e242dddd133c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:02:09 2019 +0000
+
+    bumped changelog version
+
 commit 41f4441d9dc5777d4ea7424f8422164c548da091
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 07:01:47 2019 +0000
