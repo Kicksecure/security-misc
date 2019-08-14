@@ -1,3 +1,15 @@
+commit a7c25a451c78f7b9a5720e1b6fc7d168eb0afa4f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:50:53 2019 +0000
+
+    remove unneeded dependency on libpam-cgfs
+
+commit 633854c6bec439af9718439c8207012322800166
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:13:25 2019 +0000
+
+    bumped changelog version
+
 commit 0feb54b28e90b5c4cfcd529914a3892362c34966
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 11:10:18 2019 +0000
