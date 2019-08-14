@@ -48,6 +48,9 @@ home_folder_access_rights_lockdown() {
       if [ ! -d "$folder_name" ]; then
          continue
       fi
+      if [ "$folder_name" = "/home/" ]; then
+         continue
+      fi
       mkdir -p /var/cache/security-misc/state-files
       echo "$0: chmod o-rwx \"$folder_name\""
       chmod o-rwx "$folder_name"
