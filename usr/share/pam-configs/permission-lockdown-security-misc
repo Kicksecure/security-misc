@@ -1,4 +1,4 @@
-Name: prevent others from reading one's home folder (by package security-misc)
+Name: prevent users from reading other users /home/user folders (by package security-misc)
 Default: yes
 Priority: 50
 Session-Type: Additional
