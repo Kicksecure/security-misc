@@ -156,6 +156,8 @@ Description: enhances misc security settings
  previously created with lax file permissions prior installation of this
  package.
  debian/security-misc.postinst
+ /usr/share/pam-configs/permission-lockdown-security-misc
+ /usr/lib/security-misc/permission-lockdown
  .
  access rights relaxations:
  .
