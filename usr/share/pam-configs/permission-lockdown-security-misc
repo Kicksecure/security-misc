@@ -3,4 +3,4 @@ Default: yes
 Priority: 50
 Session-Type: Additional
 Session:
-	optional	pam_exec.so	debug seteuid log=/var/log/permission-lockdown-security-misc /usr/lib/security-misc/permission-lockdown
+	optional	pam_exec.so	debug seteuid /usr/lib/security-misc/permission-lockdown
