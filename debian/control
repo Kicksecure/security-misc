@@ -13,7 +13,7 @@ Standards-Version: 4.3.0
 
 Package: security-misc
 Architecture: all
-Depends: python, libglib2.0-bin, libpam-runtime, libpam-cgfs, sudo,
+Depends: python, libglib2.0-bin, libpam-runtime, sudo,
  apparmor-profile-anondist, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
