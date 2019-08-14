@@ -1,6 +1,6 @@
 Name: Create home directory on login (by package security-misc)
 Default: yes
-Priority: 0
+Priority: 100
 Session-Type: Additional
 Session-Interactive-Only: yes
 Session:
