@@ -32,8 +32,6 @@
 # /usr/lib/security-misc/permission-lockdown: user: geoclue | chmod o-rwx "/var/lib/geoclue"
 
 home_folder_access_rights_lockdown() {
-   mkdir -p /var/cache/security-misc/state-files
-
    shopt -s nullglob
 
    ## Not using dotglob.
@@ -47,6 +45,7 @@ home_folder_access_rights_lockdown() {
       if [ -f "/var/cache/security-misc/state-files/$base_name" ]; then
          continue
       fi
+      mkdir -p /var/cache/security-misc/state-files
       echo "$0: chmod o-rwx \"$folder_name\""
       chmod o-rwx "$folder_name"
       ## Create a state-file so we do this only once.
