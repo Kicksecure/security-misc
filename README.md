@@ -40,6 +40,9 @@ KASLR effectiveness.
 * The SysRq key is restricted to only allow shutdowns/reboots.
 A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
+/etc/kernel/postinst.d/30_remove-system-map
+/lib/systemd/system/remove-system-map.service
+/usr/lib/security-misc/remove-system.map
 
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords.
@@ -116,6 +119,7 @@ access rights restrictions:
 * The default umask is changed to 006. This allows only the owner and group
 to read and write to newly created files.
 /etc/login.defs.security-misc
+/usr/share/pam-configs/usergroups-security-misc
 
 * Enables pam_umask.so usergroups so group permissions are same as user
 permissions. Debian by default uses User Private Groups (UPG).
@@ -129,12 +133,14 @@ pam_mkhomedir.so umask=006
 * Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
 "chmod o-rwx /home/user"
-during package installation or upgrade. This will be done only once per folder
-in folder /home so users who wish to relax file permissions are free to do so.
-This is to protect previously created files in user home folder which were
-previously created with lax file permissions prior installation of this
+during package installation, upgrade or pam. This will be done only once per
+folder in folder /home so users who wish to relax file permissions are free to
+do so. This is to protect previously created files in user home folder which
+were previously created with lax file permissions prior installation of this
 package.
 debian/security-misc.postinst
+/usr/share/pam-configs/permission-lockdown-security-misc
+/usr/lib/security-misc/permission-lockdown
 
 access rights relaxations:
 
