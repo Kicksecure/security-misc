@@ -57,6 +57,9 @@ Description: enhances misc security settings
   * The SysRq key is restricted to only allow shutdowns/reboots.
  A systemd service clears System.map on boot as these contain kernel symbols
  that could be useful to an attacker.
+ /etc/kernel/postinst.d/30_remove-system-map
+ /lib/systemd/system/remove-system-map.service
+ /usr/lib/security-misc/remove-system.map
  .
   * Coredumps are disabled as they may contain important information such as
  encryption keys or passwords.
