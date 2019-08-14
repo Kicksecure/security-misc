@@ -1,3 +1,45 @@
+commit 41f4441d9dc5777d4ea7424f8422164c548da091
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:01:47 2019 +0000
+
+    readme
+
+commit a82448d46af4fb9dce2de84025b8b820a11fae01
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:01:25 2019 +0000
+
+    description
+
+commit ff8c0979435b491cf462c5ef6e8e02f6d85f1d81
+Merge: 6f8acf0 a8ea379
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 06:59:50 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a8ea37952669b3f40a452cb580442126ec44233a
+Merge: 6f8acf0 9a49b8e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 06:59:34 2019 +0000
+
+    Merge pull request #28 from madaidan/patch-22
+    
+    Require all loaded kernel modules to be signed with a valid key.
+
+commit 9a49b8ecbb863a995862a4d380c6a03f6c0991ac
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Aug 13 13:33:07 2019 +0000
+
+    Create 40_only_allow_signed_modules.cfg
+    
+    Require all loaded kernel modules to be signed with a valid key.
+
+commit 6f8acf06d79c77e3bee15cc8696a433271e2b7c9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 12:07:07 2019 +0000
+
+    bumped changelog version
+
 commit 52cee9128316d649ba7ffa9600d0fdc33c99a9a9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Aug 11 11:39:32 2019 +0000
