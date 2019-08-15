@@ -3,4 +3,4 @@ Default: yes
 Priority: 270
 Auth-Type: Primary
 Auth:
-	required	pam_wheel.so group=sudo debug
+	requisite	pam_wheel.so group=sudo debug
