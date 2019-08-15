@@ -3,7 +3,7 @@ Default: yes
 Priority: 260
 Auth-Type: Primary
 Auth:
-	requisite	pam_tally2.so deny=100 onerr=fail audit debug
+	requisite	pam_tally2.so even_deny_root deny=100 onerr=fail audit debug
 Account-Type: Primary
 Account:
 	requisite	pam_tally2.so debug
