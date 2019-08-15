@@ -1,3 +1,42 @@
+commit a11e3cea9eb160ba84dbc273ea4cb48bc687158f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 15:08:48 2019 +0000
+
+    readme
+
+commit ff9bc1d7ea81a8507f44d9bb1301b9665614ebdd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 13:37:28 2019 +0000
+
+    informational output during PAM:
+    
+    * Show failed and remaining password attempts.
+    * Document unlock procedure if Linux user account got locked.
+    * Point out, that there is no password feedback for `su`.
+    * Explain locked (root) account if locked.
+    * /usr/share/pam-configs/tally2-security-misc
+    * /usr/lib/security-misc/pam_tally2-info
+
+commit 454e1358220abf75def0d88a22426086a55c0802
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 07:33:41 2019 +0000
+
+    pam_tally2.so even_deny_root
+
+commit 63b476221c7b9ece6b99f9e194fab80e300275d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 07:30:56 2019 +0000
+
+    use requisite rather than required to avoid asking for password needlessly
+    
+    if login will fail anyhow
+
+commit ce4a30d3cecb7e9bddb96c79aab871804cb90bd4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:52:26 2019 +0000
+
+    bumped changelog version
+
 commit a7c25a451c78f7b9a5720e1b6fc7d168eb0afa4f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 11:50:53 2019 +0000
