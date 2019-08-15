@@ -114,6 +114,15 @@ prevented by shipping an existing and empty /etc/securetty.
 (Deletion of /etc/securetty has a different effect.)
 /etc/securetty.security-misc
 
+informational output during PAM:
+
+* Show failed and remaining password attempts.
+* Document unlock procedure if Linux user account got locked.
+* Point out, that there is no password feedback for `su`.
+* Explain locked (root) account if locked.
+* /usr/share/pam-configs/tally2-security-misc
+* /usr/lib/security-misc/pam_tally2-info
+
 access rights restrictions:
 
 * The default umask is changed to 006. This allows only the owner and group
