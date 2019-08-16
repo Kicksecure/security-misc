@@ -1,3 +1,52 @@
+commit 6a68c3bd9cd47a8542460a95d90bcf7e34d9f768
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 15:57:30 2019 +0000
+
+    readme
+
+commit 224f95799c36f56c2165fe9284abaceaa84f1d3b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 11:15:25 2019 -0400
+
+    sudo default umask 006
+    
+    https://forums.whonix.org/t/change-default-umask/7416/43
+
+commit 17cfcb63b6358f51a65df9623bc23ddf869b06cc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 10:50:56 2019 -0400
+
+    code simplification; report locked account earlier
+
+commit 5754671c460c67bd7d8e064841383ea7b7f90824
+Merge: 34672b8 9781598
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 10:36:43 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 97815986321b6daf9c1f0c6f33a4b282ca05438c
+Merge: 34672b8 85502ad
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 14:36:00 2019 +0000
+
+    Merge pull request #27 from madaidan/patch-21
+    
+    Blacklist bluetooth
+
+commit 85502ad430f560070806c8b95b7fed3fe7028587
+Merge: 4a6f87f 34672b8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 14:35:51 2019 +0000
+
+    Merge branch 'master' into patch-21
+
+commit 34672b88a86285e1d3eaf35f0a2b3c2e974ffd26
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 15:18:02 2019 +0000
+
+    bumped changelog version
+
 commit a11e3cea9eb160ba84dbc273ea4cb48bc687158f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Aug 15 15:08:48 2019 +0000
@@ -356,6 +405,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 31 14:52:29 2019 -0400
 
     fix, do not use "," inside /usr/share/pam-configs files
+
+commit 4a6f87f3fa104f0e0a62809fe08f7d07d15dd9f7
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Jul 31 18:33:28 2019 +0000
+
+    Update control
+
+commit 5a4ea39566621431e931d5bc09957e04f18bbeee
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Jul 31 18:30:57 2019 +0000
+
+    Create blacklist-bluetooth.conf
 
 commit 864de10659d0145ae8883b98b1746a7debc9492a
 Author: Patrick Schleizer <adrelanos@riseup.net>
