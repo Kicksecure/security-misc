@@ -9,6 +9,6 @@ shopt -s nullglob
 for filename in /boot/System.map-*
 do
   if [ -f "${filename}" ]; then
-    rm -f "${filename}"
+    rm --verbose --force "${filename}"
   fi
 done

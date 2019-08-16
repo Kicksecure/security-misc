@@ -1,3 +1,368 @@
+commit a11e3cea9eb160ba84dbc273ea4cb48bc687158f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 15:08:48 2019 +0000
+
+    readme
+
+commit ff9bc1d7ea81a8507f44d9bb1301b9665614ebdd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 13:37:28 2019 +0000
+
+    informational output during PAM:
+    
+    * Show failed and remaining password attempts.
+    * Document unlock procedure if Linux user account got locked.
+    * Point out, that there is no password feedback for `su`.
+    * Explain locked (root) account if locked.
+    * /usr/share/pam-configs/tally2-security-misc
+    * /usr/lib/security-misc/pam_tally2-info
+
+commit 454e1358220abf75def0d88a22426086a55c0802
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 07:33:41 2019 +0000
+
+    pam_tally2.so even_deny_root
+
+commit 63b476221c7b9ece6b99f9e194fab80e300275d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 15 07:30:56 2019 +0000
+
+    use requisite rather than required to avoid asking for password needlessly
+    
+    if login will fail anyhow
+
+commit ce4a30d3cecb7e9bddb96c79aab871804cb90bd4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:52:26 2019 +0000
+
+    bumped changelog version
+
+commit a7c25a451c78f7b9a5720e1b6fc7d168eb0afa4f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:50:53 2019 +0000
+
+    remove unneeded dependency on libpam-cgfs
+
+commit 633854c6bec439af9718439c8207012322800166
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:13:25 2019 +0000
+
+    bumped changelog version
+
+commit 0feb54b28e90b5c4cfcd529914a3892362c34966
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 11:10:18 2019 +0000
+
+    add Depends: apparmor-profile-anondist to fix apparmor issue
+    
+    sudo[19806]: pam_exec(sudo:session): execve(/usr/lib/security-misc/permission-lockdown,...) failed: Permission denied
+    sudo[18961]: pam_exec(sudo:session): /usr/lib/security-misc/permission-lockdown failed: exit code 13
+    kernel: audit: type=1400 audit(1565780860.972:224): apparmor="DENIED" operation="exec" profile="/usr/bin/whonixcheck" name="/usr/lib/security-misc/permission-lockdown" pid=19806 comm="sudo" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
+
+commit 8fdc77fed553d7ba6123d738b9cb3efe98f3f08f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 10:33:23 2019 +0000
+
+    output to stdout
+
+commit 5213cfbcdcb41a5aa714d1031b36436adeb0359c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 10:08:18 2019 +0000
+
+    bumped changelog version
+
+commit 2875adb7221769dcd23ef701dae8b9ad24708590
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 10:07:55 2019 +0000
+
+    readme
+
+commit 01b3a0bfaeda0dad87644ad8d54c61e07dd501f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:52:53 2019 +0000
+
+    description
+
+commit 547ba91d799780487782cdd8088c556d978494e8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:45:30 2019 +0000
+
+    sanity test
+
+commit dee195d89e94ff343cec60308cbbb5464d2a7b18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:40:41 2019 +0000
+
+    description
+
+commit 799acad724977dea220c2228f9da0db3d6b5170e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:39:43 2019 +0000
+
+    skip, if not a folder
+
+commit 6321ff5ad5938a929d4a997b4f1b03db2ac4b5fd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:38:44 2019 +0000
+
+    refactoring
+
+commit 15094cab4fbbb1fd0c20bd8241ea20bd6c0bd331
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:36:30 2019 +0000
+
+    avoid ' character in usr/share/pam-configs; in description
+
+commit 97d1945e61053efd3b73fb9f761b3ea1c9271cdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:32:58 2019 +0000
+
+    no log needed, informative output to stdout instead
+
+commit a085d46c567b0b5dbbaddd8f3e5873d87d904c4a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 09:31:58 2019 +0000
+
+    change priories so "pam_umask.so usergroups umask=006" runs before pam_exec.so /usr/lib/security-misc/permission-lockdown
+
+commit f8c828b69a8f52108d19af4076e718930b5dcd07
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:19:02 2019 -0400
+
+    output
+
+commit e5da6d9699de1d3c4aaefee7d301a4c47f33e4bd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:17:54 2019 -0400
+
+    copyright
+
+commit 1595789d7c310c80196345e06b6bacc8fb7c0baf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:17:16 2019 -0400
+
+    comment
+
+commit ce06fdf91103afbaf84523ce998570af733b5bbe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 05:15:53 2019 -0400
+
+    formatting
+
+commit 21489111d107023f150988137180154ba62e1ff2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 08:34:03 2019 +0000
+
+    run permission lockdown during pam
+    
+    https://forums.whonix.org/t/change-default-umask/7416
+
+commit 42f2d5f6664f15baebdaf200a5690cf32cdbe284
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:39:28 2019 +0000
+
+    description
+
+commit 52df8dc0149d597c3106daa7112a01db444e34f1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:37:21 2019 +0000
+
+    optional        pam_umask.so    usergroups umask=006
+
+commit f210294f4091b6a09c902a446b125c26022c5d2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:24:24 2019 +0000
+
+    description
+
+commit dbea7d1511d8e1b2604960d37146ec931d9dfe15
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:22:14 2019 +0000
+
+    add hook etc/kernel/postinst.d/30_remove-system-map to remove system.map
+    
+    on kernel package upgrade;
+    
+    self-document this package: during upgrade the following will be written
+    to stdout:
+    
+    Setting up linux-image-4.19.0-5-amd64 (4.19.37-5+deb10u2) ...
+    /etc/kernel/postinst.d/30_remove-system-map:
+    removed '/boot/System.map-4.19.0-5-amd64
+
+commit f1d8cbc9fb2b800205923cce77a8e242dddd133c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:02:09 2019 +0000
+
+    bumped changelog version
+
+commit 41f4441d9dc5777d4ea7424f8422164c548da091
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:01:47 2019 +0000
+
+    readme
+
+commit a82448d46af4fb9dce2de84025b8b820a11fae01
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 07:01:25 2019 +0000
+
+    description
+
+commit ff8c0979435b491cf462c5ef6e8e02f6d85f1d81
+Merge: 6f8acf0 a8ea379
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 06:59:50 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a8ea37952669b3f40a452cb580442126ec44233a
+Merge: 6f8acf0 9a49b8e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Aug 14 06:59:34 2019 +0000
+
+    Merge pull request #28 from madaidan/patch-22
+    
+    Require all loaded kernel modules to be signed with a valid key.
+
+commit 9a49b8ecbb863a995862a4d380c6a03f6c0991ac
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Aug 13 13:33:07 2019 +0000
+
+    Create 40_only_allow_signed_modules.cfg
+    
+    Require all loaded kernel modules to be signed with a valid key.
+
+commit 6f8acf06d79c77e3bee15cc8696a433271e2b7c9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 12:07:07 2019 +0000
+
+    bumped changelog version
+
+commit 52cee9128316d649ba7ffa9600d0fdc33c99a9a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 11:39:32 2019 +0000
+
+    readme
+
+commit aacd9c7679b05b7ee59df484f21a24fe7aa5901d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:34:38 2019 +0000
+
+    description
+
+commit c0b5c70de498d891e4edd5b9af2292909be36776
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:33:22 2019 +0000
+
+    description
+
+commit 2f37a66fd009c9cba423c0f95833a71c8669af46
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:31:29 2019 +0000
+
+    description
+
+commit e83ec79a25d09b2467e2389959d87267bab7f1f0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:30:51 2019 +0000
+
+    enable usr/share/pam-configs/mkhomedir-security-misc by default
+
+commit 1eb806a03ef25bb387fa80f45dd6509925437048
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:29:49 2019 +0000
+
+    pam_mkhomedir.so umask=006
+
+commit c50eb3c9b07b9e54951eb08206db6d28383f6cdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 11 10:28:55 2019 +0000
+
+    add usr/share/pam-configs/mkhomedir-security-misc based on
+    /usr/share/pam-configs/mkhomedir
+
+commit 75769151cd7980042357f18c5567adab2a031049
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 11:37:02 2019 +0000
+
+    bumped changelog version
+
+commit a2fa18c38159161418edcdaacb1baad215f5d31d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 07:07:28 2019 -0400
+
+    pam_tally2.so deny=100
+    
+    during testing, due to issues
+    
+    https://github.com/Whonix/security-misc/commit/d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
+    
+    https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698/12
+
+commit d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 06:06:39 2019 -0400
+
+    effectively (not directly) add "required        pam_tally2.so debug" to /etc/pam.d/common-account
+    
+    This is required because otherwise something like "sudo bash" would count as a
+    failed login for pam_tally2 even though it was successful.
+    
+    https://bugzilla.redhat.com/show_bug.cgi?id=707660
+    
+    https://forums.whonix.org/t/restrict-root-access/7658
+
+commit 0f896a9d8d6f7c125311a0e226755f8a00214f3c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 10 06:05:37 2019 -0400
+
+    add onerr=fail audit to pam_tally2
+
+commit a703865dcf736996a58e6f684fc02f0e9dfa8cc7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 12:02:41 2019 +0000
+
+    bumped changelog version
+
+commit 1fe3036a4903588b89edd82e7097a665271fd27f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:13:43 2019 +0000
+
+    readme
+
+commit e076470f68dc18908c5ab1889232aaaa0fcb9f3d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:04:58 2019 +0000
+
+    renamed:    usr/share/pam-configs/usergroups -> usr/share/pam-configs/usergroups-security-misc
+
+commit 830111e99aa6f45688c4ba00a7f41ea323f15f2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 1 11:04:22 2019 +0000
+
+    split usr/share/pam-configs/security-misc
+    into
+    usr/share/pam-configs/tally2-security-misc
+    usr/share/pam-configs/wheel-security-misc
+
+commit 5d0aec1321b4f46f1834ba9ad166d2445a995fbb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 19:12:27 2019 +0000
+
+    bumped changelog version
+
+commit 89d32402b2dd2182dc6e7788d41708eaaeeb02c1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 14:52:29 2019 -0400
+
+    fix, do not use "," inside /usr/share/pam-configs files
+
+commit 864de10659d0145ae8883b98b1746a7debc9492a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 31 15:17:51 2019 +0000
+
+    bumped changelog version
+
 commit 47368ae4fccc85ab3197f07316b03c123187f9a2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 31 15:15:30 2019 +0000

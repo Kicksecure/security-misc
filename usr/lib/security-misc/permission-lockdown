@@ -1,0 +1,68 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## Doing this for all users would create many issues.
+# /usr/lib/security-misc/permission-lockdown: user: root | chmod o-rwx "/root"
+# /usr/lib/security-misc/permission-lockdown: user: daemon | chmod o-rwx "/usr/sbin"
+# /usr/lib/security-misc/permission-lockdown: user: bin | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: sys | chmod o-rwx "/dev"
+# /usr/lib/security-misc/permission-lockdown: user: sync | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: games | chmod o-rwx "/usr/games"
+# /usr/lib/security-misc/permission-lockdown: user: man | chmod o-rwx "/var/cache/man"
+# /usr/lib/security-misc/permission-lockdown: user: mail | chmod o-rwx "/var/mail"
+# /usr/lib/security-misc/permission-lockdown: user: proxy | chmod o-rwx "/bin"
+# /usr/lib/security-misc/permission-lockdown: user: backup | chmod o-rwx "/var/backups"
+# /usr/lib/security-misc/permission-lockdown: user: systemd-timesync | chmod o-rwx "/run/systemd"
+# /usr/lib/security-misc/permission-lockdown: user: systemd-network | chmod o-rwx "/run/systemd/netif"
+# /usr/lib/security-misc/permission-lockdown: user: messagebus | chmod o-rwx "/var/run/dbus"
+# /usr/lib/security-misc/permission-lockdown: user: tinyproxy | chmod o-rwx "/run/tinyproxy"
+# /usr/lib/security-misc/permission-lockdown: user: rtkit | chmod o-rwx "/proc"
+# /usr/lib/security-misc/permission-lockdown: user: colord | chmod o-rwx "/var/lib/colord"
+# /usr/lib/security-misc/permission-lockdown: user: Debian-exim | chmod o-rwx "/var/spool/exim4"
+# /usr/lib/security-misc/permission-lockdown: user: debian-tor | chmod o-rwx "/var/lib/tor"
+# /usr/lib/security-misc/permission-lockdown: user: stunnel4 | chmod o-rwx "/var/run/stunnel4"
+# /usr/lib/security-misc/permission-lockdown: user: iodine | chmod o-rwx "/var/run/iodine"
+# /usr/lib/security-misc/permission-lockdown: user: apt-cacher-ng | chmod o-rwx "/var/cache/apt-cacher-ng"
+# /usr/lib/security-misc/permission-lockdown: user: statd | chmod o-rwx "/var/lib/nfs"
+# /usr/lib/security-misc/permission-lockdown: user: timidity | chmod o-rwx "/etc/timidity"
+# /usr/lib/security-misc/permission-lockdown: user: uuidd | chmod o-rwx "/run/uuidd"
+# /usr/lib/security-misc/permission-lockdown: user: _rpc | chmod o-rwx "/run/rpcbind"
+# /usr/lib/security-misc/permission-lockdown: user: geoclue | chmod o-rwx "/var/lib/geoclue"
+
+home_folder_access_rights_lockdown() {
+   shopt -s nullglob
+
+   ## Not using dotglob.
+   ## touch /var/cache/security-misc/state-files//home/.Trash
+   ## touch: cannot touch '/var/cache/security-misc/state-files//home/.Trash': No such file or directory
+
+   local folder_name base_name
+
+   for folder_name in /home/* ; do
+      base_name="$(basename "$folder_name")"
+      if [ -f "/var/cache/security-misc/state-files/$base_name" ]; then
+         continue
+      fi
+      if [ ! -d "$folder_name" ]; then
+         continue
+      fi
+      if [ "$folder_name" = "/home/" ]; then
+         continue
+      fi
+      mkdir -p /var/cache/security-misc/state-files
+      echo "$0: chmod o-rwx \"$folder_name\""
+      chmod o-rwx "$folder_name"
+      ## Create a state-file so we do this only once.
+      ## Therefore a user who will manually undo this, will not get
+      ## annoyed by this being done over and over again.
+      touch "/var/cache/security-misc/state-files/$base_name"
+   done
+
+   shopt -u nullglob
+}
+
+home_folder_access_rights_lockdown
+
+exit 0

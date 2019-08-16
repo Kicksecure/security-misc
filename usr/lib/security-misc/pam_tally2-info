@@ -1,0 +1,109 @@
+#!/bin/bash
+
+if [ ! -r /var/log/auth.log ]; then
+   exit 0
+fi
+
+pam_tally2_output="$(pam_tally2 --user "$PAM_USER")"
+
+if [ "$pam_tally2_output" = "" ]; then
+   true "$0: no failed login"
+   exit 0
+fi
+
+## Example:
+#Login           Failures Latest failure     From
+#user                0
+
+pam_tally2_output_last_line="$(echo "$pam_tally2_output" | tail -1)"
+## Example:
+#user                0
+
+arr=($pam_tally2_output_last_line)
+user_name="${arr[0]}"
+failed_login_counter="${arr[1]}"
+
+if [ ! "$PAM_USER" = "$user_name" ]; then
+   echo "$0: ERROR: PAM_USER: $PAM_USER does not equal user_name: '$user_name'." >&2
+   echo "$0: ERROR: Please report this bug." >&2
+   echo "" >&2
+   exit 0
+fi
+
+if [ "$failed_login_counter" = "0" ]; then
+   true "$0: INFO: Failed login counter is 0, ok."
+   exit 0
+fi
+
+temp="$(grep pam_tally2 /var/log/auth.log | grep ", deny" | tail -1)"
+last_line_of_user="$(echo "$temp" | grep "pam_tally2")"
+last_line_of_user="$(echo "$temp" | grep "): user $PAM_USER")"
+
+#last_line_of_user="$(grep pam_tally2 /var/log/auth.log | grep "): user $PAM_USER " | tail -1)"
+## Example:
+#Aug 15 03:47:50 localhost sudo: pam_tally2(sudo:auth): user user (1000) tally 1, deny 10
+
+temp="$(echo "$last_line_of_user" | sed 's/.*tally //')"
+temp="${temp/", deny"/""}"
+## Example:
+#1 100
+
+arr=($temp)
+tally="${arr[0]}"
+deny="${arr[1]}"
+
+if [[ "$tally" == *[!0-9]* ]]; then
+   echo "$0: ERROR: tally is not numeric." >&2
+   echo "$0: ERROR: Please report this bug." >&2
+   echo "" >&2
+   exit 0
+fi
+
+if [[ "$deny" == *[!0-9]* ]]; then
+   echo "$0: ERROR: deny is not numeric." >&2
+   echo "$0: ERROR: Please report this bug." >&2
+   echo "" >&2
+   exit 0
+fi
+
+remaining_attempts="$(( $deny - $tally ))"
+
+## Thanks to:
+if [ "$(passwd -S "$PAM_USER" | cut -d ' ' -f 2)" = "P" ]; then
+   true "INFO: Password not locked."
+else
+   echo "$0: ERROR: Password for user \"$PAM_USER\" is locked." >&2
+   if [ "$PAM_USER" = "root" ]; then
+      echo "$0: ERROR: root account is locked by default. See:" >&2
+      echo "https://www.whonix.org/wiki/root" >&2
+      echo "" >&2
+   fi
+   exit 0
+fi
+
+if [ "$remaining_attempts" -le "0" ]; then
+   echo "$0: ERROR: Login blocked after $tally attempts." >&2
+   echo "$0: To unlock, run the following command as superuser:" >&2
+   echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
+   echo "" >&2
+   echo "pam_tally2 --quiet -r --user $PAM_USER" >&2
+   echo "" >&2
+   echo "$0: However, most likely unlock procedure is required." >&2
+   echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
+   echo "$0: See also:" >&2
+   echo "https://www.whonix.org/wiki/root#unlock" >&2
+   echo "" >&2
+   exit 0
+fi
+
+echo "$0: WARNING: $tally failed login attempts." >&2
+echo "$0: Login will be blocked after $deny attempts." >&2
+echo "$0: You have $remaining_attempts more attempts before unlock procedure is required." >&2
+echo "" >&2
+
+if [ "$PAM_SERVICE" = "su" ]; then
+   echo "$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown." >&2
+   echo "" >&2
+fi
+
+exit 0

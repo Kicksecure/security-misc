@@ -1,7 +1,0 @@
-Name: group sudo membership required to use su, lock accounts after 5 failed authentication attempts (by package security-misc)
-Default: yes
-Priority: 260
-Auth-Type: Primary
-Auth:
-	required	pam_wheel.so group=sudo debug
-	required	pam_tally2.so deny=5 debug

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if test -x /usr/lib/security-misc/remove-system.map ; then
+   /usr/lib/security-misc/remove-system.map
+fi

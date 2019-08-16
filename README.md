@@ -40,6 +40,9 @@ KASLR effectiveness.
 * The SysRq key is restricted to only allow shutdowns/reboots.
 A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
+/etc/kernel/postinst.d/30_remove-system-map
+/lib/systemd/system/remove-system-map.service
+/usr/lib/security-misc/remove-system.map
 
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords.
@@ -51,6 +54,11 @@ for DMA (Direct Memory Access) attacks.
 
 * The kernel now panics on oopses to prevent it from continuing running a
 flawed process.
+
+Requires every module to be signed before being loaded. Any module that is
+unsigned or signed with an invalid key cannot be loaded. This makes it harder
+to load a malicious module.
+/etc/default/grub.d/40_only_allow_signed_modules.cfg
 
 Uncommon network protocols are blacklisted:
 These are rarely used and may have unknown vulnerabilities.
@@ -91,7 +99,7 @@ restricts access to the root account:
 
 * `su` is restricted to only users within the group `sudo` which prevents
 users from using `su` to gain root access or to switch user accounts.
-/usr/share/pam-configs/security-misc
+/usr/share/pam-configs/wheel-security-misc
 (Which results in a change in file `/etc/pam.d/common-auth`.)
 
 * Add user `root` to group `sudo`. This is required to make above work so
@@ -99,33 +107,49 @@ login as a user in a virtual console is still possible.
 debian/security-misc.postinst
 
 * Lock user accounts after 5 failed login attempts using pam_tally2.
-/usr/share/pam-configs/security-misc
+/usr/share/pam-configs/tally2-security-misc
 
 * Logging into the root account from a virtual, serial, whatnot console is
 prevented by shipping an existing and empty /etc/securetty.
 (Deletion of /etc/securetty has a different effect.)
 /etc/securetty.security-misc
 
+informational output during PAM:
+
+* Show failed and remaining password attempts.
+* Document unlock procedure if Linux user account got locked.
+* Point out, that there is no password feedback for `su`.
+* Explain locked (root) account if locked.
+* /usr/share/pam-configs/tally2-security-misc
+* /usr/lib/security-misc/pam_tally2-info
+
 access rights restrictions:
 
 * The default umask is changed to 006. This allows only the owner and group
 to read and write to newly created files.
 /etc/login.defs.security-misc
+/usr/share/pam-configs/usergroups-security-misc
 
 * Enables pam_umask.so usergroups so group permissions are same as user
 permissions. Debian by default uses User Private Groups (UPG).
 https://wiki.debian.org/UserPrivateGroups
-/usr/share/pam-configs/usergroups
+/usr/share/pam-configs/usergroups-security-misc
+
+* Create home directory on login with umask 006 using
+pam_mkhomedir.so umask=006
+/usr/share/pam-configs/mkhomedir-security-misc
 
 * Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
 "chmod o-rwx /home/user"
-during package installation or upgrade. This will be done only once per folder
-in folder /home so users who wish to relax file permissions are free to do so.
-This is to protect previously created files in user home folder which were
-previously created with lax file permissions prior installation of this
+during package installation, upgrade or pam. This will be done only once per
+folder in folder /home so users who wish to relax file permissions are free to
+do so. This is to protect previously created files in user home folder which
+were previously created with lax file permissions prior installation of this
 package.
 debian/security-misc.postinst
+/usr/share/pam-configs/permission-lockdown-security-misc
+/usr/lib/security-misc/permission-lockdown
 
 access rights relaxations:
 
@@ -186,16 +210,24 @@ Application specific hardening:
 * Deactivates thumbnails in Thunar.
 ## How to install `security-misc` using apt-get ##
 
-1\. Add [Whonix's Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key).
+1\. Download [Whonix's Signing Key]().
 
 ```
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg adv --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys 916B8D99C38EAF5E8ADC7A2A8D66066A2EEACCDA
+wget https://www.whonix.org/patrick.asc
+```
+
+Users can [check Whonix Signing Key](https://www.whonix.org/wiki/Whonix_Signing_Key) for better security.
+
+2\. Add Whonix's signing key.
+
+```
+sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg add ~/patrick.asc
 ```
 
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb http://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
+echo "deb https://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
 ```
 
 4\. Update your package lists.

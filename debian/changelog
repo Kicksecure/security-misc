@@ -1,3 +1,57 @@
+security-misc (3:7.1-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Thu, 15 Aug 2019 15:18:02 +0000
+
+security-misc (3:7.0-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Wed, 14 Aug 2019 11:52:26 +0000
+
+security-misc (3:6.9-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Wed, 14 Aug 2019 11:13:25 +0000
+
+security-misc (3:6.8-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Wed, 14 Aug 2019 10:08:18 +0000
+
+security-misc (3:6.7-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Wed, 14 Aug 2019 07:02:09 +0000
+
+security-misc (3:6.6-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Sun, 11 Aug 2019 12:07:07 +0000
+
+security-misc (3:6.5-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Sat, 10 Aug 2019 11:37:02 +0000
+
+security-misc (3:6.4-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Thu, 01 Aug 2019 12:02:41 +0000
+
+security-misc (3:6.3-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Wed, 31 Jul 2019 19:12:27 +0000
+
 security-misc (3:6.2-1) unstable; urgency=medium
 
   * New upstream version (local package).
