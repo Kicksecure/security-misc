@@ -55,7 +55,10 @@ for DMA (Direct Memory Access) attacks.
 * The kernel now panics on oopses to prevent it from continuing running a
 flawed process.
 
-Requires every module to be signed before being loaded. Any module that is
+* Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
+a history of [security concerns](https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns).
+
+* Requires every module to be signed before being loaded. Any module that is
 unsigned or signed with an invalid key cannot be loaded. This makes it harder
 to load a malicious module.
 /etc/default/grub.d/40_only_allow_signed_modules.cfg
@@ -129,6 +132,7 @@ access rights restrictions:
 to read and write to newly created files.
 /etc/login.defs.security-misc
 /usr/share/pam-configs/usergroups-security-misc
+/etc/sudoers.d/umask-security-misc
 
 * Enables pam_umask.so usergroups so group permissions are same as user
 permissions. Debian by default uses User Private Groups (UPG).
