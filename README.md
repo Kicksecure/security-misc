@@ -56,7 +56,8 @@ for DMA (Direct Memory Access) attacks.
 flawed process.
 
 * Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
-a history of [security concerns](https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns).
+a history of security concerns.
+https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
 
 * Requires every module to be signed before being loaded. Any module that is
 unsigned or signed with an invalid key cannot be loaded. This makes it harder
