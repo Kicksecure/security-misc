@@ -149,6 +149,7 @@ Description: enhances misc security settings
  to read and write to newly created files.
  /etc/login.defs.security-misc
  /usr/share/pam-configs/usergroups-security-misc
+ /etc/sudoers.d/umask-security-misc
  .
   * Enables pam_umask.so usergroups so group permissions are same as user
  permissions. Debian by default uses User Private Groups (UPG).
