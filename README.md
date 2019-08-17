@@ -129,7 +129,7 @@ informational output during PAM:
 
 access rights restrictions:
 
-* The default umask is changed to 006. This allows only the owner and group
+* The default umask is changed to 027. This allows only the owner and group
 to read and write to newly created files.
 /etc/login.defs.security-misc
 /usr/share/pam-configs/usergroups-security-misc
@@ -140,8 +140,8 @@ permissions. Debian by default uses User Private Groups (UPG).
 https://wiki.debian.org/UserPrivateGroups
 /usr/share/pam-configs/usergroups-security-misc
 
-* Create home directory on login with umask 006 using
-pam_mkhomedir.so umask=006
+* Create home directory on login with umask 027 using
+pam_mkhomedir.so umask=027
 /usr/share/pam-configs/mkhomedir-security-misc
 
 * Removes read, write and execute access for others for all users who have
