@@ -123,9 +123,13 @@ Description: enhances misc security settings
  /usr/share/pam-configs/wheel-security-misc
  (Which results in a change in file `/etc/pam.d/common-auth`.)
  .
+
  * Add user `root` to group `sudo`. This is required to make above work so
  login as a user in a virtual console is still possible.
  debian/security-misc.postinst
+ .
+  * Abort login for users with locked passwords.
+ /usr/lib/security-misc/pam-abort-on-locked-password
  .
  * Lock user accounts after 5 failed login attempts using pam_tally2.
  /usr/share/pam-configs/tally2-security-misc
@@ -143,6 +147,7 @@ Description: enhances misc security settings
   * Explain locked (root) account if locked.
   * /usr/share/pam-configs/tally2-security-misc
   * /usr/lib/security-misc/pam_tally2-info
+  * /usr/lib/security-misc/pam-abort-on-locked-password
  .
  access rights restrictions:
  .
