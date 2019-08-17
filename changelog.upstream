@@ -1,3 +1,25 @@
+commit cfd18d4486c763a79bc174bded7d8cf0b3dd567f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 09:56:29 2019 +0000
+
+    readme
+
+commit ed90d8b025c1f852856fea0e620c240f35e78a53
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 09:55:20 2019 +0000
+
+    change default umask to 027
+    
+    as per:
+    
+    https://forums.whonix.org/t/change-default-umask/7416/47
+
+commit b9127faac300024f7d8851d41037bebd5d3fe05c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 16 16:05:51 2019 +0000
+
+    bumped changelog version
+
 commit e004a5e0cf22c5add683ed8c1ff6f88bdc4053ba
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 16:05:25 2019 +0000
