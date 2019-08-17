@@ -1,6 +1,6 @@
-Name: change default umask to 006 (by package security-misc)
+Name: change default umask to 027 (by package security-misc)
 Default: yes
 Priority: 256
 Session-Type: Additional
 Session:
-	optional	pam_umask.so	usergroups umask=006
+	optional	pam_umask.so	usergroups umask=027
