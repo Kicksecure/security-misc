@@ -1,3 +1,49 @@
+commit c897682794639fa7848acf5ba4b33aabbbcd0644
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:53:45 2019 +0000
+
+    readme
+
+commit e535232728ec7ff6846a3102b73707c549ea64c0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:37:49 2019 +0000
+
+    description
+
+commit 7ffdd7c240b55c1d5fae9279b42319a5e8be74ba
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:37:42 2019 +0000
+
+    description
+
+commit 207399439f29b4b421a8e91fc1b965d9e82ba35c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:37:36 2019 +0000
+
+    description
+
+commit d4fb485e7090a7424f3f80b18b010fbc9859283c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:35:31 2019 +0000
+
+    description
+
+commit 41b2819ec88364290c5d91daa2236919ea589c1c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:33:47 2019 +0000
+
+    PAM: abort on locked password
+    
+    to avoid needlessly bumping pam_tally2 counter
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/1
+
+commit e0e25364e2d14459b918eea2cb63cbe10b8371f3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 09:57:48 2019 +0000
+
+    bumped changelog version
+
 commit cfd18d4486c763a79bc174bded7d8cf0b3dd567f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 17 09:56:29 2019 +0000
