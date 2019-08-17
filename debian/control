@@ -123,7 +123,6 @@ Description: enhances misc security settings
  /usr/share/pam-configs/wheel-security-misc
  (Which results in a change in file `/etc/pam.d/common-auth`.)
  .
-
  * Add user `root` to group `sudo`. This is required to make above work so
  login as a user in a virtual console is still possible.
  debian/security-misc.postinst
