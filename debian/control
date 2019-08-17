@@ -135,7 +135,7 @@ Description: enhances misc security settings
  (Deletion of /etc/securetty has a different effect.)
  /etc/securetty.security-misc
  .
- informational output during PAM:
+ informational output during Linux PAM:
  .
   * Show failed and remaining password attempts.
   * Document unlock procedure if Linux user account got locked.
