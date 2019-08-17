@@ -110,7 +110,10 @@ users from using `su` to gain root access or to switch user accounts.
 login as a user in a virtual console is still possible.
 debian/security-misc.postinst
 
-* Lock user accounts after 5 failed login attempts using pam_tally2.
+* Abort login for users with locked passwords.
+/usr/lib/security-misc/pam-abort-on-locked-password
+
+* Lock user accounts after 100 failed login attempts using pam_tally2.
 /usr/share/pam-configs/tally2-security-misc
 
 * Logging into the root account from a virtual, serial, whatnot console is
@@ -118,7 +121,7 @@ prevented by shipping an existing and empty /etc/securetty.
 (Deletion of /etc/securetty has a different effect.)
 /etc/securetty.security-misc
 
-informational output during PAM:
+informational output during Linux PAM:
 
 * Show failed and remaining password attempts.
 * Document unlock procedure if Linux user account got locked.
@@ -126,6 +129,7 @@ informational output during PAM:
 * Explain locked (root) account if locked.
 * /usr/share/pam-configs/tally2-security-misc
 * /usr/lib/security-misc/pam_tally2-info
+* /usr/lib/security-misc/pam-abort-on-locked-password
 
 access rights restrictions:
 
