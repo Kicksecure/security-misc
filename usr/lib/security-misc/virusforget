@@ -1,0 +1,239 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+#set -x
+set -e
+
+error_handler() {
+   ## TODO
+   exit 1
+}
+
+trap error_handler ERR
+
+variables() {
+   chfiles+=" .bashrc "
+   chfiles+=" .bash_profile "
+   chfiles+=" .bash_login "
+   chfiles+=" .bash_logout "
+   chfiles+=" .profile "
+   chfiles+=" .pam_environment "
+   chfiles+=" .xprofile "
+   chfiles+=" .xinitrc "
+   chfiles+=" .xserverrc "
+   chfiles+=" .Xsession "
+   chfiles+=" .xsession "
+   chfiles+=" .xsessionrc "
+   chfiles+=" .virusforgetunitestone "
+   chfiles+=" .virusforgetunitesttwo "
+
+   chdirs+=" bin "
+   chdirs+=" .local/bin "
+   chdirs+=" .config/autostart "
+   chdirs+=" .config/plasma-workspace/env "
+   chdirs+=" .config/plasma-workspace/shutdown "
+   chdirs+=" .config/autostart-scripts "
+   chdirs+=" .config/systemd "
+
+   privdirs+=" /rw/config "
+   privdirs+=" /rw/usrlocal "
+   privdirs+=" /rw/bind-dirs "
+
+   user_name="user"
+   home_folder="/home/$user_name"
+   backup_folder="$home_folder/.virusforget/backup"
+   dangerous_folder="$home_folder/.virusforget/dangerous"
+}
+
+init() {
+   ## TODO
+   true
+}
+
+process_file_system_objects() {
+   if [ "$store" = "true" ]; then
+      rm -r -f "$backup_folder"
+      mkdir -p "$backup_folder"
+   fi
+
+   process_files
+   process_folders
+}
+
+process_files() {
+   for file_name in $chfiles $privdirs ; do
+      full_path_original="$home_folder/$file_name"
+      full_path_original_dirname="${full_path_original%/*}"
+      full_path_backup="$backup_folder/$file_name"
+      full_path_dangerous="$dangerous_folder/$file_name"
+      full_path_dangerous_dirname="${full_path_dangerous%/*}"
+      if [ "$store" = "true" ]; then
+         if [ -e "$full_path_original" ]; then
+            cp --no-dereference --archive "$full_path_original" "$backup_folder/"
+         fi
+      else
+         check_file_walker
+      fi
+   done
+}
+
+process_folders() {
+   for folder_name in $chdirs ; do
+      full_folder_name="$home_folder/$folder_name"
+
+      if [ -e "$full_folder_name" ]; then
+         find "$full_folder_name" -print0 | \
+            while IFS= read -r -d '' line; do
+               true "line: $line"
+               if [ "$full_folder_name" = "$line" ]; then
+                  continue
+               fi
+               full_path_original="$line"
+               full_path_original_dirname="${full_path_original%/*}"
+               ## remove prepeneded $home_folder from $full_path_original
+               temp_one="$home_folder/"
+               temp="${full_path_original/#$temp_one/""}"
+               full_path_backup="$backup_folder/$temp"
+               full_path_backup_dirname="${full_path_backup%/*}"
+               full_path_dangerous="$dangerous_folder/$temp"
+               full_path_dangerous_dirname="${full_path_dangerous%/*}"
+
+               if [ "$store" = "true" ]; then
+                  if [ -d "$full_path_original" ]; then
+                     true "ok"
+                  else
+                     ## Not needed since starting with new backup folder anyhow.
+                     #if [ -e "$full_path_backup" ]; then
+                     #   echo chattr -i "$full_path_backup"
+                     #   echo rm "$full_path_backup"
+                     #fi
+                     mkdir -p "$full_path_backup_dirname"
+                     cp --no-dereference --archive "$full_path_original" "$full_path_backup_dirname/"
+                  fi
+               else
+                  check_file_walker
+               fi
+            done
+      fi
+   done
+}
+
+check_file_walker() {
+   if [ -e "$full_path_backup" ]; then
+      if [ -e "$full_path_original" ]; then
+         if [ -d "$full_path_original" ]; then
+            ## REVIEW: ok to skip directory?
+            true
+            return 0
+         fi
+         if diff "$full_path_original" "$full_path_backup" &>/dev/null ; then
+            true "OK"
+         else
+            echo "Difference detected! changed file: $full_path_original backup: $full_path_backup" >&2
+            unexpected_file "$full_path_original"
+         fi
+      else
+         echo "Missing file detected! missing: $full_path_original" >&2
+         restore_file
+      fi
+   else
+      if [ -e "$full_path_original" ]; then
+         echo "Extraneous file! $full_path_original" >&2
+         unexpected_file "$full_path_original"
+      else
+         true "OK"
+      fi
+   fi
+}
+
+unexpected_file() {
+   if [ "$check" = "true" ]; then
+      ## TODO
+      return 0
+   fi
+
+   if [ -d "$full_path_original" ]; then
+      ## TODO: ignore ok?
+      true
+      return 0
+   fi
+
+   mkdir -p "$full_path_dangerous_dirname"
+
+   echo "Creating backup of current version... $full_path_original" >&2
+   echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
+   cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
+   echo "Created backup." >&2
+
+   if test -h "$full_path_original" ; then
+      echo "unexpected symlink. Removing... unlink '$full_path_original'" >&2
+      unlink "$full_path_original"
+      echo "Removed unexpect symlink." >&2
+      return 0
+   else
+      ## chattr fails on symlinks such as symlink to /dev/random.
+      chattr -i "$full_path_original"
+
+      echo "Deleting modified version '$full_path_original'." >&2
+
+      ## TODO
+      echo rm "$full_path_original" >&2
+
+      echo "Deleted '$full_path_original'." >&2
+   fi
+
+   echo "View the diff:" >&2
+   echo "diff $full_path_original $full_path_dangerous" >&2
+
+   echo "" >&2
+
+   restore_file
+}
+
+restore_file() {
+   echo "Restoring file... $full_path_original" >&2
+   echo mkdir --parents "$full_path_original_dirname" >&2
+   mkdir --parents "$full_path_original_dirname"
+   if [ ! "$home_folder" = "$full_path_original_dirname" ]; then
+      chown --recursive "$user_name:$user_name" "$full_path_original_dirname"
+   fi
+   echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
+   cp --no-dereference --archive "$full_path_backup" "$full_path_original" >&2
+   echo "Restored." >&2
+   echo "" >&2
+}
+
+unit_test_one() {
+   ## TODO: if --test
+   echo "x" >> /home/user/.virusforgetunitestone
+   test -f /home/user/.virusforgetunitestone
+}
+
+unit_test_two() {
+   ## TODO: if --test
+   rm /home/user/.virusforgetunitestone
+   echo "x" >> /home/user/.virusforgetunitesttwo
+   test -f /home/user/.virusforgetunitesttwo
+   echo "x" >> /home/user/.config/systemd/user/virusforgetunittest
+   test -f /home/user/.config/systemd/user/virusforgetunittest
+   if test -h /home/user/.config/systemd/user/virusforgetunittestsymlink ; then
+      unlink /home/user/.config/systemd/user/virusforgetunittestsymlink
+   fi
+   ln -s /dev/random /home/user/.config/systemd/user/virusforgetunittestsymlink
+}
+
+variables
+
+unit_test_one
+
+## TODO
+store=true
+process_file_system_objects
+
+unit_test_two
+
+## TODO
+store=false
+process_file_system_objects
