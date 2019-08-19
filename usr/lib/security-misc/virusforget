@@ -70,7 +70,7 @@ process_file_system_objects() {
 }
 
 process_files() {
-   for file_name in $chfiles $privdirs ; do
+   for file_name in $chfiles ; do
       full_path_original="$home_folder/$file_name"
       full_path_original_dirname="${full_path_original%/*}"
       full_path_backup="$backup_folder/$file_name"
