@@ -20,6 +20,61 @@ error_handler() {
 
 trap error_handler ERR
 
+root_check() {
+   if [ "$(id -u)" != "0" ]; then
+      echo "ERROR: must be run as root! sudo $0"
+      exit 1
+   fi
+}
+
+parse_cmd_options() {
+   ## Thanks to:
+   ## http://mywiki.wooledge.org/BashFAQ/035
+
+   while :
+   do
+       case $1 in
+           --user)
+               user_name="$2"
+               if [ "$user_name" = "" ]; then
+                  echo "ERROR: --user needs username as argument!" >&2
+                  shift
+                  exit 1
+               else
+                  shift 2
+               fi
+               ;;
+           --simulate)
+               test_mode="true"
+               shift
+               ;;
+           --unittest)
+               unit_test="true"
+               shift
+               ;;
+           --)
+               shift
+               break
+               ;;
+           -*)
+               echo "ERROR: unknown option: $1" >&2
+               exit 1
+               ;;
+           *)
+               break
+               ;;
+       esac
+   done
+
+   ## If there are input files (for example) that follow the options, they
+   ## will remain in the "$@" positional parameters.
+
+   if [ "$user_name" = "" ]; then
+      echo "ERROR: must set --user username" >&2
+      exit 1
+   fi
+}
+
 variables() {
    chfiles+=" .bashrc "
    chfiles+=" .bash_profile "
@@ -48,15 +103,13 @@ variables() {
    privdirs+=" /rw/usrlocal "
    privdirs+=" /rw/bind-dirs "
 
-   user_name="user"
-   home_folder="/home/$user_name"
    backup_folder="/home/virusforget/backup"
    dangerous_folder="/home/virusforget/dangerous"
 }
 
 init() {
-   ## TODO
-   true
+   adduser --home /home/virusforget --quiet --system --group virusforget
+   home_folder="/home/$user_name"
 }
 
 process_file_system_objects() {
@@ -169,26 +222,37 @@ unexpected_file() {
 
    mkdir -p "$full_path_dangerous_dirname"
 
-   echo "Creating backup of current version... $full_path_original" >&2
-   echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
-   cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
-   echo "Created backup." >&2
+   if [ "$test_mode" = "true" ]; then
+      echo "Simulate backup of current version... $full_path_original" >&2
+      echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
+   else
+      echo "Creating backup of current version... $full_path_original" >&2
+      echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
+      cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
+      echo "Created backup." >&2
+   fi
 
    if test -h "$full_path_original" ; then
-      echo "unexpected symlink. Removing... unlink '$full_path_original'" >&2
-      unlink "$full_path_original"
-      echo "Removed unexpect symlink." >&2
+      if [ "$test_mode" = "true" ]; then
+         echo "Simulate only. unexpected symlink. Removing... unlink '$full_path_original'" >&2
+         echo unlink "$full_path_original"
+      else
+         echo "unexpected symlink. Removing... unlink '$full_path_original'" >&2
+         unlink "$full_path_original"
+         echo "Removed unexpect symlink." >&2
+      fi
       return 0
    else
-      ## chattr fails on symlinks such as symlink to /dev/random.
-      chattr -i "$full_path_original"
-
-      echo "Deleting modified version '$full_path_original'." >&2
-
-      ## TODO
-      echo rm "$full_path_original" >&2
-
-      echo "Deleted '$full_path_original'." >&2
+      if [ "$test_mode" = "true" ]; then
+         echo "Simulate deleting modified version '$full_path_original'." >&2
+         echo rm "$full_path_original" >&2
+      else
+         ## chattr fails on symlinks such as symlink to /dev/random.
+         chattr -i "$full_path_original"
+         echo "Deleting modified version '$full_path_original'." >&2
+         rm "$full_path_original" >&2
+         echo "Deleted '$full_path_original'." >&2
+      fi
    fi
 
    echo "View the diff:" >&2
@@ -200,26 +264,35 @@ unexpected_file() {
 }
 
 restore_file() {
-   echo "Restoring file... $full_path_original" >&2
-   echo mkdir --parents "$full_path_original_dirname" >&2
-   mkdir --parents "$full_path_original_dirname"
-   if [ ! "$home_folder" = "$full_path_original_dirname" ]; then
-      chown --recursive "$user_name:$user_name" "$full_path_original_dirname"
+   if [ "$test_mode" = "true" ]; then
+      echo "Simulate restoring file... $full_path_original" >&2
+      echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
+   else
+      echo "Restoring file... $full_path_original" >&2
+      echo mkdir --parents "$full_path_original_dirname" >&2
+      mkdir --parents "$full_path_original_dirname"
+      if [ ! "$home_folder" = "$full_path_original_dirname" ]; then
+         chown --recursive "$user_name:$user_name" "$full_path_original_dirname"
+      fi
+      echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
+      cp --no-dereference --archive "$full_path_backup" "$full_path_original" >&2
+      echo "Restored." >&2
    fi
-   echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
-   cp --no-dereference --archive "$full_path_backup" "$full_path_original" >&2
-   echo "Restored." >&2
    echo "" >&2
 }
 
 unit_test_one() {
-   ## TODO: if --test
+   if [ ! "$unit_test" = "true" ]; then
+      return 0
+   fi
    echo "x" >> /home/user/.virusforgetunitestone
    test -f /home/user/.virusforgetunitestone
 }
 
 unit_test_two() {
-   ## TODO: if --test
+   if [ ! "$unit_test" = "true" ]; then
+      return 0
+   fi
    rm /home/user/.virusforgetunitestone
    echo "x" >> /home/user/.virusforgetunitesttwo
    test -f /home/user/.virusforgetunitesttwo
@@ -231,8 +304,10 @@ unit_test_two() {
    ln -s /dev/random /home/user/.config/systemd/user/virusforgetunittestsymlink
 }
 
+root_check
+parse_cmd_options "$@"
+init
 variables
-
 unit_test_one
 
 ## TODO
