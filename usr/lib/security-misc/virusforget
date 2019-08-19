@@ -111,6 +111,7 @@ variables() {
    chdirs+=" .config/autostart-scripts "
    chdirs+=" .config/systemd "
 
+   ## TODO
    privdirs+=" /rw/config "
    privdirs+=" /rw/usrlocal "
    privdirs+=" /rw/bind-dirs "
