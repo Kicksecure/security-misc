@@ -50,8 +50,8 @@ variables() {
 
    user_name="user"
    home_folder="/home/$user_name"
-   backup_folder="$home_folder/.virusforget/backup"
-   dangerous_folder="$home_folder/.virusforget/dangerous"
+   backup_folder="/home/virusforget/backup"
+   dangerous_folder="/home/virusforget/dangerous"
 }
 
 init() {
