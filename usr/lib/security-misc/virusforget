@@ -56,6 +56,10 @@ parse_cmd_options() {
                commit="true"
                shift
                ;;
+           --clean)
+               clean="true"
+               shift
+               ;;
            --check)
                check="true"
                shift
@@ -225,6 +229,11 @@ check_file_walker() {
       fi
    else
       if [ -e "$full_path_original" ]; then
+         if [ -d "$full_path_original" ]; then
+            ## REVIEW: ignore ok?
+            true
+            return 0
+         fi
          echo "Extraneous file! $full_path_original" >&2
          unexpected_file "$full_path_original"
       else
@@ -234,13 +243,8 @@ check_file_walker() {
 }
 
 unexpected_file() {
-   if [ "$check" = "true" ]; then
-      ## TODO
-      return 0
-   fi
-
    if [ -d "$full_path_original" ]; then
-      ## TODO: ignore ok?
+      ## REVIEW: ignore ok?
       true
       return 0
    fi
@@ -250,7 +254,7 @@ unexpected_file() {
    if [ "$test_mode" = "true" ]; then
       echo "Simulate backup of current version... $full_path_original" >&2
       echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
-   else
+   elif [ "$clean" = "true" ]; then
       echo "Creating backup of current version... $full_path_original" >&2
       echo cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
       cp "$full_path_original" --no-dereference --archive --backup=existing "$full_path_dangerous"
@@ -258,30 +262,30 @@ unexpected_file() {
    fi
 
    if test -h "$full_path_original" ; then
+      echo "is a symlink: $full_path_original" >&2
       if [ "$test_mode" = "true" ]; then
          echo "Simulate only. unexpected symlink. Removing... unlink '$full_path_original'" >&2
          echo unlink "$full_path_original"
-      else
+      elif [ "$clean" = "true" ]; then
          echo "unexpected symlink. Removing... unlink '$full_path_original'" >&2
          unlink "$full_path_original"
          echo "Removed unexpect symlink." >&2
       fi
-      return 0
    else
       if [ "$test_mode" = "true" ]; then
          echo "Simulate deleting modified version '$full_path_original'." >&2
          echo rm "$full_path_original" >&2
-      else
+      elif [ "$clean" = "true" ]; then
          ## chattr fails on symlinks such as symlink to /dev/random.
          chattr -i "$full_path_original"
          echo "Deleting modified version '$full_path_original'." >&2
          rm "$full_path_original" >&2
          echo "Deleted '$full_path_original'." >&2
       fi
-   fi
 
-   echo "View the diff:" >&2
-   echo "diff $full_path_original $full_path_dangerous" >&2
+      echo "View the diff:" >&2
+      echo "diff $full_path_original $full_path_dangerous" >&2
+   fi
 
    echo "" >&2
 
@@ -292,7 +296,8 @@ restore_file() {
    if [ "$test_mode" = "true" ]; then
       echo "Simulate restoring file... $full_path_original" >&2
       echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
-   else
+      echo "" >&2
+   elif [ "$clean" = "true" ]; then
       echo "Restoring file... $full_path_original" >&2
       echo mkdir --parents "$full_path_original_dirname" >&2
       mkdir --parents "$full_path_original_dirname"
@@ -302,8 +307,8 @@ restore_file() {
       echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"
       cp --no-dereference --archive "$full_path_backup" "$full_path_original" >&2
       echo "Restored." >&2
+      echo "" >&2
    fi
-   echo "" >&2
 }
 
 unit_test_one() {
