@@ -3,6 +3,13 @@
 ## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+## VirusForget is inspired by Christopher Laprise.
+## tasket@protonmail.com
+## https://github.com/tasket
+## https://www.patreon.com/tasket/creators
+## Because of his work on Qubes-VM-Hardening.
+## https://github.com/tasket/Qubes-VM-hardening
+
 #set -x
 set -e
 
