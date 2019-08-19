@@ -52,6 +52,14 @@ parse_cmd_options() {
                unit_test="true"
                shift
                ;;
+           --commit)
+               commit="true"
+               shift
+               ;;
+           --check)
+               check="true"
+               shift
+               ;;
            --)
                shift
                break
@@ -114,7 +122,16 @@ init() {
 
 process_file_system_objects() {
    if [ "$store" = "true" ]; then
-      rm -r -f "$backup_folder"
+      if [ "$test_mode" = "true" ]; then
+         echo Simulate: rm -r -f "$backup_folder"
+      else
+         rm -r -f "$backup_folder"
+      fi
+   fi
+
+   if [ "$test_mode" = "true" ]; then
+      true
+   else
       mkdir -p "$backup_folder"
    fi
 
@@ -131,7 +148,11 @@ process_files() {
       full_path_dangerous_dirname="${full_path_dangerous%/*}"
       if [ "$store" = "true" ]; then
          if [ -e "$full_path_original" ]; then
-            cp --no-dereference --archive "$full_path_original" "$backup_folder/"
+            if [ "$test_mode" = "true" ]; then
+               echo Simulate: cp --no-dereference --archive "$full_path_original" "$backup_folder/"
+            else
+               cp --no-dereference --archive "$full_path_original" "$backup_folder/"
+            fi
          fi
       else
          check_file_walker
@@ -169,8 +190,12 @@ process_folders() {
                      #   echo chattr -i "$full_path_backup"
                      #   echo rm "$full_path_backup"
                      #fi
-                     mkdir -p "$full_path_backup_dirname"
-                     cp --no-dereference --archive "$full_path_original" "$full_path_backup_dirname/"
+                     if [ "$test_mode" = "true" ]; then
+                        echo Simulate: cp --no-dereference --archive "$full_path_original" "$full_path_backup_dirname/"
+                     else
+                        mkdir -p "$full_path_backup_dirname"
+                        cp --no-dereference --archive "$full_path_original" "$full_path_backup_dirname/"
+                     fi
                   fi
                else
                   check_file_walker
@@ -310,12 +335,14 @@ init
 variables
 unit_test_one
 
-## TODO
-store=true
-process_file_system_objects
+if [ "$commit" = "true" ]; then
+   store=true
+   process_file_system_objects
+fi
 
 unit_test_two
 
-## TODO
-store=false
-process_file_system_objects
+if [ "$check" = "true" ]; then
+   store=false
+   process_file_system_objects
+fi
