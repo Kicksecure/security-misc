@@ -85,7 +85,6 @@ The network protocols that are blacklisted are:
 * AppleTalk
 * PSNAP - Subnetwork Access Protocol
 * p8023 - Novell raw IEEE 802.3
-* LLC - IEEE 802.2
 * p8022 - IEEE 802.2
 
 user restrictions:
