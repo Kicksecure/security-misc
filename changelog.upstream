@@ -1,3 +1,104 @@
+commit e77260fd9cab49f85d5790188485dce7f9eeee23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 23 16:53:55 2019 +0000
+
+    readme
+
+commit 793c9b6801ffda5d75d389b8e7a2a6d140d8d382
+Merge: a74b983 44d62e0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 12:48:23 2019 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a74b983283e9aa1662cd6be87148184f380fa297
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 12:46:59 2019 +0000
+
+    remove LLC - IEEE 802.2 from blacklist
+    
+    since required by KVM
+    
+    https://forums.whonix.org/t/whonix-desktop-installer-with-calamares-field-report/7350/107
+    
+    https://forums.whonix.org/t/blacklist-uncommon-network-protocols/7391/22
+    
+    https://github.com/Whonix/security-misc/pull/29
+
+commit 44d62e05b5a60a3d45afd829fb67970afa7678b7
+Merge: 0140df8 a8b6281
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 12:45:52 2019 +0000
+
+    Merge pull request #29 from onions-knight/patch-1
+    
+    Update uncommon-network-protocols.conf
+
+commit a8b62811199b6c4e5d86439cd0fc9e9c18dc027b
+Author: onions-knight <38859709+onions-knight@users.noreply.github.com>
+Date:   Mon Aug 19 11:30:57 2019 +0000
+
+    Update uncommon-network-protocols.conf
+    
+    Removing llc from blacklisted network protocols as it is needed by KVM for networking.
+    See https://hub.packtpub.com/kvm-networking-libvirt/ and https://forums.whonix.org/t/whonix-desktop-installer-with-calamares-field-report/7350/107
+
+commit 0140df866839d4f02ba5988eec8c72a71136482a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 08:43:28 2019 +0000
+
+    virusforget
+
+commit 113ab4256861edc068ea09b2d8fb96355cb71867
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 08:31:23 2019 +0000
+
+    virusforget
+
+commit 416906d4f9ad522a65d8847c9d03f4497bbd898f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 08:19:35 2019 +0000
+
+    virusforget
+
+commit 2d867d9fee691ba088cf42badc4def562d82bd0d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 08:10:18 2019 +0000
+
+    virusforget
+
+commit 8e76e6b8b3129bcda1c82322cc56e31edac43e3f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 07:48:12 2019 +0000
+
+    fix
+
+commit 3f068f77febebbe425f9d6cd1ef2d620fb6ec379
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 07:47:20 2019 +0000
+
+    keep cache folder outside of reach of user since even user can remove files
+    
+    owned by root in its home folder
+
+commit 1fa1efa58e6f719766394bc8b94d4aa4076bdc0d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 19 07:22:09 2019 +0000
+
+    credits
+
+commit 1e026a3ebbacb1011edbbf5b0fbcfe7b5e6338c0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 18 22:50:44 2019 +0000
+
+    initial development version of VirusForget
+
+commit e15b5603057fd9c67ac1ab34493e8b9f05fbac9b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 17 10:54:08 2019 +0000
+
+    bumped changelog version
+
 commit c897682794639fa7848acf5ba4b33aabbbcd0644
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 17 10:53:45 2019 +0000
