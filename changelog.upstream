@@ -1,3 +1,25 @@
+commit 07cba361ed663672de3d0263e8262c61b4d43b4e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 24 16:39:56 2019 +0000
+
+    readme
+
+commit 0ae5c5ff14c308ff5307926fbe6d93f44e1c7615
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 24 12:14:22 2019 -0400
+
+    remove umask changes since these are causing issues are are not needed anymore
+    
+    thanks to home folder permission lockdown
+    
+    https://forums.whonix.org/t/change-default-umask/7416/45
+
+commit 41c4682280b7bc8e700d9ed41b55e464c0511b69
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 23 16:57:12 2019 +0000
+
+    bumped changelog version
+
 commit e77260fd9cab49f85d5790188485dce7f9eeee23
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 23 16:53:55 2019 +0000
