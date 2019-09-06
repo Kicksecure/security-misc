@@ -1,3 +1,15 @@
+commit ea0779e42aa8416c142eb3d37f8cede42794e0f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Sep 6 13:00:20 2019 +0000
+
+    rm_conffile /etc/sudoers.d/umask-security-misc
+
+commit 3a9939dccbea16408e8ba1c739748234bde68d89
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Sep 6 11:47:40 2019 +0000
+
+    bumped changelog version
+
 commit 51705c201bd9959a77a53201e492100b751d0508
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Sep 6 11:47:17 2019 +0000
