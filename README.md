@@ -11,8 +11,8 @@ the kernel. (!) Hence, this package disables this feature by shipping the
 * Kernel symbols in /proc/kallsyms are hidden to prevent malware from
 reading them and using them to learn more about what to attack on your system.
 
-* Kexec is disabled as it can be used for live patching of the running
-kernel.
+* Kexec is disabled as it can be used to load a malicious kernel.
+/etc/sysctl.d/kexec.conf
 
 * ASLR effectiveness for mmap is increased.
 
