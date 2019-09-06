@@ -30,6 +30,7 @@ Description: enhances misc security settings
  .
   * Kexec is disabled as it can be used for live patching of the running
  kernel.
+ /etc/sysctl.d/kexec.conf
  .
   * ASLR effectiveness for mmap is increased.
  .
