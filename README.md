@@ -18,7 +18,7 @@ kernel.
 
 * The TCP/IP stack is hardened.
 
-* his package makes some data spoofing attacks harder.
+* This package makes some data spoofing attacks harder.
 
 * SACK is disabled as it is commonly exploited and is rarely used.
 
@@ -38,7 +38,9 @@ KASLR effectiveness.
 * All mitigations for the MDS vulnerability are enabled.
 
 * The SysRq key is restricted to only allow shutdowns/reboots.
-A systemd service clears System.map on boot as these contain kernel symbols
+/etc/sysctl.d/sysrq.conf
+
+* A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
 /etc/kernel/postinst.d/30_remove-system-map
 /lib/systemd/system/remove-system-map.service
@@ -46,6 +48,9 @@ that could be useful to an attacker.
 
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords.
+/etc/security/limits.d/disable-coredumps.conf
+/etc/sysctl.d/coredumps.conf
+/lib/systemd/coredump.conf.d/disable-coredumps.conf
 
 * The thunderbolt and firewire modules are blacklisted as they can be used
 for DMA (Direct Memory Access) attacks.
