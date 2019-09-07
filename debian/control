@@ -81,11 +81,6 @@ Description: enhances misc security settings
  a history of security concerns.
  https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
  .
-  * Requires every module to be signed before being loaded. Any module that is
- unsigned or signed with an invalid key cannot be loaded. This makes it harder
- to load a malicious module.
- /etc/default/grub.d/40_only_allow_signed_modules.cfg
- .
  Uncommon network protocols are blacklisted:
  These are rarely used and may have unknown vulnerabilities.
  /etc/modprobe.d/uncommon-network-protocols.conf
