@@ -35,6 +35,18 @@ pam-auth-update --package
 
 /usr/lib/security-misc/permission-lockdown
 
+## https://phabricator.whonix.org/T377
+## Debian has no update-grub trigger yet:
+## https://bugs.debian.org/481542
+if command -v update-grub >/dev/null 2>&1; then
+   update-grub || \
+      echo "$DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME ERROR: Running \
+'update-grub' failed with exit code $?. $DPKG_MAINTSCRIPT_PACKAGE is most \
+likely only the trigger, not the cause. Unless you know this is not an issue, \
+you should fix running 'update-grub', otherwise your system might no longer \
+boot." >&2
+fi
+
 true "INFO: debhelper beginning here."
 
 #DEBHELPER#
