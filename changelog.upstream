@@ -1,3 +1,37 @@
+commit b3103b1ba8a1b8d7718ee167230dc938bc8b64b4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 7 06:10:35 2019 +0000
+
+    readme
+
+commit 7affddb3bbfaa8183bad5986dbbb6ea728df1fe4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 7 05:47:34 2019 +0000
+
+    blacklist modules with /bin/false rather than /bin/true to fail with error
+    
+    message rather than failing without notification
+
+commit 8132052ce01215a98cb4464e5f78d75349e77b10
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 7 05:44:23 2019 +0000
+
+    run update-grub from postinst so /etc/default/grub.d changes take effect
+
+commit 661bcd8603425934188cf139f33e20675ff4b765
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 7 05:39:56 2019 +0000
+
+    allow loading unsigned modules due to issues
+    
+    https://forums.whonix.org/t/allow-loading-signed-kernel-modules-by-default-disallow-kernel-module-loading-by-default/7880/23
+
+commit 9ee9309f542472a8c8045df44573a5ec38e32a90
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Sep 6 13:04:57 2019 +0000
+
+    bumped changelog version
+
 commit ea0779e42aa8416c142eb3d37f8cede42794e0f7
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Sep 6 13:00:20 2019 +0000
