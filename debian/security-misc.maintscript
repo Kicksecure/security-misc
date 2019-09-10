@@ -5,3 +5,6 @@ rm_conffile /etc/sudoers.d/umask-security-misc
 
 ## https://forums.whonix.org/t/allow-loading-signed-kernel-modules-by-default-disallow-kernel-module-loading-by-default/7880/23
 rm_conffile /etc/default/grub.d/40_only_allow_signed_modules.cfg
+
+## https://forums.whonix.org/t/sysrq-magic-sysrq-key/8079
+rm_conffile /etc/sysctl.d/sysrq.conf

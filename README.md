@@ -37,9 +37,6 @@ KASLR effectiveness.
 
 * All mitigations for the MDS vulnerability are enabled.
 
-* The SysRq key is restricted to only allow shutdowns/reboots.
-/etc/sysctl.d/sysrq.conf
-
 * A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
 /etc/kernel/postinst.d/30_remove-system-map
