@@ -1,3 +1,23 @@
+commit f13a73e569e6adacd38aaa59f4484919a3896359
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Sep 10 12:35:42 2019 -0400
+
+    undo SysRq restrictions
+    
+    https://forums.whonix.org/t/sysrq-magic-sysrq-key/8079
+
+commit fbd1a5bde922be9c571d54567c977618e2c4bfc5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Sep 10 12:23:00 2019 -0400
+
+    hidepid before sysinit.target
+
+commit 1f75a1065049a1c75e0cb597f2bcc1a8e0eca93b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 9 12:10:24 2019 +0000
+
+    bumped changelog version
+
 commit 1b4391417619a51cfe22d9eee21d9fa644d145b6
 Merge: 9d875d7 d0b3bc7
 Author: Patrick Schleizer <adrelanos@riseup.net>
