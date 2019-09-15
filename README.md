@@ -1,5 +1,12 @@
 # enhances misc security settings #
 
+Inspired by Kernel Self Protection Project (KSPP)
+
+* Implements most if not all recommended Linux kernel settings (sysctl) and
+kernel parameters by KSPP.
+
+* https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
+
 kernel hardening:
 
 * deactivates Netfilter's connection tracking helper
@@ -198,6 +205,11 @@ Application specific hardening:
 * Deactivates previews in Dolphin.
 * Deactivates previews in Nautilus.
 * Deactivates thumbnails in Thunar.
+
+Discussion:
+
+Happening primarily in Whonix forums.
+https://forums.whonix.org/t/kernel-hardening/7296
 ## How to install `security-misc` using apt-get ##
 
 1\. Download [Whonix's Signing Key]().
