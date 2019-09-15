@@ -215,3 +215,8 @@ Description: enhances misc security settings
   * Deactivates previews in Dolphin.
   * Deactivates previews in Nautilus.
   * Deactivates thumbnails in Thunar.
+ .
+ Discussion:
+ .
+ Happening primarily in Whonix forums.
+ https://forums.whonix.org/t/kernel-hardening/7296
