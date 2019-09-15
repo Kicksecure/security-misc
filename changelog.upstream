@@ -1,3 +1,33 @@
+commit c9425a1404af73bf5d92fd7d1665130335d9e789
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 15 14:07:50 2019 +0000
+
+    readme
+
+commit 619550da2393dfe683be827a51d4390b6280ace1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 15 14:00:24 2019 +0000
+
+    description
+
+commit b95b66e42986a359835127d6c56aabb1e9d9008f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 15 13:56:37 2019 +0000
+
+    description
+
+commit ae804a15e73a4a8b9ef3b605e3fca7ba24e135a6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 15 13:21:02 2019 +0000
+
+    description
+
+commit 3d187dab99cd6d0a2906e73c86e0dd8c94cbc648
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 12 12:50:42 2019 +0000
+
+    bumped changelog version
+
 commit f13a73e569e6adacd38aaa59f4484919a3896359
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Sep 10 12:35:42 2019 -0400
