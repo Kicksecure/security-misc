@@ -17,7 +17,10 @@ Depends: python, libglib2.0-bin, libpam-runtime, sudo, adduser,
  apparmor-profile-anondist, ${misc:Depends}
 Replaces: tcp-timestamps-disable
 Description: enhances misc security settings
- Inspired by Kernel Self Protection Project
+ Inspired by Kernel Self Protection Project (KSPP)
+ .
+  * Implements most if not all recommended Linux kernel settings (sysctl) and
+ kernel parameters by KSPP.
  .
   * https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
  .
