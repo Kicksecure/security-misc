@@ -10,6 +10,8 @@ if [ ! "$(id -u)" = "0" ]; then
    ## xscreensaver has its own failed login counter.
    ##
    ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+   ##
+   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
    true "$0: not started as root, exiting."
    exit 0
 fi
