@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
+
 if [ ! "$(id -u)" = "0" ]; then
    ## as user "user"
    ## /sbin/pam_tally2 -u user
