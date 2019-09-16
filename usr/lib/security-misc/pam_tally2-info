@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [ ! "$(id -u)" = "0" ]; then
+   ## as user "user"
+   ## /sbin/pam_tally2 -u user
+   ## pam_tally2: Error opening /var/log/tallylog for update: Permission denied
+   ## /sbin/pam_tally2: Authentication error
+   ##
+   ## xscreensaver runs as user "user", therefore pam_tally2 cannot function.
+   ## xscreensaver has its own failed login counter.
+   ##
+   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+   true "$0: not started as root, exiting."
+   exit 0
+fi
+
 pam_tally2_output="$(pam_tally2 --user "$PAM_USER")"
 
 if [ "$pam_tally2_output" = "" ]; then
