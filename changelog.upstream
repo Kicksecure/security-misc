@@ -1,3 +1,45 @@
+commit 75258843e9d4da9b0be7aec42528e093e0861992
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 16 13:03:43 2019 +0000
+
+    copyright
+
+commit 8e39cea876a8ff9ca496b9230dd13e4201f1e2f6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 16 13:03:25 2019 +0000
+
+    comment
+
+commit bac462f2112d0290cad82717e1efed19c8fafac5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 16 13:03:02 2019 +0000
+
+    comment
+
+commit bec680d4f3ccc406c5d8c5a67d7957be04f6a0de
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 16 12:30:23 2019 +0000
+
+    pam_tally2-info: fix, do nothing when started as user "user"
+    
+    xscreensaver runs as user "user", therefore pam_tally2 cannot function.
+    xscreensaver has its own failed login counter.
+    
+    as user "user"
+    /sbin/pam_tally2 -u user
+    pam_tally2: Error opening /var/log/tallylog for update: Permission denied
+    /sbin/pam_tally2: Authentication error
+    
+    https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+    
+    https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
+
+commit c2e444479cf723a7ddb3c51cd6394795daba108e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 15 14:08:13 2019 +0000
+
+    bumped changelog version
+
 commit c9425a1404af73bf5d92fd7d1665130335d9e789
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Sep 15 14:07:50 2019 +0000
