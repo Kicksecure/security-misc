@@ -1,0 +1,21 @@
+#!/bin/bash
+
+## sysfs and debugfs expose a lot of information
+## that should not be accessible by an unprivileged
+## user which includes hardware info, debug info and
+## more. This restricts /sys, /proc/cpuinfo, /proc/bus
+## and /proc/scsi to the root user only. This hides
+## many hardware identifiers from ordinary users
+## and increases security.
+for i in /proc/cpuinfo /proc/bus /proc/scsi /sys
+do
+  if [ -e "${i}" ]; then
+    chmod og-rwx "${i}"
+  else
+    ## /proc/scsi doesn't exist on Debian so errors
+    ## are expected here.
+    if ! [ "${i}" = "/proc/scsi" ]; then
+      echo "ERROR: ${i} could not be found."
+    fi
+  fi
+done
