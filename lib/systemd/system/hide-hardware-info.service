@@ -14,4 +14,4 @@ Type=oneshot
 ExecStart=/usr/lib/security-misc/hide-hardware-info
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
