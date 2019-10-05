@@ -1,3 +1,39 @@
+commit 54b83ae44dbda76b9b2696488194b53612bfc377
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 07:20:18 2019 -0400
+
+    readme
+
+commit 5fb4eb8e561e7c37cea977072944501fc32ee883
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 07:00:47 2019 -0400
+
+    undo Disabling TCP SACK, DSACK, FACK
+    
+    https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/5
+
+commit c19942f72b8d74056dd8da8c3cd9ac7e0fbe8991
+Merge: 213aef6 a33851a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 06:58:27 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a33851a3c99a5eb9021d2d28b3164ed10025fbd9
+Merge: 213aef6 d0c6bb1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 10:58:08 2019 +0000
+
+    Merge pull request #32 from madaidan/disable-dsack-fack
+    
+    Disable TCP DSACK and FACK
+
+commit 213aef6eb9288efffe9fb0458f0aa8a44a6dafa6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 09:40:26 2019 +0000
+
+    bumped changelog version
+
 commit aaebb32b668f4447c011f4e150f959c8d0e1ce09
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 09:39:05 2019 +0000
@@ -37,6 +73,12 @@ Date:   Sat Oct 5 08:46:21 2019 +0000
     Merge pull request #31 from madaidan/hide-hardware-info
     
     Restrict /proc/cpuinfo, /proc/bus, /proc/scsi and /sys to root
+
+commit d0c6bb1e9064ffdf45f7ac606f708c3f5e7dc247
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Oct 4 17:35:54 2019 +0000
+
+    Disable TCP DSACK and FACK
 
 commit 7345287560bc701f8b4aead985238d66104b228c
 Author: madaidan <50278627+madaidan@users.noreply.github.com>
