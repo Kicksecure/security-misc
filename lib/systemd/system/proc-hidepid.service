@@ -32,4 +32,4 @@ ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
 PrivateNetwork=true
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
