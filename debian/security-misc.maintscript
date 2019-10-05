@@ -8,3 +8,6 @@ rm_conffile /etc/default/grub.d/40_only_allow_signed_modules.cfg
 
 ## https://forums.whonix.org/t/sysrq-magic-sysrq-key/8079
 rm_conffile /etc/sysctl.d/sysrq.conf
+
+## https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/5
+rm_conffile /etc/sysctl.d/tcp_sack.conf
