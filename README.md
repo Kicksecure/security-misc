@@ -27,8 +27,6 @@ reading them and using them to learn more about what to attack on your system.
 
 * This package makes some data spoofing attacks harder.
 
-* SACK is disabled as it is commonly exploited and is rarely used.
-
 * This package disables the merging of slabs of similar sizes to prevent an
 attacker from exploiting them.
 
