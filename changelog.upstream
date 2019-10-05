@@ -1,3 +1,91 @@
+commit aaebb32b668f4447c011f4e150f959c8d0e1ce09
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 09:39:05 2019 +0000
+
+    readme
+
+commit c87fc75f2a7d6ed38362729d27030f83b08292d3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 09:36:21 2019 +0000
+
+    fix, run remove-system-map.service during sysinit.target
+
+commit 25b674678472623c06d948f4cbb967f360ba15f0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 09:14:54 2019 +0000
+
+    fix systemd unit file proc-hidepid.service: WantedBy=sysinit.target
+
+commit d2bc3a2a08a00c68f05ed99caf16aad0b1e11ea4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 09:14:41 2019 +0000
+
+    chmod +x usr/lib/security-misc/hide-hardware-info
+
+commit ffe0d62c8148ec60f7528002e988b969ebb868ca
+Merge: ddc778b 7bcf73d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 04:49:05 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 7bcf73deaa1c77f9c650d8844ad94d24e38746fd
+Merge: ddc778b 7345287
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 08:46:21 2019 +0000
+
+    Merge pull request #31 from madaidan/hide-hardware-info
+    
+    Restrict /proc/cpuinfo, /proc/bus, /proc/scsi and /sys to root
+
+commit 7345287560bc701f8b4aead985238d66104b228c
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Oct 4 17:32:52 2019 +0000
+
+    Use sysinit.target instead
+
+commit e06eeec6788a46a28682b2c83f1de9f83eacf3bd
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 21:42:06 2019 +0000
+
+    Disable hide-hardware-info.service by default
+
+commit 87917d2f03d5e510f4e2cbdbea2a7692146e820b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 21:38:07 2019 +0000
+
+    Add licensing
+
+commit b06ab912c04d3d8746afa7492d0c3bb17bf71932
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 21:37:29 2019 +0000
+
+    Add licensing
+
+commit ec5fcf813b80347e5d8aa55dbd5d77860e62ccc6
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 20:50:48 2019 +0000
+
+    Update control
+
+commit ce97e5ed8203809619d8fdf630242712c188cede
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 20:45:29 2019 +0000
+
+    Create hide-hardware-info.service
+
+commit 9449f5017a6feff7e70d625d54d75d514ed2e596
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Oct 3 20:45:14 2019 +0000
+
+    Create hide-hardware-info
+
+commit ddc778b45281b9f7f42496ffbd4f2137d6fa9d5a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 16 13:34:11 2019 +0000
+
+    bumped changelog version
+
 commit 75258843e9d4da9b0be7aec42528e093e0861992
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 16 13:03:43 2019 +0000
