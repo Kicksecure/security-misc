@@ -1,3 +1,61 @@
+commit c19964360a6d42e73e5d2f3b90afd5f676933d30
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 14 10:10:08 2019 +0000
+
+    readme
+
+commit c22738be027f69391a4ac40ce85bfacf35ff1742
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 7 08:25:45 2019 +0000
+
+    comments
+
+commit 75f36bc2c9bf5c50061f05198c504d84b128e5da
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 7 08:25:07 2019 +0000
+
+    comments
+
+commit e92a8a69665f982e8b5a37f7081fa75197cde828
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 7 08:24:02 2019 +0000
+
+    comments
+
+commit 60c044a9d669dd816ff473f19e19b87f87cc9008
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 7 05:30:56 2019 +0000
+
+    copyright / comments
+
+commit cd2135ff82de82278eaa680d30bea2fe68f94f52
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Oct 6 10:18:24 2019 +0000
+
+    comments
+
+commit 8b4f2befd46d4db4d2a83d9e79ebcf9abf98fd02
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 13:15:34 2019 +0000
+
+    comment out sack by default
+    
+    https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/8?u=patrick
+
+commit 02096f8d7c7ee1f61285cf96564616f2828aa6c2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 13:13:46 2019 +0000
+
+    Revert "undo Disabling TCP SACK, DSACK, FACK"
+    
+    This reverts commit 5fb4eb8e561e7c37cea977072944501fc32ee883.
+
+commit 62a0239207ee355e3d07e0097c963a0ded496e76
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 5 11:33:15 2019 +0000
+
+    bumped changelog version
+
 commit 54b83ae44dbda76b9b2696488194b53612bfc377
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 07:20:18 2019 -0400
