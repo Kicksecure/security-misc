@@ -27,6 +27,9 @@ reading them and using them to learn more about what to attack on your system.
 
 * This package makes some data spoofing attacks harder.
 
+* SACK can be disabled as it is commonly exploited and is rarely used by
+commenting in settings in file /etc/sysctl.d/tcp_sack.conf.
+
 * This package disables the merging of slabs of similar sizes to prevent an
 attacker from exploiting them.
 
