@@ -45,6 +45,7 @@ do
       if [ "${sysfs_whitelist}" = "1" ]; then
         create_whitelist sysfs
       else
+        chmod og-rwx /sys
         echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly."
       fi
     elif [ "${i}" = "/proc/cpuinfo" ]; then
@@ -52,6 +53,7 @@ do
       if [ "${cpuinfo_whitelist}" = "1" ]; then
         create_whitelist cpuinfo
       else
+        chmod og-rwx /proc/cpuinfo
         echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly."
       fi
     else
