@@ -25,13 +25,13 @@ create_whitelist() {
   if grep -q "${1}" /etc/group; then
     chmod o-rwx "${whitelist_path}"
     chgrp -fR "${1}" "${whitelist_path}"
-    
+
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed which makes
     ## systemd say the service has failed even though
     ## everything has completed successfully. So, this
-    ## returns "0" instead which makes systemd say the 
+    ## returns "0" instead which makes systemd say the
     ## service has succeeded.
     return 0
   else
