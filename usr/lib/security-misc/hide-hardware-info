@@ -23,12 +23,12 @@ create_whitelist() {
   fi
 
   if grep -q "${1}" /etc/group; then
-    chmod o-rwx "${whitelist_path}"
-
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed.
     chgrp -fR "${1}" "${whitelist_path}" || true
+
+    chmod o-rwx "${whitelist_path}"
   else
     echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
   fi
