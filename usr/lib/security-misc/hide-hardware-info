@@ -14,8 +14,6 @@ do
   source "${i}"
 done
 
-exit
-
 create_whitelist() {
   if [ "${1}" = "sysfs" ]; then
     whitelist_path="/sys"
