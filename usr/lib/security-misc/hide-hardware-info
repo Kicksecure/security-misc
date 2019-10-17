@@ -6,11 +6,15 @@
 sysfs_whitelist=1
 cpuinfo_whitelist=1
 
+shopt -s nullglob
+
 ## Allows for disabling the whitelist.
 for i in /etc/hide-hardware-info.d/*.conf
 do
   source "${i}"
 done
+
+exit
 
 create_whitelist() {
   if [ "${1}" = "sysfs" ]; then
