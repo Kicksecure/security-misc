@@ -30,6 +30,8 @@ case "$1" in
 esac
 
 addgroup root sudo
+addgroup --system sysfs
+addgroup --system cpuinfo
 
 pam-auth-update --package
 

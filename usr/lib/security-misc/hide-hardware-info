@@ -3,6 +3,42 @@
 ## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+sysfs_whitelist=1
+cpuinfo_whitelist=1
+
+## Allows for disabling the whitelist.
+for i in /etc/hide-hardware-info.d/*.conf
+do
+  source "${i}"
+done
+
+create_whitelist() {
+  if [ "${1}" = "sysfs" ]; then
+    whitelist_path="/sys"
+  elif [ "${1}" = "cpuinfo" ]; then
+    whitelist_path="/proc/cpuinfo"
+  else
+    echo "ERROR: ${1} is not a correct parameter."
+    exit 1
+  fi
+
+  if grep -q "${1}" /etc/group; then
+    chmod o-rwx "${whitelist_path}"
+    chgrp -fR "${1}" "${whitelist_path}"
+    
+    ## Changing the permissions of /sys recursively
+    ## causes errors as the permissions of /sys/kernel/debug
+    ## and /sys/fs/cgroup cannot be changed which makes
+    ## systemd say the service has failed even though
+    ## everything has completed successfully. So, this
+    ## returns "0" instead which makes systemd say the 
+    ## service has succeeded.
+    return 0
+  else
+    echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
+  fi
+}
+
 ## sysfs and debugfs expose a lot of information
 ## that should not be accessible by an unprivileged
 ## user which includes hardware info, debug info and
@@ -13,7 +49,25 @@
 for i in /proc/cpuinfo /proc/bus /proc/scsi /sys
 do
   if [ -e "${i}" ]; then
-    chmod og-rwx "${i}"
+    if [ "${i}" = "/sys" ]; then
+      ## Whitelist for /sys.
+      if [ "${sysfs_whitelist}" = "1" ]; then
+        create_whitelist sysfs
+      else
+        chmod og-rwx /sys
+        echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly."
+      fi
+    elif [ "${i}" = "/proc/cpuinfo" ]; then
+      ## Whitelist for /proc/cpuinfo.
+      if [ "${cpuinfo_whitelist}" = "1" ]; then
+        create_whitelist cpuinfo
+      else
+        chmod og-rwx /proc/cpuinfo
+        echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly."
+      fi
+    else
+      chmod og-rwx "${i}"
+    fi
   else
     ## /proc/scsi doesn't exist on Debian so errors
     ## are expected here.
