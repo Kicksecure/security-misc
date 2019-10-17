@@ -1,0 +1,60 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+   source /usr/lib/helper-scripts/pre.bsh
+fi
+
+set -e
+
+true "
+#####################################################################
+## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+#####################################################################
+"
+
+if [ "$1" = "install" ]; then
+   sudo_users="$(grep '^sudo:.*$' /etc/group | cut -d: -f4)"
+   ## example sudo_users:
+   ## user,root
+
+   OLD_IFS="$IFS"
+   IFS=","
+   export IFS
+
+   for user_with_sudo in $sudo_users ; do
+      if [ "$user_with_sudo" = "root" ]; then
+         ## root login is also restricted.
+         ## Therefore user "root" being member of group "sudo" is
+         ## considered insufficient.
+         continue
+      fi
+      are_there_any_sudo_users=yes
+      break
+   done
+
+   IFS="$OLD_IFS"
+   export IFS
+
+   if [ ! "$are_there_any_sudo_users" = "yes" ]; then
+      echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
+      exit 200
+   fi
+fi
+
+true "INFO: debhelper beginning here."
+
+#DEBHELPER#
+
+true "INFO: Done with debhelper."
+
+true "
+#####################################################################
+## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+#####################################################################
+"
+
+## Explicitly "exit 0", so eventually trapped errors can be ignored.
+exit 0
