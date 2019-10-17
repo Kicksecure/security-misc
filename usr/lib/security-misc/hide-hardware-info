@@ -3,6 +3,8 @@
 ## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+set -e
+
 sysfs_whitelist=1
 cpuinfo_whitelist=1
 
