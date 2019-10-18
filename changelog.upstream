@@ -1,3 +1,29 @@
+commit 2613525b945c98c676a919cb4a9d54b90e51cbbf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 10:39:19 2019 +0000
+
+    readme
+
+commit 957deac5cb1e3fdf54990bad21c502388af2407e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 10:38:25 2019 +0000
+
+    fix lintian warning
+    
+    W: security-misc: maintainer-script-should-not-parse-etc-passwd-or-group preinst:19
+
+commit d301e7f3653bdb4b56c42deab9d0566ff1b27380
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 10:36:44 2019 +0000
+
+    description, fix lintian warning
+
+commit ce6b64a9baba3763f2137c81c1e022c4e6344d3c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 08:55:07 2019 +0000
+
+    bumped changelog version
+
 commit 20b7faa61fb7c425f15492fd8aaa67e4fe06a6d9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Oct 18 08:54:43 2019 +0000
