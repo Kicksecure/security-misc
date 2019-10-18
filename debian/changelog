@@ -1,3 +1,9 @@
+security-misc (3:9.0-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Fri, 18 Oct 2019 08:55:07 +0000
+
 security-misc (3:8.9-1) unstable; urgency=medium
 
   * New upstream version (local package).

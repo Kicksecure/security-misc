@@ -1,3 +1,167 @@
+commit 20b7faa61fb7c425f15492fd8aaa67e4fe06a6d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 08:54:43 2019 +0000
+
+    readme
+
+commit c9d75ef9ea76fee0cff882143f289d9662826330
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:46:47 2019 -0400
+
+    abort installation if no user is part of group sudo
+    
+    https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
+    
+    Thanks to minimal for the bug report!
+
+commit a5045dc26e3b7d6acd6ae2c5727920824f992cc7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:18:32 2019 -0400
+
+    set -e
+
+commit 0b8725306f2c603c28ab78be7000df25ca2ea430
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:13:44 2019 -0400
+
+    renamed:    etc/hide-hardware-info.d/30_whitelist.conf -> etc/hide-hardware-info.d/30_default.conf
+
+commit 4aba02756680eb5e0dac9d84ba434edd735c68c1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:12:36 2019 -0400
+
+    syntax check
+
+commit 8b9aa8841a67adb9b3b64a1d43022e950768bc42
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:11:01 2019 -0400
+
+    fix
+
+commit cfbd77040a51b68dc6e3c1f8f82861cfc4b6e761
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:10:29 2019 -0400
+
+    set "shopt -s nullglob" to avoid failing when folder /etc/hide-hardware-info.d
+    does not exist or is empty
+
+commit b05663c5f65f59ce652995c403feb9b4e088b4ec
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:08:55 2019 -0400
+
+    shuffle
+    
+    https://forums.whonix.org/t/restrict-hardware-information-to-root/7329/80
+
+commit 28a440091dd98fd4f3284cce01d692c08aa96bf1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:08:16 2019 -0400
+
+    code simplification
+
+commit 3c4e261c20ce7cab51ad9b6596db09e009efbdeb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:05:23 2019 -0400
+
+    remove trailing spaces
+
+commit c8e0303d6d59e3303c0582ff8ab2664762199c81
+Merge: 4b1b3b7 8a42c5b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:04:34 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 8a42c5b02387da454ff5661057be88a7c6fe9d9c
+Merge: 994ca02 61f7423
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 09:59:12 2019 +0000
+
+    Merge pull request #34 from madaidan/whitelist
+    
+    Add a whitelist for /sys and /proc/cpuinfo
+
+commit 994ca024c24cf80075b2f03bc65475a5d9980d94
+Merge: 4b1b3b7 259b1f2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 17 06:19:46 2019 +0000
+
+    Merge pull request #33 from madaidan/documentation
+    
+    Improve documentation
+
+commit 61f742304d26e73df8433bd6fa03d33d39e39625
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 19:46:59 2019 +0000
+
+    return 0
+
+commit 259b1f2c71ec4566011a148e5bc703a41f0ebd90
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 19:21:24 2019 +0000
+
+    Update control
+
+commit ffba0e017940d2be08c1e37514d396ac39f55e35
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 19:04:15 2019 +0000
+
+    Elaborate
+
+commit 4f5b7816ecda6375b051c75a3b0aff93519b4a66
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 19:01:49 2019 +0000
+
+    Elaborate
+
+commit 99a762d3dc6ecbdb160b7840081848444b56c3fa
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 18:53:04 2019 +0000
+
+    KASLR is different from ASLR
+
+commit a14a2854c6e72f2b4b3e5c8d02b63a46c3179a00
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 18:52:14 2019 +0000
+
+    Elaborate
+
+commit f08c03ab21126b2d3ef5d4c2e4e3f0eae14fa5c0
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Oct 16 15:39:23 2019 +0000
+
+    Restrict sysfs/cpuinfo if the whitelist is disabled
+
+commit af607d5eb233d85d493d796afde76728f0e0e3cd
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Oct 15 21:02:03 2019 +0000
+
+    Create sysfs and cpuinfo groups
+
+commit 42c1701d5ca446da37a493b27c125b78bd8d183d
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Oct 15 21:00:03 2019 +0000
+
+    Whitelist user@.service
+
+commit a47a2fca8bcdf8ff480cea879720b9599c491358
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Oct 15 20:58:58 2019 +0000
+
+    Create 30_whitelist.conf
+
+commit 6b78dbcd07a9d2361c5ab41f5151e24a80309e13
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Oct 15 20:57:02 2019 +0000
+
+    Add way to whitelist things
+
+commit 4b1b3b7d6675adbde57d9cf5cbcc880f95199ef1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 14 10:23:01 2019 +0000
+
+    bumped changelog version
+
 commit c19964360a6d42e73e5d2f3b90afd5f676933d30
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 14 10:10:08 2019 +0000
