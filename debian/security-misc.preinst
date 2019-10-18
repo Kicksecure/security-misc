@@ -16,7 +16,7 @@ true "
 "
 
 if [ "$1" = "install" ]; then
-   sudo_users="$(grep '^sudo:.*$' /etc/group | cut -d: -f4)"
+   sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
    ## user,root
 
