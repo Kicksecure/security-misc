@@ -25,8 +25,9 @@ very useful for kernel exploits.
 
 * The TCP/IP stack is hardened by disabling ICMP redirect acceptance,
 ICMP redirect sending and source routing to prevent man-in-the-middle attacks,
-ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood attacks
-and enabling RFC1337 to protect against time-wait assassination attacks.
+ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood
+attacks and enabling RFC1337 to protect against time-wait assassination
+attacks.
 
 * Some data spoofing attacks are made harder.
 
@@ -44,7 +45,8 @@ on uncorrectable errors in ECC memory that could be exploited.
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
-* SMT is disabled as it can be used to exploit the MDS and other vulnerabilities.
+* SMT is disabled as it can be used to exploit the MDS and other
+vulnerabilities.
 
 * All mitigations for the MDS vulnerability are enabled.
 
