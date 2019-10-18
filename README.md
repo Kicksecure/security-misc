@@ -15,33 +15,36 @@ surface by enabling superfluous functionality such as IRC parsing in
 the kernel. (!) Hence, this package disables this feature by shipping the
 /etc/modprobe.d/30_nf_conntrack_helper_disable.conf configuration file.
 
-* Kernel symbols in /proc/kallsyms are hidden to prevent malware from
-reading them and using them to learn more about what to attack on your system.
+* Kernel symbols in various files in /proc are hidden as they can be
+very useful for kernel exploits.
 
 * Kexec is disabled as it can be used to load a malicious kernel.
 /etc/sysctl.d/kexec.conf
 
 * ASLR effectiveness for mmap is increased.
 
-* The TCP/IP stack is hardened.
+* The TCP/IP stack is hardened by disabling ICMP redirect acceptance,
+ICMP redirect sending and source routing to prevent man-in-the-middle attacks,
+ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood attacks
+and enabling RFC1337 to protect against time-wait assassination attacks.
 
-* This package makes some data spoofing attacks harder.
+* Some data spoofing attacks are made harder.
 
 * SACK can be disabled as it is commonly exploited and is rarely used by
-commenting in settings in file /etc/sysctl.d/tcp_sack.conf.
+uncommenting settings in file /etc/sysctl.d/tcp_sack.conf.
 
-* This package disables the merging of slabs of similar sizes to prevent an
-attacker from exploiting them.
+* Slab merging is disabled as sometimes a slab can be used in a vulnerable
+way which an attacker can exploit.
 
 * Sanity checks, redzoning, and memory poisoning are enabled.
 
-* The kernel now panics on uncorrectable errors in ECC memory which could
-be exploited.
+* Machine checks (MCE) are disabled which makes the kernel panic
+on uncorrectable errors in ECC memory that could be exploited.
 
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
-* SMT is disabled as it can be used to exploit the MDS vulnerability.
+* SMT is disabled as it can be used to exploit the MDS and other vulnerabilities.
 
 * All mitigations for the MDS vulnerability are enabled.
 
@@ -57,8 +60,8 @@ encryption keys or passwords.
 /etc/sysctl.d/coredumps.conf
 /lib/systemd/coredump.conf.d/disable-coredumps.conf
 
-* The thunderbolt and firewire modules are blacklisted as they can be used
-for DMA (Direct Memory Access) attacks.
+* The thunderbolt and firewire kernel modules are blacklisted as they can be
+used for DMA (Direct Memory Access) attacks.
 
 * IOMMU is enabled with a boot parameter to prevent DMA attacks.
 
