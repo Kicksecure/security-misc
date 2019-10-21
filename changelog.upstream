@@ -1,3 +1,27 @@
+commit af3f42dabf708b6f6e2c4e2595d6af496b520372
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 21 09:51:12 2019 +0000
+
+    readme
+
+commit 40707e70dbbf74e5ee3cd25bd2737f880d4bca5c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 21 05:46:49 2019 -0400
+
+    Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with hidepid.
+    
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+    
+    https://forums.whonix.org/t/cannot-use-pkexec/8129
+    
+    Thanks to AnonymousUser for the bug report!
+
+commit 31b771ac2e1cd692851f0d58191c3147d4a09335
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Oct 18 10:39:43 2019 +0000
+
+    bumped changelog version
+
 commit 2613525b945c98c676a919cb4a9d54b90e51cbbf
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Oct 18 10:39:19 2019 +0000
