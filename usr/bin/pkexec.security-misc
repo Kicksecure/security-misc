@@ -1,0 +1,89 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with
+## hidepid.
+## * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+## * https://forums.whonix.org/t/cannot-use-pkexec/8129
+
+set -e
+
+## If hidepid is not in use, just use pkexec normally.
+if ! mount | grep "/proc" | grep "hidepid=2" ; then
+   pkexec.security-misc-orig "$@"
+   exit $?
+fi
+
+## Prefer lxqt-sudo.
+use_sudo=false
+
+original_args="$@"
+
+## Thanks to:
+## http://mywiki.wooledge.org/BashFAQ/035
+
+while :
+do
+      case $1 in
+         ## Should show 'pkexec --version' or fail?
+         --version)
+            shift
+            pkexec.security-misc-orig "$original_args"
+            exit $?
+            ;;
+         ## Should show 'pkexec --help' or fail?
+         --help)
+            shift
+            pkexec.security-misc-orig "$original_args"
+            exit $?
+            ;;
+         ## Drop --disable-internal-agent as not needed and breaking both,
+         ## lxqt-sudo and sudo.
+         --disable-internal-agent)
+            shift
+            ;;
+         --user)
+            ## lxqt-sudo does not support "--user".
+            ## We should not make this wrapper run something as root which
+            ## is supposed to run under a different user. Try using
+            ## "sudo -A --user user --set-home" instead.
+            user_pkexec_wrapper="$2"
+            if [ "$user_pkexec_wrapper" = "" ]; then
+               shift
+            else
+               shift 2
+            fi
+            use_sudo=true
+            ;;
+         --)
+            shift
+            break
+            ;;
+         *)
+            break
+            ;;
+      esac
+done
+
+## If there are input files (for example) that follow the options, they
+## will remain in the "$@" positional parameters.
+
+if [[ "$@" = "" ]]; then
+   ## Call original pkexec in case there are no arguments.
+   pkexec.security-misc-orig "$original_args"
+   exit $?
+fi
+
+## set PATH same as root
+## This is required for gdebi.
+## REVIEW: is it ok that users can find out the PATH setting of root?
+PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
+export PATH
+
+if [ "$use_sudo" = "true" ]; then
+   sudo -A --user "$user_pkexec_wrapper" --set-home "$@"
+else
+   lxqt-sudo "$@"
+fi

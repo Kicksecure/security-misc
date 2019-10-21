@@ -1,5 +1,8 @@
+#/bin/bash
+
 ## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
-/usr/bin/pkexec.security-misc
-/etc/securetty.security-misc
+set -e
+
+echo "$PATH"
