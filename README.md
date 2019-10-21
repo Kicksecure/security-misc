@@ -163,6 +163,12 @@ debian/security-misc.postinst
 
 access rights relaxations:
 
+Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with
+hidepid.
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+https://forums.whonix.org/t/cannot-use-pkexec/8129
+/usr/bin/pkexec.security-misc
+
 This package does (not yet) automatically lock the root account password.
 It is not clear that would be sane in such a package.
 It is recommended to lock and expire the root account.
