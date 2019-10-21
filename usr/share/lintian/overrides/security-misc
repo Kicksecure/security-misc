@@ -3,3 +3,6 @@
 
 ## The whole point of the package.
 security-misc: package-contains-file-in-etc-skel etc/skel/.config/*
+
+## Wrapper script.
+security-misc: binary-without-manpage usr/bin/pkexec.security-misc
