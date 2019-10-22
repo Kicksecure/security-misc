@@ -87,7 +87,7 @@ PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
 export PATH
 
 if [ "$use_sudo" = "true" ]; then
-   sudo -A --user "$user_pkexec_wrapper" --set-home "$@"
+   sudo --askpass --user "$user_pkexec_wrapper" --set-home "$@"
 else
    lxqt-sudo "$@"
 fi
