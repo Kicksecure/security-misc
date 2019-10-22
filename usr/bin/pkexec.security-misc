@@ -11,7 +11,7 @@
 set -e
 
 ## If hidepid is not in use, just use pkexec normally.
-if ! mount | grep "/proc" | grep "hidepid=2" ; then
+if ! mount | grep "/proc" | grep "hidepid=2" &>/dev/null ; then
    pkexec.security-misc-orig "$@"
    exit $?
 fi
