@@ -72,7 +72,11 @@ done
 
 if [[ "$@" = "" ]]; then
    ## Call original pkexec in case there are no arguments.
-   pkexec.security-misc-orig "$original_args"
+   if [[ "$original_args" = "" ]]; then
+      pkexec.security-misc-orig
+   else
+      pkexec.security-misc-orig "$original_args"
+   fi
    exit $?
 fi
 
