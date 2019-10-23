@@ -1,3 +1,45 @@
+commit bce5274a15e4d34907c2f65b9811dd44705c120e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 09:22:29 2019 -0400
+
+    quotes fix
+
+commit e20b9e21334ef9e16e1fd147fec4ff33f0721d4a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 09:08:18 2019 -0400
+
+    better solution when using pkexec with --user: wrap sudo --user with lxqt-sudo
+
+commit d4e02de43a068a22a9fd1b15c4d2b314baf97283
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 09:04:44 2019 -0400
+
+    set SUDO_ASKPASS for pkexec wrapper when using sudo --askpass
+
+commit 1a65a91039276f73c68feb5c19b1a3dd86b07cbb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 08:56:05 2019 -0400
+
+    long rather than short option
+
+commit b55913637bb66b3c1e9fcab3d1576cb1325419ea
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 08:54:48 2019 -0400
+
+    silence output by mount/grep
+
+commit a1154170c9f65011ae1a9da51ea1d797381853a7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 22 08:54:17 2019 -0400
+
+    Call original pkexec in case there are no arguments.
+
+commit 9c8f678cb935d5d63b238d4641bde84c5495127b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 21 09:55:41 2019 +0000
+
+    bumped changelog version
+
 commit 1e4d0ea1d072c193281ac176592108c88e80bad0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 21 09:55:05 2019 +0000
