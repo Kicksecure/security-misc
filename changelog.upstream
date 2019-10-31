@@ -1,3 +1,67 @@
+commit 203d5cfa6845e23d73ff3790019bac9579f3524b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 31 11:19:44 2019 -0400
+
+    copyright
+
+commit f001250ae61789bef7b2b19d5c40831273b0acca
+Merge: d832ab9 5a3cbe8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 28 10:31:30 2019 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5a3cbe81000c3a9bbc69ba03c944c6c5ae9115bf
+Merge: d832ab9 0e49bdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 28 14:30:45 2019 +0000
+
+    Merge pull request #35 from madaidan/apparmor
+    
+    Apparmor profiles
+
+commit 0e49bdc45f6c94b3f6c2874fd48a6b1c75519790
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:26:14 2019 +0000
+
+    Licensing
+
+commit 5d5ad92638ea0ca079bbf8bb03201e8d5c030b1c
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:26:05 2019 +0000
+
+    Licensing
+
+commit 0699747fcb6d79ba6abeccdba99c3bc032c615c6
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:24:37 2019 +0000
+
+    Debian packaging
+
+commit fe4e29d392ed8db5571d69b10ef0f8a24eec1829
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:22:47 2019 +0000
+
+    Depend on dh-apparmor
+
+commit 1b8b3610b17ae31bc81c3827cea24bd09822a0e3
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:20:59 2019 +0000
+
+    Create usr.lib.security-misc.pam_tally2-info
+
+commit 29b05546e4248bdf95b62ea356bd98767e3a59b0
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Oct 28 14:20:08 2019 +0000
+
+    Create usr.lib.security-misc.permission-lockdown
+
+commit d832ab91bdd9cdbf2a9c3bbee39351082a59f759
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Oct 23 10:22:03 2019 +0000
+
+    bumped changelog version
+
 commit bce5274a15e4d34907c2f65b9811dd44705c120e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Oct 22 09:22:29 2019 -0400
