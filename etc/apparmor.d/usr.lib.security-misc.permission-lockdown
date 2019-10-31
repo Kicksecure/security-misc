@@ -11,7 +11,8 @@
   capability fowner,
   capability fsetid,
 
-  /bin/bash ix,
+  /bin/bash rix,
+  /usr/bin/bash rix,
   /bin/chmod mrix,
   /bin/echo mrix,
   /bin/mkdir mrix,
@@ -33,6 +34,6 @@
   owner /var/cache/security-misc/state-files/* rw,
 
   /dev/tty rw,
-  
+
   #include <local/usr.lib.security-misc.permission-lockdown>
 }
