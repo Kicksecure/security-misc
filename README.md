@@ -224,6 +224,9 @@ Application specific hardening:
 * Deactivates previews in Dolphin.
 * Deactivates previews in Nautilus.
 * Deactivates thumbnails in Thunar.
+* Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
+to make phising attacks more difficult. Fixing URL not showing real Domain
+Name (Homograph attack).
 
 Discussion:
 
