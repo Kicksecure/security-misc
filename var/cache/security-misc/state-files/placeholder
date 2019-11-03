@@ -1,0 +1,4 @@
+This file is a simple placeholder to keep dpkg from removing
+/var/cache/security-misc/state-files directory.
+
+https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/76
