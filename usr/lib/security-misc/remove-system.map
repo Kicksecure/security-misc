@@ -6,9 +6,8 @@
 shopt -s nullglob
 
 ## Removes the System.map files as they are only used for debugging or malware.
-for filename in /boot/System.map-*
-do
-  if [ -f "${filename}" ]; then
-    rm --verbose --force "${filename}"
-  fi
+for filename in /boot/System.map-* ; do
+   if [ -f "${filename}" ]; then
+      rm --verbose --force "${filename}"
+   fi
 done
