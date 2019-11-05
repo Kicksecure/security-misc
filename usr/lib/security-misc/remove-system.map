@@ -22,5 +22,5 @@ for filename in /boot/System.map-* ; do
 done
 
 if [ "$counter" -ge "1" ]; then
-   echo "Success."
+   echo "Done. Success."
 fi
