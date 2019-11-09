@@ -1,3 +1,15 @@
+commit 9f2932faab4be91528f3404fcbace7012040dac5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 9 13:32:21 2019 -0500
+
+    /usr/bin/id rix,
+
+commit 6b7df973f621dc9cbe107ee5d709600005f49e65
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 9 12:57:45 2019 +0000
+
+    bumped changelog version
+
 commit 2e73c053b561eb2ffcd815cba8006da810b02184
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 9 12:55:00 2019 +0000
