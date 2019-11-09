@@ -6,3 +6,6 @@ security-misc: package-contains-file-in-etc-skel etc/skel/.config/*
 
 ## Wrapper script.
 security-misc: binary-without-manpage usr/bin/pkexec.security-misc
+
+## Non-ideal but still a good solution.
+security-misc: file-in-unusual-dir var/cache/security-misc/state-files/placeholder
