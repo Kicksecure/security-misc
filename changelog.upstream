@@ -1,3 +1,73 @@
+commit 94d40c68d4292c0c399c3b12e1af76cb89e7f436
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 10:02:55 2019 -0500
+
+    do not set kernel boot parameter page_poison=1 in Qubes since does not work
+    
+    https://github.com/QubesOS/qubes-issues/issues/5212#issuecomment-533873012
+
+commit f57702c1589047f5d0eff7a7bdffb928117532f6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 09:55:43 2019 -0500
+
+    comments; copyright
+
+commit 74293bcd2f2670abf3e62ac8dad54d9f4e545bb1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 01:59:25 2019 -0500
+
+    output
+
+commit 2b5b06b602f9537c9a5473651cd1a16a4e16e5ba
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 01:59:19 2019 -0500
+
+    output
+
+commit d6977becbaf644cdc98c081b3c3e3fd366c4072d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 01:51:14 2019 -0500
+
+    refactoring
+
+commit daf00067953a61d749a07a0e0b4ec7cd397e4c39
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 5 01:50:27 2019 -0500
+
+    comment
+
+commit 78defc4d0bedf4a727d617f3de0294d9f59e3aa9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 3 04:34:31 2019 -0500
+
+    add /var/cache/security-misc/state-files/placeholder file
+    
+    to make sure folder already exists to avoid AppArmor issue
+    
+    https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/76
+
+commit 7c0ec7e50797c0da719f389e61445ff7d8e252b3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 3 04:23:40 2019 -0500
+
+    readme
+
+commit b55c2fd62e200f96bd552445ad4c517d6a0aee92
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 3 02:50:51 2019 -0500
+
+    Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
+    to make phising attacks more difficult. Fixing URL not showing real Domain
+    Name (Homograph attack).
+    
+    https://forums.whonix.org/t/enable-network-idn-show-punycode-by-default-in-thunderbird-to-fix-url-not-showing-real-domain-name-homograph-attack-punycode/8415
+
+commit bf62306d4fc3b3168204254ca354028a1fe857a7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 31 16:34:35 2019 +0000
+
+    bumped changelog version
+
 commit e1375802eb1521eb0bc9089f2ab12056fa326f17
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 31 16:32:28 2019 +0000
