@@ -4,6 +4,7 @@
 #include <tunables/global>
 
 /usr/lib/security-misc/permission-lockdown flags=(attach_disconnected) {
+  #include <abstractions/base>
   #include <abstractions/bash>
 
   capability dac_override,
