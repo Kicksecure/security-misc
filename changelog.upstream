@@ -1,3 +1,43 @@
+commit 9a20b85fe16584dda909fd5f1aa6bbb62d06bcf0
+Merge: 477d476 2b17c0f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 17 11:20:17 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2b17c0f3e4dcd7cb9f2239da649b4a885c27e7cf
+Merge: 477d476 e92022a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 17 16:19:55 2019 +0000
+
+    Merge pull request #36 from madaidan/hidepid-fix
+    
+    Remove proc-hidepid systemd sandboxing
+
+commit e92022a21cbe2df76026b36482f5c71e3471b344
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Nov 16 14:56:28 2019 +0000
+
+    Remove systemd sandboxing
+
+commit 477d476bb1a7507951c2c04622056de5a8d41a56
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 10 08:29:44 2019 -0500
+
+    etc/apparmor.d/usr.lib.security-misc.pam_tally2-info: add '#include <abstractions/base>'
+
+commit 11dc23bf082cb0579b5a4a1bc5788ec0b5140973
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 10 08:28:32 2019 -0500
+
+    etc/apparmor.d/usr.lib.security-misc.permission-lockdown: add '#include <abstractions/base>'
+
+commit d1d61b106b54a360ca71bb506e2410ac70ea07ed
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 9 18:44:50 2019 +0000
+
+    bumped changelog version
+
 commit 9f2932faab4be91528f3404fcbace7012040dac5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 9 13:32:21 2019 -0500
