@@ -18,6 +18,7 @@
   /bin/echo mrix,
   /bin/mkdir mrix,
   /bin/touch mrix,
+  /usr/bin/chmod mrix,
   /usr/bin/basename mrix,
   /usr/bin/touch mrix,
   /usr/lib/security-misc/permission-lockdown r,
