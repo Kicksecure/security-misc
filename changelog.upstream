@@ -1,3 +1,15 @@
+commit 81e4f580af1ea12e79e387d4977771f37c50e7c1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 19 15:29:02 2019 +0000
+
+    etc/apparmor.d/usr.lib.security-misc.permission-lockdown: /usr/bin/chmod mrix,
+
+commit 8ad8dbea5a5c0bacd03cefb66ad8a1989e1cb0fb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 18 19:16:16 2019 +0000
+
+    bumped changelog version
+
 commit 9a20b85fe16584dda909fd5f1aa6bbb62d06bcf0
 Merge: 477d476 2b17c0f
 Author: Patrick Schleizer <adrelanos@riseup.net>
