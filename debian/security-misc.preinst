@@ -38,6 +38,8 @@ if [ "$1" = "install" ]; then
    IFS="$OLD_IFS"
    export IFS
 
+   ## Prevent users from locking themselves out.
+   ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if [ ! "$are_there_any_sudo_users" = "yes" ]; then
       echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
       exit 200
