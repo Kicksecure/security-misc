@@ -17,6 +17,7 @@
   /usr/bin/cut mrix,
   /usr/bin/tail mrix,
   /sbin/pam_tally2 mrix,
+  /usr/sbin/pam_tally2 mrix,
   /usr/lib/security-misc/pam_tally2-info r,
 
   /etc/ld.so.cache r,
