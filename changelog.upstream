@@ -1,3 +1,47 @@
+commit 6a6a638ef01d337da137dc04bcff984f7a36f425
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 23 14:06:28 2019 +0000
+
+    readme
+
+commit fe1f1b73a77d11c136cedcdb3efcb57f4c68c6af
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 23 11:20:32 2019 +0000
+
+    load jitterentropy_rng kernel module for better entropy collection
+    
+    https://www.whonix.org/wiki/Dev/Entropy
+    
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927972
+    
+    https://forums.whonix.org/t/jitterentropy-rngd/7204
+
+commit d32024a3da3cdfbb07f61dd3e9a52535e747de6b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 23 05:53:19 2019 -0500
+
+    /usr/sbin/pam_tally2 mrix,
+    
+    https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/152
+
+commit 03e80238477bef26cf14a86a136d2ab688c87d08
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Nov 22 14:11:30 2019 -0500
+
+    output
+
+commit e76e1475b0009451b930061bff553684b6490d33
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Nov 22 12:24:35 2019 -0500
+
+    comment
+
+commit a99dfd067ac8a43bdcd779cf57b3533bdaa404fb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 19 15:31:55 2019 +0000
+
+    bumped changelog version
+
 commit 81e4f580af1ea12e79e387d4977771f37c50e7c1
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 19 15:29:02 2019 +0000
