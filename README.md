@@ -81,6 +81,11 @@ that shouldn't be accessible to unprivileged users. As this will break many
 things, it is disabled by default and can optionally be enabled by running
 `systemctl enable hide-hardware-info.service` as root.
 
+Improve Entropy Collection
+
+* Load jitterentropy_rng kernel module.
+/usr/lib/modules-load.d/30_security-misc.conf
+
 Uncommon network protocols are blacklisted:
 These are rarely used and may have unknown vulnerabilities.
 /etc/modprobe.d/uncommon-network-protocols.conf
