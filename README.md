@@ -134,7 +134,7 @@ debian/security-misc.postinst
 * Abort login for users with locked passwords.
 /usr/lib/security-misc/pam-abort-on-locked-password
 
-* Lock user accounts after 100 failed login attempts using pam_tally2.
+* Lock user accounts after 50 failed login attempts using pam_tally2.
 /usr/share/pam-configs/tally2-security-misc
 
 * Logging into the root account from a virtual, serial, whatnot console is
