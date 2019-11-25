@@ -54,7 +54,7 @@ fi
 
 deny_line="$(cat /etc/pam.d/common-auth | grep deny=)"
 ## Example:
-#auth	requisite	pam_tally2.so even_deny_root deny=100 onerr=fail audit debug
+#auth	requisite	pam_tally2.so even_deny_root deny=50 onerr=fail audit debug
 
 for word in $deny_line ; do
    if echo "$word" | grep -q "deny=" ; then

@@ -1,10 +1,10 @@
-Name: lock accounts after 100 failed authentication attempts (by package security-misc)
+Name: lock accounts after 50 failed authentication attempts (by package security-misc)
 Default: yes
 Priority: 260
 Auth-Type: Primary
 Auth:
 	optional	pam_exec.so	debug stdout seteuid /usr/lib/security-misc/pam_tally2-info
-	requisite	pam_tally2.so even_deny_root deny=100 onerr=fail audit debug
+	requisite	pam_tally2.so even_deny_root deny=50 onerr=fail audit debug
 Account-Type: Primary
 Account:
 	requisite	pam_tally2.so debug
