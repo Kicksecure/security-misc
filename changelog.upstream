@@ -1,3 +1,23 @@
+commit 57ce06c0ebaa1e451c39b85c8db27babed4b149e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 25 08:41:45 2019 +0000
+
+    readme
+
+commit aa5451c8cda02e6df3dc089bf813e6acd9878a59
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 25 01:39:53 2019 -0500
+
+    Lock user accounts after 50 rather than 100 failed login attempts.
+    
+    https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698/19
+
+commit 6277db1383451822769948bbebac31f719e98e74
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 23 14:07:45 2019 +0000
+
+    bumped changelog version
+
 commit 6a6a638ef01d337da137dc04bcff984f7a36f425
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 23 14:06:28 2019 +0000
