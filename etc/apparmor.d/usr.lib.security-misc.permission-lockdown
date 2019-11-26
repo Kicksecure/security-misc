@@ -36,6 +36,7 @@
   owner /var/cache/security-misc/state-files/* rw,
 
   /dev/tty rw,
+  /dev/pts/[0-9]* rw,
 
   #include <local/usr.lib.security-misc.permission-lockdown>
 }
