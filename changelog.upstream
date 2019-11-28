@@ -1,3 +1,65 @@
+commit ab696f557140fca19c09ac08ba61e9ce55947ed8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 28 10:05:39 2019 -0500
+
+    readme
+
+commit 25aed91eb167a092ece06a9aa4ab56fea165073e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 28 09:20:46 2019 -0500
+
+    description
+
+commit 0c4e5df3e0214c10390b672645d9f80ef4457392
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 28 09:18:05 2019 -0500
+
+    description
+
+commit 5ac2a6f9ac53f75256c655d329149bccd2d9aa37
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 28 09:17:32 2019 -0500
+
+    description
+
+commit ff3412fbe06476cb295dfd9d61b26694f289d389
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Nov 27 10:22:31 2019 -0500
+
+    fix, make sure to undo pam changes on package removal
+    
+    Thanks to minimal for the bug report!
+    
+    https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
+
+commit 62b924eea7d50f58649e089ff9cf8d73075cac63
+Merge: 9091f69 ba02dcb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 26 13:00:36 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ba02dcb267a95d332bd01bb3fc725e051ccb3246
+Merge: 9091f69 d9d6d07
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 26 18:00:11 2019 +0000
+
+    Merge pull request #37 from madaidan/apparmor-fixes
+    
+    Fix permission-lockdown
+
+commit d9d6d0771433700f49c4ddf156a0b5bc7098d94b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Nov 26 17:12:12 2019 +0000
+
+    /dev/pts/[0-9]* rw,
+
+commit 9091f69eddb76059995e2f44734437746a3fd108
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 25 08:51:36 2019 +0000
+
+    bumped changelog version
+
 commit 57ce06c0ebaa1e451c39b85c8db27babed4b149e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 25 08:41:45 2019 +0000
