@@ -134,13 +134,14 @@ debian/security-misc.postinst
 * Abort login for users with locked passwords.
 /usr/lib/security-misc/pam-abort-on-locked-password
 
-* Lock user accounts after 50 failed login attempts using pam_tally2.
-/usr/share/pam-configs/tally2-security-misc
-
 * Logging into the root account from a virtual, serial, whatnot console is
 prevented by shipping an existing and empty /etc/securetty.
 (Deletion of /etc/securetty has a different effect.)
 /etc/securetty.security-misc
+
+Protect Linux user accounts against brute force attacks.
+Lock user accounts after 50 failed login attempts using pam_tally2.
+/usr/share/pam-configs/tally2-security-misc
 
 informational output during Linux PAM:
 
@@ -154,7 +155,8 @@ informational output during Linux PAM:
 
 access rights restrictions:
 
-* Removes read, write and execute access for others for all users who have
+* Strong Linux User Account Separation.
+Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
 "chmod o-rwx /home/user"
 during package installation, upgrade or pam. This will be done only once per
