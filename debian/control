@@ -172,7 +172,8 @@ Description: enhances misc security settings
  .
  access rights restrictions:
  .
-  * Removes read, write and execute access for others for all users who have
+  * Strong Linux User Account Separation.
+ Removes read, write and execute access for others for all users who have
  home folders under folder /home by running for example
  "chmod o-rwx /home/user"
  during package installation, upgrade or pam. This will be done only once per
