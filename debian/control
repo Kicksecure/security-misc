@@ -151,14 +151,14 @@ Description: enhances misc security settings
   * Abort login for users with locked passwords.
  /usr/lib/security-misc/pam-abort-on-locked-password
  .
- * Protect Linux user accounts against brute force attacks.
- Lock user accounts after 50 failed login attempts using pam_tally2.
- /usr/share/pam-configs/tally2-security-misc
- .
   * Logging into the root account from a virtual, serial, whatnot console is
  prevented by shipping an existing and empty /etc/securetty.
  (Deletion of /etc/securetty has a different effect.)
  /etc/securetty.security-misc
+ .
+ Protect Linux user accounts against brute force attacks.
+ Lock user accounts after 50 failed login attempts using pam_tally2.
+ /usr/share/pam-configs/tally2-security-misc
  .
  informational output during Linux PAM:
  .
