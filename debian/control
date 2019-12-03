@@ -103,8 +103,12 @@ Description: enhances misc security settings
   * Load jitterentropy_rng kernel module.
   /usr/lib/modules-load.d/30_security-misc.conf
  .
-  * Distrusts the CPU for initial entropy at boot as it is
-  not possible to audit and may be backdoored. /etc/default/grub.d/40_distrust_cpu.cfg
+  * Distrusts the CPU for initial entropy at boot as it is not possible to
+  audit, may contain weaknesses or a backdoor.
+    * https://en.wikipedia.org/wiki/RDRAND#Reception
+    * https://twitter.com/pid_eins/status/1149649806056280069
+    * For more references, see:
+    * /etc/default/grub.d/40_distrust_cpu.cfg
  .
  Uncommon network protocols are blacklisted:
  These are rarely used and may have unknown vulnerabilities.
