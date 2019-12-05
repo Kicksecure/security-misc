@@ -43,8 +43,9 @@ Description: enhances misc security settings
   * The TCP/IP stack is hardened by disabling ICMP redirect acceptance,
  ICMP redirect sending and source routing to prevent man-in-the-middle attacks,
  ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood
- attacks and enabling RFC1337 to protect against time-wait assassination
- attacks.
+ attacks, enabling RFC1337 to protect against time-wait assassination
+ attacks and enabling reverse path filtering to prevent IP spoofing and
+ mitigate vulnerabilities such as CVE-2019-14899.
  .
   * Some data spoofing attacks are made harder.
  .
