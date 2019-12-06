@@ -1,3 +1,91 @@
+commit b22289f2a8e77ccd9a693871612b61842b1f48c8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 09:30:05 2019 -0500
+
+    readme
+
+commit 470cad6e9176f57d33b038640b20443c3fa971fc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 05:14:02 2019 -0500
+
+    remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
+    
+    https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
+
+commit 8cf5ed990a3940c108d661c6c169b5720b1459d1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 5 15:52:24 2019 -0500
+
+    comment
+
+commit 19add3299c9215d05208e3c2e748527bf87e66b5
+Merge: 0c25a96 9679292
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 5 15:46:19 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 96792928787c1c129a964bd81e97450d2edb29a6
+Merge: 0c25a96 af9e19c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 5 20:33:47 2019 +0000
+
+    Merge pull request #39 from madaidan/rp_filter
+    
+    Enable reverse path filtering
+
+commit af9e19c51f256504c5c2206e31da1911872b6ef8
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Dec 5 20:14:55 2019 +0000
+
+    Update control
+
+commit 30289c68c24a8aa2ce5f336b79f92cffb7aa98c7
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Dec 5 20:13:10 2019 +0000
+
+    Enable reverse path filtering
+
+commit 0c25a96b59b5bb55c04c88015eb8b50d79815a23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 3 02:18:32 2019 -0500
+
+    description / comments
+
+commit d26ba05c4776cdff0750b872f3da70fd25fca1f4
+Merge: 6ca48ff 73c6410
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 3 01:52:04 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 73c6410a0e1e6e56529ba8ea98681867bd8acb37
+Merge: 6ca48ff 8d63da3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 3 06:51:31 2019 +0000
+
+    Merge pull request #38 from madaidan/distrust-cpu
+    
+    Distrust the CPU for initial entropy
+
+commit 8d63da3cef6e114deaa6943ea9a633d6620a974b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Dec 2 16:46:12 2019 +0000
+
+    Update control
+
+commit 5da2a27bf064d6efefd0d0ba8041e85c4941d3a2
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Dec 2 16:43:00 2019 +0000
+
+    Distrust the CPU for initial entropy
+
+commit 6ca48fffdcab8665d75584435dd6a24d6b881347
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 28 10:22:41 2019 -0500
+
+    bumped changelog version
+
 commit ab696f557140fca19c09ac08ba61e9ce55947ed8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 28 10:05:39 2019 -0500
