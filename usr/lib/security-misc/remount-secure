@@ -22,7 +22,9 @@ fi
 
 if [ -e /etc/noexec ]; then
    noexec=true
-   echo "$0: Will remount with noexec."
+   echo "$0: Will remount with noexec because file /etc/noexec exists."
+else
+   echo "$0: Will not remount with noexec because file /etc/noexec does not exist."
 fi
 
 mkdir --parents "/var/run/remount-secure"
