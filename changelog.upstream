@@ -1,3 +1,21 @@
+commit 2954dcbccfb2990e95056d20fc9b279569dcacee
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 12:24:55 2019 -0500
+
+    minor
+
+commit f3647e74787483f0d8076de742cc6f36645f1396
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 12:18:18 2019 -0500
+
+    RemainAfterExit=yes
+
+commit af0cf058e7ad5b26c708b1013d8ca8dc172a15e8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 11:18:20 2019 -0500
+
+    bumped changelog version
+
 commit 9b14f24d5e24ac4a6facb20d4fd436f35bed305f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 6 11:17:32 2019 -0500
