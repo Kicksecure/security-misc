@@ -23,7 +23,6 @@ fi
 if [ -e /etc/noexec ]; then
    noexec=true
    echo "$0: Will remount with noexec."
-   exit 0
 fi
 
 mkdir --parents "/var/run/remount-secure"
