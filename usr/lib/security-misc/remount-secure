@@ -16,7 +16,7 @@ if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
 fi
 
 if [ -e /etc/remount-disable ]; then
-   echo "$0: /etc/remount-disable exists. Doing nothing."
+   echo "$0: file /etc/remount-disable exists. Doing nothing."
    exit 0
 fi
 
