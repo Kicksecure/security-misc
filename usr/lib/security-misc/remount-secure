@@ -1,0 +1,82 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## noexec in /tmp and/or /home can break some malware but also legitimate
+## applications.
+
+set -e
+
+if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+   ## pre.bsh would `source` the following folders:
+   ## /etc/remount-secure_pre.d/*.conf
+   ## /usr/local/etc/remount-secure_pre.d/*.conf
+   source /usr/lib/helper-scripts/pre.bsh
+fi
+
+if [ -e /etc/remount-disable ]; then
+   echo "$0: /etc/remount-disable exists. Doing nothing."
+   exit 0
+fi
+
+if [ -e /etc/noexec ]; then
+   noexec=true
+   echo "$0: Will remount with noexec."
+   exit 0
+fi
+
+mkdir --parents "/var/run/remount-secure"
+
+if [ "$noexec" = "true" ]; then
+   noexec_maybe=",noexec"
+fi
+
+exit_code=0
+
+home() {
+   if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
+      return 0
+   fi
+   mount -o remount,nosuid,nodev$noexec_maybe /home || exit_code=2
+   touch "/var/run/remount-secure/${FUNCNAME}"
+}
+
+run() {
+   if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
+      return 0
+   fi
+   ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
+   mount -o remount,nosuid,nodev$noexec_maybe /run || exit_code=3
+   touch "/var/run/remount-secure/${FUNCNAME}"
+}
+
+shm() {
+   if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
+      return 0
+   fi
+   mount -o remount,nosuid,nodev$noexec_maybe /dev/shm || exit_code=4
+   touch "/var/run/remount-secure/${FUNCNAME}"
+}
+
+tmp() {
+   if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
+      return 0
+   fi
+   mount -o nosuid,nodev$noexec_maybe --bind /tmp /tmp || exit_code=5
+   touch "/var/run/remount-secure/${FUNCNAME}"
+}
+
+end() {
+   exit $exit_code
+}
+
+main() {
+   home "$@"
+   run "$@"
+   shm "$@"
+   tmp "$@"
+   end "$@"
+}
+
+main "$@"

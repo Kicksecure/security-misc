@@ -136,6 +136,12 @@ Description: enhances misc security settings
  .
  user restrictions:
  .
+  * remount /home, /tmp, /dev/shm and /run with nosuid,nodev (default) and
+ noexec (opt-in). To disable this, run "sudo touch /etc/remount-disable". To
+ opt-in noexec, run "sudo touch /etc/noexec" and reboot (easiest).
+ /lib/systemd/system/remount-secure.service
+ /usr/lib/security-misc/remount-secure
+ .
   * A systemd service mounts /proc with hidepid=2 at boot to prevent users from
  seeing each other's processes.
  .
