@@ -1,3 +1,33 @@
+commit 9b14f24d5e24ac4a6facb20d4fd436f35bed305f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 11:17:32 2019 -0500
+
+    refactoring
+
+commit a6133f59125db7482c3f56110ce6ba1a17d15e09
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 11:16:43 2019 -0500
+
+    output
+
+commit c1ea35e2ef54119d940b225da41c87e6db32981e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 11:15:54 2019 -0500
+
+    output
+
+commit 4bec41379d2baaa81930395ff2329ff42f10ff13
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 11:15:13 2019 -0500
+
+    fix remount with noexec if /etc/noexec exists
+
+commit bff425fec2adc3c80fee50466ef81bec19c237cf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 09:32:18 2019 -0500
+
+    bumped changelog version
+
 commit b22289f2a8e77ccd9a693871612b61842b1f48c8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 6 09:30:05 2019 -0500
