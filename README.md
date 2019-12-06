@@ -26,8 +26,9 @@ very useful for kernel exploits.
 * The TCP/IP stack is hardened by disabling ICMP redirect acceptance,
 ICMP redirect sending and source routing to prevent man-in-the-middle attacks,
 ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood
-attacks and enabling RFC1337 to protect against time-wait assassination
-attacks.
+attacks, enabling RFC1337 to protect against time-wait assassination
+attacks and enabling reverse path filtering to prevent IP spoofing and
+mitigate vulnerabilities such as CVE-2019-14899.
 
 * Some data spoofing attacks are made harder.
 
@@ -86,6 +87,13 @@ Improve Entropy Collection
 * Load jitterentropy_rng kernel module.
 /usr/lib/modules-load.d/30_security-misc.conf
 
+* Distrusts the CPU for initial entropy at boot as it is not possible to
+audit, may contain weaknesses or a backdoor.
+* https://en.wikipedia.org/wiki/RDRAND#Reception
+* https://twitter.com/pid_eins/status/1149649806056280069
+* For more references, see:
+* /etc/default/grub.d/40_distrust_cpu.cfg
+
 Uncommon network protocols are blacklisted:
 These are rarely used and may have unknown vulnerabilities.
 /etc/modprobe.d/uncommon-network-protocols.conf
@@ -110,6 +118,12 @@ The network protocols that are blacklisted are:
 * p8022 - IEEE 802.2
 
 user restrictions:
+
+* remount /home, /tmp, /dev/shm and /run with nosuid,nodev (default) and
+noexec (opt-in). To disable this, run "sudo touch /etc/remount-disable". To
+opt-in noexec, run "sudo touch /etc/noexec" and reboot (easiest).
+/lib/systemd/system/remount-secure.service
+/usr/lib/security-misc/remount-secure
 
 * A systemd service mounts /proc with hidepid=2 at boot to prevent users from
 seeing each other's processes.
