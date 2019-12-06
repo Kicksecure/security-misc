@@ -39,7 +39,7 @@ home() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o remount,nosuid,nodev$noexec_maybe /home || exit_code=2
+   mount -o remount,nosuid,nodev${noexec_maybe} /home || exit_code=2
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -48,7 +48,7 @@ run() {
       return 0
    fi
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
-   mount -o remount,nosuid,nodev$noexec_maybe /run || exit_code=3
+   mount -o remount,nosuid,nodev${noexec_maybe} /run || exit_code=3
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -56,7 +56,7 @@ shm() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o remount,nosuid,nodev$noexec_maybe /dev/shm || exit_code=4
+   mount -o remount,nosuid,nodev${noexec_maybe} /dev/shm || exit_code=4
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -64,7 +64,7 @@ tmp() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o nosuid,nodev$noexec_maybe --bind /tmp /tmp || exit_code=5
+   mount -o nosuid,nodev${noexec_maybe} --bind /tmp /tmp || exit_code=5
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
