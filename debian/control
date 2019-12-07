@@ -176,7 +176,7 @@ Description: enhances misc security settings
  Allow members of group 'console' to use tty1 to tty7. Everyone else except
  members of group 'console-unrestricted' are restricted from using console
  using ancient, unpopular login methods such as using /bin/login over networks,
- which might be exploitable. (CVE-2001-0797)
+ which might be exploitable. (CVE-2001-0797) Using pam_access.
  Not enabled by default in this package since this package does not know which
  users shall be added to group 'console'.
  In new Whonix builds, user 'user" will be added to group 'console' and
