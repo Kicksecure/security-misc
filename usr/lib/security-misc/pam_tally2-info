@@ -3,6 +3,7 @@
 ## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+## https://forums.whonix.org/t/etc-security-hardening-console-lockdown/8592
 if grep -q "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account ; then
    if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console"; then
       console_allowed=true
