@@ -15,12 +15,12 @@ if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
    source /usr/lib/helper-scripts/pre.bsh
 fi
 
-if [ -e /etc/remount-disable ]; then
+if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
    echo "$0: file /etc/remount-disable exists. Doing nothing."
    exit 0
 fi
 
-if [ -e /etc/noexec ]; then
+if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
    noexec=true
    echo "$0: Will remount with noexec because file /etc/noexec exists."
 else
