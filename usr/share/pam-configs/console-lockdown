@@ -1,0 +1,6 @@
+Name: allow only members of group console to login (by package security-misc)
+Default: no
+Priority: 280
+Account-Type: Primary
+Account:
+	required	pam_access.so accessfile=/etc/security/access-security-misc.conf debug

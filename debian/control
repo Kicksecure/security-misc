@@ -172,6 +172,18 @@ Description: enhances misc security settings
  (Deletion of /etc/securetty has a different effect.)
  /etc/securetty.security-misc
  .
+  * Console Lockdown.
+ Allow members of group 'console' to use tty1 to tty7. Everyone else except
+ members of group 'console-unrestricted' are restricted from using console
+ using ancient, unpopular login methods such as using /bin/login over networks,
+ which might be exploitable. (CVE-2001-0797)
+ Not enabled by default in this package since this package does not know which
+ users shall be added to group 'console'.
+ In new Whonix builds, user 'user" will be added to group 'console' and
+ pam console-lockdown enabled by package anon-base-files.
+ /usr/share/pam-configs/console-lockdown
+ /etc/security/access-security-misc.conf
+ .
  Protect Linux user accounts against brute force attacks.
  Lock user accounts after 50 failed login attempts using pam_tally2.
  /usr/share/pam-configs/tally2-security-misc

@@ -32,6 +32,10 @@ esac
 addgroup root sudo
 addgroup --system sysfs
 addgroup --system cpuinfo
+addgroup --system console
+addgroup --system console-unrestricted
+
+addgroup root console
 
 pam-auth-update --package
 
