@@ -179,8 +179,6 @@ Description: enhances misc security settings
  which might be exploitable. (CVE-2001-0797) Using pam_access.
  Not enabled by default in this package since this package does not know which
  users shall be added to group 'console'.
- In new Whonix builds, user 'user" will be added to group 'console' and
- pam console-lockdown enabled by package anon-base-files.
  /usr/share/pam-configs/console-lockdown
  /etc/security/access-security-misc.conf
  .
