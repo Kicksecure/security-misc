@@ -178,7 +178,10 @@ Description: enhances misc security settings
  using ancient, unpopular login methods such as using /bin/login over networks,
  which might be exploitable. (CVE-2001-0797) Using pam_access.
  Not enabled by default in this package since this package does not know which
- users shall be added to group 'console'.
+ users shall be added to group 'console' and would break ssh login since files
+ in /usr/share/pam-configs/console-lockdown result in modifications of
+ /etc/pam.d/common-account file which not only applies to /etc/pam.d/login but
+ also all other services such as /etc/pam.d/ssh.
  /usr/share/pam-configs/console-lockdown
  /etc/security/access-security-misc.conf
  .
