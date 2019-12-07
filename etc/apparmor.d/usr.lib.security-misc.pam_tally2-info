@@ -29,6 +29,7 @@
   owner /etc/pam.d/* r,
   owner /etc/passwd r,
   owner /etc/group r,
+  owner /etc/securetty r,
 
   owner /usr/share/zoneinfo/** r,
   owner /var/log/tallylog rw,
