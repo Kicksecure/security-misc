@@ -122,6 +122,8 @@ user restrictions:
 * remount /home, /tmp, /dev/shm and /run with nosuid,nodev (default) and
 noexec (opt-in). To disable this, run "sudo touch /etc/remount-disable". To
 opt-in noexec, run "sudo touch /etc/noexec" and reboot (easiest).
+Alternatively file /usr/local/etc/remount-disable or file
+/usr/local/etc/noexec could be used.
 /lib/systemd/system/remount-secure.service
 /usr/lib/security-misc/remount-secure
 
