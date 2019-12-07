@@ -45,6 +45,22 @@ if [ ! "$(id -u)" = "0" ]; then
    exit 0
 fi
 
+## Does not work (yet) for login, pam_securetty runs before and aborts.
+## Also this should only run for login since securetty covers only login.
+# if [ "$PAM_USER" = "root" ]; then
+#    if [ -f /etc/securetty ]; then
+#       grep_result="$(grep "^[^#]" /etc/securetty)"
+#       if [ "$grep_result" = "" ]; then
+#          echo "$0: ERROR: Root login is disabled." >&2
+#          echo "$0: ERROR: This is because /etc/securetty is empty." >&2
+#          echo "$0: See also:" >&2
+#          echo "https://www.whonix.org/wiki/root#login" >&2
+#          echo "" >&2
+#          exit 0
+#       fi
+#    fi
+# fi
+
 pam_tally2_output="$(pam_tally2 --user "$PAM_USER")"
 
 if [ "$pam_tally2_output" = "" ]; then
