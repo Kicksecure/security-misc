@@ -6,7 +6,7 @@
 shopt -s nullglob
 
 counter=0
-for filename in /boot/System.map-* ; do
+for filename in /boot/System.map* ; do
    counter=$(( counter + 1 ))
 done
 
@@ -15,7 +15,7 @@ if [ "$counter" -ge "1" ]; then
 fi
 
 ## Removes the System.map files as they are only used for debugging or malware.
-for filename in /boot/System.map-* ; do
+for filename in /boot/System.map* ; do
    if [ -f "${filename}" ]; then
       rm --verbose --force "${filename}"
    fi
