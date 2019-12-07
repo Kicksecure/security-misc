@@ -3,8 +3,6 @@
 ## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
-## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
-
 if grep -q "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account ; then
    if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console"; then
       console_allowed=true
@@ -27,6 +25,8 @@ if grep -q "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/commo
       exit 0
    fi
 fi
+
+## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
 
 if [ ! "$(id -u)" = "0" ]; then
    ## as user "user"
