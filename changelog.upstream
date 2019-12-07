@@ -1,3 +1,27 @@
+commit 6faa977cd73efd90809c7034d15102095adcfe63
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 02:02:06 2019 -0500
+
+    readme
+
+commit 6d92d03b31c8251d3df72aab5e9dfa3327feed1c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 01:54:50 2019 -0500
+
+    description
+
+commit 5a4eda0d05bc57680e3f3df2b84471f5f16b8356
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 01:53:33 2019 -0500
+
+    also support /usr/local/etc/remount-disable and /usr/local/etc/noexec
+
+commit 0afcc5e798823f4ed3eff2d5f94b3d3fe8ad5069
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 6 12:43:21 2019 -0500
+
+    bumped changelog version
+
 commit 2954dcbccfb2990e95056d20fc9b279569dcacee
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 6 12:24:55 2019 -0500
