@@ -173,7 +173,7 @@ Description: enhances misc security settings
  /etc/securetty.security-misc
  .
   * Console Lockdown.
- Allow members of group 'console' to use tty1 to tty7. Everyone else except
+ Allow members of group 'console' to use console. Everyone else except
  members of group 'console-unrestricted' are restricted from using console
  using ancient, unpopular login methods such as using /bin/login over networks,
  which might be exploitable. (CVE-2001-0797) Using pam_access.
