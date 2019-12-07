@@ -5,6 +5,29 @@
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
 
+if grep -q "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account ; then
+   if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console"; then
+      console_allowed=true
+   fi
+   if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console-unrestricted"; then
+      console_allowed=true
+   fi
+   if [ ! "$console_allowed" = "true" ]; then
+      echo "$0: ERROR: PAM_USER: $PAM_USER is not a member of group 'console'" >&2
+      echo "$0: To unlock, run the following command as superuser:" >&2
+      echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
+      echo "" >&2
+      echo "addgroup $PAM_USER console" >&2
+      echo "" >&2
+      echo "$0: However, possibly unlock procedure is required." >&2
+      echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
+      echo "$0: See also:" >&2
+      echo "https://www.whonix.org/wiki/root#console" >&2
+      echo "" >&2
+      exit 0
+   fi
+fi
+
 if [ ! "$(id -u)" = "0" ]; then
    ## as user "user"
    ## /sbin/pam_tally2 -u user

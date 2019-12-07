@@ -28,6 +28,7 @@
   owner /etc/nsswitch.conf r,
   owner /etc/pam.d/* r,
   owner /etc/passwd r,
+  owner /etc/group r,
 
   owner /usr/share/zoneinfo/** r,
   owner /var/log/tallylog rw,
