@@ -34,6 +34,7 @@ addgroup --system sysfs
 addgroup --system cpuinfo
 addgroup --system console
 addgroup --system console-unrestricted
+addgroup --system ssh
 
 addgroup root console
 
