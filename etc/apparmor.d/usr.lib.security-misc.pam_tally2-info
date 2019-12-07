@@ -12,6 +12,7 @@
 
   /bin/bash ix,
   /bin/cat mrix,
+  /usr/bin/cat mrix,
   /bin/grep mrix,
   /usr/bin/id rix,
   /usr/bin/cut mrix,
