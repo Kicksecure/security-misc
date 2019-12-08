@@ -56,7 +56,7 @@ sudo_users_check () {
 
 console_users_check() {
    console_users="$(getent group console | cut -d: -f4)"
-   ## example sudo_users:
+   ## example ssh_users:
    ## user
    console_unrestricted_users="$(getent group console-unrestricted | cut -d: -f4)"
 
