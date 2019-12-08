@@ -43,6 +43,9 @@ addgroup root sudo
 ## This has no effect since by default this package also ships and an
 ## /etc/securetty configuration file that contains nothing but comments, i.e.
 ## an "empty" /etc/securetty.
+## In case a system administrator edits /etc/securetty, there is no need to
+## block for this to be still blocked by console lockdown. See also:
+## https://www.whonix.org/wiki/Root#Root_Login
 addgroup root console
 
 pam-auth-update --package
