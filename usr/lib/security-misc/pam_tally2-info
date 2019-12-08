@@ -13,7 +13,7 @@ if ! echo "$grep_result" | grep -q "#" ; then
          ssh_allowed=true
       fi
       if [ ! "$ssh_allowed" = "true" ]; then
-         echo "$0: ERROR: PAM_USER: $PAM_USER is not a member of group 'ssh'" >&2
+         echo "$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'ssh'" >&2
          echo "$0: To unlock, run the following command as superuser:" >&2
          echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
          echo "" >&2
@@ -35,7 +35,7 @@ if ! echo "$grep_result" | grep -q "#" ; then
       console_allowed=true
    fi
    if [ ! "$console_allowed" = "true" ]; then
-      echo "$0: ERROR: PAM_USER: $PAM_USER is not a member of group 'console'" >&2
+      echo "$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'" >&2
       echo "$0: To unlock, run the following command as superuser:" >&2
       echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
       echo "" >&2
@@ -104,7 +104,7 @@ user_name="${arr[0]}"
 failed_login_counter="${arr[1]}"
 
 if [ ! "$PAM_USER" = "$user_name" ]; then
-   echo "$0: ERROR: PAM_USER: $PAM_USER does not equal user_name: '$user_name'." >&2
+   echo "$0: ERROR: PAM_USER: '$PAM_USER' does not equal user_name: '$user_name'." >&2
    echo "$0: ERROR: Please report this bug." >&2
    echo "" >&2
    exit 0
