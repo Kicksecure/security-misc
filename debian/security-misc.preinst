@@ -47,7 +47,6 @@ sudo_users_check () {
       echo "sudo adduser user sudo" >&2
       echo "sudo adduser user console" >&2
       echo "" >&2
-      echo "" >&2
       echo "$0: ERROR: See also installation instructions:" >&2
       echo "https://www.whonix.org/wiki/security-misc#install" >&2
       exit 200
@@ -86,6 +85,47 @@ console_users_check() {
       echo "" >&2
       echo "sudo adduser user console" >&2
       echo "" >&2
+      echo "$0: ERROR: See also installation instructions:" >&2
+      echo "https://www.whonix.org/wiki/security-misc#install" >&2
+      exit 201
+   fi
+}
+
+ssh_users_check() {
+   if ! deb-systemd-helper --quiet was-enabled 'ssh.service'; then
+      return 0
+   fi
+
+   ssh_users="$(getent group ssh | cut -d: -f4)"
+   ## example ssh_users:
+   ## user
+
+   OLD_IFS="$IFS"
+   IFS=","
+   export IFS
+
+   for user_with_ssh in $ssh_users ; do
+      if [ "$user_with_ssh" = "root" ]; then
+         ## root login is also restricted.
+         ## Therefore user "root" being member of group "ssh" is
+         ## considered insufficient.
+         continue
+      fi
+      are_there_any_ssh_users=yes
+      break
+   done
+
+   IFS="$OLD_IFS"
+   export IFS
+
+   ## Prevent users from locking themselves out.
+   ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
+   if [ ! "$are_there_any_ssh_users" = "yes" ]; then
+      echo "$0: ERROR: ssh.service is enabled but no user is a member of group 'ssh'." >&2
+      echo "$0: ERROR: Installation aborted since this would likely break SSH login." >&2
+      echo "$0: ERROR: You probably want to run:" >&2
+      echo "" >&2
+      echo "sudo adduser user ssh" >&2
       echo "" >&2
       echo "$0: ERROR: See also installation instructions:" >&2
       echo "https://www.whonix.org/wiki/security-misc#install" >&2
@@ -96,6 +136,7 @@ console_users_check() {
 if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
    sudo_users_check
    console_users_check
+   ssh_users_check
 fi
 
 true "INFO: debhelper beginning here."
