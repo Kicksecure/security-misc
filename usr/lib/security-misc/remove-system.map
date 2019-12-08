@@ -5,8 +5,10 @@
 
 shopt -s nullglob
 
+system_map_location="/boot/System.map* /usr/src/*/System.map* /lib/modules/*/*/System.map* /System.map*"
+
 counter=0
-for filename in /boot/System.map* ; do
+for filename in ${system_map_location} ; do
    counter=$(( counter + 1 ))
 done
 
@@ -15,7 +17,7 @@ if [ "$counter" -ge "1" ]; then
 fi
 
 ## Removes the System.map files as they are only used for debugging or malware.
-for filename in /boot/System.map* ; do
+for filename in ${system_map_location} ; do
    if [ -f "${filename}" ]; then
       rm --verbose --force "${filename}"
    fi
