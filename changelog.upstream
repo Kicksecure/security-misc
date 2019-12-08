@@ -1,3 +1,36 @@
+commit e64741c01e94849f7ad57231a106e45c4fe3dc65
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 05:25:19 2019 -0500
+
+    readme
+
+commit c192644ee328ff8d5d244d10c082b3a871b151b1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 05:21:35 2019 -0500
+
+    security-misc `/usr/share/pam-configs/permission-lockdown-security-misc` is no longer required, removed.
+    
+    Thereby fix apparmor issue.
+    
+    > Dec 08 09:47:50 host audit[3232]: AVC apparmor="DENIED" operation="exec" profile="/usr/bin/whonixcheck" name="/usr/lib/security-misc/permission-lockdown" pid=3232 comm="sudo" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
+    > Dec 08 09:47:50 host sudo[3232]: pam_exec(sudo:session): execve(/usr/lib/security-misc/permission-lockdown,...) failed: Permission denied
+    
+    It is no longer required, because...
+    
+    existing linux user accounts:
+    
+    * Get permission lock down because security-misc `debian/security-misc.postinst` calls `/usr/lib/security-misc/permission-lockdown`.
+    
+    new linux user accounts (created at first boot):
+    
+    * security-misc `/usr/share/pam-configs/mkhomedir-security-misc` pam mkhomedir sets secure permissions using `umask=027`.
+
+commit edcc2de71dea9cf2f94ec008d2817a0cdfdf5b7c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:38:33 2019 -0500
+
+    bumped changelog version
+
 commit 1227ccd1f7aa8d96f70d6c5fa20aa985435ca89c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 04:37:53 2019 -0500
