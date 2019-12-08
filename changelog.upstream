@@ -1,3 +1,15 @@
+commit 1227ccd1f7aa8d96f70d6c5fa20aa985435ca89c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:37:53 2019 -0500
+
+    After=qubes-sysinit.service
+
+commit 17d81d0083b05316515461154473c8a5d769b776
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:27:01 2019 -0500
+
+    bumped changelog version
+
 commit ebae9eef38035a75c8aa3281735eab79ed6f4c46
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 04:25:19 2019 -0500
