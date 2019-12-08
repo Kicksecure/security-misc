@@ -1,6 +1,0 @@
-Name: prevent users from reading other users /home/user folders (by package security-misc)
-Default: yes
-Priority: 50
-Session-Type: Additional
-Session:
-	optional	pam_exec.so	debug stdout seteuid /usr/lib/security-misc/permission-lockdown
