@@ -81,6 +81,10 @@ unprivileged users and increases security as /sys exposes a lot of information
 that shouldn't be accessible to unprivileged users. As this will break many
 things, it is disabled by default and can optionally be enabled by running
 `systemctl enable hide-hardware-info.service` as root.
+/usr/lib/security-misc/hide-hardware-info
+/lib/systemd/system/hide-hardware-info.service
+/lib/systemd/system/user@.service.d/sysfs.conf
+/etc/hide-hardware-info.d/30_default.conf
 
 Improve Entropy Collection
 
@@ -154,6 +158,21 @@ debian/security-misc.postinst
 prevented by shipping an existing and empty /etc/securetty.
 (Deletion of /etc/securetty has a different effect.)
 /etc/securetty.security-misc
+
+* Console Lockdown.
+Allow members of group 'console' to use console and members of group 'ssh'
+to receive incoming SSH connections. Everyone else except members of group
+'console-unrestricted' are restricted from using console using ancient,
+unpopular login methods such as using /bin/login over networks, which might
+be exploitable. (CVE-2001-0797) Using pam_access.
+Not enabled by default in this package since this package does not know which
+users shall be added to group 'console' and/or 'ssh' and would break console,
+X Window System and ssh login since files in
+/usr/share/pam-configs/console-lockdown-security-misc result in modifications
+of /etc/pam.d/common-account file which not only applies to /etc/pam.d/login
+but also all other services such as /etc/pam.d/ssh.
+/usr/share/pam-configs/console-lockdown-security-misc
+/etc/security/access-security-misc.conf
 
 Protect Linux user accounts against brute force attacks.
 Lock user accounts after 50 failed login attempts using pam_tally2.
@@ -246,6 +265,7 @@ Application specific hardening:
 * Enables APT seccomp-BPF sandboxing. /etc/apt/apt.conf.d/40sandbox
 * Deactivates previews in Dolphin.
 * Deactivates previews in Nautilus.
+/usr/share/glib-2.0/schemas/30_security-misc.gschema.override
 * Deactivates thumbnails in Thunar.
 * Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
 to make phising attacks more difficult. Fixing URL not showing real Domain
