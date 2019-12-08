@@ -8,9 +8,13 @@
 %:
 	dh $@ --with=config-package
 
+override_dh_installman:
+	make manpages
+	dh_installman $(CURDIR)/debian/tmp-man/*
+
 override_dh_installchangelogs:
 	dh_installchangelogs changelog.upstream upstream
-	
+
 override_dh_install:
 	dh_apparmor --profile-name='usr.lib.security-misc.pam_tally2-info'
 	dh_apparmor --profile-name='usr.lib.security-misc.permission-lockdown'

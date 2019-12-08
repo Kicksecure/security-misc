@@ -5,7 +5,8 @@ Source: security-misc
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@riseup.net>
-Build-Depends: debhelper (>= 12), genmkfile, config-package-dev, dh-apparmor
+Build-Depends: debhelper (>= 12), genmkfile, config-package-dev, dh-apparmor,
+ ronn
 Homepage: https://github.com/Whonix/security-misc
 Vcs-Browser: https://github.com/Whonix/security-misc
 Vcs-Git: https://github.com/Whonix/security-misc.git
