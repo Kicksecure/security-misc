@@ -30,6 +30,7 @@ case "$1" in
     ;;
 esac
 
+## /usr/lib/security-misc/hide-hardware-info
 addgroup --system sysfs
 addgroup --system cpuinfo
 
