@@ -10,6 +10,8 @@ Before=sysinit.target
 Requires=local-fs.target
 After=local-fs.target
 
+After=qubes-sysinit.service
+
 [Service]
 Type=oneshot
 RemainAfterExit=yes
