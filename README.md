@@ -194,14 +194,15 @@ access rights restrictions:
 Removes read, write and execute access for others for all users who have
 home folders under folder /home by running for example
 "chmod o-rwx /home/user"
-during package installation, upgrade or pam. This will be done only once per
+during package installation, upgrade or pam mkhomedir. This will be done only
+once per
 folder in folder /home so users who wish to relax file permissions are free to
 do so. This is to protect previously created files in user home folder which
 were previously created with lax file permissions prior installation of this
 package.
 debian/security-misc.postinst
-/usr/share/pam-configs/permission-lockdown-security-misc
 /usr/lib/security-misc/permission-lockdown
+/usr/share/pam-configs/mkhomedir-security-misc
 
 access rights relaxations:
 
