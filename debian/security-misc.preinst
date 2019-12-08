@@ -64,8 +64,8 @@ console_users_check() {
    IFS=","
    export IFS
 
-   for user_with_sudo in $console_users $console_unrestricted_users ; do
-      if [ "$user_with_sudo" = "root" ]; then
+   for user_with_console in $console_users $console_unrestricted_users ; do
+      if [ "$user_with_console" = "root" ]; then
          ## root login is also restricted.
          ## Therefore user "root" being member of group "console" is
          ## considered insufficient.
