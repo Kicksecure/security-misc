@@ -1,4 +1,4 @@
-Name: allow only members of group console to login (by package security-misc)
+Name: allow only members of group console / ssh to login/incoming ssh (by package security-misc)
 Default: no
 Priority: 280
 Account-Type: Primary
