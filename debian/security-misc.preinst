@@ -16,6 +16,13 @@ true "
 "
 
 sudo_users_check () {
+   if command -v "qubesdb-read" &>/dev/null; then
+      ## Qubes users can use dom0 to get a root terminal emulator.
+      ## For example:
+      ## qvm-run -u root debian-10 xterm
+      return 0
+   fi
+
    sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
    ## user,root
