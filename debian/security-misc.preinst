@@ -15,7 +15,7 @@ true "
 #####################################################################
 "
 
-if [ "$1" = "install" ]; then
+if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
    sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
    ## user,root
@@ -42,7 +42,52 @@ if [ "$1" = "install" ]; then
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if [ ! "$are_there_any_sudo_users" = "yes" ]; then
       echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
+      echo "$0: ERROR: You probably want to run:" >&2
+      echo "" >&2
+      echo "sudo adduser user sudo" >&2
+      echo "sudo adduser user console" >&2
+      echo "" >&2
+      echo "" >&2
+      echo "$0: ERROR: See also installation instructions:" >&2
+      echo "https://www.whonix.org/wiki/security-misc#install" >&2
       exit 200
+   fi
+
+   console_users="$(getent group console | cut -d: -f4)"
+   ## example sudo_users:
+   ## user
+   console_unrestricted_users="$(getent group console-unrestricted | cut -d: -f4)"
+
+   OLD_IFS="$IFS"
+   IFS=","
+   export IFS
+
+   for user_with_sudo in $console_users $console_unrestricted_users ; do
+      if [ "$user_with_sudo" = "root" ]; then
+         ## root login is also restricted.
+         ## Therefore user "root" being member of group "console" is
+         ## considered insufficient.
+         continue
+      fi
+      are_there_any_console_users=yes
+      break
+   done
+
+   IFS="$OLD_IFS"
+   export IFS
+
+   ## Prevent users from locking themselves out.
+   ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
+   if [ ! "$are_there_any_console_users" = "yes" ]; then
+      echo "$0: ERROR: No user is a member of group 'console'. Installation aborted." >&2
+      echo "$0: ERROR: You probably want to run:" >&2
+      echo "" >&2
+      echo "sudo adduser user console" >&2
+      echo "" >&2
+      echo "" >&2
+      echo "$0: ERROR: See also installation instructions:" >&2
+      echo "https://www.whonix.org/wiki/security-misc#install" >&2
+      exit 201
    fi
 fi
 
