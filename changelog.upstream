@@ -1,3 +1,20 @@
+commit ebae9eef38035a75c8aa3281735eab79ed6f4c46
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:25:19 2019 -0500
+
+    skip sudo_users_check in Qubes
+    
+    Qubes users can use dom0 to get a root terminal emulator.
+    
+    For example:
+    qvm-run -u root debian-10 xterm
+
+commit 53e4717c629039104f45a1da8251e3dd1b5e3baa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:05:29 2019 -0500
+
+    bumped changelog version
+
 commit bc45ed385e5a2b1b53f81915698e1176359dedf7
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 04:03:02 2019 -0500
