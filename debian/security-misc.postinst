@@ -36,6 +36,13 @@ addgroup --system console-unrestricted
 addgroup --system ssh
 
 addgroup root sudo
+
+## Related to Console Lockdown.
+## /usr/share/pam-configs/console-lockdown
+## /etc/security/access-security-misc.conf
+## This has no effect since by default this package also ships and an
+## /etc/securetty configuration file that contains nothing but comments, i.e.
+## an "empty" /etc/securetty.
 addgroup root console
 
 pam-auth-update --package
