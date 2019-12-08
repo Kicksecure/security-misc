@@ -1,0 +1,66 @@
+#!/bin/bash
+
+config_file="/etc/permission-hardening.conf"
+
+set_file_perms() {
+  while read line
+  do
+    [[ "$line" =~ ^#.*$ ]] && continue
+
+    file="$(awk '{print $1}' <<< ${line})"
+    mode="$(awk '{print $2}' <<< ${line})"
+    owner="$(awk '{print $3}' <<< ${line})"
+    group="$(awk '{print $4}' <<< ${line})"
+    capability="$(awk '{print $5}' <<< ${line})"
+
+    if ! [ -e "${file}" ]; then
+      echo "ERROR: File '${file}' does not exist!"
+      continue
+    fi
+
+    if ! seq -w 000 4777 | grep -qw "${mode}"; then
+      echo "ERROR: Mode '${mode}' is invalid!"
+      continue
+    fi
+
+    if ! getent passwd | grep -q "^${owner}:"; then
+      echo "ERROR: User '${owner}' does not exist!"
+      continue
+    fi
+
+    if ! getent group | grep -q "^${group}:"; then
+      echo "ERROR: Group '${group}' does not exist!"
+      continue
+    fi
+
+    chmod "${mode}" "${file}"
+    chown "${owner}:${group}" "${file}"
+
+    ## The permissions should not be reset during upgrades.
+    if dpkg-statoverride --list | grep -q "${file%/}"; then
+      ## If there is an entry for the file, but the owner/group/mode do not
+      ## match, we remove and re-add the entry to update it.
+      if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${mode:1} ${file%/}"; then
+        dpkg-statoverride --remove "${file}"
+        dpkg-statoverride --add "${owner}" "${group}" "${mode}" "${file}"
+      fi
+    else
+      dpkg-statoverride --add "${owner}" "${group}" "${mode}" "${file}"
+    fi
+
+    if ! [ "${capability}" = "" ]; then
+      if [ "${capability}" = "none" ]; then
+        setcap -r "${file}"
+      else
+        if ! capsh --print | grep "Bounding set" | grep -q ${capability}; then
+           echo "ERROR: Capability '${capability}' does not exist!"
+           continue
+        fi
+
+        setcap "${capability}+ep" "${file}"
+      fi
+    fi
+  done <${config_file}
+}
+
+set_file_perms
