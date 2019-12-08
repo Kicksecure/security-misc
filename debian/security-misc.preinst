@@ -15,7 +15,7 @@ true "
 #####################################################################
 "
 
-if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
+sudo_users_check () {
    sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
    ## user,root
@@ -52,7 +52,9 @@ if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
       echo "https://www.whonix.org/wiki/security-misc#install" >&2
       exit 200
    fi
+}
 
+console_users_check() {
    console_users="$(getent group console | cut -d: -f4)"
    ## example sudo_users:
    ## user
@@ -89,6 +91,11 @@ if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
       echo "https://www.whonix.org/wiki/security-misc#install" >&2
       exit 201
    fi
+}
+
+if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
+   sudo_users_check
+   console_users_check
 fi
 
 true "INFO: debhelper beginning here."
