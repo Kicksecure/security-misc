@@ -181,10 +181,10 @@ Description: enhances misc security settings
  Not enabled by default in this package since this package does not know which
  users shall be added to group 'console' and/or 'ssh' and would break console,
  X Window System and ssh login since files in
- /usr/share/pam-configs/console-lockdown result in modifications of
- /etc/pam.d/common-account file which not only applies to /etc/pam.d/login but
- also all other services such as /etc/pam.d/ssh.
- /usr/share/pam-configs/console-lockdown
+ /usr/share/pam-configs/console-lockdown-security-misc result in modifications
+ of /etc/pam.d/common-account file which not only applies to /etc/pam.d/login
+ but also all other services such as /etc/pam.d/ssh.
+ /usr/share/pam-configs/console-lockdown-security-misc
  /etc/security/access-security-misc.conf
  .
  Protect Linux user accounts against brute force attacks.

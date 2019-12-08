@@ -40,7 +40,7 @@ addgroup --system ssh
 addgroup root sudo
 
 ## Related to Console Lockdown.
-## /usr/share/pam-configs/console-lockdown
+## /usr/share/pam-configs/console-lockdown-security-misc
 ## /etc/security/access-security-misc.conf
 ## This has no effect since by default this package also ships and an
 ## /etc/securetty configuration file that contains nothing but comments, i.e.
