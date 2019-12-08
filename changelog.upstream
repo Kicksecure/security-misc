@@ -1,3 +1,324 @@
+commit bc45ed385e5a2b1b53f81915698e1176359dedf7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:03:02 2019 -0500
+
+    readme
+
+commit ac96708b243a766d65e39a037bcf142e526a2382
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 04:01:11 2019 -0500
+
+    improve usr/bin/hardening-enable
+
+commit a345a0fb64f7b8421356b913730284b0e6e3e953
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 03:27:12 2019 -0500
+
+    abort installation if ssh.service is enabled but no user is member of group ssh
+
+commit 50ac03363f6074cc88b6a7c965a822335624924c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 03:18:32 2019 -0500
+
+    output
+
+commit c7c65fe4e7a1fb73921a1b8de25662ff2a21e2a8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 03:15:53 2019 -0500
+
+    higher priority usr/share/pam-configs/tally2-security-misc
+    
+    so it can give info before pam stack gets aborted by other pam modules
+
+commit 3bd0b3f837d5ad8c87e59b99c6baef1e2c74507b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 03:10:41 2019 -0500
+
+    notify when attempting to use ssh but user is member of group ssh
+
+commit cea598dc1a96245c4ccd00646e9790f3c9635ffe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:43:05 2019 -0500
+
+    refactoring
+
+commit 54f5e02c2192a1cd6a30bc04abd77b177b1953c3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:42:30 2019 -0500
+
+    comment
+
+commit b4265195f4823618c60274458f885ef61c2452e1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:41:36 2019 -0500
+
+    refactoring
+
+commit 0f65b2e85c74a379d8ec5321b13e7e332d8eaaa3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:38:19 2019 -0500
+
+    abort installation if no user is a member of group "console"; output
+    
+    https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/7
+
+commit 1dbca1ea2d80ff7f60a0f426b444994d6bd97d30
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:27:09 2019 -0500
+
+    add usr/bin/hardening-enable
+
+commit 19cc6d7555364c5d2ee548899679c153e1555a20
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:10:43 2019 -0500
+
+    pam description
+
+commit 24423b42f0dc23704bddbb0f205ad3115e77d90f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:03:05 2019 -0500
+
+    description
+
+commit 6b01e5be149f9126308404e6a32931efb3bac277
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:01:22 2019 -0500
+
+    comment
+
+commit 66bebefc9fa26341c41847f35f26e16df3ce0a37
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 02:00:23 2019 -0500
+
+    description
+
+commit 52e0f104cc6edf1fe0953ca815445c351f813812
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:59:55 2019 -0500
+
+    comment
+
+commit 731d486fa061756b129188959230cb8bf1d78fae
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:58:58 2019 -0500
+
+    refactoring
+
+commit 221a2df2a2621b1d3f391ee3265af7d4f35e1b2b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:58:37 2019 -0500
+
+    refactoring
+
+commit b871421a542af37771dbe56f09cc16472aa691c7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:57:43 2019 -0500
+
+    usr/share/pam-configs/console-lockdown -> usr/share/pam-configs/console-lockdown-security-misc
+
+commit d36669596f4c71ce885e46fce66fffc7a7443d27
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:56:30 2019 -0500
+
+    comment
+
+commit 1a0f353708832217b9bc5e3ecd044605de6adca0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:47:40 2019 -0500
+
+    comment
+
+commit eed1f0a4620d7db5933fb29189328c934db50d9e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:46:32 2019 -0500
+
+    comment
+
+commit 2491b6239319c52221f6c58fcfa1c3a247a9ee30
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:43:45 2019 -0500
+
+    refactoring, add all groups first before adding any users to any groups
+
+commit 1464f01d191ee4e01ed2ec94f4faf8d17ec62b03
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:30:42 2019 -0500
+
+    description
+
+commit 491dd4d93d133ca23eaf5c501b7ab3d3bbf52a27
+Merge: 9432d16 a78a7e5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 01:22:16 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a78a7e5571b178cbf4cddd065306d130431bc185
+Merge: 373e873 6846a94
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 06:21:44 2019 +0000
+
+    Merge pull request #41 from madaidan/system.map
+    
+    Check for more locations of System.map
+
+commit 6846a943277c5ad9049cbf3e21fcd739c316cf44
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Dec 7 19:38:12 2019 +0000
+
+    Check for more locations of System.map
+
+commit 9432d1637866087bcc2f1bf0837535a10f96faeb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 12:13:42 2019 -0500
+
+    /usr/bin/cat mrix,
+
+commit 373e8733d37cb795c7c48642346b0b6dc6dce30c
+Merge: c1800b1 447eb14
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 11:34:42 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 447eb144325a532b0aaf7ce772d5a04005b2af1f
+Merge: c1800b1 668b642
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 16:34:21 2019 +0000
+
+    Merge pull request #40 from madaidan/system.map
+    
+    Remove hyphen from remove-system.map
+
+commit c1800b13fe33a1c129dcb30c51dbead7f894b818
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 11:26:39 2019 -0500
+
+    separate group "ssh" for incoming ssh console permission
+    
+    Thanks to @madaidan
+    
+    https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/16
+
+commit 668b6420de8024fdeaf948f1750beb8b62d9ffb7
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Dec 7 14:15:02 2019 +0000
+
+    Remove hyphen
+
+commit 55225aa30e78e9a988527ed2da2019dc0a0b2631
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 07:16:07 2019 -0500
+
+    description
+
+commit 34a2bc16c85b06e1eccb2f72da89e198184ba72c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 07:15:58 2019 -0500
+
+    description
+
+commit d823f06c7858c1380325e3dbbbcfb1854fa64309
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 07:13:42 2019 -0500
+
+    description
+
+commit 9ba84f34c68263e5151d5b54264c1edb90603424
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:51:59 2019 -0500
+
+    comment
+
+commit dc1dfc8c20218a5ca986f49dc96cbfc71d50533e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:51:16 2019 -0500
+
+    output
+
+commit 8636d2f62995947620fbbd76fc653aab89dda7eb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:51:10 2019 -0500
+
+    add securetty
+
+commit 532a1525c2350a634b14a84d94997b8db81243a0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:26:55 2019 -0500
+
+    comment
+
+commit 14aa6c50774786890686fee2a6d6eed49dadcac1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:26:23 2019 -0500
+
+    comment
+
+commit 8b3f5a555ba04bb1d2e6bafb8345782aae875a51
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:25:45 2019 -0500
+
+    add console lockdown to pam info output
+
+commit 021b06dac95dd742952446e9ff455305c7d2b09b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:04:45 2019 -0500
+
+    add hvc0 to hvc9
+
+commit 8a59662a44ea46c5ba86be82ec2bc43e912c79be
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:02:45 2019 -0500
+
+    comment
+
+commit 090ddbe96a48424e0e3f187b917e023f9b710798
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 06:00:41 2019 -0500
+
+    description
+
+commit cda67247557ce2028017ba4e6e8824c2ae2f5118
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 05:56:57 2019 -0500
+
+    add pts/0 to pts/9
+
+commit 218cbddba9b053eac4ecb486ea7fbc9e160f18c6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 05:52:06 2019 -0500
+
+    comment
+
+commit 6479c883bf04464b299ce42185df2429f7b5cab5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 05:40:20 2019 -0500
+
+    Console Lockdown.
+    
+    Allow members of group 'console' to use tty1 to tty7. Everyone else except
+    members of group 'console-unrestricted' are restricted from using console
+    using ancient, unpopular login methods such as using /bin/login over networks,
+    which might be exploitable. (CVE-2001-0797)
+    
+    Not enabled by default in this package since this package does not know which
+    users shall be added to group 'console'.
+    
+    In new Whonix builds, user 'user" will be added to group 'console' and
+    pam console-lockdown enabled by package anon-base-files.
+    
+    /usr/share/pam-configs/console-lockdown
+    
+    /etc/security/access-security-misc.conf
+    
+    https://forums.whonix.org/t/etc-security-hardening/8592
+
+commit 52934c9288a596b233c1ce3b5f68a29248602c96
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 7 02:02:32 2019 -0500
+
+    bumped changelog version
+
 commit 6faa977cd73efd90809c7034d15102095adcfe63
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 02:02:06 2019 -0500
