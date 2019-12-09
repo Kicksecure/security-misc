@@ -1,3 +1,75 @@
+commit d80bf036f3b6b70df9208d1ca603c5602298bbf8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 03:50:43 2019 -0500
+
+    Disable permission hardening now until development finished / tested.
+
+commit b72eb30056e186ce13b03907fc37e8d5ebb5df44
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 02:32:05 2019 -0500
+
+    quotes
+
+commit c258376b7ed565d0e23963ddab56ce35892ff23f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 02:31:10 2019 -0500
+
+    use read (built-in) rather than awk (external)
+
+commit 02165201ab850e32c9f9ad5c4f46cb26dd71dddb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 02:23:43 2019 -0500
+
+    read -r; refactoring
+    
+    as per https://mywiki.wooledge.org/BashFAQ/001
+
+commit 7467252122cb2e7600ce5ab3dce9dac2aa7a0676
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 02:22:16 2019 -0500
+
+    quotes
+
+commit 9bea9960173cf06dcbc0aefa2fb3b10df1f84c69
+Merge: 6f94423 af62da3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 02:21:47 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit af62da34457a56fee43a6003036a3bb387b23b32
+Merge: 6f94423 d7e2dea
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 20:45:16 2019 +0000
+
+    Merge pull request #42 from madaidan/permission-hardening
+    
+    File permission hardening
+
+commit d7e2deae9250abd79ab83c2025b98476dde710d3
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Dec 8 16:50:54 2019 +0000
+
+    Create permission-hardening.service
+
+commit 6c564f6e9549462412299fd5b2f7e303409c5dad
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Dec 8 16:50:11 2019 +0000
+
+    Create permission-hardening.conf
+
+commit 61e19fa5f1343554e9a213a1a9762cef4707ab3d
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Dec 8 16:49:28 2019 +0000
+
+    Create permission-hardening
+
+commit 6f944234a988b226942832473a5a6825006dcac9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 8 05:26:29 2019 -0500
+
+    bumped changelog version
+
 commit e64741c01e94849f7ad57231a106e45c4fe3dc65
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 05:25:19 2019 -0500
