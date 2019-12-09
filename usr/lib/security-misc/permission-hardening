@@ -60,7 +60,7 @@ set_file_perms() {
         setcap "${capability}+ep" "${file}"
       fi
     fi
-  done <${config_file}
+  done < "${config_file}"
 }
 
 set_file_perms
