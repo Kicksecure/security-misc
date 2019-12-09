@@ -3,8 +3,7 @@
 config_file="/etc/permission-hardening.conf"
 
 set_file_perms() {
-  while read line
-  do
+  while read -r line; do
     [[ "$line" =~ ^#.*$ ]] && continue
 
     file="$(awk '{print $1}' <<< ${line})"
