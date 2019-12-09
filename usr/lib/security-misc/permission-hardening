@@ -50,7 +50,7 @@ set_file_perms() {
       if [ "${capability}" = "none" ]; then
         setcap -r "${file}"
       else
-        if ! capsh --print | grep "Bounding set" | grep -q ${capability}; then
+        if ! capsh --print | grep "Bounding set" | grep -q "${capability}"; then
            echo "ERROR: Capability '${capability}' does not exist!"
            continue
         fi
