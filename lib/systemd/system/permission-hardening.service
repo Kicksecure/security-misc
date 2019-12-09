@@ -8,7 +8,9 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/lib/security-misc/permission-hardening
+## Disable for now until development finished / tested.
+ExecStart=/bin/true
+#ExecStart=/usr/lib/security-misc/permission-hardening
 
 [Install]
 WantedBy=sysinit.target
