@@ -24,6 +24,16 @@ user_groups_modifications() {
    ## /usr/share/pam-configs/wheel-security-misc
    addgroup root sudo
 
+   ## Useful to create groups in preinst rather than postinst.
+   ## Otherwise if a user saw an error message such as this:
+   ##
+   ## /var/lib/dpkg/tmp.ci/preinst: ERROR: No user is a member of group 'console'. Installation aborted.
+   ## /var/lib/dpkg/tmp.ci/preinst: ERROR: You probably want to run:
+   ## sudo adduser user console
+   ##
+   ## Then the user could not run 'sudo adduser user console' but also would
+   ## have to create the groups himself.
+
    ## Related to Console Lockdown.
    ## /usr/share/pam-configs/console-lockdown-security-misc
    ## /etc/security/access-security-misc.conf
