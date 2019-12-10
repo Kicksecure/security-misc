@@ -1,3 +1,27 @@
+commit 88bea2a6efa8823739ba65b2f5b67cb90071ca3f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 10 03:53:10 2019 -0500
+
+    comment
+
+commit 7d8001ddc9801046289b2f4e31d25dfc3bca6cc5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 10 03:51:39 2019 -0500
+
+    refactoring
+
+commit d2f6ac0491f179382f4b68455d19956049e6cd23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 10 03:50:23 2019 -0500
+
+    fix, do user/group modifications in preinst rather than postinst
+
+commit 64ae53edb90929492e11ac81e3e18bcc8164b428
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 9 08:25:30 2019 -0500
+
+    bumped changelog version
+
 commit d80bf036f3b6b70df9208d1ca603c5602298bbf8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 9 03:50:43 2019 -0500
