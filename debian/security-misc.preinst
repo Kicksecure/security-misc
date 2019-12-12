@@ -27,8 +27,8 @@ user_groups_modifications() {
    ## Useful to create groups in preinst rather than postinst.
    ## Otherwise if a user saw an error message such as this:
    ##
-   ## /var/lib/dpkg/tmp.ci/preinst: ERROR: No user is a member of group 'console'. Installation aborted.
-   ## /var/lib/dpkg/tmp.ci/preinst: ERROR: You probably want to run:
+   ## /var/lib/ dpkg/tmp.ci/preinst: ERROR: No user is a member of group 'console'. Installation aborted.
+   ## /var/lib/ dpkg/tmp.ci/preinst: ERROR: You probably want to run:
    ## sudo adduser user console
    ##
    ## Then the user could not run 'sudo adduser user console' but also would
@@ -39,7 +39,6 @@ user_groups_modifications() {
    ## /etc/security/access-security-misc.conf
    addgroup --system console
    addgroup --system console-unrestricted
-   addgroup --system ssh
    ## This has no effect since by default this package also ships and an
    ## /etc/securetty configuration file that contains nothing but comments, i.e.
    ## an "empty" /etc/securetty.
@@ -132,54 +131,11 @@ console_users_check() {
    fi
 }
 
-ssh_users_check() {
-   if ! deb-systemd-helper --quiet was-enabled 'ssh.service'; then
-      return 0
-   fi
-
-   ssh_users="$(getent group ssh | cut -d: -f4)"
-   ## example ssh_users:
-   ## user
-
-   OLD_IFS="$IFS"
-   IFS=","
-   export IFS
-
-   for user_with_ssh in $ssh_users ; do
-      if [ "$user_with_ssh" = "root" ]; then
-         ## root login is also restricted.
-         ## Therefore user "root" being member of group "ssh" is
-         ## considered insufficient.
-         continue
-      fi
-      are_there_any_ssh_users=yes
-      break
-   done
-
-   IFS="$OLD_IFS"
-   export IFS
-
-   ## Prevent users from locking themselves out.
-   ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-   if [ ! "$are_there_any_ssh_users" = "yes" ]; then
-      echo "$0: ERROR: ssh.service is enabled but no user is a member of group 'ssh'." >&2
-      echo "$0: ERROR: Installation aborted since this would likely break SSH login." >&2
-      echo "$0: ERROR: You probably want to run:" >&2
-      echo "" >&2
-      echo "sudo adduser user ssh" >&2
-      echo "" >&2
-      echo "$0: ERROR: See also installation instructions:" >&2
-      echo "https://www.whonix.org/wiki/security-misc#install" >&2
-      exit 201
-   fi
-}
-
 user_groups_modifications
 
 if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
    sudo_users_check
    console_users_check
-   ssh_users_check
 fi
 
 true "INFO: debhelper beginning here."

@@ -1,6 +1,7 @@
-Name: allow only members of group console / ssh to login/incoming ssh (by package security-misc)
+Name: allow only members of group console to use login (by package security-misc)
 Default: no
 Priority: 280
 Account-Type: Primary
 Account:
+	[success=1 default=ignore]	pam_exec.so	seteuid quiet /usr/lib/security-misc/pam_only_if_login
 	required	pam_access.so accessfile=/etc/security/access-security-misc.conf debug
