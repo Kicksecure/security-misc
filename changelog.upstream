@@ -1,3 +1,17 @@
+commit 729fa26eca292d60bcbeaba05d8878ff6112876e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 12 09:00:08 2019 -0500
+
+    use pam_acccess only for /etc/pam.d/login
+    remove "Allow members of group 'ssh' to login."
+    remove "+:ssh:ALL EXCEPT LOCAL"
+
+commit 22b6480bc4691e76ef155452d2b9df05c5265f68
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 10 11:44:02 2019 -0500
+
+    bumped changelog version
+
 commit 88bea2a6efa8823739ba65b2f5b67cb90071ca3f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 10 03:53:10 2019 -0500
