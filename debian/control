@@ -286,6 +286,21 @@ Description: enhances misc security settings
    to make phising attacks more difficult. Fixing URL not showing real Domain
    Name (Homograph attack).
  .
+ Want more? Look into these:
+ .
+  * Linux Kernel Runtime Guard (LKRG). Kills whole Classes of Kernel Exploits.
+  * tirdad - TCP ISN CPU Information Leak Protection.
+  * Whonix ™ - Anonymous Operating System
+  * Kicksecure ™ - A Security-hardened, Non-anonymous Linux Distribution
+  * SecBrowser ™ - A Security-hardened, Non-anonymous Browser
+  * And more.
+  * https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG
+  * https://github.com/Whonix/tirdad
+  * https://www.whonix.org
+  * https://www.whonix.org/wiki/Kicksecure
+  * https://www.whonix.org/wiki/SecBrowser
+  * https://github.com/Whonix
+ .
  Discussion:
  .
  Happening primarily in Whonix forums.
