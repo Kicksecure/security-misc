@@ -1,3 +1,55 @@
+commit 2cab38a8b3f7423f8956c72f1bf6c399ea70c495
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 16 06:24:14 2019 -0500
+
+    readme
+
+commit 4ca9fc592029cbd28969f1e7fe56907bc7c261cb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 16 03:53:10 2019 -0500
+
+    fix
+
+commit f68efd53cf000b92818e6c97b4c590a2c4b73a5b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 16 03:52:09 2019 -0500
+
+    remount /sys/kernel/security with nodev,nosuid[,noexec]
+    
+    as suggested by @madaidan
+    
+    http://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/238
+
+commit 2c4170e6f3366709c391db396a74547d4fed9589
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 12 09:47:58 2019 -0500
+
+    description
+
+commit 2d5ef378f36af5d2d94c342c284be4395352bc34
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 12 09:39:39 2019 -0500
+
+    description
+
+commit 300f010fc24846b6416501929ca24c4d80eca8d5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 12 09:29:00 2019 -0500
+
+    increase priority of pam-abort-on-locked-password-security-misc
+    
+    since it has its own user help output
+    
+    so it shows before pam tally2 info
+    
+    to avoid duplicate non-applicable help text
+
+commit a10597de92c316cc32ab552865a6658b38b19f5e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 12 09:04:15 2019 -0500
+
+    bumped changelog version
+
 commit 729fa26eca292d60bcbeaba05d8878ff6112876e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 12 09:00:08 2019 -0500
