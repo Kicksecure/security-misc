@@ -94,6 +94,13 @@ sudo_users_check () {
 }
 
 console_users_check() {
+   if command -v "qubesdb-read" &>/dev/null; then
+      ## Qubes users can use dom0 to get a root terminal emulator.
+      ## For example:
+      ## qvm-run -u root debian-10 xterm
+      return 0
+   fi
+
    console_users="$(getent group console | cut -d: -f4)"
    ## example ssh_users:
    ## user
