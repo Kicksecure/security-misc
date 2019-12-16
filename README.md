@@ -160,17 +160,13 @@ prevented by shipping an existing and empty /etc/securetty.
 /etc/securetty.security-misc
 
 * Console Lockdown.
-Allow members of group 'console' to use console and members of group 'ssh'
-to receive incoming SSH connections. Everyone else except members of group
+Allow members of group 'console' to use console.
+Everyone else except members of group
 'console-unrestricted' are restricted from using console using ancient,
 unpopular login methods such as using /bin/login over networks, which might
 be exploitable. (CVE-2001-0797) Using pam_access.
 Not enabled by default in this package since this package does not know which
-users shall be added to group 'console' and/or 'ssh' and would break console,
-X Window System and ssh login since files in
-/usr/share/pam-configs/console-lockdown-security-misc result in modifications
-of /etc/pam.d/common-account file which not only applies to /etc/pam.d/login
-but also all other services such as /etc/pam.d/ssh.
+users shall be added to group 'console' and would break console.
 /usr/share/pam-configs/console-lockdown-security-misc
 /etc/security/access-security-misc.conf
 
@@ -271,6 +267,21 @@ Application specific hardening:
 * Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
 to make phising attacks more difficult. Fixing URL not showing real Domain
 Name (Homograph attack).
+
+Want more? Look into these:
+
+* Linux Kernel Runtime Guard (LKRG). Kills whole Classes of Kernel Exploits.
+* tirdad - TCP ISN CPU Information Leak Protection.
+* Whonix ™ - Anonymous Operating System
+* Kicksecure ™ - A Security-hardened, Non-anonymous Linux Distribution
+* SecBrowser ™ - A Security-hardened, Non-anonymous Browser
+* And more.
+* https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG
+* https://github.com/Whonix/tirdad
+* https://www.whonix.org
+* https://www.whonix.org/wiki/Kicksecure
+* https://www.whonix.org/wiki/SecBrowser
+* https://github.com/Whonix
 
 Discussion:
 
