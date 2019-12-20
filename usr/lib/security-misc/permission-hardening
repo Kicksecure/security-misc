@@ -18,7 +18,6 @@ echo_wrapper() {
 }
 
 add_nosuid_statoverride_entry() {
-  echo "fso: $fso"
   while read -r line; do
     if ! read -r file_name existing_mode owner group; then
       continue
@@ -85,6 +84,7 @@ set_file_perms() {
       continue
     fi
 
+    echo "fso: $fso"
     fso_without_trailing_slash="${fso%/}"
 
     ## Use dpkg-statoverride  so permissions are not reset during upgrades.
