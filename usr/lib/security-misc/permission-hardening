@@ -35,7 +35,7 @@ add_statoverride_entry() {
           echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "${file_name}"
         fi
       fi
-    done < <( stat -c "%n %a %U %G" ${file%/}/** )
+    done < <( stat -c "%n %a %U %G" "${file%/}/"** )
   else
     echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${mode}" "${file%/}"
   fi
