@@ -29,7 +29,7 @@ echo_wrapper_audit() {
 }
 
 add_nosuid_statoverride_entry() {
-  fso_to_process="${fso_without_trailing_slash}/"
+  fso_to_process="$fso"
   should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)" || true
   counter_actual=0
 
