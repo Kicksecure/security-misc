@@ -126,7 +126,12 @@ set_file_perms() {
 
       add_nosuid_statoverride_entry
     else
-      if ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
+      string_length_of_mode_from_config="${#mode_from_config}"
+      if [ "$string_length_of_mode_from_config" -gt "4" ]; then
+         echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
+         continue
+      fi
+      if [ "$string_length_of_mode_from_config" -lt "3" ]; then
          echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
          continue
       fi
