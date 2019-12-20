@@ -30,7 +30,20 @@ add_nosuid_statoverride_entry() {
       continue
     fi
 
-    if test -u "$file_name" || test -g "$file_name"; then
+    setuid=""
+    setuid_output=""
+    if test -u "$file_name" ; then
+      setuid=true
+      setuid_output="set-user-id"
+    fi
+    setguid=""
+    setguid_output=""
+    if test -g "$file_name"; then
+      setguid=true
+      setguid_output="set-group-id"
+    fi
+
+    if [ "$setguid" = "true" ] || [ "setguid" = "true" ]; then
       string_length_of_existing_mode="${#existing_mode}"
       if [ "$string_length_of_existing_mode" = "4" ]; then
         new_mode="${existing_mode:1}"
@@ -38,7 +51,7 @@ add_nosuid_statoverride_entry() {
         new_mode="$existing_mode"
       fi
 
-      echo "INFO: suid - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
+      echo "INFO: $setuid_output $setguid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
       if dpkg-statoverride --list | grep -q "$file_name"; then
         if ! dpkg-statoverride --list | grep -q "$owner $group $new_mode $file_name"; then
