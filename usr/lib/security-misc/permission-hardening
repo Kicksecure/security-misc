@@ -72,7 +72,6 @@ add_nosuid_statoverride_entry() {
     fi
 
     if test -d "$file_name" ; then
-      ## https://forums.whonix.org/t/kernel-hardening/7296/323
       true "skip folder: $file_name"
       continue
     fi
