@@ -6,6 +6,8 @@
 ## noexec in /tmp and/or /home can break some malware but also legitimate
 ## applications.
 
+## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
+
 set -e
 
 if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
