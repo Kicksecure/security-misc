@@ -1,10 +1,46 @@
 #!/bin/bash
 
+## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+set -x
+
 config_file="/etc/permission-hardening.conf"
+
+shopt -s globstar
+
+add_statoverride_entry() {
+  if [ "${nosuid}" = "true" ]; then
+    while read -r line; do
+      if ! read -r file_name existing_mode owner group; then
+        continue
+      fi
+
+      if test -u "${file_name}" || test -g "${file_name}"; then
+        echo "suid - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+
+        if dpkg-statoverride --list | grep -q "${file_name}"; then
+          if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${existing_mode:1} ${file_name}"; then
+            dpkg-statoverride --remove "${file_name}"
+            dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "${file_name}"
+          fi
+        else
+          dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "${file_name}"
+        fi
+      fi
+    done < <( stat -c "%n %a %U %G" ${file%/}/** )
+  else
+    dpkg-statoverride --add --update "${owner}" "${group}" "${mode}" "${file%/}"
+  fi
+}
 
 set_file_perms() {
   while read -r line; do
     [[ "$line" =~ ^#.*$ ]] && continue
+
+    if [ "${line}" = "" ]; then
+      continue
+    fi
 
     if ! read -r file mode owner group capability <<< "${line}" ; then
       echo "ERROR: cannot parse line: ${line}"
@@ -16,23 +52,23 @@ set_file_perms() {
       continue
     fi
 
-    if ! seq -w 000 4777 | grep -qw "${mode}"; then
+    nosuid=""
+    if [ "${mode}" = "nosuid" ]; then
+      nosuid="true"
+    elif ! seq -w 000 4777 | grep -qw "${mode}"; then
       echo "ERROR: Mode '${mode}' is invalid!"
       continue
     fi
 
-    if ! getent passwd | grep -q "^${owner}:"; then
+    if ! getent passwd | grep -q "^${owner}:" && ! [ "${mode}" = "nosuid" ]; then
       echo "ERROR: User '${owner}' does not exist!"
       continue
     fi
 
-    if ! getent group | grep -q "^${group}:"; then
+    if ! getent group | grep -q "^${group}:" && ! [ "${mode}" = "nosuid" ]; then
       echo "ERROR: Group '${group}' does not exist!"
       continue
     fi
-
-    chmod "${mode}" "${file}"
-    chown "${owner}:${group}" "${file}"
 
     ## The permissions should not be reset during upgrades.
     if dpkg-statoverride --list | grep -q "${file%/}"; then
@@ -40,10 +76,10 @@ set_file_perms() {
       ## match, we remove and re-add the entry to update it.
       if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${mode:1} ${file%/}"; then
         dpkg-statoverride --remove "${file}"
-        dpkg-statoverride --add "${owner}" "${group}" "${mode}" "${file}"
+        add_statoverride_entry
       fi
     else
-      dpkg-statoverride --add "${owner}" "${group}" "${mode}" "${file}"
+      add_statoverride_entry
     fi
 
     if ! [ "${capability}" = "" ]; then
