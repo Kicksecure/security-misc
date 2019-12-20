@@ -40,7 +40,7 @@ add_statoverride_entry() {
         if [ "$string_length_of_existing_mode" = "4" ]; then
           new_mode="${existing_mode:1}"
         else
-          new_mode="${existing_mode}"
+          new_mode="$existing_mode"
         fi
 
         echo "suid - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
