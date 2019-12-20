@@ -17,47 +17,43 @@ echo_wrapper() {
    #"$@"
 }
 
-add_statoverride_entry() {
-  if [ "${nosuid}" = "true" ]; then
-    echo "fso: $fso"
-    while read -r line; do
-      if ! read -r file_name existing_mode owner group; then
-        continue
+add_nosuid_statoverride_entry() {
+  echo "fso: $fso"
+  while read -r line; do
+    if ! read -r file_name existing_mode owner group; then
+      continue
+    fi
+
+    ## -h file      True if file is a symbolic Link.
+    ## -u file      True if file has its set-user-id bit set.
+    ## -g file      True if file has its set-group-id bit set.
+
+    if test -h "$file_name" ; then
+      ## https://forums.whonix.org/t/kernel-hardening/7296/323
+      true "skip symlink: $file_name"
+      continue
+    fi
+
+    if test -u "$file_name" || test -g "$file_name"; then
+      string_length_of_existing_mode="${#existing_mode}"
+      if [ "$string_length_of_existing_mode" = "4" ]; then
+        new_mode="${existing_mode:1}"
+      else
+        new_mode="$existing_mode"
       fi
 
-      ## -h file      True if file is a symbolic Link.
-      ## -u file      True if file has its set-user-id bit set.
-      ## -g file      True if file has its set-group-id bit set.
+      echo "suid - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
-      if test -h "$file_name" ; then
-        ## https://forums.whonix.org/t/kernel-hardening/7296/323
-        true "skip symlink: $file_name"
-        continue
-      fi
-
-      if test -u "$file_name" || test -g "$file_name"; then
-        string_length_of_existing_mode="${#existing_mode}"
-        if [ "$string_length_of_existing_mode" = "4" ]; then
-          new_mode="${existing_mode:1}"
-        else
-          new_mode="$existing_mode"
-        fi
-
-        echo "suid - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
-
-        if dpkg-statoverride --list | grep -q "$file_name"; then
-          if ! dpkg-statoverride --list | grep -q "$owner $group $new_mode $file_name"; then
-            echo_wrapper dpkg-statoverride --remove "$file_name"
-            echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
-          fi
-        else
+      if dpkg-statoverride --list | grep -q "$file_name"; then
+        if ! dpkg-statoverride --list | grep -q "$owner $group $new_mode $file_name"; then
+          echo_wrapper dpkg-statoverride --remove "$file_name"
           echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
         fi
+      else
+        echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
       fi
-    done < <( stat -c "%n %a %U %G" "${fso_without_trailing_slash}/"** )
-  else
-    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
-  fi
+    fi
+  done < <( stat -c "%n %a %U %G" "${fso_without_trailing_slash}/"** )
 }
 
 set_file_perms() {
@@ -100,7 +96,7 @@ set_file_perms() {
       ## If mode_from_config is "nosuid" the config does not set owner and
       ## group. Therefore do not enforce owner/group check.
 
-      add_statoverride_entry
+      add_nosuid_statoverride_entry
     else
       if ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
          echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
@@ -125,17 +121,13 @@ set_file_perms() {
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
           echo_wrapper dpkg-statoverride --remove "$fso_without_trailing_slash"
-          add_statoverride_entry
+          echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
         fi
       else
         ## There is no fso entry. Therefore add one.
-        add_statoverride_entry
+        echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
       fi
     fi
-
-
-
-
 
     if [ "$capability" = "" ]; then
       continue
