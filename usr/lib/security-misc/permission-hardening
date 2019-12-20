@@ -50,6 +50,17 @@ add_nosuid_statoverride_entry() {
         new_mode="$existing_mode"
       fi
 
+## https://forums.whonix.org/t/permission-hardening/8655/10
+#       if [ "$new_mode" = "755" ]; then
+#         new_mode=744
+#       fi
+#       if [ "$new_mode" = "754" ]; then
+#         new_mode=744
+#       fi
+#       if [ "$new_mode" = "745" ]; then
+#         new_mode=744
+#       fi
+
       echo "INFO: $setuid_output $setguid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
       if dpkg-statoverride --list | grep -q "$file_name"; then
