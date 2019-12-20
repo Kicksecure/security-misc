@@ -154,15 +154,15 @@ set_file_perms() {
       continue
     fi
 
-    if ! [ -e "$fso" ]; then
-      echo "INFO: fso: '$fso' - does not exist. This is likely normal."
-      continue
-    fi
-
     fso_without_trailing_slash="${fso%/}"
 
     if [ "$mode_from_config" = "whitelist" ]; then
       whitelist+="$fso_without_trailing_slash "
+      continue
+    fi
+
+    if ! [ -e "$fso" ]; then
+      echo "INFO: fso: '$fso' - does not exist. This is likely normal."
       continue
     fi
 
