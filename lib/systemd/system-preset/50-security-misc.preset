@@ -1,6 +1,7 @@
 ## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+## https://forums.whonix.org/t/restrict-hardware-information-to-root-testers-wanted/8618
 disable hide-hardware-info.service
 
 ## Disable for now until development finished / tested.
