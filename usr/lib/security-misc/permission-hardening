@@ -18,7 +18,13 @@ echo_wrapper_ignore() {
 
 echo_wrapper_audit() {
    echo "run: $@"
-   "$@" || echo "ERROR: above command failed!" >&2
+   return_code=0
+   "$@" || \
+      { \
+      return_code="$?" ; \
+      exit_code=203 ; \
+      echo "ERROR: above command failed with exit code '$return_code'!" >&2 ; \
+      };
 }
 
 add_nosuid_statoverride_entry() {
