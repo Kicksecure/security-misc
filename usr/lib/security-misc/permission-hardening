@@ -7,8 +7,6 @@
 
 exit_code=0
 
-config_file="/etc/permission-hardening.conf"
-
 echo_wrapper() {
    echo "run: $@"
    "$@"
@@ -161,6 +159,13 @@ set_file_perms() {
   done < "$config_file"
 }
 
-set_file_perms
+parse_config_folder() {
+  shopt -s nullglob
+  for config_file in /etc/permission-hardening.d/*.conf /usr/local/etc/permission-hardening.d/*.conf; do
+    set_file_perms
+  done
+}
+
+parse_config_folder
 
 exit "$exit_code"
