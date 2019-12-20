@@ -127,6 +127,7 @@ set_file_perms() {
         add_statoverride_entry
       fi
     else
+      ## There is no fso entry. Therefore add one.
       add_statoverride_entry
     fi
 
