@@ -179,7 +179,7 @@ set_file_perms() {
       continue
     fi
 
-    ## Use dpkg-statoverride  so permissions are not reset during upgrades.
+    ## Use dpkg-statoverride so permissions are not reset during upgrades.
 
     nosuid=""
     if [ "$mode_from_config" = "nosuid" ]; then
