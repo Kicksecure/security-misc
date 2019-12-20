@@ -116,7 +116,10 @@ set_file_perms() {
       ## Check there is an entry for the fso.
       if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
         ## There is an fso entry. Check if owner/group/mode match.
-        if ! dpkg-statoverride --list | grep -q "$owner $group $mode_from_config $fso_without_trailing_slash"; then
+        if dpkg-statoverride --list | grep -q "$owner $group $mode_from_config $fso_without_trailing_slash"; then
+          ## The owner/group/mode matches. No further action required.
+          true OK
+        else
           ## The owner/group/mode do not match, therefore remove and re-add the entry to update it.
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
