@@ -1,3 +1,105 @@
+commit b31abea0af60874d4a48fd0da56978b0081eaef8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:49:31 2019 -0500
+
+    improve error handling
+
+commit 79cd3b86b6e5e186da66fd329b04fb3b42c0276e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:47:23 2019 -0500
+
+    comment
+
+commit b3458cc6ee368968de1510e9d05ddd3791fe5f6d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:45:59 2019 -0500
+
+    fix checking existing entries to avoid needless calls to dpkg-statoverride
+
+commit 370f3c5e541612021fa181e39507aa4ba8131731
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:35:05 2019 -0500
+
+    comment
+
+commit 133d09f2984506e0b0fd2e17a893b8d3e37b8431
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:33:16 2019 -0500
+
+    output
+
+commit 1ffa8e197e9ba9722d5fb2695de343df9d9db597
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:31:26 2019 -0500
+
+    speed up setuid removal by using find with '-perm /u=s,g=s'
+    
+    https://forums.whonix.org/t/permission-hardening/8655/19
+
+commit 4cfdf2c65b57f410163653304871ee3eb1d3f6ea
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:21:27 2019 -0500
+
+    fix, re-enforce nosuid even if changed on the disk
+
+commit e36868e675cbd80a36053956dbef71992cceca24
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 10:02:46 2019 -0500
+
+    output
+
+commit 50b8f65490555d9d12fd28991040c00a358b3b84
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 09:59:28 2019 -0500
+
+    add sanity test: count if we really processed all files
+
+commit e28da89253f646969cdc2b0b46617bd603f917a5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 09:48:06 2019 -0500
+
+    /bin/sudo whitelist / /bin/bwrap whitelist
+
+commit 55faa7b9978df52bcb98a562554473f80db1f171
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 09:43:23 2019 -0500
+
+    fix missing processing files bug
+    
+    https://forums.whonix.org/t/permission-hardening/8655/16
+
+commit fbe2479f486add30cd29f5c4063a140c42c502fe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:54:56 2019 -0500
+
+    count processed file system objects
+    
+    to be able to verify if any were "forgotten"
+
+commit 195ea522f5a8582851792b53047185717a6f679e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:52:14 2019 -0500
+
+    fix
+
+commit 6f8231be70940e2afb0ec8e4a0d60bb4f166f5b9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:51:55 2019 -0500
+
+    debugging
+
+commit ed50f98010c8b7878d518273703e00fa561e980b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:47:22 2019 -0500
+
+    output
+
+commit 089c40135f2a7f0da128808a27b696e36aff6821
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:15:00 2019 -0500
+
+    bumped changelog version
+
 commit 6d30e3b4a2c0e5cf53d88b4a033511aa49b8f227
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 08:13:23 2019 -0500
