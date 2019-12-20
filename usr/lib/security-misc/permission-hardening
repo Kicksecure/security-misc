@@ -127,17 +127,19 @@ set_file_perms() {
       add_statoverride_entry
     fi
 
-    if ! [ "$capability" = "" ]; then
-      if [ "$capability" = "none" ]; then
-        echo_wrapper setcap -r "$fso"
-      else
-        if ! capsh --print | grep "Bounding set" | grep -q "$capability"; then
-           echo "ERROR: Capability '$capability' does not exist!" >&2
-           continue
-        fi
+    if [ "$capability" = "" ]; then
+      continue
+    fi
 
-        echo_wrapper setcap "${capability}+ep" "$fso"
+    if [ "$capability" = "none" ]; then
+      echo_wrapper setcap -r "$fso"
+    else
+      if ! capsh --print | grep "Bounding set" | grep -q "$capability"; then
+         echo "ERROR: Capability '$capability' does not exist!" >&2
+         continue
       fi
+
+      echo_wrapper setcap "${capability}+ep" "$fso"
     fi
   done < "${config_file}"
 }
