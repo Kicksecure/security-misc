@@ -42,7 +42,7 @@ add_nosuid_statoverride_entry() {
       setguid_output="set-group-id"
     fi
 
-    if [ "$setguid" = "true" ] || [ "setguid" = "true" ]; then
+    if [ "$setguid" = "true" ] || [ "$setguid" = "true" ]; then
       string_length_of_existing_mode="${#existing_mode}"
       if [ "$string_length_of_existing_mode" = "4" ]; then
         new_mode="${existing_mode:1}"
