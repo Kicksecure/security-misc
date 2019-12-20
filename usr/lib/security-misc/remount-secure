@@ -76,6 +76,15 @@ securityfs() {
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
+lib() {
+   if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
+      return 0
+   fi
+   ## Not using noexec on /lib.
+   mount -o nosuid,nodev --bind /lib /lib || exit_code=7
+   touch "/var/run/remount-secure/${FUNCNAME}"
+}
+
 end() {
    exit $exit_code
 }
@@ -86,6 +95,7 @@ main() {
    shm "$@"
    tmp "$@"
    securityfs "$@"
+   lib "$@"
    end "$@"
 }
 
