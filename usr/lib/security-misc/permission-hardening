@@ -89,6 +89,8 @@ set_file_perms() {
       continue
     fi
 
+    fso_without_trailing_slash="${fso%/}"
+
     nosuid=""
     if [ "$mode_from_config" = "nosuid" ]; then
       nosuid="true"
@@ -113,8 +115,6 @@ set_file_perms() {
     fi
 
     ## Use dpkg-statoverride  so permissions are not reset during upgrades.
-
-    fso_without_trailing_slash="${fso%/}"
 
     if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
       ## If there is an entry for the fso, but the owner/group/mode do not
