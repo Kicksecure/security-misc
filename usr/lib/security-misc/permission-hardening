@@ -92,9 +92,11 @@ set_file_perms() {
     nosuid=""
     if [ "$mode_from_config" = "nosuid" ]; then
       nosuid="true"
-    elif ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
-      echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
-      continue
+    else
+      if ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
+         echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
+         continue
+      fi
     fi
 
     if [ "$mode_from_config" = "nosuid" ]; then
