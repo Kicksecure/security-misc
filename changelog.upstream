@@ -1,3 +1,45 @@
+commit ff0a26fb5d65450c0a2b5fb86758d3d823a717e9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:49:19 2019 -0500
+
+    comment
+
+commit 71496a33ab27455d2856284d21f261dd20780dc2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:47:53 2019 -0500
+
+    skip folders are these are not suid / guid
+
+commit 9321ecff4139f0776f93a9bd8c9606bcaf94f568
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:43:53 2019 -0500
+
+    no more need to add/remove /
+
+commit b95225b6a6b45b84778ba2427ae4628f102e6d05
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:37:05 2019 -0500
+
+    pipefail
+
+commit cad6f328f40bb8b3c414e2bd6c7cb86e625f6d64
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:34:44 2019 -0500
+
+    minor
+
+commit 3265f9894d1c677419718de52570d304a4e69279
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:27:43 2019 -0500
+
+    output
+
+commit 28d12c3966e3ddfadbf7d44e7c7bcdc37e1a7d25
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:09:22 2019 -0500
+
+    bumped changelog version
+
 commit 1615ebec58b563224c7c02cd2b1f83b0954c48ca
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 11:07:44 2019 -0500
