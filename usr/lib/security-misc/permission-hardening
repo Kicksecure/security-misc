@@ -13,7 +13,7 @@ exit_code=0
 
 echo_wrapper() {
    echo "run: $@"
-   "$@"
+   "$@" || echo "ERROR: above command failed!" >&2
 }
 
 add_nosuid_statoverride_entry() {
