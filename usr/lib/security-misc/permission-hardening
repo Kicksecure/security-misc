@@ -18,7 +18,7 @@ echo_wrapper() {
 
 add_nosuid_statoverride_entry() {
   fso_to_process="${fso_without_trailing_slash}/"
-  should_be_counter="$(find "$fso_to_process" | wc -l)"
+  should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)"
   counter_actual=0
 
   while read -r line; do
@@ -119,7 +119,7 @@ add_nosuid_statoverride_entry() {
 
   ## /lib will hit ARG_MAX.
   ## https://forums.whonix.org/t/kernel-hardening/7296/326
-  done < <( find "$fso_to_process" -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
+  done < <( find "$fso_to_process" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
 
   ## Sanity test.
   if [ ! "$should_be_counter" = "$counter_actual" ]; then
