@@ -24,6 +24,9 @@ add_statoverride_entry() {
         continue
       fi
 
+      ## -u file      True if file has its set-user-id bit set.
+      ## -g file      True if file has its set-group-id bit set.
+
       if test -u "${file_name}" || test -g "${file_name}"; then
         string_length_of_existing_mode="${#existing_mode}"
         if [ "$string_length_of_existing_mode" = "4" ]; then
