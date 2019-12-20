@@ -206,6 +206,12 @@ set_file_perms() {
       fi
 
       ## Check there is an entry for the fso.
+      ##
+      ## example: dpkg-statoverride --list | grep /home
+      ## output:
+      ## root root 755 /home
+      ##
+      ## dpkg-statoverride does not show leading '0'.
       if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
         ## There is an fso entry. Check if owner/group/mode match.
         if dpkg-statoverride --list | grep -q "$owner $group $mode_for_grep $fso_without_trailing_slash"; then
