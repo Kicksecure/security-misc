@@ -45,17 +45,17 @@ add_statoverride_entry() {
         echo "suid - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
         if dpkg-statoverride --list | grep -q "$file_name"; then
-          if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${existing_mode:1} $file_name"; then
+          if ! dpkg-statoverride --list | grep -q "$owner $group ${existing_mode:1} $file_name"; then
             echo_wrapper dpkg-statoverride --remove "$file_name"
-            echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "$file_name"
+            echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "${existing_mode:1}" "$file_name"
           fi
         else
-          echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "$file_name"
+          echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "${existing_mode:1}" "$file_name"
         fi
       fi
     done < <( stat -c "%n %a %U %G" "${fso%/}/"** )
   else
-    echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "$mode" "${fso%/}"
+    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode" "${fso%/}"
   fi
 }
 
@@ -73,13 +73,13 @@ set_file_perms() {
       true OK
     else
       exit_code=200
-      echo "ERROR: cannot parse line with invalid character: ${line}" >&2
+      echo "ERROR: cannot parse line with invalid character: $line" >&2
       continue
     fi
 
-    if ! read -r fso mode owner group capability <<< "${line}" ; then
+    if ! read -r fso mode owner group capability <<< "$line" ; then
       exit_code=201
-      echo "ERROR: cannot parse line: ${line}" >&2
+      echo "ERROR: cannot parse line: $line" >&2
       continue
     fi
 
@@ -98,12 +98,12 @@ set_file_perms() {
 
     if [ ! "$mode" = "nosuid" ]; then
       if ! getent passwd | grep -q "^${owner}:"; then
-         echo "ERROR: User '${owner}' does not exist!" >&2
+         echo "ERROR: User '$owner' does not exist!" >&2
          continue
       fi
 
       if ! getent group | grep -q "^${group}:"; then
-         echo "ERROR: Group '${group}' does not exist!" >&2
+         echo "ERROR: Group '$group' does not exist!" >&2
          continue
       fi
     fi
@@ -112,7 +112,7 @@ set_file_perms() {
     if dpkg-statoverride --list | grep -q "${fso%/}"; then
       ## If there is an entry for the fso, but the owner/group/mode do not
       ## match, we remove and re-add the entry to update it.
-      if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${mode:1} ${fso%/}"; then
+      if ! dpkg-statoverride --list | grep -q "$owner $group ${mode:1} ${fso%/}"; then
         echo_wrapper dpkg-statoverride --remove "${fso}"
         add_statoverride_entry
       fi
