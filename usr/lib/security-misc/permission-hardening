@@ -114,10 +114,12 @@ set_file_perms() {
 
     ## Use dpkg-statoverride  so permissions are not reset during upgrades.
 
-    if dpkg-statoverride --list | grep -q "${fso%/}"; then
+    fso_without_trailing_slash="${fso%/}"
+
+    if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
       ## If there is an entry for the fso, but the owner/group/mode do not
       ## match, we remove and re-add the entry to update it.
-      if ! dpkg-statoverride --list | grep -q "$owner $group $mode_from_config ${fso%/}"; then
+      if ! dpkg-statoverride --list | grep -q "$owner $group $mode_from_config $fso_without_trailing_slash"; then
         echo_wrapper dpkg-statoverride --remove "${fso}"
         add_statoverride_entry
       fi
