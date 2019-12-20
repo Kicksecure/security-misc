@@ -56,7 +56,7 @@ add_statoverride_entry() {
       fi
     done < <( stat -c "%n %a %U %G" "${fso%/}/"** )
   else
-    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode" "${fso%/}"
+    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "${fso%/}"
   fi
 }
 
@@ -78,7 +78,7 @@ set_file_perms() {
       continue
     fi
 
-    if ! read -r fso mode owner group capability <<< "$line" ; then
+    if ! read -r fso mode_from_config owner group capability <<< "$line" ; then
       exit_code=201
       echo "ERROR: cannot parse line: $line" >&2
       continue
@@ -90,14 +90,14 @@ set_file_perms() {
     fi
 
     nosuid=""
-    if [ "$mode" = "nosuid" ]; then
+    if [ "$mode_from_config" = "nosuid" ]; then
       nosuid="true"
-    elif ! seq -w 000 4777 | grep -qw "$mode"; then
-      echo "ERROR: Mode '$mode' is invalid!" >&2
+    elif ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
+      echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
       continue
     fi
 
-    if [ ! "$mode" = "nosuid" ]; then
+    if [ ! "$mode_from_config" = "nosuid" ]; then
       if ! getent passwd | grep -q "^${owner}:"; then
          echo "ERROR: User '$owner' does not exist!" >&2
          continue
@@ -114,7 +114,7 @@ set_file_perms() {
     if dpkg-statoverride --list | grep -q "${fso%/}"; then
       ## If there is an entry for the fso, but the owner/group/mode do not
       ## match, we remove and re-add the entry to update it.
-      if ! dpkg-statoverride --list | grep -q "$owner $group ${mode:1} ${fso%/}"; then
+      if ! dpkg-statoverride --list | grep -q "$owner $group ${mode_from_config:1} ${fso%/}"; then
         echo_wrapper dpkg-statoverride --remove "${fso}"
         add_statoverride_entry
       fi
