@@ -200,6 +200,16 @@ debian/security-misc.postinst
 /usr/lib/security-misc/permission-lockdown
 /usr/share/pam-configs/mkhomedir-security-misc
 
+* SUID / GUID removal and permission hardening.
+A systemd service removed SUID / GUID from non-essential binaries as these are
+often used in privilege escalation attacks.
+It is disabled by default for now during testing and can optionally be enabled
+by running `systemctl enable permission-hardening.service` as root.
+https://forums.whonix.org/t/permission-hardening/8655
+/usr/lib/security-misc/permission-hardening
+/lib/systemd/system/permission-hardening.service
+/etc/permission-hardening.d/30_default.conf
+
 access rights relaxations:
 
 Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with
