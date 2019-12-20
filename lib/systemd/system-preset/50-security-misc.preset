@@ -2,3 +2,6 @@
 ## See the file COPYING for copying conditions.
 
 disable hide-hardware-info.service
+
+## Disable for now until development finished / tested.
+disable permission-hardening.service

@@ -11,8 +11,7 @@ config_file="/etc/permission-hardening.conf"
 
 echo_wrapper() {
    echo "run: $@"
-   ## TODO
-   #"$@"
+   "$@"
 }
 
 add_nosuid_statoverride_entry() {
