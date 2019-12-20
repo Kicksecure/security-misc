@@ -17,7 +17,7 @@ echo_wrapper() {
 
 add_statoverride_entry() {
   if [ "${nosuid}" = "true" ]; then
-    echo "file: $file"
+    echo "fso: $fso"
     while read -r line; do
       if ! read -r file_name existing_mode owner group; then
         continue
@@ -35,9 +35,9 @@ add_statoverride_entry() {
           echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${existing_mode:1}" "${file_name}"
         fi
       fi
-    done < <( stat -c "%n %a %U %G" "${file%/}/"** )
+    done < <( stat -c "%n %a %U %G" "${fso%/}/"** )
   else
-    echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${mode}" "${file%/}"
+    echo_wrapper dpkg-statoverride --add --update "${owner}" "${group}" "${mode}" "${fso%/}"
   fi
 }
 
@@ -59,14 +59,14 @@ set_file_perms() {
       continue
     fi
 
-    if ! read -r file mode owner group capability <<< "${line}" ; then
+    if ! read -r fso mode owner group capability <<< "${line}" ; then
       exit_code=201
       echo "ERROR: cannot parse line: ${line}" >&2
       continue
     fi
 
-    if ! [ -e "${file}" ]; then
-      echo "INFO: File '${file}' does not exist!"
+    if ! [ -e "${fso}" ]; then
+      echo "INFO: fso '${fso}' does not exist!"
       continue
     fi
 
@@ -89,11 +89,11 @@ set_file_perms() {
     fi
 
     ## The permissions should not be reset during upgrades.
-    if dpkg-statoverride --list | grep -q "${file%/}"; then
-      ## If there is an entry for the file, but the owner/group/mode do not
+    if dpkg-statoverride --list | grep -q "${fso%/}"; then
+      ## If there is an entry for the fso, but the owner/group/mode do not
       ## match, we remove and re-add the entry to update it.
-      if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${mode:1} ${file%/}"; then
-        echo_wrapper dpkg-statoverride --remove "${file}"
+      if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${mode:1} ${fso%/}"; then
+        echo_wrapper dpkg-statoverride --remove "${fso}"
         add_statoverride_entry
       fi
     else
@@ -102,14 +102,14 @@ set_file_perms() {
 
     if ! [ "${capability}" = "" ]; then
       if [ "${capability}" = "none" ]; then
-        echo_wrapper setcap -r "${file}"
+        echo_wrapper setcap -r "${fso}"
       else
         if ! capsh --print | grep "Bounding set" | grep -q "${capability}"; then
            echo "ERROR: Capability '${capability}' does not exist!" >&2
            continue
         fi
 
-        echo_wrapper setcap "${capability}+ep" "${file}"
+        echo_wrapper setcap "${capability}+ep" "${fso}"
       fi
     fi
   done < "${config_file}"
