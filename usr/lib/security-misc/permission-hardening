@@ -19,7 +19,7 @@ add_statoverride_entry() {
       fi
 
       if test -u "${file_name}" || test -g "${file_name}"; then
-        echo "suid - file_name: '${file_name}' | existing_mode: '${existing_mode}'" >&2
+        echo "suid - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
 
         if dpkg-statoverride --list | grep -q "${file_name}"; then
           if ! dpkg-statoverride --list | grep -q "${owner} ${group} ${existing_mode:1} ${file_name}"; then
