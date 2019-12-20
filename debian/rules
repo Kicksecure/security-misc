@@ -8,10 +8,6 @@
 %:
 	dh $@ --with=config-package
 
-override_dh_installman:
-	make manpages
-	dh_installman $(CURDIR)/debian/tmp-man/*
-
 override_dh_installchangelogs:
 	dh_installchangelogs changelog.upstream upstream
 
