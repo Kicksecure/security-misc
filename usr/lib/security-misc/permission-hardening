@@ -84,8 +84,8 @@ set_file_perms() {
       continue
     fi
 
-    if ! [ -e "${fso}" ]; then
-      echo "INFO: fso '${fso}' does not exist!"
+    if ! [ -e "$fso" ]; then
+      echo "INFO: fso '$fso' does not exist!"
       continue
     fi
 
@@ -120,7 +120,7 @@ set_file_perms() {
       ## If there is an entry for the fso, but the owner/group/mode do not
       ## match, we remove and re-add the entry to update it.
       if ! dpkg-statoverride --list | grep -q "$owner $group $mode_from_config $fso_without_trailing_slash"; then
-        echo_wrapper dpkg-statoverride --remove "${fso}"
+        echo_wrapper dpkg-statoverride --remove "$fso"
         add_statoverride_entry
       fi
     else
@@ -129,14 +129,14 @@ set_file_perms() {
 
     if ! [ "$capability" = "" ]; then
       if [ "$capability" = "none" ]; then
-        echo_wrapper setcap -r "${fso}"
+        echo_wrapper setcap -r "$fso"
       else
         if ! capsh --print | grep "Bounding set" | grep -q "$capability"; then
            echo "ERROR: Capability '$capability' does not exist!" >&2
            continue
         fi
 
-        echo_wrapper setcap "${capability}+ep" "${fso}"
+        echo_wrapper setcap "${capability}+ep" "$fso"
       fi
     fi
   done < "${config_file}"
