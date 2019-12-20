@@ -1,3 +1,506 @@
+commit 65248a94efa4646127d8e11447e49a37f3ff986e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 07:06:50 2019 -0500
+
+    readme
+
+commit 8e112c34232b8ef88fb0c0fb19f2983de4e5a0a1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:53:24 2019 -0500
+
+    description
+
+commit 24ea70384bb6c34f283ff1e71e4f7ed34133db5f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:53:03 2019 -0500
+
+    description
+
+commit 0ae3e689b5f12101156b4be84631679c622f2e98
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:35:02 2019 -0500
+
+    comment
+
+commit 050f4d8b9482e1513ceccfb39394606b173fd8a5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:34:37 2019 -0500
+
+    comment
+
+commit 36043fe5ccdbd798483096a104a40b9cc013a487
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:33:41 2019 -0500
+
+    comment
+
+commit fb4254547b39160c410b1f83ed56aa7653291df1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:32:04 2019 -0500
+
+    comment
+
+commit cca0908d9a73430fb97577fb6ae42b7416e72e6a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:11:38 2019 -0500
+
+    fix
+
+commit e254b8b52d61432084273a3ec91bb5f4b377163f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:09:17 2019 -0500
+
+    fix
+
+commit 7f8b3c76de6e140b676d960004e779f9846c8cb8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:02:17 2019 -0500
+
+    output
+
+commit 071c64dc413c8a868866ddf699f653b371ac3b19
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:01:49 2019 -0500
+
+    enable 'set -e'
+
+commit b97c66707c3d3e8bb9164a35fe83974642f9652c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:59:05 2019 -0500
+
+    minor
+
+commit 17b4f12276349f28d9fc37944ece87fb6f7827a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:58:42 2019 -0500
+
+    output
+
+commit 48fe7312bf6b87a94678ed8a2eb0a01f2a88e371
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:57:41 2019 -0500
+
+    update config
+
+commit 87d820d84cd44e427c8990cf295da7ab6890040e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:54:16 2019 -0500
+
+    comment
+
+commit 918cbb4e257bab0ee4bb6eb303df5e65e34b9963
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:51:25 2019 -0500
+
+    output
+
+commit c8cf09a4cbe7721e3d97c62785a5d25fe3f61115
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:50:16 2019 -0500
+
+    output
+
+commit 46466c12ad9dcc62d52dd3e887665ced6bdedf3a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:49:11 2019 -0500
+
+    parse drop-in config folder rather than only one config file
+
+commit 66fd31189dd1c2ccc5e6fb51278b0646c5188320
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:37:33 2019 -0500
+
+    improve output if set-user-id / set-group-id is set
+
+commit 6dd6530fa539a55feecc28cecdc812b787b555a6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:32:26 2019 -0500
+
+    remove hardening-enable
+    
+    please invent package security-paranoid instead
+    
+    https://forums.whonix.org/t/security-hardening-tool-usr-bin-hardening-enable-by-security-misc/8609
+
+commit 6c8127e3cd32c04a6eb4641ad856c7bf2c777fee
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:29:37 2019 -0500
+
+    remove "/lib/ nosuid" from permission hardening
+    
+    Takes 1 minute to parse. No SUID binaries there by default.
+    remount-secure mounts it with nosuid anyhow.
+    Therefore no processing it here.
+
+commit af0f074987b21ba4ad3f331ddaa622082d76fceb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:27:11 2019 -0500
+
+    remount /lib with nosuid,nodev
+    
+    https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/22
+
+commit 7f201604779e442660c4c13798b2b48d706576ac
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:24:00 2019 -0500
+
+    comment
+
+commit a135ae94009c4f6492ed8c779ceaefcfaf19e123
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:22:59 2019 -0500
+
+    use must manually enable permission-hardening.service
+    
+    until development finished
+
+commit fa6f1e156898572513cacb1d65b042482896011a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 05:19:39 2019 -0500
+
+    output
+
+commit a26cb94bfd252f939f02ee50c76efb67dcb0235c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:49:21 2019 -0500
+
+    globstar no longer required
+
+commit c66e9abe18f0809df4f6b84772774431afcadd6f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:48:57 2019 -0500
+
+    comment
+
+commit d1d0afff34a562d29726fbb3382ebe932e04a267
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:48:02 2019 -0500
+
+    fix
+    
+    fso: /lib/
+    usr/lib/security-misc/permission-hardening: line 19: /usr/bin/stat: Argument list too long
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/326
+
+commit e74d2e4f94f4cdb2f3a83f27e17e19e9e4078961
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:23:14 2019 -0500
+
+    output
+
+commit eb8635903379d1245c2c1c35eaf33c1a45ef514a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:20:05 2019 -0500
+
+    refactoring
+
+commit bb84fca184ee32f227fb5b210f9eea7afbdf75c0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:08:46 2019 -0500
+
+    refactoring
+
+commit f92b41419558f01e7ec0ec3edba3af6a550c5911
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:06:28 2019 -0500
+
+    refactoring
+
+commit 4c44871e9d3070d73f298eca051ee303b01ea56c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:02:05 2019 -0500
+
+    comment
+
+commit 6876a2eaa87e3eead822e5f4f7d1fc53d0853ebd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 04:01:40 2019 -0500
+
+    comment
+
+commit 35c4fce61b784a4093339b64e5564d93c1f91870
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:54:46 2019 -0500
+
+    fix "dpkg-statoverride: warning: stripping trailing /"
+
+commit 9bd9012ab17f2c3422cdab20f57e3852ae1f14de
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:46:50 2019 -0500
+
+    refactoring
+
+commit 788a2c1ba3d35eb26440386e2c3269fb8cf4992d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:45:01 2019 -0500
+
+    comment
+
+commit 55933f88766f9b2fa2f284c5d0ff098e1e11b657
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:43:36 2019 -0500
+
+    refactoring
+
+commit 9e493a9f481e03d8bd41794eee4e4efd0e39a593
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:42:09 2019 -0500
+
+    refactoring
+
+commit b92a690c166cf3bc97d34ae977cc0c6d2342cb86
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:40:47 2019 -0500
+
+    refactoring
+
+commit 98535e3a2bc5d0d54694a1ea71f3afef3f468943
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:39:25 2019 -0500
+
+    refactoring
+
+commit ecbba2fd61f6d182dcd51f42b579ecb50ffdbedd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:38:39 2019 -0500
+
+    refactoring
+
+commit 20b8a407ac5984ba621ebb0150b47067c32ddc76
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:25:17 2019 -0500
+
+    refactoring
+
+commit 6cd9eb44fbc451a08908a9899ca114843c32edf3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:24:07 2019 -0500
+
+    refactoring
+
+commit 706dba104d201de4eed6886bf9570bf6851c2c3f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:19:12 2019 -0500
+
+    code simplification
+
+commit 01dd567f8b3764ae241a4df39d54617089532b9d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:16:43 2019 -0500
+
+    fix, if fso has exactly the mode we want (not 3 instead of 4 string length), not need to reset it
+
+commit 4f65b0fc1e33037e86289627e1c9bcf040af86c8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:13:27 2019 -0500
+
+    refactoring
+
+commit bfee6b60cbd799e31b75e20bc5820f65f9993899
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:11:11 2019 -0500
+
+    comment
+
+commit d64cdc124793bda57916b2c4d73465b17ae44af6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:04:41 2019 -0500
+
+    refactoring
+
+commit 7c5c65a6c13ddf23d7324283815d653974802fd9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:04:13 2019 -0500
+
+    comment
+
+commit b31d8cd3fc905b61707f77e08cff72e74f18c46b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:03:40 2019 -0500
+
+    fix
+
+commit c626290673d44b2a6485aeb24888f35c3782c151
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:02:26 2019 -0500
+
+    refactoring
+
+commit d5ff1d6f28a62f858fd0a9edf905d6727413a3c2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 03:00:39 2019 -0500
+
+    refactoring
+
+commit 640ca1d24dad657f0590c98a353dc21ed18b4395
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:57:57 2019 -0500
+
+    skip symlinks
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/323?
+
+commit cc8f795799e76d61b60f31e718effb88478b0fea
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:47:04 2019 -0500
+
+    comment
+
+commit 4e5b222a081a5e8463ebe6832e7fbe68a1fb7978
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:43:33 2019 -0500
+
+    comment
+
+commit fa895ee11ec5897eb73ce066dfe5bde337cb297c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:40:42 2019 -0500
+
+    refactoring
+
+commit 2c163bf4398d67730efb23d70e2f9fc41ebb0459
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:39:53 2019 -0500
+
+    check string length of permission variable
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/322
+
+commit a89befd902f6976ebef303b22ee9f9cbc3a1cc23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:20:54 2019 -0500
+
+    code simplification
+
+commit 72812da63f60bd1955e52ac52ce583c9d9a18c95
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:16:32 2019 -0500
+
+    comment
+
+commit 39a41cc27ba93ede21e69270b3b113a037f77064
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:14:45 2019 -0500
+
+    refactoring
+
+commit 2ed6452590c443d88862f12ef25dcd5acbe98de9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:12:43 2019 -0500
+
+    downgrade to info
+
+commit a5e55dfcfca5b15bbbdc22788e6615d080c44819
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:11:39 2019 -0500
+
+    quotes
+
+commit 3187cee4fba89d72f8d0c26a9987b33adc0d8faa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:10:13 2019 -0500
+
+    output
+
+commit 5160b4c7816ce449e0dd9cbfaae28050ef2af676
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:08:05 2019 -0500
+
+    disable xtrace
+
+commit 27bfe95d253178790ee10f591af0d586907463d7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:07:49 2019 -0500
+
+    add echo wrapper
+
+commit a6988f3fb8034c2f5be6d3ee6300f9e756e0dfce
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:06:31 2019 -0500
+
+    output
+
+commit 1819577b88ae795c1a6107cf76e084859c9f6d2e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:04:34 2019 -0500
+
+    fix
+
+commit 278c60c5a01c8dcb8a035950bd9e56ed7d1d431d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 02:01:36 2019 -0500
+
+    exit non-zero if some line cannot be parsed
+    
+    therefore make systemd notice this
+    
+    therefore allow the sysadmin to notice this
+
+commit 66bcba831317cf4810e9123b305597ee85fc94bf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 01:58:35 2019 -0500
+
+    improve character whitelisting
+
+commit 8f14e808a9b27f980299ed493f1ecb85acbe1c70
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 01:32:49 2019 -0500
+
+    send error messages to stderr
+
+commit d8c9fac2e5c8bc511f593d9a477307f8a15cf2e7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 01:32:08 2019 -0500
+
+    output
+
+commit f19abaf6271fcd87226b9ef5ae3f1b567d96cd90
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 01:31:37 2019 -0500
+
+    refactoring
+
+commit c5d1e9dda7059d18fad303128f6f09c98fe955b7
+Merge: 62eb462 a20b300
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 01:30:31 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a20b30013f9ae229d1fe86cc5992aac474a9d8e6
+Merge: 62eb462 9df7407
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 06:29:58 2019 +0000
+
+    Merge pull request #44 from madaidan/permission-hardening
+    
+    Remove SUID bits
+
+commit 9df74072862b31871d0aad7bed8333fc8344ffec
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Dec 19 17:01:33 2019 +0000
+
+    Remove SUID bits
+
+commit 3c2ca0257f08f2c7fa0d0adb74345110801f9fc0
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Dec 19 17:01:08 2019 +0000
+
+    Support for removing SUID bits
+
+commit 62eb462920e8614ea904a8d3517f7592e67ecab8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 16 06:46:48 2019 -0500
+
+    skip console_users_check for Qubes users
+
+commit ab68182e118b8e76e2ce2a749b956cf96e3d02b6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 16 06:27:51 2019 -0500
+
+    bumped changelog version
+
 commit 2cab38a8b3f7423f8956c72f1bf6c399ea70c495
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 16 06:24:14 2019 -0500
