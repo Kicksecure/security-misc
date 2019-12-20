@@ -141,7 +141,7 @@ set_file_perms() {
 
       echo_wrapper setcap "${capability}+ep" "$fso"
     fi
-  done < "${config_file}"
+  done < "$config_file"
 }
 
 set_file_perms
