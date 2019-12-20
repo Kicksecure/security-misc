@@ -9,8 +9,6 @@ exit_code=0
 
 config_file="/etc/permission-hardening.conf"
 
-shopt -s globstar
-
 echo_wrapper() {
    echo "run: $@"
    ## TODO
