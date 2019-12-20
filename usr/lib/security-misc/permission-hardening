@@ -24,6 +24,7 @@ add_statoverride_entry() {
         continue
       fi
 
+      ## -h file      True if file is a symbolic Link.
       ## -u file      True if file has its set-user-id bit set.
       ## -g file      True if file has its set-group-id bit set.
 
