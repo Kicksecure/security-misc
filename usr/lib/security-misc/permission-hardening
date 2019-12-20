@@ -79,14 +79,16 @@ set_file_perms() {
       continue
     fi
 
-    if ! getent passwd | grep -q "^${owner}:" && ! [ "${mode}" = "nosuid" ]; then
-      echo "ERROR: User '${owner}' does not exist!" >&2
-      continue
-    fi
+    if [ ! "${mode}" = "nosuid" ]; then
+      if ! getent passwd | grep -q "^${owner}:"; then
+         echo "ERROR: User '${owner}' does not exist!" >&2
+         continue
+      fi
 
-    if ! getent group | grep -q "^${group}:" && ! [ "${mode}" = "nosuid" ]; then
-      echo "ERROR: Group '${group}' does not exist!" >&2
-      continue
+      if ! getent group | grep -q "^${group}:"; then
+         echo "ERROR: Group '${group}' does not exist!" >&2
+         continue
+      fi
     fi
 
     ## The permissions should not be reset during upgrades.
