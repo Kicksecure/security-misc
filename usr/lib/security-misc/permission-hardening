@@ -54,9 +54,9 @@ add_statoverride_entry() {
           echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
         fi
       fi
-    done < <( stat -c "%n %a %U %G" "${fso%/}/"** )
+    done < <( stat -c "%n %a %U %G" "${fso_without_trailing_slash}/"** )
   else
-    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "${fso%/}"
+    echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
   fi
 }
 
