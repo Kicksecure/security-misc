@@ -90,7 +90,7 @@ set_file_perms() {
     fi
 
     if ! [ -e "$fso" ]; then
-      echo "INFO: fso '$fso' does not exist!"
+      echo "INFO: fso: '$fso' - does not exist!"
       continue
     fi
 
