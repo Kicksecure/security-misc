@@ -11,7 +11,12 @@ set -e
 
 exit_code=0
 
-echo_wrapper() {
+echo_wrapper_ignore() {
+   echo "run: $@"
+   "$@" || true
+}
+
+echo_wrapper_audit() {
    echo "run: $@"
    "$@" || echo "ERROR: above command failed!" >&2
 }
@@ -113,8 +118,8 @@ add_nosuid_statoverride_entry() {
       ## No need to check "dpkg-statoverride --list" for existing entries.
       ## If existing_mode was correct already, we would not have reached this point.
       ## Since existing_mode is incorrect, remove from dpkg-statoverride and re-add.
-      echo_wrapper dpkg-statoverride --remove "$file_name" || true
-      echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
+      echo_wrapper_ignore dpkg-statoverride --remove "$file_name"
+      echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
     fi
 
   ## /lib will hit ARG_MAX.
@@ -221,12 +226,12 @@ set_file_perms() {
           ## The owner/group/mode do not match, therefore remove and re-add the entry to update it.
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
-          echo_wrapper dpkg-statoverride --remove "$fso_without_trailing_slash"
-          echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
+          echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash"
+          echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
         fi
       else
         ## There is no fso entry. Therefore add one.
-        echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
+        echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
       fi
     fi
 
@@ -235,14 +240,14 @@ set_file_perms() {
     fi
 
     if [ "$capability" = "none" ]; then
-      echo_wrapper setcap -r "$fso"
+      echo_wrapper_audit setcap -r "$fso"
     else
       if ! capsh --print | grep "Bounding set" | grep -q "$capability"; then
          echo "ERROR: Capability '$capability' does not exist!" >&2
          continue
       fi
 
-      echo_wrapper setcap "${capability}+ep" "$fso"
+      echo_wrapper_audit setcap "${capability}+ep" "$fso"
     fi
   done < "$config_file"
 }
