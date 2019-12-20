@@ -8,6 +8,7 @@
 
 #set -x
 set -e
+set -o pipefail
 
 exit_code=0
 
@@ -29,7 +30,7 @@ echo_wrapper_audit() {
 
 add_nosuid_statoverride_entry() {
   fso_to_process="${fso_without_trailing_slash}/"
-  should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)"
+  should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)" || true
   counter_actual=0
 
   while read -r line; do
