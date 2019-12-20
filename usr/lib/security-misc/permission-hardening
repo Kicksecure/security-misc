@@ -120,8 +120,22 @@ add_nosuid_statoverride_entry() {
         fi
       done
 
+      is_match_whitelisted=""
+      for matchwhite_list_entry in $matchwhitelist ; do
+        if echo "$file_name" | grep -q "$matchwhite_list_entry" ; then
+          is_match_whitelisted="true"
+          ## Stop looping through the matchwhitelist.
+          break
+        fi
+      done
+
       if [ "$is_whitelisted" = "true" ]; then
         echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+        continue
+      fi
+
+      if [ "$is_match_whitelisted" = "true" ]; then
+        echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
         continue
       fi
 
@@ -178,6 +192,12 @@ set_file_perms() {
     if [ "$mode_from_config" = "whitelist" ]; then
       ## TODO: test/add white spaces inside file name support
       whitelist+="$fso_without_trailing_slash "
+      continue
+    fi
+
+    if [ "$mode_from_config" = "matchwhitelist" ]; then
+      ## TODO: test/add white spaces inside file name support
+      matchwhitelist+="$fso "
       continue
     fi
 
