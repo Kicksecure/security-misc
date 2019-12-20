@@ -37,6 +37,7 @@ add_statoverride_entry() {
 set_file_perms() {
   while read -r line; do
     if [[ "$line" =~ ^#.*$ ]]; then
+      echo "ERROR: cannot parse line with invalid character: ${line}"
       continue
     fi
 
