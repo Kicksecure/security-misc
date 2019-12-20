@@ -5,6 +5,8 @@
 
 set -x
 
+exit_code=0
+
 config_file="/etc/permission-hardening.conf"
 
 shopt -s globstar
@@ -47,11 +49,13 @@ set_file_perms() {
     if [[ "$line" =~ [0-9a-zA-Z/] ]]; then
       true OK
     else
+      exit_code=200
       echo "ERROR: cannot parse line with invalid character: ${line}" >&2
       continue
     fi
 
     if ! read -r file mode owner group capability <<< "${line}" ; then
+      exit_code=201
       echo "ERROR: cannot parse line: ${line}" >&2
       continue
     fi
@@ -107,3 +111,5 @@ set_file_perms() {
 }
 
 set_file_perms
+
+exit "$exit_code"
