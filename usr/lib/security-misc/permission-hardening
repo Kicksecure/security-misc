@@ -17,6 +17,7 @@ echo_wrapper() {
 
 add_statoverride_entry() {
   if [ "${nosuid}" = "true" ]; then
+    echo "file: $file"
     while read -r line; do
       if ! read -r file_name existing_mode owner group; then
         continue
