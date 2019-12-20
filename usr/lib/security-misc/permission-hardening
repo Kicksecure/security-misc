@@ -60,6 +60,7 @@ add_nosuid_statoverride_entry() {
         echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
       fi
     fi
+
   ## /lib will hit ARG_MAX.
   ## https://forums.whonix.org/t/kernel-hardening/7296/326
   done < <( find "${fso_without_trailing_slash}/" -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
