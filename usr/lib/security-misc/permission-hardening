@@ -198,10 +198,17 @@ set_file_perms() {
          continue
       fi
 
+      mode_for_grep="$mode_from_config"
+      first_character_of_mode_from_config="${mode_from_config::1}"
+      if [ "$first_character_of_mode_from_config" = "0" ]; then
+         ## Remove leading '0'.
+         mode_for_grep="${mode_from_config:1}"
+      fi
+
       ## Check there is an entry for the fso.
       if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
         ## There is an fso entry. Check if owner/group/mode match.
-        if dpkg-statoverride --list | grep -q "$owner $group $mode_from_config $fso_without_trailing_slash"; then
+        if dpkg-statoverride --list | grep -q "$owner $group $mode_for_grep $fso_without_trailing_slash"; then
           ## The owner/group/mode matches. No further action required.
           true OK
         else
