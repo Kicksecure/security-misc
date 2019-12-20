@@ -110,14 +110,11 @@ add_nosuid_statoverride_entry() {
 
       echo "INFO: $setuid_output $setguid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
-      if dpkg-statoverride --list | grep -q "$file_name"; then
-        if ! dpkg-statoverride --list | grep -q "$owner $group $new_mode $file_name"; then
-          echo_wrapper dpkg-statoverride --remove "$file_name"
-          echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
-        fi
-      else
-        echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
-      fi
+      ## No need to check "dpkg-statoverride --list" for existing entries.
+      ## If existing_mode was correct already, we would not have reached this point.
+      ## Since existing_mode is incorrect, remove from dpkg-statoverride and re-add.
+      echo_wrapper dpkg-statoverride --remove "$file_name" || true
+      echo_wrapper dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
     fi
 
   ## /lib will hit ARG_MAX.
