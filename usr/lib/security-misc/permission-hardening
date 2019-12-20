@@ -4,6 +4,7 @@
 ## See the file COPYING for copying conditions.
 
 #set -x
+set -e
 
 exit_code=0
 
