@@ -17,6 +17,7 @@ echo_wrapper() {
 }
 
 add_nosuid_statoverride_entry() {
+  true "line: $line"
   while read -r line; do
     if ! read -r file_name existing_mode owner group; then
       echo "ERROR: cannot parse line by 'stat' - line: '$line'" >&2
