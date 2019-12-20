@@ -176,6 +176,7 @@ set_file_perms() {
     fso_without_trailing_slash="${fso%/}"
 
     if [ "$mode_from_config" = "whitelist" ]; then
+      ## TODO: test/add white spaces inside file name support
       whitelist+="$fso_without_trailing_slash "
       continue
     fi
