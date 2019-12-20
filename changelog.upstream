@@ -1,3 +1,27 @@
+commit 6d30e3b4a2c0e5cf53d88b4a033511aa49b8f227
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:13:23 2019 -0500
+
+    do not remove suid from whitelisted binaries ever
+    
+    https://forums.whonix.org/t/permission-hardening/8655/13
+
+commit d5f1bd8dd29a4f9e1ccb6fed82a255f7b7abfe6f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 08:02:30 2019 -0500
+
+    fix mode sanity check
+    
+    no longer use seq due to issue
+    
+    https://forums.whonix.org/t/permission-hardening/8655/13
+
+commit ddc0eec63d744e4600f3b1b8cdf60fef6d647cbe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 07:12:36 2019 -0500
+
+    bumped changelog version
+
 commit 65248a94efa4646127d8e11447e49a37f3ff986e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 07:06:50 2019 -0500
