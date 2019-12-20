@@ -92,18 +92,15 @@ set_file_perms() {
     nosuid=""
     if [ "$mode_from_config" = "nosuid" ]; then
       nosuid="true"
+
+      ## If mode_from_config is "nosuid" the config does not set owner and
+      ## group. Therefore do not enforce owner/group check.
     else
       if ! seq -w 000 4777 | grep -qw "$mode_from_config"; then
          echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
          continue
       fi
-    fi
 
-    if [ "$mode_from_config" = "nosuid" ]; then
-      ## If mode_from_config is "nosuid" the config does not set owner and
-      ## group. Therefore do not enforce owner/group check.
-      true OK
-    else
       if ! getent passwd | grep -q "^${owner}:"; then
          echo "ERROR: User '$owner' does not exist!" >&2
          continue
