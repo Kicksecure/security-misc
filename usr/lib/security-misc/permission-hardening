@@ -94,7 +94,7 @@ set_file_perms() {
       continue
     fi
 
-    echo "fso: $fso"
+    echo "INFO: fso: '$fso'"
     fso_without_trailing_slash="${fso%/}"
 
     ## Use dpkg-statoverride  so permissions are not reset during upgrades.
