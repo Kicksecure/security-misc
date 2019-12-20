@@ -69,6 +69,20 @@ add_nosuid_statoverride_entry() {
 
       echo "INFO: $setuid_output $setguid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
+      is_whitelisted=""
+      for white_list_entry in $whitelist ; do
+        if [ "$file_name" = "$white_list_entry" ]; then
+          is_whitelisted="true"
+          ## Stop looping through the whitelist.
+          break
+        fi
+      done
+
+      if [ "$is_whitelisted" = "true" ]; then
+          echo "INFO: skip whitelisted: '$file_name'"
+          continue
+      fi
+
       if dpkg-statoverride --list | grep -q "$file_name"; then
         if ! dpkg-statoverride --list | grep -q "$owner $group $new_mode $file_name"; then
           echo_wrapper dpkg-statoverride --remove "$file_name"
@@ -114,6 +128,11 @@ set_file_perms() {
     fi
 
     fso_without_trailing_slash="${fso%/}"
+
+    if [ "$mode_from_config" = "whitelist" ]; then
+      whitelist+="$fso_without_trailing_slash "
+      continue
+    fi
 
     ## Use dpkg-statoverride  so permissions are not reset during upgrades.
 
