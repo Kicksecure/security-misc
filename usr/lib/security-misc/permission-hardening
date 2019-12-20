@@ -13,7 +13,7 @@ exit_code=0
 
 echo_wrapper_ignore() {
    echo "run: $@"
-   "$@" || true
+   "$@" 2>/dev/null || true
 }
 
 echo_wrapper_audit() {
