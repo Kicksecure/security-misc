@@ -281,7 +281,7 @@ set_file_perms() {
          continue
       fi
 
-      if ! getent group_from_config | grep -q "^${group_from_config}:"; then
+      if ! getent group | grep -q "^${group_from_config}:"; then
          echo "ERROR: group_from_config '$group_from_config' does not exist!" >&2
          continue
       fi
