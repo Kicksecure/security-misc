@@ -336,11 +336,11 @@ set_file_perms() {
       ##
       ## dpkg-statoverride does not show leading '0'.
       if dpkg-statoverride --list "$fso_without_trailing_slash" >/dev/null ; then
-        ## There is an fso entry. Check if owner/group/mode match.
+        true "There is an fso entry. Check if owner/group/mode match."
         if dpkg-statoverride --list | grep -q "$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash" ; then
           true "OK The owner/group/mode matches. No further action required."
         else
-          ## The owner/group/mode do not match, therefore remove and re-add the entry to update it.
+          true "The owner/group/mode do not match, therefore remove and re-add the entry to update it."
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
 
@@ -363,7 +363,7 @@ set_file_perms() {
           echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
         fi
       else
-        ## There is no fso entry. Therefore add one.
+        true "There is no fso entry. Therefore add one."
 
         if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash" >/dev/null ; then
           true "OK Existing mode already saved previously. No need to save again."
