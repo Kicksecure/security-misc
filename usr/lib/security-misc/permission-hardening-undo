@@ -33,8 +33,8 @@ undo_all() {
 
       stat -c "%n %a %U %G" "$file_name" || true
 
-      chmod "$mode" "$file_name" || exit_code=202
-      chown "${owner}:${group}" "$file_name" || exit_code=203
+      chown "${owner}:${group}" "$file_name" || exit_code=202
+      chmod "$mode" "$file_name" || exit_code=203
 
       stat -c "%n %a %U %G" "$file_name" || true
 
