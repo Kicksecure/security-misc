@@ -191,7 +191,7 @@ add_nosuid_statoverride_entry() {
       echo_wrapper_audit dpkg-statoverride --add --update "$existing_owner" "$existing_group" "$new_mode" "$file_name"
 
       ## Not using --update as this is only for recording.
-      echo_wrapper_silent_audit dpkg-statoverride --add "$existing_owner" "$existing_group" "$new_mode" "$file_name"
+      echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$existing_owner" "$existing_group" "$new_mode" "$file_name"
     fi
 
   ## /lib will hit ARG_MAX.
