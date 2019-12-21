@@ -169,13 +169,13 @@ add_nosuid_statoverride_entry() {
 
       echo "INFO: $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
-      if dpkg-statoverride --list "$file_name" $dpkg_admindir_parameter_existing_mode ; then
+      if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$file_name" ; then
          ## Existing mode already saved previously. No need to save again.
          true OK
       else
          ## Save existing_mode in separate database.
          ## Not using --update as not intending to enforce existing_mode.
-         echo_wrapper_silent_audit --add "$existing_owner" "$existing_group" "$existing_mode" "$file_name" $dpkg_admindir_parameter_existing_mode
+         echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$file_name"
       fi
 
       ## No need to check "dpkg-statoverride --list" for existing entries.
@@ -186,7 +186,7 @@ add_nosuid_statoverride_entry() {
       echo_wrapper_ignore dpkg-statoverride --remove "$file_name"
 
       ## Remove from separate database.
-      echo_wrapper_ignore dpkg-statoverride --remove "$file_name" $dpkg_admindir_parameter_new_mode
+      echo_wrapper_ignore dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$file_name"
 
       ## Add to real database and use --update to make changes on disk.
       echo_wrapper_audit dpkg-statoverride --add --update "$existing_owner" "$existing_group" "$new_mode" "$file_name"
@@ -346,16 +346,16 @@ set_file_perms() {
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
 
-          if dpkg-statoverride --list "$fso_without_trailing_slash" $dpkg_admindir_parameter_existing_mode ; then
+          if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash" ; then
             ## Existing mode already saved previously. No need to save again.
             true OK
           else
             ## Save existing_mode in separate database.
             ## Not using --update as not intending to enforce existing_mode.
-            echo_wrapper_silent_audit --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash" $dpkg_admindir_parameter_existing_mode
+            echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
           fi
 
-          echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash" $dpkg_admindir_parameter_new_mode
+          echo_wrapper_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
 
           ## Remove from and add to real database.
           echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash"
@@ -363,18 +363,18 @@ set_file_perms() {
 
           ## Save in separate database.
           ## Not using --update as this is only for saving.
-          echo_wrapper_silent_audit dpkg-statoverride --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash" $dpkg_admindir_parameter_new_mode
+          echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
         fi
       else
         ## There is no fso entry. Therefore add one.
 
-        if dpkg-statoverride --list "$fso_without_trailing_slash" $dpkg_admindir_parameter_existing_mode ; then
+        if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash"  ; then
           ## Existing mode already saved previously. No need to save again.
           true OK
         else
           ## Save existing_mode in separate database.
           ## Not using --update as not intending to enforce existing_mode.
-          echo_wrapper_silent_audit --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash" $dpkg_admindir_parameter_existing_mode
+          echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
         fi
 
         ## Add to real database.
@@ -382,7 +382,7 @@ set_file_perms() {
 
         ## Save in separate database.
         ## Not using --update as this is only for saving.
-        echo_wrapper_silent_audit dpkg-statoverride --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash" $dpkg_admindir_parameter_new_mode
+        echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
       fi
     fi
 
