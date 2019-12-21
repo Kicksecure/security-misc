@@ -205,7 +205,7 @@ A systemd service removed SUID / GUID from non-essential binaries as these are
 often used in privilege escalation attacks.
 It is disabled by default for now during testing and can optionally be enabled
 by running `systemctl enable permission-hardening.service` as root.
-https://forums.whonix.org/t/permission-hardening/8655
+https://forums.whonix.org/t/disable-suid-binaries/7706
 /usr/lib/security-misc/permission-hardening
 /lib/systemd/system/permission-hardening.service
 /etc/permission-hardening.d/30_default.conf
