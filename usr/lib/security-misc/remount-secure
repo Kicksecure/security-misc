@@ -41,7 +41,8 @@ home() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o remount,nosuid,nodev${noexec_maybe} /home || exit_code=2
+   new_mount_options="nosuid,nodev${noexec_maybe}"
+   mount -o "remount,${new_mount_options}" /home || exit_code=2
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -50,7 +51,8 @@ run() {
       return 0
    fi
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
-   mount -o remount,nosuid,nodev${noexec_maybe} /run || exit_code=3
+   new_mount_options="nosuid,nodev${noexec_maybe}"
+   mount -o "remount,${new_mount_options}" /run || exit_code=3
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -58,7 +60,8 @@ shm() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o remount,nosuid,nodev${noexec_maybe} /dev/shm || exit_code=4
+   new_mount_options="nosuid,nodev${noexec_maybe}"
+   mount -o "remount,${new_mount_options}" /dev/shm || exit_code=4
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -66,7 +69,8 @@ tmp() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o nosuid,nodev${noexec_maybe} --bind /tmp /tmp || exit_code=5
+   new_mount_options="nosuid,nodev${noexec_maybe}"
+   mount -o "$new_mount_options" --bind /tmp /tmp || exit_code=5
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -74,7 +78,8 @@ securityfs() {
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
-   mount -o nosuid,nodev${noexec_maybe} --bind /sys/kernel/security /sys/kernel/security || exit_code=6
+   new_mount_options="nosuid,nodev${noexec_maybe}"
+   mount -o "$new_mount_options" --bind /sys/kernel/security /sys/kernel/security || exit_code=6
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -83,7 +88,8 @@ lib() {
       return 0
    fi
    ## Not using noexec on /lib.
-   mount -o nosuid,nodev --bind /lib /lib || exit_code=7
+   new_mount_options="nosuid,nodev"
+   mount -o "$new_mount_options" --bind /lib /lib || exit_code=7
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
