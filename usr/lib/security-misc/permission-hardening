@@ -200,9 +200,9 @@ add_nosuid_statoverride_entry() {
       echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$existing_owner" "$existing_group" "$new_mode" "$file_name"
     fi
 
-  ## /lib will hit ARG_MAX.
-  ## That was before using '-perm /u=s,g=s'.
-  ## https://forums.whonix.org/t/kernel-hardening/7296/326
+  ## /lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/lib/**'.
+  ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
+  ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
   done < <( find "$fso_to_process" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
 
   ## Sanity test.
