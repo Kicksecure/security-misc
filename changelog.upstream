@@ -1,3 +1,113 @@
+commit e1a5ee4bcf5ecb447ae7da0b137f81d520673cde
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:26:55 2019 -0500
+
+    output
+
+commit 66aaf3e22cda9bb58ab72e750a5711556cf1de25
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:25:54 2019 -0500
+
+    output
+
+commit 7aa7d0b5a0e3b602b527131581f350b9b32fb0d6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:22:27 2019 -0500
+
+    improve error handling
+
+commit 8919d38de9206b4802b471c2f40787a2f9d70269
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:21:46 2019 -0500
+
+    disable debugging
+
+commit cf5dee64fd4e1c44a8726db49b8328841ee6327f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:18:34 2019 -0500
+
+    refactoring
+
+commit 29cd9a0c38924fc2eb7520db886efc19541476cb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:17:35 2019 -0500
+
+    fix
+
+commit 486027a4d75917fe2741370aa1e707b8ca14f693
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:15:38 2019 -0500
+
+    fix
+
+commit 1fd26be864ebd0dab8419e0b2b321522166d6271
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:14:51 2019 -0500
+
+    fix
+
+commit 0fc97c37beae5d48fed9ec714f19007f402952c9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:14:39 2019 -0500
+
+    fix
+
+commit 1018d5b3b0b58a641aaca0419a06c246091932d5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:11:51 2019 -0500
+
+    output
+
+commit 4388fc4d5ace9046c9eacb8354d9960599735ee4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:11:19 2019 -0500
+
+    refactoring
+
+commit ed20980f4c6c3fb304d8436399f5e14ead7b3ae3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 05:07:10 2019 -0500
+
+    refactoring
+
+commit 315ce86b9a66d15aea2d50f5271c228ee8bd3909
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 04:33:03 2019 -0500
+
+    refactoring
+
+commit 0c5848494b147b067afa2b70451fc7e5087823f2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 04:21:26 2019 -0500
+
+    do not remount if already has intended mount options
+
+commit 203f4ad46e6a6950edd4b2a83f47ac71428928e5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 04:17:10 2019 -0500
+
+    refactoring
+
+commit e7fd0dadb03e7f90adfa9ebdaf07530f02a846e7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 04:09:35 2019 -0500
+
+    output
+
+commit e6ea21c7757ad732bd9bcce2c6a7a364780e1b14
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 04:08:35 2019 -0500
+
+    record existing modes in separate dpkg-statoverwrite databases
+    
+    to have a history of what was modified and to allow to undo changes
+
+commit 89be5f2ecb998c46ff4864996cd86b97fa56d176
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 02:05:39 2019 -0500
+
+    bumped changelog version
+
 commit d220bb3bc4aaf923dcb2e2a48ac05dd5f1326442
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 13:07:01 2019 -0500
