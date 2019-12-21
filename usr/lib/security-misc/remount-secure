@@ -23,11 +23,16 @@ if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
    exit 0
 fi
 
-if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
-   noexec=true
-   echo "INFO: Will remount with noexec because file /etc/noexec exists."
+if [ -e /etc/exec ] || [ -e /usr/local/etc/exec ]; then
+   noexec=false
+   echo "INFO: Will remount with exec because file /etc/exec or /usr/local/etc/exec exists."
 else
-   echo "INFO: Will not remount with noexec because file /etc/noexec does not exist."
+   if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
+      noexec=true
+      echo "INFO: Will remount with noexec because file /etc/noexec or /usr/local/etc/noexec exists."
+   else
+      echo "INFO: Will not remount with noexec because file /etc/noexec or /usr/local/etc/noexec does not exist."
+   fi
 fi
 
 mkdir --parents "/var/run/remount-secure"
