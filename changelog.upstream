@@ -1,3 +1,78 @@
+commit d220bb3bc4aaf923dcb2e2a48ac05dd5f1326442
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 13:07:01 2019 -0500
+
+    suid /usr/lib/chromium/chrome-sandbox whitelist
+
+commit 77b3dd5d6b5de0070da7e71154ecbe2e099e3b7f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 13:02:33 2019 -0500
+
+    comments
+
+commit d7bd477e7379cd5d74d81e81080d375041cc3b29
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:59:27 2019 -0500
+
+    add "/usr/lib/xorg/Xorg.wrap whitelist"
+    
+    until this is researched
+    
+    https://manpages.debian.org/buster/xserver-xorg-legacy/Xorg.wrap.1.en.html
+    https://lwn.net/Articles/590315/
+
+commit 17e8605119fc671c4cbe4343851cf3c46b830508
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:57:24 2019 -0500
+
+    add matchwhitelist feature
+    
+    add "/usr/lib/virtualbox/ matchwhitelist"
+
+commit 3fab3876693f20303c95f03c45af9adb9ae680e2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:50:35 2019 -0500
+
+    suid /usr/bin/firejail whitelist
+    
+    There is a controversy about firejail but those who choose to install it
+    should be able to use it.
+    https://www.whonix.org/wiki/Dev/Firejail#Security
+
+commit d3f16a5bf46a7d10316259788f3d97364fe2e545
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:47:10 2019 -0500
+
+    sgid /usr/lib/qubes/qfile-unpacker whitelist
+
+commit 508ec0c6fa44d9185aa22f5fa81ae9dbbefdb19c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:34:07 2019 -0500
+
+    comment
+
+commit 1b569ea7908dcba409c94dacd477d2fbfeafe522
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 12:32:36 2019 -0500
+
+    comment
+
+commit f88ca2588920ac16a6b41e8c48021bf85801c2a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:58:07 2019 -0500
+
+    fix terminology, sguid -> sgid
+    
+    Thanks to @madaidan for the bug report!
+    
+    https://forums.whonix.org/t/permission-hardening/8655/21
+
+commit 1cd5fb6a0020504c7897acf169772d39b67f4bd4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 20 11:50:25 2019 -0500
+
+    bumped changelog version
+
 commit ff0a26fb5d65450c0a2b5fb86758d3d823a717e9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 11:49:19 2019 -0500
