@@ -3,7 +3,7 @@
 ## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
-## https://forums.whonix.org/t/permission-hardening/8655
+## https://forums.whonix.org/t/disable-suid-binaries/7706
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
 ## To view previous modes and how these were changed:
