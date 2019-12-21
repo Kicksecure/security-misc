@@ -8,7 +8,7 @@
 
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
-set -x
+#set -x
 set -e
 
 if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
