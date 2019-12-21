@@ -352,7 +352,7 @@ set_file_perms() {
           else
             ## Save existing_mode in separate database.
             ## Not using --update as not intending to enforce existing_mode.
-            echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
+            echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
           fi
 
           echo_wrapper_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
