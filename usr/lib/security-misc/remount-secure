@@ -63,7 +63,7 @@ remount_secure() {
    fi
 
    if [ -e "$status_file_full_path" ]; then
-      echo "INFO: Already remounted $mount_folder earlier. Not remounting again."
+      echo "INFO: $mount_folder already remounted earlier. Not remounting again."
       return 0
    fi
 
