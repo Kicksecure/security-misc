@@ -19,15 +19,15 @@ if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
 fi
 
 if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
-   echo "$0: INFO: file /etc/remount-disable exists. Doing nothing."
+   echo "INFO: file /etc/remount-disable exists. Doing nothing."
    exit 0
 fi
 
 if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
    noexec=true
-   echo "$0: INFO: Will remount with noexec because file /etc/noexec exists."
+   echo "INFO: Will remount with noexec because file /etc/noexec exists."
 else
-   echo "$0: INFO: Will not remount with noexec because file /etc/noexec does not exist."
+   echo "INFO: Will not remount with noexec because file /etc/noexec does not exist."
 fi
 
 mkdir --parents "/var/run/remount-secure"
