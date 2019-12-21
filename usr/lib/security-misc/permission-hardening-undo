@@ -34,7 +34,8 @@ undo_all() {
       stat -c "%n %a %U %G" "$file_name" || true
 
       chown "${owner}:${group}" "$file_name" || exit_code=202
-      ## chmod need to be run after chown since chown would remove suid.
+      ## chmod need to be run after chown since chown removes suid.
+      ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
       chmod "$mode" "$file_name" || exit_code=203
 
       stat -c "%n %a %U %G" "$file_name" || true
