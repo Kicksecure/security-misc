@@ -50,9 +50,6 @@ remount_secure() {
    ## example status_file_full_path:
    ## /var/run/remount-secure/_home
 
-   if [ -e "$status_file_full_path" ]; then
-      return 0
-   fi
    ## str_replace is provided by package helper-scripts.
    mount_folder="$(echo "${status_file_name}" | str_replace "_" "/")"
    ## example mount_folder:
@@ -65,11 +62,18 @@ remount_secure() {
       return 0
    fi
 
+   if [ -e "$status_file_full_path" ]; then
+      echo "INFO: Already remounted $mount_folder earlier. Not remounting again."
+      return 0
+   fi
+
    if echo "$mount_output" | grep -q "$mount_folder " ; then
       ## Already mounted. Using remount.
+      echo mount -o "remount,${new_mount_options}" "$mount_folder"
       mount -o "remount,${new_mount_options}" "$mount_folder" || exit_code=100
    else
       ## Not yet mounted. Using mount bind.
+      echo mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
       mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
