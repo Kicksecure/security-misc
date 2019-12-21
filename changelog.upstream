@@ -1,3 +1,53 @@
+commit 2ddf7b5db5d335d4f64d0df2c0caab0c80a2a046
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 14:06:51 2019 -0500
+
+    /lib/ nosuid
+
+commit 1e8457ea476a693dd1e455e4c455bf2e763cec23
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 14:06:10 2019 -0500
+
+    no longer remount /lib
+    
+    https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
+
+commit 10c19d6a8fc6b6bc03067dc3be88f486aa78d438
+Merge: b2260f4 fffdf50
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 13:00:41 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit fffdf5090c707c698de4adacfd5837809b33aa99
+Merge: 1c99b56 f5a52ae
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 17:59:56 2019 +0000
+
+    Merge pull request #46 from madaidan/remount-secure
+    
+    Don't remount /sys/kernel/security
+
+commit f5a52aeddc4742b4dbd8a0075d759b2ceaaae691
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Dec 21 14:55:28 2019 +0000
+
+    Don't remount /sys/kernel/security
+
+commit b2260f48f4ab978b531d8ca9df2dc1a787b6666f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 08:03:33 2019 -0500
+
+    add support for /etc/exec / /usr/local/etc/exec
+    
+    to allow enabling exec on a per VM basis
+
+commit 1c99b56c9b99cceab6fe38580d06197dd4bcfb77
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 07:49:55 2019 -0500
+
+    bumped changelog version
+
 commit 161b6f6b885586cd65b8ac13b0bd113691465522
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 07:49:29 2019 -0500
