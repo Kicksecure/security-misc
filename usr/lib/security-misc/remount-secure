@@ -67,10 +67,10 @@ remount_secure() {
 
    if echo "$mount_output" | grep -q "$mount_folder " ; then
       ## Already mounted. Using remount.
-      mount -o "remount,${new_mount_options}" "$mount_folder"
+      mount -o "remount,${new_mount_options}" "$mount_folder" || exit_code=100
    else
       ## Not yet mounted. Using mount bind.
-      mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
+      mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
    touch "$status_file_full_path"
