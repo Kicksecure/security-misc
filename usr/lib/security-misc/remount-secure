@@ -106,11 +106,12 @@ _tmp() {
    remount_secure "$@"
 }
 
-_lib() {
-   ## Not using noexec on /lib.
-   new_mount_options="nosuid,nodev"
-   remount_secure "$@"
-}
+## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
+# _lib() {
+#    ## Not using noexec on /lib.
+#    new_mount_options="nosuid,nodev"
+#    remount_secure "$@"
+# }
 
 end() {
    exit $exit_code
@@ -121,7 +122,7 @@ main() {
    _run "$@"
    _dev_shm "$@"
    _tmp "$@"
-   _lib "$@"
+   #_lib "$@"
    end "$@"
 }
 
