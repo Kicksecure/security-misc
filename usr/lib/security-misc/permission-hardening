@@ -9,6 +9,9 @@
 ## To view previous modes and how these were changed:
 ## meld /var/lib/permission-hardening/existing_mode/statoverride /var/lib/permission-hardening/new_mode/statoverride
 
+## To undo:
+## sudo /usr/lib/security-misc/permission-hardening-undo
+
 #set -x
 set -e
 set -o pipefail
