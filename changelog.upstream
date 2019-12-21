@@ -1,3 +1,54 @@
+commit 6b13a644df279ec3ccf3814e86233baafc0cf437
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 07:37:41 2019 -0500
+
+    add /usr/lib/security-misc/permission-hardening-undo
+
+commit af8b04b73d6d64792fc1ffb7f6b04b273c0ca7ec
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 06:58:01 2019 -0500
+
+    rm_conffile /etc/apparmor.d/usr.lib.security-misc.pam_tally2-info
+    rm_conffile /etc/apparmor.d/usr.lib.security-misc.permission-lockdown
+    
+    https://github.com/Whonix/security-misc/pull/45
+
+commit 2350e0f5d06d9625835ba1547aab0054b795c0c5
+Merge: 3ea5871 efd65a3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 06:57:10 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit efd65a3f15fc9380e2019c9d7ad0bf82adcc230d
+Merge: c336bc4 c28ddf5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 11:56:31 2019 +0000
+
+    Merge pull request #45 from madaidan/apparmor
+    
+    Delete apparmor profiles
+
+commit 3ea587187e9d0a927799a66d15d163ee56a41978
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 06:53:07 2019 -0500
+
+    no need to exclude xorg nosuid on Debian
+    
+    http://forums.whonix.org/t/permission-hardening/8655/25
+
+commit c336bc4fd229d9a6370df5520aaa4e872465de5a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 06:39:13 2019 -0500
+
+    comment
+
+commit fac17a963d3dec1b399fd9b41ebebcedb7e90f43
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 06:28:19 2019 -0500
+
+    bumped changelog version
+
 commit b5f88efe2072eca99c245fc60442c82a270fab8e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 06:27:01 2019 -0500
@@ -203,6 +254,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 02:05:39 2019 -0500
 
     bumped changelog version
+
+commit c28ddf5c4dbfd92aba9a59874f529a4afe69c497
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Dec 20 22:44:31 2019 +0000
+
+    Delete usr.lib.security-misc.pam_tally2-info
+
+commit cfe69dd66900f7aad5311c02d2b4ee7b400fb90b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Dec 20 22:44:27 2019 +0000
+
+    Delete usr.lib.security-misc.permission-lockdown
 
 commit d220bb3bc4aaf923dcb2e2a48ac05dd5f1326442
 Author: Patrick Schleizer <adrelanos@riseup.net>
