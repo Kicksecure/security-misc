@@ -6,6 +6,9 @@
 ## https://forums.whonix.org/t/permission-hardening/8655
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
+## To view previous modes and how these were changed:
+## meld /var/lib/permission-hardening/existing_mode/statoverride /var/lib/permission-hardening/new_mode/statoverride
+
 #set -x
 set -e
 set -o pipefail
