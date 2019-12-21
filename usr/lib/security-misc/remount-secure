@@ -46,8 +46,11 @@ remount_secure() {
    status_file_name="${FUNCNAME[1]}"
    ## example status_file_name:
    ## _home
+   status_file_full_path="/var/run/remount-secure/${status_file_name}"
+   ## example status_file_full_path:
+   ## /var/run/remount-secure/_home
 
-   if [ -e "/var/run/remount-secure/${status_file_name}" ]; then
+   if [ -e "$status_file_full_path" ]; then
       return 0
    fi
    ## str_replace is provided by package helper-scripts.
@@ -70,7 +73,7 @@ remount_secure() {
       mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
    fi
 
-   touch "/var/run/remount-secure/${status_file_name}"
+   touch "$status_file_full_path"
 }
 
 _home() {
