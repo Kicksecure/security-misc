@@ -175,7 +175,7 @@ add_nosuid_statoverride_entry() {
       else
          ## Save existing_mode in separate database.
          ## Not using --update as not intending to enforce existing_mode.
-         echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$file_name"
+         echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$file_name"
       fi
 
       ## No need to check "dpkg-statoverride --list" for existing entries.
