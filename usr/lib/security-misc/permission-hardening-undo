@@ -1,0 +1,56 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+#set -x
+set -e
+set -o pipefail
+
+exit_code=0
+
+dpkg_admindir_parameter_existing_mode="--admindir /var/lib/permission-hardening/existing_mode"
+dpkg_admindir_parameter_new_mode="--admindir /var/lib/permission-hardening/new_mode"
+
+undo_all() {
+   if [ ! -f /var/lib/permission-hardening/existing_mode/statoverride ]; then
+      return 0
+   fi
+
+   local line
+
+   while read -r line; do
+      ## example line:
+      ## root root 4755 /usr/lib/eject/dmcrypt-get-device
+
+      local owner group mode file_name
+      if ! read -r owner group mode file_name <<< "$line" ; then
+         exit_code=201
+         echo "ERROR: cannot parse line: $line" >&2
+         continue
+      fi
+      true "owner: '$owner' group: '$group' mode: '$mode' file_name: '$file_name'"
+
+      stat -c "%n %a %U %G" "$file_name" || true
+
+      chmod "$mode" "$file_name" || exit_code=202
+      chown "${owner}:${group}" "$file_name" || exit_code=203
+
+      stat -c "%n %a %U %G" "$file_name" || true
+
+      dpkg-statoverride --remove "$file_name" &>/dev/null || true
+      dpkg-statoverride $dpkg_admindir_parameter_existing_mode --remove "$file_name" &>/dev/null || true
+      dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$file_name" &>/dev/null || true
+
+      stat -c "%n %a %U %G" "$file_name" || true
+
+   done < "/var/lib/permission-hardening/existing_mode/statoverride"
+}
+
+undo_all
+
+if [ ! "$exit_code" = "0" ]; then
+   echo "ERROR: Will exit with non-zero exit code: '$exit_code'" >&2
+fi
+
+exit "$exit_code"
