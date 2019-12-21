@@ -29,7 +29,7 @@ echo_wrapper_audit() {
       { \
       return_code="$?" ; \
       exit_code=203 ; \
-      echo "ERROR: above command failed with exit code '$return_code'!" >&2 ; \
+      echo "ERROR: above command failed with exit code '$return_code'! calling function name: '${FUNCNAME[1]}'" >&2 ; \
       };
 }
 
@@ -41,7 +41,7 @@ echo_wrapper_silent_audit() {
       { \
       return_code="$?" ; \
       exit_code=204 ; \
-      echo "ERROR: above command '$@' failed with exit code '$return_code'!" >&2 ; \
+      echo "ERROR: above command '$@' failed with exit code '$return_code'! calling function name: '${FUNCNAME[1]}'" >&2 ; \
       };
 }
 
