@@ -413,7 +413,7 @@ parse_config_folder() {
 parse_config_folder
 
 if [ ! "$exit_code" = "0" ]; then
-   echo "ERROR: Will exist with non-zero exit code: '$exit_code'" >&2
+   echo "ERROR: Will exit with non-zero exit code: '$exit_code'" >&2
 fi
 
 exit "$exit_code"
