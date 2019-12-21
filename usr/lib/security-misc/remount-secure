@@ -70,7 +70,7 @@ remount_secure() {
       mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
    fi
 
-   touch "/var/run/remount-secure/${FUNCNAME}"
+   touch "/var/run/remount-secure/${status_file_name}"
 }
 
 _home() {
