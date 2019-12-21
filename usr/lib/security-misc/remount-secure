@@ -55,7 +55,7 @@ remount_secure() {
    ## example mount_folder:
    ## /home
 
-   mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder")"
+   mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder")" || true
 
    if echo "$mount_line_of_mount_folder" | grep -q "$new_mount_options" ; then
       echo "INFO: $mount_folder has already intended mount options."
