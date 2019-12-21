@@ -12,6 +12,11 @@ set -o pipefail
 
 exit_code=0
 
+mkdir -p /var/lib/permission-hardening/existing_mode
+mkdir -p /var/lib/permission-hardening/new_mode
+dpkg_admindir_parameter_existing_mode="--admindir /var/lib/permission-hardening/existing_mode"
+dpkg_admindir_parameter_new_mode="--admindir /var/lib/permission-hardening/new_mode"
+
 echo_wrapper_ignore() {
    echo "run: $@"
    "$@" 2>/dev/null || true
@@ -28,22 +33,42 @@ echo_wrapper_audit() {
       };
 }
 
+echo_wrapper_silent_audit() {
+   ## TODO: remove echo
+   echo "run (debugging): $@"
+   return_code=0
+   "$@" || \
+      { \
+      return_code="$?" ; \
+      exit_code=204 ; \
+      echo "ERROR: above command '$@' failed with exit code '$return_code'!" >&2 ; \
+      };
+}
+
 add_nosuid_statoverride_entry() {
+  local fso_to_process
   fso_to_process="$fso"
+  local should_be_counter
   should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)" || true
+  local counter_actual
   counter_actual=0
 
+  local line
   while read -r line; do
     true "line: $line"
     counter_actual="$(( counter_actual + 1 ))"
 
+    local arr file_name existing_mode existing_owner existing_group
     arr=($line)
-
     file_name="${arr[0]}"
     existing_mode="${arr[1]}"
-    owner="${arr[2]}"
-    group="${arr[3]}"
+    existing_owner="${arr[2]}"
+    existing_group="${arr[3]}"
 
+    if [ "$arr" = "" ]; then
+      echo "ERROR: arr is empty. line: '$line'" >&2
+      continue
+    fi
     if [ "$file_name" = "" ]; then
       echo "ERROR: file_name is empty. line: '$line'" >&2
       continue
@@ -52,12 +77,12 @@ add_nosuid_statoverride_entry() {
       echo "ERROR: existing_mode is empty. line: '$line'" >&2
       continue
     fi
-    if [ "owner" = "" ]; then
-      echo "ERROR: $owner is empty. line: '$line'" >&2
+    if [ "$existing_owner" = "" ]; then
+      echo "ERROR: existing_owner is empty. line: '$line'" >&2
       continue
     fi
-    if [ "$group" = "" ]; then
-      echo "ERROR: $group is empty. line: '$line'" >&2
+    if [ "$existing_group" = "" ]; then
+      echo "ERROR: existing_group is empty. line: '$line'" >&2
       continue
     fi
 
@@ -72,10 +97,11 @@ add_nosuid_statoverride_entry() {
     fi
 
     if test -d "$file_name" ; then
-      true "skip folder: $file_name"
+      true "skip directory: $file_name"
       continue
     fi
 
+    local setuid setuid_output setsgid setsgid_output
     setuid=""
     setuid_output=""
     if test -u "$file_name" ; then
@@ -111,6 +137,7 @@ add_nosuid_statoverride_entry() {
 #         new_mode=744
 #       fi
 
+      local is_whitelisted
       is_whitelisted=""
       for white_list_entry in $whitelist ; do
         if [ "$file_name" = "$white_list_entry" ]; then
@@ -120,6 +147,7 @@ add_nosuid_statoverride_entry() {
         fi
       done
 
+      local is_match_whitelisted
       is_match_whitelisted=""
       for matchwhite_list_entry in $matchwhitelist ; do
         if echo "$file_name" | grep -q "$matchwhite_list_entry" ; then
@@ -141,11 +169,30 @@ add_nosuid_statoverride_entry() {
 
       echo "INFO: $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
+      if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$file_name"; then
+         ## Existing mode already saved previously. No need to save again.
+         true OK
+      else
+         ## Save existing_mode in separate database.
+         ## Not using --update as not intending to enforce existing_mode.
+         echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$file_name"
+      fi
+
       ## No need to check "dpkg-statoverride --list" for existing entries.
       ## If existing_mode was correct already, we would not have reached this point.
       ## Since existing_mode is incorrect, remove from dpkg-statoverride and re-add.
+
+      ## Remove from real database.
       echo_wrapper_ignore dpkg-statoverride --remove "$file_name"
-      echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$new_mode" "$file_name"
+
+      ## Remove from separate database.
+      echo_wrapper_ignore $dpkg_admindir_parameter_new_mode dpkg-statoverride --remove "$file_name"
+
+      ## Add to real database and use --update to make changes on disk.
+      echo_wrapper_audit dpkg-statoverride --add --update "$existing_owner" "$existing_group" "$new_mode" "$file_name"
+
+      ## Not using --update as this is only for recording.
+      echo_wrapper_silent_audit $dpkg_admindir_parameter_new_mode dpkg-statoverride --add "$existing_owner" "$existing_group" "$new_mode" "$file_name"
     fi
 
   ## /lib will hit ARG_MAX.
@@ -164,6 +211,7 @@ add_nosuid_statoverride_entry() {
 
 set_file_perms() {
   echo "INFO: parsing config_file: '$config_file'"
+  local line
   while read -r line; do
     if [ "$line" = "" ]; then
       continue
@@ -181,12 +229,15 @@ set_file_perms() {
       continue
     fi
 
-    if ! read -r fso mode_from_config owner group capability <<< "$line" ; then
+    #global fso
+    local mode_from_config owner_from_config group_from_config capability_from_config
+    if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<< "$line" ; then
       exit_code=201
       echo "ERROR: cannot parse line: $line" >&2
       continue
     fi
 
+    local fso_without_trailing_slash
     fso_without_trailing_slash="${fso%/}"
 
     if [ "$mode_from_config" = "whitelist" ]; then
@@ -208,15 +259,13 @@ set_file_perms() {
 
     ## Use dpkg-statoverride so permissions are not reset during upgrades.
 
-    nosuid=""
     if [ "$mode_from_config" = "nosuid" ]; then
-      nosuid="true"
-
       ## If mode_from_config is "nosuid" the config does not set owner and
       ## group. Therefore do not enforce owner/group check.
 
       add_nosuid_statoverride_entry
     else
+      local string_length_of_mode_from_config
       string_length_of_mode_from_config="${#mode_from_config}"
       if [ "$string_length_of_mode_from_config" -gt "4" ]; then
          echo "ERROR: Mode '$mode_from_config' is invalid!" >&2
@@ -227,21 +276,57 @@ set_file_perms() {
          continue
       fi
 
-      if ! getent passwd | grep -q "^${owner}:"; then
-         echo "ERROR: User '$owner' does not exist!" >&2
+      if ! getent passwd | grep -q "^${owner_from_config}:"; then
+         echo "ERROR: owner_from_config '$owner_from_config' does not exist!" >&2
          continue
       fi
 
-      if ! getent group | grep -q "^${group}:"; then
-         echo "ERROR: Group '$group' does not exist!" >&2
+      if ! getent group_from_config | grep -q "^${group_from_config}:"; then
+         echo "ERROR: group_from_config '$group_from_config' does not exist!" >&2
          continue
       fi
 
+      local mode_for_grep
       mode_for_grep="$mode_from_config"
       first_character_of_mode_from_config="${mode_from_config::1}"
       if [ "$first_character_of_mode_from_config" = "0" ]; then
          ## Remove leading '0'.
          mode_for_grep="${mode_from_config:1}"
+      fi
+
+      local stat_output
+      stat_output=""
+      if ! stat_output="$(stat -c "%n %a %U %G" "$fso_without_trailing_slash")" ; then
+         echo "ERROR: failed to run 'stat' for fso_without_trailing_slash: '$fso_without_trailing_slash'!" >&2
+         continue
+      fi
+
+      local arr file_name existing_mode existing_owner existing_group
+      arr=($stat_output)
+      file_name="${arr[0]}"
+      existing_mode="${arr[1]}"
+      existing_owner="${arr[2]}"
+      existing_group="${arr[3]}"
+
+      if [ "$arr" = "" ]; then
+        echo "ERROR: arr is empty. stat_output: '$stat_output' | line: '$line'" >&2
+        continue
+      fi
+      if [ "$file_name" = "" ]; then
+        echo "ERROR: file_name is empty. stat_output: '$stat_output' | line: '$line'" >&2
+        continue
+      fi
+      if [ "$existing_mode" = "" ]; then
+        echo "ERROR: existing_mode is empty. stat_output: '$stat_output' | line: '$line'" >&2
+        continue
+      fi
+      if [ "$existing_owner" = "" ]; then
+        echo "ERROR: existing_owner is empty. stat_output: '$stat_output' | line: '$line'" >&2
+        continue
+      fi
+      if [ "$existing_group" = "" ]; then
+        echo "ERROR: $existing_group is empty. stat_output: '$stat_output' | line: '$line'" >&2
+        continue
       fi
 
       ## Check there is an entry for the fso.
@@ -251,37 +336,69 @@ set_file_perms() {
       ## root root 755 /home
       ##
       ## dpkg-statoverride does not show leading '0'.
-      if dpkg-statoverride --list | grep -q "$fso_without_trailing_slash"; then
+      if dpkg-statoverride --list "$fso_without_trailing_slash"; then
         ## There is an fso entry. Check if owner/group/mode match.
-        if dpkg-statoverride --list | grep -q "$owner $group $mode_for_grep $fso_without_trailing_slash"; then
+        if dpkg-statoverride --list | grep -q "$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash"; then
           ## The owner/group/mode matches. No further action required.
           true OK
         else
           ## The owner/group/mode do not match, therefore remove and re-add the entry to update it.
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
+
+          if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash"; then
+            ## Existing mode already saved previously. No need to save again.
+            true OK
+          else
+            ## Save existing_mode in separate database.
+            ## Not using --update as not intending to enforce existing_mode.
+            echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
+          fi
+
+          echo_wrapper_audit $dpkg_admindir_parameter_new_mode dpkg-statoverride --remove "$fso_without_trailing_slash"
+
+          ## Remove from and add to real database.
           echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash"
-          echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
+          echo_wrapper_audit dpkg-statoverride --add --update "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
+
+          ## Save in separate database.
+          ## Not using --update as this is only for saving.
+          echo_wrapper_silent_audit $dpkg_admindir_parameter_new_mode dpkg-statoverride --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
         fi
       else
         ## There is no fso entry. Therefore add one.
-        echo_wrapper_audit dpkg-statoverride --add --update "$owner" "$group" "$mode_from_config" "$fso_without_trailing_slash"
+
+        if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash"; then
+          ## Existing mode already saved previously. No need to save again.
+          true OK
+        else
+          ## Save existing_mode in separate database.
+          ## Not using --update as not intending to enforce existing_mode.
+          echo_wrapper_silent_audit $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
+        fi
+
+        ## Add to real database.
+        echo_wrapper_audit dpkg-statoverride --add --update "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
+
+        ## Save in separate database.
+        ## Not using --update as this is only for saving.
+        echo_wrapper_silent_audit $dpkg_admindir_parameter_new_mode dpkg-statoverride --add "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
       fi
     fi
 
-    if [ "$capability" = "" ]; then
+    if [ "$capability_from_config" = "" ]; then
       continue
     fi
 
-    if [ "$capability" = "none" ]; then
+    if [ "$capability_from_config" = "none" ]; then
       echo_wrapper_audit setcap -r "$fso"
     else
-      if ! capsh --print | grep "Bounding set" | grep -q "$capability"; then
-         echo "ERROR: Capability '$capability' does not exist!" >&2
+      if ! capsh --print | grep "Bounding set" | grep -q "$capability_from_config"; then
+         echo "ERROR: capability_from_config '$capability_from_config' does not exist!" >&2
          continue
       fi
 
-      echo_wrapper_audit setcap "${capability}+ep" "$fso"
+      echo_wrapper_audit setcap "${capability_from_config}+ep" "$fso"
     fi
   done < "$config_file"
 }
