@@ -169,7 +169,7 @@ add_nosuid_statoverride_entry() {
 
       echo "INFO: $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
 
-      if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$file_name" ; then
+      if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$file_name" >/dev/null ; then
          ## Existing mode already saved previously. No need to save again.
          true OK
       else
@@ -336,7 +336,7 @@ set_file_perms() {
       ## root root 755 /home
       ##
       ## dpkg-statoverride does not show leading '0'.
-      if dpkg-statoverride --list "$fso_without_trailing_slash" ; then
+      if dpkg-statoverride --list "$fso_without_trailing_slash" >/dev/null ; then
         ## There is an fso entry. Check if owner/group/mode match.
         if dpkg-statoverride --list | grep -q "$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash" ; then
           ## The owner/group/mode matches. No further action required.
@@ -346,7 +346,7 @@ set_file_perms() {
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
 
-          if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash" ; then
+          if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash" >/dev/null ; then
             ## Existing mode already saved previously. No need to save again.
             true OK
           else
@@ -368,7 +368,7 @@ set_file_perms() {
       else
         ## There is no fso entry. Therefore add one.
 
-        if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash"  ; then
+        if dpkg-statoverride $dpkg_admindir_parameter_existing_mode --list "$fso_without_trailing_slash" >/dev/null ; then
           ## Existing mode already saved previously. No need to save again.
           true OK
         else
