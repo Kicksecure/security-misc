@@ -31,20 +31,14 @@ undo_all() {
       fi
       true "owner: '$owner' group: '$group' mode: '$mode' file_name: '$file_name'"
 
-      stat -c "%n %a %U %G" "$file_name" || true
-
       chown "${owner}:${group}" "$file_name" || exit_code=202
       ## chmod need to be run after chown since chown removes suid.
       ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
       chmod "$mode" "$file_name" || exit_code=203
 
-      stat -c "%n %a %U %G" "$file_name" || true
-
       dpkg-statoverride --remove "$file_name" &>/dev/null || true
       dpkg-statoverride $dpkg_admindir_parameter_existing_mode --remove "$file_name" &>/dev/null || true
       dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$file_name" &>/dev/null || true
-
-      stat -c "%n %a %U %G" "$file_name" || true
 
    done < "/var/lib/permission-hardening/existing_mode/statoverride"
 }
