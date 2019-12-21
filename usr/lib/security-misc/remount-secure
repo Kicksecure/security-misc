@@ -37,83 +37,89 @@ fi
 
 exit_code=0
 
-home() {
+_home() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    new_mount_options="nosuid,nodev${noexec_maybe}"
-   if mount | grep /home | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "remount,${new_mount_options}" /home || exit_code=2
+   mount -o "remount,${new_mount_options}" "$funcname_sanatized" || exit_code=2
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
-run() {
+_run() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    new_mount_options="nosuid,nodev${noexec_maybe}"
-   if mount | grep /run | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "remount,${new_mount_options}" /run || exit_code=3
+   mount -o "remount,${new_mount_options}" "$funcname_sanatized" || exit_code=3
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
-shm() {
+_dev_shm() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    new_mount_options="nosuid,nodev${noexec_maybe}"
-   if mount | grep /dev/shm | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "remount,${new_mount_options}" /dev/shm || exit_code=4
+   mount -o "remount,${new_mount_options}" "$funcname_sanatized" || exit_code=4
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
-tmp() {
+_tmp() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    new_mount_options="nosuid,nodev${noexec_maybe}"
-   if mount | grep /tmp | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "$new_mount_options" --bind /tmp /tmp || exit_code=5
+   mount -o "$new_mount_options" --bind "$funcname_sanatized" "$funcname_sanatized" || exit_code=5
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
-securityfs() {
+_sys_kernel_security() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    new_mount_options="nosuid,nodev${noexec_maybe}"
-   if mount | grep /sys/kernel/security | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "$new_mount_options" --bind /sys/kernel/security /sys/kernel/security || exit_code=6
+   mount -o "$new_mount_options" --bind "$funcname_sanatized" "$funcname_sanatized" || exit_code=6
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
-lib() {
+_lib() {
+   funcname_sanatized="$(echo "$FUNCNAME" | str_replace "_" "/")"
    if [ -e "/var/run/remount-secure/${FUNCNAME}" ]; then
       return 0
    fi
    ## Not using noexec on /lib.
    new_mount_options="nosuid,nodev"
-   if mount | grep /lib | grep -q "$new_mount_options" ; then
-      echo "INFO: $FUNCNAME has already intended mount options."
+   if mount | grep "$funcname_sanatized" | grep -q "$new_mount_options" ; then
+      echo "INFO: $funcname_sanatized has already intended mount options."
       return 0
    fi
-   mount -o "$new_mount_options" --bind /lib /lib || exit_code=7
+   mount -o "$new_mount_options" --bind "$funcname_sanatized" "$funcname_sanatized" || exit_code=7
    touch "/var/run/remount-secure/${FUNCNAME}"
 }
 
@@ -122,12 +128,12 @@ end() {
 }
 
 main() {
-   home "$@"
-   run "$@"
-   shm "$@"
-   tmp "$@"
-   securityfs "$@"
-   lib "$@"
+   _home "$@"
+   _run "$@"
+   _dev_shm "$@"
+   _tmp "$@"
+   _sys_kernel_security "$@"
+   _lib "$@"
    end "$@"
 }
 
