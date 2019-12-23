@@ -192,7 +192,7 @@ add_nosuid_statoverride_entry() {
       ## Since existing_mode is incorrect, remove from dpkg-statoverride and re-add.
 
       ## Remove from real database.
-      echo_wrapper_ignore dpkg-statoverride --remove "$file_name"
+      echo_wrapper_silent_ignore dpkg-statoverride --remove "$file_name"
 
       ## Remove from separate database.
       echo_wrapper_silent_ignore dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$file_name"
@@ -367,10 +367,10 @@ set_file_perms() {
                   echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
                fi
 
-               echo_wrapper_ignore dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
+               echo_wrapper_silent_ignore dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
 
                ## Remove from and add to real database.
-               echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash"
+               echo_wrapper_silent_ignore dpkg-statoverride --remove "$fso_without_trailing_slash"
                echo_wrapper_audit dpkg-statoverride --add --update "$owner_from_config" "$group_from_config" "$mode_from_config" "$fso_without_trailing_slash"
 
                ## Save in separate database.
