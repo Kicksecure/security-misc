@@ -256,7 +256,7 @@ set_file_perms() {
          continue
       fi
 
-      if ! [ -e "$fso" ]; then
+      if [ ! -e "$fso" ]; then
          echo "INFO: fso: '$fso' - does not exist. This is likely normal."
          continue
       fi
