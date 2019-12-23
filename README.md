@@ -86,6 +86,9 @@ things, it is disabled by default and can optionally be enabled by running
 /lib/systemd/system/user@.service.d/sysfs.conf
 /etc/hide-hardware-info.d/30_default.conf
 
+* The MSR kernel module is blacklisted to prevent CPU MSRs from being
+abused to write to arbitrary memory.
+
 Improve Entropy Collection
 
 * Load jitterentropy_rng kernel module.
