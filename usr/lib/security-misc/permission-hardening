@@ -170,7 +170,7 @@ add_nosuid_statoverride_entry() {
       local is_disable_whitelisted
       is_disable_whitelisted=""
       for disablematch_list_entry in $disable_white_list ; do
-         if [ "$file_name" = "$disablematch_list_entry" ]; then
+         if echo "$file_name" | grep -q "$disablematch_list_entry" ; then
             is_disable_whitelisted="true"
             ## Stop looping through the disablewhitelist.
             break
@@ -179,7 +179,6 @@ add_nosuid_statoverride_entry() {
 
       if [ "$is_disable_whitelisted" = "true" ]; then
          echo "INFO: white list disabled - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
-         continue
       else
          if [ "$is_exact_whitelisted" = "true" ]; then
             echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
