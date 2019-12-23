@@ -386,10 +386,17 @@ set_file_perms() {
       fi
 
       if [ "$capability_from_config" = "none" ]; then
-         # sudo setcap -r /usr/bin/ping
+         ## https://forums.whonix.org/t/disable-suid-binaries/7706/45
+         # sudo setcap -r /usr/bin/ping 2>/dev/null
          # Failed to set capabilities on file `/usr/bin/ping' (No data available)
          # The value of the capability argument is not permitted for a file. Or the file is not a regular (non-symlink) file
-         echo_wrapper_audit setcap -r "$fso"
+         ## Therefore use echo_wrapper_ignore.
+         echo_wrapper_ignore setcap -r "$fso"
+         getcap_output="$(getcap "$fso")"
+         if [ ! "$getcap_output" = "" ]; then
+            echo "ERROR: removing capabilities for fso '$fso' failed!" >&2
+            continue
+         fi
       else
          if ! capsh --print | grep "Bounding set" | grep -q "$capability_from_config" ; then
             echo "ERROR: capability_from_config '$capability_from_config' does not exist!" >&2
