@@ -52,125 +52,120 @@ echo_wrapper_silent_audit() {
 }
 
 add_nosuid_statoverride_entry() {
-  local fso_to_process
-  fso_to_process="$fso"
-  local should_be_counter
-  should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)" || true
-  local counter_actual
-  counter_actual=0
+   local fso_to_process
+   fso_to_process="$fso"
+   local should_be_counter
+   should_be_counter="$(find "$fso_to_process" -perm /u=s,g=s | wc -l)" || true
+   local counter_actual
+   counter_actual=0
 
-  local line
-  while read -r line; do
-    true "line: $line"
-    counter_actual="$(( counter_actual + 1 ))"
+   local line
+   while read -r line; do
+      true "line: $line"
+      counter_actual="$(( counter_actual + 1 ))"
 
-    local arr file_name existing_mode existing_owner existing_group
-    arr=($line)
-    file_name="${arr[0]}"
-    existing_mode="${arr[1]}"
-    existing_owner="${arr[2]}"
-    existing_group="${arr[3]}"
+      local arr file_name existing_mode existing_owner existing_group
+      arr=($line)
+      file_name="${arr[0]}"
+      existing_mode="${arr[1]}"
+      existing_owner="${arr[2]}"
+      existing_group="${arr[3]}"
 
-    if [ "$arr" = "" ]; then
-      echo "ERROR: arr is empty. line: '$line'" >&2
-      continue
-    fi
-    if [ "$file_name" = "" ]; then
-      echo "ERROR: file_name is empty. line: '$line'" >&2
-      continue
-    fi
-    if [ "$existing_mode" = "" ]; then
-      echo "ERROR: existing_mode is empty. line: '$line'" >&2
-      continue
-    fi
-    if [ "$existing_owner" = "" ]; then
-      echo "ERROR: existing_owner is empty. line: '$line'" >&2
-      continue
-    fi
-    if [ "$existing_group" = "" ]; then
-      echo "ERROR: existing_group is empty. line: '$line'" >&2
-      continue
-    fi
-
-    ## -h file      True if file is a symbolic Link.
-    ## -u file      True if file has its set-user-id bit set.
-    ## -g file      True if file has its set-group-id bit set.
-
-    if test -h "$file_name" ; then
-      ## https://forums.whonix.org/t/kernel-hardening/7296/323
-      true "skip symlink: $file_name"
-      continue
-    fi
-
-    if test -d "$file_name" ; then
-      true "skip directory: $file_name"
-      continue
-    fi
-
-    local setuid setuid_output setsgid setsgid_output
-    setuid=""
-    setuid_output=""
-    if test -u "$file_name" ; then
-      setuid=true
-      setuid_output="set-user-id"
-    fi
-    setsgid=""
-    setsgid_output=""
-    if test -g "$file_name" ; then
-      setsgid=true
-      setsgid_output="set-group-id"
-    fi
-
-    if [ "$setuid" = "true" ] || [ "$setsgid" = "true" ]; then
-      string_length_of_existing_mode="${#existing_mode}"
-      if [ "$string_length_of_existing_mode" = "4" ]; then
-        new_mode="${existing_mode:1}"
-      else
-        new_mode="$existing_mode"
+      if [ "$arr" = "" ]; then
+         echo "ERROR: arr is empty. line: '$line'" >&2
+         continue
+      fi
+      if [ "$file_name" = "" ]; then
+         echo "ERROR: file_name is empty. line: '$line'" >&2
+         continue
+      fi
+      if [ "$existing_mode" = "" ]; then
+         echo "ERROR: existing_mode is empty. line: '$line'" >&2
+         continue
+      fi
+      if [ "$existing_owner" = "" ]; then
+         echo "ERROR: existing_owner is empty. line: '$line'" >&2
+         continue
+      fi
+      if [ "$existing_group" = "" ]; then
+         echo "ERROR: existing_group is empty. line: '$line'" >&2
+         continue
       fi
 
-## Remove 'others' / 'group' execution ('chmod og-x /path/to/binary') rights for better usability?
-## Make binaries such as 'su' fail closed rather than fail open if suid was removed from these?
-## Are there suid or sgid binaries which are still useful if suid / sgid has been removed from these?
-## https://forums.whonix.org/t/permission-hardening/8655/10
-#       if [ "$new_mode" = "755" ]; then
-#         new_mode=744
-#       fi
-#       if [ "$new_mode" = "754" ]; then
-#         new_mode=744
-#       fi
-#       if [ "$new_mode" = "745" ]; then
-#         new_mode=744
-#       fi
+      ## -h file      True if file is a symbolic Link.
+      ## -u file      True if file has its set-user-id bit set.
+      ## -g file      True if file has its set-group-id bit set.
+
+      if test -h "$file_name" ; then
+         ## https://forums.whonix.org/t/kernel-hardening/7296/323
+         true "skip symlink: $file_name"
+         continue
+      fi
+
+      if test -d "$file_name" ; then
+         true "skip directory: $file_name"
+         continue
+      fi
+
+      local setuid setuid_output setsgid setsgid_output
+      setuid=""
+      setuid_output=""
+      if test -u "$file_name" ; then
+         setuid=true
+         setuid_output="set-user-id"
+      fi
+         setsgid=""
+         setsgid_output=""
+      if test -g "$file_name" ; then
+         setsgid=true
+         setsgid_output="set-group-id"
+      fi
+
+      local setuid_or_setsgid
+      setuid_or_setsgid=""
+      if [ "$setuid" = "true" ] || [ "$setsgid" = "true" ]; then
+         setuid_or_setsgid=true
+      fi
+      if [ "$setuid_or_setsgid" = "" ]; then
+         continue
+      fi
+
+      ## Remove suid / gid and execute permission for 'group' and 'others'.
+      ## Similar to: chmod og-ugx /path/to/filename
+      ## Removing execution permission is useful to make binaries such as 'su' fail closed rather
+      ## than fail open if suid was removed from these.
+      ## Do not remove read access since no security benefit and easier to manually undo for users.
+      ## Are there suid or sgid binaries which are still useful if suid / sgid has been removed from these?
+      new_mode="744"
 
       local is_whitelisted
       is_whitelisted=""
       for white_list_entry in $whitelist ; do
-        if [ "$file_name" = "$white_list_entry" ]; then
-          is_whitelisted="true"
-          ## Stop looping through the whitelist.
-          break
-        fi
+         if [ "$file_name" = "$white_list_entry" ]; then
+            is_whitelisted="true"
+            ## Stop looping through the whitelist.
+            break
+         fi
       done
 
       local is_match_whitelisted
       is_match_whitelisted=""
       for matchwhite_list_entry in $matchwhitelist ; do
-        if echo "$file_name" | grep -q "$matchwhite_list_entry" ; then
-          is_match_whitelisted="true"
-          ## Stop looping through the matchwhitelist.
-          break
-        fi
+         if echo "$file_name" | grep -q "$matchwhite_list_entry" ; then
+            is_match_whitelisted="true"
+            ## Stop looping through the matchwhitelist.
+            break
+         fi
       done
 
       if [ "$is_whitelisted" = "true" ]; then
-        echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
-        continue
+         echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+         continue
       fi
 
       if [ "$is_match_whitelisted" = "true" ]; then
-        echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
-        continue
+         echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
+         continue
       fi
 
       echo "INFO: $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
@@ -198,20 +193,19 @@ add_nosuid_statoverride_entry() {
 
       ## Not using --update as this is only for recording.
       echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --add "$existing_owner" "$existing_group" "$new_mode" "$file_name"
-    fi
 
-  ## /lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/lib/**'.
-  ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
-  ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
-  done < <( find "$fso_to_process" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
+      ## /lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/lib/**'.
+      ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
+   done < <( find "$fso_to_process" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {} )
 
-  ## Sanity test.
-  if [ ! "$should_be_counter" = "$counter_actual" ]; then
-    echo "INFO: fso_to_process: '$fso_to_process' | counter_actual   : '$counter_actual'"
-    echo "INFO: fso_to_process: '$fso_to_process' | should_be_counter: '$should_be_counter'"
-    exit_code=202
-    echo "ERROR: counter does not check out." >&2
-  fi
+   ## Sanity test.
+   if [ ! "$should_be_counter" = "$counter_actual" ]; then
+      echo "INFO: fso_to_process: '$fso_to_process' | counter_actual   : '$counter_actual'"
+      echo "INFO: fso_to_process: '$fso_to_process' | should_be_counter: '$should_be_counter'"
+      exit_code=202
+      echo "ERROR: counter does not check out." >&2
+   fi
 }
 
 set_file_perms() {
