@@ -387,6 +387,9 @@ set_file_perms() {
     fi
 
     if [ "$capability_from_config" = "none" ]; then
+      # sudo setcap -r /usr/bin/ping
+      # Failed to set capabilities on file `/usr/bin/ping' (No data available)
+      # The value of the capability argument is not permitted for a file. Or the file is not a regular (non-symlink) file
       echo_wrapper_audit setcap -r "$fso"
     else
       if ! capsh --print | grep "Bounding set" | grep -q "$capability_from_config" ; then
