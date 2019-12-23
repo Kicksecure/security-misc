@@ -51,6 +51,11 @@ echo_wrapper_silent_audit() {
       };
 }
 
+sanity_tests() {
+   echo_wrapper_audit which \
+      capsh getcap setcap stat find dpkg-statoverride group passwd xargs grep
+}
+
 add_nosuid_statoverride_entry() {
    local fso_to_process
    fso_to_process="$fso"
@@ -417,6 +422,7 @@ parse_config_folder() {
   done
 }
 
+sanity_tests
 parse_config_folder
 
 if [ ! "$exit_code" = "0" ]; then
