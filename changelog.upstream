@@ -1,3 +1,31 @@
+commit 2152fa2d61fa72935b70e60b98ccbe2e1b31db43
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:38:53 2019 -0500
+
+    comment
+
+commit f8f2e6c7041d98572452be2e53094d0c539b1616
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:35:13 2019 -0500
+
+    fix disablewhitelist feature
+
+commit 47ddcad0c0af27093f61cf77008224bf66572532
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:29:47 2019 -0500
+
+    rename keyword whitelist to exactwhitelist
+    
+    add new keyword disablewhitelist
+    
+    refactoring
+
+commit 175d1c284552a08881286e8c3ca5d8eb9b97a144
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:13:13 2019 -0500
+
+    bumped changelog version
+
 commit 0409aac3aeb7acc273e19b16e78409994c731f2a
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 02:09:04 2019 -0500
