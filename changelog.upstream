@@ -1,3 +1,191 @@
+commit 0409aac3aeb7acc273e19b16e78409994c731f2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:09:04 2019 -0500
+
+    readme
+
+commit 1ff56625a170c392f6099b41f371c56032362ea0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:42:03 2019 -0500
+
+    polkit-agent-helper-1 matchwhitelist to match both
+    
+    - /usr/lib/policykit-1/polkit-agent-helper-1 matchwhitelist
+    - /lib/policykit-1/polkit-agent-helper-1
+
+commit d484b299ea1a93a401d00a212d675b5837b8aaa9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:38:31 2019 -0500
+
+    matchwhitelist /qubes/qfile-unpacker to match both
+    
+    - /usr/lib/qubes/qfile-unpacker whitelist
+    - /lib/qubes/qfile-unpacker
+
+commit 34bf2457136db227cc27a5d0fe9282f09780a310
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:35:45 2019 -0500
+
+    output
+
+commit ba30e45d15ec53b2d0a67ce96f5132d3f59bf870
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:32:42 2019 -0500
+
+    output
+
+commit ee9c5742da99673785068b0393e3587a77c99a31
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:29:48 2019 -0500
+
+    output
+
+commit 6d05359abcf460cbec266401530a9ab1aaaaf47f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:21:52 2019 -0500
+
+    output
+
+commit a1e78e8515a87ebc8fc2211b3e1e91824fd3865a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:20:56 2019 -0500
+
+    fix needlessly re-adding entries
+
+commit 906b3d32e769bbd30ed5698268899a7d2ec71d95
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:09:57 2019 -0500
+
+    output
+
+commit 4f76867da6ce5710cf486175cd84adcd72640049
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:08:02 2019 -0500
+
+    lower debugging
+
+commit dc6e5d8508a09bd7f2b9bfed02bc502797c11361
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 01:06:38 2019 -0500
+
+    fix
+
+commit 87b999f92aab4f4176f366308c27c4fe5471580c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:59:43 2019 -0500
+
+    refactoring
+
+commit 065ff4bd058ab26df3d3af1022da9d6a7405ab61
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:59:24 2019 -0500
+
+    sanity_tests
+
+commit fef1469fe62bf923ba89077934c8b0e5d8cd0258
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:51:14 2019 -0500
+
+    exit non-zero if capability removal failed
+
+commit 3670fcf48baecffe098c96eb67cbd601bc3e0069
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:49:33 2019 -0500
+
+    depend on libcap2-bin for setcap / getcap / capsh
+
+commit 17a8c294702acb30c397abc984d69c356cec2cd7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:47:49 2019 -0500
+
+    fix capability removal error handling
+    
+    https://forums.whonix.org/t/disable-suid-binaries/7706/45
+
+commit b631e2ecd8ae0e08850edd81bf64b02666fb6234
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:36:41 2019 -0500
+
+    refactoring
+
+commit 7aea304549cea2c885c2d813c7a15f617f4ebf2a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 00:26:15 2019 -0500
+
+    comment
+
+commit f4b1df02ee66309d12724cf7124b14180c855f14
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 19:42:40 2019 -0500
+
+    Remove suid / gid and execute permission for 'group' and 'others'.
+    
+    Similar to: chmod og-ugx /path/to/filename
+    
+    Removing execution permission is useful to make binaries such as 'su' fail closed rather
+    than fail open if suid was removed from these.
+    
+    Do not remove read access since no security benefit and easier to manually undo for users.
+    
+    chmod 744
+
+commit 58a4e0bc7d1b87d4d169f31dc5935c75e929c0b4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 19:12:10 2019 -0500
+
+    dbus-daemon-launch-helper matchwhitelist
+
+commit 15e3a2832da603f5caa9aadc6d68aaf503f013c9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 18:57:23 2019 -0500
+
+    comment
+
+commit 6eb8fd257aecd84686b4d7a9824a98bace9a705e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 18:56:36 2019 -0500
+
+    suid utempter/utempter matchwhitelist
+    
+    to cover both:
+    
+    /usr/lib/x86_64-linux-gnu/utempter/utempter
+    /lib/x86_64-linux-gnu/utempter/utempter
+
+commit 9409209b48fb8f803b88d72c0e7febaa74f5bd2c
+Merge: 008ce48 bce02ff
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 10:29:08 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit bce02ffdc01c22c8d5528eb5eaa7729a6b3137dd
+Merge: 008ce48 8f11a52
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 22 15:26:07 2019 +0000
+
+    Merge pull request #47 from madaidan/msr
+    
+    Blacklist CPU MSRs
+
+commit 8f11a520f4c406fa3187ad530f945a564b78a28c
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Dec 22 13:54:16 2019 +0000
+
+    Update control
+
+commit dd93b11321e171c56affcd660c0830d6a91ad87e
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Dec 22 13:52:43 2019 +0000
+
+    Blacklist CPU MSRs
+
+commit 008ce4817c6ad2218af05d14626b0f2c70a6e90d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 21 14:55:03 2019 -0500
+
+    bumped changelog version
+
 commit d300db3cde0f7ee8e3884a1225ec1d196a318728
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 14:45:11 2019 -0500
