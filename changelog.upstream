@@ -1,3 +1,21 @@
+commit 617c0a0e15f1c113b6e7fd748bb75978e4f23fcd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 07:21:26 2019 -0500
+
+    disable remount-secure.service - Disable for now until development finished / tested.
+
+commit 3e131174d5919303462295cb0852a9254885ae7c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 05:00:35 2019 -0500
+
+    comments
+
+commit bef41a38c26548d50101f7ea636316e1e2107a55
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:58:00 2019 -0500
+
+    bumped changelog version
+
 commit 046ceeae4df3b45916f35b0789af341c4f3d911a
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 03:57:36 2019 -0500
