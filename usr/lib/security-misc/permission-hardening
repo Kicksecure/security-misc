@@ -339,9 +339,15 @@ set_file_perms() {
          ## root root 755 /home
          ##
          ## dpkg-statoverride does not show leading '0'.
-         if dpkg-statoverride --list "$fso_without_trailing_slash" >/dev/null ; then
+         local dpkg_statoverride_list_output=""
+         local dpkg_statoverride_list_exit_code=0
+         dpkg_statoverride_list_output="$(dpkg-statoverride --list "$fso_without_trailing_slash")" || { dpkg_statoverride_list_exit_code=$? ; true; };
+
+         if [ "$dpkg_statoverride_list_exit_code" = "0" ]; then
             true "There is an fso entry. Check if owner/group/mode match."
-            if dpkg-statoverride --list | grep -q "$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash" ; then
+            local grep_line
+            grep_line="$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash"
+            if echo "$dpkg_statoverride_list_output" | grep -q "$grep_line" ; then
                true "OK The owner/group/mode matches. No further action required."
             else
                true "The owner/group/mode do not match, therefore remove and re-add the entry to update it."
