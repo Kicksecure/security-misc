@@ -362,7 +362,7 @@ set_file_perms() {
                   echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_existing_mode --add "$existing_owner" "$existing_group" "$existing_mode" "$fso_without_trailing_slash"
                fi
 
-               echo_wrapper_silent_audit dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
+               echo_wrapper_ignore dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$fso_without_trailing_slash"
 
                ## Remove from and add to real database.
                echo_wrapper_audit dpkg-statoverride --remove "$fso_without_trailing_slash"
