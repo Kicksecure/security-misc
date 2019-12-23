@@ -114,9 +114,6 @@ Description: enhances misc security settings
  .
   * Page allocator freelist randomization is enabled.
  .
-  * Kernel lockdown is enabled.
- .
- .
  Improve Entropy Collection
  .
   * Load jitterentropy_rng kernel module.
