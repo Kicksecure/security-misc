@@ -147,11 +147,11 @@ add_nosuid_statoverride_entry() {
       ## Are there suid or sgid binaries which are still useful if suid / sgid has been removed from these?
       new_mode="744"
 
-      local is_whitelisted
-      is_whitelisted=""
-      for white_list_entry in $whitelist ; do
+      local is_exact_whitelisted
+      is_exact_whitelisted=""
+      for white_list_entry in $exact_white_list ; do
          if [ "$file_name" = "$white_list_entry" ]; then
-            is_whitelisted="true"
+            is_exact_whitelisted="true"
             ## Stop looping through the whitelist.
             break
          fi
@@ -159,22 +159,36 @@ add_nosuid_statoverride_entry() {
 
       local is_match_whitelisted
       is_match_whitelisted=""
-      for matchwhite_list_entry in $matchwhitelist ; do
+      for matchwhite_list_entry in $match_white_list ; do
          if echo "$file_name" | grep -q "$matchwhite_list_entry" ; then
             is_match_whitelisted="true"
-            ## Stop looping through the matchwhitelist.
+            ## Stop looping through the match_white_list.
             break
          fi
       done
 
-      if [ "$is_whitelisted" = "true" ]; then
-         echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
-         continue
-      fi
+      local is_disable_whitelisted
+      is_disable_whitelisted=""
+      for disablematch_list_entry in $disable_white_list ; do
+         if [ "$file_name" = "$disablematch_list_entry" ]; then
+            is_disable_whitelisted="true"
+            ## Stop looping through the disablewhitelist.
+            break
+         fi
+      done
 
-      if [ "$is_match_whitelisted" = "true" ]; then
-         echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
+      if [ "$is_disable_whitelisted" = "true" ]; then
+         echo "INFO: white list disabled - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
          continue
+      else
+         if [ "$is_exact_whitelisted" = "true" ]; then
+            echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+            continue
+         fi
+         if [ "$is_match_whitelisted" = "true" ]; then
+            echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
+            continue
+         fi
       fi
 
       echo "INFO: $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | new_mode: '$new_mode'"
@@ -248,15 +262,21 @@ set_file_perms() {
       local fso_without_trailing_slash
       fso_without_trailing_slash="${fso%/}"
 
-      if [ "$mode_from_config" = "whitelist" ]; then
+      if [ "$mode_from_config" = "disablewhitelist" ]; then
          ## TODO: test/add white spaces inside file name support
-         whitelist+="$fso_without_trailing_slash "
+         disable_white_list+="$fso "
+         continue
+      fi
+
+      if [ "$mode_from_config" = "exactwhitelist" ]; then
+         ## TODO: test/add white spaces inside file name support
+         exact_white_list+="$fso "
          continue
       fi
 
       if [ "$mode_from_config" = "matchwhitelist" ]; then
          ## TODO: test/add white spaces inside file name support
-         matchwhitelist+="$fso "
+         match_white_list+="$fso "
          continue
       fi
 
