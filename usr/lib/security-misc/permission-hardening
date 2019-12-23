@@ -394,6 +394,7 @@ set_file_perms() {
          echo_wrapper_ignore setcap -r "$fso"
          getcap_output="$(getcap "$fso")"
          if [ ! "$getcap_output" = "" ]; then
+            exit_code=205
             echo "ERROR: removing capabilities for fso '$fso' failed!" >&2
             continue
          fi
