@@ -53,7 +53,7 @@ echo_wrapper_silent_audit() {
 
 sanity_tests() {
    echo_wrapper_audit which \
-      capsh getcap setcap stat find dpkg-statoverride group passwd xargs grep
+      capsh getcap setcap stat find dpkg-statoverride getent xargs grep
 }
 
 add_nosuid_statoverride_entry() {
