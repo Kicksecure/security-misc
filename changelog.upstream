@@ -1,3 +1,58 @@
+commit 046ceeae4df3b45916f35b0789af341c4f3d911a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:57:36 2019 -0500
+
+    readme
+
+commit 9f072ce4f99467f82986be348c9cedc2eb7f017d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:46:02 2019 -0500
+
+    comment
+
+commit 26fe9394fff2eb5be2f19272ea76ed187a8237e5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:41:54 2019 -0500
+
+    disable lockdown for now due to module loading
+
+commit 9ec5b0ee82263e1afb38c44348e69437ddc5c9c2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:38:49 2019 -0500
+
+    description: lockdown not enabled yet
+
+commit b05669accfe6fac8070003bbd57939ca2c621445
+Merge: 11b4192 1ff51ee
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:38:04 2019 -0500
+
+    Merge branch 'madaidan-kernel-hardening'
+
+commit 1ff51ee061dcdb1a898ebb68c0267ce926e0fca0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:37:28 2019 -0500
+
+    merge
+
+commit 535c258b834028e5638fd2b37b1a6f352e2b4558
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Dec 18 20:43:01 2019 +0000
+
+    More kernel hardening
+
+commit 11b4192fbdbc02af97e7dc32677bdb3a549b0000
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 03:28:42 2019 -0500
+
+    comments
+
+commit 42ff53e9ad26190dcbff154f6cfd039e3f6bdf83
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 02:42:07 2019 -0500
+
+    bumped changelog version
+
 commit 2152fa2d61fa72935b70e60b98ccbe2e1b31db43
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 02:38:53 2019 -0500
