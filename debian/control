@@ -56,7 +56,9 @@ Description: enhances misc security settings
   * Slab merging is disabled as sometimes a slab can be used in a vulnerable
  way which an attacker can exploit.
  .
-  * Sanity checks, redzoning, and memory poisoning are enabled.
+  * Sanity checks and redzoning are enabled.
+ .
+  * Memory zeroing at allocation and free time is enabled.
  .
   * Machine checks (MCE) are disabled which makes the kernel panic
  on uncorrectable errors in ECC memory that could be exploited.
@@ -106,6 +108,14 @@ Description: enhances misc security settings
  .
   * The MSR kernel module is blacklisted to prevent CPU MSRs from being
  abused to write to arbitrary memory.
+ .
+  * Vsyscalls are disabled as they are obsolete, are at fixed addresses and are
+ a target for ROP.
+ .
+  * Page allocator freelist randomization is enabled.
+ .
+  * Kernel lockdown is enabled.
+ .
  .
  Improve Entropy Collection
  .
