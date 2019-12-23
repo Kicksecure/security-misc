@@ -38,7 +38,9 @@ uncommenting settings in file /etc/sysctl.d/tcp_sack.conf.
 * Slab merging is disabled as sometimes a slab can be used in a vulnerable
 way which an attacker can exploit.
 
-* Sanity checks, redzoning, and memory poisoning are enabled.
+* Sanity checks and redzoning are enabled.
+
+* Memory zeroing at allocation and free time is enabled.
 
 * Machine checks (MCE) are disabled which makes the kernel panic
 on uncorrectable errors in ECC memory that could be exploited.
@@ -88,6 +90,11 @@ things, it is disabled by default and can optionally be enabled by running
 
 * The MSR kernel module is blacklisted to prevent CPU MSRs from being
 abused to write to arbitrary memory.
+
+* Vsyscalls are disabled as they are obsolete, are at fixed addresses and are
+a target for ROP.
+
+* Page allocator freelist randomization is enabled.
 
 Improve Entropy Collection
 
