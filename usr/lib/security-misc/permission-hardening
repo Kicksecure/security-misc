@@ -106,7 +106,7 @@ add_nosuid_statoverride_entry() {
       ## -g file      True if file has its set-group-id bit set.
 
       if test -h "$file_name" ; then
-         ## https://forums.whonix.org/t/kernel-hardening/7296/323
+         ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
          true "skip symlink: $file_name"
          continue
       fi
