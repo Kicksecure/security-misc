@@ -1,3 +1,73 @@
+commit ede536913daa0c7ddfe55e20c93d7b752daa5de3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 06:00:41 2019 -0500
+
+    no longer hardcode amd64
+
+commit d03a3d9ac03bc29ba349107855936dd194e12271
+Merge: 9d77d88 27a42a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 05:57:24 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 27a42a9da82bc1f22135ffa509925f63177f25d9
+Merge: ac49c55 79241c5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 10:55:11 2019 +0000
+
+    Merge pull request #50 from madaidan/modules
+    
+    Make /lib/modules unreadable
+
+commit ac49c55d1fafff5f36bd7c595f50db295ff616a2
+Merge: 0c3d4ad 98e88d1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 10:55:03 2019 +0000
+
+    Merge pull request #49 from madaidan/kver
+    
+    Detect kernel upgrades
+
+commit 0c3d4ad255de75b57a2e316bf8a7fd77a2fc0d4d
+Merge: 9d77d88 d1a0650
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 10:54:23 2019 +0000
+
+    Merge pull request #48 from madaidan/kernel-hardening
+    
+    Use only one slub_debug parameter
+
+commit 79241c5d09c4a7123cf90b45289b53d893135efb
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Dec 23 20:28:29 2019 +0000
+
+    Make /lib/modules unreadable
+
+commit 98e88d1456ca0e8fa23809115c51c380a4bb2d3b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Dec 23 19:57:43 2019 +0000
+
+    Detect kernel upgrades
+
+commit d1a0650fd944973ab614c1da06f8e555b31b73ae
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Dec 23 19:44:52 2019 +0000
+
+    Use only one slub_debug parameter
+
+commit 9d77d88a4dfd0f42a2a671bbec49f4ebd90af882
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 09:39:50 2019 -0500
+
+    comments
+
+commit 7a80837b4f0a7201f3e092ad9b99b4cddb6043b3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 23 08:48:04 2019 -0500
+
+    bumped changelog version
+
 commit 617c0a0e15f1c113b6e7fd748bb75978e4f23fcd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 07:21:26 2019 -0500
