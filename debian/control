@@ -162,7 +162,8 @@ Description: enhances misc security settings
   * A systemd service mounts /proc with hidepid=2 at boot to prevent users from
  seeing each other's processes.
  .
-  * The kernel logs are restricted to root only.
+  * The kernel logs are restricted to root only and are not displayed during boot
+ as they might leak some important information such as kernel pointers.
  .
   * The BPF JIT compiler is restricted to the root user and is hardened.
  .
