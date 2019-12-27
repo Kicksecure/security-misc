@@ -1,3 +1,19 @@
+commit 674840e6f9fb362dc713da3edde07132b5ae17d4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 26 05:44:35 2019 -0500
+
+    /fusermount matchwhitelist
+    
+    unbreak AppImages such as electrum Bitcoin wallet
+    
+    https://forums.whonix.org/t/disable-suid-binaries/7706/57
+
+commit 507a30d6e39f17fcb09b92033fe1d831e7d4baf4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 24 18:35:49 2019 -0500
+
+    bumped changelog version
+
 commit 04f438f75d4566822026373e78988e9d4e42b8b5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 18:09:37 2019 -0500
