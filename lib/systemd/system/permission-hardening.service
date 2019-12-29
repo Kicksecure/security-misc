@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=File permission hardening
+Description=SUID, SGID, Capability and File Permission Hardening
 Documentation=https://github.com/Whonix/security-misc
 
 DefaultDependencies=no
