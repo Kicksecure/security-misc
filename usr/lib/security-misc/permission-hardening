@@ -257,6 +257,8 @@ set_file_perms() {
       if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<< "$line" ; then
          exit_code=201
          echo "ERROR: cannot parse. line: '$line'" >&2
+         ## Debugging.
+         du -hs /tmp /var/log || true
          ## Safer to exit with error in this case.
          ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
          exit "$exit_code"
