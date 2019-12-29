@@ -259,6 +259,7 @@ set_file_perms() {
          echo "ERROR: cannot parse. line: '$line'" >&2
          ## Debugging.
          du -hs /tmp || true
+         echo "test -w /tmp: '$(test -w /tmp)'" >&2 || true
          ## Safer to exit with error in this case.
          ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
          exit "$exit_code"
