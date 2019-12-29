@@ -1,3 +1,6 @@
+## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
 [Unit]
 Description=Removes the System.map files
 Documentation=https://github.com/Whonix/security-misc
