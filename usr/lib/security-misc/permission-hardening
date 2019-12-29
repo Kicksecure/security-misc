@@ -246,7 +246,7 @@ set_file_perms() {
          true "OK line contains only white listed characters."
       else
          exit_code=200
-         echo "ERROR: cannot parse line with invalid character: $line" >&2
+         echo "ERROR: cannot parse line with invalid character. line: '$line'" >&2
          continue
       fi
 
@@ -254,7 +254,7 @@ set_file_perms() {
       local mode_from_config owner_from_config group_from_config capability_from_config
       if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<< "$line" ; then
          exit_code=201
-         echo "ERROR: cannot parse line: $line" >&2
+         echo "ERROR: cannot parse. line: '$line'" >&2
          continue
       fi
 
