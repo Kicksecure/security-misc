@@ -1,3 +1,89 @@
+commit 9c0d6b605707dbcb7db9cd227257a5dcd612f784
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 05:09:07 2019 -0500
+
+    copyright
+
+commit edc08988f26532daf90bc4a4f007aef53e62eeaf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 05:08:53 2019 -0500
+
+    copyright
+
+commit 9156d3584cd7ba9064d5af54afd95b6d8e73907b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:59:05 2019 -0500
+
+    Description
+
+commit 3ea946b365d8b05cabce63f4d26b3153559aa465
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:56:51 2019 -0500
+
+    RemainAfterExit=yes
+
+commit 2787ae976580d20ea4da5213c7f624f984510934
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:56:35 2019 -0500
+
+    copyright
+
+commit 6d56eb9ef0e2cfbba46df2294deb9c8e6b9aa2b7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:56:18 2019 -0500
+
+    minor
+
+commit 0e14706f32728123f1d345b73266934fe454a989
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:45:26 2019 -0500
+
+    copyright
+
+commit 1a0f7a77335940a11e33ca519d8f64429b8ee966
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:43:32 2019 -0500
+
+    debugging
+
+commit 5271892cb1e4646b79388d064227d4662b682583
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:42:54 2019 -0500
+
+    debugging
+
+commit 683028049c46516ba105b1b73364960b3b87efd6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:41:23 2019 -0500
+
+    debugging
+
+commit e3e1ff2a310c46fab67309edd88e73096843edcb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:35:46 2019 -0500
+
+    exit with error if a config line cannot be processed rather than skipping
+    
+    https://forums.whonix.org/t/disable-suid-binaries/7706/59
+
+commit d5c99f3a60372a00ded4b1b4340775aab1421d31
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:27:21 2019 -0500
+
+    output
+
+commit e5623fcd2b32b58e72c2ef80955072f013672e0d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 29 04:21:52 2019 -0500
+
+    comment
+
+commit d7f58db52c926c11157671c4555ca97f02929a76
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 27 05:30:12 2019 -0500
+
+    bumped changelog version
+
 commit 674840e6f9fb362dc713da3edde07132b5ae17d4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 26 05:44:35 2019 -0500
