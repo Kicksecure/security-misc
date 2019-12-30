@@ -1,3 +1,25 @@
+commit f3ff32ddbb8a7cf7555b9f1b2154e83154532a3d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 30 06:39:24 2019 -0500
+
+    Protect /bin/mount from 'chmod -x'.
+    
+    /bin/mount exactwhitelist
+    /usr/bin/mount exactwhitelist
+    
+    Remove SUID from 'mount' but keep executable.
+    
+    /bin/mount 745 root root
+    /usr/bin/mount 745 root root
+    
+    https://forums.whonix.org/t/disable-suid-binaries/7706/61
+
+commit e4e9c4e3b09138af25e94a6db81b0f759ddb4d1b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 30 05:59:43 2019 -0500
+
+    bumped changelog version
+
 commit 9c0d6b605707dbcb7db9cd227257a5dcd612f784
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 29 05:09:07 2019 -0500
