@@ -138,7 +138,42 @@ console_users_check() {
    fi
 }
 
+legacy() {
+   if [ -f "/var/lib/legacy/do_once/${FUNCNAME}_version_1" ]; then
+      return 0
+   fi
+
+   if [ -f "/usr/share/whonix/marker" ]; then
+      continue_yes=true
+   if [ -f "/usr/share/kicksecure/marker" ]; then
+      continue_yes=true
+   fi
+
+   if [ "$continue_yes" = "yes" ]; then
+      return 0
+   fi
+
+   if command -v "qubesdb-read" &>/dev/null; then
+      ## Qubes users can use dom0 to get a root terminal emulator.
+      ## For example:
+      ## qvm-run -u root debian-10 xterm
+      return 0
+   fi
+
+   ## https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/7
+
+   user_to_be_created=user
+
+   addgroup "$user_to_be_created" console
+
+   pam-auth-update --enable console-lockdown-security-misc
+
+   mkdir --parents "/var/lib/legacy/do_once"
+   touch "/var/lib/legacy/do_once/${FUNCNAME}_version_1"
+}
+
 user_groups_modifications
+legacy
 
 if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
    sudo_users_check
