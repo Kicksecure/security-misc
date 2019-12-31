@@ -1,3 +1,23 @@
+commit 20697db3ee5d227176c4d31e6c96454a64f47797
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 02:53:02 2019 -0500
+
+    improve console lockdown info output
+
+commit 788914de95ee9299d685e8b65466feee1085cf18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 02:46:32 2019 -0500
+
+    group ssh check was removed
+    
+    https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/27
+
+commit 06ed728d791abe0ad3c93091fd8ebc088f73c4ef
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 30 06:42:14 2019 -0500
+
+    bumped changelog version
+
 commit f3ff32ddbb8a7cf7555b9f1b2154e83154532a3d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 30 06:39:24 2019 -0500
