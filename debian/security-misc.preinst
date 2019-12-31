@@ -145,6 +145,7 @@ legacy() {
 
    if [ -f "/usr/share/whonix/marker" ]; then
       continue_yes=true
+   fi
    if [ -f "/usr/share/kicksecure/marker" ]; then
       continue_yes=true
    fi
