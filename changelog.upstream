@@ -1,3 +1,17 @@
+commit e89552c9846f85b4bbf73595080d71dcd873fe29
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 05:55:44 2019 -0500
+
+    add user "user" to group "console" in Whonix and Kicksecure
+    
+    enable Console Lockdown in Whonix and Kicksecure
+
+commit b5a2d1dc581b53974aaa148f6d8f3054c9d1c5fe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 02:54:58 2019 -0500
+
+    bumped changelog version
+
 commit 20697db3ee5d227176c4d31e6c96454a64f47797
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 31 02:53:02 2019 -0500
