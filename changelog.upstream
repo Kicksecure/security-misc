@@ -1,3 +1,15 @@
+commit 5031e7cc4b8bfc4037ba6ea029e20637090ccacb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 08:18:38 2019 -0500
+
+    better output if trying to login with non-existing user
+
+commit b2bdeb90957da4ebe38e7f12fba0330b89e0983d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 31 06:08:32 2019 -0500
+
+    bumped changelog version
+
 commit 2a3aae62b1cf97313b925fac94261e28af7ea3d1
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 31 06:06:52 2019 -0500
