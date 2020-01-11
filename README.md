@@ -96,6 +96,9 @@ a target for ROP.
 
 * Page allocator freelist randomization is enabled.
 
+* The vivid kernel module is blacklisted as it's only required for testing
+and has been the cause of multiple vulnerabilities.
+
 Improve Entropy Collection
 
 * Load jitterentropy_rng kernel module.
