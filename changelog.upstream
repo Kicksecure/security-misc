@@ -1,3 +1,49 @@
+commit 130a4cf6d433f4d862e10e31abbc2b1f3b1614d2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jan 11 15:17:06 2020 -0500
+
+    readme
+
+commit 61a2d390a7d6195d556898db8afa57822a9bc76a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jan 11 15:15:12 2020 -0500
+
+    lintian
+
+commit 3fae8e771ffbdd3023921b296e46cf982034d2ac
+Merge: 13a1e13 e9f4dbd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jan 11 15:14:43 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e9f4dbdda579db83f330054253100bc7c5d1e2be
+Merge: 13a1e13 6088444
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jan 11 20:14:10 2020 +0000
+
+    Merge pull request #52 from madaidan/vivid
+    
+    Blacklist the vivid kernel module
+
+commit 6088444c371f021ca23daa3a0ab1ee431d429a61
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jan 11 18:38:17 2020 +0000
+
+    Update control
+
+commit a662a76a52970530a4a3c3d6a284ce9400dc74c6
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Jan 11 18:37:00 2020 +0000
+
+    Blacklist vivid
+
+commit 13a1e1321e05965ad9449fafa4406c4d3b781dcf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 1 05:59:59 2020 -0500
+
+    bumped changelog version
+
 commit 5031e7cc4b8bfc4037ba6ea029e20637090ccacb
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 31 08:18:38 2019 -0500
