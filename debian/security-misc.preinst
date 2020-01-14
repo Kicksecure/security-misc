@@ -150,7 +150,7 @@ legacy() {
       continue_yes=true
    fi
 
-   if [ "$continue_yes" = "yes" ]; then
+   if [ ! "$continue_yes" = "yes" ]; then
       return 0
    fi
 
