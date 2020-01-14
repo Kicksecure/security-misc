@@ -10,6 +10,9 @@
 
 set -e
 
+my_pstree="$(pstree -p $$)" || true
+echo "my_pstree: '$my_pstree' | $0 $@" | systemd-cat --identifier="$0" || true
+
 ## If hidepid is not in use, just use pkexec normally.
 if ! mount | grep "/proc" | grep "hidepid=2" &>/dev/null ; then
    pkexec.security-misc-orig "$@"
@@ -82,8 +85,13 @@ fi
 PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
 export PATH
 
+exit_code=0
 if [ "$use_sudo" = "true" ]; then
-   lxqt-sudo sudo --user "$user_pkexec_wrapper" --set-home "$@"
+   lxqt-sudo sudo --user "$user_pkexec_wrapper" --set-home "$@" || { exit_code=$? ; true; };
 else
-   lxqt-sudo "$@"
+   lxqt-sudo "$@" || { exit_code=$? ; true; };
 fi
+
+echo "exit_code: '$exit_code'" | systemd-cat --identifier="$0" || true
+
+exit "$exit_code"
