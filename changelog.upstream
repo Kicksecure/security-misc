@@ -1,3 +1,27 @@
+commit 660837dc380440f6b00d3baf9395222376163b3b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 09:25:32 2020 -0500
+
+    fix case when user "user" does not exists
+
+commit 18c726c3eebc93f69062f1e4c1d3c7ab394985c3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 09:23:02 2020 -0500
+
+    comment
+
+commit b8652681e741236af2e20876d7103b2dfb0ae9bf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 09:21:47 2020 -0500
+
+    fix legacy
+
+commit cc21f912a372faef8322801e9a48882f29159c2d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 09:20:36 2020 -0500
+
+    bumped changelog version
+
 commit 2078cd237f2aaad8d68c1c5eab3f9942460ecd3c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 14 09:18:30 2020 -0500
