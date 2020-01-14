@@ -79,16 +79,17 @@ if [[ "$@" = "" ]]; then
    exit $?
 fi
 
-## set PATH same as root
-## This is required for gdebi.
-## REVIEW: is it ok that users can find out the PATH setting of root?
-PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
-export PATH
-
 exit_code=0
 if [ "$use_sudo" = "true" ]; then
+   ## 'sudo --user user' environment variables such as PATH.
    lxqt-sudo sudo --user "$user_pkexec_wrapper" --set-home "$@" || { exit_code=$? ; true; };
 else
+   ## set PATH same as root
+   ## This is required for gdebi.
+   ## REVIEW: is it ok that users can find out the PATH setting of root?
+   ## lxqt-sudo does not clear environment variables such as PATH.
+   PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
+   export PATH
    lxqt-sudo "$@" || { exit_code=$? ; true; };
 fi
 
