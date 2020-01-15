@@ -118,7 +118,7 @@ Description: enhances misc security settings
  and has been the cause of multiple vulnerabilities.
  .
   * An initramfs hook sets the sysctl values in /etc/sysctl.d before init
- is executed so our hardening is enabled as early as possible.
+ is executed so sysctl hardening is enabled as early as possible.
  .
   * The kernel panics on oopses to prevent it from continuing to run a flawed
  process and to deter brute forcing.
