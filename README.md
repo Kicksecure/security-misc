@@ -99,6 +99,9 @@ a target for ROP.
 * The vivid kernel module is blacklisted as it's only required for testing
 and has been the cause of multiple vulnerabilities.
 
+* An initramfs hook sets the sysctl values in /etc/sysctl.d before init
+is executed so our hardening is enabled as early as possible.
+
 * The kernel panics on oopses to prevent it from continuing to run a flawed
 process and to deter brute forcing.
 
