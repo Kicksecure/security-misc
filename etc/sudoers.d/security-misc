@@ -3,5 +3,3 @@
 
 user ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
 %sudo ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
-
-%sudo ALL=NOPASSWD: /usr/lib/security-misc/echo-path

@@ -99,6 +99,9 @@ a target for ROP.
 * The vivid kernel module is blacklisted as it's only required for testing
 and has been the cause of multiple vulnerabilities.
 
+* The kernel panics on oopses to prevent it from continuing to run a flawed
+process and to deter brute forcing.
+
 Improve Entropy Collection
 
 * Load jitterentropy_rng kernel module.

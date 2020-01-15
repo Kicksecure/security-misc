@@ -10,14 +10,26 @@
 
 set -e
 
+my_real_path="$(realpath "$0")" || true
+identifier="$my_real_path wrapper"
+exec > >(systemd-cat --identifier="$identifier output by program:") 2>&1
+
+log_to_journal() {
+   echo "$@" | systemd-cat --identifier="$identifier output by wrapper:" || true
+}
+
+log_to_journal "$0 $@"
+log_to_journal "DISPLAY: '$DISPLAY'"
+my_pstree="$(pstree -p $$)" || true
+log_to_journal "my_pstree: '$my_pstree'"
+
 ## If hidepid is not in use, just use pkexec normally.
 if ! mount | grep "/proc" | grep "hidepid=2" &>/dev/null ; then
    pkexec.security-misc-orig "$@"
    exit $?
 fi
 
-## Prefer lxqt-sudo.
-use_sudo=false
+switch_user=false
 
 original_args="$@"
 
@@ -55,7 +67,8 @@ do
             else
                shift 2
             fi
-            use_sudo=true
+            switch_user=true
+            maybe_switch_to_user="--user $user_pkexec_wrapper"
             ;;
          --)
             shift
@@ -70,20 +83,49 @@ done
 ## If there are input files (for example) that follow the options, they
 ## will remain in the "$@" positional parameters.
 
+if [ "$PKEXEC_UID" = "" ]; then
+   if [ ! "$user_pkexec_wrapper" = "" ]; then
+      PKEXEC_UID="$user_pkexec_wrapper"
+   elif [ ! "$SUDO_USER" = "" ]; then
+      PKEXEC_UID="$SUDO_USER"
+   else
+      PKEXEC_UID="$(whoami)"
+   fi
+fi
+export PKEXEC_UID
+
 if [[ "$@" = "" ]]; then
    ## Call original pkexec in case there are no arguments.
    pkexec.security-misc-orig $original_args
    exit $?
 fi
 
-## set PATH same as root
-## This is required for gdebi.
-## REVIEW: is it ok that users can find out the PATH setting of root?
-PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
-export PATH
+exit_code=0
 
-if [ "$use_sudo" = "true" ]; then
-   lxqt-sudo sudo --user "$user_pkexec_wrapper" --set-home "$@"
-else
-   lxqt-sudo "$@"
+## lxqt-sudo does not check /etc/sudoers / /etc/sudoers.d exceptions.
+## Therefore use 'sudo -l' to see if there is any already existing sudoers exception.
+if sudo -l --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" ; then
+   log_to_journal "sudoers exception: yes"
+   sudo --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" || { exit_code=$? ; true; };
+   log_to_journal "sudo --user | exit_code: '$exit_code'"
+   exit "$exit_code"
 fi
+
+log_to_journal "sudoers exception: no"
+
+if [ "$switch_user" = "true" ]; then
+   ## 'sudo --user user' clears environment variables such as PATH.
+   lxqt-sudo sudo $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" || { exit_code=$? ; true; };
+else
+   ## set PATH same as root
+   ## This is required for gdebi.
+   ## REVIEW: is it ok that users can find out the PATH setting of root?
+   ## lxqt-sudo does not clear environment variable PATH.
+   PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
+   export PATH
+   lxqt-sudo "$@" || { exit_code=$? ; true; };
+fi
+
+log_to_journal "exit_code: '$exit_code'"
+
+exit "$exit_code"

@@ -102,7 +102,7 @@ console_users_check() {
    fi
 
    console_users="$(getent group console | cut -d: -f4)"
-   ## example ssh_users:
+   ## example console_users:
    ## user
    console_unrestricted_users="$(getent group console-unrestricted | cut -d: -f4)"
 
@@ -150,7 +150,7 @@ legacy() {
       continue_yes=true
    fi
 
-   if [ "$continue_yes" = "yes" ]; then
+   if [ ! "$continue_yes" = "yes" ]; then
       return 0
    fi
 
@@ -164,6 +164,11 @@ legacy() {
    ## https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/7
 
    user_to_be_created=user
+
+   if ! id "$user_to_be_created" &>/dev/null ; then
+      true "INFO: user '$user_to_be_created' does not exist. Skipping addgroup console and pam-auth-update."
+      return 0
+   fi
 
    addgroup "$user_to_be_created" console
 
