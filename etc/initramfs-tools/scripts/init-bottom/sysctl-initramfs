@@ -15,4 +15,5 @@ prereqs)
         ;;
 esac
 
+sysctl -p ${rootmnt}/etc/sysctl.conf
 sysctl -p ${rootmnt}/etc/sysctl.d/*.conf
