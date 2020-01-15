@@ -1,3 +1,62 @@
+commit 73e830d0ac1ece338b0e80ca1a020d84a15d1774
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 15 10:08:57 2020 -0500
+
+    readme
+
+commit 8ab4623f8e81ad1b67858b458f2ae4085e7c8e65
+Merge: 8015954 087465a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 15 06:06:39 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 087465a0cdecc4765f7b659256cdd5e8cdef73ab
+Merge: 8015954 528c5fc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 15 11:02:30 2020 +0000
+
+    Merge pull request #53 from madaidan/sysctl-initramfs
+    
+    Set sysctl values in initramfs
+
+commit 528c5fc4c41026396a63ac91af7c156dd0d4f191
+Merge: 9dc43ea 8015954
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 15 11:02:03 2020 +0000
+
+    Merge branch 'master' into sysctl-initramfs
+
+commit 80159545a580830565ec01a507915add9c44838a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 15 02:42:10 2020 -0500
+
+    fix xfce4-power-manager xfpm-power-backlight-helper pkexec lxsudo popup
+    
+    https://forums.whonix.org/t/xfce4-power-manager-xfpm-power-backlight-helper-pkexec-lxsudo-popup/8764
+    
+    do show lxqt-sudo password prompt if there is a sudoers exceptoin
+    
+    improved pkexec wrapper logging
+
+commit d90ca4b1ad18289d6bcfcef51cfb032a0b4423eb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 15:12:13 2020 -0500
+
+    refactoring
+
+commit 082f04f2d4101828455a4a9b2852376a72ced6ce
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 15:04:58 2020 -0500
+
+    add logging to pkexec wrapper
+
+commit 1059ccf2254d0aac40d2c14680fea2a4012a2d66
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 14 09:28:28 2020 -0500
+
+    bumped changelog version
+
 commit 660837dc380440f6b00d3baf9395222376163b3b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 14 09:25:32 2020 -0500
@@ -49,6 +108,18 @@ Author: madaidan <50278627+madaidan@users.noreply.github.com>
 Date:   Mon Jan 13 21:05:35 2020 +0000
 
     Update control
+
+commit 9dc43eae38b55951cae2a9bf93114bcf742f8c8b
+Author: madaidan <>
+Date:   Sun Jan 12 21:42:07 2020 +0000
+
+    Description
+
+commit 8c4e0ff1c4d6191dbb40b28cfc23a8185cc0cbdb
+Author: madaidan <jeremy_stevens12@protonmail.ch>
+Date:   Sun Jan 12 21:37:37 2020 +0000
+
+    Set sysctl values in initramfs
 
 commit 8341242abc342d9cbd82afe12f512daf73a9e59a
 Author: Patrick Schleizer <adrelanos@riseup.net>
