@@ -1,0 +1,11 @@
+## Copyright (C) 2019 - 2019 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## REVIEW: is it ok that users can find out the PATH setting of root?
+%sudo ALL=NOPASSWD: /usr/lib/security-misc/echo-path
+
+## xfpm-power-backlight-helper demands environment variable PKEXEC_UID to be
+## set. Would otherwise error out with the following error message:
+## "This program must only be run through pkexec"
+## REVIEW: Can bad things be done by spoofing PKEXEC_UID?
+Defaults:ALL env_keep += "PKEXEC_UID"
