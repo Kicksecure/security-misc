@@ -56,6 +56,8 @@ sudo_users_check () {
       return 0
    fi
 
+   local sudo_users user_with_sudo are_there_any_sudo_users OLD_IFS
+
    sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
    ## user,root
@@ -101,6 +103,8 @@ console_users_check() {
       return 0
    fi
 
+   local console_users console_unrestricted_users user_with_console are_there_any_console_users OLD_IFS
+
    console_users="$(getent group console | cut -d: -f4)"
    ## example console_users:
    ## user
@@ -143,6 +147,8 @@ legacy() {
       return 0
    fi
 
+   local continue_yes user_to_be_created
+
    if [ -f "/usr/share/whonix/marker" ]; then
       continue_yes=true
    fi
@@ -150,7 +156,7 @@ legacy() {
       continue_yes=true
    fi
 
-   if [ ! "$continue_yes" = "yes" ]; then
+   if [ ! "$continue_yes" = "true" ]; then
       return 0
    fi
 
