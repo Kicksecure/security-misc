@@ -1,3 +1,20 @@
+commit fbe9b60d95d43452bf661461197efced431806a5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jan 20 08:49:02 2020 -0500
+
+    fix Whonix / Kicksecure
+    
+    /var/lib/dpkg/tmp.ci/preinst: ERROR: No user is a member of group 'console'. Installation aborted.
+    /var/lib/dpkg/tmp.ci/preinst: ERROR: You probably want to run:
+    
+    sudo adduser user console
+
+commit 960e1ff6e82f8593c2d242a6a0f1e1cf5805c85b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 17 03:32:57 2020 -0500
+
+    bumped changelog version
+
 commit 130434186811930d40407115af99116d4982da49
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 17 03:10:56 2020 -0500
