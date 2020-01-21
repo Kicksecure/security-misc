@@ -1,3 +1,15 @@
+commit 18041efa2f704d2a177b033ff8008aacdb7dde3f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 21 10:01:17 2020 -0500
+
+    fix pam tally2 check when read-only disk boot without ro-mode-init or grub-live
+
+commit 627b95e0b363e2e46a5de8a7aa5065bc66242293
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jan 20 08:51:25 2020 -0500
+
+    bumped changelog version
+
 commit fbe9b60d95d43452bf661461197efced431806a5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jan 20 08:49:02 2020 -0500
