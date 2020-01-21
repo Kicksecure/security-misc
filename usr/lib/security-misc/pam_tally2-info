@@ -73,7 +73,8 @@ fi
 #    fi
 # fi
 
-pam_tally2_output="$(pam_tally2 --user "$PAM_USER")"
+## Using || true to not break read-only disk boot without ro-mode-init or grub-live.
+pam_tally2_output="$(pam_tally2 --user "$PAM_USER")" || true
 
 if [ "$pam_tally2_output" = "" ]; then
    true "$0: no failed login"
