@@ -1,3 +1,17 @@
+commit 531f17cb68b331beb19a6e6c8b76575ebe38f95e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 22 07:08:08 2020 -0500
+
+    add update initramfs trigger
+    
+    https://github.com/Whonix/security-misc/pull/53
+
+commit df0b2afda1e1d5a3fddfd8c48b62a5de8295d687
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 21 10:12:32 2020 -0500
+
+    bumped changelog version
+
 commit 18041efa2f704d2a177b033ff8008aacdb7dde3f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 21 10:01:17 2020 -0500
