@@ -13,6 +13,7 @@ rm_conffile /etc/sysctl.d/sysrq.conf
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.pam_tally2-info
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.permission-lockdown
 
+## merged into 1 file /etc/sysctl.d/30_security-misc.conf
 rm_conffile /etc/sysctl.d/fs_protected.conf
 rm_conffile /etc/sysctl.d/kptr_restrict.conf
 rm_conffile /etc/sysctl.d/suid_dumpable.conf
@@ -26,6 +27,7 @@ rm_conffile /etc/sysctl.d/kexec.conf
 rm_conffile /etc/sysctl.d/tcp_hardening.conf
 rm_conffile /etc/sysctl.d/tcp_sack.conf
 
+## merged into 1 file /etc/modprobe.d/30_security-misc.conf
 rm_conffile /etc/modprobe.d/uncommon-network-protocols.conf
 rm_conffile /etc/modprobe.d/blacklist-bluetooth.conf
 rm_conffile /etc/modprobe.d/vivid.conf
