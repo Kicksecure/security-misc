@@ -1,3 +1,41 @@
+commit bac6cd601baaca7453c55719e9dfa84d5109135d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:33:54 2020 -0500
+
+    readme
+
+commit 3a4d283169b381bdc93c4ff5ce7b08c11a0830b3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:33:30 2020 -0500
+
+    description
+
+commit e0aa67677d3561cae6544c24e12021dd04f26133
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:30:36 2020 -0500
+
+    merge the many modprobe.d config files into 1
+    
+    and use a name starting with double digits
+    
+    to make it easier to disable settings using a lexically higher config file
+
+commit 6a4c493213929b354a3c8d2acf2325473ae63cfd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:26:36 2020 -0500
+
+    merge the many sysctl config files into 1
+    
+    and use a name starting with double digits
+    
+    to make it easier to disable settings using a lexically higher config file
+
+commit f653b94e7747436323e2083d416ab86560e3cd71
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 03:49:02 2020 -0500
+
+    bumped changelog version
+
 commit ca057713e2e1f3c4a47216aadb51ba0ca012e39e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 24 03:39:04 2020 -0500
