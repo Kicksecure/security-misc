@@ -88,9 +88,6 @@ Description: enhances misc security settings
  .
   * IOMMU is enabled with a boot parameter to prevent DMA attacks.
  .
-  * The kernel now panics on oopses to prevent it from continuing running a
- flawed process.
- .
   * Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
  a history of security concerns.
  https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
