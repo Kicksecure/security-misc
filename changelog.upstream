@@ -1,3 +1,27 @@
+commit be79f0688a47dca129ac61dd78b18a2638e8650c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:40:20 2020 -0500
+
+    readme
+
+commit c0d3726b002d136e602c6bdaf07c5d94c5591ee4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:40:03 2020 -0500
+
+    comment
+
+commit a37da1c96880b14a8271712801e6da3d3ea766eb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:39:06 2020 -0500
+
+    add digits to drop-in file names
+
+commit 2ab940c60311ae38079d2ceb09e04eedac2aad90
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 04:34:18 2020 -0500
+
+    bumped changelog version
+
 commit bac6cd601baaca7453c55719e9dfa84d5109135d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 24 04:33:54 2020 -0500
