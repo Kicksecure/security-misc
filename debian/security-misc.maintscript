@@ -12,3 +12,16 @@ rm_conffile /etc/sysctl.d/sysrq.conf
 ## https://github.com/Whonix/security-misc/pull/45
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.pam_tally2-info
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.permission-lockdown
+
+rm_conffile /etc/sysctl.d/fs_protected.conf
+rm_conffile /etc/sysctl.d/kptr_restrict.conf
+rm_conffile /etc/sysctl.d/suid_dumpable.conf
+rm_conffile /etc/sysctl.d/harden_bpf.conf
+rm_conffile /etc/sysctl.d/ptrace_scope.conf
+rm_conffile /etc/sysctl.d/tcp_timestamps.conf
+rm_conffile /etc/sysctl.d/mmap_aslr.conf
+rm_conffile /etc/sysctl.d/dmesg_restrict.conf
+rm_conffile /etc/sysctl.d/coredumps.conf
+rm_conffile /etc/sysctl.d/kexec.conf
+rm_conffile /etc/sysctl.d/tcp_hardening.conf
+rm_conffile /etc/sysctl.d/tcp_sack.conf
