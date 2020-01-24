@@ -25,3 +25,10 @@ rm_conffile /etc/sysctl.d/coredumps.conf
 rm_conffile /etc/sysctl.d/kexec.conf
 rm_conffile /etc/sysctl.d/tcp_hardening.conf
 rm_conffile /etc/sysctl.d/tcp_sack.conf
+
+rm_conffile /etc/modprobe.d/uncommon-network-protocols.conf
+rm_conffile /etc/modprobe.d/blacklist-bluetooth.conf
+rm_conffile /etc/modprobe.d/vivid.conf
+rm_conffile /etc/modprobe.d/blacklist-dma.conf
+rm_conffile /etc/modprobe.d/msr.conf
+rm_conffile /etc/modprobe.d/30_nf_conntrack_helper_disable.conf
