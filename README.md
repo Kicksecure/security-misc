@@ -19,7 +19,7 @@ the kernel. (!) Hence, this package disables this feature by shipping the
 very useful for kernel exploits.
 
 * Kexec is disabled as it can be used to load a malicious kernel.
-/etc/sysctl.d/kexec.conf
+/etc/sysctl.d/security-misc.conf
 
 * ASLR effectiveness for mmap is increased.
 
@@ -33,7 +33,7 @@ mitigate vulnerabilities such as CVE-2019-14899.
 * Some data spoofing attacks are made harder.
 
 * SACK can be disabled as it is commonly exploited and is rarely used by
-uncommenting settings in file /etc/sysctl.d/tcp_sack.conf.
+uncommenting settings in file /etc/sysctl.d/security-misc.conf.
 
 * Slab merging is disabled as sometimes a slab can be used in a vulnerable
 way which an attacker can exploit.
@@ -62,7 +62,7 @@ that could be useful to an attacker.
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords.
 /etc/security/limits.d/disable-coredumps.conf
-/etc/sysctl.d/coredumps.conf
+/etc/sysctl.d/security-misc.conf
 /lib/systemd/coredump.conf.d/disable-coredumps.conf
 
 * The thunderbolt and firewire kernel modules are blacklisted as they can be
@@ -268,7 +268,7 @@ also allow one to look for clocks that match an expected value to find the
 public IP used by a user.
 
 Hence, this package disables this feature by shipping the
-/etc/sysctl.d/tcp_timestamps.conf configuration file.
+/etc/sysctl.d/security-misc.conf configuration file.
 
 Note that TCP time stamps normally have some usefulness. They are
 needed for:
