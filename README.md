@@ -61,9 +61,9 @@ that could be useful to an attacker.
 
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords.
-/etc/security/limits.d/disable-coredumps.conf
+/etc/security/limits.d/30_security-misc.conf
 /etc/sysctl.d/security-misc.conf
-/lib/systemd/coredump.conf.d/disable-coredumps.conf
+/lib/systemd/coredump.conf.d/30_security-misc.conf
 
 * The thunderbolt and firewire kernel modules are blacklisted as they can be
 used for DMA (Direct Memory Access) attacks.
