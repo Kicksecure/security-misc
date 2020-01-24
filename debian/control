@@ -37,7 +37,7 @@ Description: enhances misc security settings
  very useful for kernel exploits.
  .
   * Kexec is disabled as it can be used to load a malicious kernel.
- /etc/sysctl.d/security-misc.conf
+ /etc/sysctl.d/30_security-misc.conf
  .
   * ASLR effectiveness for mmap is increased.
  .
@@ -51,7 +51,7 @@ Description: enhances misc security settings
   * Some data spoofing attacks are made harder.
  .
   * SACK can be disabled as it is commonly exploited and is rarely used by
- uncommenting settings in file /etc/sysctl.d/security-misc.conf.
+ uncommenting settings in file /etc/sysctl.d/30_security-misc.conf.
  .
   * Slab merging is disabled as sometimes a slab can be used in a vulnerable
  way which an attacker can exploit.
@@ -80,7 +80,7 @@ Description: enhances misc security settings
   * Coredumps are disabled as they may contain important information such as
  encryption keys or passwords.
  /etc/security/limits.d/30_security-misc.conf
- /etc/sysctl.d/security-misc.conf
+ /etc/sysctl.d/30_security-misc.conf
  /lib/systemd/coredump.conf.d/30_security-misc.conf
  .
   * The thunderbolt and firewire kernel modules are blacklisted as they can be
@@ -286,7 +286,7 @@ Description: enhances misc security settings
  public IP used by a user.
  .
  Hence, this package disables this feature by shipping the
- /etc/sysctl.d/security-misc.conf configuration file.
+ /etc/sysctl.d/30_security-misc.conf configuration file.
  .
  Note that TCP time stamps normally have some usefulness. They are
  needed for:
