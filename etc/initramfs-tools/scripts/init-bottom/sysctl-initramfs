@@ -15,7 +15,7 @@ prereqs)
         ;;
 esac
 
-sysctl -p ${rootmnt}/etc/sysctl.conf
-sysctl -p ${rootmnt}/etc/sysctl.d/*.conf
+sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null
+sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null
 
 true
