@@ -1,3 +1,15 @@
+commit 85d2aa1365ae5dfc43944a938794954452c26fe0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 06:13:42 2020 -0500
+
+    hide stdout (but not stderr) by sysctl during initramfs
+
+commit d69c1839cd30145c30247e0962a97cfd38f79d60
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 06:02:26 2020 -0500
+
+    bumped changelog version
+
 commit b9d65338bcc76552e4d2169106cd04e6276eb320
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 30 05:55:13 2020 -0500
