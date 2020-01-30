@@ -1,3 +1,23 @@
+commit 4df0d6c01cc91139dc9eef1dc4265e8cacde8cdf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 01:22:06 2020 -0500
+
+    readme
+
+commit c1a0da60beacd027c1c7c94ae44a9d7b1ab708b9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 00:46:48 2020 -0500
+
+    set kernel boot parameter `l1tf=full,force` and `nosmt=force`
+    
+    https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647/17
+
+commit efc40da4fb1fffcc760685cda0e49dc04da4c5fe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 24 12:02:27 2020 -0500
+
+    bumped changelog version
+
 commit 07dcb32fc28abf33eaf0425c67cc5cf9ee1f5a5b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 24 11:55:38 2020 -0500
