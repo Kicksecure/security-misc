@@ -1,3 +1,26 @@
+commit b9d65338bcc76552e4d2169106cd04e6276eb320
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 05:55:13 2020 -0500
+
+    unconditionally enable all CPU bugs (spectre, meltdown, L1TF, ...)
+    
+    this might reduce performance
+    
+    * `spectre_v2=on`
+    * `spec_store_bypass_disable=on`
+    * `tsx=off`
+    * `tsx_async_abort=full,nosmt`
+    
+    Thanks to @madaidan for the suggestion!
+    
+    https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647
+
+commit 2711d0f7f08362f97383fbae81ce9d520b19dcbc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 01:22:32 2020 -0500
+
+    bumped changelog version
+
 commit 4df0d6c01cc91139dc9eef1dc4265e8cacde8cdf
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 30 01:22:06 2020 -0500
