@@ -53,6 +53,8 @@ vulnerabilities.
 
 * All mitigations for the MDS vulnerability are enabled.
 
+* Enables mitigations for the L1TF (L1 Terminal Fault) vulnerability.
+
 * A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
 /etc/kernel/postinst.d/30_remove-system-map
