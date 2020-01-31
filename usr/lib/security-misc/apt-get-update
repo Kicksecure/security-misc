@@ -18,7 +18,7 @@ sigterm_trap() {
 
 trap "sigterm_trap" SIGTERM SIGINT
 
-[ -n "$timeout_after" ] || timeout_after="240"
+[ -n "$timeout_after" ] || timeout_after="600"
 [ -n "$kill_after" ] || kill_after="10"
 
 timeout \
