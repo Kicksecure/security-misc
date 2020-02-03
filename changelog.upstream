@@ -1,3 +1,15 @@
+commit 1f6ed2cc7047e1144e811d94dddc7306ee93b61e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 3 08:55:20 2020 -0500
+
+    add support for passing parameters to usr/lib/security-misc/apt-get-update
+
+commit 2291b7f787bcec5f64f632c6f3e8dfb12c67b4ee
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 3 08:43:31 2020 -0500
+
+    bumped changelog version
+
 commit 8627c9f76d1bdf26a423a92506d3d8c0eb1afc2e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 31 12:18:02 2020 -0500
