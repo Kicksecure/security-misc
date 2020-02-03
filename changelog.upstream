@@ -1,3 +1,21 @@
+commit 8627c9f76d1bdf26a423a92506d3d8c0eb1afc2e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 31 12:18:02 2020 -0500
+
+    /usr/lib/security-misc/apt-get-update increase default timeout_after="600"
+
+commit 829e28aa90ff5cb38edcc3cfab8ec91939ae5844
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jan 31 12:17:07 2020 -0500
+
+    /usr/lib/security-misc/apt-get-update environment variable timeout_after kill_after support
+
+commit 0bd0a4a647aef9899e1cbb5671ccfa3ca36efe18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 30 06:14:34 2020 -0500
+
+    bumped changelog version
+
 commit 85d2aa1365ae5dfc43944a938794954452c26fe0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 30 06:13:42 2020 -0500
