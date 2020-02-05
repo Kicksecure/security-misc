@@ -1,3 +1,31 @@
+commit 3024006f63be34f0c9d2968b1839a855419792dd
+Merge: 8c5cd86 024576e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 4 00:24:50 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 024576e3307e45c90b97ed8658ee82ceb1ed00aa
+Merge: 8c5cd86 e4c6e89
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 4 05:24:05 2020 +0000
+
+    Merge pull request #56 from HulaHoop0/patch-1
+    
+    kvm.nx_huge_pages=force
+
+commit e4c6e897cf37cbf5de6d90888a0ddbe56db11c2f
+Author: HulaHoop0 <55955185+HulaHoop0@users.noreply.github.com>
+Date:   Mon Feb 3 16:06:46 2020 +0000
+
+    kvm.nx_huge_pages=force
+
+commit 8c5cd865f49cea986cdfc00a4cb4f0f913d4d3e6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 3 09:23:13 2020 -0500
+
+    bumped changelog version
+
 commit 1f6ed2cc7047e1144e811d94dddc7306ee93b61e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 3 08:55:20 2020 -0500
