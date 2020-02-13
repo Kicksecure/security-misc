@@ -48,12 +48,7 @@ on uncorrectable errors in ECC memory that could be exploited.
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
-* SMT is disabled as it can be used to exploit the MDS and other
-vulnerabilities.
-
-* All mitigations for the MDS vulnerability are enabled.
-
-* Enables mitigations for the L1TF (L1 Terminal Fault) vulnerability.
+* Enables all mitigations for CPU vulnerabilities and disables SMT.
 
 * A systemd service clears System.map on boot as these contain kernel symbols
 that could be useful to an attacker.
