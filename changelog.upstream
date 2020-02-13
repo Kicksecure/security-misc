@@ -1,3 +1,49 @@
+commit d1fa191bc0ad58ea4fbb5b4db383311f87319dfe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 13 13:38:21 2020 -0500
+
+    readme
+
+commit 76a51a3b45113b4f771397bf32daae3fb38af6a6
+Merge: 163e20b 5ebab39
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 13 13:37:34 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5ebab397b201f431e3d0ca3bebfb71fa61a7ed2b
+Merge: 163e20b 2796c2d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 13 18:36:41 2020 +0000
+
+    Merge pull request #58 from madaidan/mitigations
+    
+    Improve CPU mitigations documentation
+
+commit 2796c2dd00fca0bb458bdb4ea5c2cdbd35854bef
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Feb 12 18:43:19 2020 +0000
+
+    Update control
+
+commit 700c7ed9085f2c9f0f271ddf8781f119e8ac5714
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Feb 12 18:42:13 2020 +0000
+
+    Create 40_cpu_mitigations.cfg
+
+commit ba0043b8a7249e55e0a0d3b87f6c54de5283f057
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Feb 12 18:36:05 2020 +0000
+
+    Update 40_kernel_hardening.cfg
+
+commit 163e20b886f298cb9d3aca54c14f66991001b396
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 5 06:31:48 2020 -0500
+
+    bumped changelog version
+
 commit 3024006f63be34f0c9d2968b1839a855419792dd
 Merge: 8c5cd86 024576e
 Author: Patrick Schleizer <adrelanos@riseup.net>
