@@ -120,6 +120,9 @@ Description: enhances misc security settings
   * The kernel panics on oopses to prevent it from continuing to run a flawed
  process and to deter brute forcing.
  .
+  * Restricts the SysRq key so it can only be used for shutdowns and the
+  Secure Attention Key.
+ .
  Improve Entropy Collection
  .
   * Load jitterentropy_rng kernel module.
