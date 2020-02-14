@@ -120,6 +120,8 @@ Description: enhances misc security settings
   * The kernel panics on oopses to prevent it from continuing to run a flawed
  process and to deter brute forcing.
  .
+  * Restricts loading line disciplines to CAP_SYS_MODULE.
+ .
  Improve Entropy Collection
  .
   * Load jitterentropy_rng kernel module.
