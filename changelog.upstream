@@ -1,8 +1,36 @@
+commit 412a83923dd09f36a25ebf9ce1991369d09c5e34
+Merge: dce54d5 4399a51
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 15:30:32 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit dce54d5d0f7c6017037b5fb6a5851dd90ce5d762
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 15:29:38 2020 -0500
+
+    bumped changelog version
+
 commit 3df008f0b9aa08c8b92c89439abeb029f5d1f316
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 15:28:30 2020 -0500
 
     readme
+
+commit 4399a512bef77ddec428bd4150cacebb77fc22da
+Merge: 757df8f a79ce7f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 19:43:05 2020 +0000
+
+    Merge pull request #63 from madaidan/ldisc_autoload
+    
+    Document ldisc_autoload better
+
+commit a79ce7fa68c22048d3e10789fe209b14b818d0fb
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Feb 15 17:30:21 2020 +0000
+
+    Document ldisc_autoload better
 
 commit 757df8fceb29d9b6143cf26e73cb31dde69d0a71
 Merge: 9bbae90 a9a1581
