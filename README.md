@@ -30,7 +30,9 @@ attacks, enabling RFC1337 to protect against time-wait assassination
 attacks and enabling reverse path filtering to prevent IP spoofing and
 mitigate vulnerabilities such as CVE-2019-14899.
 
-* Some data spoofing attacks are made harder.
+* Avoids unintentional writes to attacker-controlled files.
+
+* Prevents symlink/hardlink TOCTOU races.
 
 * SACK can be disabled as it is commonly exploited and is rarely used by
 uncommenting settings in file /etc/sysctl.d/30_security-misc.conf.
@@ -99,6 +101,11 @@ as early as possible.
 
 * The kernel panics on oopses to prevent it from continuing to run a flawed
 process and to deter brute forcing.
+
+* Restricts the SysRq key so it can only be used for shutdowns and the
+Secure Attention Key.
+
+* Restricts loading line disciplines to CAP_SYS_MODULE.
 
 Improve Entropy Collection
 
