@@ -1,3 +1,123 @@
+commit 3df008f0b9aa08c8b92c89439abeb029f5d1f316
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 15:28:30 2020 -0500
+
+    readme
+
+commit 757df8fceb29d9b6143cf26e73cb31dde69d0a71
+Merge: 9bbae90 a9a1581
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 05:43:43 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a9a1581720739966e94f18be556552e9d75d63b1
+Merge: 9bbae90 1e5946c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 10:42:20 2020 +0000
+
+    Merge pull request #60 from madaidan/sysrq
+    
+    Restrict the SysRq key
+
+commit 1e5946c795e3962fdc2229146b9331d36a1d6c41
+Merge: 0f49736 9bbae90
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 10:41:52 2020 +0000
+
+    Merge branch 'master' into sysrq
+
+commit 9bbae903fe5ee58d4a22dfeab51cbb179b8cfb14
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 05:29:48 2020 -0500
+
+    remove-system.map: lower verbosity output
+
+commit cce35e5109489df44916a08722d9016bb1e578ec
+Merge: 14140ad e403517
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 05:27:52 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit e40351796e297673e1ec45dee7483079e96d9639
+Merge: 5124f8c 31009f0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 10:25:15 2020 +0000
+
+    Merge pull request #62 from madaidan/shred
+    
+    Shred System.map files
+
+commit 5124f8cebcf6113547d11fc5193f83af1a2b6f84
+Merge: ac8757a 9b76713
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 10:18:56 2020 +0000
+
+    Merge pull request #61 from madaidan/disable_early_pci_dma
+    
+    Avoid holes in IOMMU
+
+commit ac8757a031a02c6cbad564e6a857954c0cf01a54
+Merge: ad6b766 ace6211
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 10:09:46 2020 +0000
+
+    Merge pull request #59 from madaidan/ldisc
+    
+    Restrict loading line disciplines to CAP_SYS_MODULE
+
+commit 31009f0bfa10e7b67f5823a5be92273e5414fff3
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 23:46:19 2020 +0000
+
+    Shred System.map files
+
+commit 9b767139ef82279e00d86f7f1e1e8bf73d795651
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 18:52:01 2020 +0000
+
+    Avoid holes in IOMMU
+
+commit 0f497369574811b0e7fb832636a5618e62618619
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 18:18:18 2020 +0000
+
+    Update control
+
+commit d251c43344a04e1dd8afbf12352432810874e021
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 18:17:20 2020 +0000
+
+    Restrict the SysRq key
+
+commit ace62111761451a13c446767dfd3c32b9b70a7f8
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 17:51:17 2020 +0000
+
+    Update control
+
+commit 0ea7dd161b3e643c23624e6dcb450116824b6301
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Fri Feb 14 17:50:19 2020 +0000
+
+    Restrict loading line disciplines to CAP_SYS_MODULE
+
+commit ad6b76688677cd4f9f0b2f2524c0f6b0a381bf29
+Merge: 14140ad 14f8458
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 13 18:40:58 2020 +0000
+
+    Merge pull request #57 from madaidan/sysctl
+    
+    Prevent symlink/hardlink TOCTOU races
+
+commit 14140ad41ba45b2457570a7df28b42cfd3bf3155
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 13 13:39:45 2020 -0500
+
+    bumped changelog version
+
 commit d1fa191bc0ad58ea4fbb5b4db383311f87319dfe
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 13:38:21 2020 -0500
@@ -37,6 +157,18 @@ Author: madaidan <50278627+madaidan@users.noreply.github.com>
 Date:   Wed Feb 12 18:36:05 2020 +0000
 
     Update 40_kernel_hardening.cfg
+
+commit 14f845837476810f1eb3038d9d41f9ad8088b916
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Feb 12 18:05:32 2020 +0000
+
+    Update control
+
+commit 5cb21d0d4d36fd516f17a9b5378443859f497027
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Wed Feb 12 18:03:23 2020 +0000
+
+    Prevent symlink/hardlink TOCTOU races
 
 commit 163e20b886f298cb9d3aca54c14f66991001b396
 Author: Patrick Schleizer <adrelanos@riseup.net>
