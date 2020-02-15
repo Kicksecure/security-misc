@@ -123,6 +123,8 @@ Description: enhances misc security settings
   * Restricts the SysRq key so it can only be used for shutdowns and the
   Secure Attention Key.
  .
+  * Restricts loading line disciplines to CAP_SYS_MODULE.
+ .
  Improve Entropy Collection
  .
   * Load jitterentropy_rng kernel module.

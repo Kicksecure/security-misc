@@ -26,7 +26,9 @@ fi
 ## Removes the System.map files as they are only used for debugging or malware.
 for filename in ${system_map_location} ; do
    if [ -f "${filename}" ]; then
-      rm --verbose --force "${filename}"
+      ## 'shred' with '--verbose' is too chatty. (7 lines)
+      shred --force --zero -u "${filename}"
+      echo "removed '${filename}'"
    fi
 done
 
