@@ -137,6 +137,8 @@ Description: enhances misc security settings
     * For more references, see:
     * /etc/default/grub.d/40_distrust_cpu.cfg
  .
+  * Gathers more entropy during boot if using the linux-hardened kernel patch.
+ .
  Uncommon network protocols are blacklisted:
  These are rarely used and may have unknown vulnerabilities.
  /etc/modprobe.d/uncommon-network-protocols.conf
