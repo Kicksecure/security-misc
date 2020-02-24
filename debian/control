@@ -125,6 +125,8 @@ Description: enhances misc security settings
  .
   * Restricts loading line disciplines to CAP_SYS_MODULE.
  .
+  * Restricts the `userfaultfd()` syscall to root.
+ .
  Improve Entropy Collection
  .
   * Load jitterentropy_rng kernel module.
