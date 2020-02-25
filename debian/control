@@ -90,6 +90,7 @@ Description: enhances misc security settings
   * Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
  a history of security concerns.
  https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
+ `/etc/modprobe.d/30_security-misc.conf`
  .
   * A systemd service restricts /proc/cpuinfo, /proc/bus, /proc/scsi and
  /sys to the root user only. This hides a lot of hardware identifiers from
