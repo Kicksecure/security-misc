@@ -62,7 +62,7 @@ Description: enhances misc security settings
  .
   * Memory zeroing at allocation and free time is enabled.
  .
-  * Machine checks (MCE) are disabled which makes the kernel panic
+  * The machine check tolerance level is decreased which makes the kernel panic
  on uncorrectable errors in ECC memory that could be exploited.
  .
   * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
