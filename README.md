@@ -305,7 +305,7 @@ Name (Homograph attack).
 
 Want more? Look into these:
 
-* Linux Kernel Runtime Guard (LKRG). Kills whole Classes of Kernel Exploits.
+* Linux Kernel Runtime Guard (LKRG)
 * tirdad - TCP ISN CPU Information Leak Protection.
 * Whonix ™ - Anonymous Operating System
 * Kicksecure ™ - A Security-hardened, Non-anonymous Linux Distribution
