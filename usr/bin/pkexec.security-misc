@@ -104,14 +104,15 @@ exit_code=0
 
 ## lxqt-sudo does not check /etc/sudoers / /etc/sudoers.d exceptions.
 ## Therefore use 'sudo -l' to see if there is any already existing sudoers exception.
-if sudo -l --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" ; then
-   log_to_journal "sudoers exception: yes"
-   sudo --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" || { exit_code=$? ; true; };
-   log_to_journal "sudo --user | exit_code: '$exit_code'"
-   exit "$exit_code"
-fi
-
-log_to_journal "sudoers exception: no"
+## Did not work. 'sudo -l' will always exit with exit code '0'.
+# if sudo -l --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" ; then
+#    log_to_journal "sudoers exception: yes"
+#    sudo --non-interactive $maybe_switch_to_user --set-home PKEXEC_UID="$PKEXEC_UID" "$@" || { exit_code=$? ; true; };
+#    log_to_journal "sudo --user | exit_code: '$exit_code'"
+#    exit "$exit_code"
+# fi
+#
+# log_to_journal "sudoers exception: no"
 
 if [ "$switch_user" = "true" ]; then
    ## 'sudo --user user' clears environment variables such as PATH.
