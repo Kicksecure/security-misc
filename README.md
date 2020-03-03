@@ -76,10 +76,10 @@ https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
 
 * A systemd service restricts `/proc/cpuinfo`, `/proc/bus`, `/proc/scsi` and
 `/sys` to the root user only. This hides a lot of hardware identifiers from
-unprivileged users and increases security as `/sys` exposes a lot of information
-that shouldn't be accessible to unprivileged users. As this will break many
-things, it is disabled by default and can optionally be enabled by running
-`systemctl enable hide-hardware-info.service` as root.
+unprivileged users and increases security as `/sys` exposes a lot of
+information that shouldn't be accessible to unprivileged users. As this will
+break many things, it is disabled by default and can optionally be enabled by
+running `systemctl enable hide-hardware-info.service` as root.
 `/usr/lib/security-misc/hide-hardware-info`
 `/lib/systemd/system/hide-hardware-info.service`
 `/lib/systemd/system/user@.service.d/sysfs.conf`
