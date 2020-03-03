@@ -1,3 +1,134 @@
+commit 201d6b5efc355b08b5f94f9284d2242dec9c56b8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Mar 3 09:07:42 2020 -0500
+
+    readme
+
+commit 63c6405ab74f0dd5f3ec3838135b29304a3d1fc8
+Merge: e3e39f2 453aa8a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 07:34:46 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 453aa8a4eb76fe56ad67f1aea8abfeb122e68a9c
+Merge: e3e39f2 60fbf8b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 12:28:32 2020 +0000
+
+    Merge pull request #65 from madaidan/userfaultfd
+    
+    Restrict the userfaultfd() syscall to root
+
+commit e3e39f22354595c9f21c243d7bdadc1487374db8
+Merge: 649ec5d bd7678c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 05:01:41 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 649ec5dfa1d2c0e324d8054b4c7402ab2b462d93
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 04:59:56 2020 -0500
+
+    pkexec wrapper: fix gdebi / synaptic
+    
+    but at cost of checking for passwordless sudo /etc/suders /etc/sudoers.d
+    exceptions.
+    
+    http://forums.whonix.org/t/cannot-use-pkexec/8129/53
+
+commit 32269d32b63e549f76b4090b675dd53256fbc42d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 04:59:15 2020 -0500
+
+    description
+
+commit b31caefdeb8b76537982e359e708b57081d7b381
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 29 04:59:02 2020 -0500
+
+    description
+
+commit bd7678c574819298b364185fe7e3362c7e8d4930
+Merge: d04d4bf 42d3b98
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Feb 28 12:04:05 2020 +0000
+
+    Merge pull request #66 from madaidan/mce
+    
+    Fix docs
+
+commit 42d3b986c41854fc2990557d2333874e9379793b
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Thu Feb 27 17:41:14 2020 +0000
+
+    Update control
+
+commit d04d4bf0950b60b8e5bf51b2303bbecdbc5fe326
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 25 02:08:10 2020 -0500
+
+    description
+
+commit 4043d2af3f8239a2056610363fc9d53770ebc336
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 25 02:06:48 2020 -0500
+
+    description
+
+commit 0e5187ff249c686908506896e01125e37d194543
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 25 02:00:27 2020 -0500
+
+    description
+
+commit 60fbf8b0de8a631d8a63c64f7e8181fee501c237
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Feb 24 18:24:07 2020 +0000
+
+    Update control
+
+commit 6b64b36b0190198f5edfda6c704a9efe3ea5b9a6
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Feb 24 18:23:15 2020 +0000
+
+    Restrict the userfaultfd() syscall to root
+
+commit 221000db5b184664c09dfe9cb7055de45331a7e1
+Merge: 01eaee9 c7f2537
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 17 03:17:11 2020 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit c7f2537930925e3ec250db81791a107af003079b
+Merge: 01eaee9 8ea4e50
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Feb 17 08:16:34 2020 +0000
+
+    Merge pull request #64 from madaidan/extra_latent_entropy
+    
+    Gather more entropy during boot
+
+commit 8ea4e50c8e9c3c9ee650b665a32b78f67aedc1aa
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Feb 16 19:52:40 2020 +0000
+
+    Update control
+
+commit f6b6ab374ea2b24dfd4ac49bc1a595b50ab3d952
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Feb 16 19:51:32 2020 +0000
+
+    Gather more entropy during boot
+
+commit 01eaee997e34aa73a11dffe032ace5ef23c37e28
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Feb 15 15:35:44 2020 -0500
+
+    bumped changelog version
+
 commit 412a83923dd09f36a25ebf9ce1991369d09c5e34
 Merge: dce54d5 4399a51
 Author: Patrick Schleizer <adrelanos@riseup.net>
