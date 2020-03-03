@@ -44,7 +44,7 @@ way which an attacker can exploit.
 
 * Memory zeroing at allocation and free time is enabled.
 
-* Machine checks (MCE) are disabled which makes the kernel panic
+* The machine check tolerance level is decreased which makes the kernel panic
 on uncorrectable errors in ECC memory that could be exploited.
 
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
@@ -107,6 +107,8 @@ process and to deter brute forcing.
 Secure Attention Key.
 
 * Restricts loading line disciplines to `CAP_SYS_MODULE`.
+
+* Restricts the `userfaultfd()` syscall to root.
 
 Improve Entropy Collection
 
