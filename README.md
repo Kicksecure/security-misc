@@ -302,7 +302,7 @@ Application specific hardening:
 `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`
 * Deactivates thumbnails in Thunar.
 * Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
-to make phising attacks more difficult. Fixing URL not showing real Domain
+to make phishing attacks more difficult. Fixing URL not showing real Domain
 Name (Homograph attack).
 
 Want more? Look into these:
