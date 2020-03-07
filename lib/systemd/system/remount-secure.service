@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
+Description=remount various directories with stricter mount options
 Documentation=https://github.com/Whonix/security-misc
 
 DefaultDependencies=no
