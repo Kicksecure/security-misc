@@ -12,3 +12,5 @@ What=/home
 Where=/home
 Type=ext4
 Options=bind,nosuid,nodev
+## Uncomment this to deny execution of programs in /home.
+#Options=noexec
