@@ -1,0 +1,14 @@
+## Copyright (C) 2020 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Stricter mount options for /usr
+DefaultDependencies=no
+ConditionPathExists=/usr
+Before=sysinit.target
+
+[Mount]
+What=/usr
+Where=/usr
+Type=ext4
+Options=bind,nosuid
