@@ -1,0 +1,14 @@
+## Copyright (C) 2020 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Stricter mount options for /sbin
+DefaultDependencies=no
+ConditionPathExists=/sbin
+Before=sysinit.target
+
+[Mount]
+What=/sbin
+Where=/sbin
+Type=ext4
+Options=bind,nodev
