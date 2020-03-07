@@ -11,4 +11,4 @@ Before=sysinit.target
 What=/usr
 Where=/usr
 Type=ext4
-Options=bind,nosuid
+Options=bind,nodev
