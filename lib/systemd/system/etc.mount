@@ -1,0 +1,15 @@
+## Copyright (C) 2020 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Stricter mount options for /etc
+DefaultDependencies=no
+ConditionPathExists=/etc
+Before=sysinit.target
+
+[Mount]
+What=/etc
+Where=/etc
+Type=ext4
+## noexec breaks LightDM.
+Options=bind,nosuid,nodev
