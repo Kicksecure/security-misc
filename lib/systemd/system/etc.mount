@@ -10,6 +10,5 @@ Before=sysinit.target
 [Mount]
 What=/etc
 Where=/etc
-Type=ext4
 ## noexec breaks LightDM.
 Options=bind,nosuid,nodev

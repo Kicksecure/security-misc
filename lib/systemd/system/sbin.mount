@@ -10,5 +10,4 @@ Before=sysinit.target
 [Mount]
 What=/sbin
 Where=/sbin
-Type=ext4
 Options=bind,nodev

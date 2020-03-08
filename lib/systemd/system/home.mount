@@ -10,5 +10,4 @@ Before=sysinit.target
 [Mount]
 What=/home
 Where=/home
-Type=ext4
 Options=bind,nosuid,nodev
