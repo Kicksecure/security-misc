@@ -1,3 +1,29 @@
+commit 284a49110030b21aa3136447217273337a12acaf
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Mar 8 08:07:10 2020 -0400
+
+    disable `vm.unprivileged_userfaultfd=0` for now
+    
+    because broken
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/406
+    
+    reverts "Restrict the userfaultfd() syscall to root as it can make heap sprays easier."
+    
+    https://duasynt.com/blog/linux-kernel-heap-spray
+
+commit 44351ec9b78d59aeeef44675e8e203c7ace243f0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 7 21:44:19 2020 -0500
+
+    remove no longer needed code for installation of apparmor profiles
+
+commit 71ae6239168d829e25670ffa856ee0f011a168a9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 5 08:36:27 2020 -0500
+
+    bumped changelog version
+
 commit 76eb9579a3038982301fc622c84cd48fa3d88ffd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 5 08:33:00 2020 -0500
