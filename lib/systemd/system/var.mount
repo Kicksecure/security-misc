@@ -5,6 +5,7 @@
 Description=Stricter mount options for /var
 DefaultDependencies=no
 ConditionPathExists=/var
+ConditionPathExists=/etc/remount-secure
 Before=sysinit.target
 
 [Mount]

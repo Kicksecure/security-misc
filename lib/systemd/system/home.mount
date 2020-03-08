@@ -5,6 +5,7 @@
 Description=Stricter mount options for /home
 DefaultDependencies=no
 ConditionPathExists=/home
+ConditionPathExists=/etc/remount-secure
 Before=sysinit.target
 
 [Mount]

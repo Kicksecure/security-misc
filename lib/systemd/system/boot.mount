@@ -5,6 +5,7 @@
 Description=Stricter mount options for /boot
 DefaultDependencies=no
 ConditionPathExists=/boot
+ConditionPathExists=/etc/remount-secure
 Before=sysinit.target
 
 [Mount]

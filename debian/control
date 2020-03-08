@@ -172,6 +172,8 @@ Description: enhances misc security settings
   is opt-in. To opt-in to `noexec`, edit
  `/lib/systemd/system/home.mount.d/noexec.conf`, uncomment the
   "Options" line and reboot.
+  This feature is disabled by default. To enable it, create
+  the `/etc/remount-secure` file.
  `/lib/systemd/system/*.mount`
  .
   * A systemd service mounts `/proc` with `hidepid=2` at boot to prevent users
