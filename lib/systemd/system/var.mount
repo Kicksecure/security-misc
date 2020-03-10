@@ -11,4 +11,5 @@ Before=sysinit.target
 [Mount]
 What=/var
 Where=/var
-Options=bind,nosuid,nodev,noexec
+## noexec breaks apt.
+Options=bind,nosuid,nodev
