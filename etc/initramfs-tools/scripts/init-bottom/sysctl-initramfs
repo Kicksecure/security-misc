@@ -15,7 +15,8 @@ prereqs)
         ;;
 esac
 
-sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null
-sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null
+sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2>${rootmnt}/var/log/sysctl-initramfs-error.log
+sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>>${rootmnt}/var/log/sysctl-initramfs-error.log
+grep -v "unprivileged_userfaultfd" /var/log/sysctl-initramfs-error.log
 
 true
