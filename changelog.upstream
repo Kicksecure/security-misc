@@ -1,3 +1,37 @@
+commit e6e7886a6e3dca1a75943c5a04c4d29ab8682cec
+Merge: 04a87f7 711e786
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Mar 11 09:08:41 2020 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 711e786be504179c832172acb39d567b323520e6
+Merge: 04a87f7 4d0de87
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Mar 11 13:06:23 2020 +0000
+
+    Merge pull request #70 from madaidan/userfaultfd
+    
+    Fix unprivileged_userfaultfd
+
+commit 4d0de87f799d8032731140e9a5815d4773d91baa
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Mar 8 17:49:49 2020 +0000
+
+    Disable unprivileged userfaultfd use again
+
+commit efb2683cfc168c3b110c6664ee61eabcf85f3f30
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sun Mar 8 17:49:12 2020 +0000
+
+    Hide unprivileged_userfaultfd error
+
+commit 04a87f7029736e5ce66f18bb6c42cadf3500b26b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Mar 8 09:43:24 2020 -0400
+
+    bumped changelog version
+
 commit 284a49110030b21aa3136447217273337a12acaf
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Mar 8 08:07:10 2020 -0400
