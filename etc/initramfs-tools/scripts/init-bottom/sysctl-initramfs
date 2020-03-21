@@ -20,8 +20,8 @@ if mount | grep "${rootmnt}" | grep -q "(ro,"; then
   remount="yes"
   mount -o remount,rw "${rootmnt}"
 fi
-sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2> ${rootmnt}/var/log/sysctl-initramfs-error.log
-sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>> ${rootmnt}/var/log/sysctl-initramfs-error.log
+sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2> "${rootmnt}/var/log/sysctl-initramfs-error.log"
+sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>> "${rootmnt}/var/log/sysctl-initramfs-error.log"
 if [ "${remount}" = "yes" ]; then
   mount -o remount,ro "${rootmnt}"
 fi
