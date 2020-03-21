@@ -16,10 +16,15 @@ prereqs)
 esac
 
 ## ${rootmnt} is mounted read-only in the initramfs so it needs to be remounted first.
-mount -o remount,rw "${rootmnt}"
+if mount | grep "${rootmnt}" | grep -q "(ro,"; then
+  remount="yes"
+  mount -o remount,rw "${rootmnt}"
+fi
 sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2>${rootmnt}/var/log/sysctl-initramfs-error.log
-sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>>${rootmnt}/var/log/sysctl-initramfs-error.log
-mount -o remount,ro "${rootmnt}"
+sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>>${rootmnt}/var/log/sysctl-initramfs-error.log 
+if [ "${remount}" = "yes" ]; then
+  mount -o remount,ro "${rootmnt}"
+fi
 grep -v "unprivileged_userfaultfd" "${rootmnt}/var/log/sysctl-initramfs-error.log"
 
 true
