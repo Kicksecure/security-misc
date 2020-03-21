@@ -1,3 +1,71 @@
+commit 5f0dd8270ba6311018e654cca3b8b86818af5a82
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 14:14:35 2020 -0400
+
+    consistent use of quotes
+
+commit 66ea1a3a127642c5515ac6fd80952a56568620bc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 14:14:15 2020 -0400
+
+    minor
+
+commit 23bd7ead59c0bdd793a955aaa613552b37a38dab
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 14:12:42 2020 -0400
+
+    remove trailing space
+
+commit 7c25fc517e6f42d4364a55407f6bf0c84d130c8e
+Merge: 20f0c57 1cbc7f6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 14:12:25 2020 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 1cbc7f6bed8acc112b610e05f527cffc6e9e1e87
+Merge: 20f0c57 89ada11
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 18:11:57 2020 +0000
+
+    Merge pull request #73 from madaidan/sysctl-initramfs
+    
+    Only remount in sysctl-initramfs if already mounted read-only
+
+commit 89ada11cf9a76cf02b3d5f92fd5c66194fe40ff0
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Mar 21 17:49:07 2020 +0000
+
+    Only remount if already mounted read-only
+
+commit 20f0c574d5424c78ab6b4d3829a6662615967ba5
+Merge: e4118cb 2938182
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 13:28:43 2020 -0400
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2938182ce6303e6e55086e2e9e82f8263a3c8e76
+Merge: e4118cb c8826d6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 17:26:37 2020 +0000
+
+    Merge pull request #72 from madaidan/master
+    
+    Fix sysctl-initramfs logs
+
+commit c8826d6702ebaf280994effb22aea39b4cfd2dac
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Sat Mar 21 17:15:25 2020 +0000
+
+    Fix sysctl-initramfs logs
+
+commit e4118cb21eb8765bc8f4e7b5e05d464d72575824
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Mar 12 04:43:08 2020 -0400
+
+    bumped changelog version
+
 commit e6e7886a6e3dca1a75943c5a04c4d29ab8682cec
 Merge: 04a87f7 711e786
 Author: Patrick Schleizer <adrelanos@riseup.net>
