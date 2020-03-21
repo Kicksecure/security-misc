@@ -15,8 +15,11 @@ prereqs)
         ;;
 esac
 
+## ${rootmnt} is mounted read-only in the initramfs so it needs to be remounted first.
+mount -o remount,rw "${rootmnt}"
 sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2>${rootmnt}/var/log/sysctl-initramfs-error.log
 sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>>${rootmnt}/var/log/sysctl-initramfs-error.log
-grep -v "unprivileged_userfaultfd" /var/log/sysctl-initramfs-error.log
+mount -o remount,ro "${rootmnt}"
+grep -v "unprivileged_userfaultfd" "${rootmnt}/var/log/sysctl-initramfs-error.log"
 
 true
