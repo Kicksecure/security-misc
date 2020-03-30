@@ -49,6 +49,9 @@ user_groups_modifications() {
 }
 
 sudo_users_check () {
+   if test -f /var/lib/security-misc/skip_install_check ; then
+      return 0
+   fi
    if command -v "qubesdb-read" &>/dev/null; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
@@ -96,6 +99,9 @@ sudo_users_check () {
 }
 
 console_users_check() {
+   if test -f /var/lib/security-misc/skip_install_check ; then
+      return 0
+   fi
    if command -v "qubesdb-read" &>/dev/null; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
