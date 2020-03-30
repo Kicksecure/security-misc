@@ -1,3 +1,15 @@
+commit c22adbd92fcab45fb3b1d3e98528c4790bb20a6a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Mar 30 18:39:23 2020 -0400
+
+    notify if security-misc installation is forced
+
+commit 7ee5fc1b760dff0f86d8cf07a77cbd42d40f7a53
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Mar 30 17:16:46 2020 -0400
+
+    bumped changelog version
+
 commit f663b5eff8a6f2fa406039ced4441c5a4a9c1477
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Mar 30 17:15:02 2020 -0400
