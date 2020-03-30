@@ -93,6 +93,7 @@ sudo_users_check () {
 
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
+<<<<<<< HEAD
    echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
    echo "$0: ERROR: You probably want to run:" >&2
    echo "" >&2
@@ -112,6 +113,38 @@ sudo_users_check () {
    fi
 
    exit 200
+=======
+   if [ ! "$are_there_any_sudo_users" = "yes" ]; then
+      echo "$0: ERROR: No user is a member of group 'sudo'." >&2
+      echo "$0: Do you want to add current user $USER to 'sudo' group?" >&2
+      read -r input
+
+      case $input in
+         [yY][eE][sS]|[yY])
+       add_current_user_to_sudo=1
+       ;;
+         [nN][oO]|[nN])
+       add_current_user_to_sudo=0
+       ;;
+         *)
+       echo "$0: ERROR: Invalid input, aborting" >&2
+       exit 200
+       ;;
+      esac
+   fi
+   
+   if [ ! "$add_current_user_to_sudo" == "yes" ]; then
+      echo "$0: ERROR: You probably want to run:" >&2
+      echo "" >&2
+      echo "sudo adduser user sudo" >&2
+      echo "sudo adduser user console" >&2
+      echo "" >&2
+      echo "$0: ERROR: See also installation instructions:" >&2
+      echo "https://www.whonix.org/wiki/security-misc#install" >&2
+      exit 200
+   fi
+   addgroup $USER sudo
+>>>>>>> debian: .preinst, add user to groups automatically
 }
 
 console_users_check() {
@@ -155,6 +188,7 @@ console_users_check() {
 
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
+<<<<<<< HEAD
    if [ "$are_there_any_console_users" = "yes" ]; then
       return 0
    fi
@@ -170,6 +204,35 @@ console_users_check() {
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
       return 0
+=======
+   if [ ! "$are_there_any_console_users" = "yes" ]; then
+      echo "$0: ERROR: No user is a member of group 'console'" >&2
+      echo "$0: Do you want to add current user $USER to 'console' group?" >&2
+      read -r input
+
+      case $input in
+         [yY][eE][sS]|[yY])
+       add_current_user_to_console=1
+       ;;
+         [nN][oO]|[nN])
+       add_current_user_to_console=0
+       ;;
+         *)
+       echo "$0: ERROR: Invalid input, aborting" >&2
+       exit 200
+       ;;
+      esac
+   fi
+
+   if [ ! "$add_current_user_to_console" == "yes" ]; then
+      echo "$0: ERROR: You probably want to run:" >&2
+      echo "" >&2
+      echo "sudo adduser user console" >&2
+      echo "" >&2
+      echo "$0: ERROR: See also installation instructions:" >&2
+      echo "https://www.whonix.org/wiki/security-misc#install" >&2
+      exit 201
+>>>>>>> debian: .preinst, add user to groups automatically
    fi
    if test -f "/var/lib/security-misc/skip_install_check" ; then
       output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists."
