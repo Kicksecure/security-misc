@@ -1,3 +1,23 @@
+commit f663b5eff8a6f2fa406039ced4441c5a4a9c1477
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Mar 30 17:15:02 2020 -0400
+
+    skip check if any non-root user is a member of group sudo and console if
+    environment variable `SECURITY_MISC_INSTALL` is set to `force`
+
+commit bc22fc9fdba834d0a2d8fdc75b86934e56b317c9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Mar 30 17:12:43 2020 -0400
+
+    skip check if any non-root user is a member of group sudo and console if file
+    /var/lib/security-misc/skip_install_check exists
+
+commit d7a69628b1def631b04219da7aee764eebea37df
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Mar 21 14:56:48 2020 -0400
+
+    bumped changelog version
+
 commit 5f0dd8270ba6311018e654cca3b8b86818af5a82
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 14:14:35 2020 -0400
