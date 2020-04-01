@@ -91,15 +91,6 @@ sudo_users_check () {
       return 0
    fi
 
-   if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
-      output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
-      return 0
-   fi
-   if test -f "/var/lib/security-misc/skip_install_check" ; then
-      output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists."
-      return 0
-   fi
-
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
