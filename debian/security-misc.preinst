@@ -87,20 +87,14 @@ sudo_users_check () {
    IFS="$OLD_IFS"
    export IFS
 
-   if [ "$are_there_any_sudo_users" = "yes" ]; then
-      return 0
-   fi
-
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-   echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
-   echo "$0: ERROR: You probably want to run:" >&2
-   echo "" >&2
-   echo "sudo adduser user sudo" >&2
-   echo "sudo adduser user console" >&2
-   echo "" >&2
-   echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.whonix.org/wiki/security-misc#install" >&2
+   if [ "$are_there_any_sudo_users" = "yes" ]; then
+      echo "$0: INFO: Consider next users are in sudo group: $sudo_users"
+      echo "$0: INFO: If you want to manage permissions differently, consider running:"
+      echo "sudo adduser user sudo" >&2
+      return 0
+   fi
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
@@ -111,7 +105,9 @@ sudo_users_check () {
       return 0
    fi
 
-   exit 200
+   echo "$0: WARNING: No user is a member of group 'sudo'. Adding current user $(logname) to sudo group." >&2
+   addgroup $(logname) sudo
+   return 0
 }
 
 console_users_check() {
@@ -156,16 +152,11 @@ console_users_check() {
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if [ "$are_there_any_console_users" = "yes" ]; then
+      echo "$0: INFO: Consider next users are in console group: $console_users, unrestricted: $console_unrestricted_users"
+      echo "$0: INFO: If you want to manage permissions differently, consider running:"
+      echo "sudo adduser user console" >&2
       return 0
    fi
-
-   echo "$0: ERROR: No user is a member of group 'console'. Installation aborted." >&2
-   echo "$0: ERROR: You probably want to run:" >&2
-   echo "" >&2
-   echo "sudo adduser user console" >&2
-   echo "" >&2
-   echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.whonix.org/wiki/security-misc#install" >&2
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
@@ -176,7 +167,10 @@ console_users_check() {
       return 0
    fi
 
-   exit 201
+   echo "$0: WARNING: No user is a member of group 'console'. Adding current user $(logname) to console group." >&2
+   addgroup $(logname) console
+
+   return 0
 }
 
 legacy() {
