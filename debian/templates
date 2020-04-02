@@ -1,8 +1,0 @@
-Template: security-misc/add_user_to_sudo
-Type: boolean
-Description: Do you want to add current user to 'sudo' group?
-
-Template: security-misc/add_user_to_console
-Type: boolean
-Description: Do you want to add current user to 'console' group?
-
