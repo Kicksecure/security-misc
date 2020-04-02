@@ -358,9 +358,15 @@ sudo apt-get update
 sudo apt-get install security-misc
 ```
 
-## How to Build deb Package ##
+## How to Build deb Package from Source Code ##
 
-Replace `apparmor-profile-torbrowser` with the actual name of this package with `security-misc` and see [instructions](https://www.whonix.org/wiki/Dev/Build_Documentation/apparmor-profile-torbrowser).
+Can be build using standard Debian package build tools such as:
+
+```
+dpkg-buildpackage -b
+```
+
+See [instructions](https://www.whonix.org/wiki/Dev/Build_Documentation/security-misc). (Replace `package-name` with the actual name of this package.)
 
 ## Contact ##
 
