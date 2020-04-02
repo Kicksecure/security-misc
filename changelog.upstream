@@ -1,3 +1,51 @@
+commit ae8c5fff3c70c00931b95cd04b8729d2c1bd2a60
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 2 07:22:47 2020 -0400
+
+    readme
+
+commit a7f2a2a3b6b408a0545f55b8fed9cc17fbd8f843
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 2 06:04:45 2020 -0400
+
+    console lockdown: allow members of group `sudo` to use console
+    
+    https://forums.whonix.org/t/etc-security-hardening/8592
+    
+    https://github.com/Whonix/security-misc/pull/74#issuecomment-607748407
+    
+    https://www.whonix.org/wiki/Dev/Strong_Linux_User_Account_Isolation#Console_Lockdown
+
+commit 7764ee0d202193dc67f5805fc23be2b804962186
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 2 05:58:16 2020 -0400
+
+    comments
+
+commit d9f2a0e4a1837ef1604e4cd17ce8ae60996c9782
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 1 17:34:59 2020 -0400
+
+    remove 'Build-Depends: ronn' since no longer required
+
+commit eda9c57a628ebf1083f87789842d5403c6e05122
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 1 16:57:33 2020 -0400
+
+    remove genmkfile
+
+commit 2609fe9c3efff611dc5bce20d62580dace02757b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 1 16:33:29 2020 -0400
+
+    add debian install file
+
+commit d4b2baa9b66d480d5e45c628f8bc4ff11fab765f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 1 10:58:16 2020 -0400
+
+    bumped changelog version
+
 commit 2ceea8d1fe9f2425488c6696f75f2ecfd9ff2235
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Apr 1 08:49:59 2020 -0400
