@@ -15,6 +15,30 @@ true "
 #####################################################################
 "
 
+user_name_detection() {
+   ## Since the script runs as root, we can not use $USER or whoami (that would be set to root).
+   if [ ! "$user_name" = "" ]; then
+      return 0
+   fi
+   if [ ! "$SUDO_USER" = "" ]; then
+      true "INFO: Setting user_name to SUDO_USER $SUDO_USER..."
+      user_name="$SUDO_USER"
+   fi
+   if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
+      true "INFO: Trying to set user_name by using \`logname\`."
+      user_name="$(logname)" || true
+   fi
+   if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
+      echo "INFO: SUDO_USER: $SUDO_USER"
+      true "INFO: Trying to set user_name by using \`whoami\`."
+      user_name="$(whoami)"
+      echo "INFO: Set user_name to $user_name using whoami."
+   fi
+   if [ "$user_name" = "" ]; then
+      error "Variable user_name is empty."
+   fi
+}
+
 user_groups_modifications() {
    ## /usr/lib/security-misc/hide-hardware-info
    addgroup --system sysfs
@@ -90,11 +114,25 @@ sudo_users_check () {
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if [ "$are_there_any_sudo_users" = "yes" ]; then
-      echo "$0: INFO: Consider next users are in sudo group: $sudo_users"
-      echo "$0: INFO: If you want to manage permissions differently, consider running:"
-      echo "sudo adduser user sudo" >&2
       return 0
    fi
+
+   user_name_detection
+   if [ "$user_name" != "" ]; then
+      echo "$0: WARNING: No user is a member of group 'sudo'. Adding current user $user_name to sudo group." >&2
+      addgroup $user_name sudo
+
+      return 0
+   fi
+
+   echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
+   echo "$0: ERROR: You probably want to run:" >&2
+   echo "" >&2
+   echo "sudo adduser user sudo" >&2
+   echo "sudo adduser user console" >&2
+   echo "" >&2
+   echo "$0: ERROR: See also installation instructions:" >&2
+   echo "https://www.whonix.org/wiki/security-misc#install" >&2
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
@@ -105,9 +143,7 @@ sudo_users_check () {
       return 0
    fi
 
-   echo "$0: WARNING: No user is a member of group 'sudo'. Adding current user $(logname) to sudo group." >&2
-   addgroup $(logname) sudo
-   return 0
+   exit 200
 }
 
 console_users_check() {
@@ -152,11 +188,24 @@ console_users_check() {
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if [ "$are_there_any_console_users" = "yes" ]; then
-      echo "$0: INFO: Consider next users are in console group: $console_users, unrestricted: $console_unrestricted_users"
-      echo "$0: INFO: If you want to manage permissions differently, consider running:"
-      echo "sudo adduser user console" >&2
       return 0
    fi
+
+   user_name_detection
+   if [ "$user_name" != ""]; then
+      echo "$0: WARNING: No user is a member of group 'console'. Adding current user $user_name to console group." >&2
+      addgroup $user_name console
+
+      return 0
+   fi
+
+   echo "$0: ERROR: No user is a member of group 'console'. Installation aborted." >&2
+   echo "$0: ERROR: You probably want to run:" >&2
+   echo "" >&2
+   echo "sudo adduser user console" >&2
+   echo "" >&2
+   echo "$0: ERROR: See also installation instructions:" >&2
+   echo "https://www.whonix.org/wiki/security-misc#install" >&2
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
@@ -167,10 +216,7 @@ console_users_check() {
       return 0
    fi
 
-   echo "$0: WARNING: No user is a member of group 'console'. Adding current user $(logname) to console group." >&2
-   addgroup $(logname) console
-
-   return 0
+   exit 201
 }
 
 legacy() {
