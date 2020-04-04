@@ -1,3 +1,15 @@
+commit 1188a44f47602248911d81f4dc3af08b830b65b9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Apr 4 16:49:30 2020 -0400
+
+    port to python 3.7
+
+commit a2c932aa5a354798ce1383e988519f9a2cb69374
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 2 07:58:51 2020 -0400
+
+    bumped changelog version
+
 commit ae8c5fff3c70c00931b95cd04b8729d2c1bd2a60
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 2 07:22:47 2020 -0400
