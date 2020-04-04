@@ -16,26 +16,26 @@ true "
 "
 
 user_name_detection() {
-   ## Since the script runs as root, we can not use $USER or whoami (that would be set to root).
-   if [ ! "$user_name" = "" ]; then
+   if [ "$user_name" != "" ]; then
       return 0
    fi
-   if [ ! "$SUDO_USER" = "" ]; then
+   if [ "$USER" != "" ]; then
+      true "INFO: Setting user_name to USER $USER..."
+      user_name="$USER"
+   fi
+   if [ "$user_name" = "" ] && [ "$SUDO_USER" != "" ]; then
       true "INFO: Setting user_name to SUDO_USER $SUDO_USER..."
       user_name="$SUDO_USER"
    fi
    if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
       true "INFO: Trying to set user_name by using \`logname\`."
       user_name="$(logname)" || true
+      true "INFO: Set user_name to $user_name using \`logname\`."
    fi
    if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
-      echo "INFO: SUDO_USER: $SUDO_USER"
       true "INFO: Trying to set user_name by using \`whoami\`."
-      user_name="$(whoami)"
-      echo "INFO: Set user_name to $user_name using whoami."
-   fi
-   if [ "$user_name" = "" ]; then
-      error "Variable user_name is empty."
+      user_name="$(whoami)" || true
+      true "INFO: Set user_name to $user_name using \`whoami\`."
    fi
 }
 
@@ -118,9 +118,9 @@ sudo_users_check () {
    fi
 
    user_name_detection
-   if [ "$user_name" != "" ]; then
+   if [ "$user_name" != "" ] && [ "$username" != "root" ]; then
       echo "$0: WARNING: No user is a member of group 'sudo'. Adding current user $user_name to sudo group." >&2
-      addgroup $user_name sudo
+      addgroup "$user_name" sudo
 
       return 0
    fi
@@ -192,9 +192,9 @@ console_users_check() {
    fi
 
    user_name_detection
-   if [ "$user_name" != ""]; then
+   if [ "$user_name" != "" ] && [ "$user_name" != "root" ]; then
       echo "$0: WARNING: No user is a member of group 'console'. Adding current user $user_name to console group." >&2
-      addgroup $user_name console
+      addgroup "$user_name" console
 
       return 0
    fi
