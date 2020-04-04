@@ -15,27 +15,50 @@ true "
 #####################################################################
 "
 
-user_name_detection() {
-   if [ "$user_name" != "" ]; then
-      return 0
+saved_user_name = ""
+get_user_name() {
+   if [ "$saved_user_name" != "" ]; then
+      return $saved_user_name
    fi
+   local user_name = $saved_user_name
+
+   ## 1st attempt - Get name from $USER
    if [ "$USER" != "" ]; then
       true "INFO: Setting user_name to USER $USER..."
       user_name="$USER"
+      if ["$user_name" != "root"]; then
+         saved_user_name = $user_name
+         return $user_name
+      fi
    fi
-   if [ "$user_name" = "" ] && [ "$SUDO_USER" != "" ]; then
+
+   ## 2nd attempt - Get name from $SUDO_USER
+   if [ "$SUDO_USER" != "" ]; then
       true "INFO: Setting user_name to SUDO_USER $SUDO_USER..."
       user_name="$SUDO_USER"
+
+      if ["$user_name" != "root"]; then
+         saved_user_name = $user_name
+	 return $user_name
+      fi
    fi
-   if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
-      true "INFO: Trying to set user_name by using \`logname\`."
-      user_name="$(logname)" || true
+
+   ## 3rd attempt - Get name from logname
+   true "INFO: Trying to set user_name by using \`logname\`."
+   user_name="$(logname)" || true
+   if ["$user_name" != "" ] && ["$user_name" != "root"]; then
       true "INFO: Set user_name to $user_name using \`logname\`."
+      saved_user_name = $user_name
+      return $user_name
    fi
-   if [ "$user_name" = "" ] || [ "$user_name" = "root" ]; then
-      true "INFO: Trying to set user_name by using \`whoami\`."
-      user_name="$(whoami)" || true
+
+   ## 4th attempt - Get name from whoami
+   true "INFO: Trying to set user_name by using \`whoami\`."
+   user_name="$(whoami)" || true
+   if ["$user_name" != "" ] && ["$user_name" != "root"]; then
       true "INFO: Set user_name to $user_name using \`whoami\`."
+      saved_user_name = $user_name
+      return $user_name
    fi
 }
 
@@ -87,7 +110,7 @@ sudo_users_check () {
       return 0
    fi
 
-   local sudo_users user_with_sudo are_there_any_sudo_users OLD_IFS
+   local sudo_users user_with_sudo are_there_any_sudo_users OLD_IFS user_name
 
    sudo_users="$(getent group sudo | cut -d: -f4)"
    ## example sudo_users:
@@ -117,8 +140,8 @@ sudo_users_check () {
       return 0
    fi
 
-   user_name_detection
-   if [ "$user_name" != "" ] && [ "$username" != "root" ]; then
+   user_name = $(get_user_name)
+   if [ "$user_name" != "" ]; then
       echo "$0: WARNING: No user is a member of group 'sudo'. Adding current user $user_name to sudo group." >&2
       addgroup "$user_name" sudo
 
@@ -160,7 +183,7 @@ console_users_check() {
       return 0
    fi
 
-   local console_users console_unrestricted_users user_with_console are_there_any_console_users OLD_IFS
+   local console_users console_unrestricted_users user_with_console are_there_any_console_users OLD_IFS user_name
 
    console_users="$(getent group console | cut -d: -f4)"
    ## example console_users:
@@ -191,8 +214,8 @@ console_users_check() {
       return 0
    fi
 
-   user_name_detection
-   if [ "$user_name" != "" ] && [ "$user_name" != "root" ]; then
+   user_name = $(get_user_name)
+   if [ "$user_name" != "" ]; then
       echo "$0: WARNING: No user is a member of group 'console'. Adding current user $user_name to console group." >&2
       addgroup "$user_name" console
 
