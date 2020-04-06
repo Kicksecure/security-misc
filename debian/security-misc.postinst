@@ -17,6 +17,11 @@ true "
 
 case "$1" in
     configure)
+        if [ -d /etc/skel/.gnupg ]; then
+            ## Lintian warns against use of chmod --recursive.
+            chmod 700 /etc/skel/.gnupg
+        fi
+
         ## /usr/share/glib-2.0/schemas/30_security-misc.gschema.override
         glib-compile-schemas /usr/share/glib-2.0/schemas || true
     ;;
