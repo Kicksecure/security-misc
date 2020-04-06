@@ -1,3 +1,21 @@
+commit 350a15dfbf9186c4bd81159b7656b5707a95c5db
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 6 13:22:32 2020 -0400
+
+    readme
+
+commit 5c81e1f23fa07a0e3c96d15dc3cc24d41332fe3c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 6 09:25:45 2020 -0400
+
+    import from anon-gpg-conf
+
+commit 1b2a34ea80fa9efeb02acaa8595e3c38fd9d06ca
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Apr 4 16:51:42 2020 -0400
+
+    bumped changelog version
+
 commit 1188a44f47602248911d81f4dc3af08b830b65b9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Apr 4 16:49:30 2020 -0400
