@@ -304,6 +304,10 @@ Application specific hardening:
 * Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
 to make phishing attacks more difficult. Fixing URL not showing real Domain
 Name (Homograph attack).
+* Security and privacy enhancements for gnupg's config file
+`/etc/skel/.gnupg/gpg.conf`. See also:
+https://raw.github.com/ioerror/torbirdy/master/gpg.conf
+https://github.com/ioerror/torbirdy/pull/11
 
 Want more? Look into these:
 
