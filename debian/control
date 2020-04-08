@@ -15,7 +15,7 @@ Package: security-misc
 Architecture: all
 Depends: python3, libglib2.0-bin, libpam-runtime, sudo, adduser, libcap2-bin,
  apparmor-profile-dist, helper-scripts, ${misc:Depends}
-Replaces: tcp-timestamps-disable, anon-gpg-tweaks
+Replaces: tcp-timestamps-disable, anon-gpg-tweaks, swappiness-lowest
 Description: enhances misc security settings
  Inspired by Kernel Self Protection Project (KSPP)
  .
@@ -279,6 +279,9 @@ Description: enhances misc security settings
  protection, grub password protection and/or full disk encryption.
  `/etc/systemd/system/emergency.service.d/override.conf`
  `/etc/systemd/system/rescue.service.d/override.conf`
+ .
+ Let the kernel only swap if it is absolutely necessary.
+ `/etc/sysctl.d/30_security-misc.conf`
  .
  Disables TCP Time Stamps:
  .
