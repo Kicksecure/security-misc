@@ -1,3 +1,29 @@
+commit a9d0baffe600b9ac5bb7d6ee4e7c5c5830bc60ba
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 16:57:32 2020 +0000
+
+    python -> python3
+
+commit 4153d8d08874256647d3200333d6754baac2ea63
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 16:51:22 2020 +0000
+
+    apparmor-profile-anondist -> apparmor-profile-dist
+
+commit 72228946dca93b5c8257ac5a6ad59e54b7b14d11
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 16:46:11 2020 +0000
+
+    fix etc/default/grub.d/40_kernel_hardening.cfg
+    
+    in Qubes if no kernel package is installed
+
+commit bfd6018d8d108ee8691556529121fe2a679de1d2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 12:51:11 2020 +0000
+
+    bumped changelog version
+
 commit 0441f2ed7ad01585c11c9fb6a05cd3884408c9d6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Apr 8 12:30:05 2020 +0000
