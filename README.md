@@ -249,7 +249,7 @@ This package does (not yet) automatically lock the root account password.
 It is not clear that would be sane in such a package.
 It is recommended to lock and expire the root account.
 In new Whonix builds, root account will be locked by package
-anon-base-files.
+dist-base-files.
 https://www.whonix.org/wiki/Root
 https://www.whonix.org/wiki/Dev/Permissions
 https://forums.whonix.org/t/restrict-root-access/7658
