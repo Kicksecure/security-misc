@@ -13,7 +13,7 @@ Standards-Version: 4.3.0
 
 Package: security-misc
 Architecture: all
-Depends: python, libglib2.0-bin, libpam-runtime, sudo, adduser, libcap2-bin,
+Depends: python3, libglib2.0-bin, libpam-runtime, sudo, adduser, libcap2-bin,
  apparmor-profile-dist, helper-scripts, ${misc:Depends}
 Replaces: tcp-timestamps-disable, anon-gpg-tweaks
 Description: enhances misc security settings
