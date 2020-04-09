@@ -263,6 +263,9 @@ protection, grub password protection and/or full disk encryption.
 `/etc/systemd/system/emergency.service.d/override.conf`
 `/etc/systemd/system/rescue.service.d/override.conf`
 
+Let the kernel only swap if it is absolutely necessary.
+`/etc/sysctl.d/30_security-misc.conf`
+
 Disables TCP Time Stamps:
 
 TCP time stamps (RFC 1323) allow for tracking clock
