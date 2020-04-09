@@ -1,3 +1,25 @@
+commit 67b9d06b25a651b89e35abdd227a1740871395cd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 9 09:45:29 2020 +0000
+
+    readme
+
+commit 565ff136e5f1e714b4094fcd9cfdf99a0fb99850
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 21:04:02 2020 +0000
+
+    vm.swappiness=1
+    
+    import from swappiness-lowest
+    
+    https://forums.whonix.org/t/vm-swappiness-1-set-swapiness-to-lowest-setting-still-useful-swappiness-lowest/9278
+
+commit 642d4d8d939f33c19564dcc5a0ed46d85feb80aa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 8 17:13:21 2020 +0000
+
+    bumped changelog version
+
 commit a9d0baffe600b9ac5bb7d6ee4e7c5c5830bc60ba
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Apr 8 16:57:32 2020 +0000
