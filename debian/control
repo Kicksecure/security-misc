@@ -175,8 +175,9 @@ Description: enhances misc security settings
  `/lib/systemd/system/remount-secure.service`
  `/usr/lib/security-misc/remount-secure`
  .
-  * A systemd service mounts `/proc` with `hidepid=2` at boot to prevent users
- from seeing each other's processes.
+  * An optional systemd service mounts `/proc` with `hidepid=2` at boot to
+ prevent users from seeing each other's processes. Not enabled because not
+ compatible with pkexec.
  .
   * The kernel logs are restricted to root only.
  .

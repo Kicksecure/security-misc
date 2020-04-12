@@ -9,3 +9,6 @@ disable permission-hardening.service
 
 ## Disable for now until development finished / tested.
 disable remount-secure.service
+
+## Disable due to pkexec issues.
+proc-hidepid.service

@@ -2,3 +2,4 @@
 ## See the file COPYING for copying conditions.
 
 /etc/login.defs.security-misc
+/usr/bin/pkexec.security-misc
