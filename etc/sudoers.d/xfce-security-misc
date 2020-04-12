@@ -6,13 +6,13 @@
 
 ## Feel free to out comment this if you are not using xfce4-power-manager or XFCE.
 
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]]
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]][[\:digit\:]]
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]][[\:digit\:]][[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]][[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]][[\:digit\:]][[\:digit\:]]
 
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]]
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]][[\:digit\:]]
-%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]][[\:digit\:]][[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]][[\:digit\:]]
+#%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness-switch [[\:digit\:]][[\:digit\:]][[\:digit\:]]
 
 ## XXX: Should we allow this?
 #%sudo ALL=NOPASSWD: /usr/sbin/xfce4-pm-helper --suspend
