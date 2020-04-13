@@ -1,3 +1,62 @@
+commit e0b8640fb9d03feb6b01fed4469d901e3f9a5dc0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 13 06:56:34 2020 -0400
+
+    readme
+
+commit 253578afdf9a4aeb8c5495ca815d0326086dc986
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 13 06:50:32 2020 -0400
+
+    /etc/security/access-security-misc.conf white list ttyS0 etc.
+    
+    ttyS0 ttyS1 ttyS2 ttyS3 ttyS4 ttyS5 ttyS6 ttyS7 ttyS8 ttyS9
+    
+    Thanks to @subpar_marlin for the bug report and helping to fix this!
+    
+    https://forums.whonix.org/t/how-do-i-enter-the-whonix-shell-from-cli/7271/43
+    
+    https://forums.whonix.org/t/etc-security-hardening/8592
+
+commit b3ce18f0f9f1da0552a4a1bd882a5b5dda13626e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 12 16:54:10 2020 -0400
+
+    disable proc-hidepid by default because incompatible with pkexec
+    
+    and undo pkexec wrapper
+
+commit 442931529121e9e402e7ac56e27df3dcec43167b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 12 16:52:55 2020 -0400
+
+    disable proc-hidepid by default because incompatible with pkexec
+    
+    and undo pkexec wrapper
+
+commit 72be31e870057b035651c1b5a7e9a9db149e9d25
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 12 16:48:13 2020 -0400
+
+    disable proc-hidepid by default because incompatible with pkexec
+    
+    and undo pkexec wrapper
+
+commit 938e929f39ff68296ab01a4b619f963ad3bdf535
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Apr 12 16:37:51 2020 -0400
+
+    add pkexec to suid default whitelist
+    
+    /usr/bin/pkexec exactwhitelist
+    /usr/bin/pkexec.security-misc-orig exactwhitelist
+
+commit 695ad5b83d0e89b1c3b8a5f09f2d7d0a17d8e72f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 9 09:45:30 2020 +0000
+
+    bumped changelog version
+
 commit 67b9d06b25a651b89e35abdd227a1740871395cd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 9 09:45:29 2020 +0000
