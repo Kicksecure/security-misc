@@ -1,3 +1,15 @@
+commit 8851c9ed29e79d2ef5df9c7b7086878e69b90bd4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Apr 14 12:39:34 2020 -0400
+
+    fix: disable proc-hidepid.service
+
+commit b6dde34bfb696218cc14ac89d169ec0e37814bff
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Apr 13 06:56:34 2020 -0400
+
+    bumped changelog version
+
 commit e0b8640fb9d03feb6b01fed4469d901e3f9a5dc0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Apr 13 06:56:34 2020 -0400
