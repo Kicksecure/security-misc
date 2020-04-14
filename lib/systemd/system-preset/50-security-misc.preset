@@ -11,4 +11,4 @@ disable permission-hardening.service
 disable remount-secure.service
 
 ## Disable due to pkexec issues.
-proc-hidepid.service
+disable proc-hidepid.service
