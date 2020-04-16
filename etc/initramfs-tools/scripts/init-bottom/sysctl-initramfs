@@ -15,19 +15,12 @@ prereqs)
         ;;
 esac
 
-## ${rootmnt} is mounted read-only in the initramfs so it needs to be remounted first.
-if mount | grep "${rootmnt}" | grep -q "(ro,"; then
-  remount="yes"
-  mount -o remount,rw "${rootmnt}"
-fi
+## Write to '/run/initramfs' folder.
+## https://forums.whonix.org/t/kernel-hardening/7296/435
 
-sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2> "${rootmnt}/var/log/sysctl-initramfs-error.log"
-sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>> "${rootmnt}/var/log/sysctl-initramfs-error.log"
+sysctl -p ${rootmnt}/etc/sysctl.conf >/dev/null 2> "/run/initramfs/sysctl-initramfs-error.log"
+sysctl -p ${rootmnt}/etc/sysctl.d/*.conf >/dev/null 2>> "/run/initramfs/sysctl-initramfs-error.log"
 
-if [ "${remount}" = "yes" ]; then
-  mount -o remount,ro "${rootmnt}"
-fi
-
-grep -v "unprivileged_userfaultfd" "${rootmnt}/var/log/sysctl-initramfs-error.log"
+grep -v "unprivileged_userfaultfd" "/run/initramfs/sysctl-initramfs-error.log"
 
 true
