@@ -1,3 +1,43 @@
+commit 8d2e4b68dcae87b27f519196488e0ed7e8b95ef2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 16 08:00:31 2020 -0400
+
+    Prevent kernel info leaks in console during boot.
+    
+    By setting `kernel.printk = 3 3 3 3`.
+    
+    https://phabricator.whonix.org/T950
+    
+    Thanks to @madaidan for the suggestion!
+
+commit 4898a9e753e9399e83e4a39d8fa340e1ad9d4f6d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 16 07:54:33 2020 -0400
+
+    fix, sysctl-initramfs: switch log to /run/initramfs/sysctl-initramfs-error.log
+    
+    since ephemeral, in RAM, not written to disk, no conflict with grub-live
+    
+    https://forums.whonix.org/t/kernel-hardening/7296/435
+
+commit 701da5f6cc911e3946904c152078dc6c637e5070
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 16 07:24:44 2020 -0400
+
+    formatting
+
+commit cb51847085c1b62c99ab160373c52a388bdfe300
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Apr 15 14:05:37 2020 -0400
+
+    readme
+
+commit df218ad6582ab88be16e66cf13951d0a5271411b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Apr 14 12:40:31 2020 -0400
+
+    bumped changelog version
+
 commit 8851c9ed29e79d2ef5df9c7b7086878e69b90bd4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Apr 14 12:39:34 2020 -0400
