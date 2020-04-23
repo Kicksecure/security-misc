@@ -1,3 +1,19 @@
+commit 6485df8126b52a2072824fa442e8d1dd5cb18981
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 23 12:26:31 2020 -0400
+
+    Prevent kernel info leaks in console during boot.
+    
+    add kernel parameter `quiet loglevel=0`
+    
+    https://phabricator.whonix.org/T950
+
+commit aa5631b02b0127b4681ae08c973b08b23befd701
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 16 08:43:40 2020 -0400
+
+    bumped changelog version
+
 commit 8d2e4b68dcae87b27f519196488e0ed7e8b95ef2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 16 08:00:31 2020 -0400
