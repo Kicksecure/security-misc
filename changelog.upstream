@@ -1,3 +1,19 @@
+commit 3cd7b144bba1a92ca771b16fc5215073c7561a1a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu May 14 13:47:58 2020 -0400
+
+    move "kernel.printk = 3 3 3 3" to separate file /etc/sysctl.d/30_silent-kernel-printk.conf
+    
+    so package debug-misc can easily disable it
+    
+    https://phabricator.whonix.org/T950
+
+commit 81cb6ad2462a900f9c5193278de70ada62a5585b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 23 12:27:25 2020 -0400
+
+    bumped changelog version
+
 commit 6485df8126b52a2072824fa442e8d1dd5cb18981
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 23 12:26:31 2020 -0400
