@@ -1,3 +1,21 @@
+commit 7e267ab49850362c02374a15fdba2409a5487a0f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 3 08:12:19 2020 -0400
+
+    fix, allow group `sudo` and `console` to use consoles
+    
+    fix /etc/security/access-security-misc.conf syntax error
+    
+    Thanks to @81a989 for the bug report!
+    
+    https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/31
+
+commit b09f5ddc154d6561fd97b436feeb6a6225f89206
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jul 29 08:33:07 2020 -0400
+
+    bumped changelog version
+
 commit ac8bc4f006dbc1583e35ba033e38dac8392127e9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 29 06:30:07 2020 -0400
