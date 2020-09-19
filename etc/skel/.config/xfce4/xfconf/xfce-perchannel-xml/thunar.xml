@@ -13,4 +13,5 @@
     <value type="string" value="network:///"/>
   </property>
   <property name="misc-volume-management" type="bool" value="false"/>
+  <property name="misc-show-delete-action" type="bool" value="true"/>
 </channel>
