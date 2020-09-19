@@ -1,3 +1,25 @@
+commit bff6ce7abb920d55edc49b19340a1e9251a4cd8c
+Merge: 98c0dec 9239c8b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 19 06:54:50 2020 -0400
+
+    Merge remote-tracking branch 'github/master'
+
+commit 9239c8b8074018090d4fa1381aa06e66a99359cc
+Merge: 98c0dec 8dfdec1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 19 10:54:21 2020 +0000
+
+    Merge pull request #71 from onions-knight/patch-1
+    
+    Update thunar.xml
+
+commit 98c0decaa46c6fb839062ff9af0556d821c254e6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 3 09:43:43 2020 -0400
+
+    bumped changelog version
+
 commit 7e267ab49850362c02374a15fdba2409a5487a0f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 3 08:12:19 2020 -0400
@@ -444,6 +466,14 @@ Author: madaidan <50278627+madaidan@users.noreply.github.com>
 Date:   Sat Mar 21 17:15:25 2020 +0000
 
     Fix sysctl-initramfs logs
+
+commit 8dfdec1d3b0fde7b2836b38e5aefab1b6b6df9f2
+Author: onions-knight <38859709+onions-knight@users.noreply.github.com>
+Date:   Tue Mar 17 16:38:53 2020 +0000
+
+    Update thunar.xml
+    
+    Adding Delete option for thunar on right mouse click (removed in Debian 10). See https://forums.whonix.org/t/whonix-host-calamares-branding-suggestion/7772/26
 
 commit e4118cb21eb8765bc8f4e7b5e05d464d72575824
 Author: Patrick Schleizer <adrelanos@riseup.net>
