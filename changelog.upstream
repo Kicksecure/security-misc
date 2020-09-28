@@ -1,3 +1,56 @@
+commit da1ac48cde8ea5057d1606a2fba42ea179677378
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 10:29:50 2020 -0400
+
+    unblacklist squashfs as this would likely break Whonix-Host ISO
+    
+    https://github.com/Whonix/security-misc/pull/75#issuecomment-700044182
+
+commit 4070133ed65af409adeb6f8c7970d3bc7074b02b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 10:25:57 2020 -0400
+
+    unblacklist vfat
+    
+    https://github.com/Whonix/security-misc/pull/75#issuecomment-695201068
+
+commit 77d461ec08ffdf0eb6a5d124927d9f9748c0dd3c
+Merge: 5fc7b79 3684ab5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 10:24:59 2020 -0400
+
+    Merge remote-tracking branch 'github/master'
+
+commit 3684ab585eeab46ff17a1d410ce1bcff1a63968c
+Merge: ae90107 a813e7d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 14:24:15 2020 +0000
+
+    Merge pull request #75 from flawedworld/patch-1
+    
+    Blacklist more modules (based on OpenSCAP for RHEL 8)
+
+commit ae90107e6df4d312a6734985df38b8533d1283c8
+Merge: 5fc7b79 8f7727e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 14:23:42 2020 +0000
+
+    Merge pull request #76 from flawedworld/patch-2
+    
+    Add IPv6 sysctl options and enforce kernel.perf_event_paranoid=3
+
+commit a813e7da07a39e96e0cd7937aee7568307a00287
+Author: flawedworld <38294951+flawedworld@users.noreply.github.com>
+Date:   Sat Sep 19 20:46:19 2020 +0100
+
+    Blacklist more modules
+
+commit 5fc7b791db473c22ea43ff899e2dbe232c42a2b7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Sep 19 09:28:27 2020 -0400
+
+    bumped changelog version
+
 commit bff6ce7abb920d55edc49b19340a1e9251a4cd8c
 Merge: 98c0dec 9239c8b
 Author: Patrick Schleizer <adrelanos@riseup.net>
@@ -13,6 +66,20 @@ Date:   Sat Sep 19 10:54:21 2020 +0000
     Merge pull request #71 from onions-knight/patch-1
     
     Update thunar.xml
+
+commit 8f7727e823a86a1826686d5c95d0070721c7acba
+Author: flawedworld <38294951+flawedworld@users.noreply.github.com>
+Date:   Fri Sep 18 23:36:30 2020 +0100
+
+    Add some IPv6 options
+
+commit 944fed3c459dd55820cb1eca68f86816bdf8469f
+Author: flawedworld <38294951+flawedworld@users.noreply.github.com>
+Date:   Fri Sep 18 23:29:04 2020 +0100
+
+    Disallow kernel profiling by users without CAP_SYS_ADMIN
+    
+    It's the default on a lot of stuff, but still nice to have.
 
 commit 98c0decaa46c6fb839062ff9af0556d821c254e6
 Author: Patrick Schleizer <adrelanos@riseup.net>
