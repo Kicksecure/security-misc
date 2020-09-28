@@ -127,6 +127,9 @@ Description: enhances misc security settings
  .
   * Restricts the `userfaultfd()` syscall to root.
  .
+  * Access to debugfs is restricted as it can contain a lot of sensitive
+ information.
+ .
  Improve Entropy Collection
  .
   * Load `jitterentropy_rng` kernel module.
