@@ -1,3 +1,31 @@
+commit 3adb2c92d9551f649b177753fede18da3cc4b0eb
+Merge: feb7cea 5856013
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 3 14:10:32 2020 -0400
+
+    Merge remote-tracking branch 'github/master'
+
+commit 58560138cdc36fa5f6142f75f0fed53bcad96363
+Merge: feb7cea 06ffd5d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 3 18:09:07 2020 +0000
+
+    Merge pull request #77 from madaidan/debugfs
+    
+    Restrict access to debugfs
+
+commit 06ffd5d2201152c60eb4309860b8c42be386dccb
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Mon Sep 28 19:21:20 2020 +0000
+
+    Restrict access to debugfs
+
+commit feb7cea4c508a94d1140bc08856d0fe586da694e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Sep 28 10:30:42 2020 -0400
+
+    bumped changelog version
+
 commit da1ac48cde8ea5057d1606a2fba42ea179677378
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 10:29:50 2020 -0400
