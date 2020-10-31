@@ -1,3 +1,16 @@
+commit 3f656be5746ec4d219371fb0d67c222df7fe52d1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 31 05:48:10 2020 -0400
+
+    chmod +x /etc/X11/Xsession.d/50panic_on_oops
+    chmod +x /etc/X11/Xsession.d/50security-misc
+
+commit 881d695bff7d65c66bbf8e0973f883c75a3d1ebb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 5 07:03:37 2020 -0400
+
+    bumped changelog version
+
 commit 3adb2c92d9551f649b177753fede18da3cc4b0eb
 Merge: feb7cea 5856013
 Author: Patrick Schleizer <adrelanos@riseup.net>
