@@ -1,3 +1,6 @@
+//#### Copyright (C) 2019 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+//#### See the file COPYING for copying conditions.
+
 //#### meta start
 //#### project Whonix and Kicksecure
 //#### category security and apps
