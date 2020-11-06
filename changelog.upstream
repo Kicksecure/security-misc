@@ -1,3 +1,51 @@
+commit abae787186d48b2cccf220cbf7b553f8478e60be
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:47:16 2020 -0500
+
+    usability: pam abort when attempting to login to root when root password is locked
+
+commit 581e31af81015fb85ee1bdd81586dbea13804955
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:46:57 2020 -0500
+
+    comment
+
+commit dfe9b0f6c7364e4d3cc3bf13ad7c0fccc2cb7e10
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:42:47 2020 -0500
+
+    fix, no longer unconditionally abort pam for user accounts with locked passwords
+    
+    as locked user accounts might have valid sudoers exceptions
+    
+    Thanks to @mimp for the bug report!
+    
+    https://forums.whonix.org/t/pam-abort-on-locked-password-and-running-privileged-command-from-web-browser/10521
+
+commit 211769dc65a5c98cbdb55ce62e83c9e2a9fa1540
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:41:51 2020 -0500
+
+    comment
+
+commit 79521397310f5e4e200291b2e2380e8e58953f18
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:39:32 2020 -0500
+
+    comment
+
+commit bb72c1278dd02a48a631d8e798cd78100576a1a8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Nov 5 06:36:39 2020 -0500
+
+    copyright
+
+commit f4843b1deb95948f9fe2a2870ecbe61c1cab798a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 31 06:29:25 2020 -0400
+
+    bumped changelog version
+
 commit c1e0bb831025854afbd88e5c353a000c4dadaede
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 31 06:11:49 2020 -0400
