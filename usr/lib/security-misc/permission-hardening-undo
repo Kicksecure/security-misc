@@ -7,12 +7,27 @@
 set -e
 set -o pipefail
 
+if [ "$1" = "all" ]; then
+   remove_file="all"
+elif [ ! "$1" = "" ]; then
+   remove_file="$1"
+else
+   echo "ERROR: need to give parameter 'all' or a filename.
+
+examples:
+
+$0 all
+
+$0 /usr/bin/newgrp
+   " >&2
+fi
+
 exit_code=0
 
 dpkg_admindir_parameter_existing_mode="--admindir /var/lib/permission-hardening/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir /var/lib/permission-hardening/new_mode"
 
-undo_all() {
+undo_permission_hardening() {
    if [ ! -f /var/lib/permission-hardening/existing_mode/statoverride ]; then
       return 0
    fi
@@ -31,19 +46,88 @@ undo_all() {
       fi
       true "owner: '$owner' group: '$group' mode: '$mode' file_name: '$file_name'"
 
-      chown "${owner}:${group}" "$file_name" || exit_code=202
-      ## chmod need to be run after chown since chown removes suid.
-      ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
-      chmod "$mode" "$file_name" || exit_code=203
+      if [ "$remove_file" = "all" ]; then
+         do_proceed=true
+         verbose_maybe=""
+      else
+         if [ "$remove_file" = "$file_name" ]; then
+            do_proceed=true
+            verbose_maybe="--verbose"
+            remove_one=true
+         else
+            do_proceed=false
+            verbose_maybe=""
+         fi
+      fi
+
+      if [ "$do_proceed" = "false" ]; then
+         continue
+      fi
+
+      if [ "$remove_one" = "true" ]; then
+         set -x
+      fi
+
+      if test -e "$file_name" ; then
+         chown $verbose_maybe "${owner}:${group}" "$file_name" || exit_code=202
+         ## chmod need to be run after chown since chown removes suid.
+         ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
+         chmod $verbose_maybe "$mode" "$file_name" || exit_code=203
+      else
+         echo "INFO: file_name: '$file_name' - does not exist. This is likely normal."
+      fi
 
       dpkg-statoverride --remove "$file_name" &>/dev/null || true
       dpkg-statoverride $dpkg_admindir_parameter_existing_mode --remove "$file_name" &>/dev/null || true
       dpkg-statoverride $dpkg_admindir_parameter_new_mode --remove "$file_name" &>/dev/null || true
 
+      if [ "$remove_one" = "true" ]; then
+         set +x
+         break
+      fi
+
    done < "/var/lib/permission-hardening/existing_mode/statoverride"
 }
 
-undo_all
+undo_permission_hardening
+
+if [ ! "$remove_file" = "all" ]; then
+   if [ ! "$remove_one" = "true" ]; then
+      echo "INFO: none removed.
+
+File '$remove_file' has not removed from SUID Disabler and Permission Hardener during this invocation of this program.
+
+Note: This is expected if already done earlier.
+
+Note: This program expects the full path to the file. Example:
+
+$0 /usr/bin/newgrp
+
+The following syntax will not work:
+
+$0 program-name
+
+The following example will not work:
+
+$0 newgrp
+
+To remove all:
+
+$0 all
+
+This change might not be permanent (because of the permission-hardening.service systemd unit). For full instructions, see:
+https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener
+
+To view list of changed by SUID Disabler and Permission Hardener:
+https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#View_List_of_Permissions_Changed_by_SUID_Disabler_and_Permission_Hardener
+
+For re-enabling any specific SUID binary:
+https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#Re-Enable_Specific_SUID_Binaries
+
+For completely disabling SUID Disabler and Permission Hardener:
+https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#Disable_SUID_Disabler_and_Permission_Hardener"
+   fi
+fi
 
 if [ ! "$exit_code" = "0" ]; then
    echo "ERROR: Will exit with non-zero exit code: '$exit_code'" >&2
