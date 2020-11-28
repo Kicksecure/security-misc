@@ -1,3 +1,19 @@
+commit 28a326a8a14f56d588ed6f2b4d7d748d53120109
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 28 05:31:12 2020 -0500
+
+    add feature `/usr/lib/security-misc/permission-hardening-undo /path/to/filename`
+    
+    to allow removing 1 SUID
+    
+    fix, show INFO message if file does not exist during removal rather than ERROR
+
+commit 0ef35f877066ddac21737e707829c4571bb76abd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Nov 6 10:18:09 2020 -0500
+
+    bumped changelog version
+
 commit abae787186d48b2cccf220cbf7b553f8478e60be
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 5 06:47:16 2020 -0500
