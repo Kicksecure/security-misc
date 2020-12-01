@@ -252,6 +252,12 @@ set_file_perms() {
          exit "$exit_code"
       fi
 
+      if [ "$line" = 'whitelists_disable_all=true' ]; then
+         whitelists_disable_all=true
+         echo "INFO: whitelists_disable_all=true - all whitelists disabled."
+         continue
+      fi
+
       #global fso
       local mode_from_config owner_from_config group_from_config capability_from_config
       if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<< "$line" ; then
@@ -275,14 +281,22 @@ set_file_perms() {
       fi
 
       if [ "$mode_from_config" = "exactwhitelist" ]; then
-         ## TODO: test/add white spaces inside file name support
-         exact_white_list+="$fso "
+         if [ "$whitelists_disable_all" = "true" ]; then
+            true "INFO: Not adding fso '$fso' to exact_white_list because whitelists_disable_all=true"
+         else
+            ## TODO: test/add white spaces inside file name support
+            exact_white_list+="$fso "
+         fi
          continue
       fi
 
       if [ "$mode_from_config" = "matchwhitelist" ]; then
-         ## TODO: test/add white spaces inside file name support
-         match_white_list+="$fso "
+         if [ "$whitelists_disable_all" = "true" ]; then
+            true "INFO: Not adding fso '$fso' to matchwhitelist because whitelists_disable_all=true"
+         else
+            ## TODO: test/add white spaces inside file name support
+            match_white_list+="$fso "
+         fi
          continue
       fi
 
