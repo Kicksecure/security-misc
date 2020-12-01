@@ -177,7 +177,9 @@ add_nosuid_statoverride_entry() {
          fi
       done
 
-      if [ "$is_disable_whitelisted" = "true" ]; then
+      if [ "$whitelists_disable_all" = "true" ]; then
+         true "INFO: whitelists_disable_all=true - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+      elif [ "$is_disable_whitelisted" = "true" ]; then
          echo "INFO: white list disabled - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
       else
          if [ "$is_exact_whitelisted" = "true" ]; then
@@ -250,6 +252,12 @@ set_file_perms() {
          ## Safer to exit with error in this case.
          ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
          exit "$exit_code"
+      fi
+
+      if [ "$line" = 'whitelists_disable_all=true' ]; then
+         whitelists_disable_all=true
+         echo "INFO: whitelists_disable_all=true - all whitelists disabled."
+         continue
       fi
 
       #global fso
