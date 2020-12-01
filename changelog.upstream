@@ -1,3 +1,61 @@
+commit c031f22995a1e073bd81189ee97a3de32a2b278f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 05:14:48 2020 -0500
+
+    SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists
+    
+    `whitelists_disable_all=true`
+
+commit b09cc0de6af2d7e12110a0f3030234539288abad
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 05:10:26 2020 -0500
+
+    Revert "SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists"
+    
+    This reverts commit 36a471ebce883f7a1660977f486b21ece320d0c2.
+
+commit 704f0500ba4e23a1e5b33688db02e03b1169046d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 05:03:16 2020 -0500
+
+    fix, rename 40_default_whitelist_[...].conf to 25_default_whitelist_[...].conf
+    
+    since whitelist needs to be defined before SUID removal commands
+
+commit 36a471ebce883f7a1660977f486b21ece320d0c2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 05:02:34 2020 -0500
+
+    SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists
+    
+    `whitelists_disable_all=true`
+
+commit 318ab570aacd48b7f163331dc2ba8b012e0d2336
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 04:28:15 2020 -0500
+
+    simplify disabling of SUID Disabler and Permission Hardener whitelist
+    
+    split `/etc/permission-hardening.d/30_default.conf` into multiple files
+    
+    `/etc/permission-hardening.d/40_default_whitelist_[...].conf`
+    
+    therefore make it easier to delete any whitelisted SUID binaries
+
+commit cf07e977bd6697af7a4326d7705447d500d35593
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Nov 29 09:09:42 2020 -0500
+
+    add `/bin/pkexec exactwhitelist` for consistency
+    
+    since there is already `/usr/bin/pkexec exactwhitelist`
+
+commit fe274838861ada125eccdca11ba044123fdae663
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Nov 28 06:08:10 2020 -0500
+
+    bumped changelog version
+
 commit 28a326a8a14f56d588ed6f2b4d7d748d53120109
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 28 05:31:12 2020 -0500
