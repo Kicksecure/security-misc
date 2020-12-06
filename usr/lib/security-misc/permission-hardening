@@ -453,6 +453,8 @@ set_file_perms() {
             continue
          fi
 
+         ## feature request: dpkg-statoverride: support for capabilities
+         ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502580
          echo_wrapper_audit setcap "${capability_from_config}+ep" "$fso"
       fi
    done < "$config_file"
