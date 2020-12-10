@@ -1,3 +1,41 @@
+commit c5097ed599078091aef1fcb63b237d9835040c34
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 6 04:23:09 2020 -0500
+
+    comment
+
+commit b2b614ed2a1a62ff4c917aba80eeef505810dbf8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 6 04:15:52 2020 -0500
+
+    cover more folders in /usr/local
+
+commit 5bd267d7747521fa5bb053da19dc79991e2c4bb5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 6 04:10:50 2020 -0500
+
+    refactoring
+
+commit 11cdce02a048b323c6f56cb15f98e6060aab8346
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 6 04:10:10 2020 -0500
+
+    refactoring
+
+commit f73c55f16c10ee2cd0532f4032cec56c484bd4d5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Dec 6 04:08:58 2020 -0500
+
+    /opt
+    
+    https://forums.whonix.org/t/suid-disabler-and-permission-hardener/7706/68
+
+commit 261ef85c14ff9c13d3d7734d8c9eba5a54497187
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 05:53:06 2020 -0500
+
+    bumped changelog version
+
 commit c031f22995a1e073bd81189ee97a3de32a2b278f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 05:14:48 2020 -0500
