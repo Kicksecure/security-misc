@@ -1,48 +1,76 @@
-# enhances misc security settings #
+# Enhances miscellaneous security settings
 
-Inspired by Kernel Self Protection Project (KSPP)
+## Kernel hardening
 
-* Implements most if not all recommended Linux kernel settings (sysctl) and
-kernel parameters by KSPP.
+This section is inspired by the Kernel Self Protection Project (KSPP). It
+implements all recommended Linux kernel settings by the KSPP and many
+more.
 
 * https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 
-kernel hardening:
+### sysctl
 
-* deactivates Netfilter's connection tracking helper
-Netfilter's connection tracking helper module increases kernel attack
-surface by enabling superfluous functionality such as IRC parsing in
-the kernel. (!) Hence, this package disables this feature by shipping the
-`/etc/modprobe.d/30_security-misc.conf` configuration file.
+sysctl settings are configured via the `/etc/sysctl.d/30_security-misc.conf`
+configuration file.
 
-* Kernel symbols in various files in `/proc` are hidden as they can be
-very useful for kernel exploits.
+*  A kernel pointer points to a specific location in kernel memory. These
+can be very useful in exploiting the kernel so they are restricted to `CAP_SYSLOG`.
 
-* Kexec is disabled as it can be used to load a malicious kernel.
-`/etc/modprobe.d/30_security-misc.conf`
+* The kernel logs are restricted to `CAP_SYSLOG` as they can often leak sensitive
+information such as kernel pointers.
 
-* ASLR effectiveness for mmap is increased.
+* The `ptrace()` system call is restricted to `CAP_SYS_PTRACE`.
 
-* The TCP/IP stack is hardened by disabling ICMP redirect acceptance,
-ICMP redirect sending and source routing to prevent man-in-the-middle attacks,
-ignoring all ICMP requests, enabling TCP syncookies to prevent SYN flood
-attacks, enabling RFC1337 to protect against time-wait assassination
-attacks and enabling reverse path filtering to prevent IP spoofing and
-mitigate vulnerabilities such as CVE-2019-14899.
+* eBPF is restricted to `CAP_BPF` (`CAP_SYS_ADMIN` on kernel versions prior
+to 5.8) and JIT hardening techniques such as constant blinding are enabled.
 
-* Avoids unintentional writes to attacker-controlled files.
+* Restricts performance events to `CAP_PERFMON` (`CAP_SYS_ADMIN` on kernel
+versions prior to 5.8).
 
-* Prevents symlink/hardlink TOCTOU races.
+* Restricts loading line disciplines to `CAP_SYS_MODULE` to prevent unprivileged
+attackers from loading vulnerable line disciplines with the `TIOCSETD` ioctl which
+has been abused in a number of exploits before.
 
-* SACK can be disabled as it is commonly exploited and is rarely used by
-uncommenting settings in file `/etc/sysctl.d/30_security-misc.conf`.
+* Restricts the `userfaultfd()` syscall to `CAP_SYS_PTRACE` as `userfaultfd()` is
+often abused to exploit use-after-free flaws.
 
-* Slab merging is disabled as sometimes a slab can be used in a vulnerable
-way which an attacker can exploit.
+* Kexec is disabled as it can be used to load a malicious kernel and gain
+arbitrary code execution in kernel mode.
 
-* Sanity checks and redzoning are enabled.
+* The bits of entropy used for mmap ASLR are increased, therefore improving
+its effectiveness.
 
-* Memory zeroing at allocation and free time is enabled.
+* Prevents unintentional writes to attacker-controlled files.
+
+* Prevents common symlink and hardlink TOCTOU races.
+
+* Restricts the SysRq key so it can only be used for shutdowns and the
+Secure Attention Key.
+
+* The kernel is only allowed to swap if it is absolutely necessary. This
+prevents writing potentially sensitive contents of memory to disk.
+
+* TCP timestamps are disabled as it can allow detecting the system time.
+
+### Boot parameters
+
+Boot parameters are configured via the `/etc/modprobe.d/30_security-misc.conf`
+configuration file.
+
+* Slab merging is disabled which significantly increases the difficulty of
+heap exploitation by preventing overwriting objects from merged caches and
+by making it harder to influence slab cache layout.
+
+* Sanity checks are enabled which add various checks to prevent corruption
+in certain slab operations.
+
+* Redzoning is enabled which adds extra areas around slabs that detect when
+a slab is overwritten past its real size which can help detect overflows.
+
+* Memory zeroing at allocation and free time is enabled to mitigate some
+use-after-free vulnerabilities and erase sensitive information in memory.
+
+* Page allocator freelist randomization is enabled.
 
 * The machine check tolerance level is decreased which makes the kernel panic
 on uncorrectable errors in ECC memory that could be exploited.
@@ -50,293 +78,330 @@ on uncorrectable errors in ECC memory that could be exploited.
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
-* Enables all mitigations for CPU vulnerabilities and disables SMT.
+* vsyscalls are disabled as they are obsolete, are at fixed addresses and thus,
+are a potential target for ROP.
 
-* A systemd service clears System.map on boot as these contain kernel symbols
-that could be useful to an attacker.
-`/etc/kernel/postinst.d/30_remove-system-map`
-`/lib/systemd/system/remove-system-map.service`
-`/usr/lib/security-misc/remove-system.map`
+* The kernel panics on oopses to thwart certain kernel exploits.
 
-* Coredumps are disabled as they may contain important information such as
-encryption keys or passwords.
-`/etc/security/limits.d/30_security-misc.conf`
-`/etc/sysctl.d/30_security-misc.conf`
-`/lib/systemd/coredump.conf.d/30_security-misc.conf`
+* All mitigations for known CPU vulnerabilities are enabled and SMT is
+disabled.
 
-* The thunderbolt and firewire kernel modules are blacklisted as they can be
-used for DMA (Direct Memory Access) attacks.
+* IOMMU is enabled to prevent DMA attacks.
 
-* IOMMU is enabled with a boot parameter to prevent DMA attacks.
+### Blacklisted kernel modules
 
-* Bluetooth is blacklisted to reduce attack surface. Bluetooth also has
+Certain kernel modules are blacklisted to reduce attack surface via the
+`/etc/modprobe.d/30_security-misc.conf` configuration file.
+
+* Deactivates Netfilter's connection tracking helper — this module
+increases kernel attack surface by enabling superfluous functionality
+such as IRC parsing in the kernel. Hence, this feature is disabled.
+
+* Uncommon network protocols are blacklisted. This includes:
+
+ DCCP - Datagram Congestion Control Protocol
+
+ SCTP - Stream Control Transmission Protocol
+
+ RDS - Reliable Datagram Sockets
+
+ TIPC - Transparent Inter-process Communication
+
+ HDLC - High-Level Data Link Control
+
+ AX25 - Amateur X.25
+
+ NetRom
+
+ X25
+
+ ROSE
+
+ DECnet
+
+ Econet
+
+ af_802154 - IEEE 802.15.4
+
+ IPX - Internetwork Packet Exchange
+
+ AppleTalk
+
+ PSNAP - Subnetwork Access Protocol
+
+ p8023 - Novell raw IEEE 802.3
+
+ p8022 - IEEE 802.2
+
+ CAN — Controller Area Network
+
+ ATM
+
+* Bluetooth is also blacklisted to reduce attack surface. Bluetooth has
 a history of security concerns.
-https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
-`/etc/modprobe.d/30_security-misc.conf`
 
-* A systemd service restricts `/proc/cpuinfo`, `/proc/bus`, `/proc/scsi` and
-`/sys` to the root user only. This hides a lot of hardware identifiers from
-unprivileged users and increases security as `/sys` exposes a lot of
-information that shouldn't be accessible to unprivileged users. As this will
-break many things, it is disabled by default and can optionally be enabled by
-running `systemctl enable hide-hardware-info.service` as root.
-`/usr/lib/security-misc/hide-hardware-info`
-`/lib/systemd/system/hide-hardware-info.service`
-`/lib/systemd/system/user@.service.d/sysfs.conf`
-`/etc/hide-hardware-info.d/30_default.conf`
+* The Thunderbolt and FireWire kernel modules are blacklisted as they are
+often vulnerable to DMA attacks.
+
+* The vivid kernel module is only required for testing and has been the cause
+of multiple vulnerabilities so it is blacklisted.
 
 * The MSR kernel module is blacklisted to prevent CPU MSRs from being
 abused to write to arbitrary memory.
 
-* Vsyscalls are disabled as they are obsolete, are at fixed addresses and are
-a target for ROP.
+### Other
 
-* Page allocator freelist randomization is enabled.
+* A systemd service clears the System.map file on boot as these contain kernel
+pointers. The file is completely overwritten with zeroes to ensure it cannot
+be recovered. See:
 
-* The vivid kernel module is blacklisted as it's only required for testing
-and has been the cause of multiple vulnerabilities.
+`/etc/kernel/postinst.d/30_remove-system-map`
+
+`/lib/systemd/system/remove-system-map.service`
+
+`/usr/lib/security-misc/remove-system.map`
+
+* Coredumps are disabled as they may contain important information such as
+encryption keys or passwords. See:
+
+`/etc/security/limits.d/30_security-misc.conf`
+
+`/etc/sysctl.d/30_security-misc.conf`
+
+`/lib/systemd/coredump.conf.d/30_security-misc.conf`
 
 * An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
 `/etc/sysctl.d` before init is executed so sysctl hardening is enabled
 as early as possible.
 
-* The kernel panics on oopses to prevent it from continuing to run a flawed
-process and to deter brute forcing.
+## Network hardening
 
-* Restricts the SysRq key so it can only be used for shutdowns and the
-Secure Attention Key.
+* TCP syncookies are enabled to prevent SYN flood attacks.
 
-* Restricts loading line disciplines to `CAP_SYS_MODULE`.
+* ICMP redirect acceptance, ICMP redirect sending, source routing and
+IPv6 router advertisements are disabled to prevent man-in-the-middle attacks.
 
-* Restricts the `userfaultfd()` syscall to root.
+* The kernel is configured to ignore all ICMP requests to avoid Smurf attacks,
+make the device more difficult to enumerate on the network and prevent clock
+fingerprinting through ICMP timestamps.
 
-Improve Entropy Collection
+* RFC1337 is enabled to protect against time-wait assassination attacks by
+dropping RST packets for sockets in the time-wait state.
 
-* Load `jitterentropy_rng` kernel module.
-`/usr/lib/modules-load.d/30_security-misc.conf`
+* Reverse path filtering is enabled to prevent IP spoofing and mitigate
+vulnerabilities such as CVE-2019-14899.
+
+## Entropy collection improvements
+
+* The `jitterentropy_rng` kernel module is loaded as early as possible
+during boot to gather more entropy via the
+`/usr/lib/modules-load.d/30_security-misc.conf` configuration file.
 
 * Distrusts the CPU for initial entropy at boot as it is not possible to
-audit, may contain weaknesses or a backdoor.
-* https://en.wikipedia.org/wiki/RDRAND#Reception
-* https://twitter.com/pid_eins/status/1149649806056280069
-* For more references, see:
-* `/etc/default/grub.d/40_distrust_cpu.cfg`
+audit, may contain weaknesses or a backdoor. For references, see:
+`/etc/default/grub.d/40_distrust_cpu.cfg`
 
 * Gathers more entropy during boot if using the linux-hardened kernel patch.
 
-Uncommon network protocols are blacklisted:
-These are rarely used and may have unknown vulnerabilities.
-`/etc/modprobe.d/30_security-misc.conf`
-The network protocols that are blacklisted are:
+## Restrictive mount options
 
-* DCCP - Datagram Congestion Control Protocol
-* SCTP - Stream Control Transmission Protocol
-* RDS - Reliable Datagram Sockets
-* TIPC - Transparent Inter-process Communication
-* HDLC - High-Level Data Link Control
-* AX25 - Amateur X.25
-* NetRom
-* X25
-* ROSE
-* DECnet
-* Econet
-* af_802154 - IEEE 802.15.4
-* IPX - Internetwork Packet Exchange
-* AppleTalk
-* PSNAP - Subnetwork Access Protocol
-* p8023 - Novell raw IEEE 802.3
-* p8022 - IEEE 802.2
+`/home`, `/tmp`, `/dev/shm` and `/run` are remounted with the `nosuid` and `nodev`
+mount options to prevent execution of setuid or setgid binaries and creation of
+devices on those filesystems.
 
-user restrictions:
+Optionally, they can also be mounted with `noexec` to prevent execution of any
+binary. To opt-in to applying `noexec`, execute `touch /etc/noexec` as root
+and reboot.
 
-* remount `/home`, `/tmp`, `/dev/shm` and `/run` with `nosuid,nodev`
-(default) and `noexec` (opt-in). To disable this, run
-`sudo touch /etc/remount-disable`. To opt-in `noexec`, run
-`sudo touch /etc/noexec` and reboot (easiest).
-Alternatively file `/usr/local/etc/remount-disable` or file
-`/usr/local/etc/noexec` could be used.
-`/lib/systemd/system/remount-secure.service`
-`/usr/lib/security-misc/remount-secure`
+To disable this, execute `touch /etc/remount-disable` as root.
 
-* An optional systemd service mounts `/proc` with `hidepid=2` at boot to
-prevent users from seeing each other's processes. Not enabled because not
-compatible with pkexec.
+Alternatively, file `/usr/local/etc/remount-disable` or `/usr/local/etc/noexec`
+could be used.
 
-* The kernel logs are restricted to root only.
-
-* The BPF JIT compiler is restricted to the root user and is hardened.
-
-* The ptrace system call is restricted to the root user only.
-
-restricts access to the root account:
+## Root access restrictions
 
 * `su` is restricted to only users within the group `sudo` which prevents
-users from using `su` to gain root access or to switch user accounts.
+users from using `su` to gain root access or to switch user accounts —
 `/usr/share/pam-configs/wheel-security-misc`
-(Which results in a change in file `/etc/pam.d/common-auth`.)
+(which results in a change in file `/etc/pam.d/common-auth`).
 
-* Add user `root` to group `sudo`. This is required to make above work so
-login as a user in a virtual console is still possible.
-`debian/security-misc.postinst`
+* Add user `root` to group `sudo`. This is required due to the above restriction so
+that logging in from a virtual console is still possible — `debian/security-misc.postinst`
 
-* Abort login for users with locked passwords.
-`/usr/lib/security-misc/pam-abort-on-locked-password`
+* Abort login for users with locked passwords —
+`/usr/lib/security-misc/pam-abort-on-locked-password`.
 
 * Logging into the root account from a virtual, serial, whatnot console is
-prevented by shipping an existing and empty `/etc/securetty`.
-(Deletion of `/etc/securetty` has a different effect.)
-`/etc/securetty.security-misc`
+prevented by shipping an existing and empty `/etc/securetty` file
+(deletion of `/etc/securetty` has a different effect).
 
-* Console Lockdown.
-Allow members of group 'console' to use console.
-Everyone else except members of group
-'console-unrestricted' are restricted from using console using ancient,
-unpopular login methods such as using `/bin/login` over networks, which might
-be exploitable. (CVE-2001-0797) Using pam_access.
-Not enabled by default in this package since this package does not know which
-users shall be added to group 'console' and would break console.
-`/usr/share/pam-configs/console-lockdown-security-misc`
-`/etc/security/access-security-misc.conf`
+This package does not yet automatically lock the root account password. It
+is not clear if this would be sane in such a package although, it is recommended
+to lock and expire the root account.
 
-Protect Linux user accounts against brute force attacks.
-Lock user accounts after 50 failed login attempts using `pam_tally2`.
-`/usr/share/pam-configs/tally2-security-misc`
+In new Whonix builds, root account will be locked by package
+dist-base-files.
 
-informational output during Linux PAM:
+See:
+
+* https://www.whonix.org/wiki/Root
+* https://www.whonix.org/wiki/Dev/Permissions
+* https://forums.whonix.org/t/restrict-root-access/7658
+
+However, a locked root password will break rescue and emergency shell.
+Therefore, this package enables passwordless rescue and emergency shell.
+This is the same solution that Debian will likely adapt for Debian
+installer: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
+
+See:
+
+* `/etc/systemd/system/emergency.service.d/override.conf`
+* `/etc/systemd/system/rescue.service.d/override.conf`
+
+Adverse security effects can be prevented by setting up BIOS password
+protection, GRUB password protection and/or full disk encryption.
+
+## Console lockdown
+
+This uses pam_access to allow members of group `console` to use console but
+restrict everyone else (except members of group `console-unrestricted`) from
+using console with ancient, unpopular login methods such as `/bin/login`
+over networks as this might be exploitable. (CVE-2001-0797)
+
+This is not enabled by default in this package since this package does not
+know which users shall be added to group 'console' and thus, would break console.
+
+See:
+
+* `/usr/share/pam-configs/console-lockdown-security-misc`
+* `/etc/security/access-security-misc.conf`
+
+## Brute force attack protection
+
+User accounts are locked after 50 failed login attempts using `pam_tally2`.
+
+Informational output during Linux PAM:
 
 * Show failed and remaining password attempts.
 * Document unlock procedure if Linux user account got locked.
-* Point out, that there is no password feedback for `su`.
-* Explain locked (root) account if locked.
+* Point out that there is no password feedback for `su`.
+* Explain locked root account if locked.
+
+See:
+
 * `/usr/share/pam-configs/tally2-security-misc`
 * `/usr/lib/security-misc/pam_tally2-info`
 * `/usr/lib/security-misc/pam-abort-on-locked-password`
 
-access rights restrictions:
+## Access rights restrictions
 
-* Strong Linux User Account Separation.
-Removes read, write and execute access for others for all users who have
-home folders under folder `/home` by running for example
-"chmod o-rwx /home/user"
-during package installation, upgrade or pam `mkhomedir`. This will be done
-only once per folder in folder `/home` so users who wish to relax file
-permissions are free to
-do so. This is to protect previously created files in user home folder which
-were previously created with lax file permissions prior installation of this
-package.
-`debian/security-misc.postinst`
-`/usr/lib/security-misc/permission-lockdown`
-`/usr/share/pam-configs/mkhomedir-security-misc`
+### Strong user account separation
 
-* SUID / GUID removal and permission hardening.
-A systemd service removed SUID / GUID from non-essential binaries as these are
-often used in privilege escalation attacks.
-It is disabled by default for now during testing and can optionally be enabled
-by running `systemctl enable permission-hardening.service` as root.
-https://forums.whonix.org/t/disable-suid-binaries/7706
-`/usr/lib/security-misc/permission-hardening`
-`/lib/systemd/system/permission-hardening.service`
-`/etc/permission-hardening.d/30_default.conf`
+Read, write and execute access for "others" are removed during package
+installation, upgrade or PAM `mkhomedir` for all users who have home
+folders in `/home` by running, for example:
 
-access rights relaxations:
+```
+chmod o-rwx /home/user
+```
 
-Redirect calls for `pkexec` to `lxqt-sudo` because `pkexec` is incompatible
-with `hidepid`.
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
-https://forums.whonix.org/t/cannot-use-pkexec/8129
-`/usr/bin/pkexec.security-misc`
+This will be done only once per folder in `/home` so users who wish to
+relax file permissions are free to do so. This is to protect files in a
+home folder that were previously created with lax file permissions prior
+to the installation of this package.
 
-This package does (not yet) automatically lock the root account password.
-It is not clear that would be sane in such a package.
-It is recommended to lock and expire the root account.
-In new Whonix builds, root account will be locked by package
-dist-base-files.
-https://www.whonix.org/wiki/Root
-https://www.whonix.org/wiki/Dev/Permissions
-https://forums.whonix.org/t/restrict-root-access/7658
-However, a locked root password will break rescue and emergency shell.
-Therefore this package enables passwordless rescue and emergency shell.
-This is the same solution that Debian will likely adapt for Debian
-installer.
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
-Adverse security effects can be prevented by setting up BIOS password
-protection, grub password protection and/or full disk encryption.
-`/etc/systemd/system/emergency.service.d/override.conf`
-`/etc/systemd/system/rescue.service.d/override.conf`
+See:
 
-Let the kernel only swap if it is absolutely necessary.
-`/etc/sysctl.d/30_security-misc.conf`
+* `debian/security-misc.postinst`
+* `/usr/lib/security-misc/permission-lockdown`
+* `/usr/share/pam-configs/mkhomedir-security-misc`
 
-Disables TCP Time Stamps:
+### SUID / SGID removal and permission hardening
 
-TCP time stamps (RFC 1323) allow for tracking clock
-information with millisecond resolution. This may or may not allow an
-attacker to learn information about the system clock at such
-a resolution, depending on various issues such as network lag.
-This information is available to anyone who monitors the network
-somewhere between the attacked system and the destination server.
-It may allow an attacker to find out how long a given
-system has been running, and to distinguish several
-systems running behind NAT and using the same IP address. It might
-also allow one to look for clocks that match an expected value to find the
-public IP used by a user.
+A systemd service removes SUID / SGID bits from non-essential binaries as
+these are often used in privilege escalation attacks. It is disabled by
+default for now during testing and can optionally be enabled by running
+`systemctl enable permission-hardening.service` as root.
 
-Hence, this package disables this feature by shipping the
-`/etc/sysctl.d/30_security-misc.conf` configuration file.
+See:
 
-Note that TCP time stamps normally have some usefulness. They are
-needed for:
+* `/usr/lib/security-misc/permission-hardening`
+* `/lib/systemd/system/permission-hardening.service`
+* `/etc/permission-hardening.d`
+* https://forums.whonix.org/t/disable-suid-binaries/7706
 
-* the TCP protection against wrapped sequence numbers; however, to
-trigger a wrap, one needs to send roughly 2^32 packets in one
-minute:  as said in RFC 1700, "The current recommended default
-time to live (TTL) for the Internet Protocol (IP) [45,105] is 64".
-So, this probably won't be a practical problem in the context
-of Anonymity Distributions.
-* "Round-Trip Time Measurement", which is only useful when the user
-manages to saturate their connection. When using Anonymity Distributions,
-probably the limiting factor for transmission speed is rarely the capacity
-of the user connection.
+### Access rights relaxations
 
-Application specific hardening:
+Calls to `pkexec` are redirected to `lxqt-sudo` because `pkexec` is
+incompatible with `hidepid=2`.
 
-* Enables APT seccomp-BPF sandboxing. `/etc/apt/apt.conf.d/40sandbox`
+See:
+
+* `/usr/bin/pkexec.security-misc`
+* https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+* https://forums.whonix.org/t/cannot-use-pkexec/8129
+
+## Application-specific hardening
+
+* Enables APT seccomp-BPF sandboxing — `/etc/apt/apt.conf.d/40sandbox`.
 * Deactivates previews in Dolphin.
-* Deactivates previews in Nautilus.
-`/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`
+* Deactivates previews in Nautilus —
+`/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
 * Deactivates thumbnails in Thunar.
-* Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
-to make phishing attacks more difficult. Fixing URL not showing real Domain
-Name (Homograph attack).
+* Displays domain names in punycode (`network.IDN_show_punycode`) in
+Thunderbird to prevent IDN homograph attacks (a form of phishing).
 * Security and privacy enhancements for gnupg's config file
 `/etc/skel/.gnupg/gpg.conf`. See also:
+
 https://raw.github.com/ioerror/torbirdy/master/gpg.conf
+
 https://github.com/ioerror/torbirdy/pull/11
 
-Want more? Look into these:
+## Opt-in hardening
+
+Some hardening is opt-in as it causes too much breakage to be enabled by
+default.
+
+* TCP SACK can be disabled as it is commonly exploited and is rarely used by
+uncommenting settings in the `/etc/sysctl.d/30_security-misc.conf`
+configuration file.
+
+* An optional systemd service mounts `/proc` with `hidepid=2` at boot to
+prevent users from seeing another user's processes. This is disabled by
+default because it is incompatible with `pkexec`. It can be enabled by
+executing `systemctl enable proc-hidepid.service` as root.
+
+* A systemd service restricts `/proc/cpuinfo`, `/proc/bus`, `/proc/scsi` and
+`/sys` to the root user. This hides a lot of hardware identifiers from
+unprivileged users and increases security as `/sys` exposes a lot of
+information that shouldn't be accessible to unprivileged users. As this will
+break many things, it is disabled by default and can optionally be enabled by
+executing `systemctl enable hide-hardware-info.service` as root.
+
+## Related
 
 * Linux Kernel Runtime Guard (LKRG)
 * tirdad - TCP ISN CPU Information Leak Protection.
 * Whonix ™ - Anonymous Operating System
 * Kicksecure ™ - A Security-hardened, Non-anonymous Linux Distribution
-* SecBrowser ™ - A Security-hardened, Non-anonymous Browser
 * And more.
 * https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG
 * https://github.com/Whonix/tirdad
 * https://www.whonix.org
 * https://www.whonix.org/wiki/Kicksecure
-* https://www.whonix.org/wiki/SecBrowser
 * https://github.com/Whonix
 
-Discussion:
+## Discussion
 
 Happening primarily in Whonix forums.
+
 https://forums.whonix.org/t/kernel-hardening/7296
-## How to install `security-misc` ##
+
+## How to install `security-misc`
 
 See https://www.whonix.org/wiki/Security-misc#install
 
-## How to Build deb Package from Source Code ##
+## How to Build deb Package from Source Code
 
 Can be build using standard Debian package build tools such as:
 
@@ -349,11 +414,11 @@ See instructions. (Replace `generic-package` with the actual name of this packag
 * **A)** [easy](https://www.whonix.org/wiki/Dev/Build_Documentation/generic-package/easy), _OR_
 * **B)** [including verifying software signatures](https://www.whonix.org/wiki/Dev/Build_Documentation/generic-package)
 
-## Contact ##
+## Contact
 
 * [Free Forum Support](https://forums.whonix.org)
 * [Professional Support](https://www.whonix.org/wiki/Professional_Support)
 
-## Donate ##
+## Donate
 
 `security-misc` requires [donations](https://www.whonix.org/wiki/Donate) to stay alive!
