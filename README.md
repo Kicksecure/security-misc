@@ -205,6 +205,10 @@ audit, may contain weaknesses or a backdoor. For references, see:
 
 ## Restrictive mount options
 
+Not enabled by default yet. In development. Help welcome.
+
+https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
+
 `/home`, `/tmp`, `/dev/shm` and `/run` are remounted with the `nosuid` and `nodev`
 mount options to prevent execution of setuid or setgid binaries and creation of
 devices on those filesystems.
@@ -318,6 +322,8 @@ See:
 
 ### SUID / SGID removal and permission hardening
 
+Not enabled by default yet.
+
 A systemd service removes SUID / SGID bits from non-essential binaries as
 these are often used in privilege escalation attacks. It is disabled by
 default for now during testing and can optionally be enabled by running
@@ -329,8 +335,11 @@ See:
 * `/lib/systemd/system/permission-hardening.service`
 * `/etc/permission-hardening.d`
 * https://forums.whonix.org/t/disable-suid-binaries/7706
+* https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener
 
 ### Access rights relaxations
+
+This is not enabled yet because hidepid is not enabled by default.
 
 Calls to `pkexec` are redirected to `lxqt-sudo` because `pkexec` is
 incompatible with `hidepid=2`.
