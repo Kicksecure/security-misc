@@ -1,3 +1,49 @@
+commit ddd62c1eef031c2befc626acbe4d48d8cdbea1d0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 12 03:24:11 2021 -0500
+
+    readme
+
+commit 468d8b600dda7cce87bbdf972244ef2f610935d5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 12 03:20:58 2021 -0500
+
+    readme
+
+commit b5cee63999a7277b32f3850a5d8821c73ed05933
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 12 03:19:31 2021 -0500
+
+    new file:   README_generic.md
+
+commit 94627f0875e69c9314faab8b0dc2dbe22af5c88f
+Merge: 353e74f 79876f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 12 03:18:41 2021 -0500
+
+    Merge remote-tracking branch 'github/master'
+
+commit 79876f7b1261006885a713dbfda97609c8e81f3f
+Merge: 353e74f 3066b5a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 12 08:17:04 2021 +0000
+
+    Merge pull request #99 from madaidan/docs
+    
+    Overhaul documentation
+
+commit 3066b5ad972f16069361999afbca0978986db862
+Author: madaidan <50278627+madaidan@users.noreply.github.com>
+Date:   Tue Jan 12 02:17:13 2021 +0000
+
+    Overhaul documentation
+
+commit 353e74fb5f0c150b9de3554b88619480c338ef59
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 5 08:30:37 2021 -0500
+
+    bumped changelog version
+
 commit a258f35f385aff7b6fef71e23b94c4681e52bed2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 5 02:11:08 2021 -0500
