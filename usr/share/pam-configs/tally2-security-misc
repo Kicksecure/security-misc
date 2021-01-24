@@ -4,6 +4,7 @@ Priority: 290
 Auth-Type: Primary
 Auth:
 	optional	pam_exec.so	debug stdout seteuid /usr/lib/security-misc/pam_tally2-info
+	[success=1 default=ignore]	pam_exec.so	seteuid quiet /usr/lib/security-misc/pam_only_if_login
 	requisite	pam_tally2.so even_deny_root deny=50 onerr=fail audit debug
 Account-Type: Primary
 Account:
