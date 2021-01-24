@@ -1,3 +1,17 @@
+commit 6757104aa4d1e661b046e71f7bda511d73e83d61
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jan 24 05:04:48 2021 -0500
+
+    use pam_tally2 only for login
+    
+    to skip counting failed login attempts over ssh and mail login
+
+commit 126c31c37d17a55b0980dcae8c546aeed4282a99
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 19 19:41:43 2021 -0500
+
+    bumped changelog version
+
 commit 14d13fb03ed627cfb378873ad46f4d3ac795a9f6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 19 19:41:42 2021 -0500
