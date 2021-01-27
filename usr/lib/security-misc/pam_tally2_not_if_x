@@ -1,0 +1,38 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
+
+set -x
+
+true "PAM_SERVICE: $PAM_SERVICE"
+
+## PAM configuration notes
+##
+## success=$num
+## "will specify how many rules to skip when successful."
+## https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
+##
+## ignore
+## "when used with a stack of modules, the module's return status will not contribute to the return code the application obtains."
+## http://www.linux-pam.org/Linux-PAM-html/sag-configuration-file.html
+
+## - Failed dovecot logins should not result in account getting locked.
+## - Failed SSH public key authentication attempts do not increase pam_tally2
+##   counter for some reason.
+## This list can later be extended as needed.
+pam_service_exclusion_list="dovecot"
+
+for pam_service_exclusion_item in $pam_service_exclusion_list ; do
+   if [ "$PAM_SERVICE" = "$pam_service_exclusion_item" ]; then
+      ## exit success so [success=1 default=ignore] will result in skipping the
+      ## next PAM module (the pam_tally2 module).
+      exit 0
+   fi
+done
+
+## exit failure so [success=1 default=ignore] will result in running the
+## next PAM module (the pam_tally2 module).
+exit 1
