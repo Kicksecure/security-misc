@@ -1,3 +1,19 @@
+commit 9622f28e255a101ee7239e3ffd42d8d80637654a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 27 05:49:34 2021 -0500
+
+    skip counting failed login attempts from dovecot
+    
+    Failed dovecot logins should not result in account getting locked.
+    
+    revert "use pam_tally2 only for login"
+
+commit 480f74cab6d79886fe29eeecc5b7ebc1f138f8dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jan 24 05:10:36 2021 -0500
+
+    bumped changelog version
+
 commit 6757104aa4d1e661b046e71f7bda511d73e83d61
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jan 24 05:04:48 2021 -0500
