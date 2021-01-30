@@ -436,8 +436,8 @@ set_file_perms() {
 
       if [ "$capability_from_config" = "none" ]; then
          ## https://forums.whonix.org/t/disable-suid-binaries/7706/45
-         # sudo setcap -r /usr/bin/ping 2>/dev/null
-         # Failed to set capabilities on file `/usr/bin/ping' (No data available)
+         # sudo setcap -r /bin/ping 2>/dev/null
+         # Failed to set capabilities on file `/bin/ping' (No data available)
          # The value of the capability argument is not permitted for a file. Or the file is not a regular (non-symlink) file
          ## Therefore use echo_wrapper_ignore.
          echo_wrapper_ignore setcap -r "$fso"
