@@ -7,6 +7,7 @@ set -e
 
 sysfs_whitelist=1
 cpuinfo_whitelist=1
+selinux=1
 
 shopt -s nullglob
 
@@ -76,3 +77,16 @@ do
     fi
   fi
 done
+
+## on SELinux systems, at least /sys/fs/selinux
+## must be visible to unprivileged users, else
+## SELinux userspace utilities will not function
+## properly
+if [ -d /sys/fs/selinux ]; then
+    if [ "${selinux}" = "1" ]; then
+        chmod o+rx /sys /sys/fs /sys/fs/selinux
+        echo "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
+    else
+        echo "INFO: SELinux detected, but SELinux mode is not enabled. Some userspace utilities may not work properly."
+    fi
+fi
