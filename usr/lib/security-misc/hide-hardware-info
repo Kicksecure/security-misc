@@ -7,6 +7,8 @@ set -e
 
 sysfs_whitelist=1
 cpuinfo_whitelist=1
+
+## https://www.whonix.org/wiki/Security-misc#selinux
 selinux=1
 
 shopt -s nullglob
@@ -78,6 +80,8 @@ do
   fi
 done
 
+## https://www.whonix.org/wiki/Security-misc#selinux
+##
 ## on SELinux systems, at least /sys/fs/selinux
 ## must be visible to unprivileged users, else
 ## SELinux userspace utilities will not function
