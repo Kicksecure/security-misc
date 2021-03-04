@@ -1,8 +1,45 @@
+commit a1819e8cabc45ea197da7e3a4a94ffbab1376423
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 1 09:15:44 2021 -0500
+
+    comment
+
+commit 3382192b89de3891d45261f138652bdb48c5674b
+Merge: 7f30d70 2e8e3c0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 1 09:12:18 2021 -0500
+
+    Merge remote-tracking branch 'github/master'
+
+commit 2e8e3c07c4dda7f8500237dfa7a1d2bc7aecef5d
+Merge: 7f30d70 4db7d6b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 1 14:11:28 2021 +0000
+
+    Merge pull request #100 from 0xC0ncord/bugfix/selinuxfs_restrictions
+    
+    hide-hardware-info: allow unrestricting selinuxfs
+
+commit 7f30d702953b2e46255e3e8e71ee47af3f5a5725
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Feb 6 06:31:45 2021 -0500
+
+    bumped changelog version
+
 commit 83c0be5177929b67e3c9eba18c02904498d378cb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Feb 6 06:27:54 2021 -0500
 
     readme
+
+commit 4db7d6be643f9e7c9c3b81d3945b8d2c3e4c5269
+Author: Kenton Groombridge <me@concord.sh>
+Date:   Sat Feb 6 03:02:08 2021 -0500
+
+    hide-hardware-info: allow unrestricting selinuxfs
+    
+    On SELinux systems, the /sys/fs/selinux directory must be visible to
+    userspace utilities in order to function properly.
 
 commit 3120ff3ec98edecdc2855261d3ba26cad8803c74
 Author: Patrick Schleizer <adrelanos@riseup.net>
