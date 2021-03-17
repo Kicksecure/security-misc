@@ -1,10 +1,10 @@
-## Copyright (C) 2012 - 2020 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## Copyright (C) 2012 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 Source: security-misc
 Section: misc
 Priority: optional
-Maintainer: Patrick Schleizer <adrelanos@riseup.net>
+Maintainer: Patrick Schleizer <adrelanos@whonix.org>
 Build-Depends: debhelper (>= 12), config-package-dev, dh-apparmor
 Homepage: https://github.com/Whonix/security-misc
 Vcs-Browser: https://github.com/Whonix/security-misc
