@@ -14,6 +14,7 @@ After=local-fs.target
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/lib/security-misc/permission-hardening
+RemainAfterExit=yes
 
 [Install]
 WantedBy=sysinit.target

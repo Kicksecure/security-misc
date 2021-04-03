@@ -12,6 +12,7 @@ After=local-fs.target
 [Service]
 Type=oneshot
 ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
+RemainAfterExit=yes
 
 [Install]
 WantedBy=sysinit.target
