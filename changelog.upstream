@@ -1,3 +1,19 @@
+commit 41734ec523eb3cd233fe4651b9807222c8ccb1d5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 3 11:44:13 2021 -0400
+
+    systemd RemainAfterExit=yes
+    
+    for better usability
+    
+    https://forums.whonix.org/t/restrict-hardware-information-to-root-testers-wanted/8618/33
+
+commit e8ea94325b1df7bc0c47eabdfbd7c24b2fe51539
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Mar 17 12:31:34 2021 -0400
+
+    bumped changelog version
+
 commit a67007f4b7b7763a0b131acb246cfe84ac65540f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Mar 17 09:45:21 2021 -0400
