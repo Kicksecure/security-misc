@@ -30,3 +30,35 @@
 ## Script to sign modules during build, script is called with kernel version
 ## and module name
 # sign_tool="/etc/dkms/sign_helper.sh"
+
+### BEGIN modifications by package security-misc ###
+
+## original:
+## https://github.com/dell/dkms/blob/master/dkms_framework.conf
+
+## DKMS feature request:
+## add /etc/dkms/framework.conf.d configuration file drop-in folder
+## https://github.com/dell/dkms/issues/116
+
+## Lower parallel compilation jobs to 1 if less than 2 GB RAM to avoid freezing
+## of virtual machines.
+##
+## This does not necessarily belong into security-misc, however likely
+## security-misc will need to modify /etc/dkms/framework.conf in the future to
+## enable kernel module signing. See below.
+##
+## https://forums.whonix.org/t/linux-kernel-runtime-guard-lkrg-linux-kernel-runtime-integrity-checking-and-exploit-detection/8477/26
+ENOUGH_RAM="1950"
+total_ram="$(free -m | sed  -n -e '/^Mem:/s/^[^0-9]*\([0-9]*\) .*/\1/p')"
+if [ "$total_ram" -ge "$ENOUGH_RAM" ]; then
+   true "INFO: Enough RAM available. Not lowering compilation cores."
+else
+   true "INFO: Not enough RAM available. Lowering compilation cores to 1."
+   parallel_jobs=1
+fi
+
+## https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
+## https://github.com/dell/dkms/blob/master/sign_helper.sh
+#sign_tool="/etc/dkms/sign_helper.sh"
+
+### END modifications by package security-misc ###
