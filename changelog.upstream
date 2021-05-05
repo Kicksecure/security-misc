@@ -1,3 +1,47 @@
+commit 6e759f9196412b1742db1e4c68a70867e1ad8629
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 29 11:17:30 2021 -0400
+
+    config-package-dev displace /etc/dkms/framework.conf
+    
+    https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
+
+commit e2afd00627b097f75467cd0e2fe7e15977141026
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 29 11:14:30 2021 -0400
+
+    modify DKMS configuration file `/etc/dkms/framework.conf`
+    
+    Lower parallel compilation jobs to 1 if less than 2 GB RAM to avoid freezing of virtual machines.
+    
+    `parallel_jobs=1`
+    
+    This does not necessarily belong into security-misc, however likely
+    security-misc will need to modify `/etc/dkms/framework.conf` in the future to
+    enable kernel module signing.
+    
+    https://forums.whonix.org/t/linux-kernel-runtime-guard-lkrg-linux-kernel-runtime-integrity-checking-and-exploit-detection/8477/26
+    
+    https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
+
+commit 3ba3b371873d221db6845fb0fe52191b8b349b0a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 29 11:08:30 2021 -0400
+
+    add `/etc/dkms/framework.conf.security-misc`
+    
+    original, from
+    - https://github.com/dell/dkms/blob/master/dkms_framework.conf
+    - https://raw.githubusercontent.com/dell/dkms/master/dkms_framework.conf
+    
+    https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
+
+commit 1d35bdf2912d1dfd0b49ce727338f86d17decd72
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Apr 5 11:58:47 2021 -0400
+
+    bumped changelog version
+
 commit 41734ec523eb3cd233fe4651b9807222c8ccb1d5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Apr 3 11:44:13 2021 -0400
