@@ -1,3 +1,15 @@
+commit eff5af03184f52181894884b90a8d867a1f10956
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jun 20 10:16:33 2021 -0400
+
+    https://forums.whonix.org/t/restrict-root-access/7658/116
+
+commit 419f1d89c25ca833ac63f2e174beeb9afb0cce00
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jun 7 12:13:37 2021 -0400
+
+    bumped changelog version
+
 commit 30d1ce36af7835d47e0b53af475f3a7e99617b77
 Merge: 0305baf 70a1eb2
 Author: Patrick Schleizer <adrelanos@whonix.org>
