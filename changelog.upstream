@@ -1,3 +1,17 @@
+commit 74e39cbf690dae2bf72bd9f152ea91c364f5feff
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jun 20 11:18:56 2021 -0400
+
+    pam-abort-on-locked-password: more descriptive error handling
+    
+    https://forums.whonix.org/t/restrict-root-access/7658/1
+
+commit 0f3dbfc4a1fb08b5542e265dfbeab4e7f401549d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jun 20 10:16:57 2021 -0400
+
+    bumped changelog version
+
 commit eff5af03184f52181894884b90a8d867a1f10956
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jun 20 10:16:33 2021 -0400
