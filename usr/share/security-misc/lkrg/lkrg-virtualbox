@@ -1,0 +1,24 @@
+#!/bin/bash
+
+## Copyright (C) 2021 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -x
+set -e
+
+if ! command -v vboxmanage &>/dev/null ; then
+   if test -f /etc/sysctl.d/30-lkrg-virtualbox.conf ; then
+      rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
+   fi
+   exit 0
+fi
+
+if ! test -d /etc/sysctl.d ; then
+   exit 0
+fi
+
+if ! test -f /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf ; then
+   exit 0
+fi
+
+cp --verbose /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf
