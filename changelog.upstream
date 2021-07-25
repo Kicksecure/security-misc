@@ -1,3 +1,23 @@
+commit b3e34f7f43346c123d20e9a1606b1023b535f669
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 25 11:27:07 2021 -0400
+
+    comment
+
+commit 7e128636b3a4ea7fe5dfa12018685ab7b5dda706
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 25 11:26:20 2021 -0400
+
+    improve LKRG VirtualBox host configuration
+    
+    as per https://github.com/openwall/lkrg/issues/82#issuecomment-886188999
+
+commit 3ebe9e7c530b39f1b0429a97eab2627f2bbd1635
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 24 18:10:06 2021 -0400
+
+    bumped changelog version
+
 commit 257cef24baa038b21ef511e9d95c4229a5e16f68
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 24 18:03:40 2021 -0400
