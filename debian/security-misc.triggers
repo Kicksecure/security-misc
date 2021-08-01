@@ -9,4 +9,7 @@
 ## Activate initramfs hook that sets the sysctl values before init is executed.
 activate-noawait update-initramfs
 
+## LKRG /usr/share/security-misc/lkrg/lkrg-virtualbox
+interest-noawait /usr/bin/vboxmanage
+
 #### meta end

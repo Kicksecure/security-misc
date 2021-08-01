@@ -29,6 +29,12 @@ case "$1" in
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
+    triggered)
+      echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\@: '$@' 2: '$2'"
+      /usr/share/security-misc/lkrg/lkrg-virtualbox || true
+      exit 0
+    ;;
+
     *)
         echo "$DPKG_MAINTSCRIPT_NAME called with unknown argument \`$1'" >&2
         exit 1
