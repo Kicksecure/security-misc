@@ -1,3 +1,15 @@
+commit 5a65c35479f267b026c03e195658ef9d98ee519c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 1 13:11:18 2021 -0400
+
+    port LKRG compatibility settings automation for VirtualBox hosts from systemd to dpkg trigger
+
+commit f03c7978c7c12eb0efed1d9298f52149a8149cb3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 25 11:31:45 2021 -0400
+
+    bumped changelog version
+
 commit b3e34f7f43346c123d20e9a1606b1023b535f669
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 25 11:27:07 2021 -0400
