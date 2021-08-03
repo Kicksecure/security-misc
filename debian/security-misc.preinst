@@ -3,8 +3,8 @@
 ## Copyright (C) 2012 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
-   source /usr/lib/helper-scripts/pre.bsh
+if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
+   source /usr/libexec/helper-scripts/pre.bsh
 fi
 
 set -e

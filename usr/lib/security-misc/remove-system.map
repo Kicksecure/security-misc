@@ -3,11 +3,11 @@
 ## Copyright (C) 2012 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    ## pre.bsh would `source` the following folders:
    ## /etc/remove-system.map_pre.d/*.conf
    ## /usr/local/etc/remove-system.map_pre.d/*.conf
-   source /usr/lib/helper-scripts/pre.bsh
+   source /usr/libexec/helper-scripts/pre.bsh
 fi
 
 shopt -s nullglob

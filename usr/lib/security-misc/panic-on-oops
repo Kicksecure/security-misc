@@ -5,11 +5,11 @@
 
 set -e
 
-if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    ## pre.bsh would `source` the following folders:
    ## /etc/panic-on-oops_pre.d/*.conf
    ## /usr/local/etc/panic-on-oops_pre.d/*.conf
-   source /usr/lib/helper-scripts/pre.bsh
+   source /usr/libexec/helper-scripts/pre.bsh
 fi
 
 ## Makes the kernel panic on oopses. This prevents the kernel

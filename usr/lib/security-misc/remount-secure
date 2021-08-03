@@ -11,11 +11,11 @@
 set -x
 set -e
 
-if [ -f /usr/lib/helper-scripts/pre.bsh ]; then
+if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    ## pre.bsh would `source` the following folders:
    ## /etc/remount-secure_pre.d/*.conf
    ## /usr/local/etc/remount-secure_pre.d/*.conf
-   source /usr/lib/helper-scripts/pre.bsh
+   source /usr/libexec/helper-scripts/pre.bsh
 fi
 
 if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
