@@ -352,6 +352,8 @@ See:
 
 ## Application-specific hardening
 
+* Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
+ transient failures. — `/etc/apt/apt.conf.d/40error-on-any`.
 * Enables APT seccomp-BPF sandboxing — `/etc/apt/apt.conf.d/40sandbox`.
 * Deactivates previews in Dolphin.
 * Deactivates previews in Nautilus —

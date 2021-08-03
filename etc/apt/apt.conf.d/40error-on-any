@@ -1,0 +1,9 @@
+## Copyright (C) 2021 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Make "sudo apt-get update" exit non-zero for transient failures.
+## Same as "apt-get --error-on=any".
+## https://forums.whonix.org/t/debian-bullseye-apt-get-error-on-any/12068
+## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=594813
+## https://salsa.debian.org/apt-team/apt/-/commit/c7123bea6a8dc2c9e327ce41ddfc25e29f1bb145
+APT::Update::Error-Mode any;
