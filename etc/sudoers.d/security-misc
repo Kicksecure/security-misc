@@ -1,5 +1,5 @@
 ## Copyright (C) 2012 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-user ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
-%sudo ALL=NOPASSWD: /usr/lib/security-misc/panic-on-oops
+user ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
+%sudo ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops

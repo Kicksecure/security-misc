@@ -12,7 +12,7 @@ true "PAM_SERVICE: $PAM_SERVICE"
 if [ "$PAM_SERVICE" = "login" ]; then
    ## FIXME:
    ## Creates unwanted journal log entry.
-   ## pam_exec(login:account): /usr/lib/security-misc/pam_only_if_login failed: exit code 1
+   ## pam_exec(login:account): /usr/libexec/security-misc/pam_only_if_login failed: exit code 1
    exit 1
 else
    ## exit success so [success=1 default=ignore] will result in skipping the

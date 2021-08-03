@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 ## REVIEW: is it ok that users can find out the PATH setting of root?
-#%sudo ALL=NOPASSWD: /usr/lib/security-misc/echo-path
+#%sudo ALL=NOPASSWD: /usr/libexec/security-misc/echo-path
 
 ## xfpm-power-backlight-helper demands environment variable PKEXEC_UID to be
 ## set. Would otherwise error out with the following error message:

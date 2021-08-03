@@ -104,10 +104,10 @@ make %{?_smp_mflags}
 /lib/systemd/coredump.conf.d/disable-coredumps.conf
 /lib/systemd/system/proc-hidepid.service
 /lib/systemd/system/remove-system-map.service
-/usr/lib/security-misc/apt-get-update
-/usr/lib/security-misc/apt-get-update-sanity-test
-/usr/lib/security-misc/panic-on-oops
-/usr/lib/security-misc/remove-system.map
+/usr/libexec/security-misc/apt-get-update
+/usr/libexec/security-misc/apt-get-update-sanity-test
+/usr/libexec/security-misc/panic-on-oops
+/usr/libexec/security-misc/remove-system.map
 /usr/share/glib-2.0/schemas/30_security-misc.gschema.override
 /usr/share/lintian/overrides/security-misc
 /usr/share/pam-configs/usergroups

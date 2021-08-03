@@ -3,6 +3,6 @@
 ## Copyright (C) 2019 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-if test -x /usr/lib/security-misc/remove-system.map ; then
-   /usr/lib/security-misc/remove-system.map
+if test -x /usr/libexec/security-misc/remove-system.map ; then
+   /usr/libexec/security-misc/remove-system.map
 fi

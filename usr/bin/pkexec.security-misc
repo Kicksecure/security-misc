@@ -122,7 +122,7 @@ else
    ## This is required for gdebi.
    ## REVIEW: is it ok that users can find out the PATH setting of root?
    ## lxqt-sudo does not clear environment variable PATH.
-   PATH="$(sudo --non-interactive /usr/lib/security-misc/echo-path)"
+   PATH="$(sudo --non-interactive /usr/libexec/security-misc/echo-path)"
    export PATH
    lxqt-sudo "$@" || { exit_code=$? ; true; };
 fi

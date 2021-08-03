@@ -11,7 +11,7 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/lib/security-misc/hide-hardware-info
+ExecStart=/usr/libexec/security-misc/hide-hardware-info
 RemainAfterExit=yes
 
 [Install]

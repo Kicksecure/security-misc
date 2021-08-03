@@ -16,7 +16,7 @@ true "
 "
 
 user_groups_modifications() {
-   ## /usr/lib/security-misc/hide-hardware-info
+   ## /usr/libexec/security-misc/hide-hardware-info
    addgroup --system sysfs
    addgroup --system cpuinfo
 

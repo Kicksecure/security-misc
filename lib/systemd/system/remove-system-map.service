@@ -11,7 +11,7 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/lib/security-misc/remove-system.map
+ExecStart=/usr/libexec/security-misc/remove-system.map
 RemainAfterExit=yes
 
 [Install]

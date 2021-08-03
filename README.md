@@ -159,7 +159,7 @@ be recovered. See:
 
 `/lib/systemd/system/remove-system-map.service`
 
-`/usr/lib/security-misc/remove-system.map`
+`/usr/libexec/security-misc/remove-system.map`
 
 * Coredumps are disabled as they may contain important information such as
 encryption keys or passwords. See:
@@ -233,7 +233,7 @@ users from using `su` to gain root access or to switch user accounts —
 that logging in from a virtual console is still possible — `debian/security-misc.postinst`
 
 * Abort login for users with locked passwords —
-`/usr/lib/security-misc/pam-abort-on-locked-password`.
+`/usr/libexec/security-misc/pam-abort-on-locked-password`.
 
 * Logging into the root account from a virtual, serial, whatnot console is
 prevented by shipping an existing and empty `/etc/securetty` file
@@ -294,8 +294,8 @@ Informational output during Linux PAM:
 See:
 
 * `/usr/share/pam-configs/tally2-security-misc`
-* `/usr/lib/security-misc/pam_tally2-info`
-* `/usr/lib/security-misc/pam-abort-on-locked-password`
+* `/usr/libexec/security-misc/pam_tally2-info`
+* `/usr/libexec/security-misc/pam-abort-on-locked-password`
 
 ## Access rights restrictions
 
@@ -317,7 +317,7 @@ to the installation of this package.
 See:
 
 * `debian/security-misc.postinst`
-* `/usr/lib/security-misc/permission-lockdown`
+* `/usr/libexec/security-misc/permission-lockdown`
 * `/usr/share/pam-configs/mkhomedir-security-misc`
 
 ### SUID / SGID removal and permission hardening
@@ -331,7 +331,7 @@ default for now during testing and can optionally be enabled by running
 
 See:
 
-* `/usr/lib/security-misc/permission-hardening`
+* `/usr/libexec/security-misc/permission-hardening`
 * `/lib/systemd/system/permission-hardening.service`
 * `/etc/permission-hardening.d`
 * https://forums.whonix.org/t/disable-suid-binaries/7706

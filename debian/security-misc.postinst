@@ -43,7 +43,7 @@ esac
 
 pam-auth-update --package
 
-/usr/lib/security-misc/permission-lockdown
+/usr/libexec/security-misc/permission-lockdown
 
 ## https://phabricator.whonix.org/T377
 ## Debian has no update-grub trigger yet:
