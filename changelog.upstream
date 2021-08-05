@@ -1,3 +1,83 @@
+commit 3756016f42d97c6bf32c9bf5fed02904a63f4a5c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 13:04:34 2021 -0400
+
+    `lintian --suppress-tags obsolete-command-in-modprobe.d-file`
+    
+    https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/24
+
+commit 50bdd097df4c87cd4507311df9c0b14d237c534b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 12:56:31 2021 -0400
+
+    move /usr/lib/security-misc to /usr/libexec/security-misc as per lintian FHS
+
+commit 4fadaad8c0a79df5996372c05db635d500e41fee
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 12:52:10 2021 -0400
+
+    lintian FHS
+
+commit 6607c1e4bd085ee952952e6db17714326df4b7f6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 12:48:57 2021 -0400
+
+    move /usr/lib/helper-scripts and /usr/lib/curl-scripts to /usr/libexec/helper-scripts as per lintian FHS
+
+commit 0492f28aa10dc93063ff3b46107fa705c5ee0d7e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 12:37:39 2021 -0400
+
+    enable "`apt-get --error-on=any`" by default
+    
+    makes apt exit non-zero for transient failures
+    
+    `/etc/apt/apt.conf.d/40error-on-any`
+    
+    https://forums.whonix.org/t/debian-bullseye-apt-get-error-on-any/12068
+
+commit 240ec7672a4d513e7e6cca280aca3d67c265d1cc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 12:19:26 2021 -0400
+
+    replace no longer required `/usr/lib/security-misc/apt-get-wrapper` with `apt-get --error-on=any`
+
+commit 8eae6356684052415f8bc494db077e033653d971
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 11:51:31 2021 -0400
+
+    update lintian tag name
+
+commit 5e3338f8d3ff799a2da4257e24b57bd55541187f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 05:48:25 2021 -0400
+
+    bullseye
+
+commit bb3e65f7a80770238bda3733bed89c15a9c76852
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 03:25:35 2021 -0400
+
+    bullseye
+
+commit c94281121e20289b718f24c13e399e5e8cac0ebd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 1 16:37:02 2021 -0400
+
+    comment
+
+commit 3599e8e2dabf13ad76901a9c282469f23d4d1308
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 1 16:24:41 2021 -0400
+
+    readme
+
+commit 82f3961a7165cc1e778be785950f1a255af43b4f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 1 13:12:08 2021 -0400
+
+    bumped changelog version
+
 commit 5a65c35479f267b026c03e195658ef9d98ee519c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 1 13:11:18 2021 -0400
