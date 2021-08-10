@@ -43,9 +43,9 @@ fi
 
 if [ ! "$(id -u)" = "0" ]; then
    ## as user "user"
-   ## /sbin/pam_faillock -u user
-   ## pam_faillock: Error opening /var/log/tallylog for update: Permission denied
-   ## /sbin/pam_faillock: Authentication error
+   ## /usr/sbin/faillock -u user
+   ## faillock: Error opening /var/log/tallylog for update: Permission denied
+   ## /usr/sbin/faillock: Authentication error
    ##
    ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
    ## xscreensaver has its own failed login counter.
@@ -53,7 +53,8 @@ if [ ! "$(id -u)" = "0" ]; then
    ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
    ##
    ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
-   true "$0: not started as root, exiting."
+   ## TODO: echo -> true
+   echo "$0: not started as root, exiting."
    exit 0
 fi
 
@@ -74,7 +75,7 @@ fi
 # fi
 
 ## Using || true to not break read-only disk boot without ro-mode-init or grub-live.
-pam_faillock_output="$(pam_faillock --user "$PAM_USER")" || true
+pam_faillock_output="$(faillock --user "$PAM_USER")" || true
 
 if [ "$pam_faillock_output" = "" ]; then
    true "$0: no failed login"
@@ -82,16 +83,17 @@ if [ "$pam_faillock_output" = "" ]; then
 fi
 
 ## Example:
-#Login           Failures Latest failure     From
-#user                0
+## user:
+## When                Type  Source                                           Valid
+## 2021-08-10 16:26:33 RHOST                                                      V
+## 2021-08-10 16:26:54 RHOST                                                      V
 
-pam_faillock_output_last_line="$(echo "$pam_faillock_output" | tail -1)"
-## Example:
-#user                0
+pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head -1)"
+user_name="$(echo "$pam_faillock_output_first_line" | str_replace ":" "")"
 
-arr=($pam_faillock_output_last_line)
-user_name="${arr[0]}"
-failed_login_counter="${arr[1]}"
+pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
+
+failed_login_counter=$(( pam_faillock_output_count - 2 ))
 
 if [ ! "$PAM_USER" = "$user_name" ]; then
    echo "$0: ERROR: PAM_USER: '$PAM_USER' does not equal user_name: '$user_name'." >&2
@@ -105,19 +107,18 @@ if [ "$failed_login_counter" = "0" ]; then
    exit 0
 fi
 
-deny_line="$(cat /etc/pam.d/common-auth | grep deny=)"
-## Example:
-#auth	requisite	pam_faillock.so even_deny_root deny=50 onerr=fail audit debug
+## pam_faillock default
+deny=3
 
-for word in $deny_line ; do
-   if echo "$word" | grep -q "deny=" ; then
-      deny="$(echo "$word" | cut -d "=" -f 2)"
-      break
-   fi
-done
+if test -f /etc/security/faillock.conf ; then
+   deny_line=$(grep --invert-match "#" /etc/security/faillock.conf | grep "deny =")
+   deny="$(echo "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
+   ## Example:
+   #deny=50
+fi
 
 if [[ "$deny" == *[!0-9]* ]]; then
-   echo "$0: ERROR: deny is not numeric." >&2
+   echo "$0: ERROR: deny is not numeric. deny: '$deny'" >&2
    echo "$0: ERROR: Please report this bug." >&2
    echo "" >&2
    exit 0
@@ -130,7 +131,7 @@ if [ "$remaining_attempts" -le "0" ]; then
    echo "$0: To unlock, run the following command as superuser:" >&2
    echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
    echo "" >&2
-   echo "pam_faillock --quiet -r --user $PAM_USER" >&2
+   echo "faillock --reset --user $PAM_USER" >&2
    echo "" >&2
    echo "$0: However, most likely unlock procedure is required." >&2
    echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2

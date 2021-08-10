@@ -1,0 +1,7 @@
+Name: lock accounts after 50 failed authentication attempts (part 2) (by package security-misc)
+Default: yes
+Priority: 245
+Auth-Type: Primary
+Auth:
+	[default=die]  pam_faillock.so authfail
+	sufficient     pam_faillock.so authsucc
