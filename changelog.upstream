@@ -1,3 +1,33 @@
+commit 582492d6d8c5f756be4d809898707cb196c5c765
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 10 17:13:00 2021 -0400
+
+    port from pam_tally2 to pam_faillock
+    
+    since pam_tally2 was deprecated upstream
+
+commit 2bf0e7471cbd3b813ce385d994e43e48636f7a0b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 10 15:11:01 2021 -0400
+
+    port from pam_tally2 to pam_faillock
+    
+    since pam_tally2 was deprecated upstream
+
+commit 2aea74bd715d865f44f91aaab6ca1bf0a00a2b0b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 10 15:06:04 2021 -0400
+
+    renamed:    usr/libexec/security-misc/pam_tally2-info -> usr/libexec/security-misc/pam-info
+    renamed:    usr/libexec/security-misc/pam_tally2_not_if_x -> usr/libexec/security-misc/pam_faillock_not_if_x
+    renamed:    usr/share/pam-configs/tally2-security-misc -> usr/share/pam-configs/faillock-security-misc
+
+commit 6376bbff801f79dbb154611c3ad330b4cd863f69
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 5 17:03:43 2021 -0400
+
+    bumped changelog version
+
 commit 3756016f42d97c6bf32c9bf5fed02904a63f4a5c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 3 13:04:34 2021 -0400
