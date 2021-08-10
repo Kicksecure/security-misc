@@ -43,11 +43,11 @@ fi
 
 if [ ! "$(id -u)" = "0" ]; then
    ## as user "user"
-   ## /sbin/pam_tally2 -u user
-   ## pam_tally2: Error opening /var/log/tallylog for update: Permission denied
-   ## /sbin/pam_tally2: Authentication error
+   ## /sbin/pam_faillock -u user
+   ## pam_faillock: Error opening /var/log/tallylog for update: Permission denied
+   ## /sbin/pam_faillock: Authentication error
    ##
-   ## xscreensaver runs as user "user", therefore pam_tally2 cannot function.
+   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
    ## xscreensaver has its own failed login counter.
    ##
    ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
@@ -74,9 +74,9 @@ fi
 # fi
 
 ## Using || true to not break read-only disk boot without ro-mode-init or grub-live.
-pam_tally2_output="$(pam_tally2 --user "$PAM_USER")" || true
+pam_faillock_output="$(pam_faillock --user "$PAM_USER")" || true
 
-if [ "$pam_tally2_output" = "" ]; then
+if [ "$pam_faillock_output" = "" ]; then
    true "$0: no failed login"
    exit 0
 fi
@@ -85,11 +85,11 @@ fi
 #Login           Failures Latest failure     From
 #user                0
 
-pam_tally2_output_last_line="$(echo "$pam_tally2_output" | tail -1)"
+pam_faillock_output_last_line="$(echo "$pam_faillock_output" | tail -1)"
 ## Example:
 #user                0
 
-arr=($pam_tally2_output_last_line)
+arr=($pam_faillock_output_last_line)
 user_name="${arr[0]}"
 failed_login_counter="${arr[1]}"
 
@@ -107,7 +107,7 @@ fi
 
 deny_line="$(cat /etc/pam.d/common-auth | grep deny=)"
 ## Example:
-#auth	requisite	pam_tally2.so even_deny_root deny=50 onerr=fail audit debug
+#auth	requisite	pam_faillock.so even_deny_root deny=50 onerr=fail audit debug
 
 for word in $deny_line ; do
    if echo "$word" | grep -q "deny=" ; then
@@ -130,7 +130,7 @@ if [ "$remaining_attempts" -le "0" ]; then
    echo "$0: To unlock, run the following command as superuser:" >&2
    echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
    echo "" >&2
-   echo "pam_tally2 --quiet -r --user $PAM_USER" >&2
+   echo "pam_faillock --quiet -r --user $PAM_USER" >&2
    echo "" >&2
    echo "$0: However, most likely unlock procedure is required." >&2
    echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2

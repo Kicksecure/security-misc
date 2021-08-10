@@ -20,7 +20,7 @@ true "PAM_SERVICE: $PAM_SERVICE"
 ## http://www.linux-pam.org/Linux-PAM-html/sag-configuration-file.html
 
 ## - Failed dovecot logins should not result in account getting locked.
-## - Failed SSH public key authentication attempts do not increase pam_tally2
+## - Failed SSH public key authentication attempts do not increase pam_faillock
 ##   counter for some reason.
 ## This list can later be extended as needed.
 pam_service_exclusion_list="dovecot"
@@ -28,15 +28,15 @@ pam_service_exclusion_list="dovecot"
 for pam_service_exclusion_item in $pam_service_exclusion_list ; do
    if [ "$PAM_SERVICE" = "$pam_service_exclusion_item" ]; then
       ## exit success so [success=1 default=ignore] will result in skipping the
-      ## next PAM module (the pam_tally2 module).
+      ## next PAM module (the pam_faillock module).
       exit 0
    fi
 done
 
 ## exit failure so [success=1 default=ignore] will result in running the
-## next PAM module (the pam_tally2 module).
+## next PAM module (the pam_faillock module).
 ##
 ## Causes confusing error message:
-## pam_exec(sudo:auth): /usr/libexec/security-misc/pam_tally2_not_if_x failed: exit code 1
+## pam_exec(sudo:auth): /usr/libexec/security-misc/pam_faillock_not_if_x failed: exit code 1
 ## https://github.com/linux-pam/linux-pam/issues/329
 exit 1

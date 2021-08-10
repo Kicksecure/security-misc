@@ -282,7 +282,7 @@ See:
 
 ## Brute force attack protection
 
-User accounts are locked after 50 failed login attempts using `pam_tally2`.
+User accounts are locked after 50 failed login attempts using `pam_faillock`.
 
 Informational output during Linux PAM:
 
@@ -294,7 +294,7 @@ Informational output during Linux PAM:
 See:
 
 * `/usr/share/pam-configs/tally2-security-misc`
-* `/usr/libexec/security-misc/pam_tally2-info`
+* `/usr/libexec/security-misc/pam-info`
 * `/usr/libexec/security-misc/pam-abort-on-locked-password`
 
 ## Access rights restrictions
