@@ -389,6 +389,11 @@ information that shouldn't be accessible to unprivileged users. As this will
 break many things, it is disabled by default and can optionally be enabled by
 executing `systemctl enable hide-hardware-info.service` as root.
 
+## miscellaneous
+
+* hardened malloc compatibility for haveged workaround
+`/lib/systemd/system/haveged.service.d/30_security-misc.conf`
+
 ## Related
 
 * Linux Kernel Runtime Guard (LKRG)
