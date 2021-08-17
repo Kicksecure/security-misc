@@ -1,3 +1,27 @@
+commit 08adf4a07d97940ef924f53863ec4aa62f88fb04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 17 15:23:49 2021 -0400
+
+    readme
+
+commit 7d73b3ffa0bf13ba78debfb7f099758b0d0fbef3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 17 15:21:26 2021 -0400
+
+    add hardened malloc compatibility for haveged workaround
+    
+    `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
+    
+    `SystemCallFilter=getrandom`
+    
+    Otherwise haveged will exit with a core dump.
+
+commit 8676beef90040bdf0782e0a9c683c6463ddb48b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 10 18:26:32 2021 -0400
+
+    bumped changelog version
+
 commit 582492d6d8c5f756be4d809898707cb196c5c765
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 10 17:13:00 2021 -0400
