@@ -55,8 +55,8 @@ remount_secure() {
    ## example status_file_full_path:
    ## /var/run/remount-secure/_home
 
-   ## str_replace is provided by package helper-scripts.
-   mount_folder="$(echo "${status_file_name}" | str_replace "_" "/")"
+   ## LANG=C str_replace is provided by package helper-scripts.
+   mount_folder="$(echo "${status_file_name}" | LANG=C str_replace "_" "/")"
    ## example mount_folder:
    ## /home
 

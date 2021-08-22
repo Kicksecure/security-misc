@@ -89,7 +89,7 @@ fi
 ## 2021-08-10 16:26:54 RHOST                                                      V
 
 pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head -1)"
-user_name="$(echo "$pam_faillock_output_first_line" | str_replace ":" "")"
+user_name="$(echo "$pam_faillock_output_first_line" | LANG=C str_replace ":" "")"
 
 pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
 
@@ -112,7 +112,7 @@ deny=3
 
 if test -f /etc/security/faillock.conf ; then
    deny_line=$(grep --invert-match "#" /etc/security/faillock.conf | grep "deny =")
-   deny="$(echo "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
+   deny="$(echo "$deny_line" | LANG=C str_replace "=" "" | LANG=C str_replace "deny" "" | LANG=C str_replace " " "")"
    ## Example:
    #deny=50
 fi
