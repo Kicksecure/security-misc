@@ -19,11 +19,9 @@ true "PAM_SERVICE: $PAM_SERVICE"
 ## "when used with a stack of modules, the module's return status will not contribute to the return code the application obtains."
 ## http://www.linux-pam.org/Linux-PAM-html/sag-configuration-file.html
 
-## - Failed dovecot logins should not result in account getting locked.
-## - Failed SSH public key authentication attempts do not increase pam_faillock
-##   counter for some reason.
+## - Failed dovecot ssh logins from malicious remotes should not result in account getting locked.
 ## This list can later be extended as needed.
-pam_service_exclusion_list="dovecot"
+pam_service_exclusion_list="dovecot sshd"
 
 for pam_service_exclusion_item in $pam_service_exclusion_list ; do
    if [ "$PAM_SERVICE" = "$pam_service_exclusion_item" ]; then
