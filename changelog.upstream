@@ -1,3 +1,25 @@
+commit be8c10496f26d33378deb2427e56892771456ee5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 1 15:55:53 2021 -0400
+
+    fix faillock implementation
+    
+    dovecot / ssh are exempted
+
+commit 8b104f544a9e4e8da1691659fefa4999a4f6f085
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 1 15:45:36 2021 -0400
+
+    fix, add sshd to pam_service_exclusion_list
+    
+    to avoid faillock
+
+commit 224ae730c13f4add672fffaf58206eeb7ae24090
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 22 05:32:18 2021 -0400
+
+    bumped changelog version
+
 commit db43cedcfdf918556ae3989209a4d984527a6416
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 22 05:23:24 2021 -0400
