@@ -1,3 +1,15 @@
+commit a4e18a2ae8c19a664bb1be5bc4ec43f10a876969
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 4 18:28:37 2021 -0400
+
+    `dracut` `reproducible=yes`
+
+commit 1a10293b0408a4197620ce78cffb62cb8c00908c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 4 12:00:55 2021 -0400
+
+    bumped changelog version
+
 commit e2810f348b413bb307449a911c12a46924686a9f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Sep 4 11:50:31 2021 -0400
