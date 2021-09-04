@@ -394,6 +394,8 @@ executing `systemctl enable hide-hardware-info.service` as root.
 * hardened malloc compatibility for haveged workaround
 `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
 
+* set `dracut` `reproducible=yes` setting
+
 ## Related
 
 * Linux Kernel Runtime Guard (LKRG)
