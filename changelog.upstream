@@ -1,3 +1,15 @@
+commit e2810f348b413bb307449a911c12a46924686a9f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 4 11:50:31 2021 -0400
+
+    Depends: libpam-modules-bin
+
+commit 3c64ec8f917ed1237454d1526647a84bf00c9e83
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 2 14:36:53 2021 -0400
+
+    bumped changelog version
+
 commit be8c10496f26d33378deb2427e56892771456ee5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 1 15:55:53 2021 -0400
