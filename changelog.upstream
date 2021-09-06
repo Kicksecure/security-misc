@@ -1,3 +1,23 @@
+commit ac0c492663b9d90f99e5969193b35b53d4175d1d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 6 08:22:55 2021 -0400
+
+    do not set kernel parameter `quiet loglevel=0` for recovery boot option
+    
+    for easier debugging
+
+commit 49902b8c56512c3ee8b3d16b0ca513e44349c66d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 6 08:19:41 2021 -0400
+
+    move grub quiet to separate config file /etc/default/grub.d/41_quiet.cfg
+
+commit bb3a3178f17d1b882f38ba18db7835833f758805
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 6 04:55:23 2021 -0400
+
+    bumped changelog version
+
 commit f5b0e4b5b856ba6fa0dea7fa18c38221d972e8a3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Sep 6 04:55:16 2021 -0400
