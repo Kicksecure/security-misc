@@ -1,3 +1,15 @@
+commit bd31b4085c853d8b182e3a13534827a695f5493a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 9 12:16:18 2021 -0400
+
+    remove Debian buster support in /etc/default/grub.d
+
+commit d16d9a545502af1ec25a165a27bdbc1033b97d59
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 6 09:46:20 2021 -0400
+
+    bumped changelog version
+
 commit ac0c492663b9d90f99e5969193b35b53d4175d1d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Sep 6 08:22:55 2021 -0400
