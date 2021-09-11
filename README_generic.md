@@ -21,13 +21,13 @@ Users can [check Whonix Signing Key](https://www.whonix.org/wiki/Whonix_Signing_
 2\. Add Whonix's signing key.
 
 ```
-sudo apt-key --keyring /etc/apt/trusted.gpg.d/derivative.gpg add ~/patrick.asc
+sudo cp ~/derivative.asc /usr/share/keyrings/derivative.asc
 ```
 
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb https://deb.whonix.org bullseye main contrib non-free" | sudo tee /etc/apt/sources.list.d/derivative.list
+echo "deb [signed-by=/usr/share/keyrings/derivative.asc] https://deb.whonix.org bullseye main contrib non-free" | sudo tee /etc/apt/sources.list.d/derivative.list
 ```
 
 4\. Update your package lists.
