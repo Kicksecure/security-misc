@@ -1,3 +1,21 @@
+commit d62bbaab82a33a485a82d42d8db5674d200a1c3d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 12 11:40:58 2021 -0400
+
+    fix, unduplicate kernel command line
+
+commit fb0540650c26689165b2fd0558b87ef7c3154a6e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 11 16:33:14 2021 -0400
+
+    readme
+
+commit 64e9f0016aa5804740a099890a5ef648dde07883
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 9 12:35:37 2021 -0400
+
+    bumped changelog version
+
 commit bd31b4085c853d8b182e3a13534827a695f5493a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 9 12:16:18 2021 -0400
