@@ -88,6 +88,16 @@ done
 ## properly
 if [ -d /sys/fs/selinux ]; then
     if [ "${selinux}" = "1" ]; then
+        ## restrict permissions on everything but
+        ## what is needed
+        for i in /sys/* /sys/fs/*
+        do
+          if [ "${sysfs_whitelist}" = "1" ]; then
+            chmod o-rwx "${i}"
+          else
+            chmod og-rwx "${i}"
+          fi
+        done
         chmod o+rx /sys /sys/fs /sys/fs/selinux
         echo "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
     else
