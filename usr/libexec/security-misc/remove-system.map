@@ -20,7 +20,7 @@ for filename in ${system_map_location} ; do
 done
 
 if [ "$counter" -ge "1" ]; then
-   echo "Deleting system.map files..."
+   echo "INFO: Deleting system.map files..."
 fi
 
 ## Removes the System.map files as they are only used for debugging or malware.
@@ -29,14 +29,14 @@ for filename in ${system_map_location} ; do
       if [ -w "${filename}" ]; then
          ## 'shred' with '--verbose' is too chatty. (7 lines)
          shred --force --zero -u "${filename}"
-         echo "removed '${filename}'"
+         echo "INFO: removed '${filename}'"
       else
-         echo "Cannot delete '${filename}' - read-only. For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
+         echo "NOTE: Cannot delete '${filename}' - read-only. For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
          exit 0
       fi
    fi
 done
 
 if [ "$counter" -ge "1" ]; then
-   echo "Done. Success."
+   echo "INFO: Done. Success."
 fi
