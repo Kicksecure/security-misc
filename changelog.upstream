@@ -1,3 +1,33 @@
+commit b0a0004a85387a4f7520a688f6d2a9826d8e68fb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 10 13:47:10 2022 -0500
+
+    output
+
+commit 4f6f588fb53d2756d867ac7e29fb42f4f8fdb335
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 10 13:44:55 2022 -0500
+
+    fix, skip deletion of system.map files on read-only filesystems
+    
+    This is required for Qubes /lib/modules read-only implementation at time of writing.
+    
+    Thanks to @marmarek for the bug report!
+    
+    https://forums.whonix.org/t/remove-system-map-cannot-work-lib-modules-is-mounted-read-only/13324
+
+commit 356232677a036cd1a673d805caa4d74a327ea096
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 9 14:32:33 2021 -0500
+
+    readme
+
+commit 96026a5e90a56cade2dff5f3dfc3687687e92c56
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 14 14:18:52 2021 -0400
+
+    bumped changelog version
+
 commit c72567dbd215fcd60c4719fe1ebc9a0f350a2b97
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 14 14:18:44 2021 -0400
