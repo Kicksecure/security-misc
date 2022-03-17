@@ -9,7 +9,7 @@ sysfs_whitelist=1
 cpuinfo_whitelist=1
 
 ## https://www.whonix.org/wiki/Security-misc#selinux
-selinux=1
+selinux=0
 
 shopt -s nullglob
 
