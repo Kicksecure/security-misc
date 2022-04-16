@@ -32,7 +32,7 @@ if [ ! "$grep_result" = "" ]; then
          echo "$0: However, possibly unlock procedure is required." >&2
          echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
          echo "$0: See also:" >&2
-         echo "https://www.whonix.org/wiki/root#console" >&2
+         echo "https://www.kicksecure.com/wiki/root#console" >&2
          echo "" >&2
          exit 0
       fi
@@ -67,7 +67,7 @@ fi
 #          echo "$0: ERROR: Root login is disabled." >&2
 #          echo "$0: ERROR: This is because /etc/securetty is empty." >&2
 #          echo "$0: See also:" >&2
-#          echo "https://www.whonix.org/wiki/root#login" >&2
+#          echo "https://www.kicksecure.com/wiki/root#login" >&2
 #          echo "" >&2
 #          exit 0
 #       fi
@@ -136,7 +136,7 @@ if [ "$remaining_attempts" -le "0" ]; then
    echo "$0: However, most likely unlock procedure is required." >&2
    echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
    echo "$0: See also:" >&2
-   echo "https://www.whonix.org/wiki/root#unlock" >&2
+   echo "https://www.kicksecure.com/wiki/root#unlock" >&2
    echo "" >&2
    exit 0
 fi
