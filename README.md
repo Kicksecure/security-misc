@@ -243,13 +243,13 @@ This package does not yet automatically lock the root account password. It
 is not clear if this would be sane in such a package although, it is recommended
 to lock and expire the root account.
 
-In new Whonix builds, root account will be locked by package
+In new Kicksecure builds, root account will be locked by package
 dist-base-files.
 
 See:
 
-* https://www.whonix.org/wiki/Root
-* https://www.whonix.org/wiki/Dev/Permissions
+* https://www.kicksecure.com/wiki/Root
+* https://www.kicksecure.com/wiki/Dev/Permissions
 * https://forums.whonix.org/t/restrict-root-access/7658
 
 However, a locked root password will break rescue and emergency shell.
@@ -335,7 +335,7 @@ See:
 * `/lib/systemd/system/permission-hardening.service`
 * `/etc/permission-hardening.d`
 * https://forums.whonix.org/t/disable-suid-binaries/7706
-* https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener
+* https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 
 ### Access rights relaxations
 
@@ -400,24 +400,22 @@ executing `systemctl enable hide-hardware-info.service` as root.
 
 * Linux Kernel Runtime Guard (LKRG)
 * tirdad - TCP ISN CPU Information Leak Protection.
-* Whonix ™ - Anonymous Operating System
-* Kicksecure ™ - A Security-hardened, Non-anonymous Linux Distribution
+* Kicksecure ™ - a security-hardened Linux Distribution
 * And more.
-* https://www.whonix.org/wiki/Linux_Kernel_Runtime_Guard_LKRG
-* https://github.com/Whonix/tirdad
-* https://www.whonix.org
-* https://www.whonix.org/wiki/Kicksecure
-* https://github.com/Whonix
+* https://www.kicksecure.com/wiki/Linux_Kernel_Runtime_Guard_LKRG
+* https://github.com/Kicksecure/tirdad
+* https://www.kicksecure.com
+* https://github.com/Kicksecure
 
 ## Discussion
 
-Happening primarily in Whonix forums.
+Happening primarily in forums.
 
 https://forums.whonix.org/t/kernel-hardening/7296
 
 ## How to install `security-misc`
 
-See https://www.whonix.org/wiki/Security-misc#install
+See https://www.kicksecure.com/wiki/Security-misc#install
 
 ## How to Build deb Package from Source Code
 
@@ -429,14 +427,14 @@ dpkg-buildpackage -b
 
 See instructions. (Replace `generic-package` with the actual name of this package `security-misc`.)
 
-* **A)** [easy](https://www.whonix.org/wiki/Dev/Build_Documentation/generic-package/easy), _OR_
-* **B)** [including verifying software signatures](https://www.whonix.org/wiki/Dev/Build_Documentation/generic-package)
+* **A)** [easy](https://www.kicksecure.com/wiki/Dev/Build_Documentation/generic-package/easy), _OR_
+* **B)** [including verifying software signatures](https://www.kicksecure.com/wiki/Dev/Build_Documentation/generic-package)
 
 ## Contact
 
-* [Free Forum Support](https://forums.whonix.org)
-* [Professional Support](https://www.whonix.org/wiki/Professional_Support)
+* [Free Forum Support](https://forums.kicksecure.com)
+* [Professional Support](https://www.kicksecure.com/wiki/Professional_Support)
 
 ## Donate
 
-`security-misc` requires [donations](https://www.whonix.org/wiki/Donate) to stay alive!
+`security-misc` requires [donations](https://www.kicksecure.com/wiki/Donate) to stay alive!
