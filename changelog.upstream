@@ -1,3 +1,61 @@
+commit 7e2efe0155b97955428e64181c9a6b32402ee9db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 20 15:27:10 2022 -0400
+
+    readme
+
+commit 2d37e3a1af3739eedd9191a0f0c78a2762c5fa38
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 20 14:46:38 2022 -0400
+
+    copyright
+
+commit 78a9956b73498bad471ee1cb0fa0993f2e5ce3c0
+Merge: 4a3ed17 7651308
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu May 19 19:41:33 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 76513087872943442df32451de5af158c2bbe944
+Merge: 4a3ed17 93efa50
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu May 19 19:39:42 2022 -0400
+
+    Merge pull request #103 from 0xC0ncord/bugfix/selinuxfs_restrictions
+    
+    hide-hardware-info: re-enable restrictions on sysfs when using SELinux
+
+commit 4a3ed17160c14ba7122d770665b53bde96038307
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu May 19 17:25:58 2022 -0400
+
+    readme
+
+commit bb0307290b59d0273f9ad585e881c91071e3edea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 16 14:18:35 2022 -0400
+
+    update link
+
+commit 2677db34baeb120a402b684d4a62ccf616b5528c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Apr 10 12:40:16 2022 -0400
+
+    readme
+
+commit 93efa506dac6135f1a5c260ec95d985e7fedc53d
+Author: 0xC0ncord <me@concord.sh>
+Date:   Thu Mar 17 11:41:57 2022 -0400
+
+    hide-hardware-info: disable selinux whitelist by default
+
+commit 0051a6935acd2f452a9189d1581ccac7377dd23d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 10 14:06:54 2022 -0500
+
+    bumped changelog version
+
 commit b0a0004a85387a4f7520a688f6d2a9826d8e68fb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 10 13:47:10 2022 -0500
@@ -21,6 +79,21 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 9 14:32:33 2021 -0500
 
     readme
+
+commit 4172232eb75aaca301e51529e49df76ca86b93b3
+Author: 0xC0ncord <me@concord.sh>
+Date:   Fri Oct 8 22:17:12 2021 -0400
+
+    hide-hardware-info: make indentation consistent
+
+commit 060d7d890a0292addaa1e85bb1b2ff7eece23378
+Author: 0xC0ncord <me@concord.sh>
+Date:   Fri Oct 8 22:11:58 2021 -0400
+
+    hide-hardware-info: re-enable restrictions on sysfs when using SELinux
+    
+    When using SELinux, restrict the parts of sysfs explicitly to ensure
+    restrictions are working as expected.
 
 commit 96026a5e90a56cade2dff5f3dfc3687687e92c56
 Author: Patrick Schleizer <adrelanos@whonix.org>
