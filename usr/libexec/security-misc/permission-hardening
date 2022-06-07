@@ -318,12 +318,12 @@ set_file_perms() {
             continue
          fi
 
-         if ! getent passwd | grep -q "^${owner_from_config}:" ; then
+         if ! echo "${passwd_file_contents}" | grep -q "^${owner_from_config}:" ; then
             echo "ERROR: owner_from_config '$owner_from_config' does not exist!" >&2
             continue
          fi
 
-         if ! getent group | grep -q "^${group_from_config}:" ; then
+         if ! echo "${group_file_contents}" | grep -q "^${group_from_config}:" ; then
             echo "ERROR: group_from_config '$group_from_config' does not exist!" >&2
             continue
          fi
@@ -462,6 +462,15 @@ set_file_perms() {
 }
 
 parse_config_folder() {
+  # Query contents of password and group databases only once and buffer them
+  #
+  # If we don’t buffer we sometimes get incorrect results when checking for entries using
+  # `if getent passwd | grep -q '^root:'; …` since `grep` exits after the first match in
+  # this case causing `getent` to receive SIGPIPE, which then fails the pipeline since
+  # `set -o pipefail` is set for this script.
+  passwd_file_contents="$(getent passwd)"
+  group_file_contents="$(getent group)"
+
   shopt -s nullglob
   for config_file in /etc/permission-hardening.d/*.conf /usr/local/etc/permission-hardening.d/*.conf; do
     set_file_perms
