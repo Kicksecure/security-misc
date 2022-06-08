@@ -1,3 +1,67 @@
+commit d7dd188651a5227be6b1d95e7ae9a97e0cbb34f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 09:27:02 2022 -0400
+
+    remove unicode
+
+commit 55d16e1602c0221dbe00996a206d0691ef93ae71
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 09:04:03 2022 -0400
+
+    remove unicode
+
+commit fcaec49675ce7e240bdd049aab184fbee0945c7d
+Merge: 5c43197 995e4ba
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 08:20:24 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 995e4ba7fafc1bf4f691b83dde415c57cebed63d
+Merge: 616fe85 6e8f584
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 08:19:03 2022 -0400
+
+    Merge pull request #104 from ntninja/patch-1
+    
+    Fix issues found with permission-hardening on my system
+
+commit 5c43197f10df3a49704a66ef3e3d56f122be4775
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 08:11:28 2022 -0400
+
+    minor
+
+commit 6e8f584d88333d3a6fec1318ba92f76e328bf7ce
+Author: Kuri Schlarb <246386+ntninja@users.noreply.github.com>
+Date:   Wed Jun 8 05:29:42 2022 +0000
+
+    permission-hardening: Keep `pam_unix.so` password checking helper SetGID shadow
+
+commit 2bdda9d0a0a289dafb260c926d29df274c9a67da
+Author: Kuri Schlarb <246386+ntninja@users.noreply.github.com>
+Date:   Tue Jun 7 08:18:05 2022 +0000
+
+    permssion-hardening: Do not skip config file lines without trailing newline (ancient bash bug)
+
+commit 3910e4ee159d8b5f80c5086915583e4e20ecd6fe
+Author: Kuri Schlarb <246386+ntninja@users.noreply.github.com>
+Date:   Tue Jun 7 08:11:51 2022 +0000
+
+    permission-hardening: Keep `passwd` executable but non-SetUID
+
+commit 9fd8e1c9b0250c9e00b555838bd381f162dfd8c4
+Author: Kuri Schlarb <246386+ntninja@users.noreply.github.com>
+Date:   Tue Jun 7 08:03:56 2022 +0000
+
+    permission-hardening: Fix issue with pipelining failures causing incorrect user/group lookup results
+
+commit 616fe857f7a5cde1f4ad0d31e03876dcd2ab7f0f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 25 06:07:17 2022 -0400
+
+    bumped changelog version
+
 commit 7e2efe0155b97955428e64181c9a6b32402ee9db
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 20 15:27:10 2022 -0400
