@@ -93,7 +93,7 @@ disabled.
 Certain kernel modules are blacklisted to reduce attack surface via the
 `/etc/modprobe.d/30_security-misc.conf` configuration file.
 
-* Deactivates Netfilter's connection tracking helper — this module
+* Deactivates Netfilter's connection tracking helper - this module
 increases kernel attack surface by enabling superfluous functionality
 such as IRC parsing in the kernel. Hence, this feature is disabled.
 
@@ -133,7 +133,7 @@ such as IRC parsing in the kernel. Hence, this feature is disabled.
 
  p8022 - IEEE 802.2
 
- CAN — Controller Area Network
+ CAN - Controller Area Network
 
  ATM
 
@@ -225,14 +225,14 @@ could be used.
 ## Root access restrictions
 
 * `su` is restricted to only users within the group `sudo` which prevents
-users from using `su` to gain root access or to switch user accounts —
+users from using `su` to gain root access or to switch user accounts -
 `/usr/share/pam-configs/wheel-security-misc`
 (which results in a change in file `/etc/pam.d/common-auth`).
 
 * Add user `root` to group `sudo`. This is required due to the above restriction so
-that logging in from a virtual console is still possible — `debian/security-misc.postinst`
+that logging in from a virtual console is still possible - `debian/security-misc.postinst`
 
-* Abort login for users with locked passwords —
+* Abort login for users with locked passwords -
 `/usr/libexec/security-misc/pam-abort-on-locked-password`.
 
 * Logging into the root account from a virtual, serial, whatnot console is
@@ -353,10 +353,10 @@ See:
 ## Application-specific hardening
 
 * Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
- transient failures. — `/etc/apt/apt.conf.d/40error-on-any`.
-* Enables APT seccomp-BPF sandboxing — `/etc/apt/apt.conf.d/40sandbox`.
+ transient failures. - `/etc/apt/apt.conf.d/40error-on-any`.
+* Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
 * Deactivates previews in Dolphin.
-* Deactivates previews in Nautilus —
+* Deactivates previews in Nautilus -
 `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
 * Deactivates thumbnails in Thunar.
 * Displays domain names in punycode (`network.IDN_show_punycode`) in

@@ -437,7 +437,7 @@ set_file_perms() {
       if [ "$capability_from_config" = "none" ]; then
          ## https://forums.whonix.org/t/disable-suid-binaries/7706/45
          # sudo setcap -r /bin/ping 2>/dev/null
-         # Failed to set capabilities on file `/bin/ping' (No data available)
+         # Failed to set capabilities on file '/bin/ping' (No data available)
          # The value of the capability argument is not permitted for a file. Or the file is not a regular (non-symlink) file
          ## Therefore use echo_wrapper_ignore.
          echo_wrapper_ignore setcap -r "$fso"
@@ -465,9 +465,9 @@ parse_config_folder() {
   # Query contents of password and group databases only once and buffer them
   #
   # If we don't buffer we sometimes get incorrect results when checking for entries using
-  # `if getent passwd | grep -q '^root:'; …` since `grep` exits after the first match in
-  # this case causing `getent` to receive SIGPIPE, which then fails the pipeline since
-  # `set -o pipefail` is set for this script.
+  # 'if getent passwd | grep -q '^root:'; ...' since 'grep' exits after the first match in
+  # this case causing 'getent' to receive SIGPIPE, which then fails the pipeline since
+  # 'set -o pipefail' is set for this script.
   passwd_file_contents="$(getent passwd)"
   group_file_contents="$(getent group)"
 
