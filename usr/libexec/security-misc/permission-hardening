@@ -464,7 +464,7 @@ set_file_perms() {
 parse_config_folder() {
   # Query contents of password and group databases only once and buffer them
   #
-  # If we don’t buffer we sometimes get incorrect results when checking for entries using
+  # If we don't buffer we sometimes get incorrect results when checking for entries using
   # `if getent passwd | grep -q '^root:'; …` since `grep` exits after the first match in
   # this case causing `getent` to receive SIGPIPE, which then fails the pipeline since
   # `set -o pipefail` is set for this script.

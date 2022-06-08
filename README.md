@@ -400,7 +400,7 @@ executing `systemctl enable hide-hardware-info.service` as root.
 
 * Linux Kernel Runtime Guard (LKRG)
 * tirdad - TCP ISN CPU Information Leak Protection.
-* Kicksecure ™ - a security-hardened Linux Distribution
+* Kicksecure (TM) - a security-hardened Linux Distribution
 * And more.
 * https://www.kicksecure.com/wiki/Linux_Kernel_Runtime_Guard_LKRG
 * https://github.com/Kicksecure/tirdad
