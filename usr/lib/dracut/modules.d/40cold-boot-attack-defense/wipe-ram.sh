@@ -8,13 +8,12 @@
 ## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/wipe.sh
 
 ram_wipe() {
-   info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
-
    local OLD_DRACUT_QUIET
    OLD_DRACUT_QUIET="$DRACUT_QUIET"
    ## check_quiet should show info in console.
    DRACUT_QUIET='no'
 
+   info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
    info "$0: Checking if there are still mounted encrypted disks..."
 
    local dmsetup_actual_output dmsetup_expected_output
