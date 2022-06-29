@@ -6,6 +6,10 @@
 ram_wipe() {
    info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 
+   local OLD_DRACUT_QUIET
+   OLD_DRACUT_QUIET="$DRACUT_QUIET"
+   DRACUT_QUIET='no'
+
    info "$0: Checking if there are still mounted encrypted disks..."
 
    local dmsetup_actual_output dmsetup_expected_output
@@ -21,7 +25,7 @@ $0: There are still mounted encrypted disks! RAM wipe failed!
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'"
-      sleep 10
+      sleep 5
       return 0
    fi
 
@@ -31,6 +35,10 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
    sdmem -l -l -f
 
    info "$0: RAM wipe completed, OK."
+
+   ## Restore to previous value.
+   DRACUT_QUIET="$OLD_DRACUT_QUIET"
+
    info "$0: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
    sleep 3
 }
