@@ -1,3 +1,21 @@
+commit 8a072437cc6478757a8f21f3a6a0ea51a97b978b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 14:13:30 2022 -0400
+
+    ram wipe on shutdown: fix, added `need_shutdown` hook
+    
+    Otherwise dracut does not run on shutdown.
+    
+    Without `need_shutdown` file `/run/initramfs/.need_shutdown` does not get created.
+    And without that file `/usr/lib/dracut/dracut-initramfs-restore`,
+    which itself is started by `/lib/systemd/system/dracut-shutdown.service` does nothing.
+
+commit 4d937f551f6cccf40f933576a7fa210066f1fc8a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 13:03:35 2022 -0400
+
+    bumped changelog version
+
 commit 924077e04cd0d5b06a410b2a9289047286500e8a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 13:02:53 2022 -0400
