@@ -12,6 +12,7 @@ ram_wipe() {
 
    local OLD_DRACUT_QUIET
    OLD_DRACUT_QUIET="$DRACUT_QUIET"
+   ## check_quiet should show info in console.
    DRACUT_QUIET='no'
 
    info "$0: Checking if there are still mounted encrypted disks..."
@@ -35,15 +36,23 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
 
    info "$0: Starting RAM wipe..."
 
+   ## - If DRACUT_QUIET previously was set to '', reset to '' for auto detection by check_quiet.
+   ## - If DRACUT_QUIET previously was set to 'no', reset to 'no' for verbose output.
+   ## - If DRACUT_QUIET previously was set to 'yes', reset to 'yes' to hide sdmem output,
+   ##   as well as the oom killing at the end.
+   DRACUT_QUIET="$OLD_DRACUT_QUIET"
+
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    sdmem -l -l -f
 
+   ## Reset to DRACUT_QUIET='no' so info messages can be shown.
+   DRACUT_QUIET='no'
+
    info "$0: RAM wipe completed, OK."
+   info "$0: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 
    ## Restore to previous value.
    DRACUT_QUIET="$OLD_DRACUT_QUIET"
-
-   info "$0: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
    sleep 3
 }
 
