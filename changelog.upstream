@@ -1,3 +1,43 @@
+commit 024d52a67ebb6028d5df890e469fec5dc42be00a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 09:52:53 2022 -0400
+
+    improve usr/lib/dracut/modules.d/40sdmem-security-misc/module-setup.sh
+
+commit 29253004b6be7c7d2b3fce6cceff2df3e845f15a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 09:38:18 2022 -0400
+
+    minor
+
+commit 6f19af1542d3b6d2d6af89136ce909f7f7335ff1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 09:35:08 2022 -0400
+
+    add shebang /bin/sh
+    
+    to fix lintian warning
+    security-misc: executable-not-elf-or-script usr/lib/dracut/modules.d/40sdmem-security-misc/wipe.sh
+
+commit 38cdf2722bc0aa224e1ec253e77728d4e00b9be0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 09:32:55 2022 -0400
+
+    - Wipe LUKS Disk Encryption Key for Root Disk from RAM during Shutdown to defeat Cold Boot Attacks
+    - Confirm in console output if encrypted mounts (root disk) is unmounted. (Because that is a pre-condition for wiping the LUKS full disk encryption key from RAM.)
+    
+    Thanks to @friedy10!
+    
+    https://github.com/friedy10/dracut/tree/master/modules.d/40sdmem
+    
+    https://forums.whonix.org/t/is-ram-wipe-possible-inside-whonix-cold-boot-attack-defense/5596
+
+commit adca1ebdf6c83c5c1c846cdb29f3e16ea9cdf32f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 8 11:05:07 2022 -0400
+
+    bumped changelog version
+
 commit d7dd188651a5227be6b1d95e7ae9a97e0cbb34f0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 8 09:27:02 2022 -0400
