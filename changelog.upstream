@@ -1,3 +1,33 @@
+commit 9ab81d45810b71374520603c32812e22685f59cb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:22:00 2022 -0400
+
+    do not power off too fast so wipe ram messages can be read
+
+commit 19439033de840ed39039f04db7b13f6e168a627e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:19:56 2022 -0400
+
+    copyright
+
+commit fc202ede16ee41aceeec356ba35ba71cc7fc821d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:18:28 2022 -0400
+
+    delete no longer required `usr/lib/dracut/modules.d/40sdmem-security-misc/README.md`
+
+commit 6d3a08a9365207923edd2f0b6f8aebdc635d3b33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:17:40 2022 -0400
+
+    improvements
+
+commit 87e5f49f8dc72f14e96cc06b924566668991037f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 14:18:02 2022 -0400
+
+    bumped changelog version
+
 commit 6eba53767f3af2436fd00b807e71a94dff813dfc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 14:17:52 2022 -0400
