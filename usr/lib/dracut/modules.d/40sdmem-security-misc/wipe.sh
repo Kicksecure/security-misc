@@ -21,6 +21,7 @@ $0: There are still mounted encrypted disks! RAM wipe failed!
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'"
+      sleep 10
       return 0
    fi
 
@@ -30,7 +31,8 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
    sdmem -l -l -f
 
    info "$0: RAM wipe completed, OK."
-   info "$0: END COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
+   info "$0: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
+   sleep 3
 }
 
 ram_wipe
