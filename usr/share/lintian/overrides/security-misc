@@ -11,4 +11,4 @@ security-misc: no-manual-page usr/bin/pkexec.security-misc
 security-misc: file-in-unusual-dir var/cache/security-misc/state-files/placeholder
 
 ## This is how dracut is still implemented.
-security-misc: executable-in-usr-lib usr/lib/dracut/modules.d/40sdmem-security-misc/*
+security-misc: executable-in-usr-lib usr/lib/dracut/modules.d/40cold-boot-attack-defense/*
