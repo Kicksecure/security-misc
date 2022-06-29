@@ -4,6 +4,7 @@
 
 # called by dracut
 check() {
+    require_binaries sleep || return 1
     require_binaries dmsetup || return 1
     require_binaries sdmem || return 1
     return 0
@@ -16,7 +17,9 @@ depends() {
 
 # called by dracut
 install() {
-    inst $(command -v sdmem) /bin/sdmem
+    inst_multiple sleep
+    inst_multiple sdmem
+    inst_multiple dmsetup
     inst_hook shutdown 40 "$moddir/wipe.sh"
 }
 
