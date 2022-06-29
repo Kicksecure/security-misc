@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Copyright (C) 2012 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
 ram_wipe() {
    info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 
