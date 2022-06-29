@@ -3,6 +3,10 @@
 ## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## Credits:
+## First version by @friedy10.
+## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/wipe.sh
+
 ram_wipe() {
    info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 

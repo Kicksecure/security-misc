@@ -5,6 +5,10 @@
 ## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## Credits:
+## First version by @friedy10.
+## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/module-setup.sh
+
 # called by dracut
 check() {
     require_binaries sleep || return 1
