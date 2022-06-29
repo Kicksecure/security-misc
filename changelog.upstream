@@ -1,3 +1,45 @@
+commit f5e0c1742abc009b1af95f0d106a5e1cd90d1ef4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 16:02:05 2022 -0400
+
+    credits
+
+commit 42e24f3c241471d91af6f16b74b5bf85dfad85d7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:54:49 2022 -0400
+
+    update file names
+
+commit 52aaac9b6d3a9611317e919d78840554bfce9778
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:53:52 2022 -0400
+
+    rename
+
+commit 619bb3cf4d347c1575c58c74adbbede94d60f79b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:53:24 2022 -0400
+
+    rename
+
+commit 2a8504cf1bd2a4d7e373bde3f34f6f22e3d5ebc4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:51:14 2022 -0400
+
+    move
+
+commit af8b211c238f6fe83db5990dc0984d1c532456ae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:50:20 2022 -0400
+
+    improvements
+
+commit 0b0cda8f8f2ff1da256473115df37456273cdcdd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 15:24:40 2022 -0400
+
+    bumped changelog version
+
 commit e9cd5d934b04f7d06a14616ef52a914198f03b97
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 15:24:27 2022 -0400
