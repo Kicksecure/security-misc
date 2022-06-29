@@ -35,17 +35,8 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
 
    info "wipe-ram.sh: Starting RAM wipe..."
 
-   ## - If DRACUT_QUIET previously was set to '', reset to '' for auto detection by check_quiet.
-   ## - If DRACUT_QUIET previously was set to 'no', reset to 'no' for verbose output.
-   ## - If DRACUT_QUIET previously was set to 'yes', reset to 'yes' to hide sdmem output,
-   ##   as well as the oom killing at the end.
-   DRACUT_QUIET="$OLD_DRACUT_QUIET"
-
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    sdmem -l -l -v
-
-   ## Reset to DRACUT_QUIET='no' so info messages can be shown.
-   DRACUT_QUIET='no'
 
    info "wipe-ram.sh: RAM wipe completed, OK."
    info "wipe-ram.sh: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
