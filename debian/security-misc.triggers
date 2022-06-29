@@ -6,7 +6,10 @@
 #### category security
 #### description
 
-## Activate initramfs hook that sets the sysctl values before init is executed.
+## Trigger 'activate-noawait update-initramfs' also works with both,
+## initramfs-tools as well as dracut.
+## - Activate initramfs hook that sets the sysctl values before init is executed.
+## - dracut module 40sdmem-security-misc
 activate-noawait update-initramfs
 
 ## LKRG /usr/share/security-misc/lkrg/lkrg-virtualbox
