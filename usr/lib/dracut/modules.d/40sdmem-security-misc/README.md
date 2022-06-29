@@ -1,4 +1,7 @@
-### Make sure sdmem is part of the initramfs
-sudo apt-get install secure-delete 
+### Make sure sdmem and dmsetup is part of the initramfs
+
+sudo apt update
+
+sudo apt --no-install-recommends install secure-delete dmsetup
 
 sudo dracut --include /usr/bin/sdmem /bin/sdmem --force
