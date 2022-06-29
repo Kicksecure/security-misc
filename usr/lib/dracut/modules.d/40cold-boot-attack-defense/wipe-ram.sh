@@ -13,18 +13,18 @@ ram_wipe() {
    ## check_quiet should show info in console.
    DRACUT_QUIET='no'
 
-   info "$0: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
-   info "$0: Checking if there are still mounted encrypted disks..."
+   info "wipe-ram.sh: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
+   info "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
 
    local dmsetup_actual_output dmsetup_expected_output
    dmsetup_actual_output="$(dmsetup ls --target crypt)"
    dmsetup_expected_output="No devices found"
 
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
-      info "$0: Success, there are no more mounted encrypted disks, OK."
+      info "wipe-ram.sh: Success, there are no more mounted encrypted disks, OK."
    else
       warn "\
-$0: There are still mounted encrypted disks! RAM wipe failed!
+wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
 
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
@@ -33,7 +33,7 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
       return 0
    fi
 
-   info "$0: Starting RAM wipe..."
+   info "wipe-ram.sh: Starting RAM wipe..."
 
    ## - If DRACUT_QUIET previously was set to '', reset to '' for auto detection by check_quiet.
    ## - If DRACUT_QUIET previously was set to 'no', reset to 'no' for verbose output.
@@ -47,8 +47,8 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
    ## Reset to DRACUT_QUIET='no' so info messages can be shown.
    DRACUT_QUIET='no'
 
-   info "$0: RAM wipe completed, OK."
-   info "$0: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
+   info "wipe-ram.sh: RAM wipe completed, OK."
+   info "wipe-ram.sh: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 
    ## Restore to previous value.
    DRACUT_QUIET="$OLD_DRACUT_QUIET"
