@@ -21,6 +21,7 @@ install() {
     inst_multiple sdmem
     inst_multiple dmsetup
     inst_hook shutdown 40 "$moddir/wipe.sh"
+    inst_hook cleanup 80 "$moddir/wipe-needshutdown.sh"
 }
 
 # called by dracut
