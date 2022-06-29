@@ -42,7 +42,7 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
    DRACUT_QUIET="$OLD_DRACUT_QUIET"
 
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
-   sdmem -l -l -f
+   sdmem -l -l -v
 
    ## Reset to DRACUT_QUIET='no' so info messages can be shown.
    DRACUT_QUIET='no'
