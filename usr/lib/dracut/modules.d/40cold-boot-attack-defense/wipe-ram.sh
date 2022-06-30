@@ -18,7 +18,17 @@ ram_wipe() {
       return 0
    fi
 
-   info "wipe-ram.sh: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
+   info "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
+
+   ## TODO: sdmem settings. One pass only. Secure? Configurable?
+   sdmem -l -l -v
+
+   info "wipe-ram.sh: RAM wipe completed, OK."
+
+   ## In theory might be better to check this beforehand, but the test is
+   ## really fast. The user has no chance of reading the console output
+   ## without introducing an artificial delay because the sdmem which runs
+   ## after this, results in much more console output.
    info "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
 
    local dmsetup_actual_output dmsetup_expected_output
@@ -34,17 +44,7 @@ wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'"
-      sleep 5
-      return 0
    fi
-
-   info "wipe-ram.sh: Starting RAM wipe..."
-
-   ## TODO: sdmem settings. One pass only. Secure? Configurable?
-   sdmem -l -l -v
-
-   info "wipe-ram.sh: RAM wipe completed, OK."
-   info "wipe-ram.sh: END: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
 
    ## Restore to previous value.
    DRACUT_QUIET="$OLD_DRACUT_QUIET"
