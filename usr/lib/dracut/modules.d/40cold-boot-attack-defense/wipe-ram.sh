@@ -13,6 +13,11 @@ ram_wipe() {
    ## check_quiet should show info in console.
    DRACUT_QUIET='no'
 
+   if systemd-detect-virt &>/dev/null ; then
+      info "wipe-ram.sh: Skip, because VM detected, OK."
+      return 0
+   fi
+
    info "wipe-ram.sh: START: COLD BOOT ATTACK DEFENSE - RAM WIPE ON SHUTDOWN"
    info "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
 
