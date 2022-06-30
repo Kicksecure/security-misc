@@ -13,9 +13,25 @@ ram_wipe() {
    ## check_quiet should show info in console.
    DRACUT_QUIET='no'
 
-   if systemd-detect-virt &>/dev/null ; then
-      info "wipe-ram.sh: Skip, because VM detected, OK."
+   local kernel_wiperam_setting
+   ## getarg returns the last parameter only.
+   ## if /proc/cmdline contains 'wiperam=skip wiperam=force' the last one wins.
+   kernel_wiperam_setting=$(getarg wiperam)
+
+   if [ "$kernel_wiperam_setting" = "skip" ]; then
+      info "wipe-ram.sh: Skip, because wiperam=skip kernel parameter detected, OK."
+      DRACUT_QUIET="$OLD_DRACUT_QUIET"
       return 0
+   fi
+
+   if [ "$kernel_wiperam_setting" = "force" ]; then
+      info "wipe-ram.sh: wiperam=force detected, OK."
+   else
+      if systemd-detect-virt &>/dev/null ; then
+         info "wipe-ram.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK."
+         DRACUT_QUIET="$OLD_DRACUT_QUIET"
+         return 0
+      fi
    fi
 
    info "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
