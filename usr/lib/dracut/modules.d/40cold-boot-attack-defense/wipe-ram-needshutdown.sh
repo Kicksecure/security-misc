@@ -23,10 +23,11 @@ ram_wipe_check_needshutdown() {
       info "wipe-ram-needshutdown.sh: wiperam=force detected, OK."
    else
       if systemd-detect-virt &>/dev/null ; then
-         info "wipe-ram-needshutdown.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK."
+         info "wipe-ram-needshutdown.sh: Skip, because running inside a VM detected and not using wiperam=force kernel parameter, OK."
          DRACUT_QUIET="$OLD_DRACUT_QUIET"
          return 0
       fi
+      info "wipe-ram-needshutdown.sh: Bare metal (not running inside a VM) detected, OK."
    fi
 
    info "wipe-ram-needshutdown.sh: Calling dracut function need_shutdown to drop back into initramfs at shutdown, OK."
