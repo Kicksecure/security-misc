@@ -29,6 +29,10 @@ ram_wipe() {
 
    echo "INFO: wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..." > /dev/kmsg
 
+   ## https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook
+   ### Ensure any remaining disk cache is erased by Linux' memory poisoning
+   echo 3 > /proc/sys/vm/drop_caches
+
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v
