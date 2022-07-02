@@ -7,6 +7,14 @@
 ## First version by @friedy10.
 ## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/wipe.sh
 
+drop_caches() {
+   sync
+   ## https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook
+   ### Ensure any remaining disk cache is erased by Linux' memory poisoning
+   echo 3 > /proc/sys/vm/drop_caches
+   sync
+}
+
 ram_wipe() {
    local kernel_wiperam_setting
    ## getarg returns the last parameter only.
@@ -29,17 +37,13 @@ ram_wipe() {
 
    echo "INFO: wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..." > /dev/kmsg
 
-   sync
-
-   ## https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook
-   ### Ensure any remaining disk cache is erased by Linux' memory poisoning
-   echo 3 > /proc/sys/vm/drop_caches
-
-   sync
+   drop_caches
 
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v
+
+   drop_caches
 
    echo "INFO: wipe-ram.sh: RAM wipe completed, OK." > /dev/kmsg
 
