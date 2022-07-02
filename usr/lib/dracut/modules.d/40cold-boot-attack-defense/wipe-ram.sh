@@ -7,24 +7,6 @@
 ## First version by @friedy10.
 ## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/wipe.sh
 
-if [ -z "$DRACUT_SYSTEMD" ]; then
-    warn_debug() {
-        echo "<28>dracut Warning: $*" > /dev/kmsg
-        echo "dracut Warning: $*" >&2
-    }
-    info_debug() {
-        echo "<30>dracut Info: $*" > /dev/kmsg
-        echo "dracut Info: $*" >&2 || :
-    }
-else
-    warn_debug() {
-        echo "Warning: $*" >&2
-    }
-    info_debug() {
-        echo "Info: $*"
-    }
-fi
-
 ram_wipe() {
    local kernel_wiperam_setting
    ## getarg returns the last parameter only.
@@ -32,45 +14,46 @@ ram_wipe() {
    kernel_wiperam_setting=$(getarg wiperam)
 
    if [ "$kernel_wiperam_setting" = "skip" ]; then
-      info_debug "wipe-ram.sh: Skip, because wiperam=skip kernel parameter detected, OK."
+      echo "INFO: wipe-ram.sh: Skip, because wiperam=skip kernel parameter detected, OK." > /dev/kmsg
       return 0
    fi
 
    if [ "$kernel_wiperam_setting" = "force" ]; then
-      info_debug "wipe-ram.sh: wiperam=force detected, OK."
+      echo "INFO: wipe-ram.sh: wiperam=force detected, OK." > /dev/kmsg
    else
       if systemd-detect-virt &>/dev/null ; then
-         info_debug "wipe-ram.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK."
+         echo "INFO: wipe-ram.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK." > /dev/kmsg
          return 0
       fi
    fi
 
-   info_debug "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
+   echo "INFO: wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..." > /dev/kmsg
 
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
+   ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v
 
-   info_debug "wipe-ram.sh: RAM wipe completed, OK."
+   echo "INFO: wipe-ram.sh: RAM wipe completed, OK." > /dev/kmsg
 
    ## In theory might be better to check this beforehand, but the test is
    ## really fast. The user has no chance of reading the console output
    ## without introducing an artificial delay because the sdmem which runs
    ## after this, results in much more console output.
-   info_debug "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
+   echo "INFO: wipe-ram.sh: Checking if there are still mounted encrypted disks..." > /dev/kmsg
 
    local dmsetup_actual_output dmsetup_expected_output
    dmsetup_actual_output="$(dmsetup ls --target crypt)"
    dmsetup_expected_output="No devices found"
 
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
-      info_debug "wipe-ram.sh: Success, there are no more mounted encrypted disks, OK."
+      echo "INFO: wipe-ram.sh: Success, there are no more mounted encrypted disks, OK." > /dev/kmsg
    else
-      warn_debug "\
-wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
+      echo "\
+WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
 
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
-dmsetup_actual_output: '$dmsetup_actual_output'"
+dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
    fi
 
    sleep 3
