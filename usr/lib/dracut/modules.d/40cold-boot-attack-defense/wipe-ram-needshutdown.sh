@@ -3,6 +3,8 @@
 ## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+type getarg >/dev/null 2>&1 || . /lib/dracut-lib.sh
+
 ram_wipe_check_needshutdown() {
    local OLD_DRACUT_QUIET
    OLD_DRACUT_QUIET="$DRACUT_QUIET"
