@@ -1,3 +1,42 @@
+commit 32fdcf522be994e693f39c347ab1063ccd94255b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jun 30 14:47:45 2022 -0400
+
+    - introduce `wiperam=skip` kernel parameter to skip wipe ram
+    - introduce `wiperam=force` kernel parameter to force wipe ram inside VMs
+
+commit 036f518ddc067461979f5b61a576b7f74b7c6e65
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jun 30 13:56:29 2022 -0400
+
+    improvement
+
+commit 0e2fae2b693d6c45344cfdf592bac0adf3338d58
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jun 30 13:50:18 2022 -0400
+
+    skip ram wipe inside VMs
+    
+    https://forums.whonix.org/t/is-ram-wipe-possible-inside-whonix-cold-boot-attack-defense/5596/40
+
+commit e06405c7be683450e6c6f737171b4f10513254e7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 16:56:16 2022 -0400
+
+    undo
+
+commit 1b97d9cb766b00914769e5add699a8bdbcf1e7aa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 16:30:31 2022 -0400
+
+    fix
+
+commit 26be74bfe5c51a8ae41bb736847d3e93e7ae27d7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jun 29 16:25:07 2022 -0400
+
+    bumped changelog version
+
 commit 92c543e71ff5386f4458102e1795132399292328
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 16:24:52 2022 -0400
