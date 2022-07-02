@@ -22,7 +22,11 @@ ram_wipe_check_needshutdown() {
    if [ "$kernel_wiperam_setting" = "force" ]; then
       info "wipe-ram-needshutdown.sh: wiperam=force detected, OK."
    else
-      if systemd-detect-virt &>/dev/null ; then
+      detect_virt_output="$(systemd-detect-virt 2>&1)"
+      detect_virt_exit_code="$?"
+      info "wipe-ram-needshutdown.sh: detect_virt_output: '$detect_virt_output'"
+      info "wipe-ram-needshutdown.sh: detect_virt_exit_code: '$detect_virt_exit_code'"
+      if [ "$detect_virt_exit_code" = "0" ]; then
          info "wipe-ram-needshutdown.sh: Skip, because running inside a VM detected and not using wiperam=force kernel parameter, OK."
          DRACUT_QUIET="$OLD_DRACUT_QUIET"
          return 0
