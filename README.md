@@ -172,7 +172,10 @@ encryption keys or passwords. See:
 
 * An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
 `/etc/sysctl.d` before init is executed so sysctl hardening is enabled
-as early as possible.
+as early as possible. This is implemented for `initramfs-tools` only because
+this is not needed for `dracut` because `dracut` does that by default, at least
+on `systemd` enabled systems. Not researched for non-`systemd` systems by the
+author of this part of the readme.
 
 ## Network hardening
 
@@ -406,6 +409,8 @@ avoid making all of `security-misc` dependent on `dracut` only for the sake of
 the wipe RAM at shutdown feature. Linux distribution such as Kicksecure are
 advised to (and Kicksecure is planning to) install `dracut` instead of
 `initramfs-tools` by default.
+
+Only tested on `systemd` enabled systems.
 
 User documentation:
 https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
