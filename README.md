@@ -393,6 +393,12 @@ executing `systemctl enable hide-hardware-info.service` as root.
 
 Wiping RAM at shutdown to defeat cold boot attacks.
 
+Requires `dracut`. In other words, RAM wipe is incompatible with systems
+using `initramfs-tools`. To switch to, install dracut:
+
+    sudo apt update
+    sudo apt install --no-install-recommends dracut
+
 User documentation:
 https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
 
