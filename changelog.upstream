@@ -1,3 +1,75 @@
+commit 92ff868ecefed4377c5f1e99eb5e5eecbb021564
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 11:05:36 2022 -0400
+
+    readme
+
+commit b8ba6085357631fb1f346a613d7e354aaf780560
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:57:28 2022 -0400
+
+    readme
+
+commit 949edf3e1753fcd403015c2d0dc8f3503a7f62d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:48:58 2022 -0400
+
+    readme
+
+commit 1c0e0719483c68ce04b5c14159ad09a87c386deb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:45:55 2022 -0400
+
+    comments
+
+commit 5d47f5f74cc9f5e186de8db5305a44029ebbb362
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:45:09 2022 -0400
+
+    comments
+
+commit 435c689cf9ee9e94dec42ab3c45bc02beb8f9c40
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:44:28 2022 -0400
+
+    comments
+
+commit c20d588d7871bce1b8a02d46e6f658844a014572
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:42:37 2022 -0400
+
+    comments
+
+commit 8f03ce049a1f48bb088cf92f4f39cceb2e3a5ae6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:41:55 2022 -0400
+
+    readme
+
+commit b342ce930ea14a365ba23f37642cc9c098470362
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 10:28:22 2022 -0400
+
+    add `/etc/default/grub.d/40_cold_boot_attack_defense.cfg`
+
+commit 69af8be7b80dcc30e3a5d1b0a1d1aa198528b876
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 2 19:10:55 2022 -0400
+
+    drop_caches before and after sdmem
+
+commit 67bdd58bf2a8090a29e35b85fb4a25d42a8f8a1a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 2 19:07:06 2022 -0400
+
+    sync
+
+commit 01b82bf0f0b96b3e08e272b8b2e69c1b3f0dcc16
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 2 18:30:06 2022 -0400
+
+    bumped changelog version
+
 commit 973f117aa6a7418ea29125753f6c6b6f7e7986a4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 2 18:12:36 2022 -0400
