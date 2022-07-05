@@ -389,6 +389,21 @@ information that shouldn't be accessible to unprivileged users. As this will
 break many things, it is disabled by default and can optionally be enabled by
 executing `systemctl enable hide-hardware-info.service` as root.
 
+## Cold Boot Attack Defense
+
+Wiping RAM at shutdown to defeat cold boot attacks.
+
+User documentation:
+https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
+
+Design documentation:
+https://www.kicksecure.com/wiki/Dev/RAM_Wipe
+
+Source code:
+
+* `/usr/lib/dracut/modules.d/40cold-boot-attack-defense`
+* `/etc/default/grub.d/40_cold_boot_attack_defense.cfg`
+
 ## miscellaneous
 
 * hardened malloc compatibility for haveged workaround
