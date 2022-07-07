@@ -1,3 +1,86 @@
+commit 277749f27b2da8d33b70fb6f88c6757fab77e636
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:49:08 2022 -0400
+
+    genmkfile debinstfile
+
+commit eb8535fe870e79a5c818a38c414147819d32346d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:48:39 2022 -0400
+
+    renamed:    usr/bin/disabled-by-security-misc -> bin/disabled-by-security-misc
+
+commit 26b2c9727f5ba6f78f5cd10c28c3561a97c81be9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:39:40 2022 -0400
+
+    not blacklist CD-ROM / DVD yet
+    
+    https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/31
+
+commit d5c16503411bee4199c35a51226fc59924d6e142
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:28:09 2022 -0400
+
+    shuffle
+
+commit ca19d78d48ca88f5b00dcceb18ac4803c7893ca4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:27:15 2022 -0400
+
+    shuffle
+
+commit d018bdaf73e109a61c0687a171af843c890729e0
+Merge: 1b287a6 780dc8e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:26:08 2022 -0400
+
+    Merge remote-tracking branch 'raja-gerwal/master'
+
+commit 780dc8eec99915a7466249e219ad59c5db5f0364
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 04:11:25 2022 +1000
+
+    replace /bin/false -> /bin/disabled-by-security-misc
+
+commit fa2e30f5125e438250acfdc52107a936ecb7b1b4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 03:04:37 2022 +1000
+
+    Updated descriptions of disabled modules
+
+commit da389d6682f6eb1d0c0172c50a4b529152384415
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 02:12:04 2022 +1000
+
+    Revert "replace /bin/false ->  /bin/true"
+    
+    This reverts commit f0511635a9725f79863c41a7b8d9f8a077ba8788.
+
+commit 28381e81d4a57c59929a37745fa8ba5f3e0b25cb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:28:30 2022 +0000
+
+    Update README.md
+
+commit f0511635a9725f79863c41a7b8d9f8a077ba8788
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:27:53 2022 +0000
+
+    replace /bin/false ->  /bin/true
+
+commit 18d67dbc5309a2403bece92881e671f46dc27f86
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:26:55 2022 +0000
+
+    Blacklist more modules
+
+commit 1b287a6430527c762f9bf909bcda58ab52041668
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 11:16:33 2022 -0400
+
+    bumped changelog version
+
 commit 92ff868ecefed4377c5f1e99eb5e5eecbb021564
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jul 5 11:05:36 2022 -0400
