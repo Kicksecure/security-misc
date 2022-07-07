@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Alerts the user that a kernel module failed to load due to it being blacklisted by default.
+
+echo "$0: ERROR: This kernel module is disabled by package security-misc by default. See the configuration file /etc/modprobe.d/30_security-misc.conf | args: $@" >&2
+
+exit 1
