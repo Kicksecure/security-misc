@@ -149,6 +149,11 @@ of multiple vulnerabilities so it is blacklisted.
 * The MSR kernel module is blacklisted to prevent CPU MSRs from being
 abused to write to arbitrary memory.
 
+* Disables a large array of uncommon file systems and network file systems that reduces the attack surface especially against legacy approaches.
+
+* Disables the use of CD-ROM devices by default.
+
+* Provides some blocking of the interface between the [Intel Management Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html) and the OS.
 ### Other
 
 * A systemd service clears the System.map file on boot as these contain kernel
