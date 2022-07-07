@@ -153,7 +153,7 @@ abused to write to arbitrary memory.
 
 * Provides some blocking of the interface between the [Intel Management Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html) and the OS.
 
-* Disables the use of CD-ROM devices by default.
+* Not enabled by default yet, comment only: Disables the use of CD-ROM devices by default.
 
 ### Other
 
