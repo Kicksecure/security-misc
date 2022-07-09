@@ -1,3 +1,55 @@
+commit 3b844eaab25fecf90292c88291be77abf0be694c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:42:11 2022 -0400
+
+    output
+
+commit 73d2c9d921c5c75ef3cca5461acc350c648f26d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:40:15 2022 -0400
+
+    output
+
+commit adfdac6dea0e8f971c59557b383d116cd51619fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:40:01 2022 -0400
+
+    output
+
+commit 1df2cfd1add8b2277cb37499ced4fbb713c17668
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:38:37 2022 -0400
+
+    comment
+
+commit fede41e6e03c33f2f6569f03593f76edb9969e6a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:38:04 2022 -0400
+
+    fix
+
+commit 52c46e4706d5799d452f260616a3909c9a3bc78f
+Merge: 1b8500c dc41a58
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:37:41 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit dc41a58102a114e21209aabeef9ad6b851365898
+Merge: 1b8500c e5f8004
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:37:57 2022 -0400
+
+    Merge pull request #108 from Krish-sysadmin/master
+    
+    Continue for loop if unable to change one directory's permission
+
+commit 1b8500cc22fdd6a51ec66ae1b04abccb9a529150
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 17:41:13 2022 -0400
+
+    bumped changelog version
+
 commit 277749f27b2da8d33b70fb6f88c6757fab77e636
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 7 15:49:08 2022 -0400
@@ -134,6 +186,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jul 5 10:28:22 2022 -0400
 
     add `/etc/default/grub.d/40_cold_boot_attack_defense.cfg`
+
+commit e5f8004a9401727f1be2db492ea756bc19090866
+Author: Krish-sysadmin <kjain@fedoraproject.org>
+Date:   Tue Jul 5 03:37:40 2022 +0200
+
+    Update hide-hardware-info
 
 commit 69af8be7b80dcc30e3a5d1b0a1d1aa198528b876
 Author: Patrick Schleizer <adrelanos@whonix.org>
