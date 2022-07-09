@@ -85,7 +85,8 @@ done
 ## SELinux userspace utilities will not function
 ## properly
 if [ -d /sys/fs/selinux ]; then
-  echo "INFO: https://www.kicksecure.com/wiki/Security-misc#selinux"
+  echo "INFO: SELinux detected because folder /sys/fs/selinux exists. See also:"
+  echo "https://www.kicksecure.com/wiki/Security-misc#selinux"
   if [ "${selinux}" = "1" ]; then
     ## restrict permissions on everything but
     ## what is needed
