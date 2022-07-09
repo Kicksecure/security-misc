@@ -85,7 +85,7 @@ done
 ## SELinux userspace utilities will not function
 ## properly
 if [ -d /sys/fs/selinux ]; then
-  echo "INFO: https://www.whonix.org/wiki/Security-misc#selinux"
+  echo "INFO: https://www.kicksecure.com/wiki/Security-misc#selinux"
   if [ "${selinux}" = "1" ]; then
     ## restrict permissions on everything but
     ## what is needed
