@@ -92,6 +92,8 @@ if [ -d /sys/fs/selinux ]; then
     ## what is needed
     for i in /sys/* /sys/fs/*
     do
+      ## Using '|| true':
+      ## https://github.com/Kicksecure/security-misc/pull/108
       if [ "${sysfs_whitelist}" = "1" ]; then
         chmod o-rwx "${i}" || true
       else
