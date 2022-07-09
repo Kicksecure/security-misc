@@ -93,9 +93,9 @@ if [ -d /sys/fs/selinux ]; then
     for i in /sys/* /sys/fs/*
     do
       if [ "${sysfs_whitelist}" = "1" ]; then
-        chmod o-rwx "${i}" || continue
+        chmod o-rwx "${i}" || true
       else
-        chmod og-rwx "${i}" || continue
+        chmod og-rwx "${i}" || true
       fi
     done
     chmod o+rx /sys /sys/fs /sys/fs/selinux
