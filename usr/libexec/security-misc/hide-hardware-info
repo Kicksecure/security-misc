@@ -80,13 +80,12 @@ do
   fi
 done
 
-## https://www.whonix.org/wiki/Security-misc#selinux
-##
 ## on SELinux systems, at least /sys/fs/selinux
 ## must be visible to unprivileged users, else
 ## SELinux userspace utilities will not function
 ## properly
 if [ -d /sys/fs/selinux ]; then
+  echo "INFO: https://www.whonix.org/wiki/Security-misc#selinux"
   if [ "${selinux}" = "1" ]; then
     ## restrict permissions on everything but
     ## what is needed
