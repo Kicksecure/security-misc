@@ -88,14 +88,23 @@ disabled.
 
 * IOMMU is enabled to prevent DMA attacks.
 
-### Blacklisted kernel modules
+### Disables and blacklists kernel modules
 
-Certain kernel modules are blacklisted to reduce attack surface via the
+Certain kernel modules are disabled and blacklisted by default to reduce attack surface via the
 `/etc/modprobe.d/30_security-misc.conf` configuration file.
 
 * Deactivates Netfilter's connection tracking helper - this module
 increases kernel attack surface by enabling superfluous functionality
 such as IRC parsing in the kernel. Hence, this feature is disabled.
+
+* Bluetooth is disabled to reduce attack surface. Bluetooth has
+a lengthy history of security concerns.
+
+* Thunderbolt and numerous FireWire kernel modules are also disabled as they are
+often vulnerable to DMA attacks.
+
+* The MSR kernel module is disabled to prevent CPU MSRs from being
+abused to write to arbitrary memory.
 
 * Uncommon network protocols are blacklisted. This includes:
 
@@ -137,23 +146,16 @@ such as IRC parsing in the kernel. Hence, this feature is disabled.
 
  ATM
 
-* Bluetooth is also blacklisted to reduce attack surface. Bluetooth has
-a history of security concerns.
-
-* The Thunderbolt and FireWire kernel modules are blacklisted as they are
-often vulnerable to DMA attacks.
-
-* The vivid kernel module is only required for testing and has been the cause
-of multiple vulnerabilities so it is blacklisted.
-
-* The MSR kernel module is blacklisted to prevent CPU MSRs from being
-abused to write to arbitrary memory.
-
 * Disables a large array of uncommon file systems and network file systems that reduces the attack surface especially against legacy approaches.
 
-* Provides some blocking of the interface between the [Intel Management Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html) and the OS.
+* The vivid kernel module is only required for testing and has been the cause
+of multiple vulnerabilities so it is disabled.
 
-* Not enabled by default yet, comment only: Disables the use of CD-ROM devices by default.
+* Provides some disabling of the interface between the [Intel Management Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html) and the OS.
+
+* Incorporates much of [Ubuntu's](https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d?h=ubuntu/disco) default blacklist of modules to be blocked from automatically loading. However, they are  still permitted to load.
+
+* Blocks automatic loading of the modules needed to use of CD-ROM devices by default. Not completely disabled yet.
 
 ### Other
 
