@@ -1,3 +1,55 @@
+commit 8f31e5d1d172eb117bde63702f63081da182d5c5
+Merge: 6aa9a94 c410890
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 13 07:26:58 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit c410890a8ade6d4be13dc99a7003f03ebded8153
+Merge: 6aa9a94 fe0cc10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 13 07:24:12 2022 -0400
+
+    Merge pull request #110 from raja-grewal/master
+    
+    Incorporated Ubuntu’s kernel module blacklists and more verbose errors
+
+commit fe0cc1089086273794bd6b54df3528ff78c10f6a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 17:18:47 2022 +1000
+
+    Updated README.md
+
+commit 48089e5ba43b0b72449f888b98b63119ed57e2fd
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 17:02:12 2022 +1000
+
+    More verbose kernel module blocking error logs
+
+commit 40ec791774f2a6ae7d42ccf2bfbe4a98a9963f08
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 16:58:16 2022 +1000
+
+    Updated comments
+
+commit ef1ef9917d896f1cd837f399def6a75704e9bfd2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 10 04:53:25 2022 +1000
+
+    Blacklist automatic loading of CD-ROM modules
+
+commit 61ef9bd59f9ff39c140f782ff5b41d0a3c6d97bc
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 10 04:52:00 2022 +1000
+
+    Incorporated Ubuntu’s kernel module blacklists
+
+commit 6aa9a9472f10d4d6270dd59fbcd94d9001aca9e6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:42:24 2022 -0400
+
+    bumped changelog version
+
 commit 3b844eaab25fecf90292c88291be77abf0be694c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 9 11:42:11 2022 -0400
