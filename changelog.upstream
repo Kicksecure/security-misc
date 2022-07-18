@@ -1,3 +1,218 @@
+commit 1fafb5f53bbec57812f535e79bfb475628cc58e3
+Merge: 24d6a93 27aa523
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 15 08:09:16 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 27aa5231e2d1dafd89ba19c8d6becf461e781605
+Merge: 24d6a93 a72bbb1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 15 08:06:08 2022 -0400
+
+    Merge pull request #112 from raja-grewal/blacklist
+    
+    Corrected kernel module disabling
+
+commit a72bbb1883613ee56be29949c153e0edb2d72a29
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 23:42:13 2022 +1000
+
+    Corrected kerenl module disabling
+
+commit 24d6a93eacf5b41cfb9133471049776a16a07b03
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 13 08:28:34 2022 -0400
+
+    bumped changelog version
+
+commit 8f31e5d1d172eb117bde63702f63081da182d5c5
+Merge: 6aa9a94 c410890
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 13 07:26:58 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit c410890a8ade6d4be13dc99a7003f03ebded8153
+Merge: 6aa9a94 fe0cc10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 13 07:24:12 2022 -0400
+
+    Merge pull request #110 from raja-grewal/master
+    
+    Incorporated Ubuntu’s kernel module blacklists and more verbose errors
+
+commit fe0cc1089086273794bd6b54df3528ff78c10f6a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 17:18:47 2022 +1000
+
+    Updated README.md
+
+commit 48089e5ba43b0b72449f888b98b63119ed57e2fd
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 17:02:12 2022 +1000
+
+    More verbose kernel module blocking error logs
+
+commit 40ec791774f2a6ae7d42ccf2bfbe4a98a9963f08
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 12 16:58:16 2022 +1000
+
+    Updated comments
+
+commit ef1ef9917d896f1cd837f399def6a75704e9bfd2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 10 04:53:25 2022 +1000
+
+    Blacklist automatic loading of CD-ROM modules
+
+commit 61ef9bd59f9ff39c140f782ff5b41d0a3c6d97bc
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 10 04:52:00 2022 +1000
+
+    Incorporated Ubuntu’s kernel module blacklists
+
+commit 6aa9a9472f10d4d6270dd59fbcd94d9001aca9e6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:42:24 2022 -0400
+
+    bumped changelog version
+
+commit 3b844eaab25fecf90292c88291be77abf0be694c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:42:11 2022 -0400
+
+    output
+
+commit 73d2c9d921c5c75ef3cca5461acc350c648f26d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:40:15 2022 -0400
+
+    output
+
+commit adfdac6dea0e8f971c59557b383d116cd51619fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:40:01 2022 -0400
+
+    output
+
+commit 1df2cfd1add8b2277cb37499ced4fbb713c17668
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:38:37 2022 -0400
+
+    comment
+
+commit fede41e6e03c33f2f6569f03593f76edb9969e6a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:38:04 2022 -0400
+
+    fix
+
+commit 52c46e4706d5799d452f260616a3909c9a3bc78f
+Merge: 1b8500c dc41a58
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:37:41 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit dc41a58102a114e21209aabeef9ad6b851365898
+Merge: 1b8500c e5f8004
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 9 11:37:57 2022 -0400
+
+    Merge pull request #108 from Krish-sysadmin/master
+    
+    Continue for loop if unable to change one directory's permission
+
+commit 1b8500cc22fdd6a51ec66ae1b04abccb9a529150
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 17:41:13 2022 -0400
+
+    bumped changelog version
+
+commit 277749f27b2da8d33b70fb6f88c6757fab77e636
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:49:08 2022 -0400
+
+    genmkfile debinstfile
+
+commit eb8535fe870e79a5c818a38c414147819d32346d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:48:39 2022 -0400
+
+    renamed:    usr/bin/disabled-by-security-misc -> bin/disabled-by-security-misc
+
+commit 26b2c9727f5ba6f78f5cd10c28c3561a97c81be9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:39:40 2022 -0400
+
+    not blacklist CD-ROM / DVD yet
+    
+    https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/31
+
+commit d5c16503411bee4199c35a51226fc59924d6e142
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:28:09 2022 -0400
+
+    shuffle
+
+commit ca19d78d48ca88f5b00dcceb18ac4803c7893ca4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:27:15 2022 -0400
+
+    shuffle
+
+commit d018bdaf73e109a61c0687a171af843c890729e0
+Merge: 1b287a6 780dc8e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 7 15:26:08 2022 -0400
+
+    Merge remote-tracking branch 'raja-gerwal/master'
+
+commit 780dc8eec99915a7466249e219ad59c5db5f0364
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 04:11:25 2022 +1000
+
+    replace /bin/false -> /bin/disabled-by-security-misc
+
+commit fa2e30f5125e438250acfdc52107a936ecb7b1b4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 03:04:37 2022 +1000
+
+    Updated descriptions of disabled modules
+
+commit da389d6682f6eb1d0c0172c50a4b529152384415
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 8 02:12:04 2022 +1000
+
+    Revert "replace /bin/false ->  /bin/true"
+    
+    This reverts commit f0511635a9725f79863c41a7b8d9f8a077ba8788.
+
+commit 28381e81d4a57c59929a37745fa8ba5f3e0b25cb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:28:30 2022 +0000
+
+    Update README.md
+
+commit f0511635a9725f79863c41a7b8d9f8a077ba8788
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:27:53 2022 +0000
+
+    replace /bin/false ->  /bin/true
+
+commit 18d67dbc5309a2403bece92881e671f46dc27f86
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jul 7 09:26:55 2022 +0000
+
+    Blacklist more modules
+
+commit 1b287a6430527c762f9bf909bcda58ab52041668
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 5 11:16:33 2022 -0400
+
+    bumped changelog version
+
 commit 92ff868ecefed4377c5f1e99eb5e5eecbb021564
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jul 5 11:05:36 2022 -0400
@@ -51,6 +266,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jul 5 10:28:22 2022 -0400
 
     add `/etc/default/grub.d/40_cold_boot_attack_defense.cfg`
+
+commit e5f8004a9401727f1be2db492ea756bc19090866
+Author: Krish-sysadmin <kjain@fedoraproject.org>
+Date:   Tue Jul 5 03:37:40 2022 +0200
+
+    Update hide-hardware-info
 
 commit 69af8be7b80dcc30e3a5d1b0a1d1aa198528b876
 Author: Patrick Schleizer <adrelanos@whonix.org>
