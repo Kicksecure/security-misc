@@ -40,6 +40,8 @@ arbitrary code execution in kernel mode.
 * The bits of entropy used for mmap ASLR are increased, therefore improving
 its effectiveness.
 
+* Randomises the addresses for mmap base, heap, stack, and VDSO pages.
+
 * Prevents unintentional writes to attacker-controlled files.
 
 * Prevents common symlink and hardlink TOCTOU races.
@@ -54,18 +56,12 @@ prevents writing potentially sensitive contents of memory to disk.
 
 ### Boot parameters
 
-Boot parameters are configured via the `/etc/modprobe.d/30_security-misc.conf`
-configuration file.
+Boot parameters are outlined in configuration files located in the
+`etc/default/grub.d/` directory.
 
 * Slab merging is disabled which significantly increases the difficulty of
 heap exploitation by preventing overwriting objects from merged caches and
 by making it harder to influence slab cache layout.
-
-* Sanity checks are enabled which add various checks to prevent corruption
-in certain slab operations.
-
-* Redzoning is enabled which adds extra areas around slabs that detect when
-a slab is overwritten past its real size which can help detect overflows.
 
 * Memory zeroing at allocation and free time is enabled to mitigate some
 use-after-free vulnerabilities and erase sensitive information in memory.
@@ -83,10 +79,15 @@ are a potential target for ROP.
 
 * The kernel panics on oopses to thwart certain kernel exploits.
 
+* Enables randomisation of the kernel stack offset on syscall entries.
+
 * All mitigations for known CPU vulnerabilities are enabled and SMT is
 disabled.
 
-* IOMMU is enabled to prevent DMA attacks.
+* IOMMU is enabled to prevent DMA attacks along with strict enforcement of IOMMU
+TLB invalidation so devices will never be able to access stale data contents.
+
+* Distrust the 'randomly' generated CPU and bootloader seeds.
 
 ### Disables and blacklists kernel modules
 
