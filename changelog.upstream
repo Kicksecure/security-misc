@@ -1,3 +1,103 @@
+commit 0c5b1e9f577d52e2c056e786e32c14ff37db344b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 23 07:49:56 2022 -0400
+
+    undo `"force kernel to panic on "oopses"`
+    
+    because implemented differently already
+    
+    https://forums.whonix.org/t/set-oops-panic-kernel-parameter-or-kernel-panic-on-oops-1-sysctl-for-better-security/7713
+
+commit c1c04b4619eea4c79a0dbb5cced3ebb77482877c
+Merge: 465775c bfe6b88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 23 07:43:19 2022 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit bfe6b888395abf554623a9e530fe7e6605047e12
+Merge: 465775c ca764d8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 23 07:27:24 2022 -0400
+
+    Merge pull request #111 from raja-grewal/harden
+    
+    Increased kernel hardening at boot
+
+commit ca764d8de0f17bb7e6d44e3d79ea1805276fc521
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 20 04:06:35 2022 +1000
+
+    force kernel to panic on "oopses"
+
+commit 1660aaa6dd1013ede105baebbb8ff3e1afc7b268
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 03:38:41 2022 +1000
+
+    update details around disabling SMT
+
+commit bfd78a2c06153ebadfee39190055edf0a13958f4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 03:16:08 2022 +1000
+
+    update SRBDS mitigation
+
+commit c3ebb9160ffbbd2972cc898e3c1c0055d89beb5c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 02:33:16 2022 +1000
+
+    CPU mitigation - MMIO Stale Data
+
+commit 59e90ff1226bd6330d85244cf7c73ecf7fd5fdf1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 02:32:41 2022 +1000
+
+    CPU mitigation - L1D FLushing
+
+commit 8531fbf99dea1b4cd806babd6072a8a1f0506eb3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 02:30:49 2022 +1000
+
+    CPU mitigation - SRBDS
+
+commit 73f1e233327cc0edec83eac322b7f03bcb7fba22
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 02:29:46 2022 +1000
+
+    shuffle and rewording
+
+commit 39314b291263a93fcb11756ce12bd8691a1fa0f6
+Merge: bb831d5 c4a1094
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 00:49:08 2022 +1000
+
+    Merge branch 'harden' of https://github.com/raja-grewal/security-misc into harden
+
+commit bb831d57bcdcc8195a4b8169a4ddc25fb0c61173
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 00:38:32 2022 +1000
+
+    delete repeated commands
+
+commit c77a2a78bc48df2af7653a306bd1b046a8f99a6b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 19 00:37:31 2022 +1000
+
+    enforce default net.ipv6.icmp_ignore_bogus_error_responses
+
+commit c4a10947608b0d5508ef5b18e0ab34a2ee4f35de
+Merge: 2b23703 465775c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 18 13:36:23 2022 +0000
+
+    Merge branch 'Kicksecure:master' into harden
+
+commit 465775c9dc1b97c98a5470acaffabb103ea7239f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 16 08:00:16 2022 -0400
+
+    bumped changelog version
+
 commit 1fafb5f53bbec57812f535e79bfb475628cc58e3
 Merge: 24d6a93 27aa523
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -26,6 +126,12 @@ Date:   Wed Jul 13 08:28:34 2022 -0400
 
     bumped changelog version
 
+commit 2b237039cf1db66100f7f0bb4880981ee0489abf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 22:25:53 2022 +1000
+
+    Update README.md
+
 commit 8f31e5d1d172eb117bde63702f63081da182d5c5
 Merge: 6aa9a94 c410890
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -41,6 +147,62 @@ Date:   Wed Jul 13 07:24:12 2022 -0400
     Merge pull request #110 from raja-grewal/master
     
     Incorporated Ubuntu’s kernel module blacklists and more verbose errors
+
+commit 4e93b4d37e4c6d23a0ac76ddb2144c6504a66ad1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 21:10:39 2022 +1000
+
+    Revert "enforce defualt net.ipv4.ip_forward"
+    
+    This reverts commit 57b5b2145c4e6779f0b879ee4199d46938f20965.
+
+commit a47922ad28fc9ebba93615a6ffdaaeb4887cc140
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:47:07 2022 +1000
+
+    enforce of IOMMU TLB invalidation
+
+commit 33df16af805597057c7aad0d5a4fb135ed9e286b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:37:03 2022 +1000
+
+    disables random.trust_bootloader
+
+commit d0779a96fc054df925523a76510c1aae5d672f96
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:36:34 2022 +1000
+
+    add reference
+
+commit 74858d257b8de40f082ce21241e680a5eeaf4053
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:34:35 2022 +1000
+
+    enable randomize_kstack_offset
+
+commit f572332108c06eb77d24e776910463e69d49acd3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:32:03 2022 +1000
+
+    disable slub_debug
+
+commit 57b5b2145c4e6779f0b879ee4199d46938f20965
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:30:43 2022 +1000
+
+    enforce defualt net.ipv4.ip_forward
+
+commit 79156262c9e3fe92344847b627afc64b2c7f7717
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:29:42 2022 +1000
+
+    enforce default net.ipv4.icmp_ignore_bogus_error_responses
+
+commit dabcaf22e1006cc60297c55e3e254f080562d552
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 13 04:28:03 2022 +1000
+
+    enforce default kernel.randomize_va_space
 
 commit fe0cc1089086273794bd6b54df3528ff78c10f6a
 Author: Raja Grewal <rg_public@proton.me>
