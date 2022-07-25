@@ -203,6 +203,24 @@ dropping RST packets for sockets in the time-wait state.
 * Reverse path filtering is enabled to prevent IP spoofing and mitigate
 vulnerabilities such as CVE-2019-14899.
 
+## Network optimisation
+
+* Increases the size of the receive queue and the number of maximum connections.
+
+* Increases memory dedicated to the network interfaces.
+
+* Raises the default UDP limits.
+
+* Enable TCP Fast Open to reduce network latency.
+
+* Raise the number of pending connections in order to be more resistant to simple DoS attack.
+
+* Disables TCP slow start after idle.
+
+* Reduces the TCP keepalive time.
+
+* Enables MTU probing when a ICMP black hole is detected.
+
 ## Entropy collection improvements
 
 * The `jitterentropy_rng` kernel module is loaded as early as possible
