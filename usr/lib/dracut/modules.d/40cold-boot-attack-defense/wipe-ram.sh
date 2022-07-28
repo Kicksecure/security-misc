@@ -59,6 +59,8 @@ ram_wipe() {
 
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
       echo "INFO: wipe-ram.sh: Success, there are no more mounted encrypted disks, OK." > /dev/kmsg
+
+      sleep 3
    else
       echo "\
 WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
@@ -66,9 +68,10 @@ WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
+
+      sleep 5
    fi
 
-   sleep 3
 }
 
 ram_wipe
