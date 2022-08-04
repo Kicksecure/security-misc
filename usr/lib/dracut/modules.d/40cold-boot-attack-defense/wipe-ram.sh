@@ -78,7 +78,7 @@ dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
    echo "Using kexec."
    echo ""
 
-    kexec -l $(ls /boot/vmlinuz-* | sort -V | tail -n1) --initrd=$(ls /boot/vmlinuz-* | sort -V | tail -n1 | sed s/vmlinuz/initrd.img/g) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot" 
+    kexec -l $(ls /boot/vmlinuz-* | sort -V | tail -n1) --initrd=$(ls /boot/vmlinuz-* | sort -V | tail -n1 | sed s/vmlinuz/initrd.img/g) --reuse-cmdline --append="wiperamexit=yes wiperamaction=$ACTION" 
     kexec -e
 
 }
