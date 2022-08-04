@@ -14,6 +14,7 @@ check() {
     require_binaries reboot || return 1
     require_binaries cat || return 1
     require_binaries sdmem || return 1
+    require_binaries pgrep || return 1
     require_binaries dmsetup || return 1
     return 0
 }
@@ -33,9 +34,10 @@ install() {
     inst_multiple reboot
     inst_multiple cat
     inst_multiple sdmem
+    inst_multiple pgrep
     inst_multiple dmsetup
     inst_hook pre-udev 80 "$moddir/wipe-ram.sh"
-    inst_hook pre-udev 40 "$moddir/wipe-ram-needshutdown.sh"
+    inst_hook pre-trigger 80 "$moddir/wipe-ram-needshutdown.sh"
 }
 
 # called by dracut

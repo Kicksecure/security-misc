@@ -42,7 +42,6 @@ ram_wipe() {
 
    mkdir /boot
    mount /dev/sda1 /boot 
-   sleep 4
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v
@@ -75,12 +74,12 @@ dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
    ##echo "BOOTING NEW KERNEL"
    ##kexec -l /boot/vmlinuz-$(uname -r) --reuse-cmdline --debug
    ##kexec -e
-   sleep 5
    echo ""
    echo "Using kexec."
    echo ""
 
     kexec -l $(ls /boot/vmlinuz-* | sort -V | tail -n1) --initrd=$(ls /boot/vmlinuz-* | sort -V | tail -n1 | sed s/vmlinuz/initrd.img/g) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot" 
     kexec -e
+
 }
 ram_wipe
