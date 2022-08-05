@@ -41,7 +41,7 @@ ram_wipe() {
 
 
    mkdir /boot
-   mount /dev/sda1 /boot 
+   mount $(fdisk -l | grep '*  ' | cut -d' ' -f1 2>&1) /boot 
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v

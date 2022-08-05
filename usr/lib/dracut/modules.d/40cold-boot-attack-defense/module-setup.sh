@@ -21,6 +21,9 @@ check() {
     require_binaries sort || return 1
     require_binaries tail || return 1
     require_binaries sed || return 1
+    require_binaries grep || return 1
+    require_binaries cut || return 1
+    require_binaries fdisk || return 1
     require_binaries systemd-detect-virt || return 1
     return 0
 }
@@ -40,6 +43,9 @@ install() {
     inst_multiple sort
     inst_multiple tail
     inst_multiple sed
+    inst_multiple grep
+    inst_multiple cut
+    inst_multiple fdisk
     inst_multiple cat
     inst_multiple dmsetup
     inst_multiple systemd-detect-virt
