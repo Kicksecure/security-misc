@@ -40,8 +40,8 @@ ram_wipe() {
    drop_caches
 
 
-   mkdir /boot
-   mount $(fdisk -l | grep '*  ' | cut -d' ' -f1 2>&1) /boot 
+   ##mkdir /boot
+  ## mount $(fdisk -l | grep '*  ' | cut -d' ' -f1 2>&1) /boot 
    ## TODO: sdmem settings. One pass only. Secure? Configurable?
    ## TODO: > /dev/kmsg 2> /dev/kmsg
    sdmem -l -l -v
@@ -70,16 +70,14 @@ debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
    fi
-
-   ##echo "BOOTING NEW KERNEL"
-   ##kexec -l /boot/vmlinuz-$(uname -r) --reuse-cmdline --debug
-   ##kexec -e
+   
    echo ""
    echo "Using kexec."
    echo ""
 
-    kexec -l $(ls /boot/vmlinuz-* | sort -V | tail -n1) --initrd=$(ls /boot/vmlinuz-* | sort -V | tail -n1 | sed s/vmlinuz/initrd.img/g) --reuse-cmdline --append="wiperamexit=yes wiperamaction=$ACTION" 
-    kexec -e
 
+    kexec --load "/run/initramfs/kernel" --initrd="/run/initramfs/initramdisk" --reuse-cmdline --append="wiperamexit=yes wiperamaction=$ACTION"
+    
+    kexec -e
 }
 ram_wipe

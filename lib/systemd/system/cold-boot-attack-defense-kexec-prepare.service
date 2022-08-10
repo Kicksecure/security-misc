@@ -1,0 +1,18 @@
+## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Restore /run/initramfs on shutdown
+Documentation=https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
+After=local-fs.target boot.mount boot.automount
+Wants=local-fs.target
+Conflicts=shutdown.target umount.target
+DefaultDependencies=no
+ConditionPathExists=!/run/initramfs/bin/sh
+
+[Service]
+RemainAfterExit=yes
+Type=oneshot
+ExecStart=/bin/true
+ExecStop=/usr/libexec/security-misc/cold-boot-attack-defense-kexec-prepare
+

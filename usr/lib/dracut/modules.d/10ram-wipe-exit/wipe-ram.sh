@@ -20,7 +20,7 @@ ram_wipe_action() {
    fi
 
    info "INFO: wiperamexit=yes. Running second RAM wipe... "
-
+   
    sdmem -l -l -v
 }
 ram_wipe_action

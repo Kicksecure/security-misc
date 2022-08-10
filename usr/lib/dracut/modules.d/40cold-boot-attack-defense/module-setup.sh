@@ -15,9 +15,11 @@ check() {
     require_binaries sleep || return 1
     require_binaries kexec || return 1
     require_binaries cat || return 1
+    require_binaries tee || return 1
     require_binaries sdmem || return 1
     require_binaries dmsetup || return 1
     require_binaries ls || return 1
+    require_binaries mount || return 1
     require_binaries sort || return 1
     require_binaries tail || return 1
     require_binaries sed || return 1
@@ -40,11 +42,13 @@ install() {
     inst_multiple sdmem
     inst_multiple kexec
     inst_multiple ls
+    inst_multiple mount
     inst_multiple sort
     inst_multiple tail
     inst_multiple sed
     inst_multiple grep
     inst_multiple cut
+    inst_multiple tee
     inst_multiple fdisk
     inst_multiple cat
     inst_multiple dmsetup

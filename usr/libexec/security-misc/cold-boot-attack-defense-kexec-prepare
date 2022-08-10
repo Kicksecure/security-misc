@@ -1,0 +1,36 @@
+#!/bin/bash
+
+## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -x
+set -e
+
+true "env:"
+env
+
+## Debugging.
+## Lets hope $1 is set to reboot, poweroff or halt by systemd.
+true "1: $1"
+
+kernel_image=$(ls /boot/vmlinuz-*)
+kernel_image=$(echo "$kernel_image" | sort -V)
+kernel_image=$(echo "$kernel_image" | tail -n1)
+
+initrd=$(ls /boot/vmlinuz-*)
+initrd=$(echo "$kernel_image" | sort -V)
+initrd=$(echo "$kernel_image" | tail -n1)
+initrd=$(echo "$kernel_image" | sed s/vmlinuz/initrd.img/g)
+
+## TODO dunno:
+## --load "$kernel_image"
+## or
+## --load="$kernel_image"
+
+cp $kernel_image /run/initramfs/kernel
+cp $initrd /run/initramfs/initramdisk
+##kexec --load "$kernel_image" --initrd="$initrd" --reuse-cmdline --append="wiperamexit=yes" 
+
+##wiperamaction=$1"
+
+
