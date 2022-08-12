@@ -1,3 +1,21 @@
+commit 82da4ed18f5682c0cc76cd435b6de2459c7b5f83
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 28 09:56:24 2022 -0400
+
+    comments
+
+commit a6bee1493d4113ab63f8d0671f97989b00d23544
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 28 09:55:12 2022 -0400
+
+    cold-boot-attack-defense wait longer to make messages readable by user
+
+commit 109594952335f94c2a21f22d6a517ecc8b864d81
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 26 10:00:53 2022 -0400
+
+    bumped changelog version
+
 commit 053142cdb57f23172fd0155dde4ff4c0183c4f65
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jul 26 10:00:21 2022 -0400
