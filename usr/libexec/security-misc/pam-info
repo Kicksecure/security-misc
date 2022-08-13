@@ -27,7 +27,7 @@ if [ ! "$grep_result" = "" ]; then
          echo "$0: To unlock, run the following command as superuser:" >&2
          echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
          echo "" >&2
-         echo "addgroup $PAM_USER console" >&2
+         echo "adduser $PAM_USER console" >&2
          echo "" >&2
          echo "$0: However, possibly unlock procedure is required." >&2
          echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
