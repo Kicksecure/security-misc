@@ -68,9 +68,6 @@ use-after-free vulnerabilities and erase sensitive information in memory.
 
 * Page allocator freelist randomization is enabled.
 
-* The machine check tolerance level is decreased which makes the kernel panic
-on uncorrectable errors in ECC memory that could be exploited.
-
 * Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
 KASLR effectiveness.
 
