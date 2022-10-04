@@ -216,8 +216,6 @@ vulnerabilities such as CVE-2019-14899.
 
 * Reduces the TCP keepalive time.
 
-* Enables MTU probing when a ICMP black hole is detected.
-
 ## Entropy collection improvements
 
 * The `jitterentropy_rng` kernel module is loaded as early as possible
