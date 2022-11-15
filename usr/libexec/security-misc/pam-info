@@ -4,7 +4,7 @@
 ## See the file COPYING for copying conditions.
 
 ## To enable debug log, run:
-## /etc/pam-info-debug
+## sudo touch /etc/pam-info-debug
 ##
 ## Debug log if enabled can be found in file:
 ## /root/pam-info-debug.txt
