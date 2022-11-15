@@ -3,6 +3,8 @@
 ## Copyright (C) 2019 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+true "$0: START"
+
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
@@ -150,5 +152,7 @@ if [ "$PAM_SERVICE" = "su" ]; then
    echo "$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown." >&2
    echo "" >&2
 fi
+
+true "$0: END"
 
 exit 0
