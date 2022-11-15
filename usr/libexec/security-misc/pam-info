@@ -11,7 +11,7 @@
 
 true "$0: START PHASE 1"
 
-if test -f /etc/pam-info-debug ; then
+if test -f /etc/pam-info-debug || test -f /usr/local/etc/pam-info-debug ; then
    set -x
    exec 5>&1 1>> ~/pam-info-debug.txt
    exec 6>&2 2>> ~/pam-info-debug.txt
