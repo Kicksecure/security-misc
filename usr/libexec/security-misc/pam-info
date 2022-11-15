@@ -3,6 +3,9 @@
 ## Copyright (C) 2019 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+#set -x
+#exec 5>&1 1>> ~/pam-info-debug.txt
+#exec 6>&2 2>> ~/pam-info-debug.txt
 true "$0: START"
 
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
