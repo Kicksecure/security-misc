@@ -118,8 +118,11 @@ fi
 
 ## Get first line.
 #pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head --lines=1)"
-echo "$pam_faillock_output" | read -t 10 -r pam_faillock_output_first_line || true
+while read -t 10 -r pam_faillock_output_first_line ; do
+   break
+done <<< "$pam_faillock_output"
 
+true "pam_faillock_output_first_line: '$pam_faillock_output_first_line'"
 ## example pam_faillock_output_first_line:
 ## user:
 
