@@ -24,6 +24,23 @@ set -o pipefail
 ## Debugging.
 who_ami="$(whoami)"
 
+if [ ! "$(id -u)" = "0" ]; then
+   ## as user "user"
+   ## /usr/sbin/faillock -u user
+   ## faillock: Error opening /var/log/tallylog for update: Permission denied
+   ## /usr/sbin/faillock: Authentication error
+   ##
+   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
+   ## xscreensaver has its own failed login counter.
+   ##
+   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+   ##
+   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
+   ## TODO: echo -> true
+   echo "$0: not started as root, exiting."
+   exit 0
+fi
+
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
@@ -61,23 +78,6 @@ if [ ! "$grep_result" = "" ]; then
 fi
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
-
-if [ ! "$(id -u)" = "0" ]; then
-   ## as user "user"
-   ## /usr/sbin/faillock -u user
-   ## faillock: Error opening /var/log/tallylog for update: Permission denied
-   ## /usr/sbin/faillock: Authentication error
-   ##
-   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
-   ## xscreensaver has its own failed login counter.
-   ##
-   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
-   ##
-   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
-   ## TODO: echo -> true
-   echo "$0: not started as root, exiting."
-   exit 0
-fi
 
 ## Does not work (yet) for login, pam_securetty runs before and aborts.
 ## Also this should only run for login since securetty covers only login.
