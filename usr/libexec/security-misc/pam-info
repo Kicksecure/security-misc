@@ -95,19 +95,26 @@ fi
 #    fi
 # fi
 
-## Using || true to not break read-only disk boot without ro-mode-init or grub-live.
-pam_faillock_output="$(faillock --user "$PAM_USER")" || true
+## Checking exit code to avoid breaking when read-only disk boot without ro-mode-init or grub-live.
+if ! pam_faillock_output="$(faillock --user "$PAM_USER" 2>&1)" ; then
+   true "$0: faillock non-zero exit code."
+   exit 0
+fi
 
 if [ "$pam_faillock_output" = "" ]; then
    true "$0: no failed login"
    exit 0
 fi
 
-## Example:
+## example pam_faillock_output (stdout):
 ## user:
 ## When                Type  Source                                           Valid
 ## 2021-08-10 16:26:33 RHOST                                                      V
 ## 2021-08-10 16:26:54 RHOST                                                      V
+
+## example pam_faillock_output (stderr):
+## faillock: No user name supplied.
+## Usage: faillock [--dir /path/to/tally-directory] [--user username] [--reset]
 
 ## Get first line.
 #pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head --lines=1)"
