@@ -95,7 +95,8 @@ fi
 #    fi
 # fi
 
-## Checking exit code to avoid breaking when read-only disk boot without ro-mode-init or grub-live.
+## Checking exit code to avoid breaking when read-only disk boot but
+## without ro-mode-init or grub-live being used.
 if ! pam_faillock_output="$(faillock --user "$PAM_USER" 2>&1)" ; then
    true "$0: faillock non-zero exit code."
    exit 0
