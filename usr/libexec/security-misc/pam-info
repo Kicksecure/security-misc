@@ -41,6 +41,11 @@ if [ ! "$(id -u)" = "0" ]; then
    exit 0
 fi
 
+if ! command -v "faillock" &>/dev/null; then
+   echo "$0: The faillock program is unavailable, exiting."
+   exit 0
+fi
+
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
