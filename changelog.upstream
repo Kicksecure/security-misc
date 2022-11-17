@@ -1,3 +1,77 @@
+commit 09e6af5c080f776d56d7e2390f88c4ae7e01bdb7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 02:01:23 2022 -0500
+
+    pam-info refactoring
+
+commit caf0099064747a2048363e3600a53af51df549ad
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 02:00:32 2022 -0500
+
+    pam-info refactoring
+
+commit 487f63bb01c6dfc71d0e4efef2c70dae94093dce
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:56:01 2022 -0500
+
+    comment
+
+commit f59f959a8d43ebd80a4037e65ec26df7143bcaf5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:55:14 2022 -0500
+
+    pam-info fix
+
+commit ae113442a162969561a24fcf17718ceb6a11d928
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:49:45 2022 -0500
+
+    pam-info refactoring
+
+commit bb6b509d06a1ae34ee407cb309c530e5dddfedfd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:44:21 2022 -0500
+
+    pam-info refactoring
+
+commit e5d7ab7082908e64596ccd1da835a781cae22456
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:44:12 2022 -0500
+
+    comment
+
+commit 23b936b573c8989222a50d1ef8c35dc95589bb0e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:31:14 2022 -0500
+
+    also support /usr/local/etc/pam-info-debug
+
+commit 95487346dbb18c4ac9133fc21b4abed12dc346b3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:29:41 2022 -0500
+
+    pam-info: create debug log file ~/pam-info-debug.txt
+    
+    when file /etc/pam-info-debug exists
+
+commit 2872c2ab52ae9a1eaa25ea8b9852401e82d5616a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:00:59 2022 -0500
+
+    comments
+
+commit 6033de78152cb5d7a9659f58aa8035ae2a7d6532
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 11:58:50 2022 -0500
+
+    debugging
+
+commit 2319458e9f1a0ae2b60cf5786122c19459bbaea1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 24 18:28:39 2022 -0400
+
+    bumped changelog version
+
 commit cdfc175953a8ab358bb8e6db2610df11733ba258
 Merge: ff84514 ae4d498
 Author: Patrick Schleizer <adrelanos@whonix.org>
