@@ -1,3 +1,15 @@
+commit e5255a630ad3c9c99b6b7ffa4c7be43a44dffba9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 22 05:57:30 2022 -0500
+
+    pam-info: support non-root environments (such as during graphical display manager login and xscreensaver)
+
+commit d419898ee494fb159ed6811a719dbb4a5ffb469a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 17 10:15:36 2022 -0500
+
+    bumped changelog version
+
 commit 09e6af5c080f776d56d7e2390f88c4ae7e01bdb7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 16 02:01:23 2022 -0500
