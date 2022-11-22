@@ -24,25 +24,13 @@ set -o pipefail
 ## Debugging.
 who_ami="$(whoami)"
 
-if [ ! "$(id -u)" = "0" ]; then
-   ## as user "user"
-   ## /usr/sbin/faillock -u user
-   ## faillock: Error opening /var/log/tallylog for update: Permission denied
-   ## /usr/sbin/faillock: Authentication error
-   ##
-   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
-   ## xscreensaver has its own failed login counter.
-   ##
-   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
-   ##
-   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
-   ## TODO: echo -> true
-   echo "$0: not started as root, exiting."
+if [ "$PAM_USER" = "" ]; then
+   true "$0: ERROR: Environment variable PAM_USER is unset!"
    exit 0
 fi
 
-if ! command -v "faillock" &>/dev/null; then
-   echo "$0: The faillock program is unavailable, exiting."
+if ! command -v "/usr/bin/faillock-user" &>/dev/null; then
+   true "$0: The /usr/bin/faillock-user wrapper is unavailable, exiting."
    exit 0
 fi
 
@@ -102,8 +90,8 @@ fi
 
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
-if ! pam_faillock_output="$(faillock --user "$PAM_USER" 2>&1)" ; then
-   true "$0: faillock non-zero exit code."
+if ! pam_faillock_output="$(/usr/bin/faillock-user)" ; then
+   true "$0: /usr/bin/faillock-user non-zero exit code."
    exit 0
 fi
 

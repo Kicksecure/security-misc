@@ -1,0 +1,35 @@
+#!/bin/bash
+
+## Copyright (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+if ! command -v "/usr/sbin/faillock" &>/dev/null; then
+   true "$0: ERROR: The faillock program is unavailable, exiting."
+   exit 2
+fi
+
+who_ami="$(whoami)"
+
+if [ "$(id -u)" = "0" ]; then
+   faillock_program="/usr/sbin/faillock"
+else
+   ## as user "user"
+   ## /usr/sbin/faillock -u user
+   ## faillock: Error opening /var/log/tallylog for update: Permission denied
+   ## /usr/sbin/faillock: Authentication error
+   ##
+   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
+   ## xscreensaver has its own failed login counter.
+   ##
+   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+   ##
+   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
+   #true "$0: not started as root, exiting."
+   #exit 0
+
+   faillock_program="sudo --non-interactive /usr/sbin/faillock"
+fi
+
+$faillock_program --user "$who_ami"
+
+exit $?

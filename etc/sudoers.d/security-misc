@@ -3,3 +3,6 @@
 
 user ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
 %sudo ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
+
+user ALL=NOPASSWD: /usr/bin/faillock-user
+%sudo ALL=NOPASSWD: /usr/bin/faillock-user
