@@ -32,11 +32,6 @@ if [ "$PAM_USER" = "" ]; then
    exit 0
 fi
 
-if ! command -v "/usr/bin/faillock-user" &>/dev/null; then
-   true "$0: The /usr/bin/faillock-user wrapper is unavailable, exiting."
-   exit 0
-fi
-
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
@@ -105,8 +100,8 @@ fi
 ##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
-if ! pam_faillock_output="$(sudo --non-interactive /usr/bin/faillock-user)" ; then
-   true "$0: /usr/bin/faillock-user non-zero exit code."
+if ! pam_faillock_output="$(faillock --user "$PAM_USER")" ; then
+   true "$0: faillock non-zero exit code."
    exit 0
 fi
 
