@@ -18,8 +18,10 @@ if ! command -v "/usr/sbin/faillock" &>/dev/null; then
    exit 2
 fi
 
+## Debugging.
 who_ami="$(whoami)"
-
+true "$0: who_ami: $who_ami"
+true "$0: PAM_USER: $PAM_USER"
 true "$0: SUDO_USER: $SUDO_USER"
 
 if [ "$SUDO_USER" = "" ]; then

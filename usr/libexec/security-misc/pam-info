@@ -21,13 +21,16 @@ true "$0: START PHASE 2"
 
 set -o pipefail
 
+## Debugging.
+who_ami="$(whoami)"
+true "$0: who_ami: $who_ami"
+true "$0: PAM_USER: $PAM_USER"
+true "$0: SUDO_USER: $SUDO_USER"
+
 if [ "$PAM_USER" = "" ]; then
    true "$0: ERROR: Environment variable PAM_USER is unset!"
    exit 0
 fi
-
-## Debugging.
-who_ami="$(whoami)"
 
 if ! command -v "/usr/bin/faillock-user" &>/dev/null; then
    true "$0: The /usr/bin/faillock-user wrapper is unavailable, exiting."
