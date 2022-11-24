@@ -52,17 +52,18 @@ if [ ! "$grep_result" = "" ]; then
       fi
 
       if [ ! "$console_allowed" = "true" ]; then
-         echo "$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'" >&2
-         echo "$0: To unlock, run the following command as superuser:" >&2
-         echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
-         echo "" >&2
-         echo "adduser $PAM_USER console" >&2
-         echo "" >&2
-         echo "$0: However, possibly unlock procedure is required." >&2
-         echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
-         echo "$0: See also:" >&2
-         echo "https://www.kicksecure.com/wiki/root#console" >&2
-         echo "" >&2
+         echo "\
+$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'
+To unlock, run the following command as superuser:
+(If you still have a sudo/root shell somewhere.)
+
+adduser $PAM_USER console
+
+However, possibly unlock procedure is required.
+First boot into recovery mode at grub boot menu and then run above command.
+See also:
+https://www.kicksecure.com/wiki/root#console
+" >&2
          exit 0
       fi
    fi
@@ -76,11 +77,12 @@ fi
 #    if [ -f /etc/securetty ]; then
 #       grep_result="$(grep "^[^#]" /etc/securetty)"
 #       if [ "$grep_result" = "" ]; then
-#          echo "$0: ERROR: Root login is disabled." >&2
-#          echo "$0: ERROR: This is because /etc/securetty is empty." >&2
-#          echo "$0: See also:" >&2
-#          echo "https://www.kicksecure.com/wiki/root#login" >&2
-#          echo "" >&2
+#          echo "\
+# $0: ERROR: Root login is disabled.
+# ERROR: This is because /etc/securetty is empty.
+# See also:
+# https://www.kicksecure.com/wiki/root#login
+# " >&2
 #          exit 0
 #       fi
 #    fi
@@ -164,37 +166,41 @@ if test -f /etc/security/faillock.conf ; then
 fi
 
 if [[ "$deny" == *[!0-9]* ]]; then
-   echo "$0: ERROR: deny is not numeric. deny: '$deny'" >&2
-   echo "$0: ERROR: Please report this bug." >&2
-   echo "" >&2
+   echo "\
+$0: ERROR: deny is not numeric. deny: '$deny'
+ERROR: Please report this bug.
+" >&2
    exit 0
 fi
 
 remaining_attempts="$(( $deny - $failed_login_counter ))"
 
 if [ "$remaining_attempts" -le "0" ]; then
-   echo "$0: ERROR: Login blocked after $failed_login_counter attempts." >&2
-   echo "$0: To unlock, run the following command as superuser:" >&2
-   echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
-   echo "" >&2
-   echo "faillock --reset --user $PAM_USER" >&2
-   echo "" >&2
-   echo "$0: However, most likely unlock procedure is required." >&2
-   echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
-   echo "$0: See also:" >&2
-   echo "https://www.kicksecure.com/wiki/root#unlock" >&2
-   echo "" >&2
+   echo "\
+$0: ERROR: Login blocked after $failed_login_counter attempts.
+To unlock, run the following command as superuser:
+(If you still have a sudo/root shell somewhere.)
+
+faillock --reset --user $PAM_USER
+
+However, most likely unlock procedure is required.
+First boot into recovery mode at grub boot menu and then run above command.
+See also:
+https://www.kicksecure.com/wiki/root#unlock
+" >&2
    exit 0
 fi
 
-echo "$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'." >&2
-echo "$0: Login will be blocked after $deny attempts." >&2
-echo "$0: You have $remaining_attempts more attempts before unlock procedure is required." >&2
-echo "" >&2
+echo "\
+$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'.
+Login will be blocked after $deny attempts.
+You have $remaining_attempts more attempts before unlock procedure is required.
+" >&2
 
 if [ "$PAM_SERVICE" = "su" ]; then
-   echo "$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown." >&2
-   echo "" >&2
+   echo "\
+$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown.
+" >&2
 fi
 
 true "$0: END"
