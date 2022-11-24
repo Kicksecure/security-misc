@@ -21,13 +21,13 @@ true "$0: START PHASE 2"
 
 set -o pipefail
 
-## Debugging.
-who_ami="$(whoami)"
-
 if [ "$PAM_USER" = "" ]; then
    true "$0: ERROR: Environment variable PAM_USER is unset!"
    exit 0
 fi
+
+## Debugging.
+who_ami="$(whoami)"
 
 if ! command -v "/usr/bin/faillock-user" &>/dev/null; then
    true "$0: The /usr/bin/faillock-user wrapper is unavailable, exiting."
@@ -123,13 +123,7 @@ true "pam_faillock_output_first_line: '$pam_faillock_output_first_line'"
 user_name="$(echo "$pam_faillock_output_first_line" | LANG=C str_replace ":" "")"
 ## example user_name:
 ## user
-
-if [ ! "$PAM_USER" = "$user_name" ]; then
-   echo "$0: ERROR: PAM_USER: '$PAM_USER' does not equal user_name: '$user_name'." >&2
-   echo "$0: ERROR: Please report this bug." >&2
-   echo "" >&2
-   exit 0
-fi
+## root
 
 pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
@@ -183,7 +177,7 @@ if [ "$remaining_attempts" -le "0" ]; then
    exit 0
 fi
 
-echo "$0: WARNING: $failed_login_counter failed login attempts." >&2
+echo "$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'." >&2
 echo "$0: Login will be blocked after $deny attempts." >&2
 echo "$0: You have $remaining_attempts more attempts before unlock procedure is required." >&2
 echo "" >&2
