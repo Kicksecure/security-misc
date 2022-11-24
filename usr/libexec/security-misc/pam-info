@@ -91,9 +91,21 @@ fi
 #    fi
 # fi
 
+## as user "user"
+## /usr/sbin/faillock -u user
+## faillock: Error opening /var/log/tallylog for update: Permission denied
+## /usr/sbin/faillock: Authentication error
+##
+## xscreensaver runs as user "user", therefore pam_faillock cannot function.
+## xscreensaver has its own failed login counter.
+##
+## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+##
+## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
+##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
-if ! pam_faillock_output="$(/usr/bin/faillock-user)" ; then
+if ! pam_faillock_output="$(sudo --non-interactive /usr/bin/faillock-user)" ; then
    true "$0: /usr/bin/faillock-user non-zero exit code."
    exit 0
 fi
