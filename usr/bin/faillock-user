@@ -20,6 +20,8 @@ fi
 
 who_ami="$(whoami)"
 
+true "$0: SUDO_USER: $SUDO_USER"
+
 if [ "$SUDO_USER" = "" ]; then
    user_to_check="$who_ami"
 else
