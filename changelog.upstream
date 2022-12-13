@@ -1,3 +1,167 @@
+commit 6d7a78262464c054c46df155605a480f1b32f22c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 07:21:46 2022 -0500
+
+    fix
+
+commit 421f03ae9e648d366146415532d4dd9dda106980
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 07:20:56 2022 -0500
+
+    fix
+
+commit ad1e722879ef049ef421f0062ee383770d66bfee
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 07:00:33 2022 -0500
+
+    bumped changelog version
+
+commit a806c782d78d691617dd650808a0403ce72d4a1a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 07:00:23 2022 -0500
+
+    fix
+
+commit 4601e106c4823f2cb0dc7a8ba601670395c96326
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:49:26 2022 -0500
+
+    bumped changelog version
+
+commit 39b35ef9ac7489685df5486334a0acf5936e9b47
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:49:15 2022 -0500
+
+    fix
+
+commit 73963a9e6847fd8099093da1253267d79db7d261
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:31:37 2022 -0500
+
+    bumped changelog version
+
+commit d05c10172178d04781976026243297fa153125a0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:31:24 2022 -0500
+
+    debugging
+
+commit 36454c2dbf43de4805f2f156b05d263c37b9615a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:25:47 2022 -0500
+
+    debugging
+
+commit e06b173a1be8c0e3e47a9c4bab2d94fe88d422e0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:24:14 2022 -0500
+
+    debugging
+
+commit 97722d1926bc106a0645783fcb55b7d5691c873b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:14:15 2022 -0500
+
+    bumped changelog version
+
+commit 497b5b45442b1293b130fef63de1b84d091d27eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 06:14:04 2022 -0500
+
+    fix
+
+commit d7222b5678aa182866c389d8a88f55b6488e74e0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 22 06:03:13 2022 -0500
+
+    bumped changelog version
+
+commit e5255a630ad3c9c99b6b7ffa4c7be43a44dffba9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 22 05:57:30 2022 -0500
+
+    pam-info: support non-root environments (such as during graphical display manager login and xscreensaver)
+
+commit d419898ee494fb159ed6811a719dbb4a5ffb469a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 17 10:15:36 2022 -0500
+
+    bumped changelog version
+
+commit 09e6af5c080f776d56d7e2390f88c4ae7e01bdb7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 02:01:23 2022 -0500
+
+    pam-info refactoring
+
+commit caf0099064747a2048363e3600a53af51df549ad
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 02:00:32 2022 -0500
+
+    pam-info refactoring
+
+commit 487f63bb01c6dfc71d0e4efef2c70dae94093dce
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:56:01 2022 -0500
+
+    comment
+
+commit f59f959a8d43ebd80a4037e65ec26df7143bcaf5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:55:14 2022 -0500
+
+    pam-info fix
+
+commit ae113442a162969561a24fcf17718ceb6a11d928
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:49:45 2022 -0500
+
+    pam-info refactoring
+
+commit bb6b509d06a1ae34ee407cb309c530e5dddfedfd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 16 01:44:21 2022 -0500
+
+    pam-info refactoring
+
+commit e5d7ab7082908e64596ccd1da835a781cae22456
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:44:12 2022 -0500
+
+    comment
+
+commit 23b936b573c8989222a50d1ef8c35dc95589bb0e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:31:14 2022 -0500
+
+    also support /usr/local/etc/pam-info-debug
+
+commit 95487346dbb18c4ac9133fc21b4abed12dc346b3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:29:41 2022 -0500
+
+    pam-info: create debug log file ~/pam-info-debug.txt
+    
+    when file /etc/pam-info-debug exists
+
+commit 2872c2ab52ae9a1eaa25ea8b9852401e82d5616a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 12:00:59 2022 -0500
+
+    comments
+
+commit 6033de78152cb5d7a9659f58aa8035ae2a7d6532
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 15 11:58:50 2022 -0500
+
+    debugging
+
+commit 2319458e9f1a0ae2b60cf5786122c19459bbaea1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 24 18:28:39 2022 -0400
+
+    bumped changelog version
+
 commit cdfc175953a8ab358bb8e6db2610df11733ba258
 Merge: ff84514 ae4d498
 Author: Patrick Schleizer <adrelanos@whonix.org>

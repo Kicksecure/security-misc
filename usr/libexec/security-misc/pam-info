@@ -3,6 +3,35 @@
 ## Copyright (C) 2019 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## To enable debug log, run:
+## sudo touch /etc/pam-info-debug
+##
+## Debug log if enabled can be found in file:
+## /root/pam-info-debug.txt
+
+true "$0: START PHASE 1"
+
+if test -f /etc/pam-info-debug || test -f /usr/local/etc/pam-info-debug ; then
+   set -x
+   exec 5>&1 1>> ~/pam-info-debug.txt
+   exec 6>&2 2>> ~/pam-info-debug.txt
+fi
+
+true "$0: START PHASE 2"
+
+set -o pipefail
+
+## Debugging.
+who_ami="$(whoami)"
+true "$0: who_ami: $who_ami"
+true "$0: PAM_USER: $PAM_USER"
+true "$0: SUDO_USER: $SUDO_USER"
+
+if [ "$PAM_USER" = "" ]; then
+   true "$0: ERROR: Environment variable PAM_USER is unset!"
+   exit 0
+fi
+
 grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
@@ -23,17 +52,18 @@ if [ ! "$grep_result" = "" ]; then
       fi
 
       if [ ! "$console_allowed" = "true" ]; then
-         echo "$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'" >&2
-         echo "$0: To unlock, run the following command as superuser:" >&2
-         echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
-         echo "" >&2
-         echo "adduser $PAM_USER console" >&2
-         echo "" >&2
-         echo "$0: However, possibly unlock procedure is required." >&2
-         echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
-         echo "$0: See also:" >&2
-         echo "https://www.kicksecure.com/wiki/root#console" >&2
-         echo "" >&2
+         echo "\
+$0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'
+To unlock, run the following command as superuser:
+(If you still have a sudo/root shell somewhere.)
+
+adduser $PAM_USER console
+
+However, possibly unlock procedure is required.
+First boot into recovery mode at grub boot menu and then run above command.
+See also:
+https://www.kicksecure.com/wiki/root#console
+" >&2
          exit 0
       fi
    fi
@@ -41,73 +71,91 @@ fi
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
 
-if [ ! "$(id -u)" = "0" ]; then
-   ## as user "user"
-   ## /usr/sbin/faillock -u user
-   ## faillock: Error opening /var/log/tallylog for update: Permission denied
-   ## /usr/sbin/faillock: Authentication error
-   ##
-   ## xscreensaver runs as user "user", therefore pam_faillock cannot function.
-   ## xscreensaver has its own failed login counter.
-   ##
-   ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
-   ##
-   ## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
-   ## TODO: echo -> true
-   echo "$0: not started as root, exiting."
-   exit 0
-fi
-
 ## Does not work (yet) for login, pam_securetty runs before and aborts.
 ## Also this should only run for login since securetty covers only login.
 # if [ "$PAM_USER" = "root" ]; then
 #    if [ -f /etc/securetty ]; then
 #       grep_result="$(grep "^[^#]" /etc/securetty)"
 #       if [ "$grep_result" = "" ]; then
-#          echo "$0: ERROR: Root login is disabled." >&2
-#          echo "$0: ERROR: This is because /etc/securetty is empty." >&2
-#          echo "$0: See also:" >&2
-#          echo "https://www.kicksecure.com/wiki/root#login" >&2
-#          echo "" >&2
+#          echo "\
+# $0: ERROR: Root login is disabled.
+# ERROR: This is because /etc/securetty is empty.
+# See also:
+# https://www.kicksecure.com/wiki/root#login
+# " >&2
 #          exit 0
 #       fi
 #    fi
 # fi
 
-## Using || true to not break read-only disk boot without ro-mode-init or grub-live.
-pam_faillock_output="$(faillock --user "$PAM_USER")" || true
+## as user "user"
+## /usr/sbin/faillock -u user
+## faillock: Error opening /var/log/tallylog for update: Permission denied
+## /usr/sbin/faillock: Authentication error
+##
+## xscreensaver runs as user "user", therefore pam_faillock cannot function.
+## xscreensaver has its own failed login counter.
+##
+## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
+##
+## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
+##
+## Checking exit code to avoid breaking when read-only disk boot but
+## without ro-mode-init or grub-live being used.
+if ! pam_faillock_output="$(faillock --user "$PAM_USER")" ; then
+   true "$0: faillock non-zero exit code."
+   exit 0
+fi
 
 if [ "$pam_faillock_output" = "" ]; then
    true "$0: no failed login"
    exit 0
 fi
 
-## Example:
+## example pam_faillock_output (stdout):
 ## user:
 ## When                Type  Source                                           Valid
 ## 2021-08-10 16:26:33 RHOST                                                      V
 ## 2021-08-10 16:26:54 RHOST                                                      V
 
-pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head -1)"
+## example pam_faillock_output (stderr):
+## faillock: No user name supplied.
+## Usage: faillock [--dir /path/to/tally-directory] [--user username] [--reset]
+
+## Get first line.
+#pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head --lines=1)"
+while read -t 10 -r pam_faillock_output_first_line ; do
+   break
+done <<< "$pam_faillock_output"
+
+true "pam_faillock_output_first_line: '$pam_faillock_output_first_line'"
+## example pam_faillock_output_first_line:
+## user:
+
 user_name="$(echo "$pam_faillock_output_first_line" | LANG=C str_replace ":" "")"
+## example user_name:
+## user
+## root
 
 pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
+## example pam_faillock_output_count:
+## 2
+## example pam_faillock_output_count:
+## 4
 
+## Do not count the first two informational textual output lines
+## (starting with "user:" and "When").
 failed_login_counter=$(( pam_faillock_output_count - 2 ))
 
-if [ ! "$PAM_USER" = "$user_name" ]; then
-   echo "$0: ERROR: PAM_USER: '$PAM_USER' does not equal user_name: '$user_name'." >&2
-   echo "$0: ERROR: Please report this bug." >&2
-   echo "" >&2
-   exit 0
-fi
+## example failed_login_counter:
+## 2
 
 if [ "$failed_login_counter" = "0" ]; then
    true "$0: INFO: Failed login counter is 0, ok."
    exit 0
 fi
 
-## pam_faillock default
+## pam_faillock default if it cannot be determined below.
 deny=3
 
 if test -f /etc/security/faillock.conf ; then
@@ -118,37 +166,43 @@ if test -f /etc/security/faillock.conf ; then
 fi
 
 if [[ "$deny" == *[!0-9]* ]]; then
-   echo "$0: ERROR: deny is not numeric. deny: '$deny'" >&2
-   echo "$0: ERROR: Please report this bug." >&2
-   echo "" >&2
+   echo "\
+$0: ERROR: deny is not numeric. deny: '$deny'
+ERROR: Please report this bug.
+" >&2
    exit 0
 fi
 
 remaining_attempts="$(( $deny - $failed_login_counter ))"
 
 if [ "$remaining_attempts" -le "0" ]; then
-   echo "$0: ERROR: Login blocked after $failed_login_counter attempts." >&2
-   echo "$0: To unlock, run the following command as superuser:" >&2
-   echo "$0: (If you still have a sudo/root shell somewhere.)" >&2
-   echo "" >&2
-   echo "faillock --reset --user $PAM_USER" >&2
-   echo "" >&2
-   echo "$0: However, most likely unlock procedure is required." >&2
-   echo "$0: First boot into recovery mode at grub boot menu and then run above command." >&2
-   echo "$0: See also:" >&2
-   echo "https://www.kicksecure.com/wiki/root#unlock" >&2
-   echo "" >&2
+   echo "\
+$0: ERROR: Login blocked after $failed_login_counter attempts.
+To unlock, run the following command as superuser:
+(If you still have a sudo/root shell somewhere.)
+
+faillock --reset --user $PAM_USER
+
+However, most likely unlock procedure is required.
+First boot into recovery mode at grub boot menu and then run above command.
+See also:
+https://www.kicksecure.com/wiki/root#unlock
+" >&2
    exit 0
 fi
 
-echo "$0: WARNING: $failed_login_counter failed login attempts." >&2
-echo "$0: Login will be blocked after $deny attempts." >&2
-echo "$0: You have $remaining_attempts more attempts before unlock procedure is required." >&2
-echo "" >&2
+echo "\
+$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'.
+Login will be blocked after $deny attempts.
+You have $remaining_attempts more attempts before unlock procedure is required.
+" >&2
 
 if [ "$PAM_SERVICE" = "su" ]; then
-   echo "$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown." >&2
-   echo "" >&2
+   echo "\
+$0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown.
+" >&2
 fi
+
+true "$0: END"
 
 exit 0
