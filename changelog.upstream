@@ -1,3 +1,38 @@
+commit 75beb52bd5b7cee4a48eead53dbbe7fac9f6cc9e
+Merge: 98f753d 58b622f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 18 06:24:41 2022 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 58b622f0fe373b6e2fb30b9564b22f1064f690b0
+Merge: 98f753d f81714b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 18 06:23:26 2022 -0500
+
+    Merge pull request #114 from raja-grewal/framebuffer
+    
+    Add some framebuffer drivers into blacklist
+
+commit f81714be506d1b15c0e79cbe8378bf8a18a2256f
+Merge: d67845f 98f753d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Dec 13 05:14:56 2022 +0000
+
+    Merge branch 'Kicksecure:master' into framebuffer
+
+commit d67845fea89f4a74ed4b0a6eefbf2bf228b13a1b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Dec 13 16:11:24 2022 +1100
+
+    Typo
+
+commit 98f753d8ffcf6673a3130d45c23b84a4c35917b1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 24 07:21:58 2022 -0500
+
+    bumped changelog version
+
 commit 6d7a78262464c054c46df155605a480f1b32f22c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Nov 24 07:21:46 2022 -0500
@@ -69,6 +104,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Nov 24 06:14:04 2022 -0500
 
     fix
+
+commit 6f695902fb70cbbc95b71f827216ab84edcfeb83
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Nov 23 23:53:40 2022 +1100
+
+    Add comment about legacy Apple fiesystems
 
 commit d7222b5678aa182866c389d8a88f55b6488e74e0
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -155,6 +196,14 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 15 11:58:50 2022 -0500
 
     debugging
+
+commit daa30d4e7830ba38ed52f83e6ac93c3a4e03ee33
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Nov 9 20:43:59 2022 +1100
+
+    Include several framebuffer drivers into blacklist
+    
+    These were previously commented out to test for compatibility issues.
 
 commit 2319458e9f1a0ae2b60cf5786122c19459bbaea1
 Author: Patrick Schleizer <adrelanos@whonix.org>
