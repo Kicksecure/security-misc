@@ -1,7 +1,7 @@
 #!/bin/sh
 
-## Copyrigh (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
-## Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+## Copyright (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 ## See the file COPYING for copying conditions.
 
 
