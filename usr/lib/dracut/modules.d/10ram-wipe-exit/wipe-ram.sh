@@ -1,6 +1,8 @@
 #!/bin/sh
 
-### Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+## Copyrigh (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+## See the file COPYING for copying conditions.
 
 ram_wipe_action() {
    local kernel_wiperam_exit
