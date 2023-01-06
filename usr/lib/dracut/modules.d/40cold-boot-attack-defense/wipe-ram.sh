@@ -75,8 +75,6 @@ dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
    echo "Using kexec."
    echo ""
 
-
-    kexec --load "/run/initramfs/kernel" --initrd="/run/initramfs/initramdisk" --reuse-cmdline --append="wiperamexit=yes wiperamaction=$ACTION"
     
     kexec -e
 }
