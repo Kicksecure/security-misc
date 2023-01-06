@@ -2,7 +2,7 @@
 # -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
-# Author: friedy10 friedrichdoku@gmail.com
+### Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 
 # called by dracut
 check() {
