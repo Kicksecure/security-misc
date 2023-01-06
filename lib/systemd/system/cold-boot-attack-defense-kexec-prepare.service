@@ -1,0 +1,10 @@
+[Unit]
+Description=My Script
+
+[Service]
+Type=oneshot
+ExecStart=/bin/true
+ExecStop=/usr/libexec/security-misc/cold-boot-attack-defense-kexec-prepare
+
+[Install]
+WantedBy=multi-user.target

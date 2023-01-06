@@ -1,0 +1,39 @@
+#!/bin/bash
+## Copyrigh (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+## modified by Friedrich Doku <friedrichdoku@gmail.com>
+
+set -x
+set -e
+
+true "env:"
+env
+
+## Debugging.
+## Lets hope $1 is set to reboot, poweroff or halt by systemd.
+true "1: $1"
+
+sudo dbus-monitor --system  |
+    while read -r line; do
+         if [[ $line =~ .*"poweroff.target".* ]]; then
+	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=poweroff"
+	    break
+	 fi
+
+         if [[ $line =~ .*"reboot.target".* ]]; then
+	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
+	    break
+	 fi
+	 
+	 if [[ $line =~ .*"halt.target".* ]]; then
+	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
+	    break
+	 fi
+         
+	 if [[ $line =~ .*"kexec.target".* ]]; then
+	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
+	    break
+	 fi
+    done
+
+sleep 10
