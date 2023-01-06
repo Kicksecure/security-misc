@@ -25,7 +25,12 @@ sudo dbus-monitor --system  |
             break
          fi
 
-         if [[ $line =~ .*"kexec".* ]]; then
+	 if [[ $line =~ .*"halt".* ]]; then
+            kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
+            break
+         fi
+         
+	 if [[ $line =~ .*"kexec".* ]]; then
             kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
             break
          fi
