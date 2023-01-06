@@ -15,22 +15,22 @@ true "1: $1"
 
 sudo dbus-monitor --system  |
     while read -r line; do
-         if [[ $line =~ .*"poweroff".* ]]; then
+         if [[ $line =~ .*"poweroff.target".* ]]; then
             kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=poweroff"
             break
          fi
 
-         if [[ $line =~ .*"reboot".* ]]; then
+         if [[ $line =~ .*"reboot.target".* ]]; then
             kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
             break
          fi
 
-	 if [[ $line =~ .*"halt".* ]]; then
+	 if [[ $line =~ .*"halt.target".* ]]; then
             kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
             break
          fi
          
-	 if [[ $line =~ .*"kexec".* ]]; then
+	 if [[ $line =~ .*"kexec.target".* ]]; then
             kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
             break
          fi
