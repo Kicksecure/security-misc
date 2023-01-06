@@ -62,6 +62,8 @@ ram_wipe() {
 
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
       echo "INFO: wipe-ram.sh: Success, there are no more mounted encrypted disks, OK." > /dev/kmsg
+      ## This should probably be removed in production?
+      sleep 3
    else
       echo "\
 WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
@@ -69,6 +71,8 @@ WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
 dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
+      ## How else could the user be informed that something is wrong?
+      sleep 5
    fi
    
    echo ""
