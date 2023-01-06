@@ -18,15 +18,15 @@ kernel=/boot/vmlinuz-$(uname -r)
 if test -e $initrd; then
   echo "Initrd File Found"
 else
-  exit 1
   echo "Initrd File NOT FOUND"
+  exit 1
 fi
 
 if test -e $kernel; then
   echo "Kernel File Found"
 else
-  exit 1
   echo "Kernel File NOT FOUND"
+  exit 1
 fi
 
 
