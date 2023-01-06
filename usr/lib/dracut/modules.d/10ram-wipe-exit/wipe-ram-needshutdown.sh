@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## Author: friedy10 friedrichdoku@gmail.com
+### Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 
 
 ram_wipe_check_needshutdown() {
