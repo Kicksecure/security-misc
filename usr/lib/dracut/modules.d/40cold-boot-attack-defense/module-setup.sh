@@ -2,8 +2,8 @@
 # -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
 # ex: ts=8 sw=4 sts=4 et filetype=sh
 
-## Copyrigh (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
-## Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+## Copyright (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 ## See the file COPYING for copying conditions.
 
 # called by dracut
