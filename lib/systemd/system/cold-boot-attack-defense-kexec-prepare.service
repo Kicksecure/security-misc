@@ -1,5 +1,7 @@
+### Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+
 [Unit]
-Description=My Script
+Description=https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
 
 [Service]
 Type=oneshot

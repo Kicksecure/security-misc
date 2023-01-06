@@ -1,8 +1,7 @@
 #!/bin/bash
 ## Copyrigh (C) 2022 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyrigh (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 ## See the file COPYING for copying conditions.
-## modified by Friedrich Doku <friedrichdoku@gmail.com>
-
 set -x
 set -e
 
@@ -13,27 +12,44 @@ env
 ## Lets hope $1 is set to reboot, poweroff or halt by systemd.
 true "1: $1"
 
-sudo dbus-monitor --system  |
+initrd=/boot/initrd.img-$(uname -r)
+kernel=/boot/vmlinuz-$(uname -r)
+
+if test -e $initrd; then
+  echo "Initrd File Found"
+else
+  exit 1
+  echo "Initrd File NOT FOUND"
+fi
+
+if test -e $kernel; then
+  echo "Kernel File Found"
+else
+  exit 1
+  echo "Kernel File NOT FOUND"
+fi
+
+
+dbus-monitor --system  |
     while read -r line; do
          if [[ $line =~ .*"poweroff.target".* ]]; then
-	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=poweroff"
+	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=poweroff"
 	    break
 	 fi
 
          if [[ $line =~ .*"reboot.target".* ]]; then
-	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
+	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
 	    break
 	 fi
 	 
 	 if [[ $line =~ .*"halt.target".* ]]; then
-	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
+	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
 	    break
 	 fi
          
 	 if [[ $line =~ .*"kexec.target".* ]]; then
-	    kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
+	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
 	    break
 	 fi
     done
 
-sleep 10

@@ -72,7 +72,7 @@ dmsetup_actual_output: '$dmsetup_actual_output'" > /dev/kmsg
       sleep 5
    fi
 
-   kexec -e
+   kexec -e && echo "kexec -e succeeded" || echo "kexec -e failed"
 }
 
 ram_wipe
