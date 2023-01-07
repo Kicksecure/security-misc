@@ -7,6 +7,7 @@ Description=https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 ExecStart=/bin/true
 ExecStop=/usr/libexec/security-misc/cold-boot-attack-defense-kexec-prepare
 

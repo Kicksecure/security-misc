@@ -30,26 +30,23 @@ else
 fi
 
 
-dbus-monitor --system  |
-    while read -r line; do
-         if [[ $line =~ .*"poweroff.target".* ]]; then
-	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=poweroff"
-	    break
-	 fi
+if   systemctl list-jobs | grep "poweroff.target" | grep -q "start"; then
+	wram="yes"
+	wact="poweroff"
+elif systemctl list-jobs | grep "reboot.target" | grep -q "start"; then
+	wram="yes"
+	wact="reboot"
+elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
+	wram="yes"
+	wact="halt"
+elif systemctl list-jobs | grep "kexec.target" | grep -q "start"; then
+	wram="yes"
+	wact="kexec"
+else
+	echo "Error no shutdown option found!"
+	wram="yes"
+	wact="error"
+fi
 
-         if [[ $line =~ .*"reboot.target".* ]]; then
-	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
-	    break
-	 fi
-	 
-	 if [[ $line =~ .*"halt.target".* ]]; then
-	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=halt"
-	    break
-	 fi
-         
-	 if [[ $line =~ .*"kexec.target".* ]]; then
-	    kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=yes wiperamaction=reboot"
-	    break
-	 fi
-    done
+kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
 
