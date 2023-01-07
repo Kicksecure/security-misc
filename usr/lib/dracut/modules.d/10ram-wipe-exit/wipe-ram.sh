@@ -22,6 +22,7 @@ ram_wipe_action() {
 
    info "wipe-ram.sh wiperamexit: wiperamexit=yes, therefore running second RAM wipe..."
 
+   ## TODO: drop_caches
    sdmem -l -l -v
    ## TODO: drop_caches
 }
