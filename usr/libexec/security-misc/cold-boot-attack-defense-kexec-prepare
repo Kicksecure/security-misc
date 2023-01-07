@@ -24,13 +24,13 @@ if ! test -r "$kernel"; then
    exit 1
 fi
 
-if   systemctl list-jobs | grep "poweroff.target" | grep -q "start"; then
+if   systemctl list-jobs --no-legend | grep "poweroff.target" | grep -q "start"; then
    wiperamexit="yes"
    wiperamaction="poweroff"
-elif systemctl list-jobs | grep "reboot.target" | grep -q "start"; then
+elif systemctl list-jobs --no-legend | grep "reboot.target" | grep -q "start"; then
    wiperamexit="yes"
    wiperamaction="reboot"
-elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
+elif systemctl list-jobs --no-legend | grep "halt.target" | grep -q "start"; then
    wiperamexit="yes"
    wiperamaction="halt"
 else
