@@ -10,6 +10,8 @@ Type=oneshot
 RemainAfterExit=yes
 ExecStart=/bin/true
 ExecStop=/usr/libexec/security-misc/cold-boot-attack-defense-kexec-prepare
+## Debugging.
+StandardOutput=journal+console
 
 [Install]
 WantedBy=multi-user.target
