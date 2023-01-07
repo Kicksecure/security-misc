@@ -48,5 +48,5 @@ else
 	wact="error"
 fi
 
-kexec -l /boot/vmlinuz-$(uname -r) --initrd=/boot/initrd.img-$(uname -r) --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
+kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
 
