@@ -16,7 +16,7 @@ Package: security-misc
 Architecture: all
 Depends: python3, libglib2.0-bin, libpam-runtime, sudo, adduser, libcap2-bin,
  apparmor-profile-dist, helper-scripts, libpam-modules-bin,
- secure-delete, dmsetup, ${misc:Depends}
+ secure-delete, dmsetup, kexec-tools, ${misc:Depends}
 Replaces: tcp-timestamps-disable, anon-gpg-tweaks, swappiness-lowest
 Description: Enhances Miscellaneous Security Settings
  https://github.com/Whonix/security-misc/blob/master/README.md
