@@ -43,3 +43,5 @@ fi
 echo kexec --load "$kernel" --initrd="$initrd" --reuse-cmdline --append="wiperamexit=$wiperamexit wiperamaction=$wiperamaction"
 
 kexec --load "$kernel" --initrd="$initrd" --reuse-cmdline --append="wiperamexit=$wiperamexit wiperamaction=$wiperamaction"
+
+echo "$0: OK."
