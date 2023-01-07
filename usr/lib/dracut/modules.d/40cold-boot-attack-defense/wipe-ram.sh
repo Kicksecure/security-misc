@@ -69,6 +69,8 @@ ram_wipe() {
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
       info "wipe-ram.sh: Success, there are no more mounted encrypted disks, OK."
    else
+      ## dracut should unmount the root encrypted disk cryptsetup luksClose during shutdown
+      ## https://github.com/dracutdevs/dracut/issues/1888
       warn "\
 wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
 
