@@ -7,10 +7,10 @@
 set -x
 set -e
 
-# Get the kernel command-line arguments
+## Get the kernel command-line arguments
 cmdline=$(cat /proc/cmdline)
 
-# Get the current boot image
+## Get the current boot image
 kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
 initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
 
@@ -34,7 +34,7 @@ elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
 	wiperamexit="yes"
 	wiperamaction="halt"
 else
-	echo "$0: ERROR: No shutdown option found!"
+	echo "$0: INFO: No shutdown option found!"
 	exit 0
 fi
 
