@@ -1,3 +1,39 @@
+commit c9107bb044e3038d837e371aa7467edcedbbdb16
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:11:48 2023 -0500
+
+    debugging
+
+commit b7bb24f984cb5669d9cc9b3522ee57a05070cef9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:09:11 2023 -0500
+
+    description
+
+commit 2bd9cc5bc1ac94d039a7e515d3a839af820fb4be
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:08:12 2023 -0500
+
+    output
+
+commit 2456fed3614268abfb238f3a0783719adb45b711
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:00:42 2023 -0500
+
+    output
+
+commit c0b5fea6806ea07b667a341b2400aacb7191b27f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:59:52 2023 -0500
+
+    protect against wipe RAM reboot loop
+
+commit c1b87d250c4e5decd726e7fd67b482ff1eaecbf1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:37:47 2023 -0500
+
+    bumped changelog version
+
 commit 91aedb234aa7c516dca8016f6b82536cfe25f410
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 15:36:36 2023 -0500
