@@ -8,10 +8,6 @@ ram_wipe_check_needshutdown() {
    local wipe_action
    wipe_action=$(getarg wiperamaction)
 
-   ## TODO: disable
-   wait $(pgrep sdmem)
-   info "wipe-ram.sh wiperamexit: DONE WAITING..."
-
    if [ "$wipe_action" = "reboot" ]; then
       info "wipe-ram.sh wiperamexit: reboot..."
       ## Why reboot? Why not just continue to boot?
