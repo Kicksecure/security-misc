@@ -73,12 +73,12 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
       sleep 5
    fi
 
-   if kexec -e ; then
-      info "wipe-ram.sh: kexec -e succeeded"
+   if kexec --exec ; then
+      info "wipe-ram.sh: kexec --exec succeeded."
       return 0
    fi
 
-   warn "wipe-ram.sh: kexec -e failed"
+   warn "wipe-ram.sh: kexec --exec failed!"
    sleep 5
 }
 
