@@ -29,17 +29,17 @@ else
 fi
 
 if   systemctl list-jobs | grep "poweroff.target" | grep -q "start"; then
-	wram="yes"
-	wact="poweroff"
+	wiperamexit="yes"
+	wiperamaction="poweroff"
 elif systemctl list-jobs | grep "reboot.target" | grep -q "start"; then
-	wram="yes"
-	wact="reboot"
+	wiperamexit="yes"
+	wiperamaction="reboot"
 elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
-	wram="yes"
-	wact="halt"
+	wiperamexit="yes"
+	wiperamaction="halt"
 else
 	echo "$0: ERROR: No shutdown option found!"
 	exit 0
 fi
 
-kexec -l "$kernel" --initrd="$initrd" --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
+kexec -l "$kernel" --initrd="$initrd" --reuse-cmdline --append="wiperamexit=$wiperamexit wiperamaction=$wiperamaction"
