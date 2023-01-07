@@ -64,7 +64,7 @@ ram_wipe() {
       sleep 3
    else
       info "\
-WARNING: wipe-ram.sh:There are still mounted encrypted disks! RAM wipe failed!
+WARNING: wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
 
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'

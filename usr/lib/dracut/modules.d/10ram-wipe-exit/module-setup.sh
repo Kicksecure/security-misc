@@ -46,4 +46,3 @@ install() {
 installkernel() {
     return 0
 }
-

@@ -15,21 +15,20 @@ ram_wipe_check_needshutdown() {
    if [ "$wipe_action" = "reboot" ]; then
       reboot -f
    fi
-   
+
    if [ "$wipe_action" = "poweroff" ]; then
       poweroff -f
    fi
-   
+
    if [ "$wipe_action" = "halt" ]; then
       halt -f
    fi
-   
+
    if [ "$wipe_action" = "error" ]; then
-	   info "Choice of shutdown option led to an error. Shutting down..."
-	   sleep 5
-	   poweroff -f
+      info "Choice of shutdown option led to an error. Shutting down..."
+      sleep 5
+      poweroff -f
    fi
 }
 
 ram_wipe_check_needshutdown
-

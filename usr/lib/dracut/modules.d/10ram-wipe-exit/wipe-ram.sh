@@ -8,21 +8,19 @@ ram_wipe_action() {
    local kernel_wiperam_exit
    kernel_wiperam_exit=$(getarg wiperamexit)
 
-
    if [ "$kernel_wiperam_exit" = "no" ]; then
 	   info "INFO: Skip, because wiperamexit=no kernel parameter detected, OK."
 	   return 0
    fi
 
-
    if [ "$kernel_wiperam_exit" != "yes" ]; then
-	   info "INFO: Skip, becuase wiperamexit parameter is not used. "
+	   info "INFO: Skip, becuase wiperamexit parameter is not used."
 	   return 0
    fi
 
-   info "INFO: wiperamexit=yes. Running second RAM wipe... "
-   
+   info "INFO: wiperamexit=yes. Running second RAM wipe..."
+
    sdmem -l -l -v
 }
-ram_wipe_action
 
+ram_wipe_action
