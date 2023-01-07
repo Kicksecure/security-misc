@@ -20,9 +20,6 @@ cmdline=$(cat /proc/cmdline)
 kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
 initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
 
-kernel="/boot/$kernel"
-initrd="/boot/$initrd"
-
 if test -e $initrd; then
   echo "Initrd File Found"
 else
