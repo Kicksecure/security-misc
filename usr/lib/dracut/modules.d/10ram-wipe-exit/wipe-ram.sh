@@ -8,6 +8,14 @@
 
 DRACUT_QUIET=no
 
+drop_caches() {
+   sync
+   ## https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook
+   ### Ensure any remaining disk cache is erased by Linux' memory poisoning
+   echo 3 > /proc/sys/vm/drop_caches
+   sync
+}
+
 ram_wipe_action() {
    local kernel_wiperam_exit
    kernel_wiperam_exit=$(getarg wiperamexit)
@@ -24,9 +32,9 @@ ram_wipe_action() {
 
    info "wipe-ram.sh wiperamexit: wiperamexit=yes, therefore running second RAM wipe..."
 
-   ## TODO: drop_caches
+   drop_caches
    sdmem -l -l -v
-   ## TODO: drop_caches
+   drop_caches
 
    info "wipe-ram.sh wiperamexit: Second RAM wipe completed."
 }
