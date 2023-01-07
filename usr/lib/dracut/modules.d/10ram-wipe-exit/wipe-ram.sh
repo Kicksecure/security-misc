@@ -4,6 +4,8 @@
 ## Copyright (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 ## See the file COPYING for copying conditions.
 
+## TODO: rename to wipe-ram-exit.sh (so it is different from wipe-ram.sh)
+
 ram_wipe_action() {
    local kernel_wiperam_exit
    kernel_wiperam_exit=$(getarg wiperamexit)
