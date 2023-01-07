@@ -8,6 +8,8 @@
 ## First version by @friedy10.
 ## https://github.com/friedy10/dracut/blob/master/modules.d/40sdmem/wipe.sh
 
+DRACUT_QUIET=no
+
 drop_caches() {
    sync
    ## https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook

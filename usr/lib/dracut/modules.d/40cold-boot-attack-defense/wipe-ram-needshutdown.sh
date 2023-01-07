@@ -6,6 +6,8 @@
 
 type getarg >/dev/null 2>&1 || . /lib/dracut-lib.sh
 
+DRACUT_QUIET=no
+
 ram_wipe_check_needshutdown() {
    local kernel_wiperam_setting
    kernel_wiperam_setting=$(getarg wiperam)

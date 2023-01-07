@@ -6,6 +6,8 @@
 
 ## TODO: rename to wipe-ram-exit.sh (so it is different from wipe-ram.sh)
 
+DRACUT_QUIET=no
+
 ram_wipe_action() {
    local kernel_wiperam_exit
    kernel_wiperam_exit=$(getarg wiperamexit)
