@@ -72,7 +72,7 @@ ram_wipe() {
       ## dracut should unmount the root encrypted disk cryptsetup luksClose during shutdown
       ## https://github.com/dracutdevs/dracut/issues/1888
       warn "\
-wipe-ram.sh: There are still mounted encrypted disks! RAM wipe failed!
+wipe-ram.sh: There are still mounted encrypted disks! RAM wipe incomplete!
 
 debugging information:
 dmsetup_expected_output: '$dmsetup_expected_output'
