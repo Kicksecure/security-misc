@@ -35,6 +35,7 @@ elif systemctl list-jobs --no-legend | grep "halt.target" | grep -q "start"; the
    wiperamaction="halt"
 else
    ## Could be kexec.target.
+   ## Could be run during package installation.
    echo "$0: INFO: Neither poweroff, reboot or halt. Therefore skipping kexec load, ok."
    exit 0
 fi
