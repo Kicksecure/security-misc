@@ -13,21 +13,21 @@ ram_wipe_check_needshutdown() {
    info "wipe-ram.sh wiperamexit: DONE WAITING..."
 
    if [ "$wipe_action" = "reboot" ]; then
-      reboot -f
+      reboot --force
    fi
 
    if [ "$wipe_action" = "poweroff" ]; then
-      poweroff -f
+      poweroff --force
    fi
 
    if [ "$wipe_action" = "halt" ]; then
-      halt -f
+      halt --force
    fi
 
    if [ "$wipe_action" = "error" ]; then
       info "wipe-ram.sh wiperamexit: Choice of shutdown option led to an error. Shutting down..."
       sleep 5
-      poweroff -f
+      poweroff --force
    fi
 }
 
