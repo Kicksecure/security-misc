@@ -3,7 +3,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=https://www.kicksecure.com/wiki/Cold_Boot_Attack_Defense
+Description=Cold Boot Attack Defense Reboot RAM Wipe
 
 [Service]
 Type=oneshot
