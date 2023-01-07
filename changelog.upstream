@@ -1,3 +1,208 @@
+commit d37b19fb6bb3cadbb74d011be026fd8d2653ac17
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:55:05 2023 -0500
+
+    comment
+
+commit 0367250dc74f9e6ec38f9da5809ff661493134a8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:54:35 2023 -0500
+
+    comment
+
+commit c1df2fd601f3445a0a811a679efa7d2176026558
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:52:14 2023 -0500
+
+    comment
+
+commit c2b20603fdd62a3f82c842c7ebeaad0f70e005d0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:49:18 2023 -0500
+
+    output
+
+commit 999a82ed946c8fd57654a0a90e2a2e53ef98a788
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:46:21 2023 -0500
+
+    output
+
+commit 2860560edb7951a8ac9de1c23c9655c655b40f23
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:43:07 2023 -0500
+
+    minor
+
+commit 450ff378b067070618e4a972f8131acac5b292e0
+Merge: 929f49f b8e82ff
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 12:38:14 2023 -0500
+
+    Merge remote-tracking branch 'friedy10/master'
+
+commit b8e82fffca0138afaf20e1b2faf755ce1533af45
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Sat Jan 7 11:31:02 2023 -0500
+
+    Get rid of /dev/kmsg
+
+commit 78a4fad6674bb11fa682b908e0d3bc63705e7d20
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Sat Jan 7 11:14:31 2023 -0500
+
+    Change echo to info. Included more reliable way of getting initrd and kernel. Allow user custom kexec
+
+commit 8da3b9c40c6ee073addcc06d5227b3043438b768
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Fri Jan 6 21:40:17 2023 -0500
+
+    fix last line
+
+commit 7cf51a1b433bfb2ccf4fa14b7807184e9e3681c5
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Fri Jan 6 21:32:57 2023 -0500
+
+    Checking job queue instead of dbus
+
+commit 4b7053a6353cf0e092a6ef712e955b4318671bfc
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:53:28 2023 -0500
+
+    Update wipe-ram.sh
+
+commit 779ad24b573b83c08e89569e5213e018377d1535
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:53:18 2023 -0500
+
+    Update wipe-ram-needshutdown.sh
+
+commit d45ba826bca6f5efef846de01a34a0a8c7936442
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:53:10 2023 -0500
+
+    Update module-setup.sh
+
+commit b3d4314a069a608380ca9dd01d76c653bdb87078
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:52:51 2023 -0500
+
+    Update wipe-ram.sh
+
+commit 33877250172349cccb2c776c1fa7aed2e8ad716f
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:52:42 2023 -0500
+
+    Update wipe-ram-needshutdown.sh
+
+commit ec68ee6ded7294c161b3d0793bf8874b12262190
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:52:32 2023 -0500
+
+    Update module-setup.sh
+
+commit 014d10b9778907a9282ec337023f8c2b01b0ca6b
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:52:09 2023 -0500
+
+    Update cold-boot-attack-defense-kexec-prepare.service
+
+commit 62dcdcf7649175e0587a84708e8f0aa318a45d30
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:51:45 2023 -0500
+
+    Update cold-boot-attack-defense-kexec-prepare
+
+commit f4637509205c11eddaa13151b93c961e9d345be6
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:48:22 2023 -0500
+
+    Update cold-boot-attack-defense-kexec-prepare.service
+
+commit 14abfbfccdd3403d90a16dd5b2a1057ccf4da3d5
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:48:03 2023 -0500
+
+    Update cold-boot-attack-defense-kexec-prepare
+
+commit 37a5264696797c0807570606361e04cb8dcb2395
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:47:34 2023 -0500
+
+    Update wipe-ram.sh
+
+commit 7ac45acd0f3e3e0a68e3fc4036787e8e7d4ebe9f
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:47:23 2023 -0500
+
+    Update wipe-ram-needshutdown.sh
+
+commit 114a37fcd39ff20ddd9e8cca829763a9b96a8115
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:47:14 2023 -0500
+
+    Update module-setup.sh
+
+commit 1eeb32b7b96ab1df63d808b6715fef7a6e1a9482
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:47:01 2023 -0500
+
+    Update wipe-ram.sh
+
+commit c5accc5ad191fe54a96e12cd1f1286508da8243c
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:46:51 2023 -0500
+
+    Update wipe-ram-needshutdown.sh
+
+commit f9ebc3cfa86674025ccd65c22cde2427ea2f4ae3
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 13:46:40 2023 -0500
+
+    Update module-setup.sh
+
+commit 28687092ef4f57afab5e8d32f68492799694a379
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 12:52:36 2023 -0500
+
+    Update cold-boot-attack-defense-kexec-prepare
+
+commit d67d3c1d7d788fff589806457ff140e8f82089a0
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 12:51:18 2023 -0500
+
+    Update wipe-ram.sh
+
+commit 7fa64d68423d24668e44eb0d7e19ccf4845ee711
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 12:50:58 2023 -0500
+
+    Update wipe-ram-needshutdown.sh
+
+commit 14c7239681300edc4f715bc96c5235cddf677c60
+Author: Friedrich Doku <frd20@pitt.edu>
+Date:   Fri Jan 6 12:50:42 2023 -0500
+
+    Update module-setup.sh
+
+commit 73913ea5afef8354f433f7cf87c7cd64c16be0a0
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Fri Jan 6 12:49:34 2023 -0500
+
+    Added checks
+
+commit a7015f4ddff892cab17f96713ddb0a720ebb7901
+Author: Friedrich Doku <friedrichdoku@gmail.com>
+Date:   Fri Jan 6 10:50:34 2023 -0500
+
+    added files
+
+commit 929f49f333fc88d91ed4cef849921b0b4a69bfea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 18 14:37:51 2022 -0500
+
+    bumped changelog version
+
 commit 75beb52bd5b7cee4a48eead53dbbe7fac9f6cc9e
 Merge: 98f753d 58b622f
 Author: Patrick Schleizer <adrelanos@whonix.org>
