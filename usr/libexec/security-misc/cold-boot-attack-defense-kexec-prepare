@@ -12,7 +12,6 @@ env
 ## Lets hope $1 is set to reboot, poweroff or halt by systemd.
 true "1: $1"
 
-
 # Get the kernel command-line arguments
 cmdline=$(cat /proc/cmdline)
 
@@ -33,7 +32,6 @@ else
   echo "$0: ERROR: Kernel File NOT FOUND"
   exit 1
 fi
-
 
 if   systemctl list-jobs | grep "poweroff.target" | grep -q "start"; then
 	wram="yes"
