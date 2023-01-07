@@ -10,7 +10,7 @@ ram_wipe_check_needshutdown() {
    wipe_action=$(getarg wiperamaction)
 
    wait $(pgrep sdmem)
-   info "DONE WAITING..."
+   info "wipe-ram.sh wiperamexit: DONE WAITING..."
 
    if [ "$wipe_action" = "reboot" ]; then
       reboot -f
@@ -25,7 +25,7 @@ ram_wipe_check_needshutdown() {
    fi
 
    if [ "$wipe_action" = "error" ]; then
-      info "Choice of shutdown option led to an error. Shutting down..."
+      info "wipe-ram.sh wiperamexit: Choice of shutdown option led to an error. Shutting down..."
       sleep 5
       poweroff -f
    fi
