@@ -16,6 +16,9 @@ ram_wipe_check_needshutdown() {
       info "wipe-ram.sh wiperamexit: reboot..."
       ## Why reboot? Why not just continue to boot?
       ## To get rid of kernel command line options 'wiperamexit=yes wiperamaction=reboot'?
+      ## Also RAM wipe using sdmem leads to an OOM and the following error:
+      ## [FAILED] Failed to start dracut pre-udev hook.
+      ## In other words, the system might not boot up cleanly.
       reboot --force
    elif [ "$wipe_action" = "poweroff" ]; then
       info "wipe-ram.sh wiperamexit: poweroff..."
