@@ -14,6 +14,8 @@ ram_wipe_check_needshutdown() {
 
    if [ "$wipe_action" = "reboot" ]; then
       info "wipe-ram.sh wiperamexit: reboot..."
+      ## Why reboot? Why not just continue to boot?
+      ## To get rid of kernel command line options 'wiperamexit=yes wiperamaction=reboot'?
       reboot --force
    elif [ "$wipe_action" = "poweroff" ]; then
       info "wipe-ram.sh wiperamexit: poweroff..."
