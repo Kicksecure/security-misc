@@ -1,3 +1,167 @@
+commit 91aedb234aa7c516dca8016f6b82536cfe25f410
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:36:36 2023 -0500
+
+    output
+
+commit 368ad8e636ae30eb60c8f2c6ce7117970a77c021
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:36:05 2023 -0500
+
+    cleanup
+
+commit d8bf40f7a28f53f2f51c41b77663e5a40a5d8fb4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:35:45 2023 -0500
+
+    refactoring
+
+commit 166a6863a1c249e68e3f38109b115503bc5663ec
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:35:15 2023 -0500
+
+    output
+
+commit 20596488be39f92f069523a3d86c0e6b6ec15399
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:34:20 2023 -0500
+
+    long options
+
+commit 1e19c2cbad8cdf97f6bb460c90cfa330492b8019
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:32:25 2023 -0500
+
+    Depends: kexec-tools
+    
+    required for cold boot attack defense second RAM wipe after reboot
+
+commit b0630f58c136d6c7a964447806ec8ee603a73aa8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:24:05 2023 -0500
+
+    debugging
+
+commit dde01f36634337a24d0cd37cfe5a456ff77e8b0e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:23:23 2023 -0500
+
+    long options
+
+commit 6e0926eece54a55502fa67c2abedf5b718e306e6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:22:58 2023 -0500
+
+    long options
+
+commit 51a5f68c7654774d37986916029607da588189ab
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:22:25 2023 -0500
+
+    refactoring
+
+commit 83800fcb4fd365aab58a5f70f78f39af7d9371dc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:18:58 2023 -0500
+
+    --no-legend
+
+commit 822cf646182f8ff649ea08da2fd4365022871a61
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:13:36 2023 -0500
+
+    output
+
+commit bb2f0a3c4421e3686477a6dff81bb87d5dcd836f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:12:15 2023 -0500
+
+    minor
+
+commit c3a822af0e9c8bb6c9b34b732ba48710e3ee1974
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:09:25 2023 -0500
+
+    test if readable
+
+commit 227871c12c57ecc5ff6d4075ea59a7dc9eca3dd3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:07:34 2023 -0500
+
+    output
+
+commit c09f4da1922f40f666dae0570295b5ab5c02e8a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:06:56 2023 -0500
+
+    code simplification
+
+commit 01fee8a7b4a12c8c2be4173337decc37ec3e6019
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:06:31 2023 -0500
+
+    refactoring
+
+commit f675f8da0d33ab18efa782ee155a8632e9a3dc0f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:05:58 2023 -0500
+
+    quotes
+
+commit d0daf75db3529e206565604a63e11ee1268ed39b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:05:24 2023 -0500
+
+    quotes
+
+commit 8bcf7e3c235c1193f3a6d43a7c8b23b50e972de7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:04:57 2023 -0500
+
+    minor
+
+commit 2cc3c6c59ca88cf44751bc2e9bb7055b46102284
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:04:42 2023 -0500
+
+    lower debugging
+
+commit 10932bb5d83c469f556b46f42ee517e882d87a4f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:04:23 2023 -0500
+
+    minor
+
+commit c88e95ce33f30f67726ac086c1b8d020b1024ebc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:04:07 2023 -0500
+
+    output
+
+commit 06034d2e4f97712fc84ad75e3fa8ba6bf4fccfee
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 15:03:06 2023 -0500
+
+    fix
+
+commit 059ebb212d03f5d01d46362530702dbeaefdce5e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 14:35:30 2023 -0500
+
+    comment
+
+commit c0304ec029198665aaf63c843f5b7d5567f95208
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 14:35:09 2023 -0500
+
+    minor
+
+commit d5271d6250f0f6ea5adf7bc71fc48fddab1a9af4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 14:31:40 2023 -0500
+
+    bumped changelog version
+
 commit d31c17ea047fbbd698ad9f074a00d6fba2aaf283
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 14:31:14 2023 -0500
