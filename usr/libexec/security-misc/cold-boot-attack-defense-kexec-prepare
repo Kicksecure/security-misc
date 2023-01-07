@@ -4,7 +4,7 @@
 ## Copyright (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
 ## See the file COPYING for copying conditions.
 
-set -x
+#set -x
 set -e
 
 ## Get the kernel command-line arguments
