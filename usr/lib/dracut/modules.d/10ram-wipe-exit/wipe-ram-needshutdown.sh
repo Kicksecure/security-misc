@@ -21,6 +21,8 @@ ram_wipe_check_needshutdown() {
    elif [ "$wipe_action" = "halt" ]; then
       info "wipe-ram.sh wiperamexit: halt..."
       halt --force
+   else
+      info "wipe-ram.sh wiperamexit: normal boot..."
    fi
 }
 
