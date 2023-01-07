@@ -21,16 +21,16 @@ kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
 initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
 
 if test -e $initrd; then
-  echo "Initrd File Found"
+  echo "$0: INFO: Initrd File Found"
 else
-  echo "Initrd File NOT FOUND"
+  echo "$0: ERROR: Initrd File NOT FOUND"
   exit 1
 fi
 
 if test -e $kernel; then
-  echo "Kernel File Found"
+  echo "$0: INFO: Kernel File Found"
 else
-  echo "Kernel File NOT FOUND"
+  echo "$0: ERROR: Kernel File NOT FOUND"
   exit 1
 fi
 
@@ -45,7 +45,7 @@ elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
 	wram="yes"
 	wact="halt"
 else
-	echo "No shutdown option found!"
+	echo "$0: ERROR: No shutdown option found!"
 	exit 0
 fi
 
