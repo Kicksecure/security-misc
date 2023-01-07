@@ -1,3 +1,45 @@
+commit ab89d0e06e68fa47fa4058416a6c8700551f1b9a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:59:00 2023 -0500
+
+    cleanup
+
+commit 2e833b40a1af1f194ec392ff0c05b0060bb27fe8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:43:09 2023 -0500
+
+    prevent "wait: pid 55 is not a child of this shell"
+
+commit 3777ecba8568cf5458b05b3eeedf98f0ba51cd69
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:34:19 2023 -0500
+
+    comment
+
+commit e0ded5e69d38a02f9896277a67c0d209e4ee4ad4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:34:04 2023 -0500
+
+    comment
+
+commit 996c6af2d84cf23f323ca80c04fab26beea2aa1b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:31:23 2023 -0500
+
+    lower debugging
+
+commit 4fca8f4225f134316e734d5f85d12b9e39b99b0f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:28:11 2023 -0500
+
+    comment
+
+commit fa579cad8980c8d9231a9e2682267910544be175
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 16:20:48 2023 -0500
+
+    bumped changelog version
+
 commit c9107bb044e3038d837e371aa7467edcedbbdb16
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 16:11:48 2023 -0500
