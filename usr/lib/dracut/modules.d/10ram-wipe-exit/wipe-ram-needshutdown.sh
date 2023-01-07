@@ -16,10 +16,6 @@ ram_wipe_check_needshutdown() {
       reboot -f
    fi
    
-   if [ "$wipe_action" = "kexec" ]; then
-      reboot -f
-   fi
-
    if [ "$wipe_action" = "poweroff" ]; then
       poweroff -f
    fi
@@ -29,7 +25,7 @@ ram_wipe_check_needshutdown() {
    fi
    
    if [ "$wipe_action" = "error" ]; then
-	   echo "Choice of shutdown option led to an error. Shutting down..."
+	   info "Choice of shutdown option led to an error. Shutting down..."
 	   sleep 5
 	   poweroff -f
    fi

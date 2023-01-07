@@ -12,8 +12,16 @@ env
 ## Lets hope $1 is set to reboot, poweroff or halt by systemd.
 true "1: $1"
 
-initrd=/boot/initrd.img-$(uname -r)
-kernel=/boot/vmlinuz-$(uname -r)
+
+# Get the kernel command-line arguments
+cmdline=$(cat /proc/cmdline)
+
+# Get the current boot image
+kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
+initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
+
+kernel="/boot/$kernel"
+initrd="/boot/$initrd"
 
 if test -e $initrd; then
   echo "Initrd File Found"
@@ -39,14 +47,9 @@ elif systemctl list-jobs | grep "reboot.target" | grep -q "start"; then
 elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
 	wram="yes"
 	wact="halt"
-elif systemctl list-jobs | grep "kexec.target" | grep -q "start"; then
-	wram="yes"
-	wact="kexec"
 else
-	echo "Error no shutdown option found!"
-	wram="yes"
-	wact="error"
+	echo "No shutdown option found!"
+	exit 0
 fi
 
 kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
-
