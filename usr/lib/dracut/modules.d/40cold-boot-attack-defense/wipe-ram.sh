@@ -36,6 +36,12 @@ ram_wipe() {
       fi
    fi
 
+   kernel_wiperamexit_setting=$(getarg wiperamexit)
+   if [ "$kernel_wiperamexit_setting" = "yes" ]; then
+      warn "wipe-ram.sh: Skip, because wiperamexit=yes to avoid RAM wipe reboot loop."
+      return 0
+   fi
+
    info "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
 
    drop_caches
@@ -73,6 +79,7 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
       sleep 5
    fi
 
+   info "wipe-ram.sh: Now running kexec --exec..."
    if kexec --exec ; then
       info "wipe-ram.sh: kexec --exec succeeded."
       return 0
