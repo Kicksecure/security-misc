@@ -1,0 +1,55 @@
+#!/bin/bash
+## Copyright (C) 2023 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2023 - 2023 Friedrich Doku <friedrichdoku@gmail.com>
+## See the file COPYING for copying conditions.
+set -x
+set -e
+
+true "env:"
+env
+
+## Debugging.
+## Lets hope $1 is set to reboot, poweroff or halt by systemd.
+true "1: $1"
+
+
+# Get the kernel command-line arguments
+cmdline=$(cat /proc/cmdline)
+
+# Get the current boot image
+kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
+initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
+
+kernel="/boot/$kernel"
+initrd="/boot/$initrd"
+
+if test -e $initrd; then
+  echo "Initrd File Found"
+else
+  echo "Initrd File NOT FOUND"
+  exit 1
+fi
+
+if test -e $kernel; then
+  echo "Kernel File Found"
+else
+  echo "Kernel File NOT FOUND"
+  exit 1
+fi
+
+
+if   systemctl list-jobs | grep "poweroff.target" | grep -q "start"; then
+	wram="yes"
+	wact="poweroff"
+elif systemctl list-jobs | grep "reboot.target" | grep -q "start"; then
+	wram="yes"
+	wact="reboot"
+elif systemctl list-jobs | grep "halt.target" | grep -q "start"; then
+	wram="yes"
+	wact="halt"
+else
+	echo "No shutdown option found!"
+	exit 0
+fi
+
+kexec -l $kernel --initrd=$initrd --reuse-cmdline --append="wiperamexit=$wram wiperamaction=$wact"
