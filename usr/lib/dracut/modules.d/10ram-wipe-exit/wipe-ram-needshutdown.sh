@@ -13,14 +13,17 @@ ram_wipe_check_needshutdown() {
    info "wipe-ram.sh wiperamexit: DONE WAITING..."
 
    if [ "$wipe_action" = "reboot" ]; then
+      info "wipe-ram.sh wiperamexit: reboot..."
       reboot --force
    fi
 
    if [ "$wipe_action" = "poweroff" ]; then
+      info "wipe-ram.sh wiperamexit: poweroff..."
       poweroff --force
    fi
 
    if [ "$wipe_action" = "halt" ]; then
+      info "wipe-ram.sh wiperamexit: halt..."
       halt --force
    fi
 
