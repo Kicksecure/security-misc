@@ -22,12 +22,6 @@ ram_wipe_check_needshutdown() {
       info "wipe-ram.sh wiperamexit: halt..."
       halt --force
    fi
-
-   if [ "$wipe_action" = "error" ]; then
-      info "wipe-ram.sh wiperamexit: Choice of shutdown option led to an error. Shutting down..."
-      sleep 5
-      poweroff --force
-   fi
 }
 
 ram_wipe_check_needshutdown
