@@ -1,3 +1,21 @@
+commit 539156c0dad74c584adb02beacdcf7a3a9b8b982
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 17:23:25 2023 -0500
+
+    drop_caches
+
+commit 02f44459ad194444122e98a9f743c2725edb4e43
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 17:22:45 2023 -0500
+
+    DRACUT_QUIET=no
+
+commit abbaea582de898e48a852a0a153fe336341afe17
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 17:16:23 2023 -0500
+
+    bumped changelog version
+
 commit ab89d0e06e68fa47fa4058416a6c8700551f1b9a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 16:59:00 2023 -0500
