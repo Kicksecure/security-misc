@@ -14,13 +14,13 @@ cmdline=$(cat /proc/cmdline)
 kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
 initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
 
-if ! test -r "$initrd"; then
-   echo "$0: ERROR: Initrd File '$initrd' not found or not readable!"
+if ! test -r "$kernel"; then
+   echo "$0: ERROR: Kernel File '$kernel' not found or not readable!"
    exit 1
 fi
 
-if ! test -r "$kernel"; then
-   echo "$0: ERROR: Kernel File '$kernel' not found or not readable!"
+if ! test -r "$initrd"; then
+   echo "$0: ERROR: Initrd File '$initrd' not found or not readable!"
    exit 1
 fi
 
