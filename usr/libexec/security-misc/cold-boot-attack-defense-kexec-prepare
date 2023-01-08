@@ -10,6 +10,11 @@ set -e
 ## Get the kernel command-line arguments
 cmdline=$(cat /proc/cmdline)
 
+if [ "$cmdline" = "" ]; then
+   echo "$0: ERROR: /proc/cmdline is empty!"
+   exit 1
+fi
+
 boot_image_full=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*')
 ## example boot_image_full:
 ## BOOT_IMAGE=/vmlinuz-5.10.0-20-amd64
