@@ -1,3 +1,39 @@
+commit f3b84e15be40ef64969b70bc62ab4bf8d40352b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 07:16:18 2023 -0500
+
+    refactoring
+
+commit 96d6ca7ae01d537ab972798417b9453d57c03cd7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 07:09:09 2023 -0500
+
+    improve kernel and initrd file detection
+
+commit 8367b27a0df2e6ea5bc2d57d1520cfdd2f4d35e2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 07:08:18 2023 -0500
+
+    output
+
+commit da0fc9f5bd5d1551f46fb5625010b317d30274b3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 07:07:43 2023 -0500
+
+    improve kernel and initrd file detection
+
+commit 5b11eecaecdec7487224b90708da82c10ccc4d63
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 06:45:10 2023 -0500
+
+    refactoring
+
+commit e81dd6cd25f58871c1f6b4a082f81eec34a518b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 7 18:13:57 2023 -0500
+
+    bumped changelog version
+
 commit 938b87d26c195b6804796d4fa6050a453278700c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 18:06:10 2023 -0500
