@@ -10,9 +10,44 @@ set -e
 ## Get the kernel command-line arguments
 cmdline=$(cat /proc/cmdline)
 
-## Get the current boot image
-kernel=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*' | cut -d '=' -f 2)
+boot_image_full=$(echo "$cmdline" | grep -o 'BOOT_IMAGE=\S*')
+## example boot_image_full:
+## BOOT_IMAGE=/vmlinuz-5.10.0-20-amd64
+## BOOT_IMAGE=/boot/vmlinuz-5.10.0-20-amd64
+
+if [ "$boot_image_full" = "" ]; then
+   echo "$0: ERROR: /proc/cmdline does not contain BOOT_IMAGE!"
+   exit 1
+fi
+
+boot_image=$(echo "$boot_image_full" | cut -d '=' -f 2)
+## example boot_image:
+## /vmlinuz-5.10.0-20-amd64
+## /boot/vmlinuz-5.10.0-20-amd64
+
+if [ "$boot_image" = "" ]; then
+   echo "$0: ERROR: boot_image detection failed (is empty)!"
+   exit 1
+fi
+
+boot_image_without_boot_slash=$(echo "$kernel" | sed "s#boot/##")
+
+if [ "$boot_image_without_boot_slash" = "" ]; then
+   echo "$0: ERROR: boot_image_without_boot_slash detection failed (is empty)!"
+   exit 1
+fi
+
+if test -r "/boot/$boot_image_without_boot_slash" ; then
+   kernel="/boot/$boot_image_without_boot_slash"
+elif test -r "/$boot_image_without_boot_slash" ; then
+   kernel="/$boot_image_without_boot_slash"
+fi
+## example kernel:
+## /boot//vmlinuz-5.10.0-20-amd64
+
 initrd=$(echo "$kernel" | sed "s#vmlinuz#initrd.img#")
+## example initrd:
+## /boot//initrd.img-5.10.0-20-amd64
 
 if ! test -r "$kernel"; then
    echo "$0: ERROR: Kernel File '$kernel' not found or not readable!"
