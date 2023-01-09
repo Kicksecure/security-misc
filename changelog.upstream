@@ -1,3 +1,29 @@
+commit 6faa050dd8d26bd6436688b32bbc7a6515f9cb14
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 06:54:04 2023 -0500
+
+    migrate ram-wipe to dedicated package
+
+commit ad5d0d4b12e73b74166aafb5c34252f1e1af1854
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 06:37:45 2023 -0500
+
+    disable kexec (revert enabling kexec)
+    
+    remove kexec-utils for ram-wipe since moved to its own package
+
+commit 87c4e77c017aba7d57ae1fc7cf41a1f3143f1a04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 06:23:00 2023 -0500
+
+    migrate to ram-wipe package
+
+commit 3867acf723f26416a047260010518829adcefc03
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 05:34:48 2023 -0500
+
+    bumped changelog version
+
 commit d769099db1dbf90350838430cda2de7196076c5d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 9 05:34:07 2023 -0500
