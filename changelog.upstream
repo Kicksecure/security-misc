@@ -1,3 +1,17 @@
+commit d769099db1dbf90350838430cda2de7196076c5d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 05:34:07 2023 -0500
+
+    use warn instead of info for now
+    
+    because dracut does not show info messages when kernel parameter quiet is set
+
+commit 7fa6946694a997e04b17ecb3a167d767543093a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 8 07:17:02 2023 -0500
+
+    bumped changelog version
+
 commit f3b84e15be40ef64969b70bc62ab4bf8d40352b6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 8 07:16:18 2023 -0500
