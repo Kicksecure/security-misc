@@ -39,4 +39,4 @@ rm_conffile /etc/modprobe.d/30_nf_conntrack_helper_disable.conf
 rm_conffile /etc/security/limits.d/disable-coredumps.conf
 
 ## moved to separate package ram-wipe
-/etc/default/grub.d/40_cold_boot_attack_defense.cfg
+rm_conffile /etc/default/grub.d/40_cold_boot_attack_defense.cfg
