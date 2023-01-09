@@ -25,15 +25,15 @@ ram_wipe() {
    kernel_wiperam_setting=$(getarg wiperam)
 
    if [ "$kernel_wiperam_setting" = "skip" ]; then
-      info "wipe-ram.sh: Skip, because wiperam=skip kernel parameter detected, OK."
+      warn "wipe-ram.sh: Skip, because wiperam=skip kernel parameter detected, OK."
       return 0
    fi
 
    if [ "$kernel_wiperam_setting" = "force" ]; then
-      info "wipe-ram.sh: wiperam=force detected, OK."
+      warn "wipe-ram.sh: wiperam=force detected, OK."
    else
       if systemd-detect-virt &>/dev/null ; then
-         info "wipe-ram.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK."
+         warn "wipe-ram.sh: Skip, because VM detected and not using wiperam=force kernel parameter, OK."
          return 0
       fi
    fi
@@ -44,7 +44,7 @@ ram_wipe() {
       return 0
    fi
 
-   info "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
+   warn "wipe-ram.sh: Cold boot attack defense... Starting RAM wipe on shutdown..."
 
    drop_caches
 
@@ -54,20 +54,20 @@ ram_wipe() {
 
    drop_caches
 
-   info "wipe-ram.sh: RAM wipe completed, OK."
+   warn "wipe-ram.sh: RAM wipe completed, OK."
 
    ## In theory might be better to check this beforehand, but the test is
    ## really fast. The user has no chance of reading the console output
    ## without introducing an artificial delay because the sdmem which runs
    ## after this, results in much more console output.
-   info "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
+   warn "wipe-ram.sh: Checking if there are still mounted encrypted disks..."
 
    local dmsetup_actual_output dmsetup_expected_output
    dmsetup_actual_output="$(dmsetup ls --target crypt)"
    dmsetup_expected_output="No devices found"
 
    if [ "$dmsetup_actual_output" = "$dmsetup_expected_output" ]; then
-      info "wipe-ram.sh: Success, there are no more mounted encrypted disks, OK."
+      warn "wipe-ram.sh: Success, there are no more mounted encrypted disks, OK."
    else
       ## dracut should unmount the root encrypted disk cryptsetup luksClose during shutdown
       ## https://github.com/dracutdevs/dracut/issues/1888
@@ -81,9 +81,9 @@ dmsetup_actual_output: '$dmsetup_actual_output'"
       sleep 5
    fi
 
-   info "wipe-ram.sh: Now running 'kexec --exec'..."
+   warn "wipe-ram.sh: Now running 'kexec --exec'..."
    if kexec --exec ; then
-      info "wipe-ram.sh: 'kexec --exec' succeeded."
+      warn "wipe-ram.sh: 'kexec --exec' succeeded."
       return 0
    fi
 
