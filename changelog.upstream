@@ -1,3 +1,15 @@
+commit 7bda2ad3e8f30668428e054f57613d7c2ed2a4d6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 24 06:34:17 2023 -0500
+
+    move ram-wipe scripts to dedicated ram-wipe package
+
+commit 11d0bb2c006eb7add5f9b0e70a199098972af25e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 9 07:05:18 2023 -0500
+
+    bumped changelog version
+
 commit c50665218776733919845044b39466c57117542d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 9 07:05:06 2023 -0500
