@@ -1,3 +1,23 @@
+commit 8c3204a5e42b0c4dc6ff9c66568ac78abc4dbd47
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 25 15:20:30 2023 -0500
+
+    comment
+
+commit 65c29f493b56798bc67de7ea451f8f65d99d3093
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 25 15:13:19 2023 -0500
+
+    move kexec disabling to dedicated file `/etc/sysctl.d/30_security-misc_kexec-disable.conf`
+    
+    so ram-wipe can `config-package-dev` `hide` this config file
+
+commit 56c7c57b3a3929f57c9173f9156b2b9f7f7f854e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 24 07:09:40 2023 -0500
+
+    bumped changelog version
+
 commit b87d9eb86544a7f06772a0db803711b49ec3f554
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 24 07:08:13 2023 -0500
