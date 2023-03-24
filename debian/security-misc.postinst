@@ -32,6 +32,7 @@ case "$1" in
     triggered)
       echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\@: '$@' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
+      /usr/libexec/security-misc/mmap-rnd-bits
       exit 0
     ;;
 
@@ -56,6 +57,8 @@ likely only the trigger, not the cause. Unless you know this is not an issue, \
 you should fix running 'update-grub', otherwise your system might no longer \
 boot." >&2
 fi
+
+/usr/libexec/security-misc/mmap-rnd-bits
 
 true "INFO: debhelper beginning here."
 

@@ -18,6 +18,8 @@ true "
 ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
 pam-auth-update --package --remove "$DPKG_MAINTSCRIPT_PACKAGE"
 
+rm -f /etc/sysctl.d/30_security-misc_aslr-mmap.conf
+
 true "INFO: debhelper beginning here."
 
 #DEBHELPER#
