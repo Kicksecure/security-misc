@@ -18,12 +18,12 @@ COMPAT_BITS_MAX_DEFAULT=16
 if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* | head -n 1)
 then
     ## Find the relevant config options.
-    if ! BITS_MAX=$(grep "CONFIG_ARCH_MMAP_RND_BITS_MAX" "${CONFIG}" | cut -d "=" -f 2)
+    if ! BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2)
     then
         echo "Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAX"
         BITS_MAX="${BITS_MAX_DEFAULT}"
     fi
-    if ! COMPAT_BITS_MAX=$(grep "CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX" "${CONFIG}" | cut -d "=" -f 2)
+    if ! COMPAT_BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2)
     then
         echo "Error detecting CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX"
         COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
