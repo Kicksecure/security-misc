@@ -32,7 +32,7 @@ case "$1" in
     triggered)
       echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\@: '$@' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
-      /usr/libexec/security-misc/mmap-rnd-bits
+      /usr/libexec/security-misc/mmap-rnd-bits || true
       exit 0
     ;;
 
