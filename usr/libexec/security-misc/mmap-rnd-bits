@@ -45,6 +45,9 @@ vm.mmap_rnd_bits=${BITS_MAX}
 vm.mmap_rnd_compat_bits=${COMPAT_BITS_MAX}"
 
 ## Write the sysctl.d conf file.
-echo "${SYSCTL}" > /etc/sysctl.d/30_security-misc_aslr-mmap.conf
+if ! echo "${SYSCTL}" | tee /etc/sysctl.d/30_security-misc_aslr-mmap.conf > /dev/null
+then
+    echo "Error writing ASLR map config"
+fi
 
 exit 0
