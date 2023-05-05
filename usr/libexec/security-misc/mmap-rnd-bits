@@ -9,6 +9,23 @@
 set -euo pipefail
 shopt -s failglob
 
+exit_with_error() {
+   echo "$0: SEE ALSO:" >&2
+   echo "" >&2
+   echo "https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-ppc64el/16514" >&2
+   exit 1
+}
+
+if ! test -d /etc/sysctl.d ; then
+   echo "$0: ERROR: Folder /etc/sysctl.d does not exist!" >&2
+   exit_with_error
+fi
+
+if ! test -w /etc/sysctl.d/30_security-misc_aslr-mmap.conf ; then
+   echo "$0: ERROR: File /etc/sysctl.d/30_security-misc_aslr-mmap.conf not writeable! This script is supposed to be run as root." >&2
+   exit_with_error
+fi
+
 ## Defaults in case Linux config detection fails. These are likely to work fine
 ## on x86_64, probably not elsewhere.
 BITS_MAX_DEFAULT=32
@@ -48,5 +65,4 @@ if echo "${SYSCTL}" | tee /etc/sysctl.d/30_security-misc_aslr-mmap.conf > /dev/n
 fi
 
 echo "$0: ERROR: Error writing ASLR map config file '/etc/sysctl.d/30_security-misc_aslr-mmap.conf'!" >&2
-
-exit 1
+exit_with_error
