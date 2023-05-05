@@ -21,8 +21,8 @@ if ! test -d /etc/sysctl.d ; then
    exit_with_error
 fi
 
-if ! test -w /etc/sysctl.d/30_security-misc_aslr-mmap.conf ; then
-   echo "$0: ERROR: File /etc/sysctl.d/30_security-misc_aslr-mmap.conf not writeable! This script is supposed to be run as root." >&2
+if ! test -w /etc/sysctl.d ; then
+   echo "$0: ERROR: Folder /etc/sysctl.d not writeable! This script is supposed to be run as root." >&2
    exit_with_error
 fi
 
