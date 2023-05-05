@@ -15,6 +15,10 @@ activate-noawait update-initramfs
 ## LKRG /usr/share/security-misc/lkrg/lkrg-virtualbox
 interest-noawait /usr/bin/vboxmanage
 
+## /usr/libexec/security-misc/mmap-rnd-bits
+## auto generates:
+## /etc/sysctl.d/30_security-misc_aslr-mmap.conf
+## sets:
 ## vm.mmap_rnd_bits
 interest-noawait /boot
 

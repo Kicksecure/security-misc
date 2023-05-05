@@ -58,7 +58,7 @@ you should fix running 'update-grub', otherwise your system might no longer \
 boot." >&2
 fi
 
-/usr/libexec/security-misc/mmap-rnd-bits
+/usr/libexec/security-misc/mmap-rnd-bits || true
 
 true "INFO: debhelper beginning here."
 
