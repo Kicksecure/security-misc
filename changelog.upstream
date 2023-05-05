@@ -1,3 +1,141 @@
+commit 014a28ba07406e5d69f86e90ddb8a27b3778c3a8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 15:04:21 2023 +0000
+
+    comment
+
+commit ec01c1a99630f44a73763b019a1bad6dc52bbf4e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 15:02:31 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit 3dc406f138ee3dc81b54db2c8c4b795fc6b7c9d5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 15:01:22 2023 +0000
+
+    minor
+
+commit 40e940ec58928049bb38b85d15beaead80740192
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:54:24 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit f4fd0f90120e8983b37bc5822cf98a215d25990e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:53:07 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit a8e4121befe19bb7d2f74582655a14bded23a37d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:52:07 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit 9184e6bb921a9c7356e8d2c7216a1da91f963304
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:51:19 2023 +0000
+
+    fix
+
+commit 89168ef40ce713b27974e4e38f6e3e63646d78bc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:49:56 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit d6d79e96c9a3f25b75d92a46dc97d6191d6ac691
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:44:29 2023 +0000
+
+    minor mmap-rnd-bits improvements
+
+commit 15d0ee100834e01e3f17ee179c3120f37eb3cae5
+Merge: 1137e6c 2d40bbc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 14:37:34 2023 +0000
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 2d40bbc8fec7ceea47b64fdebc9e751b26e0cf27
+Merge: 5c6db28 48a68ba
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 5 10:14:43 2023 -0400
+
+    Merge pull request #120 from JeremyRand/aslr-ppc64le
+    
+    vm.mmap_rnd_bits: Fix ppc64le
+
+commit 48a68ba237895c0c6c24ebd256ae6a9adec2628f
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Sat Apr 22 04:43:41 2023 +0000
+
+    mmap-rnd-bits: Handle unwritable /etc/sysctl.d/
+
+commit 434cfb427f739258bd3280ce148cdbe85c800f8a
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Sat Apr 22 04:36:05 2023 +0000
+
+    mmap-rnd-bits: Check that configs are valid integers
+
+commit 76ca8a27f94d89ed783b900257934c0749e631ce
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Sat Apr 22 04:29:14 2023 +0000
+
+    mmap-rnd-bits: Handle missing kernel config file
+
+commit 2cf105700a98297f65026e43b435fe017a04ba07
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Sat Apr 22 04:08:20 2023 +0000
+
+    postinst: Don't fail if mmap-rnd-bits fails
+
+commit 61f63255acdf942e52af35d7f6d1c271a671e6f7
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Fri Mar 24 12:32:58 2023 +0000
+
+    vm.mmap_rnd_bits: Fix ppc64le
+    
+    Probably fixes a bunch of other non-x86_64 arches too.
+
+commit 5c6db28881463e8c764872a8cd268c23ac64b8f1
+Merge: 8a34d6c ed5f8be
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Mar 31 04:52:55 2023 -0400
+
+    Merge pull request #122 from raja-grewal/tcp
+    
+    Remove outdated comment about SACK, DSACK, and FACK
+
+commit 8a34d6c067bdebc513f34cd3c434b0675f118e10
+Merge: 1137e6c 7a4212d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Mar 31 04:52:18 2023 -0400
+
+    Merge pull request #121 from raja-grewal/copyright
+    
+    Update Copyright
+
+commit ed5f8be9ebd4f34c8b8de78abe0a8df0775b80aa
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Mar 30 19:17:43 2023 +1100
+
+    Remove outdated comment about SACK, DSACK, and FACK
+
+commit 7a4212dd76c866e1db4dd4875e51c0d49bb3574d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Mar 30 17:08:47 2023 +1100
+
+    Update copyright
+
+commit 1137e6c9104565b8f7546a9a5450ec2c2330efb7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 30 05:58:47 2023 -0500
+
+    bumped changelog version
+
 commit 8c3204a5e42b0c4dc6ff9c66568ac78abc4dbd47
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 25 15:20:30 2023 -0500
