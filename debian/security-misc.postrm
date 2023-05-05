@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Copyright (C) 2012 - 2022 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2012 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
@@ -17,6 +17,8 @@ true "
 
 ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
 pam-auth-update --package --remove "$DPKG_MAINTSCRIPT_PACKAGE"
+
+rm -f /etc/sysctl.d/30_security-misc_aslr-mmap.conf
 
 true "INFO: debhelper beginning here."
 
