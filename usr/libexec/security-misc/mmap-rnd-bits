@@ -14,20 +14,20 @@ shopt -s failglob
 more_info_link="https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-ppc64el/16514"
 
 exit_with_error() {
-   echo "$0: SEE ALSO:" >&2
-   echo "" >&2
-   echo "$more_info_link" >&2
-   exit 1
+  echo "$0: SEE ALSO:" >&2
+  echo "" >&2
+  echo "$more_info_link" >&2
+  exit 1
 }
 
 if ! test -d /etc/sysctl.d ; then
-   echo "$0: ERROR: Folder /etc/sysctl.d does not exist!" >&2
-   exit_with_error
+  echo "$0: ERROR: Folder /etc/sysctl.d does not exist!" >&2
+  exit_with_error
 fi
 
 if ! test -w /etc/sysctl.d ; then
-   echo "$0: ERROR: Folder /etc/sysctl.d not writeable! This script is supposed to be run as root." >&2
-   exit_with_error
+  echo "$0: ERROR: Folder /etc/sysctl.d not writeable! This script is supposed to be run as root." >&2
+  exit_with_error
 fi
 
 ## Defaults in case Linux config detection fails. These are likely to work fine
@@ -37,19 +37,19 @@ COMPAT_BITS_MAX_DEFAULT=16
 
 ## Find the most recently modified Linux config file.
 if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* | head -n 1) ; then
-    ## Find the relevant config options.
-    if ! BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
-        echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAXQ Using built-in default." >&2
-        BITS_MAX="${BITS_MAX_DEFAULT}"
-    fi
-    if ! COMPAT_BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
-        echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX! Using built-in default." >&2
-        COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
-    fi
+  ## Find the relevant config options.
+  if ! BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
+   echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAXQ Using built-in default." >&2
+   BITS_MAX="${BITS_MAX_DEFAULT}"
+  fi
+  if ! COMPAT_BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
+   echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX! Using built-in default." >&2
+   COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
+  fi
 else
-    echo "$0: ERROR: Error detecting Linux config! Using built-in defaults." >&2
-    BITS_MAX="${BITS_MAX_DEFAULT}"
-    COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
+  echo "$0: ERROR: Error detecting Linux config! Using built-in defaults." >&2
+  BITS_MAX="${BITS_MAX_DEFAULT}"
+  COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
 fi
 
 ## Generate a sysctl.d conf file.
@@ -69,7 +69,7 @@ vm.mmap_rnd_compat_bits=${COMPAT_BITS_MAX}"
 
 ## Write the sysctl.d conf file.
 if echo "${SYSCTL}" | tee /etc/sysctl.d/30_security-misc_aslr-mmap.conf > /dev/null ; then
-   exit 0
+  exit 0
 fi
 
 echo "$0: ERROR: Error writing ASLR map config file '/etc/sysctl.d/30_security-misc_aslr-mmap.conf'!" >&2
