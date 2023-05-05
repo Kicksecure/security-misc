@@ -47,6 +47,7 @@ if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* |
    COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
   fi
 else
+  ## Could be a chroot.
   echo "$0: INFO: No Linux config file detected in folder /boot/ (starting with 'config-'. Therefore using built-in defaults." >&2
   BITS_MAX="${BITS_MAX_DEFAULT}"
   COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
