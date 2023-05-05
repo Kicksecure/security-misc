@@ -5,6 +5,8 @@
 
 ## This script enforces the maximum ASLR hardening settings for mmap, given the
 ## installed Linux config.
+## See also:
+## https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-ppc64el/16514
 
 set -euo pipefail
 shopt -s failglob
