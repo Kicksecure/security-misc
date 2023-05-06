@@ -71,8 +71,11 @@ vm.mmap_rnd_compat_bits=${COMPAT_BITS_MAX}"
 
 ## Write the sysctl.d conf file.
 if echo "${SYSCTL}" | tee "$aslr_mmap_config_file" > /dev/null ; then
+  echo "$0: INFO: Successfully written ASLR map config file:
+$aslr_mmap_config_file"
   exit 0
 fi
 
-echo "$0: ERROR: Error writing ASLR map config file '$aslr_mmap_config_file'!" >&2
+echo "$0: ERROR: Error writing ASLR map config file:
+$aslr_mmap_config_file" >&2
 exit_with_error
