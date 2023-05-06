@@ -12,6 +12,7 @@ set -euo pipefail
 shopt -s failglob
 
 more_info_link="https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-ppc64el/16514"
+aslr_mmap_config_file="/etc/sysctl.d/30_security-misc_aslr-mmap.conf"
 
 exit_with_error() {
   echo "$0: SEE ALSO:" >&2
@@ -69,9 +70,9 @@ vm.mmap_rnd_bits=${BITS_MAX}
 vm.mmap_rnd_compat_bits=${COMPAT_BITS_MAX}"
 
 ## Write the sysctl.d conf file.
-if echo "${SYSCTL}" | tee /etc/sysctl.d/30_security-misc_aslr-mmap.conf > /dev/null ; then
+if echo "${SYSCTL}" | tee "$aslr_mmap_config_file" > /dev/null ; then
   exit 0
 fi
 
-echo "$0: ERROR: Error writing ASLR map config file '/etc/sysctl.d/30_security-misc_aslr-mmap.conf'!" >&2
+echo "$0: ERROR: Error writing ASLR map config file '$aslr_mmap_config_file'!" >&2
 exit_with_error
