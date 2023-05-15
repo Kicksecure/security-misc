@@ -37,9 +37,6 @@ often abused to exploit use-after-free flaws.
 * Kexec is disabled as it can be used to load a malicious kernel and gain
 arbitrary code execution in kernel mode.
 
-* The bits of entropy used for mmap ASLR are increased, therefore improving
-its effectiveness.
-
 * Randomises the addresses for mmap base, heap, stack, and VDSO pages.
 
 * Prevents unintentional writes to attacker-controlled files.
@@ -53,6 +50,13 @@ Secure Attention Key.
 prevents writing potentially sensitive contents of memory to disk.
 
 * TCP timestamps are disabled as it can allow detecting the system time.
+
+### mmap ASLR
+
+* The bits of entropy used for mmap ASLR are maxed out via
+`/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
+`CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX` that
+the kernel was built with), therefore improving its effectiveness.
 
 ### Boot parameters
 
