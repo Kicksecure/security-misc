@@ -1,3 +1,46 @@
+commit 39676395f814007f74ce1edb0aee0ada4d4fa478
+Merge: 6511dac 1f38fcf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon May 15 11:34:57 2023 +0000
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 1f38fcfefa1ccd732e4500522cc0978bda69ab0b
+Merge: d66a9ba 6ab400c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon May 15 07:34:16 2023 -0400
+
+    Merge pull request #125 from JeremyRand/typo
+    
+    mmap-rnd-bits: Fix typo in error message
+
+commit d66a9bac551e7544eed592a69f576d27880e2bf3
+Merge: 6511dac 9d23717
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon May 15 07:34:00 2023 -0400
+
+    Merge pull request #124 from JeremyRand/doc-aslr
+    
+    README: Document mmap-rnd-bits
+
+commit 6ab400c9d982bde16271052f181c87255046037e
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Tue May 9 10:55:31 2023 +0000
+
+    mmap-rnd-bits: Fix typo in error message
+
+commit 9d23717b6d3f94d8fad5ab00628dcbf41fa2cab5
+Author: Jeremy Rand <jeremyrand@danwin1210.de>
+Date:   Mon May 8 13:45:18 2023 +0000
+
+    README: Document mmap-rnd-bits
+
+commit 6511dac1d4aea1800ce8e51d1f6cdbae4d31e10c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat May 6 12:00:12 2023 +0000
+
+    bumped changelog version
+
 commit 0c10b3f0383d69c2d504b3e346da68b056d1dca8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat May 6 11:59:59 2023 +0000
