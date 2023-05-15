@@ -386,10 +386,6 @@ https://github.com/ioerror/torbirdy/pull/11
 Some hardening is opt-in as it causes too much breakage to be enabled by
 default.
 
-* TCP SACK can be disabled as it is commonly exploited and is rarely used by
-uncommenting settings in the `/etc/sysctl.d/30_security-misc.conf`
-configuration file.
-
 * An optional systemd service mounts `/proc` with `hidepid=2` at boot to
 prevent users from seeing another user's processes. This is disabled by
 default because it is incompatible with `pkexec`. It can be enabled by
