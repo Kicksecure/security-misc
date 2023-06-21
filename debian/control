@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 13), debhelper-compat (= 13), config-package-dev, d
 Homepage: https://github.com/Whonix/security-misc
 Vcs-Browser: https://github.com/Whonix/security-misc
 Vcs-Git: https://github.com/Whonix/security-misc.git
-Standards-Version: 4.6.1.0
+Standards-Version: 4.6.2
 Rules-Requires-Root: no
 
 Package: security-misc
