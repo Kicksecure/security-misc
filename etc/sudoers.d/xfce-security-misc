@@ -4,7 +4,7 @@
 ## https://forums.whonix.org/t/xfce4-power-manager-xfpm-power-backlight-helper-pkexec-lxsudo-popup/8764
 ## /usr/share/polkit-1/actions/org.xfce.power.policy
 
-## Feel free to out comment this if you are not using xfce4-power-manager or XFCE.
+## Feel free to out comment this if you are not using xfce4-power-manager or Xfce.
 
 #%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]]
 #%sudo ALL=NOPASSWD: /usr/sbin/xfpm-power-backlight-helper --set-brightness [[\:digit\:]][[\:digit\:]]
