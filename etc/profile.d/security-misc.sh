@@ -6,7 +6,9 @@
 if [ -z "$XDG_CONFIG_DIRS" ]; then
    XDG_CONFIG_DIRS=/etc/xdg
 fi
-export XDG_CONFIG_DIRS=/usr/share/security-misc/:$XDG_CONFIG_DIRS
+if ! echo "$XDG_CONFIG_DIRS" | grep --quiet /usr/share/security-misc/ ; then
+   export XDG_CONFIG_DIRS=/usr/share/security-misc/:$XDG_CONFIG_DIRS
+fi
 
 if [ -x /usr/libexec/security-misc/panic-on-oops ]; then
    sudo --non-interactive /usr/libexec/security-misc/panic-on-oops
