@@ -40,3 +40,6 @@ rm_conffile /etc/security/limits.d/disable-coredumps.conf
 
 ## moved to separate package ram-wipe
 rm_conffile /etc/default/grub.d/40_cold_boot_attack_defense.cfg
+
+rm_conffile /etc/X11/Xsession.d/50panic_on_oops
+rm_conffile /etc/X11/Xsession.d/50security-misc
