@@ -1,3 +1,15 @@
+commit 2d4524108445829d7ac80e828e9a1442cf038a6b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 12 11:37:01 2023 -0400
+
+    avoid duplicate environment variables
+
+commit e96e6aa38e29888a64fa35f85becc1596118a812
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 12 10:43:40 2023 -0400
+
+    bumped changelog version
+
 commit fa820e897895eda93011a0f2bbd915ffffcb1459
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 12 10:40:27 2023 -0400
