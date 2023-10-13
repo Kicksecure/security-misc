@@ -11,5 +11,6 @@ if ! echo "$XDG_CONFIG_DIRS" | grep --quiet /usr/share/security-misc/ ; then
 fi
 
 if [ -x /usr/libexec/security-misc/panic-on-oops ]; then
-   sudo --non-interactive /usr/libexec/security-misc/panic-on-oops
+   ## Hide output. Otherwise could confuse Qubes UpdatesProxy.
+   sudo --non-interactive /usr/libexec/security-misc/panic-on-oops 1>/dev/null 2>/dev/null
 fi
