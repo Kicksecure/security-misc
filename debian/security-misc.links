@@ -1,2 +1,2 @@
 /etc/profile.d/security-misc.sh /etc/zprofile.d/security-misc.sh
-/etc/profile.d/security-misc.sh /etc/X11/Xsession.d/security-misc.sh
+/etc/profile.d/security-misc.sh /etc/X11/Xsession.d/security-misc
