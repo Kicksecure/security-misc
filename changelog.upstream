@@ -1,3 +1,15 @@
+commit ae2c1c5a7a02a5f3f6a8bcd4a90fdc9e3b512e62
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 21 14:18:50 2023 -0400
+
+    fix xession environment variable
+
+commit 43375fa1f4d32f04907edf1297fef737342b49ea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 21 12:34:59 2023 -0400
+
+    bumped changelog version
+
 commit d543825d85a5d84274c21cd85db6df777948606e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Oct 21 12:24:59 2023 -0400
