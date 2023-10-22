@@ -22,6 +22,7 @@ remount_hook() {
    if getargbool 1 remountsecure; then
       if ! remount-secure ; then
          warn "'remount-secure' failed."
+         return 1
       fi
       info "'remount-secure' success."
       return 0
