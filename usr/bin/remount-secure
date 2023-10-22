@@ -194,10 +194,10 @@ _var_log() {
    remount_secure "$@"
 }
 
-## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 _lib() {
    mount_folder="$NEWROOT/lib"
    ## Not using noexec on /lib.
+   ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
    intended_mount_options="nosuid,nodev"
    remount_secure "$@"
 }
