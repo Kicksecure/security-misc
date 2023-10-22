@@ -28,6 +28,10 @@ init() {
    mkdir --parents "/run/remount-secure"
    exit_code=0
    mount_output="$(mount)"
+
+   ## Debugging.
+   $output_command "INFO: mount_output:"
+   $output_command "$mount_output"
 }
 
 parse_options() {
