@@ -13,17 +13,22 @@ set -e
 set -o pipefail
 set -o nounset
 
-if test -o xtrace ; then
-   output_command=true
-else
-   output_command=echo
-fi
+init() {
+   if test -o xtrace ; then
+      output_command=true
+   else
+      output_command=echo
+   fi
 
-mkdir --parents "/run/remount-secure"
+   if [ "$(id -u)" != "0" ]; then
+      $output_command "ERROR: must be run as root! sudo $0"
+      exit 1
+   fi
 
-exit_code=0
-
-mount_output="$(mount)"
+   mkdir --parents "/run/remount-secure"
+   exit_code=0
+   mount_output="$(mount)"
+}
 
 parse_options() {
    ## Thanks to:
@@ -138,6 +143,7 @@ end() {
 }
 
 main() {
+   init "$@"
    parse_options "$@"
    _home "$@"
    _run "$@"
