@@ -1,3 +1,28 @@
+commit e065f85c8809d04a9a4c041dd8b9b81bacd04e24
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 08:10:48 2023 -0400
+
+    add remount-secure dracut module
+
+commit f0ee470ecd0fc37125165dd6a5cefb47339b14b4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 07:51:05 2023 -0400
+
+    comment
+
+commit e257f2a3806ba7013e8e47005fde1385044bc8d9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 07:50:14 2023 -0400
+
+    remount-secure:
+    no longer use /usr/libexec/helper-scripts/pre.bsh as not simple with dracut
+
+commit 27b3ba8bdf2556066a4be02cd1be9a4451a591b2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 07:06:00 2023 -0400
+
+    bumped changelog version
+
 commit ed11c68ac64c1ec4eaa590dbb56734d450c89b04
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 06:51:52 2023 -0400
