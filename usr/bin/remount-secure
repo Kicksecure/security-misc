@@ -103,7 +103,6 @@ remount_secure() {
       fi
    fi
 
-   ## BUG: echo: write error: Broken pipe
    if echo "$mount_output" | grep --quiet "$mount_folder " ; then
       ## Already mounted. Using remount.
       $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
