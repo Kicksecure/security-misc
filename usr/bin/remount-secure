@@ -120,12 +120,6 @@ remount_secure() {
    touch "$status_file_full_path"
 }
 
-_home() {
-   mount_folder="/home"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
-}
-
 _run() {
    mount_folder="/run"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
@@ -153,6 +147,12 @@ _tmp() {
 #    remount_secure "$@"
 # }
 
+_home() {
+   mount_folder="/home"
+   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   remount_secure "$@"
+}
+
 end() {
    exit $exit_code
 }
@@ -160,11 +160,11 @@ end() {
 main() {
    init "$@"
    parse_options "$@"
-   _home "$@"
    _run "$@"
    _dev_shm "$@"
    _tmp "$@"
    #_lib "$@"
+   _home "$@"
    end "$@"
 }
 
