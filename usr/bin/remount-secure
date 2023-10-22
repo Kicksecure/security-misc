@@ -79,7 +79,7 @@ remount_secure() {
    ## example status_file_full_path:
    ## /run/remount-secure/_home
 
-   mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder ")" || true
+   mount_line_of_mount_folder="$(findmnt --noheadings "$mount_folder")" || true
 
    if echo "$mount_line_of_mount_folder" | grep --quiet "$new_mount_options" ; then
       $output_command "INFO: $mount_folder has already intended mount options. ($new_mount_options)"
