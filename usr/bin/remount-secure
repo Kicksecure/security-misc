@@ -188,6 +188,18 @@ _var_tmp() {
    remount_secure "$@"
 }
 
+_var_log() {
+   mount_folder="/var/log"
+   intended_mount_options="nosuid,nodev,noexec"
+   remount_secure "$@"
+}
+
+_var_log_audit() {
+   mount_folder="/var/log/audit"
+   intended_mount_options="nosuid,nodev,noexec"
+   remount_secure "$@"
+}
+
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 _lib() {
    ## TODO: NEWROOT?
@@ -229,6 +241,10 @@ main() {
    #_var "$@"
 
    _var_tmp "$@"
+
+   ## TODO: ?
+   #_var_log
+   #_var_log_audit
 
    ## TODO: broken?
    #_lib "$@"
