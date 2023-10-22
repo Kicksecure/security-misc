@@ -13,50 +13,51 @@ set -e
 set -o pipefail
 set -o nounset
 
-## Not simple with dracut.
-# if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
-#    ## pre.bsh would `source` the following folders:
-#    ## /etc/remount-secure_pre.d/*.conf
-#    ## /usr/local/etc/remount-secure_pre.d/*.conf
-#    # shellcheck disable=SC1091
-#    source /usr/libexec/helper-scripts/pre.bsh
-# fi
-
 if test -o xtrace ; then
    output_command=true
 else
    output_command=echo
 fi
 
-if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
-   $output_command "INFO: file /etc/remount-disable exists. Doing nothing."
-   exit 0
-fi
-
-if [ -e /etc/exec ] || [ -e /usr/local/etc/exec ]; then
-   noexec=false
-   $output_command "INFO: Will remount with exec because file /etc/exec or /usr/local/etc/exec exists."
-else
-   if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
-      noexec=true
-      $output_command "INFO: Will remount with noexec because file /etc/noexec or /usr/local/etc/noexec exists."
-   else
-      $output_command "INFO: Will not remount with noexec because file /etc/noexec or /usr/local/etc/noexec does not exist."
-   fi
-fi
-
-mkdir --parents "/var/run/remount-secure"
-
-[[ -v noexec ]] || noexec=""
-[[ -v noexec_maybe ]] || noexec_maybe=""
-
-if [ "$noexec" = "true" ]; then
-   noexec_maybe=",noexec"
-fi
+mkdir --parents "/run/remount-secure"
 
 exit_code=0
 
 mount_output="$(mount)"
+
+parse_options() {
+   ## Thanks to:
+   ## http://mywiki.wooledge.org/BashFAQ/035
+
+   while :
+   do
+       case ${1:-} in
+           --remountnoexec)
+               $output_command "INFO: --remountnoexec"
+               noexec_maybe=",noexec"
+               shift
+               ;;
+           --force)
+               $output_command "INFO: --force"
+               option_force=true
+               shift
+               ;;
+           --)
+               shift
+               break
+               ;;
+           -*)
+               echo "unknown option: $1" >&2
+               exit 1
+               ;;
+           *)
+               break
+               ;;
+       esac
+   done
+
+   [[ -v noexec_maybe ]] || noexec_maybe=""
+}
 
 remount_secure() {
    ## ${FUNCNAME[1]} is the name of the calling function. I.e. the function
@@ -78,7 +79,7 @@ remount_secure() {
    ## When this package is upgraded, the systemd unit will run again.
    ## If the user meanwhile manually relaxed mount options, this should not be undone.
 
-   if [ "${1:-}" == "--force" ]; then
+   if [ "$option_force" == "true" ]; then
       if [ -e "$status_file_full_path" ]; then
          $output_command "INFO: $mount_folder already remounted earlier. Not remounting again. Use --force if this is what you want."
          return 0
@@ -137,6 +138,7 @@ end() {
 }
 
 main() {
+   parse_options "$@"
    _home "$@"
    _run "$@"
    _dev_shm "$@"
