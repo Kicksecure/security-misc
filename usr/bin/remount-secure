@@ -225,32 +225,31 @@ end() {
 
 ## TODO: need to be tested one by one
 main() {
-   init "$@"
+   init
    parse_options "$@"
-   _boot "$@"
-
-   _run "$@"
-
-   ## TODO: ?
-   #_dev "$@"
-
-   _dev_shm "$@"
-   _tmp "$@"
+   _boot
+   _run
 
    ## TODO: ?
-   #_var "$@"
+   #_dev
 
-   _var_tmp "$@"
+   _dev_shm
+   _tmp
+
+   ## TODO: ?
+   #_var
+
+   _var_tmp
 
    ## TODO: ?
    #_var_log
    #_var_log_audit
 
    ## TODO: broken?
-   #_lib "$@"
+   #_lib
 
-   _home "$@"
-   end "$@"
+   _home
+   end
 }
 
 main "$@"
