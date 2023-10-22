@@ -233,7 +233,7 @@ _var() {
 }
 
 _var_tmp() {
-   mount_folder="/var/tmp"
+   mount_folder="$NEWROOT/var/tmp"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
