@@ -178,8 +178,7 @@ _tmp() {
 
 _var() {
    mount_folder="$NEWROOT/var"
-   ## TODO: nodev? noexec?
-   intended_mount_options="nosuid"
+   intended_mount_options="nosuid,nodev"
    remount_secure "$@"
 }
 
