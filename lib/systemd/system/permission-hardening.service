@@ -3,7 +3,7 @@
 
 [Unit]
 Description=SUID, SGID, Capability and File Permission Hardening
-Documentation=https://github.com/Whonix/security-misc
+Documentation=https://github.com/Kicksecure/security-misc
 
 DefaultDependencies=no
 Before=sysinit.target

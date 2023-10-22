@@ -3,7 +3,7 @@
 
 [Unit]
 Description=remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
-Documentation=https://github.com/Whonix/security-misc
+Documentation=https://github.com/Kicksecure/security-misc
 
 DefaultDependencies=no
 Before=sysinit.target

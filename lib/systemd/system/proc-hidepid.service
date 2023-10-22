@@ -3,7 +3,7 @@
 
 [Unit]
 Description=Mounts /proc with hidepid=2
-Documentation=https://github.com/Whonix/security-misc
+Documentation=https://github.com/Kicksecure/security-misc
 DefaultDependencies=no
 Before=sysinit.target
 Requires=local-fs.target

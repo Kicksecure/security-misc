@@ -3,7 +3,7 @@
 
 [Unit]
 Description=Hide hardware information to unprivileged users
-Documentation=https://github.com/Whonix/security-misc
+Documentation=https://github.com/Kicksecure/security-misc
 DefaultDependencies=no
 Before=sysinit.target
 Requires=local-fs.target
