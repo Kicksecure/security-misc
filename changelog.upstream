@@ -1,3 +1,39 @@
+commit 6198ae317c4d8cbd06d95d5e2a585892f455cab6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 14:29:02 2023 -0400
+
+    fix
+
+commit 245fad09868c2d84bee66d65ecca32704786919b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 14:00:06 2023 -0400
+
+    fix
+
+commit 619f1705e13232680f38bc630f19f2ace32f48ad
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:58:55 2023 -0400
+
+    output
+
+commit 52fa7db0874be85a3db296499ab76f84a5f518db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:57:38 2023 -0400
+
+    output
+
+commit 8a592c2e371de1136d566e707ba56ce89309230a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:56:17 2023 -0400
+
+    fix remountsecure kernel parameter logic
+
+commit 3c183294cd8a402418eafc1e657c6524be49c487
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:31:55 2023 -0400
+
+    bumped changelog version
+
 commit e689f38ad0ba9727d482dbab25ea5d88e67a8edf
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 13:31:44 2023 -0400
