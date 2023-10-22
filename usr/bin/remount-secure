@@ -211,6 +211,13 @@ _home() {
    remount_secure
 }
 
+_usr() {
+#  needs testing
+#  mount_folder="$NEWROOT/usr"
+#  intended_mount_options="ro,nodev"
+#  remount_secure "$@"
+}
+
 end() {
    ## Debugging.
    $output_command "INFO: 'findmnt --list' output at the END."
