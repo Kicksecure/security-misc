@@ -228,15 +228,9 @@ main() {
 
    _dev_shm
    _tmp
-
    _var
-
    _var_tmp
    _var_log
-
-   ## TODO: broken?
-   #_lib
-
    _home
    end
 }
