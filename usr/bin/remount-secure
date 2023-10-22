@@ -103,7 +103,7 @@ remount_secure() {
       fi
    fi
 
-   if echo "$mount_output" | grep --quiet "$mount_folder " ; then
+   if findmnt --noheadings "$mount_folder " >/dev/null ; then
       ## Already mounted. Using remount.
       $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
       mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
