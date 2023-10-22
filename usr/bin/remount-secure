@@ -147,14 +147,14 @@ _boot() {
    mount_folder="$NEWROOT/boot"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    intended_mount_options="nosuid,nodev,noexec"
-   remount_secure "$@"
+   remount_secure
 }
 
 _run() {
    mount_folder="/run"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
+   remount_secure
 }
 
 _dev() {
@@ -162,19 +162,19 @@ _dev() {
    ## /dev should be nosuid,noexec as per:
    ## https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1991975
    intended_mount_options="nosuid,noexec"
-   remount_secure "$@"
+   remount_secure
 }
 
 _dev_shm() {
    mount_folder="/dev/shm"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
+   remount_secure
 }
 
 _tmp() {
    mount_folder="$NEWROOT/tmp"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
+   remount_secure
 }
 
 _var() {
@@ -182,19 +182,19 @@ _var() {
    ## noexec: Not possible. Reason:
    ## Debian stores executable maintainer scripts in /var/lib/dpkg/info folder.
    intended_mount_options="nosuid,nodev"
-   remount_secure "$@"
+   remount_secure
 }
 
 _var_tmp() {
    mount_folder="/var/tmp"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
+   remount_secure
 }
 
 _var_log() {
    mount_folder="$NEWROOT/var/log"
    intended_mount_options="nosuid,nodev,noexec"
-   remount_secure "$@"
+   remount_secure
 }
 
 _lib() {
@@ -202,13 +202,13 @@ _lib() {
    ## Cannot use noexec on /lib as per:
    ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
    intended_mount_options="nosuid,nodev"
-   remount_secure "$@"
+   remount_secure
 }
 
 _home() {
    mount_folder="$NEWROOT/home"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
-   remount_secure "$@"
+   remount_secure
 }
 
 end() {
