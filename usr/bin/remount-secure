@@ -13,13 +13,13 @@ set -e
 set -o pipefail
 set -o nounset
 
-if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
-   ## pre.bsh would `source` the following folders:
-   ## /etc/remount-secure_pre.d/*.conf
-   ## /usr/local/etc/remount-secure_pre.d/*.conf
-   # shellcheck disable=SC1091
-   source /usr/libexec/helper-scripts/pre.bsh
-fi
+# if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
+#    ## pre.bsh would `source` the following folders:
+#    ## /etc/remount-secure_pre.d/*.conf
+#    ## /usr/local/etc/remount-secure_pre.d/*.conf
+#    # shellcheck disable=SC1091
+#    source /usr/libexec/helper-scripts/pre.bsh
+# fi
 
 if test -o xtrace ; then
    output_command=true
