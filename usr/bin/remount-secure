@@ -188,6 +188,44 @@ _var_tmp() {
    remount_secure "$@"
 }
 
+# Not tested
+#
+#_var_log() {
+#   mount_folder="$NEWROOT/var/log"
+#   intended_mount_options="nosuid,nodev,noexec"
+#   remount_secure "$@"
+#}
+
+# Not tested
+#
+#_var_log_audit() {
+#   This directory is going to exist if the system is audited or has an audit daemon.
+#   Servers and/or some personal computers might have this as a seperate partition.
+#   So checking and applying is recommended.
+#   if [ ! -d /var/log/audit ]; then
+#        return
+#   fi
+#   mount_folder="$NEWROOT/var/log/audit"
+#   intended_mount_options="nosuid,nodev,noexec"
+#   remount_secure "$@"
+#}
+
+# Not tested
+#
+# Under /etc/apt/apt.conf.d/
+# If a config file is created with the following content:
+# Dpkg::Pre-Invoke {"mount -o remount,nodev,rw /usr";};
+# Dpkg::Post-Invoke {"mount -o remount,nodev,ro /usr";};
+# Then we make sure that everything under /usr, so all binaries are all read-only
+# No one can inject malicious binaries or modify existing one
+# Only apt can do this, with these post and pre invoke hooks.
+#
+#_usr() {
+#   mount_folder="$NEWROOT/usr"
+#   intended_mount_options="ro,nodev"
+#   remount_secure "$@"
+#}
+
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 # _lib() {
 #    mount_folder="$NEWROOT/lib"
