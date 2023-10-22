@@ -24,14 +24,14 @@ init() {
       $output_command "ERROR: must be run as root! sudo $0"
       exit 1
    fi
+   $output_command "START"
 
    mkdir --parents "/run/remount-secure"
    exit_code=0
-   mount_output="$(mount)"
 
    ## Debugging.
-   $output_command "INFO: mount_output:"
-   $output_command "$mount_output"
+   $output_command "INFO: 'findmnt --list' output at the START."
+   $output_command "$(findmnt --list)"
    $output_command ""
 }
 
@@ -103,7 +103,7 @@ remount_secure() {
       fi
    fi
 
-   if findmnt --noheadings "$mount_folder " >/dev/null ; then
+   if findmnt --noheadings "$mount_folder" >/dev/null ; then
       $output_command "INFO: '$mount_folder' already mounted, therefore using remount."
       $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
       mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
@@ -153,6 +153,9 @@ _home() {
 }
 
 end() {
+   ## Debugging.
+   $output_command "INFO: 'findmnt --list' output at the END."
+   $output_command "$(findmnt --list)"
    exit $exit_code
 }
 
