@@ -13,20 +13,20 @@ remount_hook() {
    remountsecure_action=$(getarg remountsecure)
 
    if [ "$remountsecure_action" = "1" ]; then
-      if ! remount-secure --remountnoexec ; then
-         warn "'remount-secure --remountnoexec' failed."
-         return 1
-      fi
-      info "'remount-secure --remountnoexec' success."
-      return 0
-   fi
-
-   if [ "$remountsecure_action" = "noexec" ]; then
-      if ! remount-secure ; then
+      if ! remount-secure; then
          warn "'remount-secure' failed."
          return 1
       fi
       info "'remount-secure' success."
+      return 0
+   fi
+
+   if [ "$remountsecure_action" = "noexec" ]; then
+      if ! remount-secure --remountnoexec; then
+         warn "'remount-secure --remountnoexec' failed."
+         return 1
+      fi
+      info "'remount-secure --remountnoexec' success."
       return 0
    fi
 
