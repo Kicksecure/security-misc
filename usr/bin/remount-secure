@@ -65,9 +65,9 @@ remount_secure() {
    status_file_name="${FUNCNAME[1]}"
    ## example status_file_name:
    ## _home
-   status_file_full_path="/var/run/remount-secure/${status_file_name}"
+   status_file_full_path="/run/remount-secure/${status_file_name}"
    ## example status_file_full_path:
-   ## /var/run/remount-secure/_home
+   ## /run/remount-secure/_home
 
    mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder ")" || true
 
