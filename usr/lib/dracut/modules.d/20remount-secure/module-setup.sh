@@ -5,6 +5,7 @@
 
 # called by dracut
 check() {
+    require_binaries touch || return 1
     require_binaries grep || return 1
     require_binaries id || return 1
     require_binaries mount || return 1
@@ -19,6 +20,7 @@ depends() {
 
 # called by dracut
 install() {
+    inst_multiple touch
     inst_multiple grep
     inst_multiple id
     inst_multiple mount
