@@ -11,14 +11,20 @@ remount_hook() {
    remount_action=$(getarg remountsecure)
 
    if getargbool 1 remountnoexec; then
-      remount-secure --remountnoexec
+      if ! remount-secure --remountnoexec ; then
+         warn "'remount-secure --remountnoexec' failed."
+      fi
       return 0
    fi
 
    if getargbool 1 remountsecure; then
-      remount-secure
+      if ! remount-secure ; then
+         warn "'remount-secure' failed."
+      fi
       return 0
    fi
+
+   warn "Not using remount-secure."
 }
 
 remount_hook
