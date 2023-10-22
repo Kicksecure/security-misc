@@ -159,6 +159,8 @@ _run() {
 
 _dev() {
    mount_folder="/dev"
+   ## /dev should be nosuid,noexec as per:
+   ## https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1991975
    intended_mount_options="nosuid,noexec"
    remount_secure "$@"
 }
