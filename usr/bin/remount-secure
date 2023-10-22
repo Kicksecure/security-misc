@@ -157,12 +157,11 @@ _run() {
    remount_secure "$@"
 }
 
-## TODO
-# _dev() {
-#    mount_folder="$NEWROOT/dev"
-#    intended_mount_options="nosuid,${noexec_maybe}"
-#    remount_secure "$@"
-# }
+_dev() {
+   mount_folder="$NEWROOT/dev"
+   intended_mount_options="nosuid,${noexec_maybe}"
+   remount_secure "$@"
+}
 
 _dev_shm() {
    mount_folder="$NEWROOT/dev/shm"
@@ -247,14 +246,19 @@ end() {
    exit $exit_code
 }
 
+## TODO: need to be tested one by one
 main() {
    init "$@"
    parse_options "$@"
-   _run "$@"
-   _dev_shm "$@"
-   _tmp "$@"
+   _boot "$@"
+   #_run "$@"
+   #_dev "$@"
+   #_dev_shm "$@"
+   #_tmp "$@"
+   #_var "$@"
+   #_var_tmp "$@"
    #_lib "$@"
-   _home "$@"
+   #_home "$@"
    end "$@"
 }
 
