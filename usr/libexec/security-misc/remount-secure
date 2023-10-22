@@ -21,20 +21,26 @@ if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
 fi
 
+if test -o xtrace ; then
+   output_command=true
+else
+   output_command=echo
+fi
+
 if [ -e /etc/remount-disable ] || [ -e /usr/local/etc/remount-disable ]; then
-   echo "INFO: file /etc/remount-disable exists. Doing nothing."
+   $output_command "INFO: file /etc/remount-disable exists. Doing nothing."
    exit 0
 fi
 
 if [ -e /etc/exec ] || [ -e /usr/local/etc/exec ]; then
    noexec=false
-   echo "INFO: Will remount with exec because file /etc/exec or /usr/local/etc/exec exists."
+   $output_command "INFO: Will remount with exec because file /etc/exec or /usr/local/etc/exec exists."
 else
    if [ -e /etc/noexec ] || [ -e /usr/local/etc/noexec ]; then
       noexec=true
-      echo "INFO: Will remount with noexec because file /etc/noexec or /usr/local/etc/noexec exists."
+      $output_command "INFO: Will remount with noexec because file /etc/noexec or /usr/local/etc/noexec exists."
    else
-      echo "INFO: Will not remount with noexec because file /etc/noexec or /usr/local/etc/noexec does not exist."
+      $output_command "INFO: Will not remount with noexec because file /etc/noexec or /usr/local/etc/noexec does not exist."
    fi
 fi
 
@@ -71,23 +77,23 @@ remount_secure() {
    mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder ")" || true
 
    if echo "$mount_line_of_mount_folder" | grep --quiet "$new_mount_options" ; then
-      echo "INFO: $mount_folder has already intended mount options."
+      $output_command "INFO: $mount_folder has already intended mount options."
       return 0
    fi
 
    if [ -e "$status_file_full_path" ]; then
-      echo "INFO: $mount_folder already remounted earlier. Not remounting again."
+      $output_command "INFO: $mount_folder already remounted earlier. Not remounting again."
       return 0
    fi
 
    ## BUG: echo: write error: Broken pipe
    if echo "$mount_output" | grep --quiet "$mount_folder " ; then
       ## Already mounted. Using remount.
-      echo mount -o "remount,${new_mount_options}" "$mount_folder"
+      $output_command mount -o "remount,${new_mount_options}" "$mount_folder"
       mount -o "remount,${new_mount_options}" "$mount_folder" || exit_code=100
    else
       ## Not yet mounted. Using mount bind.
-      echo mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
+      $output_command mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
       mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
