@@ -70,7 +70,7 @@ remount_secure() {
 
    mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder ")" || true
 
-   if echo "$mount_line_of_mount_folder" | grep -q "$new_mount_options" ; then
+   if echo "$mount_line_of_mount_folder" | grep --quiet "$new_mount_options" ; then
       echo "INFO: $mount_folder has already intended mount options."
       return 0
    fi
@@ -81,7 +81,7 @@ remount_secure() {
    fi
 
    ## BUG: echo: write error: Broken pipe
-   if echo "$mount_output" | grep -q "$mount_folder " ; then
+   if echo "$mount_output" | grep --quiet "$mount_folder " ; then
       ## Already mounted. Using remount.
       echo mount -o "remount,${new_mount_options}" "$mount_folder"
       mount -o "remount,${new_mount_options}" "$mount_folder" || exit_code=100
