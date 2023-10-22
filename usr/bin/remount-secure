@@ -109,6 +109,15 @@ remount_secure() {
       mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
    else
       $output_command "INFO: '$mount_folder' not yet mounted, therefore using mount bind."
+
+      ## Debugging.
+      ls "$mount_folder" /x >/dev/null || true
+      if test -d "$mount_folder" ; then
+         $output_command "INFO: '$mount_folder' folder exists: yes"
+      else
+         $output_command "INFO: '$mount_folder' folder exists: no"
+      fi
+
       $output_command INFO: Executing: mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
       mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
