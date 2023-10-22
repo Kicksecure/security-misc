@@ -2,14 +2,14 @@
 ## See the file COPYING for copying conditions.
 
 #### meta start
-#### project Whonix
+#### project Kicksecure
 #### category security
 #### description
 
 ## Trigger 'activate-noawait update-initramfs' also works with both,
 ## initramfs-tools as well as dracut.
 ## - Activate initramfs hook that sets the sysctl values before init is executed.
-## - dracut module 40sdmem-security-misc
+## - dracut module 20remount-secure
 activate-noawait update-initramfs
 
 ## LKRG /usr/share/security-misc/lkrg/lkrg-virtualbox
