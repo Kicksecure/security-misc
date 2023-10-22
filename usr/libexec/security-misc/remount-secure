@@ -77,23 +77,28 @@ remount_secure() {
    mount_line_of_mount_folder="$(echo "$mount_output" | grep "$mount_folder ")" || true
 
    if echo "$mount_line_of_mount_folder" | grep --quiet "$new_mount_options" ; then
-      $output_command "INFO: $mount_folder has already intended mount options."
+      $output_command "INFO: $mount_folder has already intended mount options. ($new_mount_options)"
       return 0
    fi
 
-   if [ -e "$status_file_full_path" ]; then
-      $output_command "INFO: $mount_folder already remounted earlier. Not remounting again."
-      return 0
+   ## When this package is upgraded, the systemd unit will run again.
+   ## If the user meanwhile manually relaxed mount options, this should not be undone.
+
+   if [ "${1:-}" == "--force" ]; then
+      if [ -e "$status_file_full_path" ]; then
+         $output_command "INFO: $mount_folder already remounted earlier. Not remounting again. Use --force if this is what you want."
+         return 0
+      fi
    fi
 
    ## BUG: echo: write error: Broken pipe
    if echo "$mount_output" | grep --quiet "$mount_folder " ; then
       ## Already mounted. Using remount.
-      $output_command mount -o "remount,${new_mount_options}" "$mount_folder"
+      $output_command INFO: Executing: mount -o "remount,${new_mount_options}" "$mount_folder"
       mount -o "remount,${new_mount_options}" "$mount_folder" || exit_code=100
    else
       ## Not yet mounted. Using mount bind.
-      $output_command mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
+      $output_command INFO: Executing: mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder"
       mount -o "$new_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
