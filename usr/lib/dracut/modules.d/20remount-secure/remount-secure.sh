@@ -7,10 +7,12 @@
 ## options based on kernel command line parameters.
 
 remount_hook() {
-   local remount_action
-   remount_action=$(getarg remountsecure)
+   local remountsecure_action
+   ## getarg returns the last parameter only.
+   ## if /proc/cmdline contains 'remountsecure=0 remountsecure=1 remountsecure=noexec' the last one wins.
+   remountsecure_action=$(getarg remountsecure)
 
-   if getargbool 1 remountnoexec; then
+   if [ "$remountsecure_action" = "1" ]; then
       if ! remount-secure --remountnoexec ; then
          warn "'remount-secure --remountnoexec' failed."
          return 1
@@ -19,7 +21,7 @@ remount_hook() {
       return 0
    fi
 
-   if getargbool 1 remountsecure; then
+   if [ "$remountsecure_action" = "noexec" ]; then
       if ! remount-secure ; then
          warn "'remount-secure' failed."
          return 1
