@@ -15,7 +15,7 @@ After=qubes-sysinit.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/libexec/security-misc/remount-secure
+ExecStart=/usr/bin/remount-secure
 
 [Install]
 WantedBy=sysinit.target
