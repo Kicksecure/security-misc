@@ -151,45 +151,46 @@ _boot() {
 }
 
 _run() {
-   mount_folder="$NEWROOT/run"
+   mount_folder="/run"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 _dev() {
-   mount_folder="$NEWROOT/dev"
+   mount_folder="/dev"
    intended_mount_options="nosuid,${noexec_maybe}"
    remount_secure "$@"
 }
 
 _dev_shm() {
-   mount_folder="$NEWROOT/dev/shm"
+   mount_folder="/dev/shm"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 _tmp() {
-   mount_folder="$NEWROOT/tmp"
+   mount_folder="/tmp"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 _var() {
-   mount_folder="$NEWROOT/var"
+   mount_folder="/var"
    ## TODO: nodev? noexec?
    intended_mount_options="nosuid"
    remount_secure "$@"
 }
 
 _var_tmp() {
-   mount_folder="$NEWROOT/var/tmp"
+   mount_folder="/var/tmp"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 _lib() {
+   ## TODO: NEWROOT?
    mount_folder="$NEWROOT/lib"
    ## Not using noexec on /lib.
    intended_mount_options="nosuid,nodev"
@@ -216,13 +217,15 @@ main() {
    parse_options "$@"
    _boot "$@"
 
-   #_run "$@"
+   _run "$@"
 
    ## TODO: ?
    #_dev "$@"
 
-   #_dev_shm "$@"
-   #_tmp "$@"
+   _dev_shm "$@"
+   _tmp "$@"
+
+   ## TODO: ?
    #_var "$@"
    #_var_tmp "$@"
 
