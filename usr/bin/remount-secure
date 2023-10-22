@@ -134,6 +134,14 @@ $0 3"
    exit 1
 }
 
+preparation() {
+   ## Debugging.
+   $output_command "INFO: 'findmnt --list' output at the START."
+   $output_command "$(findmnt --list)"
+   $output_command ""
+   true
+}
+
 remount_secure() {
    $output_command ""
 
@@ -273,11 +281,7 @@ end() {
 main() {
    init
    parse_options "$@"
-
-   ## Debugging.
-   $output_command "INFO: 'findmnt --list' output at the START."
-   $output_command "$(findmnt --list)"
-   $output_command ""
+   preparation
 
    _boot
    _run
