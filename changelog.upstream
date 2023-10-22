@@ -1,3 +1,39 @@
+commit e689f38ad0ba9727d482dbab25ea5d88e67a8edf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:31:44 2023 -0400
+
+    todo
+
+commit 6675a2e93194ea15daeb22bee707cf49563f69fe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:30:50 2023 -0400
+
+    fix
+
+commit 4288e10554f854d6dd9be092ddbf6a62686b1549
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:25:31 2023 -0400
+
+    fix, rework remount-secure kernel parameters parsing
+
+commit b0181af099a2bc20a6d8cc20e6e27371ecc50bf1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:12:25 2023 -0400
+
+    fix
+
+commit 28cb53341d48ece9e042caea03e7159b0f93c2ee
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 13:11:44 2023 -0400
+
+    remount-secure dracut module: improve output
+
+commit f70f36e6cfead0038075d715e430e15aedae459f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 12:55:41 2023 -0400
+
+    bumped changelog version
+
 commit 479ab61a1d0c91d26c2cd200d97b39b2b786e073
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 12:55:20 2023 -0400
