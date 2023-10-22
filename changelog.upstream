@@ -1,3 +1,21 @@
+commit 11382881b56556741fad5f0291ccb57a24e9c617
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 16:12:26 2023 -0400
+
+    comments
+
+commit 5182d7502b34a95fd751c69c4bc3f01d5f5e02b9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 16:08:21 2023 -0400
+
+    improve remount-secure
+
+commit 555d83792df9aa599ae9e0e7c41af49b0601c1c1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 15:44:47 2023 -0400
+
+    bumped changelog version
+
 commit a88c0a3ad2d83fe72612faf97866e255c5527384
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 15:44:30 2023 -0400
