@@ -189,12 +189,12 @@ _var_tmp() {
 }
 
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
-# _lib() {
-#    mount_folder="$NEWROOT/lib"
-#    ## Not using noexec on /lib.
-#    intended_mount_options="nosuid,nodev"
-#    remount_secure "$@"
-# }
+_lib() {
+   mount_folder="$NEWROOT/lib"
+   ## Not using noexec on /lib.
+   intended_mount_options="nosuid,nodev"
+   remount_secure "$@"
+}
 
 _home() {
    mount_folder="$NEWROOT/home"
@@ -215,13 +215,20 @@ main() {
    init "$@"
    parse_options "$@"
    _boot "$@"
+
    #_run "$@"
+
+   ## TODO: ?
    #_dev "$@"
+
    #_dev_shm "$@"
    #_tmp "$@"
    #_var "$@"
    #_var_tmp "$@"
+
+   ## TODO: broken?
    #_lib "$@"
+
    #_home "$@"
    end "$@"
 }
