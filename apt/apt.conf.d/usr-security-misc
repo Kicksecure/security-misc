@@ -1,0 +1,2 @@
+Dpkg::Pre-Invoke {"mount -o remount,nodev,rw /usr";};
+Dpkg::Post-Invoke {"mount -o remount,nodev,ro /usr";};
