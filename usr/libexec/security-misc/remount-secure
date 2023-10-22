@@ -10,11 +10,14 @@
 
 set -x
 set -e
+set -o pipefail
+set -o nounset
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    ## pre.bsh would `source` the following folders:
    ## /etc/remount-secure_pre.d/*.conf
    ## /usr/local/etc/remount-secure_pre.d/*.conf
+   # shellcheck disable=SC1091
    source /usr/libexec/helper-scripts/pre.bsh
 fi
 
@@ -37,9 +40,14 @@ fi
 
 mkdir --parents "/var/run/remount-secure"
 
+[[ -v noexec ]] || noexec=""
+[[ -v noexec_maybe ]] || noexec_maybe=""
+
 if [ "$noexec" = "true" ]; then
    noexec_maybe=",noexec"
 fi
+
+command -v str_replace >/dev/null
 
 exit_code=0
 
@@ -55,7 +63,7 @@ remount_secure() {
    ## example status_file_full_path:
    ## /var/run/remount-secure/_home
 
-   ## LANG=C str_replace is provided by package helper-scripts.
+   ## str_replace is provided by package helper-scripts.
    mount_folder="$(echo "${status_file_name}" | LANG=C str_replace "_" "/")"
    ## example mount_folder:
    ## /home
