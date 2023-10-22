@@ -1,3 +1,57 @@
+commit ed11c68ac64c1ec4eaa590dbb56734d450c89b04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:51:52 2023 -0400
+
+    move remount-secure to /usr/bin/remount-secure to make it easier to manually run
+
+commit 6f4bf57ff2bc878f03a50d91a5db0afaf897d70e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:48:56 2023 -0400
+
+    `remount-secure`: add support for `--force`; output
+
+commit 6dec5cb1d6b841bc6ea92986d6567902109f5ed0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:32:19 2023 -0400
+
+    debugging
+
+commit bc768aa196a08218aac0b6ef1c4ca013f2034122
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:31:57 2023 -0400
+
+    output
+
+commit c069c73109b45fbb8fa230ad4f90f4252db730f2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:29:38 2023 -0400
+
+    refactoring
+
+commit abc35927345e14bbe4b9f13d205a648ce7a8bd8d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 06:23:48 2023 -0400
+
+    remount-secure: stricter error handling
+
+commit 59a5fea25d0b0c39a6e7b3b11f9242ebe5eaa462
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 05:41:56 2023 -0400
+
+    documentation
+
+commit ac63b0eb3db3d168908459fecd6b3275cce015bc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 05:41:11 2023 -0400
+
+    remove duplicate
+
+commit ef3f1575733c668f652326cdb4f4fba8c71bf0ed
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 21 14:19:24 2023 -0400
+
+    bumped changelog version
+
 commit ae2c1c5a7a02a5f3f6a8bcd4a90fdc9e3b512e62
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Oct 21 14:18:50 2023 -0400
