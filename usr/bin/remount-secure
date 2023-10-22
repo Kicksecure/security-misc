@@ -248,6 +248,9 @@ _lib() {
    mount_folder="$NEWROOT/lib"
    ## Cannot use noexec on /lib as per:
    ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
+   ## There are many executables in /lib. To check:
+   ## sudo find /var/lib -type f -executable
+   ## sudo find /var/lib -type f -executable ! -type l
    intended_mount_options="nosuid,nodev"
    remount_secure
 }
