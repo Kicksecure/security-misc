@@ -159,7 +159,7 @@ _run() {
 
 _dev() {
    mount_folder="/dev"
-   intended_mount_options="nosuid,${noexec_maybe}"
+   intended_mount_options="nosuid,noexec"
    remount_secure "$@"
 }
 
@@ -177,8 +177,7 @@ _tmp() {
 
 _var() {
    mount_folder="$NEWROOT/var"
-   ## TODO: nodev? noexec?
-   intended_mount_options="nosuid"
+   intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
@@ -216,22 +215,21 @@ end() {
    exit $exit_code
 }
 
-## TODO: need to be tested one by one
 main() {
    init
    parse_options "$@"
+
    _boot
    _run
-
-   ## TODO: ?
-   #_dev
-
+   _dev
    _dev_shm
    _tmp
    _var
-   _var_tmp
-   _var_log
+   ## /var implies /var/tmp, /var/log and /var/log/audit
+   #_var_tmp
+   #_var_log
    _home
+
    end
 }
 
