@@ -62,6 +62,7 @@ parse_options() {
    done
 
    [[ -v noexec_maybe ]] || noexec_maybe=""
+   [[ -v option_force ]] || option_force=""
 }
 
 remount_secure() {
