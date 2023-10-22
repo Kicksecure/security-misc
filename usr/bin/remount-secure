@@ -79,9 +79,11 @@ remount_secure() {
    ## example status_file_full_path:
    ## /run/remount-secure/_home
 
-   mount_line_of_mount_folder="$(findmnt --noheadings "$mount_folder")" || true
+   old_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
+   ## example old_mount_options:
+   ## rw,nosuid,nodev,relatime,discard
 
-   if echo "$mount_line_of_mount_folder" | grep --quiet "$new_mount_options" ; then
+   if echo "$old_mount_options" | grep --quiet "$new_mount_options" ; then
       $output_command "INFO: $mount_folder has already intended mount options. ($new_mount_options)"
       return 0
    fi
