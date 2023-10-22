@@ -177,7 +177,9 @@ _tmp() {
 
 _var() {
    mount_folder="$NEWROOT/var"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   ## noexec: Not possible. Reason:
+   ## Debian stores executable maintainer scripts in /var/lib/dpkg/info/ folder.
+   intended_mount_options="nosuid,nodev"
    remount_secure "$@"
 }
 
@@ -225,9 +227,8 @@ main() {
    _dev_shm
    _tmp
    _var
-   ## /var implies /var/tmp, /var/log and /var/log/audit
-   #_var_tmp
-   #_var_log
+   _var_tmp
+   _var_log
    _home
 
    end
