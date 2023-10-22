@@ -96,7 +96,7 @@ remount_secure() {
    ## When this package is upgraded, the systemd unit will run again.
    ## If the user meanwhile manually relaxed mount options, this should not be undone.
 
-   if [ "$option_force" == "true" ]; then
+   if [ ! "$option_force" == "true" ]; then
       if [ -e "$status_file_full_path" ]; then
          $output_command "INFO: '$mount_folder' already remounted earlier. Not remounting again. Use --force if this is what you want."
          return 0
@@ -113,8 +113,8 @@ remount_secure() {
       mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
-   new_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
-   $output_command "INFO: '$mount_folder' new_mount_options: '$new_mount_options'"
+   new_mount_options="$(findmnt --noheadings "$mount_folder")" || true
+   $output_command "INFO: $new_mount_options"
 
    touch "$status_file_full_path"
 }
