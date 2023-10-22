@@ -7,8 +7,5 @@ disable hide-hardware-info.service
 ## Disable for now until development finished / tested.
 disable permission-hardening.service
 
-## Disable for now until development finished / tested.
-disable remount-secure.service
-
 ## Disable due to pkexec issues.
 disable proc-hidepid.service
