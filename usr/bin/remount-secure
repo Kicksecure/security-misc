@@ -6,6 +6,7 @@
 ## noexec in /tmp and/or /home can break some malware but also legitimate
 ## applications.
 
+## https://www.kicksecure.com/wiki/Dev/remount-secure
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
 #set -x
@@ -29,10 +30,26 @@ init() {
    mkdir --parents "/run/remount-secure"
    exit_code=0
 
+   ## dracut sets NEWROOT=/sysroot
+   [[ -v NEWROOT ]] || NEWROOT=""
+   if [ "$NEWROOT" = "" ]; then
+      $output_command "INFO: dracut detected: yes - NEWROOT: '$NEWROOT'"
+   else
+      $output_command "INFO: dracut detected: yes - NEWROOT: '$NEWROOT'"
+   fi
+
    ## Debugging.
    $output_command "INFO: 'findmnt --list' output at the START."
    $output_command "$(findmnt --list)"
    $output_command ""
+
+   ## Debugging.
+   #echo "ls -la /root/"
+   #ls -la / || true
+   #echo "ls -la /sysroot/"
+   #ls -la /sysroot/ || true
+   #echo "env"
+   #env || true
 }
 
 parse_options() {
@@ -103,21 +120,19 @@ remount_secure() {
       fi
    fi
 
+   if ! test -d "$mount_folder" ; then
+      $output_command "INFO: '$mount_folder' folder exists: no"
+      exit_code=102
+      return 0
+   fi
+   $output_command "INFO: '$mount_folder' folder exists: yes"
+
    if findmnt --noheadings "$mount_folder" >/dev/null ; then
       $output_command "INFO: '$mount_folder' already mounted, therefore using remount."
       $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
       mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
    else
       $output_command "INFO: '$mount_folder' not yet mounted, therefore using mount bind."
-
-      ## Debugging.
-      ls "$mount_folder" /x >/dev/null || true
-      if test -d "$mount_folder" ; then
-         $output_command "INFO: '$mount_folder' folder exists: yes"
-      else
-         $output_command "INFO: '$mount_folder' folder exists: no"
-      fi
-
       $output_command INFO: Executing: mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
       mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
@@ -128,35 +143,62 @@ remount_secure() {
    touch "$status_file_full_path"
 }
 
-_run() {
-   mount_folder="/run"
+_boot() {
+   mount_folder="$NEWROOT/boot"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
+_run() {
+   mount_folder="$NEWROOT/run"
+   ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
+   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   remount_secure "$@"
+}
+
+## TODO
+# _dev() {
+#    mount_folder="$NEWROOT/dev"
+#    intended_mount_options="nosuid,${noexec_maybe}"
+#    remount_secure "$@"
+# }
+
 _dev_shm() {
-   mount_folder="/dev/shm"
+   mount_folder="$NEWROOT/dev/shm"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 _tmp() {
-   mount_folder="/tmp"
+   mount_folder="$NEWROOT/tmp"
+   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   remount_secure "$@"
+}
+
+_var() {
+   mount_folder="$NEWROOT/var"
+   ## TODO: nodev? noexec?
+   intended_mount_options="nosuid"
+   remount_secure "$@"
+}
+
+_var_tmp() {
+   mount_folder="$NEWROOT/var/tmp"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
 
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 # _lib() {
-#    mount_folder="/lib"
+#    mount_folder="$NEWROOT/lib"
 #    ## Not using noexec on /lib.
 #    intended_mount_options="nosuid,nodev"
 #    remount_secure "$@"
 # }
 
 _home() {
-   mount_folder="/home"
+   mount_folder="$NEWROOT/home"
    intended_mount_options="nosuid,nodev${noexec_maybe}"
    remount_secure "$@"
 }
