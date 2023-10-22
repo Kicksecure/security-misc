@@ -9,3 +9,6 @@ security-misc: no-manual-page [usr/bin/pkexec.security-misc]
 
 ## Non-ideal but still a good solution.
 security-misc: file-in-unusual-dir [var/cache/security-misc/state-files/placeholder]
+
+## False-positive. Just a comment mentioning dpkg's folder.
+security-misc: uses-dpkg-database-directly [usr/bin/remount-secure]
