@@ -106,12 +106,12 @@ remount_secure() {
    ## BUG: echo: write error: Broken pipe
    if echo "$mount_output" | grep --quiet "$mount_folder " ; then
       ## Already mounted. Using remount.
-      $output_command INFO: Executing: mount -o "remount,${intended_mount_options}" "$mount_folder"
-      mount -o "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
+      $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
+      mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
    else
       ## Not yet mounted. Using mount bind.
-      $output_command INFO: Executing: mount -o "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
-      mount -o "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
+      $output_command INFO: Executing: mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
+      mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
    new_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
