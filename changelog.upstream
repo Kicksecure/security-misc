@@ -1,3 +1,21 @@
+commit 479ab61a1d0c91d26c2cd200d97b39b2b786e073
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 12:55:20 2023 -0400
+
+    remove no longer required remount-service systemd unit
+
+commit 84ca0ac8a0b6a72a28e030081299b402749b9348
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 12:54:25 2023 -0400
+
+    improve remount-secure
+
+commit 1696c37251fe6158118ac3a694c2e11439de5c46
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 11:28:18 2023 -0400
+
+    bumped changelog version
+
 commit e7d30955e88b0a052e9159c11f4c1e1a47dadb49
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 11:28:08 2023 -0400
