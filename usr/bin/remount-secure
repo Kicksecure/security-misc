@@ -229,8 +229,7 @@ main() {
    _dev_shm
    _tmp
 
-   ## TODO: ?
-   #_var
+   _var
 
    _var_tmp
    _var_log
