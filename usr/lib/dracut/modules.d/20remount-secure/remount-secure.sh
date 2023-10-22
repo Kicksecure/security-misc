@@ -9,29 +9,15 @@
 remount_hook() {
    local remountsecure_action
    ## getarg returns the last parameter only.
-   ## if /proc/cmdline contains 'remountsecure=0 remountsecure=1 remountsecure=noexec' the last one wins.
+   ## If /proc/cmdline contains 'remountsecure=0 remountsecure=1' the last one wins.
    remountsecure_action=$(getarg remountsecure)
 
-   if [ "$remountsecure_action" = "1" ]; then
-      if ! remount-secure; then
-         warn "$0: ERROR: 'remount-secure' failed."
-         return 1
-      fi
-      info "$0: INFO: 'remount-secure' success."
-      return 0
+   if ! remount-secure $remountsecure_action; then
+      warn "$0: ERROR: 'remount-secure $remountsecure_action' failed."
+      return 1
    fi
-
-   if [ "$remountsecure_action" = "noexec" ]; then
-      if ! remount-secure --remountnoexec; then
-         warn "$0: ERROR: 'remount-secure --remountnoexec' failed."
-         return 1
-      fi
-      info "$0: INFO: 'remount-secure --remountnoexec' success."
-      return 0
-   fi
-
-   warn "$0: WARNING: Not using remount-secure."
-   return 1
+   info "$0: INFO: 'remount-secure $remountsecure_action' success."
+   return 0
 }
 
 remount_hook

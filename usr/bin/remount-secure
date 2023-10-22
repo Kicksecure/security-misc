@@ -21,11 +21,12 @@ init() {
       output_command=echo
    fi
 
+   $output_command "$0: INFO: START"
+
    if [ "$(id -u)" != "0" ]; then
       $output_command "ERROR: must be run as root! sudo $0"
       exit 1
    fi
-   $output_command "$0: INFO: START"
 
    mkdir --parents "/run/remount-secure"
    exit_code=0
@@ -33,15 +34,10 @@ init() {
    ## dracut sets NEWROOT=/sysroot
    [[ -v NEWROOT ]] || NEWROOT=""
    if [ "$NEWROOT" = "" ]; then
-      $output_command "INFO: dracut detected: yes - NEWROOT: '$NEWROOT'"
+      $output_command "INFO: dracut detected: no"
    else
       $output_command "INFO: dracut detected: yes - NEWROOT: '$NEWROOT'"
    fi
-
-   ## Debugging.
-   $output_command "INFO: 'findmnt --list' output at the START."
-   $output_command "$(findmnt --list)"
-   $output_command ""
 
    ## Debugging.
    #echo "ls -la /root/"
@@ -59,9 +55,30 @@ parse_options() {
    while :
    do
        case ${1:-} in
-           --remountnoexec)
-               $output_command "INFO: --remountnoexec"
-               noexec_maybe=",noexec"
+           0)
+               $output_command "WARNING: Not using remount-secure."
+               exit 0
+               shift
+               ;;
+           1)
+               $output_command "INFO: level 1/3 (low)"
+               most_noexec_maybe=""
+               home_noexec_maybe=""
+               parsed=true
+               shift
+               ;;
+           2)
+               $output_command "INFO: level 2/3 (medium)"
+               most_noexec_maybe=",noexec"
+               home_noexec_maybe=""
+               parsed=true
+               shift
+               ;;
+           3)
+               $output_command "INFO: level 3/3 (high)"
+               most_noexec_maybe=",noexec"
+               home_noexec_maybe=",noexec"
+               parsed=true
                shift
                ;;
            --force)
@@ -74,7 +91,7 @@ parse_options() {
                break
                ;;
            -*)
-               echo "unknown option: $1" >&2
+               echo "ERROR: unknown option: $1" >&2
                exit 1
                ;;
            *)
@@ -83,8 +100,38 @@ parse_options() {
        esac
    done
 
-   [[ -v noexec_maybe ]] || noexec_maybe=""
    [[ -v option_force ]] || option_force=""
+   [[ -v parsed ]] || parsed=false
+   [[ -v home_noexec_maybe ]] || home_noexec_maybe=""
+   [[ -v most_noexec_maybe ]] || most_noexec_maybe=""
+
+   $output_command "INFO: using nosuid,nodev: yes"
+
+   if [ "$home_noexec_maybe" = "" ]; then
+      $output_command "INFO: using noexec for all: no"
+   else
+      $output_command "INFO: using noexec for all: yes"
+      return 0
+   fi
+
+   if [ "$most_noexec_maybe" = "" ]; then
+      $output_command "INFO: using noexec for most: no"
+   else
+      $output_command "INFO: using noexec for most (not all): yes"
+      return 0
+   fi
+
+   if [ "$parsed" = "true" ]; then
+      return 0
+   fi
+
+   $output_command "ERROR: syntax error. use either:
+$0 0
+$0 1
+$0 2
+$0 3"
+
+   exit 1
 }
 
 remount_secure() {
@@ -153,7 +200,7 @@ _boot() {
 _run() {
    mount_folder="/run"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
@@ -167,13 +214,13 @@ _dev() {
 
 _dev_shm() {
    mount_folder="/dev/shm"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _tmp() {
    mount_folder="$NEWROOT/tmp"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
@@ -187,7 +234,7 @@ _var() {
 
 _var_tmp() {
    mount_folder="/var/tmp"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
@@ -207,7 +254,7 @@ _lib() {
 
 _home() {
    mount_folder="$NEWROOT/home"
-   intended_mount_options="nosuid,nodev${noexec_maybe}"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
    remount_secure
 }
 
@@ -223,6 +270,11 @@ end() {
 main() {
    init
    parse_options "$@"
+
+   ## Debugging.
+   $output_command "INFO: 'findmnt --list' output at the START."
+   $output_command "$(findmnt --list)"
+   $output_command ""
 
    _boot
    _run
