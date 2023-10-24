@@ -1,3 +1,33 @@
+commit 42c802cd1eca3d2586abde871e4842cdf83490c4
+Merge: f3b40f1 5320c11
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 24 05:30:15 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 5320c11f3f92b66b7dcab7ca1f67fcba2de5deba
+Merge: f3b40f1 f0857fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 24 05:22:33 2023 -0400
+
+    Merge pull request #134 from monsieuremre/patch-1
+    
+    Fix double mount issue for /var/log and /var/tmp
+
+commit f0857fd5608525115bd8a96c2f75368263f6f830
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Mon Oct 23 15:33:05 2023 +0000
+
+    Fix double mount issue for /var/log and /var/tmp
+    
+    Mounting var with bind and mounting a subdirectory causes /var/tmp and /var/log bind mounted twice each. can be checked with lsblk. When we bind mount var only after having mounted the subdirectories, everything is mounted only one.
+
+commit f3b40f12cb4bad0f2f00d4ba2dec59fb315c0798
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 22 19:23:22 2023 -0400
+
+    bumped changelog version
+
 commit d2e8a6dad3b94d574cb9c043303160b06893ab97
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 22 19:21:51 2023 -0400
