@@ -44,7 +44,7 @@ rm_conffile /etc/default/grub.d/40_cold_boot_attack_defense.cfg
 rm_conffile /etc/X11/Xsession.d/50panic_on_oops
 rm_conffile /etc/X11/Xsession.d/50security-misc
 
-## renamed to remove the trailing 30_ for bug fix
+## moved to /usr/lib/sysctl.d
 rm_conffile /etc/sysctl.d/30_security-misc.conf
 rm_conffile /etc/sysctl.d/30_silent-kernel-printk.conf
 rm_conffile /etc/sysctl.d/30_security-misc_kexec-disable.conf
