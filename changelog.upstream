@@ -1,3 +1,51 @@
+commit b7e2d49f5f3f49fab2e1c0647f10bda1921e0a80
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:41:05 2023 -0400
+
+    comment
+
+commit 5d71217e597aa3366658524ec5395c9f76dd527b
+Merge: 6a22351 a2f811a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:40:13 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 6a22351d298e475ecae22bb99249a308b294ff9a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:30:07 2023 -0400
+
+    renamed:    usr/lib/sysctl.d/30_security-misc.conf -> usr/lib/sysctl.d/990-security-misc.conf
+
+commit b7c52800f4c16b1573e372089704a68fd47c5906
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:28:43 2023 -0400
+
+    renamed:    etc/sysctl.d/30_security-misc.conf -> usr/lib/sysctl.d/30_security-misc.conf
+    renamed:    etc/sysctl.d/30_security-misc_kexec-disable.conf -> usr/lib/sysctl.d/30_security-misc_kexec-disable.conf
+    renamed:    etc/sysctl.d/30_silent-kernel-printk.conf -> usr/lib/sysctl.d/30_silent-kernel-printk.conf
+
+commit a2f811aff0cb4e73c3975093012c223127495707
+Merge: 3317332 ee6716e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:26:46 2023 -0400
+
+    Merge pull request #135 from monsieuremre/kernel-fix
+    
+    Kernel hardening fix
+
+commit ee6716e178806912da08b671ae31504ed2f3ac56
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Tue Oct 24 20:43:10 2023 +0000
+
+    security-misc.maintscript
+
+commit 3317332cb431115f81d832ba974181c74427c884
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 24 05:51:11 2023 -0400
+
+    bumped changelog version
+
 commit 42c802cd1eca3d2586abde871e4842cdf83490c4
 Merge: f3b40f1 5320c11
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -13,6 +61,24 @@ Date:   Tue Oct 24 05:22:33 2023 -0400
     Merge pull request #134 from monsieuremre/patch-1
     
     Fix double mount issue for /var/log and /var/tmp
+
+commit 1f489719efb37492b9c040ba4e332e8dd70fde1f
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Mon Oct 23 16:38:58 2023 +0000
+
+    rename
+
+commit 9dda6f69a7df792966005f9c6feb057483cd9ea4
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Mon Oct 23 16:38:40 2023 +0000
+
+    more rename
+
+commit 89381fe7abcc2f4418b95c3eb290c975bf6d612c
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Mon Oct 23 16:38:23 2023 +0000
+
+    rename
 
 commit f0857fd5608525115bd8a96c2f75368263f6f830
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
