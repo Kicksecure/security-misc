@@ -32,16 +32,25 @@
 # /usr/libexec/security-misc/permission-lockdown: user: geoclue | chmod o-rwx "/var/lib/geoclue"
 
 home_folder_access_rights_lockdown() {
-   # Each users home directory to himself
-   for user in $(dir /home); do # lists directories only
-      if [ -f /var/cache/security-misc/state-files/$user ]; then
+   mkdir --parents /var/cache/security-misc/state-files
+   local user
+   for user in $(dir /home); do ## lists directories only
+      if [ -f "/var/cache/security-misc/state-files/$user" ]; then
          continue
       fi
-      if [ $(id --user $user) ]; then # check if user actually exists, and this is not some random directory
-         dpkg-statoverride --add --update $user $user 0700 /home/$user # home directory of the user
-         echo "Permission updated: chmod go-rwx /home/$user"
-         touch /var/cache/security-misc/state-files/$user # so that we know we did this one
-      fi
+      folder_name="/home/$user"
+      ## chmod:
+      ## The 'g' for 'group' is not needed.
+      ## Debian by default uses USERGROUPS=yes in /etc/adduser.conf.
+      ## The group which the user is being added to has the same name as the user.
+      ## If the username is user then the name of the group is also user.
+      ## Some background information here:
+      ## https://unix.stackexchange.com/questions/156473/reasons-behind-the-default-groups-and-users-on-linux
+      ## In short, this is useful for "file sharing". A if user1 wants to share data with user2 the command
+      ## required to run is sudo addgroup user1 user2.
+      echo "$0: chmod o-rwx \"$folder_name\""
+      chmod o-rwx "$folder_name"
+      touch "/var/cache/security-misc/state-files/$user"
    done
 }
 
