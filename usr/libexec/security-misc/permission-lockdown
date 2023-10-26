@@ -32,35 +32,28 @@
 # /usr/libexec/security-misc/permission-lockdown: user: geoclue | chmod o-rwx "/var/lib/geoclue"
 
 home_folder_access_rights_lockdown() {
-   shopt -s nullglob
+   # Each users home directory to himself
+   for user in $(dir /home); do # lists directories only
+      if [ grep -q "$user" /etc/passwd ]; then # check if user actually exists, and this is not some random directory
+         if [ -f /var/cache/security-misc/state-files/$user ]
+            continue # only doing once
+         fi
+         touch "/var/cache/security-misc/state-files/$user # so that we know we did this one
+         dpkg-statoverride --add --update $user $user 0700 /home/$user # home directory of the user itself
+         find /home/$user -type d | while read directory; # doing this to all directories in the users home
+         do
+            chown $user $directory
+            chmod 700 $directory
+         done
 
-   ## Not using dotglob.
-   ## touch /var/cache/security-misc/state-files//home/.Trash
-   ## touch: cannot touch '/var/cache/security-misc/state-files//home/.Trash': No such file or directory
-
-   local folder_name base_name
-
-   for folder_name in /home/* ; do
-      base_name="$(basename "$folder_name")"
-      if [ -f "/var/cache/security-misc/state-files/$base_name" ]; then
-         continue
+# not doing it because this sets all files to non executable
+#         find /home/$user -type f | while read file; # doing this to all files in the users home
+#         do
+#            chown $user $file
+#            chmod 600 $file
+#         done
       fi
-      if [ ! -d "$folder_name" ]; then
-         continue
-      fi
-      if [ "$folder_name" = "/home/" ]; then
-         continue
-      fi
-      mkdir -p /var/cache/security-misc/state-files
-      echo "$0: chmod o-rwx \"$folder_name\""
-      chmod o-rwx "$folder_name"
-      ## Create a state-file so we do this only once.
-      ## Therefore a user who will manually undo this, will not get
-      ## annoyed by this being done over and over again.
-      touch "/var/cache/security-misc/state-files/$base_name"
    done
-
-   shopt -u nullglob
 }
 
 home_folder_access_rights_lockdown
