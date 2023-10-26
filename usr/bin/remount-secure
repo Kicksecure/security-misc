@@ -23,9 +23,12 @@ init() {
 
    $output_command "$0: INFO: START"
 
-   if [ "$(id -u)" != "0" ]; then
-      $output_command "ERROR: must be run as root! sudo $0"
-      exit 1
+   ## dracut does not have id. Saving space in initial ramdisk.
+   if command -v id &>/dev/null ; then
+      if [ "$(id -u)" != "0" ]; then
+         $output_command "ERROR: must be run as root! sudo $0"
+         exit 1
+      fi
    fi
 
    mkdir --parents "/run/remount-secure"
