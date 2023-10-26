@@ -38,21 +38,8 @@ home_folder_access_rights_lockdown() {
          if [ -f /var/cache/security-misc/state-files/$user ]
             continue # only doing once
          fi
-         touch "/var/cache/security-misc/state-files/$user # so that we know we did this one
          dpkg-statoverride --add --update $user $user 0700 /home/$user # home directory of the user itself
-         find /home/$user -type d | while read directory; # doing this to all directories in the users home
-         do
-            chown $user $directory
-            chmod 700 $directory
-         done
-
-# not doing it because this sets all files to non executable
-#         find /home/$user -type f | while read file; # doing this to all files in the users home
-#         do
-#            chown $user $file
-#            chmod 600 $file
-#         done
-      fi
+         touch /var/cache/security-misc/state-files/$user # so that we know we did this one
    done
 }
 
