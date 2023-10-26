@@ -15,6 +15,20 @@ true "
 #####################################################################
 "
 
+permission_hardening() {
+    echo ""
+    echo "Running SUID Disabler and Permission Hardener... See also:"
+    echo "https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener"
+    echo ""
+    echo "$0: INFO: run: /usr/libexec/security-misc/permission-hardening"
+    if ! /usr/libexec/security-misc/permission-hardening ; then
+        echo "$0: ERROR: Permission hardening failed." >&2
+        return 0
+    fi
+    echo "$0: INFO: Permission hardening success."
+    echo ""
+}
+
 case "$1" in
     configure)
         if [ -d /etc/skel/.gnupg ]; then
@@ -45,6 +59,7 @@ esac
 pam-auth-update --package
 
 /usr/libexec/security-misc/permission-lockdown
+permission_hardening
 
 ## https://phabricator.whonix.org/T377
 ## Debian has no update-grub trigger yet:
