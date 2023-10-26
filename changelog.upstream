@@ -1,3 +1,25 @@
+commit 5f4222c1c3d7fa057b31bba7b0b5c2e83c92a7be
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 12:20:48 2023 -0400
+
+    enable SUID Disabler and Permission Hardener by default
+    
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
+    
+    https://forums.whonix.org/t/suid-disabler-and-permission-hardener/7706
+
+commit e5d989af5ac2899985c48d60311856fb86e0ddeb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 12:04:13 2023 -0400
+
+    comment
+
+commit 8557e0963ed6159f7f6c816ad4e009cc7323a760
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 25 17:55:37 2023 -0400
+
+    bumped changelog version
+
 commit b7e2d49f5f3f49fab2e1c0647f10bda1921e0a80
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 25 17:41:05 2023 -0400
