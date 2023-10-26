@@ -34,9 +34,13 @@
 home_folder_access_rights_lockdown() {
    # Each users home directory to himself
    for user in $(dir /home); do # lists directories only
+      if [ -f /var/cache/security-misc/state-files/$user ]; then
+         continue
+      fi
       if [ $(id --user $user) ]; then # check if user actually exists, and this is not some random directory
-         dpkg-statoverride --add --update $user $user 0700 /home/$user # home directory of the user itself
+         dpkg-statoverride --add --update $user $user 0700 /home/$user # home directory of the user
          echo "Permission updated: chmod go-rwx /home/$user"
+         touch /var/cache/security-misc/state-files/$user # so that we know we did this one
       fi
    done
 }
