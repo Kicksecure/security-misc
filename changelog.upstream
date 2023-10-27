@@ -1,3 +1,101 @@
+commit 7cff267002485fd0abca98d12b0024e061f4ba51
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:31:14 2023 -0400
+
+    remove duplicates
+
+commit 928cdb81d43dfd337c82917182d2914d9c9d0915
+Merge: a330a9f 39fed05
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:29:55 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 39fed058f4734029b303fac4ea9a1b11f652fab4
+Merge: 92a6ecc 99355c6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:27:41 2023 -0400
+
+    Merge pull request #140 from monsieuremre/patch-3
+    
+    New lines in default permission config
+
+commit a330a9fd75314931639e7e873adc31c5cc65d555
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:20:21 2023 -0400
+
+    refactor permission-lockdown
+
+commit 8bf5ff82be706599f33228ecd6df42be0dc29f39
+Merge: 1123d23 92a6ecc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:15:04 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 92a6ecc40a4d3bd4d8f3cec7dd9b1334c72399dc
+Merge: ca9603a 91c4452
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 19:13:34 2023 -0400
+
+    Merge pull request #141 from monsieuremre/patch-4
+    
+    New permission-lockdown
+
+commit 1123d23114201988ac3f5f50ab6e74a5307d3d52
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 18:45:07 2023 -0400
+
+    remount-secure: disable debugging to save space in initrd
+
+commit 91c445244c47c163e2466f8c4dff710eda20c337
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 19:41:07 2023 +0000
+
+    actually we do it once indeed
+
+commit 88f396264ca9d072e4e5de4e1acaee54f3b39749
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 19:35:59 2023 +0000
+
+    avoiding /etc/passwd
+
+commit b5ba03247a5b5bb1f4e010130e4a575ad1397117
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 19:31:25 2023 +0000
+
+    readability
+
+commit f487752ba1b469eb0b2f85657e2ee0860f58496b
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 19:30:58 2023 +0000
+
+    not limiting ourselves. we do not do this not just once.
+
+commit 88cd5a905d8aa0f6033ac4ba72903fbad4a90b4b
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 19:25:24 2023 +0000
+
+    strip unnecessary
+
+commit d9f10c221a2b6794f0a3c5bcd1c15e2a4f352751
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 18:17:50 2023 +0000
+
+    new permission-lockdown
+
+commit 99355c616974d167e3a5424d63cd56b1f64f0eaf
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Oct 26 17:45:28 2023 +0000
+
+    new lines 30_default.conf
+
+commit ca9603af1713ff37392662c9d1b4251052e7b983
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 12:23:48 2023 -0400
+
+    bumped changelog version
+
 commit 5f4222c1c3d7fa057b31bba7b0b5c2e83c92a7be
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 12:20:48 2023 -0400
