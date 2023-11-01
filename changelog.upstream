@@ -1,3 +1,33 @@
+commit bb1161986b6d108c4fc5a16a48cdac55f98ab35d
+Merge: 7d57684 b7cddd6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 10:31:04 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit b7cddd6e552cb5f5139de91ef2aeae6fde691136
+Merge: 7d57684 c975c3c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 10:30:26 2023 -0400
+
+    Merge pull request #143 from monsieuremre/patch-6
+    
+    new lines 990-security-misc.conf
+
+commit c975c3c0ff7cc5a1e29b651c2db6c27e3f952870
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 11:07:53 2023 +0000
+
+    new lines 990-security-misc.conf
+    
+    added new recommended hardening settings with comments
+
+commit 7d576842fb6f3c124db2b6deb5abfc095974a67f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 26 20:08:41 2023 -0400
+
+    bumped changelog version
+
 commit 7cff267002485fd0abca98d12b0024e061f4ba51
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:31:14 2023 -0400
