@@ -1,3 +1,25 @@
+commit bb14a058520b13e242fea9f3022c439c4677bd1d
+Merge: 5ed2a5c 44906e8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 11:11:54 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 44906e8f398aae6e9565b131b82124e738e2d0d1
+Merge: 5ed2a5c f2c23a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 11:11:27 2023 -0400
+
+    Merge pull request #142 from monsieuremre/patch-5
+    
+    ssh config
+
+commit 5ed2a5ce4a24a1a9c3e722a30aa9c6af1dc5d78a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 11:10:36 2023 -0400
+
+    bumped changelog version
+
 commit bb1161986b6d108c4fc5a16a48cdac55f98ab35d
 Merge: 7d57684 b7cddd6
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -21,6 +43,12 @@ Date:   Fri Oct 27 11:07:53 2023 +0000
     new lines 990-security-misc.conf
     
     added new recommended hardening settings with comments
+
+commit f2c23a28319e359c642da2dde424456a1064763f
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 10:53:45 2023 +0000
+
+    ssh config
 
 commit 7d576842fb6f3c124db2b6deb5abfc095974a67f
 Author: Patrick Schleizer <adrelanos@whonix.org>
