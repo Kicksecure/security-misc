@@ -1,0 +1,3 @@
+[Unit]
+Requires=var-log.mount var-tmp.mount
+After=var-log.mount var-tmp.mount
