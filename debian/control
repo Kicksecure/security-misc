@@ -15,7 +15,7 @@ Rules-Requires-Root: no
 Package: security-misc
 Architecture: all
 Depends: python3, libglib2.0-bin, libpam-runtime, sudo, adduser, libcap2-bin,
- apparmor-profile-dist, helper-scripts, libpam-modules-bin,
+ apparmor-profile-dist, helper-scripts, libpam-modules-bin, libpam-tmpdir,
  secure-delete, dmsetup, ${misc:Depends}
 Replaces: tcp-timestamps-disable, anon-gpg-tweaks, swappiness-lowest
 Description: Enhances Miscellaneous Security Settings
