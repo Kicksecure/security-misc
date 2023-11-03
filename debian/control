@@ -5,7 +5,10 @@ Source: security-misc
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@kicksecure.com>
-Build-Depends: debhelper (>= 13), debhelper-compat (= 13), config-package-dev, dh-apparmor
+Build-Depends: config-package-dev,
+               debhelper (>= 13),
+               debhelper-compat (= 13),
+               dh-apparmor
 Homepage: https://www.kicksecure.com/wiki/Security-misc
 Vcs-Browser: https://github.com/Kicksecure/security-misc
 Vcs-Git: https://github.com/Kicksecure/security-misc.git
@@ -14,10 +17,20 @@ Rules-Requires-Root: no
 
 Package: security-misc
 Architecture: all
-Depends: python3, libglib2.0-bin, libpam-runtime, libpam-umask, sudo, adduser, libcap2-bin,
- apparmor-profile-dist, helper-scripts, libpam-modules-bin,
- secure-delete, dmsetup, ${misc:Depends}
-Replaces: tcp-timestamps-disable, anon-gpg-tweaks, swappiness-lowest
+Depends: adduser,
+         apparmor-profile-dist,
+         dmsetup,
+         helper-scripts,
+         libcap2-bin,
+         libglib2.0-bin,
+         libpam-modules-bin,
+         libpam-runtime,
+         libpam-umask,
+         python3,
+         secure-delete,
+         sudo,
+         ${misc:Depends}
+Replaces: anon-gpg-tweaks, swappiness-lowest, tcp-timestamps-disable
 Description: Enhances Miscellaneous Security Settings
  https://github.com/Kicksecure/security-misc/blob/master/README.md
  .
