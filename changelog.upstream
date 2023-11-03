@@ -1,3 +1,38 @@
+commit 5e73f78ed9282bf0895b01d44d9c261ea0050cce
+Merge: ceffd2b 8e66a41
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:10:33 2023 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 8e66a4177868ee7b51dafdb06062b0cb7cbc7415
+Merge: ceffd2b 7dc99d5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:10:00 2023 -0400
+
+    Merge pull request #147 from monsieuremre/PAM-tmp-files-hardening
+    
+    Depend on libpam-tmpdir for very solid extra security
+
+commit 7dc99d54c0358842745ee48c7cc24f589fd63d14
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:09:39 2023 -0400
+
+    fix
+
+commit 2a602e78d6ca0f87f11de9a30ae2114468243075
+Merge: 3ee4be6 ceffd2b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:08:50 2023 -0400
+
+    Merge branch 'master' into PAM-tmp-files-hardening
+
+commit ceffd2b3ee453122e66f594ec31dde6ec3bb7187
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:06:43 2023 -0400
+
+    bumped changelog version
+
 commit cdd66ee3762c441843d421a9e6b11a20580ed7ac
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 10:48:46 2023 -0400
@@ -65,6 +100,12 @@ Date:   Fri Nov 3 09:12:24 2023 -0400
     https://www.debian.org/doc/manuals/securing-debian-manual/ch04s11.en.html#id-1.5.14.19
     
     https://github.com/Kicksecure/security-misc/pull/151
+
+commit 3ee4be652b28201ba208757ce5144e51c453ad70
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 09:36:58 2023 +0000
+
+    depend on libpam-tmpdir
 
 commit a768f1f1ebfc29b0c0105f2965a4290f8dfd8e63
 Author: Patrick Schleizer <adrelanos@whonix.org>
