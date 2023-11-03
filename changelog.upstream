@@ -1,3 +1,17 @@
+commit b6d53f698d0ad21a31da6bf74a44577a0c8869fc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:17:00 2023 -0400
+
+    Revert "allow loading unsigned modules due to issues"
+    
+    This reverts commit 661bcd8603425934188cf139f33e20675ff4b765.
+
+commit 04b210ee88589ef9e6e214d3a5a614780244abc9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:10:48 2023 -0400
+
+    bumped changelog version
+
 commit 5e73f78ed9282bf0895b01d44d9c261ea0050cce
 Merge: ceffd2b 8e66a41
 Author: Patrick Schleizer <adrelanos@whonix.org>
