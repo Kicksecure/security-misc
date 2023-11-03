@@ -48,6 +48,8 @@ home_folder_access_rights_lockdown() {
       ## https://unix.stackexchange.com/questions/156473/reasons-behind-the-default-groups-and-users-on-linux
       ## In short, this is useful for "file sharing". A if user1 wants to share data with user2 the command
       ## required to run is sudo addgroup user1 user2.
+      ## See also: user private groups UPGs
+      ## https://wiki.debian.org/UserPrivateGroups
       echo "$0: chmod o-rwx \"$folder_name\""
       chmod o-rwx "$folder_name"
       touch "/var/cache/security-misc/state-files/$user"
