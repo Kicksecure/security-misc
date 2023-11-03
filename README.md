@@ -314,6 +314,8 @@ See:
 
 ### Strong user account separation
 
+#### Permission Lockdown
+
 Read, write and execute access for "others" are removed during package
 installation, upgrade or PAM `mkhomedir` for all users who have home
 folders in `/home` by running, for example:
@@ -332,6 +334,30 @@ See:
 * `debian/security-misc.postinst`
 * `/usr/libexec/security-misc/permission-lockdown`
 * `/usr/share/pam-configs/mkhomedir-security-misc`
+
+#### umask
+
+Default `umask` is set to `027` for files created by non-root users
+such as for example user `user`.
+
+This is doing using pam module `pam_mkhomedir.so umask=027`.
+
+This means, files created by non-root users cannot be read by other
+non-root users by default. While Permission Lockdown already protects
+the `/home` folder, this protects other folders such as `/tmp`.
+
+`group` read permissions are not removed.
+This is unnecessary due to Debian's use of User Private Groups (UPGs).
+See also: https://wiki.debian.org/UserPrivateGroups
+
+Default `umask` is unchanged for root, because then configuration files
+created in `/etc` by the system administrator would be unreadable by
+"others" and break applications. Examples include `/etc/firefox-esr` and
+`/etc/thunderbird`.
+
+See:
+
+* `/usr/share/pam-configs/umask-security-misc`
 
 ### SUID / SGID removal and permission hardening
 
