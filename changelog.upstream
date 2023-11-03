@@ -1,3 +1,21 @@
+commit cd216095eb8d9387437e653d7764ec765ce42a10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 09:12:24 2023 -0400
+
+    set default umask to 027
+    
+    using package libpam-umask
+    
+    https://www.debian.org/doc/manuals/securing-debian-manual/ch04s11.en.html#id-1.5.14.19
+    
+    https://github.com/Kicksecure/security-misc/pull/151
+
+commit a768f1f1ebfc29b0c0105f2965a4290f8dfd8e63
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 1 12:26:21 2023 -0400
+
+    bumped changelog version
+
 commit bb14a058520b13e242fea9f3022c439c4677bd1d
 Merge: 5ed2a5c 44906e8
 Author: Patrick Schleizer <adrelanos@whonix.org>
