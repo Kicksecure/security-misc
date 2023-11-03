@@ -94,7 +94,9 @@ TLB invalidation so devices will never be able to access stale data contents.
 #### Kernel Module Signature Verification
 
 Not yet due to issues:
-https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/64
+
+* https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/64
+* https://github.com/dell/dkms/issues/359
 
 See:
 
