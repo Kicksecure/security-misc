@@ -3,3 +3,4 @@
 
 /etc/login.defs.security-misc
 /usr/bin/pkexec.security-misc
+/etc/dkms/framework.conf.security-misc

@@ -3,4 +3,3 @@
 
 /etc/securetty.security-misc
 /etc/security/faillock.conf.security-misc
-/etc/dkms/framework.conf.security-misc
