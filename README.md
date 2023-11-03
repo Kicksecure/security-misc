@@ -90,7 +90,17 @@ TLB invalidation so devices will never be able to access stale data contents.
 
 * Distrust the 'randomly' generated CPU and bootloader seeds.
 
-### Disables and blacklists kernel modules
+### Kernel Modules
+#### Kernel Module Signature Verification
+
+Not yet due to issues:
+https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/64
+
+See:
+
+* `/etc/default/grub.d/40_only_allow_signed_modules.cfg`
+
+#### Disables and blacklists kernel modules
 
 Certain kernel modules are disabled and blacklisted by default to reduce attack surface via the
 `/etc/modprobe.d/30_security-misc.conf` configuration file.
