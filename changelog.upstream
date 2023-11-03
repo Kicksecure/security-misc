@@ -1,3 +1,35 @@
+commit b85d48eb83005da8fd9edc658c71493f407e3670
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 10:31:59 2023 -0400
+
+    do not change default umask for root
+    
+    since this causes permission issues in `/etc/`
+    
+    https://github.com/Kicksecure/security-misc/pull/151
+
+commit 07540db90d60b10cbd10881b0024d8e8871330de
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 09:45:12 2023 -0400
+
+    Revert "Revert "set default umask to 027""
+    
+    This reverts commit f8913ceb2e2fdd274011377c41b5d08e7459e4af.
+
+commit f8913ceb2e2fdd274011377c41b5d08e7459e4af
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 09:43:44 2023 -0400
+
+    Revert "set default umask to 027"
+    
+    This reverts commit cd216095eb8d9387437e653d7764ec765ce42a10.
+
+commit 43bd789c30a562aa60349d019107277a428aece8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 09:28:08 2023 -0400
+
+    bumped changelog version
+
 commit cd216095eb8d9387437e653d7764ec765ce42a10
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 09:12:24 2023 -0400
