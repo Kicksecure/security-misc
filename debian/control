@@ -17,7 +17,6 @@ Rules-Requires-Root: no
 
 Package: security-misc
 Architecture: all
-Replaces: tcp-timestamps-disable, anon-gpg-tweaks, swappiness-lowest
 Depends: adduser,
          apparmor-profile-dist,
          dmsetup,
