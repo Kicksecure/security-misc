@@ -1,6 +1,7 @@
 [Unit]
 Description=Disable the loading of modules to the kernel after startup. This could be malicious.
 After=systemd-modules-load.service
+Before=sysinit.target
 # This functionality is implemented with this and not directly in the sysctl config is
 # to allow systemd-modules-load.service to load the modules with no problem but
 # to disallow anyone else do the same after the system boots up.
