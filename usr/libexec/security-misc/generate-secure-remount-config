@@ -23,7 +23,7 @@ fi
 
 if grep --quiet " /boot/efi " /etc/fstab
 then
-echo "/boot/efi                    /boot/efi        ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/boot/efi                    /boot/efi        vfat    defaults,nosuid,nodev,noexec,umask=0077,remount  0 2" >> $config_file
 fi
 
 if grep --quiet " /home " /etc/fstab
