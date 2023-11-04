@@ -2,4 +2,4 @@
 
 sysctl -w kernel.modules_disabled=1
 
-echo "The loading of new modules to the kernel has been disabled by security-misc" >&2
+echo "The loading of new modules to the kernel has been disabled by security-misc"
