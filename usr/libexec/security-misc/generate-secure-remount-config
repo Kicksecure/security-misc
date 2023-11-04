@@ -7,7 +7,6 @@ then
 rm $config_file
 fi
 touch $config_file
-chmod u+x $config_file
 
 echo "/                             /               none    defaults,remount  0 2" >> $config_file
 echo "/dev/shm                      /dev/shm        none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
