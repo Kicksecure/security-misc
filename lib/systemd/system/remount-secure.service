@@ -1,0 +1,12 @@
+[Unit]
+Description=Remount partitions with hardened mount options.
+After=sysinit.target
+## so that these services don't fail to start
+Before=systemd-logind.service power-profiles-daemon.service switcheroo-control.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/security-misc/secure-remount
+
+[Install]
+WantedBy=sysinit.target
