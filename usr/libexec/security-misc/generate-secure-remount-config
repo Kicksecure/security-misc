@@ -9,16 +9,16 @@ fi
 touch $config_file
 chmod u+x $config_file
 
-echo "/                             /               ext4    defaults,remount  0 2" >> $config_file
-echo "/dev/shm                      /dev/shm        ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
-echo "/dev                          /dev            ext4    defaults,nosuid,noexec,remount        0 2" >> $config_file
-echo "/run                          /run            ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/                             /               none    defaults,remount  0 2" >> $config_file
+echo "/dev/shm                      /dev/shm        none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/dev                          /dev            none    defaults,nosuid,noexec,remount        0 2" >> $config_file
+echo "/run                          /run            none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 
 if grep --quiet " /boot " /etc/fstab
 then
-echo "/boot                         /boot           ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/boot                         /boot           none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 else
-echo "/boot                         /boot           ext4    defaults,nosuid,nodev,noexec,bind     0 2" >> $config_file
+echo "/boot                         /boot           none    defaults,nosuid,nodev,noexec,bind     0 2" >> $config_file
 fi
 
 if grep --quiet " /boot/efi " /etc/fstab
@@ -28,40 +28,40 @@ fi
 
 if grep --quiet " /home " /etc/fstab
 then
-echo "/home                         /home           ext4    defaults,nosuid,nodev,remount         0 2" >> $config_file
+echo "/home                         /home           none    defaults,nosuid,nodev,remount         0 2" >> $config_file
 else
-echo "/home                         /home           ext4    defaults,nosuid,nodev,bind            0 2" >> $config_file
+echo "/home                         /home           none    defaults,nosuid,nodev,bind            0 2" >> $config_file
 fi
 
 if grep --quiet " /tmp " /etc/fstab
 then
-echo "/tmp                          /tmp            ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/tmp                          /tmp            none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 else
 echo "tmpfs                         /tmp            tmpfs   defaults,nosuid,nodev,noexec          0 0" >> $config_file
 fi
 
 if grep --quiet " /var/log/audit " /etc/fstab
 then
-echo "/var/log/audit                /log/audit      ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/var/log/audit                /log/audit      none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 fi
 
 if grep --quiet " /var/tmp " /etc/fstab
 then
-echo "/var/tmp                      /var/tmp        ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/var/tmp                      /var/tmp        none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 else
 echo "/tmp                          /var/tmp        none    defaults,nosuid,nodev,noexec,bind     0 0" >> $config_file
 fi
 
 if grep --quiet " /var/log " /etc/fstab
 then
-echo "/var/log                      /var/log        ext4    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
+echo "/var/log                      /var/log        none    defaults,nosuid,nodev,noexec,remount  0 2" >> $config_file
 else
-echo "/var/log                      /var/log        ext4    defaults,nosuid,nodev,noexec,bind     0 2" >> $config_file
+echo "/var/log                      /var/log        none    defaults,nosuid,nodev,noexec,bind     0 2" >> $config_file
 fi
 
 if grep --quiet " /var " /etc/fstab
 then
-echo "/var                          /var            ext4    defaults,nosuid,nodev,remount         0 2" >> $config_file
+echo "/var                          /var            none    defaults,nosuid,nodev,remount         0 2" >> $config_file
 else
-echo "/var                          /var            ext4    defaults,nosuid,nodev,bind            0 2" >> $config_file
+echo "/var                          /var            none    defaults,nosuid,nodev,bind            0 2" >> $config_file
 fi
