@@ -4,4 +4,4 @@ config_file="/usr/lib/security-misc_secure-remount.conf"
 
 mount --fstab $config_file --all
 
-echo "Partitions securely remounted by security-misc" >&2
+echo "Partitions securely remounted by security-misc"
