@@ -61,6 +61,8 @@ pam-auth-update --package
 /usr/libexec/security-misc/permission-lockdown
 permission_hardening
 
+/usr/libexec/security-misc/generate-secure-remount-config
+
 ## https://phabricator.whonix.org/T377
 ## Debian has no update-grub trigger yet:
 ## https://bugs.debian.org/481542
