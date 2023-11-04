@@ -2,7 +2,7 @@
 Description=Remount partitions with hardened mount options.
 After=sysinit.target
 ## so that these services don't fail to start
-Before=systemd-logind.service power-profiles-daemon.service switcheroo-control.service
+Before=systemd-logind.service power-profiles-daemon.service switcheroo-control.service networking.service dbus.service
 
 [Service]
 Type=oneshot
