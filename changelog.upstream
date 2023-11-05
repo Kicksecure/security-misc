@@ -1,3 +1,152 @@
+commit 42be6310237bdb663f38982b221327a337251e0a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:54:05 2023 -0500
+
+    readme
+
+commit 55ba5d48321ec4224bcbf03cf2bf51226cf34e50
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:51:31 2023 -0500
+
+    renamed:    usr/lib/NetworkManager/conf.d/99_ipv6-privacy.conf -> usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf
+    renamed:    usr/lib/NetworkManager/conf.d/99_randomize-mac.conf -> usr/lib/NetworkManager/conf.d/80_randomize-mac.conf
+    renamed:    usr/lib/systemd/networkd.conf.d/99_ipv6-privacy-extensions.conf -> usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf
+
+commit eab5d7d4ec58baaf7eedc777e250ad9f00e4b71b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:50:13 2023 -0500
+
+    cleanup
+
+commit 811d1cd0dd0dcb9021d2f72638dd6c12b734964c
+Merge: 9343795 5a75bcf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:49:43 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 5a75bcfb19ac6c555a52cb1600e4efd13a8cfc06
+Merge: 9343795 229032d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:49:00 2023 -0500
+
+    Merge pull request #145 from monsieuremre/wifi-and-bluetooth
+    
+    Wifi and Bluetooth Patch | Security and Privacy
+
+commit 93437952b4f64866dfe6067d8caf19415112418d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:41:01 2023 -0500
+
+    readme
+
+commit f32b5438872ad0b9e10cb7b0519f1f18fce1913e
+Merge: 56b90ee 4946f85
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:38:20 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 4946f85d43083c64bc3f8f02e26b08f79b622bfe
+Merge: 817ca11 1abac79
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:37:47 2023 -0500
+
+    Merge pull request #146 from monsieuremre/thunderbird
+    
+    Thunderbird Hardening
+
+commit 56b90eecbfb21e546d52d1f41ce9361f2843cd71
+Merge: 3178677 817ca11
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:35:23 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 817ca116f693893e6dcb69254ee91815d200b8a1
+Merge: d9b5d77 fbd9e5d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:34:13 2023 -0500
+
+    Merge pull request #153 from monsieuremre/readme
+    
+    Updated Readme
+
+commit 317867758478619fe1df4ebdb5e22240c40104c0
+Merge: dcead44 d9b5d77
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:32:21 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit d9b5d770cfd5f7747f1d606f3136a93034928f30
+Merge: dcead44 ac224b2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:31:26 2023 -0500
+
+    Merge pull request #150 from monsieuremre/sysreq
+    
+    Disable SysRq by default
+
+commit dcead44cc6d4272b0966562046f9dab1792845b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 11:32:46 2023 -0500
+
+    output
+
+commit f6bf69b41fa3e1168c2c49884197770e1a78b888
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 11:31:09 2023 -0500
+
+    update link
+
+commit fbd9e5d017c4b00d838e9f225c7748c4b362f023
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 4 14:33:35 2023 +0000
+
+    README.md
+
+commit 97054b2b1076d6d428996967304b29620923eff4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 15:55:17 2023 -0400
+
+    revert enabling kernel module signature enforcement
+    
+    due to issues
+    
+    https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/63
+    
+    https://github.com/dell/dkms/issues/359
+
+commit 978e3e4abd8f55a877dfe0d6e39b45ee9f58ba6d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 14:53:40 2023 -0400
+
+    readme
+
+commit 0242c04dc26638dc1250e3f681b46d15459cf8aa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 14:51:14 2023 -0400
+
+    port to DKMS drop-in folder
+    
+    undisplace /etc/dkms/framework.conf.security-misc
+    moved to /etc/dkms/framework.conf.d/30_security-misc.conf
+
+commit d1b5a3ffd525ec92554ffc9c666f8007c8522aac
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:55:34 2023 -0400
+
+    /usr/sbin/pam-tmpdir-helper exactwhitelist
+    
+    https://github.com/Kicksecure/security-misc/pull/147
+
+commit 48adb44c6fd157673cdf7fab3b86ecf7c6b31966
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 3 12:17:24 2023 -0400
+
+    bumped changelog version
+
 commit b6d53f698d0ad21a31da6bf74a44577a0c8869fc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:17:00 2023 -0400
@@ -115,11 +264,47 @@ Date:   Fri Nov 3 09:12:24 2023 -0400
     
     https://github.com/Kicksecure/security-misc/pull/151
 
+commit ac224b270a3a0945d187202f8cca89af0e71a166
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 13:01:55 2023 +0000
+
+    disable sysrq
+
 commit 3ee4be652b28201ba208757ce5144e51c453ad70
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Thu Nov 2 09:36:58 2023 +0000
 
     depend on libpam-tmpdir
+
+commit 1abac794b564d178df37a385cf0d25bac5842c3c
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 09:15:20 2023 +0000
+
+    very secure and private defaults
+
+commit 5a583ca48ce608fee4fe55c1d6948505e83a98d8
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 08:30:26 2023 +0000
+
+    typo in file name
+
+commit 229032d691c614a926cf3cf96b44752364e4e087
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Wed Nov 1 17:54:05 2023 +0000
+
+    Rename etc/systemd/networkd.conf.d/99_ipv6-privacy-extensions.conf to usr/lib/systemd/networkd.conf.d/99_ipv6-privacy-extensions.conf
+
+commit 1049298e7bfa4ca0e8f02b4086f8aa086d51c725
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Wed Nov 1 17:52:40 2023 +0000
+
+    Update and rename etc/NetworkManager/conf.d/99_randomize-mac.conf to usr/lib/NetworkManager/conf.d/99_randomize-mac.conf
+
+commit 76e684cc0ac0544219d200eeefae1356864fe702
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Wed Nov 1 17:51:27 2023 +0000
+
+    Update and rename etc/NetworkManager/conf.d/99_ipv6-privacy.conf to usr/lib/NetworkManager/conf.d/99_ipv6-privacy.conf
 
 commit a768f1f1ebfc29b0c0105f2965a4290f8dfd8e63
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -164,6 +349,48 @@ Date:   Wed Nov 1 10:30:26 2023 -0400
     Merge pull request #143 from monsieuremre/patch-6
     
     new lines 990-security-misc.conf
+
+commit fc8e201e84e4c777c087fd113c539ca368fd3a31
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 14:49:24 2023 +0000
+
+    rename
+
+commit 90a88225a4fde2f09cc14b24f8467bb1ded90c9d
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 14:38:31 2023 +0000
+
+     security-misc.maintscript
+
+commit 13b4ddbb627d2279b41d1dcbe5c8ce1ac384b088
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 14:34:21 2023 +0000
+
+    30_security-misc.conf
+
+commit b298d152fc10c66892698d9dcae769a44a32037b
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 14:32:08 2023 +0000
+
+    30_security-misc.conf
+
+commit 3d4b04fddc16067ed345074683281e74f41eeadf
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 12:35:39 2023 +0000
+
+    99_ipv6-privacy.conf
+
+commit e90f62eaabfeee7483af573ef8e9d015ba1977dc
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 12:34:15 2023 +0000
+
+    99_randomize_mac.conf
+
+commit 604d839537c409604ed2c4c88992ea1a31368f6f
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Oct 27 12:30:26 2023 +0000
+
+    99_ipv6-privacy-extensions.conf
 
 commit c975c3c0ff7cc5a1e29b651c2db6c27e3f952870
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
