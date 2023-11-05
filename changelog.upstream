@@ -1,3 +1,23 @@
+commit 4a19fbae0be2ab99c1f21826eca2ec3cef605a0e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:13:01 2023 -0500
+
+    move permission-hardening to /usr/bin to make it more easily accessible
+
+commit c75f80b29f2fee3f2ead579390b8d3a8ff86b9d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:09:29 2023 -0500
+
+    lower verbosity of permission hardener
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/158
+
+commit 0544657123100b333211a91ef32054dc7e14c7db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 14:56:06 2023 -0500
+
+    bumped changelog version
+
 commit 42be6310237bdb663f38982b221327a337251e0a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:54:05 2023 -0500
