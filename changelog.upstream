@@ -1,3 +1,15 @@
+commit 51decff2fd48c2437b08136e97d4211e5eaccd89
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:03:36 2023 -0500
+
+    exclude qfile-unpacker from permission hardener
+
+commit 52b6e92e002987952c908eeb05a293dd401ee9be
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:58:21 2023 -0500
+
+    bumped changelog version
+
 commit 1900c1ab07e4d55577815b942b34457596a1d703
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 15:57:49 2023 -0500
