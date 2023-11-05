@@ -1,3 +1,31 @@
+commit 3130a39d8c280d913fb632a40562438b82a499bb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:43:07 2023 -0500
+
+    set -e
+
+commit 18a2d814cc0c477599b276bb319ed8bdd34499ea
+Merge: 4fda9d2 36f3c30
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:42:28 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 36f3c30440e73c8bf4946742095f0495994fed99
+Merge: 4fda9d2 2e64d89
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:41:56 2023 -0500
+
+    Merge pull request #148 from monsieuremre/module-loading-hardening
+    
+    Harden the loading of new modules to the kernel after install
+
+commit 4fda9d2e8459c043ec27178ceb87483229b45d5f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:46:18 2023 -0500
+
+    bumped changelog version
+
 commit 4219347f0a739ed1ea93a596968295ddcd3a940f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 16:43:44 2023 -0500
@@ -196,6 +224,24 @@ Date:   Sun Nov 5 11:31:09 2023 -0500
 
     update link
 
+commit 2e64d89b042227fe5f38bb6d6a859deb4c5183b7
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 4 21:18:45 2023 +0000
+
+    undo unnecessary manual activation
+
+commit 19eceaa8108879ee5477b157fb2175993c487959
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 4 20:56:46 2023 +0000
+
+    more fix
+
+commit a187d23c4187fd08611e5cba85d09666dfd9f735
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 4 20:56:08 2023 +0000
+
+    big fix
+
 commit fbd9e5d017c4b00d838e9f225c7748c4b362f023
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Sat Nov 4 14:33:35 2023 +0000
@@ -365,6 +411,26 @@ Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Thu Nov 2 13:01:55 2023 +0000
 
     disable sysrq
+
+commit 07882f61a8003026a9e4c135a6e18a8fd204060f
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 10:44:19 2023 +0000
+
+    enable service on install
+    
+    not sure if this would be the right way to do it
+
+commit 9f063584c1f96267b04f8f7fe0eee773f9345370
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 10:28:41 2023 +0000
+
+    disable-kernel-module-loading
+
+commit 3e604618a8ba2531553af4f9af00470bd9629615
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Thu Nov 2 10:24:35 2023 +0000
+
+    harden-module-loading.service
 
 commit 3ee4be652b28201ba208757ce5144e51c453ad70
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
