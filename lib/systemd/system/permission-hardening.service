@@ -14,7 +14,6 @@ After=local-fs.target
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=permission-hardening
-RemainAfterExit=yes
 
 [Install]
 WantedBy=sysinit.target
