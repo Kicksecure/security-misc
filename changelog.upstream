@@ -1,3 +1,19 @@
+commit d4494fd3c341796081dd8c114c8cc97e627c236c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:27:09 2023 -0500
+
+    disable remount-secure dracut modules
+    
+    pending new systemd based implementation
+    
+    https://github.com/Kicksecure/security-misc/pull/152
+
+commit 949c1633701ac168e908794d4dd74c5a9b09a437
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:14:43 2023 -0500
+
+    bumped changelog version
+
 commit 4a19fbae0be2ab99c1f21826eca2ec3cef605a0e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 15:13:01 2023 -0500
