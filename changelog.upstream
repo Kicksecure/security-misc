@@ -1,3 +1,39 @@
+commit 4219347f0a739ed1ea93a596968295ddcd3a940f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:43:44 2023 -0500
+
+    fix permission-hardener config parsing issue
+
+commit e72f79236b7b704c60c6920b51c86832f4fda9e3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:41:41 2023 -0500
+
+    refactoring
+
+commit dea0d9a78a99c441a1738f88cef2cd3c5f433454
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:40:49 2023 -0500
+
+    fix permission-hardener config parsing issue
+
+commit 017ae18ad7a757a18c5a7a92677f24053280e8b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:39:10 2023 -0500
+
+    fix permission-hardener config parsing issue
+
+commit 65e3c14643ca2b5167e0f5bc30a6bbc45cb4f645
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:35:11 2023 -0500
+
+    fix permission-hardener config parsing issue
+
+commit 40e536a9beb48f1938e67ae2010fc34f80e3bd1f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 16:04:03 2023 -0500
+
+    bumped changelog version
+
 commit 51decff2fd48c2437b08136e97d4211e5eaccd89
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 16:03:36 2023 -0500
