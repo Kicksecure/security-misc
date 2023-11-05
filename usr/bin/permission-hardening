@@ -469,6 +469,11 @@ set_file_perms() {
 }
 
 parse_config_folder() {
+  touch /var/lib/permission-hardening/private/passwd
+  chmod og-rwx /var/lib/permission-hardening/private/passwd
+  touch /var/lib/permission-hardening/private/group
+  chmod og-rwx /var/lib/permission-hardening/private/group
+
   local passwd_file_contents_temp
   # Query contents of password and group databases only once and buffer them
   #
