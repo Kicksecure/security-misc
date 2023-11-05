@@ -180,14 +180,14 @@ add_nosuid_statoverride_entry() {
       if [ "$whitelists_disable_all" = "true" ]; then
          true "INFO: whitelists_disable_all=true - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
       elif [ "$is_disable_whitelisted" = "true" ]; then
-         echo "INFO: white list disabled - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+         true "INFO: white list disabled - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
       else
          if [ "$is_exact_whitelisted" = "true" ]; then
-            echo "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
+            true "INFO: SKIP whitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode'"
             continue
          fi
          if [ "$is_match_whitelisted" = "true" ]; then
-            echo "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
+            true "INFO: SKIP matchwhitelisted - $setuid_output $setsgid_output found - file_name: '$file_name' | existing_mode: '$existing_mode' | matchwhite_list_entry: '$matchwhite_list_entry'"
             continue
          fi
       fi
@@ -233,7 +233,7 @@ add_nosuid_statoverride_entry() {
 }
 
 set_file_perms() {
-   echo "INFO: START parsing config_file: '$config_file'"
+   true "INFO: START parsing config_file: '$config_file'"
    local line
    while read -r line || [[ -n "${line}" ]]; do
       if [ "$line" = "" ]; then
@@ -295,7 +295,7 @@ set_file_perms() {
       fi
 
       if [ ! -e "$fso" ]; then
-         echo "INFO: fso: '$fso' - does not exist. This is likely normal."
+         true "INFO: fso: '$fso' - does not exist. This is likely normal."
          continue
       fi
 
@@ -458,7 +458,7 @@ set_file_perms() {
          echo_wrapper_audit setcap "${capability_from_config}+ep" "$fso"
       fi
    done < "$config_file"
-   echo "INFO: END parsing config_file: '$config_file'"
+   true "INFO: END parsing config_file: '$config_file'"
 }
 
 parse_config_folder() {
