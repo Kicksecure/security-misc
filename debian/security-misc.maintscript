@@ -45,7 +45,3 @@ rm_conffile /etc/X11/Xsession.d/50security-misc
 rm_conffile /etc/sysctl.d/30_security-misc.conf
 rm_conffile /etc/sysctl.d/30_silent-kernel-printk.conf
 rm_conffile /etc/sysctl.d/30_security-misc_kexec-disable.conf
-
-## replaced with privacy conscious configurations for bluetooth
-## not to hinder day to day usage
-rm_conffile /bin/disabled-bluetooth-by-security-misc
