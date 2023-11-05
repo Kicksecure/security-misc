@@ -1,3 +1,15 @@
+commit 1900c1ab07e4d55577815b942b34457596a1d703
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:57:49 2023 -0500
+
+    pam exclude from permission-hardener
+
+commit 76e3a3c5f9fa5e95b90e4ea3f3ba7019615a3d1a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 15:29:38 2023 -0500
+
+    bumped changelog version
+
 commit d4494fd3c341796081dd8c114c8cc97e627c236c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 15:27:09 2023 -0500
