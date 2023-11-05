@@ -18,9 +18,9 @@ set -o pipefail
 
 exit_code=0
 
-mkdir -p /var/lib/permission-hardening/private
-mkdir -p /var/lib/permission-hardening/existing_mode
-mkdir -p /var/lib/permission-hardening/new_mode
+mkdir --parents /var/lib/permission-hardening/private
+mkdir --parents /var/lib/permission-hardening/existing_mode
+mkdir --parents /var/lib/permission-hardening/new_mode
 dpkg_admindir_parameter_existing_mode="--admindir /var/lib/permission-hardening/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir /var/lib/permission-hardening/new_mode"
 
@@ -161,7 +161,7 @@ add_nosuid_statoverride_entry() {
       local is_match_whitelisted
       is_match_whitelisted=""
       for matchwhite_list_entry in $match_white_list ; do
-         if echo "$file_name" | grep -q --fixed-strings "$matchwhite_list_entry" ; then
+         if echo "$file_name" | grep --quiet --fixed-strings "$matchwhite_list_entry" ; then
             is_match_whitelisted="true"
             ## Stop looping through the match_white_list.
             break
@@ -171,7 +171,7 @@ add_nosuid_statoverride_entry() {
       local is_disable_whitelisted
       is_disable_whitelisted=""
       for disablematch_list_entry in $disable_white_list ; do
-         if echo "$file_name" | grep -q --fixed-strings "$disablematch_list_entry" ; then
+         if echo "$file_name" | grep --quiet --fixed-strings "$disablematch_list_entry" ; then
             is_disable_whitelisted="true"
             ## Stop looping through the disablewhitelist.
             break
@@ -325,12 +325,12 @@ set_file_perms() {
             continue
          fi
 
-         if ! echo "${passwd_file_contents}" | grep -q --fixed-strings "${owner_from_config}:" ; then
+         if ! echo "${passwd_file_contents}" | grep --quiet --fixed-strings "${owner_from_config}:" ; then
             echo "ERROR: owner_from_config '$owner_from_config' does not exist!" >&2
             continue
          fi
 
-         if ! echo "${group_file_contents}" | grep -q --fixed-strings "${group_from_config}:" ; then
+         if ! echo "${group_file_contents}" | grep --quiet --fixed-strings "${group_from_config}:" ; then
             echo "ERROR: group_from_config '$group_from_config' does not exist!" >&2
             continue
          fi
@@ -393,7 +393,7 @@ set_file_perms() {
             true "There is an fso entry. Check if owner/group/mode match."
             local grep_line
             grep_line="$owner_from_config $group_from_config $mode_for_grep $fso_without_trailing_slash"
-            if echo "$dpkg_statoverride_list_output" | grep -q --fixed-strings "$grep_line" ; then
+            if echo "$dpkg_statoverride_list_output" | grep --quiet --fixed-strings "$grep_line" ; then
                true "OK The owner/group/mode matches. No further action required."
             else
                true "The owner/group/mode do not match, therefore remove and re-add the entry to update it."
@@ -455,7 +455,7 @@ set_file_perms() {
             continue
          fi
       else
-         if ! capsh --print | grep --fixed-strings "Bounding set" | grep -q "$capability_from_config" ; then
+         if ! capsh --print | grep --fixed-strings "Bounding set" | grep --quiet "$capability_from_config" ; then
             echo "ERROR: capability_from_config '$capability_from_config' does not exist!" >&2
             continue
          fi
@@ -478,7 +478,7 @@ parse_config_folder() {
   # Query contents of password and group databases only once and buffer them
   #
   # If we don't buffer we sometimes get incorrect results when checking for entries using
-  # 'if getent passwd | grep -q '^root:'; ...' since 'grep' exits after the first match in
+  # 'if getent passwd | grep --quiet '^root:'; ...' since 'grep' exits after the first match in
   # this case causing 'getent' to receive SIGPIPE, which then fails the pipeline since
   # 'set -o pipefail' is set for this script.
   passwd_file_contents_temp=$(getent passwd)
