@@ -228,10 +228,20 @@ vulnerabilities such as CVE-2019-14899.
 
 * In addition, we deny the capability to track the originating device in the network at all, by using randomized MAC addresses per connection per default.
 
+See:
+
+* `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf`
+* `/usr/lib/NetworkManager/conf.d/80_randomize-mac.conf`
+* `/usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf`
+
 ## Network & Bluetooth hardening
 
-* Not done yet, pending, see: https://github.com/Kicksecure/security-misc/pull/145
-  * planned: Bluetooth is left enabled but users are highly discouraged from ever turning it on, due to its history of numerous security vulnerabilities. Unlike the default settings, we start the system with bluetooth turned off. We also enforce private addresses and strict timeout settings for discoverability and visibility.
+* Bluetooth is left enabled but users are highly discouraged from ever turning it on, due to its history of numerous security vulnerabilities. Unlike the default settings, we start the system with bluetooth turned off. We also enforce private addresses and strict timeout settings for discoverability and visibility.
+
+See:
+
+* `/etc/bluetooth/30_security-misc.conf`
+* https://github.com/Kicksecure/security-misc/pull/145
 
 ## Entropy collection improvements
 
