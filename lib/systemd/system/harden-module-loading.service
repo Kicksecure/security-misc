@@ -1,5 +1,5 @@
 [Unit]
-Description=Disable the loading of modules to the kernel after startup. This could be malicious.
+Description=Disable the loading of additional modules after systemd-modules-load.service
 After=systemd-modules-load.service
 Before=sysinit.target
 # This functionality is implemented with this and not directly in the sysctl config is
