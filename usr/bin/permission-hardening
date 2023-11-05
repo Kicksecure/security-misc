@@ -325,12 +325,12 @@ set_file_perms() {
             continue
          fi
 
-         if ! echo "${passwd_file_contents}" | grep --quiet --fixed-strings "${owner_from_config}:" ; then
+         if ! grep --quiet --fixed-strings "${owner_from_config}:" /var/lib/permission-hardening/private/passwd ; then
             echo "ERROR: owner_from_config '$owner_from_config' does not exist!" >&2
             continue
          fi
 
-         if ! echo "${group_file_contents}" | grep --quiet --fixed-strings "${group_from_config}:" ; then
+         if ! grep --quiet --fixed-strings "${group_from_config}:" /var/lib/permission-hardening/private/group ; then
             echo "ERROR: group_from_config '$group_from_config' does not exist!" >&2
             continue
          fi
