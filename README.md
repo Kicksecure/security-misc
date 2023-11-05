@@ -47,7 +47,7 @@ arbitrary code execution in kernel mode.
 Secure Attention Key.
 -->
 * Disables SysRq completely.
-  
+
 * The kernel is only allowed to swap if it is absolutely necessary. This
 prevents writing potentially sensitive contents of memory to disk.
 
@@ -177,7 +177,7 @@ of multiple vulnerabilities so it is disabled.
 * Incorporates much of [Ubuntu's](https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d?h=ubuntu/disco) default blacklist of modules to be blocked from automatically loading. However, they are  still permitted to load.
 
 * Blocks automatic loading of the modules needed to use of CD-ROM devices by default. Not completely disabled yet.
-  
+
 ### Other
 
 * A systemd service clears the System.map file on boot as these contain kernel
@@ -206,7 +206,7 @@ this is not needed for `dracut` because `dracut` does that by default, at least
 on `systemd` enabled systems. Not researched for non-`systemd` systems by the
 author of this part of the readme.
 
-## Network & Bluetooth hardening
+## Network hardening
 
 * TCP syncookies are enabled to prevent SYN flood attacks.
 
@@ -225,11 +225,13 @@ vulnerabilities such as CVE-2019-14899.
 
 * Unlike version 4, IPv6 addresses can provide information not only about the originating network, but also the originating device.
   We prevent this from happening by enabling the respective privacy extensions for IPv6.
-  
+
 * In addition, we deny the capability to track the originating device in the network at all, by using randomized MAC addresses per connection per default.
 
-* Bluetooth is left enabled but users are highly discouraged from ever turning it on, due to its history of numerous security vulnurabilities. Unlike the default settings,
-we start the system with bluetooth turned off. We also enforce private addresses and strict timeout settings for discoverability and visibility.
+## Network & Bluetooth hardening
+
+* Not done yet, pending, see: https://github.com/Kicksecure/security-misc/pull/145
+  * planned: Bluetooth is left enabled but users are highly discouraged from ever turning it on, due to its history of numerous security vulnerabilities. Unlike the default settings, we start the system with bluetooth turned off. We also enforce private addresses and strict timeout settings for discoverability and visibility.
 
 ## Entropy collection improvements
 
@@ -248,25 +250,10 @@ audit, may contain weaknesses or a backdoor. For references, see:
 A systemd service is triggered on boot to remount all sensitive partitions and directories with significantly more secure hardened mount options.
 Since this would require manual tuning for a given specific system, we handle it by creating a very solid configuration file for that very system on package install.
 
-<!--
-
 Not enabled by default yet. In development. Help welcome.
 
 https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
 
-`/home`, `/tmp`, `/dev/shm` and `/run` are remounted with the `nosuid` and `nodev`
-mount options to prevent execution of setuid or setgid binaries and creation of
-devices on those filesystems.
-
-Optionally, they can also be mounted with `noexec` to prevent execution of any
-binary. To opt-in to applying `noexec`, execute `touch /etc/noexec` as root
-and reboot.
-
-To disable this, execute `touch /etc/remount-disable` as root.
-
-Alternatively, file `/usr/local/etc/remount-disable` or `/usr/local/etc/noexec`
-could be used.
--->
 ## Root access restrictions
 
 * `su` is restricted to only users within the group `sudo` which prevents
@@ -407,7 +394,7 @@ Various file permissions are reset with more secure and hardened defaults. These
 * Limiting the configuration for cups and ssh.
 * Protecting the information of sudoers from others.
 * Protecting various system relevant files and modules.
-  
+
 <!--
 Not enabled by default yet.
 
