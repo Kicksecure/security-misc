@@ -1,7 +1,8 @@
 #!/bin/bash
 
+set -x
 set -e
 
 sysctl -w kernel.modules_disabled=1
 
-echo "The loading of new modules to the kernel has been disabled by security-misc"
+true "The loading of new modules to the kernel has been disabled by security-misc."
