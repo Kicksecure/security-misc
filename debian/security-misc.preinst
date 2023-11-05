@@ -100,7 +100,7 @@ sudo_users_check () {
    echo "sudo adduser user console" >&2
    echo "" >&2
    echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.whonix.org/wiki/security-misc#install" >&2
+   echo "https://www.kicksecure.com/wiki/security-misc#install" >&2
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
