@@ -18,6 +18,7 @@ set -o pipefail
 
 exit_code=0
 
+mkdir -p /var/lib/permission-hardening/private
 mkdir -p /var/lib/permission-hardening/existing_mode
 mkdir -p /var/lib/permission-hardening/new_mode
 dpkg_admindir_parameter_existing_mode="--admindir /var/lib/permission-hardening/existing_mode"
@@ -273,12 +274,11 @@ set_file_perms() {
          exit "$exit_code"
       fi
 
-echo "line: '$line'"
-echo "fso: '$fso'"
-echo "mode_from_config: '$mode_from_config'"
-echo "owner_from_config: '$owner_from_config'"
-
-
+      ## Debugging.
+      #echo "line: '$line'"
+      #echo "fso: '$fso'"
+      #echo "mode_from_config: '$mode_from_config'"
+      #echo "owner_from_config: '$owner_from_config'"
 
       local fso_without_trailing_slash
       fso_without_trailing_slash="${fso%/}"
@@ -469,16 +469,20 @@ echo "owner_from_config: '$owner_from_config'"
 }
 
 parse_config_folder() {
+  local passwd_file_contents_temp
   # Query contents of password and group databases only once and buffer them
   #
   # If we don't buffer we sometimes get incorrect results when checking for entries using
   # 'if getent passwd | grep -q '^root:'; ...' since 'grep' exits after the first match in
   # this case causing 'getent' to receive SIGPIPE, which then fails the pipeline since
   # 'set -o pipefail' is set for this script.
-  passwd_file_contents=$(getent passwd)
-  passwd_file_contents=$(echo "$passwd_file_contents")
-  group_file_contents=$(getent group)
-  group_file_contents=$(echo "$group_file_contents")
+  passwd_file_contents_temp=$(getent passwd)
+  echo "$passwd_file_contents_temp" | tee /var/lib/permission-hardening/private/passwd >/dev/null
+  group_file_contents_temp=$(getent group)
+  echo "$group_file_contents_temp" | tee /var/lib/permission-hardening/private/group >/dev/null
+
+  passwd_file_contents=$(cat /var/lib/permission-hardening/private/passwd)
+  group_file_contents=$(cat /var/lib/permission-hardening/private/group)
 
   shopt -s nullglob
   for config_file in /etc/permission-hardening.d/*.conf /usr/local/etc/permission-hardening.d/*.conf; do
