@@ -1,3 +1,21 @@
+commit 4ebab940c750154a396c4ffdbde61367e12c72f8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:56:35 2023 -0500
+
+    description too long, fixed
+
+commit ad010ef5b4c90e4abbd1c88724f99450740fb2eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:52:44 2023 -0500
+
+    debugging
+
+commit 826e76d037f88636fdde7d4ef1eb72f29ac5f4a5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 17:43:33 2023 -0500
+
+    bumped changelog version
+
 commit 3130a39d8c280d913fb632a40562438b82a499bb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 17:43:07 2023 -0500
