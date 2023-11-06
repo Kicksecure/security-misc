@@ -1,3 +1,105 @@
+commit a1e00be0e09a7271a3fae9e9abdbe9a2279b7197
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:58:23 2023 -0500
+
+    update link
+
+commit 5bb357cac02c7217f4e897a0625f531602ac69cf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:55:00 2023 -0500
+
+    spice-client-glib-usb-acl-helper matchwhitelist
+
+commit 7309445ee518c093ba3f9aec56197e391e0a194a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:52:27 2023 -0500
+
+    comment
+
+commit f09d97fc9efc98d8b197a497e2ce4c5965be531a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:50:19 2023 -0500
+
+    whitelist VirtualBox
+
+commit 64c8c7a8d5a42d2e3da9ce243bc708d1bcbe6039
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:47:31 2023 -0500
+
+    whitelist SSH
+
+commit 9682b51d548396717867a0c336f1fb1677ccfe2b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:44:36 2023 -0500
+
+    whitelist virtualbox
+
+commit a40b9bc095bb0f363911dacee050234b3a555744
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:40:22 2023 -0500
+
+    comments
+
+commit 2c1a3da433b8dc96039caab17e81666896ade58c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:38:50 2023 -0500
+
+    VirtualBoxVM matchwhitelist
+
+commit 4e96ffaabb7c2e73bf686e56bcaa220f4d2e9e93
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:37:19 2023 -0500
+
+    chrome-sandbox matchwhitelist
+
+commit df5f3e80566da210ee5d807cc1b5dd53678fdae0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:36:22 2023 -0500
+
+    output
+
+commit 72f6e6bb9c2426535bfc48175d88707331ec5346
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:28:23 2023 -0500
+
+    output
+
+commit 3bc831a1f71a80a178601bdd5c7f06b22ada75ab
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:27:29 2023 -0500
+
+    lintian
+
+commit fd1f38b2ebe31aec04b22d968b38305504f7f935
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 16:22:42 2023 -0500
+
+    remount-secure systemd unit
+    
+    https://github.com/Kicksecure/security-misc/pull/152
+
+commit 79f9c1fb3adac319342a22c099401cb21af4429f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 15:48:09 2023 -0500
+
+    add sysinit-post.target
+    
+    https://github.com/Kicksecure/security-misc/pull/152
+
+commit 2de5ab41201c561a2684f15196ce37b0f34038a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 6 13:47:30 2023 -0500
+
+    clarify scope of application specific hardening
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/154
+
+commit 5a96616b39e7188903bd0d35c9812a02fddc02f9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 21:13:14 2023 -0500
+
+    bumped changelog version
+
 commit ad079ac5cc4d7ce2270e9abf21fa520fc9b2761f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:55:55 2023 -0500
