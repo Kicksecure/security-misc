@@ -6,16 +6,25 @@ Description=remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noe
 Documentation=https://github.com/Kicksecure/security-misc
 
 DefaultDependencies=no
-Before=sysinit.target
-Requires=local-fs.target
-After=local-fs.target
 
+Before=sysinit-post.target
+Before=basic.target
+Before=multi-user.target
+Before=graphical.target
+Before=getty-pre.target
+Before=network-pre.target
+
+After=local-fs.target
+After=sysinit.target
 After=qubes-sysinit.service
+
+Requires=local-fs.target
+Requires=sysinit.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/remount-secure
+ExecStart=remount-secure
 
 [Install]
-WantedBy=sysinit.target
+WantedBy=sysinit-post.target
