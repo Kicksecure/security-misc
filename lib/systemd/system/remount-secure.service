@@ -1,0 +1,21 @@
+## Copyright (C) 2019 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
+Documentation=https://github.com/Kicksecure/security-misc
+
+DefaultDependencies=no
+Before=sysinit.target
+Requires=local-fs.target
+After=local-fs.target
+
+After=qubes-sysinit.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/remount-secure
+
+[Install]
+WantedBy=sysinit.target
