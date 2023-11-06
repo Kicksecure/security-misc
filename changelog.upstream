@@ -1,3 +1,35 @@
+commit 4482f1841cfc6caa063e2274db890cfa01944811
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:13:14 2023 -0500
+
+    newline
+
+commit c5167c8f0d398946fdfae56fa78b32fade4cb451
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:12:03 2023 -0500
+
+    fix systemd unit
+    
+    https://github.com/Kicksecure/security-misc/issues/159
+
+commit 2571bbf315693f65f564ef4ad1b2ff4941f2ebc3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 18:42:25 2023 -0500
+
+    duplicate
+
+commit aa170878838b2218da8295be8b6898bc86056cec
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 18:42:08 2023 -0500
+
+    update path
+
+commit d203e539aa975b042cd6ec9608a0cc16b3314372
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 18:17:59 2023 -0500
+
+    bumped changelog version
+
 commit 4ebab940c750154a396c4ffdbde61367e12c72f8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 17:56:35 2023 -0500
