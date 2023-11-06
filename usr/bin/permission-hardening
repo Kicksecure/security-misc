@@ -6,9 +6,6 @@
 ## https://forums.whonix.org/t/disable-suid-binaries/7706
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
-## To view previous modes and how these were changed:
-## meld /var/lib/permission-hardening/existing_mode/statoverride /var/lib/permission-hardening/new_mode/statoverride
-
 ## To undo:
 ## sudo /usr/libexec/security-misc/permission-hardening-undo
 
@@ -497,6 +494,14 @@ parse_config_folder() {
 
 sanity_tests
 parse_config_folder
+
+echo "\
+INFO: To compare the current and previous permission modes:
+1. Install 'meld' (or similar) for an easier comparison of file changes:
+   sudo apt install --no-install-recommends meld
+
+2. Use 'meld' to view the differences:
+   meld /var/lib/permission-hardening/existing_mode/statoverride /var/lib/permission-hardening/new_mode/statoverride"
 
 if [ ! "$exit_code" = "0" ]; then
    echo "ERROR: Will exit with non-zero exit code: '$exit_code'" >&2
