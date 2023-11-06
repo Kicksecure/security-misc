@@ -266,7 +266,8 @@ Since this would require manual tuning for a given specific system, we handle it
 
 Not enabled by default yet. In development. Help welcome.
 
-https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
+* https://github.com/Kicksecure/security-misc/pull/152
+* https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
 
 ## Root access restrictions
 
