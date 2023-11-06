@@ -1,3 +1,51 @@
+commit ad079ac5cc4d7ce2270e9abf21fa520fc9b2761f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:55:55 2023 -0500
+
+    readme
+    
+    https://github.com/Kicksecure/security-misc/pull/152
+
+commit be023c77223c4ec0e26ffe2a88acd94653efee9a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:54:43 2023 -0500
+
+    readme
+    
+    https://github.com/Kicksecure/security-misc/issues/159
+
+commit e1f413c1ee5107468cb2a9c4aa8bd061d0dc911b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:53:26 2023 -0500
+
+    disable harden-module-loading.service for now
+    
+    due to issues
+    
+    https://github.com/Kicksecure/security-misc/issues/159
+
+commit f2ea1abc9b3efc035f4d1381bece458de9b89ff3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:53:03 2023 -0500
+
+    comment
+
+commit 95d1cfb4a03afc987cf89bb0f4cd6d2f1ad431b1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:49:36 2023 -0500
+
+    Revert "remove no longer required remount-service systemd unit"
+    
+    This reverts commit 479ab61a1d0c91d26c2cd200d97b39b2b786e073.
+    
+    https://github.com/Kicksecure/security-misc/pull/152
+
+commit 24b4d59ce41bc95e0b0aadf401223dc40b0f9c8f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 5 20:14:33 2023 -0500
+
+    bumped changelog version
+
 commit 4482f1841cfc6caa063e2274db890cfa01944811
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:13:14 2023 -0500
