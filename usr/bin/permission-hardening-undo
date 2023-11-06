@@ -116,16 +116,16 @@ To remove all:
 $0 all
 
 This change might not be permanent (because of the permission-hardening.service systemd unit). For full instructions, see:
-https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener
+https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 
 To view list of changed by SUID Disabler and Permission Hardener:
-https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#View_List_of_Permissions_Changed_by_SUID_Disabler_and_Permission_Hardener
+https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#View_List_of_Permissions_Changed_by_SUID_Disabler_and_Permission_Hardener
 
 For re-enabling any specific SUID binary:
-https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#Re-Enable_Specific_SUID_Binaries
+https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Re-Enable_Specific_SUID_Binaries
 
 For completely disabling SUID Disabler and Permission Hardener:
-https://www.whonix.org/wiki/SUID_Disabler_and_Permission_Hardener#Disable_SUID_Disabler_and_Permission_Hardener"
+https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Disable_SUID_Disabler_and_Permission_Hardener"
    fi
 fi
 
