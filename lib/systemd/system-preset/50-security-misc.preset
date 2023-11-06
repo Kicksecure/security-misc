@@ -7,5 +7,13 @@ disable hide-hardware-info.service
 ## Disable for now until development finished / tested.
 disable permission-hardening.service
 
+## Disable for now until development finished / tested.
+## https://github.com/Kicksecure/security-misc/pull/152
+disable remount-secure.service
+
 ## Disable due to pkexec issues.
 disable proc-hidepid.service
+
+## Disable due to issues. See:
+## https://github.com/Kicksecure/security-misc/issues/159
+harden-module-loading.service

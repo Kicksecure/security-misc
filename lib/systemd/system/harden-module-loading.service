@@ -1,0 +1,21 @@
+[Unit]
+Description=Disable the loading of additional modules after systemd-modules-load.service
+Documentation=https://github.com/Kicksecure/security-misc
+
+DefaultDependencies=no
+Before=sysinit.target
+Requires=local-fs.target
+Requires=systemd-modules-load.service
+After=local-fs.target
+After=systemd-modules-load.service
+
+# This functionality is implemented with this and not directly in the sysctl config is
+# to allow systemd-modules-load.service to load the modules with no problem but
+# to disallow anyone else do the same after the system boots up.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/security-misc/disable-kernel-module-loading
+
+[Install]
+WantedBy=sysinit.target

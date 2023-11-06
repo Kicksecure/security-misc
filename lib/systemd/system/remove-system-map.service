@@ -4,6 +4,7 @@
 [Unit]
 Description=Removes the System.map files
 Documentation=https://github.com/Kicksecure/security-misc
+
 DefaultDependencies=no
 Before=sysinit.target
 Requires=local-fs.target

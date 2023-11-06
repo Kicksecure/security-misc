@@ -13,8 +13,7 @@ After=local-fs.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/libexec/security-misc/permission-hardening
-RemainAfterExit=yes
+ExecStart=permission-hardening
 
 [Install]
 WantedBy=sysinit.target

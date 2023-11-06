@@ -95,12 +95,13 @@ sudo_users_check () {
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
    echo "$0: ERROR: You probably want to run:" >&2
+   echo "$0: NOTE: Replace user 'user' with your actual Linux user account name." >&2
    echo "" >&2
    echo "sudo adduser user sudo" >&2
    echo "sudo adduser user console" >&2
    echo "" >&2
    echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.whonix.org/wiki/security-misc#install" >&2
+   echo "https://www.kicksecure.com/wiki/security-misc#install" >&2
 
    if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
