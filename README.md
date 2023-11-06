@@ -457,10 +457,22 @@ See:
     * Disables all and any kind of telemetry.
 * Security and privacy enhancements for gnupg's config file
 `/etc/skel/.gnupg/gpg.conf`. See also:
+    * https://raw.github.com/ioerror/torbirdy/master/gpg.conf
+    * https://github.com/ioerror/torbirdy/pull/11
 
-https://raw.github.com/ioerror/torbirdy/master/gpg.conf
+### project scope of application-specific hardening
 
-https://github.com/ioerror/torbirdy/pull/11
+Before sending pull requests to harden arbitrary applications, please note the scope of security-misc is limited to default installed applications in Kicksecure, Whonix. This includes:
+
+* Thunderbird, VLC Media Player, KeepassXC
+* Debian Specific System Components (APT, DPKG)
+* System Services (NetworkManager IPv6 privacy options, MAC address randomization)
+* Actually used development utilities such as `git`.
+
+It will not be possible to review and merge "1500" settings profiles for arbitrary applications outside of this context.
+
+Discussion:
+https://github.com/Kicksecure/security-misc/issues/154
 
 ## Opt-in hardening
 
