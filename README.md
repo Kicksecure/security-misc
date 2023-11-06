@@ -110,6 +110,10 @@ See:
 
 #### Disables the loading of new modules to the kernel after the fact
 
+Not yet due to issues:
+
+* https://github.com/Kicksecure/security-misc/pull/152
+
 A systemd service dynamically sets the kernel parameter ```modules_disabled``` to 1, preventing new modules from being loaded. Since this isn't configured directly within systemctl, it does not break the loading of legitimate and necessary modules for the user, like drivers etc., given they are plugged in on startup.
 
 #### Disables and blacklists kernel modules
