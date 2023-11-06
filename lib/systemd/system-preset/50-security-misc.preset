@@ -8,6 +8,7 @@ disable hide-hardware-info.service
 disable permission-hardening.service
 
 ## Disable for now until development finished / tested.
+## https://github.com/Kicksecure/security-misc/pull/152
 disable remount-secure.service
 
 ## Disable due to pkexec issues.
