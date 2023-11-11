@@ -3,7 +3,7 @@ Version:	@VERSION@
 Release:	1%{?dist}
 Summary:	enhances misc security settings
 
-License:	GPL-3+-with-additional-terms-1
+License:	AGPL-3+
 URL:		https://github.com/Whonix/security-misc
 Source0:	%{name}-%{version}.tar.xz
 
