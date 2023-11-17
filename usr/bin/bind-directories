@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if ! findmnt "/tmp"
+then
+  mount -o defaults,nodev,noexec,nosuid -t tmpfs tmpfs /tmp
+fi
+
+if ! findmnt "/var/tmp"
+then
+  mount -o defaults,nodev,noexec,nosuid --bind /tmp /var/tmp
+fi
+
+if ! findmnt "/var"
+then
+  mount -o defaults,nodev,nosuid --bind /var /var
+fi
+
+if ! findmnt "/var/log"
+then
+  mount -o defaults,nodev,noexec,nosuid --bind /var/log /var/log
+fi
+
+if ! findmnt "/boot/efi"
+then
+  if [ -d /boot/efi ]
+  then
+    mount -o defaults,nodev,noexec,nosuid --bind /boot/efi /boot/efi
+  fi
+fi
+
+if ! findmnt "/boot"
+then
+  mount -o defaults,nodev,noexec,nosuid --bind /boot /boot
+fi
+
+if ! findmnt "/usr/share"
+then
+  mount -o defaults,nodev,nosuid --bind /usr/share /usr/share
+fi
+
+if ! findmnt "/usr"
+then
+  mount -o defaults,nodev --bind /usr /usr
+fi
