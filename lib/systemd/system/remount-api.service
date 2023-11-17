@@ -1,0 +1,26 @@
+# https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems/
+# When not editing fstab, some filesystems have to be remounted in order to be hardened
+
+[Unit]
+Description=Remounts what can not be mounted with secure options in the first run without having to edit fstab
+
+Before=sysinit-post.target
+Before=basic.target
+Before=multi-user.target
+Before=graphical.target
+Before=getty-pre.target
+Before=network-pre.target
+
+After=local-fs.target
+After=sysinit.target
+After=qubes-sysinit.service
+
+Requires=local-fs.target
+Requires=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=remount-api
+
+[Install]
+WantedBy=sysinit-post.target
