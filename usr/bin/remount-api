@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## This one seems to be superfluous because debian seems to mount run hardened anyway
+# mount -o defaults,nodev,noexec,nosuid,remount /run
+
+mount -o defaults,nodev,noexec,nosuid,remount /dev/shm
+mount -o defaults,noexec,nosuid,remount /dev
