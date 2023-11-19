@@ -1,0 +1,10 @@
+[Unit]
+Description=Bind Mount /var with no dedicated partition
+
+[Mount]
+What=/var
+Where=/var
+Options=defaults,nodev,nosuid,bind
+
+[Install]
+WantedBy=sysinit.target
