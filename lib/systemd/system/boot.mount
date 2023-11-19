@@ -1,0 +1,10 @@
+[Unit]
+Description=Bind Mount /boot with no dedicated partition
+
+[Mount]
+What=/boot
+Where=/boot
+Options=defaults,nodev,noexec,nosuid,bind
+
+[Install]
+WantedBy=sysinit.target
