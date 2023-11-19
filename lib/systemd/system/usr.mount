@@ -1,0 +1,10 @@
+[Unit]
+Description=Bind Mount /usr with no dedicated partition
+
+[Mount]
+What=/usr
+Where=/usr
+Options=defaults,nodev,bind
+
+[Install]
+WantedBy=sysinit.target
