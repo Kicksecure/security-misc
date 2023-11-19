@@ -1,0 +1,11 @@
+[Unit]
+Description=Bind Mount /usr/share with no dedicated partition
+Before=usr.mount
+
+[Mount]
+What=/usr/share
+Where=/usr/share
+Options=defaults,nodev,nosuid,bind
+
+[Install]
+WantedBy=sysinit.target
