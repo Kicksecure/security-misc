@@ -1,0 +1,11 @@
+[Unit]
+Description=Bind Mount /var/log with no dedicated partition
+Before=var.mount
+
+[Mount]
+What=/var/log
+Where=/var/log
+Options=defaults,nodev,noexec,nosuid,bind
+
+[Install]
+WantedBy=sysinit.target
