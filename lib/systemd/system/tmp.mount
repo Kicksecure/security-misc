@@ -2,8 +2,8 @@
 Description=Bind Mount /tmp with no dedicated partition
 
 [Mount]
-What=/tmp
-Where=tmpfs
+What=tmpfs
+Where=/tmp
 Options=defaults,nodev,noexec,nosuid
 
 [Install]
