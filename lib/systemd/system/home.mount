@@ -1,0 +1,10 @@
+[Unit]
+Description=Bind Mount /home with no dedicated partition
+
+[Mount]
+What=/home
+Where=/home
+Options=defaults,nodev,nosuid,bind
+
+[Install]
+WantedBy=sysinit.target
