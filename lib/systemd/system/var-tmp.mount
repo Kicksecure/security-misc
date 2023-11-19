@@ -4,7 +4,7 @@ Description=Bind Mount /var/tmp with no dedicated partition
 [Mount]
 What=/var/tmp
 Where=/tmp
-Options=defaults,nodev,nosuid,bind
+Options=defaults,nodev,noexec,nosuid,bind
 
 [Install]
 WantedBy=sysinit.target
