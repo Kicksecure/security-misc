@@ -1,0 +1,10 @@
+[Unit]
+Description=Bind Mount /tmp with no dedicated partition
+
+[Mount]
+What=/tmp
+Where=tmpfs
+Options=defaults,nodev,noexec,nosuid
+
+[Install]
+WantedBy=sysinit.target
