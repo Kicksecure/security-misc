@@ -1,3 +1,17 @@
+commit c2b3ff5243c69c4e1ba28e9966bf0ffd3ce550ce
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 20 04:40:28 2023 -0500
+
+    moved libpam-tmpdir dependency to kicksecure-meta-packages
+    
+    https://github.com/Kicksecure/security-misc/pull/147
+
+commit 4e4df5dd7c6b5cf1deb179a2c3f8fe7a8844884d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 11 22:29:57 2023 +0000
+
+    bumped changelog version
+
 commit a51674410cb8a7ac2119ea7c85f986223ce8fc25
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Nov 11 17:29:37 2023 -0500
