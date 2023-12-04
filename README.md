@@ -471,6 +471,8 @@ Before sending pull requests to harden arbitrary applications, please note the s
 
 It will not be possible to review and merge "1500" settings profiles for arbitrary applications outside of this context.
 
+The main objective of security-misc is to harden Kicksecure and its derivatives, such as Whonix, by implementing robust security settings. It's designed to be compatible with Debian, reflecting a commitment to clean implementation and sound design principles. However, it's important to note that security-misc is a component of Kicksecure, not a substitute for it. The intention isn't to recreate Kicksecure within security-misc. Instead, specific security enhancements, like for example recommending a curated list of security-focused default packages (e.g., `libpam-tmpdir`), should be integrated directly into those appropriate areas of Kicksecure (e.g. `kicksecure-meta-packages`).
+
 Discussion:
 https://github.com/Kicksecure/security-misc/issues/154
 
