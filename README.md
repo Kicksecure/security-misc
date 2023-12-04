@@ -512,6 +512,12 @@ executing `systemctl enable hide-hardware-info.service` as root.
 
 * set `dracut` `reproducible=yes` setting
 
+## legal
+
+`/usr/lib/issue.d/20_security-misc.issue`
+
+https://github.com/Kicksecure/security-misc/pull/167
+
 ## Related
 
 * Linux Kernel Runtime Guard (LKRG)
