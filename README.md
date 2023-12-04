@@ -462,6 +462,8 @@ See:
 
 ### project scope of application-specific hardening
 
+Added in December 2023.
+
 Before sending pull requests to harden arbitrary applications, please note the scope of security-misc is limited to default installed applications in Kicksecure, Whonix. This includes:
 
 * Thunderbird, VLC Media Player, KeepassXC
@@ -475,6 +477,16 @@ The main objective of security-misc is to harden Kicksecure and its derivatives,
 
 Discussion:
 https://github.com/Kicksecure/security-misc/issues/154
+
+### development philosophy
+
+Added in December 2023.
+
+"Maintainability is a key priority [1]. Before modifying settings in the downstream security-misc, it's essential to first engage with upstream developers to propose these changes as defaults. This step should only be bypassed if there's a clear, prior indication from upstream that such changes won't be accepted. Additionally, before implementing any workarounds, consulting with upstream is necessary to future unmaintainable complexity.
+
+If debugging features are disabled, pull requests won't be merged until there is a corresponding pull request for the debug-misc package to re-enable these. This is to avoid configuring the system into a corner where it can be no longer debugged.
+
+[1] https://www.kicksecure.com/wiki/Dev/maintainability
 
 ## Opt-in hardening
 
