@@ -1,3 +1,132 @@
+commit 5a73817a9575fe5bcaf3fd354e5f175db7d45ba4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:38:49 2023 -0500
+
+    move to `/usr/lib/issue.d/20_security-misc.issue`
+    
+    https://github.com/Kicksecure/security-misc/pull/167
+
+commit dfaea492c76a277b9cbe84982a135cb4f03a557c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:37:02 2023 -0500
+
+    remove `etc/issue.net.d/20_security-misc`
+    
+    since not mentioned on debian.org
+
+commit 69c895af09f05000ace5f273f3e5032aabf8c64e
+Merge: c9ea7a4 36850f8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:27:53 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 36850f89fb07678ca24eb580a18247e593eac608
+Merge: c9ea7a4 0d7af97
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:27:16 2023 -0500
+
+    Merge pull request #167 from monsieuremre/patch-4
+    
+    Non-Identifiable and Generic Issue Banners that include the Recommended Keywords
+
+commit c9ea7a4dca6e985c3a1044a3b4ddda83909fbc51
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:02:55 2023 -0500
+
+    use `amd_iommu=force_isolation` instead of `amd_iommu=force_enable`
+    
+    because we set `iommu=force` already anyhow
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/175
+
+commit e83c1d7ed662bb0533c670dd5b7a6745a75e9ca4
+Merge: c4e21ca befd21e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:01:02 2023 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit befd21e0c0c38eaf91c7096e9f60120f533a5842
+Merge: c4e21ca f2ad838
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 11:00:29 2023 -0500
+
+    Merge pull request #176 from monsieuremre/patch-1
+    
+    Iommu Kernel Parameters
+
+commit c4e21ca5f49fbc2d67853eebca647539acbca815
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 10:58:16 2023 -0500
+
+    added development philosophy
+    
+    https://github.com/Kicksecure/security-misc/issues/154
+
+commit feab1432f9d0966118ca233c9f88270b98c3f120
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 10:48:27 2023 -0500
+
+    clarify scope
+    
+    https://github.com/Kicksecure/security-misc/issues/154
+
+commit dc04040cb3644c9e3be9b44a34da4a5f7b61f2cc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 10:36:48 2023 -0500
+
+    typo
+
+commit 2634dbff2bd9d7482e7b02be2b5b6fa1c58ef6c7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 10:36:21 2023 -0500
+
+    shuffle
+
+commit f2ad8383cfea4bba42e8b246b05b85101d707641
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:51:38 2023 +0000
+
+    fix
+
+commit dd15823a97e953750d7a8288c7d3b8d5f554d6f9
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:50:07 2023 +0000
+
+    undo superfluousness
+
+commit 83e13bb62d028cfeea7a4d3f3def3bff8d2b5eaa
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:42:34 2023 +0000
+
+    Update 40_enable_iommu.cfg
+
+commit 0d7af9707f802fb600d9eb39bbe0b3bd4a65e3b0
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:31:12 2023 +0000
+
+    Update 20_security-misc
+
+commit 04d27a10b0cd1c22cb166c9fccb93a09d5f388f0
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:30:55 2023 +0000
+
+    Update 20_security-misc
+
+commit 7963f811e1bb6f5e0e2ba41e96b14e4a3a70f847
+Merge: c8b9f5a 82bd913
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sun Dec 3 19:30:22 2023 +0000
+
+    Merge branch 'Kicksecure:master' into patch-4
+
+commit 82bd9138de750a3590be9c91c898cbd04c550e7e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 20 13:13:10 2023 +0000
+
+    bumped changelog version
+
 commit c2b3ff5243c69c4e1ba28e9966bf0ffd3ce550ce
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 20 04:40:28 2023 -0500
@@ -5,6 +134,18 @@ Date:   Mon Nov 20 04:40:28 2023 -0500
     moved libpam-tmpdir dependency to kicksecure-meta-packages
     
     https://github.com/Kicksecure/security-misc/pull/147
+
+commit c8b9f5a917e6c415575d6763a65930f1a91a7c78
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 18 10:03:19 2023 +0000
+
+    net
+
+commit 3b614f3753608bd62ff6bc6e56e15f280994c646
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Sat Nov 18 10:02:16 2023 +0000
+
+    20_security-misc
 
 commit 4e4df5dd7c6b5cf1deb179a2c3f8fe7a8844884d
 Author: Patrick Schleizer <adrelanos@whonix.org>
