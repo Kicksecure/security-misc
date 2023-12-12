@@ -1,3 +1,23 @@
+commit 039de1dc9bd6f3cc6595d66f54d0d88d9b537b17
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 12 11:50:11 2023 -0500
+
+    add hardened fstab `/usr/share/doc/security-misc/fstab-vm`
+    
+    to the documentation folder as an example
+    
+    not directly used by security-misc
+    
+    will later be used by Kicksecure VM build process
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit dcaafa6c8bf380dd990942e9c10e280943b442a6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 4 17:06:45 2023 +0000
+
+    bumped changelog version
+
 commit 5a73817a9575fe5bcaf3fd354e5f175db7d45ba4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:38:49 2023 -0500
