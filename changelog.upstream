@@ -1,3 +1,17 @@
+commit f70a034da2b4b615855504e7080baf1a7e7b461c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 22 08:31:58 2023 -0500
+
+    exclude hardened malloc from SUID disabler
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/179
+
+commit 99f2edd4f685cdc9a47b32107125408e12a294c2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 12 16:51:21 2023 +0000
+
+    bumped changelog version
+
 commit 039de1dc9bd6f3cc6595d66f54d0d88d9b537b17
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 12 11:50:11 2023 -0500
