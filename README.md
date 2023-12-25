@@ -41,12 +41,11 @@ configuration file.
 
 -   Prevents unintentional writes to attacker-controlled files.
 
--   Prevents common symlink and hardlink TOCTOU races. `<!--
-    * Restricts the SysRq key so it can only be used for shutdowns and the
-    Secure Attention Key.
-    -->`{=html}
+-   Prevents common symlink and hardlink TOCTOU races.
 
--   Disables SysRq completely.
+-   Disables SysRq key completely.
+    * Therefore Secure Attention Key (SAK) cannot be used.
+    * https://www.kicksecure.com/wiki/SysRq
 
 -   The kernel is only allowed to swap if it is absolutely necessary. This
     prevents writing potentially sensitive contents of memory to disk.
@@ -278,7 +277,7 @@ install.
 
 Not enabled by default yet. In development. Help welcome.
 
--   https://github.com/Kicksecure/security-misc/pull/152
+-   https://github.com/Kicksecure/security-misc/issues/157
 -   https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
 
 ## Root access restrictions
@@ -421,18 +420,21 @@ include but are not limited to:
 -   Protecting the information of sudoers from others.
 -   Protecting various system relevant files and modules.
 
-```{=html}
-<!--
-Not enabled by default yet.
+##### permission-hardening #####
 
-A systemd service removes SUID / SGID bits from non-essential binaries as
-these are often used in privilege escalation attacks. It is disabled by
-default for now during testing and can optionally be enabled by running
-`systemctl enable permission-hardening.service` as root.
+`permission-hardener` removes SUID / SGID bits from non-essential binaries as
+these are often used in privilege escalation attacks. It runs at package
+installation and upgrade time.
+
+There is also an optional systemd unit which does the same at boot time that
+can be enabled by running `systemctl enable permission-hardening.service` as
+root. The hardening at boot time is not the default because this slows down
+the boot too much.
 
 See:
 
-* `/usr/libexec/security-misc/permission-hardening`
+* `/usr/bin/permission-hardening`
+* `debian/security-misc.postinst`
 * `/lib/systemd/system/permission-hardening.service`
 * `/etc/permission-hardening.d`
 * https://forums.whonix.org/t/disable-suid-binaries/7706
@@ -450,8 +452,7 @@ See:
 * `/usr/bin/pkexec.security-misc`
 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
 * https://forums.whonix.org/t/cannot-use-pkexec/8129
--->
-```
+
 ## Application-specific hardening
 
 -   Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
