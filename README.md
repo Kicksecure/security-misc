@@ -140,43 +140,25 @@ surface via the `/etc/modprobe.d/30_security-misc.conf` configuration file.
 
 -   Uncommon network protocols are blacklisted. This includes:
 
-DCCP - Datagram Congestion Control Protocol
-
-SCTP - Stream Control Transmission Protocol
-
-RDS - Reliable Datagram Sockets
-
-TIPC - Transparent Inter-process Communication
-
-HDLC - High-Level Data Link Control
-
-AX25 - Amateur X.25
-
-NetRom
-
-X25
-
-ROSE
-
-DECnet
-
-Econet
-
-af_802154 - IEEE 802.15.4
-
-IPX - Internetwork Packet Exchange
-
-AppleTalk
-
-PSNAP - Subnetwork Access Protocol
-
-p8023 - Novell raw IEEE 802.3
-
-p8022 - IEEE 802.2
-
-CAN - Controller Area Network
-
-ATM
+    -   DCCP - Datagram Congestion Control Protocol
+    -   SCTP - Stream Control Transmission Protocol
+    -   RDS - Reliable Datagram Sockets
+    -   TIPC - Transparent Inter-process Communication
+    -   HDLC - High-Level Data Link Control
+    -   AX25 - Amateur X.25
+    -   NetRom
+    -   X25
+    -   ROSE
+    -   DECnet
+    -   Econet
+    -   af_802154 - IEEE 802.15.4
+    -   IPX - Internetwork Packet Exchange
+    -   AppleTalk
+    -   PSNAP - Subnetwork Access Protocol
+    -   p8023 - Novell raw IEEE 802.3
+    -   p8022 - IEEE 802.2
+    -   CAN - Controller Area Network
+    -   ATM
 
 -   Disables a large array of uncommon file systems and network file systems
     that reduces the attack surface especially against legacy approaches.
