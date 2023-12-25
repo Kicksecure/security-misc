@@ -1,41 +1,32 @@
 # <file system>                                             <mount point>     <type>    <options>                  <dump> <pass>
 
-/dev/disk/by-uuid/26ada0c0-1165-4098-884d-aafd2220c2c6       /                auto      defaults,errors=remount-ro  0      1
+/dev/disk/by-uuid/26ada0c0-1165-4098-884d-aafd2220c2c6       /                auto      defaults,errors=remount-ro       0      1
 
-proc                                                         /proc            proc      defaults                    0      0
+proc                                                         /proc            proc      defaults                         0      0
 
-/dev                                                         /dev             none      bind                        0      0
-/dev                                                         /dev             none      remount,nosuid,noexec       0      0
-
-## noexec optional
-/dev/shm                                                     /dev/shm         tmpfs     nosuid,nodev,noexec         0      0
-
-/dev/cdrom                                                   /mnt/cdrom0      iso9660   ro,user,noauto              0      0
-
-/boot                                                        /boot            none      bind                        0      0
-/boot                                                        /boot            none      remount,nosuid,nodev,noexec 0      0
-
-/lib                                                         /lib             none      bind                        0      0
-/lib                                                         /lib             none      remount,nosuid,nodev        0      0
+/dev                                                         /dev             none      bind,remount,nosuid,noexec       0      0
 
 ## noexec optional
-/tmp                                                         /tmp             none      bind                        0      0
-/tmp                                                         /tmp             none      remount,nosuid,nodev,noexec 0      0
+/dev/shm                                                     /dev/shm         tmpfs     nosuid,nodev,noexec              0      0
 
-/var                                                         /var             none      bind                        0      0
-/var                                                         /var             none      remount,nosuid,nodev        0      0
+/dev/cdrom                                                   /mnt/cdrom0      iso9660   ro,user,noauto                   0      0
 
-## noexec optional
-/var/tmp                                                     /var/tmp         none      bind                        0      0
-/var/tmp                                                     /var/tmp         none      remount,nosuid,nodev,noexec 0      0
+/boot                                                        /boot            none      bind,remount,nosuid,nodev,noexec 0      0
 
-/var/log                                                     /var/log         none      bind                        0      0
-/var/log                                                     /var/log         none      remount,nosuid,nodev,noexec 0      0
+/lib                                                         /lib             none      bind,remount,nosuid,nodev        0      0
 
 ## noexec optional
-/run                                                         /run             none      bind                        0      0
-/run                                                         /run             none      remount,nosuid,nodev,noexec 0      0
+/tmp                                                         /tmp             none      bind,remount,nosuid,nodev,noexec 0      0
+
+/var                                                         /var             none      bind,remount,nosuid,nodev        0      0
 
 ## noexec optional
-/home                                                        /home            none      bind                        0      0
-/home                                                        /home            none      remount,nosuid,nodev,noexec 0      0
+/var/tmp                                                     /var/tmp         none      bind,remount,nosuid,nodev,noexec 0      0
+
+/var/log                                                     /var/log         none      bind,remount,nosuid,nodev,noexec 0      0
+
+## noexec optional
+/run                                                         /run             none      bind,remount,nosuid,nodev,noexec 0      0
+
+## noexec optional
+/home                                                        /home            none      bind,remount,nosuid,nodev,noexec 0      0
