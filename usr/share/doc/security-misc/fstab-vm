@@ -1,4 +1,4 @@
-# <file system>                                             <mount point>     <type>    <options>                  <dump> <pass>
+# <file system>                                             <mount point>     <type>    <options>                        <dump> <pass>
 
 /dev/disk/by-uuid/26ada0c0-1165-4098-884d-aafd2220c2c6       /                auto      defaults,errors=remount-ro       0      1
 
