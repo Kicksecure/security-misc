@@ -240,7 +240,15 @@ See:
 
 ## Network & Bluetooth hardening
 
-* Bluetooth is 'enabled' for the system. Unlike the usual default behavior, we start bluetooth turned off on system start and it stays that way unless the user explicitly chooses to turn bluetooth on. The user is left with the freedom to easily switch bluetooth on and off the usual way with his own discretion. We set significantly more private defaults for bluetooth connections by enforcing private addresses and strict timeout settings for discoverability and visibility. That being said, the most secure and private bluetooth connection might inherently come with risks by its nature and may be prone to exploits, as it has a history of having new security vulnurabilities often. So users are recommended to choose not to use bluetooth when given the option.
+* Bluetooth is 'enabled' for the system. Unlike the usual default behavior, we start
+bluetooth turned off on system start and it stays that way unless the user
+explicitly chooses to turn bluetooth on. The user is left with the freedom to easily
+switch bluetooth on and off the usual way with his own discretion. We set significantly
+more private defaults for bluetooth connections by enforcing private addresses and
+strict timeout settings for discoverability and visibility. That being said, the most
+secure and private bluetooth connection might inherently come with risks by its nature
+and may be prone to exploits, as it has a history of having new security vulnurabilities
+often. So users are recommended to choose not to use bluetooth when given the option.
 
 See:
 
