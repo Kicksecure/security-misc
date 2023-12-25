@@ -512,7 +512,7 @@ component of Kicksecure, not a substitute for it. The intention isn't to
 recreate Kicksecure within security-misc. Instead, specific security
 enhancements, like for example recommending a curated list of security-focused
 default packages (e.g., `libpam-tmpdir`), should be integrated directly into
-those appropriate areas of Kicksecure (e.g. `kicksecure-meta-packages`).
+those appropriate areas of Kicksecure (e.g.`kicksecure-meta-packages`).
 
 Discussion: https://github.com/Kicksecure/security-misc/issues/154
 
