@@ -14,7 +14,7 @@ proc                                                         /proc            pr
 /boot                                                        /boot            none      bind,remount,nosuid,nodev,noexec 0      0
 
 ## noexec optional
-/tmp                                                         /tmp             none      bind,remount,nosuid,nodev,noexec 0      0
+/tmp                                                         /tmp             tmpfs     bind,remount,nosuid,nodev,noexec 0      0
 
 /var                                                         /var             none      bind,remount,nosuid,nodev        0      0
 
