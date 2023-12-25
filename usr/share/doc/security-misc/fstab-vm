@@ -11,7 +11,9 @@ proc                                                         /proc            pr
 
 ## nodev,nosuid,noexec as per:
 ## https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
-/dev/cdrom                                                   /mnt/cdrom       iso9660   nofail,ro,users,nodev,nosuid,noexec     0      0
+## Commented out by default to prevent warning:
+## mount: /mnt/cdrom: mount point does not exist.
+#/dev/cdrom                                                   /mnt/cdrom       iso9660   nofail,ro,users,nodev,nosuid,noexec     0      0
 
 /boot                                                        /boot            none      nofail,bind,nosuid,nodev,noexec 0      0
 
