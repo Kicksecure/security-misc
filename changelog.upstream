@@ -1,3 +1,151 @@
+commit f64a869bfdd4c746afd206367885851946deb692
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 11:03:22 2023 -0500
+
+    readme
+
+commit c86c83cef760906a0d1c56ee8a8c744b2e07f212
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 10:31:58 2023 -0500
+
+    formatting
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 971ff687b1423499c54495a03e5e6fafcbfefb2a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 10:30:35 2023 -0500
+
+    do not mount /dev/cdrom by default
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 9fce67fcd942a7e3e0dd2e874226fcdab5e33ba3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 10:28:47 2023 -0500
+
+    remove superfluous, broken `remount` mount option
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 40fd8cb6081512e2bc0ef1a7a1ee17cd317024c2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:51:09 2023 -0500
+
+    no `nofail` mount option to avoid breaking the boot of a system
+    
+    unit testing belongs elsewhere
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 4aa645f29ff741b6e5cdf629deade1923fdcc234
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:46:33 2023 -0500
+
+    comment
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 2b7aeedb4a543d0a43a35918999338097d13bb16
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:44:51 2023 -0500
+
+    mount /dev/cdrom to /mnt/cdrom (instead of /mnt/cdrom0) and
+    nodev,nosuid,noexec
+    
+    as per:
+    https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 0d9e9780daca563a726470a3a5d6fa8c20487240
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:37:14 2023 -0500
+
+    formatting
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 00f9ab43947795c1144d797547968c7c149d6f21
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:36:05 2023 -0500
+
+    /dev devtmpfs
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 55709b3aa0acd6cad0c9fedb8782c49fbea79689
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:30:57 2023 -0500
+
+    /tmp tmpfs
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit b0dd967611c27f5b8e2472bb74a664aead7a229e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:27:45 2023 -0500
+
+    usrmerge
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 269fada14a616c53d7421e88e662f6893eb1fd88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:25:14 2023 -0500
+
+    combine bind lines
+    
+    https://github.com/Kicksecure/security-misc/issues/157
+
+commit 0810c1ce3c9e19c745b8f0d2cd9410353b172779
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:10:31 2023 -0500
+
+    fix bluetooth in readme
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/180
+
+commit 37b4ab15a823134e616a2a0fe1dda18d5ebfa3c0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 09:04:10 2023 -0500
+
+    readme
+
+commit 79f398d219b9c4cdf8ea0f9e3135a08fa32659a8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 08:45:20 2023 -0500
+
+    formatting
+
+commit c90ada3c398205227d906e2b2108d36d92edcf3c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 08:37:23 2023 -0500
+
+    pandoc -f markdown -t markdown --wrap=auto --columns=80 README.md -o README.md
+
+commit 34bf297bd17af2adf59804bd133a00b7dc1942b7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 08:32:34 2023 -0500
+
+    formatting
+
+commit d5fc9f620169b6975c8d3ef685f47e62cb6b9262
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 08:26:03 2023 -0500
+
+    improve bluetooth in readme
+    
+    as suggested by @monsieuremre
+    
+    https://github.com/Kicksecure/security-misc/issues/180
+
+commit 7fa597deca7ff2b2932a5f5fad56be57bd78b6cf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 22 16:31:58 2023 +0000
+
+    bumped changelog version
+
 commit f70a034da2b4b615855504e7080baf1a7e7b461c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 22 08:31:58 2023 -0500
