@@ -15,20 +15,20 @@ proc                                                         /proc            pr
 ## mount: /mnt/cdrom: mount point does not exist.
 #/dev/cdrom                                                   /mnt/cdrom       iso9660   nofail,ro,users,nodev,nosuid,noexec     0      0
 
-/boot                                                        /boot            none      nofail,bind,nosuid,nodev,noexec 0      0
+/boot                                                        /boot            none      nofail,bind,nosuid,nodev,noexec          0      0
 
 ## noexec optional
-/tmp                                                         /tmp             tmpfs     nofail,bind,nosuid,nodev,noexec 0      0
+/tmp                                                         /tmp             tmpfs     nofail,bind,nosuid,nodev,noexec          0      0
 
-/var                                                         /var             none      nofail,bind,nosuid,nodev        0      0
-
-## noexec optional
-/var/tmp                                                     /var/tmp         none      nofail,bind,nosuid,nodev,noexec 0      0
-
-/var/log                                                     /var/log         none      nofail,bind,nosuid,nodev,noexec 0      0
+/var                                                         /var             none      nofail,bind,nosuid,nodev                 0      0
 
 ## noexec optional
-/run                                                         /run             none      nofail,bind,nosuid,nodev,noexec 0      0
+/var/tmp                                                     /var/tmp         none      nofail,bind,nosuid,nodev,noexec          0      0
+
+/var/log                                                     /var/log         none      nofail,bind,nosuid,nodev,noexec          0      0
 
 ## noexec optional
-/home                                                        /home            none      nofail,bind,nosuid,nodev,noexec 0      0
+/run                                                         /run             none      nofail,bind,nosuid,nodev,noexec          0      0
+
+## noexec optional
+/home                                                        /home            none      nofail,bind,nosuid,nodev,noexec          0      0
