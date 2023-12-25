@@ -4,7 +4,7 @@
 
 proc                                                         /proc            proc      defaults                         0      0
 
-/dev                                                         /dev             none      bind,remount,nosuid,noexec       0      0
+/dev                                                         /dev             devtmpfs  bind,remount,nosuid,noexec       0      0
 
 ## noexec optional
 /dev/shm                                                     /dev/shm         tmpfs     nosuid,nodev,noexec              0      0
