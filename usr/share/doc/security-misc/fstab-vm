@@ -1,32 +1,32 @@
-# <file system>                                             <mount point>     <type>    <options>                        <dump> <pass>
+# <file system>                                             <mount point>     <type>    <options>                               <dump> <pass>
 
-/dev/disk/by-uuid/26ada0c0-1165-4098-884d-aafd2220c2c6       /                auto      defaults,errors=remount-ro       0      1
+/dev/disk/by-uuid/26ada0c0-1165-4098-884d-aafd2220c2c6       /                auto      nofail,defaults,errors=remount-ro       0      1
 
-proc                                                         /proc            proc      defaults                         0      0
+proc                                                         /proc            proc      nofail,defaults                         0      0
 
-/dev                                                         /dev             devtmpfs  bind,remount,nosuid,noexec       0      0
+/dev                                                         /dev             devtmpfs  nofail,bind,remount,nosuid,noexec       0      0
 
 ## noexec optional
-/dev/shm                                                     /dev/shm         tmpfs     nosuid,nodev,noexec              0      0
+/dev/shm                                                     /dev/shm         tmpfs     nofail,nosuid,nodev,noexec              0      0
 
 ## nodev,nosuid,noexec as per:
 ## https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
-/dev/cdrom                                                   /mnt/cdrom       iso9660   ro,users,nodev,nosuid,noexec     0      0
+/dev/cdrom                                                   /mnt/cdrom       iso9660   nofail,ro,users,nodev,nosuid,noexec     0      0
 
-/boot                                                        /boot            none      bind,remount,nosuid,nodev,noexec 0      0
-
-## noexec optional
-/tmp                                                         /tmp             tmpfs     bind,remount,nosuid,nodev,noexec 0      0
-
-/var                                                         /var             none      bind,remount,nosuid,nodev        0      0
+/boot                                                        /boot            none      nofail,bind,remount,nosuid,nodev,noexec 0      0
 
 ## noexec optional
-/var/tmp                                                     /var/tmp         none      bind,remount,nosuid,nodev,noexec 0      0
+/tmp                                                         /tmp             tmpfs     nofail,bind,remount,nosuid,nodev,noexec 0      0
 
-/var/log                                                     /var/log         none      bind,remount,nosuid,nodev,noexec 0      0
-
-## noexec optional
-/run                                                         /run             none      bind,remount,nosuid,nodev,noexec 0      0
+/var                                                         /var             none      nofail,bind,remount,nosuid,nodev        0      0
 
 ## noexec optional
-/home                                                        /home            none      bind,remount,nosuid,nodev,noexec 0      0
+/var/tmp                                                     /var/tmp         none      nofail,bind,remount,nosuid,nodev,noexec 0      0
+
+/var/log                                                     /var/log         none      nofail,bind,remount,nosuid,nodev,noexec 0      0
+
+## noexec optional
+/run                                                         /run             none      nofail,bind,remount,nosuid,nodev,noexec 0      0
+
+## noexec optional
+/home                                                        /home            none      nofail,bind,remount,nosuid,nodev,noexec 0      0
