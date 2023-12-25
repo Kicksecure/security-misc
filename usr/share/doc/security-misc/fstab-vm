@@ -9,6 +9,7 @@ proc                                                         /proc            pr
 ## noexec optional
 /dev/shm                                                     /dev/shm         tmpfs     nosuid,nodev,noexec              0      0
 
+## nodev,nosuid,noexec as per:
 ## https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
 /dev/cdrom                                                   /mnt/cdrom       iso9660   ro,users,nodev,nosuid,noexec     0      0
 
