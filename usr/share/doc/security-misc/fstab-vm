@@ -5,9 +5,11 @@
 proc                                                         /proc            proc      nofail,defaults                         0      0
 
 /dev                                                         /dev             devtmpfs  nofail,bind,remount,nosuid,noexec       0      0
+#udev                                                         /dev             devtmpfs  defaults,nosuid,noexec                  0      0
 
 ## noexec optional
 /dev/shm                                                     /dev/shm         tmpfs     nofail,nosuid,nodev,noexec              0      0
+#tmpfs                                                        /dev/shm         tmpfs     defaults,nosuid,nodev,noexec            0      0
 
 ## nodev,nosuid,noexec as per:
 ## https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
@@ -19,6 +21,7 @@ proc                                                         /proc            pr
 
 ## noexec optional
 /tmp                                                         /tmp             tmpfs     nofail,bind,nosuid,nodev,noexec          0      0
+#tmpfs                                                        /tmp             tmpfs     defaults,nodev,nosuid,noexec             0      0
 
 /var                                                         /var             none      nofail,bind,nosuid,nodev                 0      0
 
@@ -32,3 +35,6 @@ proc                                                         /proc            pr
 
 ## noexec optional
 /home                                                        /home            none      nofail,bind,nosuid,nodev,noexec          0      0
+
+## TODO:
+#/sys
