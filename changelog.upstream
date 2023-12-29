@@ -1,3 +1,17 @@
+commit 5b36599c0ce35857239c82459828db1ec4215411
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 29 14:57:38 2023 -0500
+
+    /dev/, /dev/shm, /tmp
+    
+    https://github.com/Kicksecure/security-misc/issues/157#issuecomment-1869073716
+
+commit e15596e7af6fc645dd652c043397baaa91954915
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 25 16:28:10 2023 +0000
+
+    bumped changelog version
+
 commit f64a869bfdd4c746afd206367885851946deb692
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 11:03:22 2023 -0500
