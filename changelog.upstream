@@ -1,3 +1,25 @@
+commit a94f2a3f4626a9292660bc7f98a6513f34d0f5b2
+Merge: 94c0e26 8daf97a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 2 05:30:49 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 8daf97ab0181a9cbb9e9dec57f1f00270dbb3a50
+Merge: 94c0e26 f055fe5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 2 05:29:35 2024 -0500
+
+    Merge pull request #178 from raja-grewal/io_uring
+    
+    Disable asynchronous I/O
+
+commit 94c0e26a082f61f71e89b1fb7386a58166ffa411
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 29 20:15:50 2023 +0000
+
+    bumped changelog version
+
 commit 5b36599c0ce35857239c82459828db1ec4215411
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 29 14:57:38 2023 -0500
@@ -167,6 +189,14 @@ Date:   Fri Dec 22 08:31:58 2023 -0500
     exclude hardened malloc from SUID disabler
     
     fixes https://github.com/Kicksecure/security-misc/issues/179
+
+commit f055fe5da2219b68f46c3c577d79fcfd7e79cfc6
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Dec 15 08:33:36 2023 +0000
+
+    Disable asynchronous I/O
+    
+    io_uring creation is disabled for all processes. io_uring_setup always fails with -EPERM. Existing io_uring instances can still be used.
 
 commit 99f2edd4f685cdc9a47b32107125408e12a294c2
 Author: Patrick Schleizer <adrelanos@whonix.org>
