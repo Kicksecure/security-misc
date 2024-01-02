@@ -430,23 +430,23 @@ include but are not limited to:
 -   Protecting the information of sudoers from others.
 -   Protecting various system relevant files and modules.
 
-##### permission-hardening #####
+##### permission-hardener #####
 
 `permission-hardener` removes SUID / SGID bits from non-essential binaries as
 these are often used in privilege escalation attacks. It runs at package
 installation and upgrade time.
 
 There is also an optional systemd unit which does the same at boot time that
-can be enabled by running `systemctl enable permission-hardening.service` as
+can be enabled by running `systemctl enable permission-hardener.service` as
 root. The hardening at boot time is not the default because this slows down
 the boot too much.
 
 See:
 
-* `/usr/bin/permission-hardening`
+* `/usr/bin/permission-hardener`
 * `debian/security-misc.postinst`
-* `/lib/systemd/system/permission-hardening.service`
-* `/etc/permission-hardening.d`
+* `/lib/systemd/system/permission-hardener.service`
+* `/etc/permission-hardener.d`
 * https://forums.whonix.org/t/disable-suid-binaries/7706
 * https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 

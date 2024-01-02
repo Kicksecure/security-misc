@@ -5,7 +5,7 @@
 disable hide-hardware-info.service
 
 ## Disable for now until development finished / tested.
-disable permission-hardening.service
+disable permission-hardener.service
 
 ## Disable for now until development finished / tested.
 ## https://github.com/Kicksecure/security-misc/pull/152
