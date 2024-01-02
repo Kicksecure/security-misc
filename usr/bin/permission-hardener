@@ -14,17 +14,17 @@ dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 
 echo_wrapper_ignore() {
-  echo "run: $*"
+  echo "INFO: run: $*"
   "$@" 2>/dev/null || true
 }
 
 echo_wrapper_silent_ignore() {
-  #echo "run: $@"
+  #echo "INFO: run: $@"
   "$@" 2>/dev/null || true
 }
 
 echo_wrapper_audit() {
-  echo "run: $*"
+  echo "INFO: run: $*"
   return_code=0
   "$@" ||
     {
@@ -499,8 +499,8 @@ parse_config_folder() {
   group_file_contents_temp=$(getent group)
   echo "${group_file_contents_temp}" | tee "${store_dir}/private/group" >/dev/null
 
-  passwd_file_contents="$(cat "${store_dir}/private/passwd")"
-  group_file_contents="$(cat "${store_dir}/private/group")"
+  #passwd_file_contents="$(cat "${store_dir}/private/passwd")"
+  #group_file_contents="$(cat "${store_dir}/private/group")"
 
   shopt -s nullglob
   for config_file in \
@@ -555,22 +555,17 @@ spare() {
     true "owner: '${owner}' group: '${group}' mode: '${mode}' file_name: '${file_name}'"
 
     if test "${remove_file}" = "all"; then
-      proceed=true
       verbose=""
       remove_one=false
     else
       if test "${remove_file}" = "${file_name}"; then
-        proceed=true
         verbose="--verbose"
         remove_one=true
+        echo "${remove_one}" | tee "${store_dir}/remove_one" >/dev/null
       else
-        proceed=false
-        verbose=""
+        echo "false" | tee "${store_dir}/remove_one" >/dev/null
+        continue
       fi
-    fi
-
-    if test "${proceed}" = "false"; then
-      continue
     fi
 
     if test "${remove_one}" = "true"; then
@@ -578,9 +573,11 @@ spare() {
     fi
 
     if test -e "${file_name}"; then
+      # shellcheck disable=SC2086
       chown ${verbose} "${owner}:${group}" "${file_name}" || exit_code=202
       ## chmod need to be run after chown since chown removes suid.
       ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
+      # shellcheck disable=SC2086
       chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
     else
       echo "INFO: file_name: '${file_name}' - does not exist. This is likely normal."
@@ -600,10 +597,10 @@ spare() {
   done < "${store_dir}/existing_mode/statoverride"
 
   if test ! "${remove_file}" = "all"; then
-    if test ! "${remove_one}" = "true"; then
-      echo "INFO: no file removed.
+    if test "$(cat "${store_dir}/remove_one")" = "false"; then
+      echo "INFO: no file was removed.
 
-  File '${remove_file}' has not removed from SUID Disabler and Permission Hardener during this invocation of this program.
+  File '${remove_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation of this program.
 
   Note: This is expected if already done earlier.
 
@@ -657,7 +654,7 @@ case "${1:-}" in
   disable)
     shift
     case "${1:-}" in
-      "") usage;;
+      "") usage 1;;
       *) spare "${1}";;
     esac
     ;;
