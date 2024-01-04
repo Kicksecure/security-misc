@@ -1,3 +1,31 @@
+commit 70a86fa994c0a894643e876fc86226ad0443a741
+Merge: db0503e 71060f1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 3 05:12:48 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 71060f1f53ca7a275f10c4b6ab3e6c25585d5440
+Merge: db0503e 74afcc9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 3 05:00:41 2024 -0500
+
+    Merge pull request #182 from raja-grewal/io_uring
+    
+    Clarify validity of disabling io_uring
+
+commit 74afcc9c63ad064f20778ad2870690925c3cee81
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jan 3 17:52:23 2024 +1100
+
+    Clarify validity of disabling io_uring
+
+commit db0503e71d5c37865cbb0a01cb8fa00af2a4e574
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 2 14:55:13 2024 +0000
+
+    bumped changelog version
+
 commit a94f2a3f4626a9292660bc7f98a6513f34d0f5b2
 Merge: 94c0e26 8daf97a
 Author: Patrick Schleizer <adrelanos@whonix.org>
