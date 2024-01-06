@@ -392,7 +392,9 @@ See:
 #### umask
 
 Default `umask` is set to `027` for files created by non-root users such as for
-example user `user`.
+example user `user`. Broken. Disabled. See:
+
+* https://github.com/Kicksecure/security-misc/issues/184
 
 This is doing using pam module `pam_mkhomedir.so umask=027`.
 
