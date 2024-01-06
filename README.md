@@ -287,6 +287,7 @@ install.
 
 Not enabled by default yet. In development. Help welcome.
 
+-   https://www.kicksecure.com/wiki/Dev/remount-secure
 -   https://github.com/Kicksecure/security-misc/issues/157
 -   https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
 
