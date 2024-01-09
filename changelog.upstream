@@ -1,3 +1,49 @@
+commit 1199871d7bbc7316a7e5822d77eee0666b55b203
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 7 06:37:34 2024 -0500
+
+    undo IPv6 privacy due to potential server issues
+    
+    https://github.com/Kicksecure/security-misc/issues/184
+
+commit 128bb01b35d20e97351dfb53768f35482f9756a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 7 06:36:25 2024 -0500
+
+    undo IPv6 privacy due to potential server issues
+    
+    https://github.com/Kicksecure/security-misc/issues/184
+
+commit df0f9d3267644c4aea87add2dcade86044c496f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 6 09:19:57 2024 -0500
+
+    README
+
+commit 86f91e3030ef0b08000fc28a3a172e6a47918e4e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 6 09:10:45 2024 -0500
+
+    revert umask 027 by default
+    
+    because broken because this also happens for root while it should not
+    
+    https://github.com/Kicksecure/security-misc/issues/185
+
+commit 3f1304403fbf04f15dac01963c66f82cd84452d4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jan 6 08:15:31 2024 -0500
+
+    disable MAC randomization in Network Manager (NM) because it breaks VirtualBox DHCP
+    
+    https://github.com/Kicksecure/security-misc/issues/184
+
+commit e8f8dcd0fb1c23a62974849f55516da9dce5948e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 4 02:03:26 2024 +0000
+
+    bumped changelog version
+
 commit 70a86fa994c0a894643e876fc86226ad0443a741
 Merge: db0503e 71060f1
 Author: Patrick Schleizer <adrelanos@whonix.org>
