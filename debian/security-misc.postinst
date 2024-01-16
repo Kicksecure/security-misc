@@ -15,6 +15,16 @@ true "
 #####################################################################
 "
 
+permission_hardening_legacy() {
+    if test -d /var/lib/permission-hardener ; then
+        return 0
+    fi
+    if ! test -d /var/lib/permission-hardening ; then
+        return 0
+    fi
+    mv --verbose /var/lib/permission-hardening /var/lib/permission-hardener
+}
+
 permission_hardening() {
     echo ""
     echo "Running SUID Disabler and Permission Hardener... See also:"
@@ -59,6 +69,7 @@ esac
 pam-auth-update --package
 
 /usr/libexec/security-misc/permission-lockdown
+permission_hardening_legacy
 permission_hardening
 
 ## https://phabricator.whonix.org/T377
