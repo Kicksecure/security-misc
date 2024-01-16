@@ -45,3 +45,24 @@ rm_conffile /etc/X11/Xsession.d/50security-misc
 rm_conffile /etc/sysctl.d/30_security-misc.conf
 rm_conffile /etc/sysctl.d/30_silent-kernel-printk.conf
 rm_conffile /etc/sysctl.d/30_security-misc_kexec-disable.conf
+
+## moved to etc/permission-hardener.d
+rm_conffile /etc/permission-hardening.d/25_default_passwd.conf
+rm_conffile /etc/permission-hardening.d/25_default_sudo.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_bubblewrap.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_chromium.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_dbus.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_firejail.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_fuse.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_hardened_malloc.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_mount.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_pam.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_policykit.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_qubes.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_selinux.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_spice.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_ssh.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_sudo.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_unix_chkpwd.conf
+rm_conffile /etc/permission-hardening.d/25_default_whitelist_virtualbox.conf
+rm_conffile /etc/permission-hardening.d/30_default.conf
