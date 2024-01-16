@@ -1,3 +1,40 @@
+commit 4f7973bc5628cdc24f5224bd98858249307635d3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 08:56:26 2024 -0500
+
+    comment
+
+commit ed7c09fc46b26440439adf748f597da277a3f1e4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 08:45:13 2024 -0500
+
+    permission-hardening -> permission-hardener migration
+    
+    mv --verbose /var/lib/permission-hardening /var/lib/permission-hardener
+    
+    https://github.com/Kicksecure/security-misc/pull/181
+
+commit a90cd43631216f28a18a1b3f066b9f6ef3301ac4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 08:32:52 2024 -0500
+
+    fix postinst for new permission-hardener
+    
+    https://github.com/Kicksecure/security-misc/pull/181
+
+commit 862bf6b5ab29917138325023eb3507f5fbd5653c
+Merge: dc8d9ee bc02c72
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 08:19:28 2024 -0500
+
+    Merge remote-tracking branch 'ben-grande/clean'
+
+commit dc8d9eece32dec06e63c580c886a240019b3f33e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 9 05:52:49 2024 +0000
+
+    bumped changelog version
+
 commit 1199871d7bbc7316a7e5822d77eee0666b55b203
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 7 06:37:34 2024 -0500
@@ -66,11 +103,50 @@ Date:   Wed Jan 3 17:52:23 2024 +1100
 
     Clarify validity of disabling io_uring
 
+commit bc02c72018d6458d4c1852dd441287b277421514
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jan 2 17:08:45 2024 +0100
+
+    Fix unbound variable
+    
+    - Run messages preceded by INFO;
+    - Comment unknown unused variables;
+    - Remove unnecessary variables; and
+    - Deal with unbound variable due to subshell by writing to a file;
+
 commit db0503e71d5c37865cbb0a01cb8fa00af2a4e574
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 2 14:55:13 2024 +0000
 
     bumped changelog version
+
+commit abf72c2ee4286ec069f75e66acf05a42f3645c89
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jan 2 13:34:29 2024 +0100
+
+    Rename file permission hardening script
+    
+    Hardener as the script is the agent that is hardening the file
+    permissions.
+
+commit f138cf0f78c03e3952801d01d25d5f8065ff1457
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jan 2 12:17:16 2024 +0100
+
+    Refactor permission-hardener
+    
+    - Organize comments from default configuration;
+    - Apply and undo changes from a single file controlled by parameters;
+    - Arrays should be evaluated as arrays and not normal variables;
+    - Quote variables;
+    - Brackets around variables;
+    - Standardize test cases to "test" command;
+    - Test against empty or non-empty variables with "-z" and "-n";
+    - Show a usage message when necessary;
+    - Require root to run the script with informative message;
+    - Permit the user to see the help message without running as root;
+    - Do not create root directories without passing root check;
+    - Use long options for "set" command;
 
 commit a94f2a3f4626a9292660bc7f98a6513f34d0f5b2
 Merge: 94c0e26 8daf97a
