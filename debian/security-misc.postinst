@@ -15,7 +15,7 @@ true "
 #####################################################################
 "
 
-permission_hardening_legacy() {
+permission_hardening_legacy_state_files() {
     if test -d /var/lib/permission-hardener ; then
         return 0
     fi
@@ -23,6 +23,13 @@ permission_hardening_legacy() {
         return 0
     fi
     mv --verbose /var/lib/permission-hardening /var/lib/permission-hardener
+}
+
+permission_hardening_legacy_config_folder() {
+    if ! test -d /etc/permission-hardening.d ; then
+        return 0
+    fi
+    rmdir --verbose --ignore-fail-on-non-empty /etc/permission-hardening.d || true
 }
 
 permission_hardening() {
@@ -69,7 +76,8 @@ esac
 pam-auth-update --package
 
 /usr/libexec/security-misc/permission-lockdown
-permission_hardening_legacy
+permission_hardening_legacy_state_files
+
 permission_hardening
 
 ## https://phabricator.whonix.org/T377
@@ -91,6 +99,8 @@ true "INFO: debhelper beginning here."
 #DEBHELPER#
 
 true "INFO: Done with debhelper."
+
+permission_hardening_legacy_config_folder
 
 true "
 #####################################################################
