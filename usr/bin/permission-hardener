@@ -616,7 +616,7 @@ spare() {
   To remove all:
     $0 disable all
 
-  This change might not be permanent (because of the permission-hardener.service systemd unit). For full instructions, see:
+  This change might not be permanent. For full instructions, see:
     https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 
   To view list of changed by SUID Disabler and Permission Hardener:

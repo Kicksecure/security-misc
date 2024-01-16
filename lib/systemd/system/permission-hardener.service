@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=SUID, SGID, Capability and File Permission Hardening
+Description=Permission Hardener at Boot Time (opt-in in addition to security-misc package installation time hardening)
 Documentation=https://github.com/Kicksecure/security-misc
 
 DefaultDependencies=no
@@ -13,7 +13,7 @@ After=local-fs.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=permission-hardener
+ExecStart=permission-hardener enable
 
 [Install]
 WantedBy=sysinit.target
