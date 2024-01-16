@@ -1,3 +1,27 @@
+commit 0d78ecaee37536379ad2f230f45904f57425cb19
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 09:26:21 2024 -0500
+
+    README
+
+commit 3ba8fe586e1abe133bd41076278f8663aba7e641
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 09:23:54 2024 -0500
+
+    update permission-hardener.service
+    
+    Which is now only an additional opt-in systemd unit,
+    because permission-hardener is run by default at security-misc
+    package installation time.
+    
+    https://github.com/Kicksecure/security-misc/pull/181
+
+commit 186f6015da7b3314c95c2833032c6fe953a71afd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 14:14:18 2024 +0000
+
+    bumped changelog version
+
 commit 6aa55698ab2a0f3771d28293d7ad14da2763a16f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 09:10:59 2024 -0500
