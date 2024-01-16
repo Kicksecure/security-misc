@@ -1,3 +1,25 @@
+commit 6aa55698ab2a0f3771d28293d7ad14da2763a16f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 09:10:59 2024 -0500
+
+    delete legacy folder /etc/permission-hardening.d if empty
+    
+    https://github.com/Kicksecure/security-misc/pull/181
+
+commit 9cafd78fe21baa3c2a36853f57e0638b2facfe5c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 09:05:09 2024 -0500
+
+    rm_conffile /etc/permission-hardening.d
+    
+    https://github.com/Kicksecure/security-misc/pull/181
+
+commit fa53848b5cda135fbb8a3855e8508692084fc7e9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 13:58:55 2024 +0000
+
+    bumped changelog version
+
 commit 4f7973bc5628cdc24f5224bd98858249307635d3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 08:56:26 2024 -0500
