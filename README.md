@@ -436,8 +436,8 @@ include but are not limited to:
 ##### permission-hardener #####
 
 `permission-hardener` removes SUID / SGID bits from non-essential binaries as
-these are often used in privilege escalation attacks. It runs at package
-installation and upgrade time.
+these are often used in privilege escalation attacks. It is enabled by default
+and applied at security-misc package installation and upgrade time.
 
 There is also an optional systemd unit which does the same at boot time that
 can be enabled by running `systemctl enable permission-hardener.service` as
