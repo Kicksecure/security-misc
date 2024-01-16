@@ -1,0 +1,669 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## https://forums.whonix.org/t/disable-suid-binaries/7706
+## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
+
+set -o errexit -o nounset -o pipefail
+
+exit_code=0
+store_dir="/var/lib/permission-hardener"
+dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
+dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+
+echo_wrapper_ignore() {
+  echo "INFO: run: $*"
+  "$@" 2>/dev/null || true
+}
+
+echo_wrapper_silent_ignore() {
+  #echo "INFO: run: $@"
+  "$@" 2>/dev/null || true
+}
+
+echo_wrapper_audit() {
+  echo "INFO: run: $*"
+  return_code=0
+  "$@" ||
+    {
+      return_code="$?"
+      exit_code=203
+      echo "ERROR: above command failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
+    }
+}
+
+echo_wrapper_silent_audit() {
+  #echo "run (debugging): $@"
+  return_code=0
+  "$@" ||
+    {
+      return_code="$?"
+      exit_code=204
+      echo "ERROR: above command '$*' failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
+    }
+}
+
+make_store_dir(){
+  mkdir --parents "${store_dir}/private"
+  mkdir --parents "${store_dir}/existing_mode"
+  mkdir --parents "${store_dir}/new_mode"
+}
+
+sanity_tests() {
+  echo_wrapper_silent_audit which \
+    capsh getcap setcap stat find dpkg-statoverride getent xargs grep 1>/dev/null
+}
+
+add_nosuid_statoverride_entry() {
+  local fso_to_process
+  fso_to_process="${fso}"
+  local should_be_counter
+  should_be_counter="$(find "${fso_to_process}" -perm /u=s,g=s | wc -l)" || true
+  local counter_actual
+  counter_actual=0
+
+  local line
+  while read -r line; do
+    true "line: ${line}"
+    counter_actual="$((counter_actual + 1))"
+
+    local arr file_name existing_mode existing_owner existing_group
+    IFS=" " read -r -a arr <<< "${line}"
+    file_name="${arr[0]}"
+    existing_mode="${arr[1]}"
+    existing_owner="${arr[2]}"
+    existing_group="${arr[3]}"
+
+    if test "${#arr[@]}" = 0; then
+      echo "ERROR: arr is empty. line: '${line}'" >&2
+      continue
+    fi
+    if test -z "${file_name}"; then
+      echo "ERROR: file_name is empty. line: '${line}'" >&2
+      continue
+    fi
+    if test -z "${existing_mode}"; then
+      echo "ERROR: existing_mode is empty. line: '${line}'" >&2
+      continue
+    fi
+    if test -z "${existing_owner}"; then
+      echo "ERROR: existing_owner is empty. line: '${line}'" >&2
+      continue
+    fi
+    if test -z "${existing_group}"; then
+      echo "ERROR: existing_group is empty. line: '${line}'" >&2
+      continue
+    fi
+
+    ## -h file      True if file is a symbolic Link.
+    ## -u file      True if file has its set-user-id bit set.
+    ## -g file      True if file has its set-group-id bit set.
+
+    if test -h "${file_name}"; then
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
+      true "skip symlink: ${file_name}"
+      continue
+    fi
+
+    if test -d "${file_name}"; then
+      true "skip directory: ${file_name}"
+      continue
+    fi
+
+    local setuid setuid_output setsgid setsgid_output
+    setuid=""
+    setuid_output=""
+    if test -u "${file_name}"; then
+      setuid=true
+      setuid_output="set-user-id"
+    fi
+    setsgid=""
+    setsgid_output=""
+    if test -g "${file_name}"; then
+      setsgid=true
+      setsgid_output="set-group-id"
+    fi
+
+    local setuid_or_setsgid
+    setuid_or_setsgid=""
+    if test "${setuid}" = "true" || test "${setsgid}" = "true"; then
+      setuid_or_setsgid=true
+    fi
+    if test -z "${setuid_or_setsgid}"; then
+      continue
+    fi
+
+    ## Remove suid / gid and execute permission for 'group' and 'others'.
+    ## Similar to: chmod og-ugx /path/to/filename
+    ## Removing execution permission is useful to make binaries such as 'su'
+    ## fail closed rather than fail open if suid was removed from these.
+    ## Do not remove read access since no security benefit and easier to
+    ## manually undo for users.
+    ## Are there suid or sgid binaries which are still useful if suid / sgid
+    ## has been removed from these?
+    new_mode="744"
+
+    local is_exact_whitelisted
+    is_exact_whitelisted=""
+    for white_list_entry in ${exact_white_list}; do
+      if test "${file_name}" = "${white_list_entry}"; then
+        is_exact_whitelisted="true"
+        ## Stop looping through the whitelist.
+        break
+      fi
+    done
+
+    local is_match_whitelisted
+    is_match_whitelisted=""
+    for matchwhite_list_entry in ${match_white_list}; do
+      if echo "${file_name}" | grep --quiet --fixed-strings "${matchwhite_list_entry}"; then
+        is_match_whitelisted="true"
+        ## Stop looping through the match_white_list.
+        break
+      fi
+    done
+
+    local is_disable_whitelisted
+    is_disable_whitelisted=""
+    for disablematch_list_entry in ${disable_white_list:-}; do
+      if echo "${file_name}" | grep --quiet --fixed-strings "${disablematch_list_entry}"; then
+        is_disable_whitelisted="true"
+        ## Stop looping through the disablewhitelist.
+        break
+      fi
+    done
+
+    if test "${whitelists_disable_all:-}" = "true"; then
+      true "INFO: whitelists_disable_all=true - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+    elif test "${is_disable_whitelisted}" = "true"; then
+      true "INFO: white list disabled - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+    else
+      if test "${is_exact_whitelisted}" = "true"; then
+        true "INFO: SKIP whitelisted - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+        continue
+      fi
+      if test "${is_match_whitelisted}" = "true"; then
+        true "INFO: SKIP matchwhitelisted - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}' | matchwhite_list_entry: '${matchwhite_list_entry}'"
+        continue
+      fi
+    fi
+
+    echo "INFO: ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}' | new_mode: '${new_mode}'"
+
+    # shellcheck disable=SC2086
+    if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${file_name}" >/dev/null; then
+      true "OK Existing mode already saved previously. Not saving again."
+    else
+      ## Save existing_mode in separate database.
+      ## Not using --update as not intending to enforce existing_mode.
+      # shellcheck disable=SC2086
+      echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${file_name}"
+    fi
+
+    ## No need to check "dpkg-statoverride --list" for existing entries.
+    ## If existing_mode was correct already, we would not have reached this
+    ## point. Since existing_mode is incorrect, remove from dpkg-statoverride
+    ## and re-add.
+
+    ## Remove from real database.
+    echo_wrapper_silent_ignore dpkg-statoverride --remove "${file_name}"
+
+    ## Remove from separate database.
+    # shellcheck disable=SC2086
+    echo_wrapper_silent_ignore dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}"
+
+    ## Add to real database and use --update to make changes on disk.
+    echo_wrapper_audit dpkg-statoverride --add --update "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+
+    ## Not using --update as this is only for recording.
+    # shellcheck disable=SC2086
+    echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+
+    ## /lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/lib/**'.
+    ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
+    ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
+  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
+
+  ## Sanity test.
+  if test ! "${should_be_counter}" = "${counter_actual}"; then
+    echo "INFO: fso_to_process: '${fso_to_process}' | counter_actual   : '${counter_actual}'"
+    echo "INFO: fso_to_process: '${fso_to_process}' | should_be_counter: '${should_be_counter}'"
+    exit_code=202
+    echo "ERROR: counter does not check out." >&2
+  fi
+}
+
+set_file_perms() {
+  true "INFO: START parsing config_file: '${config_file}'"
+  local line
+  while read -r line || test -n "${line}"; do
+    if test -z "${line}"; then
+      continue
+    fi
+
+    if [[ "${line}" =~ ^# ]]; then
+      continue
+    fi
+
+    if [[ "${line}" =~ [0-9a-zA-Z/] ]]; then
+      true "OK line contains only white listed characters."
+    else
+      exit_code=200
+      echo "ERROR: cannot parse line with invalid character. line: '${line}'" >&2
+      ## Safer to exit with error in this case.
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
+      exit "${exit_code}"
+    fi
+
+    if test "${line}" = 'whitelists_disable_all=true'; then
+      whitelists_disable_all=true
+      echo "INFO: whitelists_disable_all=true - all whitelists disabled."
+      continue
+    fi
+
+    #global fso
+    local mode_from_config owner_from_config group_from_config capability_from_config
+    if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<<"${line}"; then
+      exit_code=201
+      echo "ERROR: cannot parse. line: '${line}'" >&2
+      ## Debugging.
+      du -hs /tmp || true
+      echo "test -w /tmp: '$(test -w /tmp)'" >&2 || true
+      ## Safer to exit with error in this case.
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
+      exit "${exit_code}"
+    fi
+
+    ## Debugging.
+    #echo "line: '${line}'"
+    #echo "fso: '${fso}'"
+    #echo "mode_from_config: '${mode_from_config}'"
+    #echo "owner_from_config: '${owner_from_config}'"
+
+    local fso_without_trailing_slash
+    fso_without_trailing_slash="${fso%/}"
+
+    if test "${mode_from_config}" = "disablewhitelist"; then
+      ## TODO: test/add white spaces inside file name support
+      disable_white_list+="${fso} "
+      continue
+    fi
+
+    if test "${mode_from_config}" = "exactwhitelist"; then
+      ## TODO: test/add white spaces inside file name support
+      exact_white_list+="${fso} "
+      continue
+    fi
+
+    if test "${mode_from_config}" = "matchwhitelist"; then
+      ## TODO: test/add white spaces inside file name support
+      match_white_list+="${fso} "
+      continue
+    fi
+
+    if test ! -e "${fso}"; then
+      true "INFO: fso: '${fso}' - does not exist. This is likely normal."
+      continue
+    fi
+
+    ## Use dpkg-statoverride so permissions are not reset during upgrades.
+
+    if test "${mode_from_config}" = "nosuid"; then
+      ## If mode_from_config is "nosuid" the config does not set owner and
+      ## group. Therefore do not enforce owner/group check.
+      add_nosuid_statoverride_entry
+    else
+      local string_length_of_mode_from_config
+      string_length_of_mode_from_config="${#mode_from_config}"
+      if test "${string_length_of_mode_from_config}" -gt "4"; then
+        echo "ERROR: Mode '${mode_from_config}' is invalid!" >&2
+        continue
+      fi
+      if test "${string_length_of_mode_from_config}" -lt "3"; then
+        echo "ERROR: Mode '${mode_from_config}' is invalid!" >&2
+        continue
+      fi
+
+      if ! grep --quiet --fixed-strings "${owner_from_config}:" "${store_dir}/private/passwd"; then
+        echo "ERROR: owner_from_config '${owner_from_config}' does not exist!" >&2
+        continue
+      fi
+
+      if ! grep --quiet --fixed-strings "${group_from_config}:" "${store_dir}/private/group"; then
+        echo "ERROR: group_from_config '${group_from_config}' does not exist!" >&2
+        continue
+      fi
+
+      local mode_for_grep
+      mode_for_grep="${mode_from_config}"
+      first_character_of_mode_from_config="${mode_from_config::1}"
+      if test "${first_character_of_mode_from_config}" = "0"; then
+        ## Remove leading '0'.
+        mode_for_grep="${mode_from_config:1}"
+      fi
+
+      local stat_output
+      stat_output=""
+      if ! stat_output="$(stat -c "%n %a %U %G" "${fso_without_trailing_slash}")"; then
+        echo "ERROR: failed to run 'stat' for fso_without_trailing_slash: '${fso_without_trailing_slash}'!" >&2
+        continue
+      fi
+
+      local arr file_name existing_mode existing_owner existing_group
+      IFS=" " read -r -a arr <<< "${stat_output}"
+      file_name="${arr[0]}"
+      existing_mode="${arr[1]}"
+      existing_owner="${arr[2]}"
+      existing_group="${arr[3]}"
+
+      if test "${#arr[@]}" = 0; then
+        echo "ERROR: arr is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        continue
+      fi
+      if test -z "${file_name}"; then
+        echo "ERROR: file_name is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        continue
+      fi
+      if test -z "${existing_mode}"; then
+        echo "ERROR: existing_mode is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        continue
+      fi
+      if test -z "${existing_owner}"; then
+        echo "ERROR: existing_owner is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        continue
+      fi
+      if test -z "${existing_group}"; then
+        echo "ERROR: ${existing_group} is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        continue
+      fi
+
+      ## Check there is an entry for the fso.
+      ##
+      ## example: dpkg-statoverride --list | grep /home
+      ## output:
+      ## root root 755 /home
+      ##
+      ## dpkg-statoverride does not show leading '0'.
+      local dpkg_statoverride_list_output=""
+      local dpkg_statoverride_list_exit_code=0
+      dpkg_statoverride_list_output="$(dpkg-statoverride --list "${fso_without_trailing_slash}")" || {
+        dpkg_statoverride_list_exit_code=$?
+        true
+      }
+
+      if test "${dpkg_statoverride_list_exit_code}" = "0"; then
+        true "There is an fso entry. Check if owner/group/mode match."
+        local grep_line
+        grep_line="${owner_from_config} ${group_from_config} ${mode_for_grep} ${fso_without_trailing_slash}"
+        if echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings "${grep_line}"; then
+          true "OK The owner/group/mode matches. No further action required."
+        else
+          true "The owner/group/mode do not match, therefore remove and re-add the entry to update it."
+          ## fso_without_trailing_slash instead of fso to prevent
+          ## "dpkg-statoverride: warning: stripping trailing /"
+
+          # shellcheck disable=SC2086
+          if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
+            true "OK Existing mode already saved previously. No need to save again."
+          else
+            ## Save existing_mode in separate database.
+            ## Not using --update as not intending to enforce existing_mode.
+            # shellcheck disable=SC2086
+            echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+          fi
+
+          # shellcheck disable=SC2086
+          echo_wrapper_silent_ignore dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${fso_without_trailing_slash}"
+
+          ## Remove from and add to real database.
+          echo_wrapper_silent_ignore dpkg-statoverride --remove "${fso_without_trailing_slash}"
+          echo_wrapper_audit dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+
+          ## Save in separate database.
+          ## Not using --update as this is only for saving.
+          # shellcheck disable=SC2086
+          echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+        fi
+      else
+        true "There is no fso entry. Therefore add one."
+
+        # shellcheck disable=SC2086
+        if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
+          true "OK Existing mode already saved previously. No need to save again."
+        else
+          ## Save existing_mode in separate database.
+          ## Not using --update as not intending to enforce existing_mode.
+          # shellcheck disable=SC2086
+          echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+        fi
+
+        ## Add to real database.
+        echo_wrapper_audit dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+
+        ## Save in separate database.
+        ## Not using --update as this is only for saving.
+        # shellcheck disable=SC2086
+        echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+      fi
+    fi
+    if test -z "${capability_from_config}"; then
+      continue
+    fi
+
+    if test "${capability_from_config}" = "none"; then
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/45
+      ## sudo setcap -r /bin/ping 2>/dev/null
+      ## Failed to set capabilities on file '/bin/ping' (No data available)
+      ## The value of the capability argument is not permitted for a file. Or
+      ## the file is not a regular (non-symlink) file
+      ## Therefore use echo_wrapper_ignore.
+      echo_wrapper_ignore setcap -r "${fso}"
+      getcap_output="$(getcap "${fso}")"
+      if test -n "${getcap_output}"; then
+        exit_code=205
+        echo "ERROR: removing capabilities for fso '${fso}' failed!" >&2
+        continue
+      fi
+    else
+      if ! capsh --print | grep --fixed-strings "Bounding set" | grep --quiet "${capability_from_config}"; then
+        echo "ERROR: capability_from_config '${capability_from_config}' does not exist!" >&2
+        continue
+      fi
+
+      ## feature request: dpkg-statoverride: support for capabilities
+      ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502580
+      echo_wrapper_audit setcap "${capability_from_config}+ep" "${fso}"
+    fi
+  done <"${config_file}"
+  true "INFO: END parsing config_file: '${config_file}'"
+}
+
+parse_config_folder() {
+  touch "${store_dir}/private/passwd"
+  chmod og-rwx "${store_dir}/private/passwd"
+  touch "${store_dir}/private/group"
+  chmod og-rwx "${store_dir}/private/group"
+
+  local passwd_file_contents_temp
+  ## Query contents of password and group databases only once and buffer them
+  ##
+  ## If we don't buffer we sometimes get incorrect results when checking for
+  ## entries using 'if getent passwd | grep --quiet '^root:'; ...' since
+  ## 'grep' exits after the first match in this case causing 'getent' to
+  ## receive SIGPIPE, which then fails the pipeline since 'set -o pipefail' is
+  ## set for this script.
+  passwd_file_contents_temp=$(getent passwd)
+  echo "${passwd_file_contents_temp}" | tee "${store_dir}/private/passwd" >/dev/null
+  group_file_contents_temp=$(getent group)
+  echo "${group_file_contents_temp}" | tee "${store_dir}/private/group" >/dev/null
+
+  #passwd_file_contents="$(cat "${store_dir}/private/passwd")"
+  #group_file_contents="$(cat "${store_dir}/private/group")"
+
+  shopt -s nullglob
+  for config_file in \
+    /etc/permission-hardener.d/*.conf \
+    /usr/local/etc/permission-hardener.d/*.conf \
+    /etc/permission-hardening.d/*.conf \
+    /usr/local/etc/permission-hardening.d/*.conf
+  do
+    set_file_perms
+  done
+}
+
+apply() {
+  check_root
+  make_store_dir
+  sanity_tests
+  parse_config_folder
+
+  echo "\
+INFO: To compare the current and previous permission modes:
+  Install 'meld' (or preferred diff tool) for comparison of file mode changes:
+    sudo apt install --no-install-recommends meld
+
+  Use 'meld' or another diff tool to view the differences:
+    meld ${store_dir}/existing_mode/statoverride ${store_dir}/new_mode/statoverride"
+}
+
+spare() {
+  check_root
+  make_store_dir
+
+  remove_file="${1}"
+  exit_code=0
+  dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
+  dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+
+  if test ! -f "${store_dir}/existing_mode/statoverride"; then
+    return 0
+  fi
+
+  local line
+  while read -r line; do
+    ## example line:
+    ## root root 4755 /usr/lib/eject/dmcrypt-get-device
+
+    local owner group mode file_name
+    if ! read -r owner group mode file_name <<< "${line}"; then
+      exit_code=201
+      echo "ERROR: cannot parse line: ${line}" >&2
+      continue
+    fi
+    true "owner: '${owner}' group: '${group}' mode: '${mode}' file_name: '${file_name}'"
+
+    if test "${remove_file}" = "all"; then
+      verbose=""
+      remove_one=false
+    else
+      if test "${remove_file}" = "${file_name}"; then
+        verbose="--verbose"
+        remove_one=true
+        echo "${remove_one}" | tee "${store_dir}/remove_one" >/dev/null
+      else
+        echo "false" | tee "${store_dir}/remove_one" >/dev/null
+        continue
+      fi
+    fi
+
+    if test "${remove_one}" = "true"; then
+      set -o xtrace
+    fi
+
+    if test -e "${file_name}"; then
+      # shellcheck disable=SC2086
+      chown ${verbose} "${owner}:${group}" "${file_name}" || exit_code=202
+      ## chmod need to be run after chown since chown removes suid.
+      ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
+      # shellcheck disable=SC2086
+      chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
+    else
+      echo "INFO: file_name: '${file_name}' - does not exist. This is likely normal."
+    fi
+
+    dpkg-statoverride --remove "${file_name}" &>/dev/null || true
+    # shellcheck disable=SC2086
+    dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --remove "${file_name}" &>/dev/null || true
+    # shellcheck disable=SC2086
+    dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}" &>/dev/null || true
+
+    if test "${remove_one}" = "true"; then
+      set +o xtrace
+      break
+    fi
+
+  done < "${store_dir}/existing_mode/statoverride"
+
+  if test ! "${remove_file}" = "all"; then
+    if test "$(cat "${store_dir}/remove_one")" = "false"; then
+      echo "INFO: no file was removed.
+
+  File '${remove_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation of this program.
+
+  Note: This is expected if already done earlier.
+
+  Note: This program expects the full path to the file. Example:
+    $0 disable /usr/bin/newgrp
+
+  The following syntax will not work:
+    $0 disable program-name
+
+  The following example will not work:
+    $0 disable newgrp
+
+  To remove all:
+    $0 disable all
+
+  This change might not be permanent (because of the permission-hardener.service systemd unit). For full instructions, see:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
+
+  To view list of changed by SUID Disabler and Permission Hardener:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#View_List_of_Permissions_Changed_by_SUID_Disabler_and_Permission_Hardener
+
+  For re-enabling any specific SUID binary:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Re-Enable_Specific_SUID_Binaries
+
+  For completely disabling SUID Disabler and Permission Hardener:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Disable_SUID_Disabler_and_Permission_Hardener"
+    fi
+  fi
+}
+
+check_root(){
+  if test "$(id -u)" != "0"; then
+    echo "ERROR: Not running as root, aborting."
+    exit 1
+  fi
+}
+
+usage(){
+  echo "Usage: ${0##*/} enable
+       ${0##*/} disable [FILE|all]
+
+Examples:
+  ${0##*/} enable
+  ${0##*/} disable all
+  ${0##*/} disable /usr/bin/newgrp" >&2
+  exit "${1}"
+}
+
+case "${1:-}" in
+  enable) shift; apply "$@";;
+  disable)
+    shift
+    case "${1:-}" in
+      "") usage 1;;
+      *) spare "${1}";;
+    esac
+    ;;
+  -h|--help) usage 0;;
+  *) usage 1;;
+esac
+
+if test "${exit_code}" != "0"; then
+  echo "ERROR: Exiting with non-zero exit code: '${exit_code}'" >&2
+fi
+
+exit "${exit_code}"

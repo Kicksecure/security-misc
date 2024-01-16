@@ -13,7 +13,7 @@ After=local-fs.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=permission-hardening
+ExecStart=permission-hardener
 
 [Install]
 WantedBy=sysinit.target
