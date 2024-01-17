@@ -18,4 +18,4 @@ prereqs)
 esac
 
 . /usr/share/initramfs-tools/hook-functions
-copy_exec /sbin/sysctl /sbin
+copy_exec /usr/sbin/sysctl /usr/sbin
