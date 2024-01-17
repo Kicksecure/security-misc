@@ -14,4 +14,4 @@ security-misc: file-in-unusual-dir [var/cache/security-misc/state-files/placehol
 security-misc: uses-dpkg-database-directly [usr/bin/remount-secure]
 
 ## Special target to make sure this runs as non-parallelized as possible to avoid race conditions.
-security-misc: systemd-service-file-refers-to-unusual-wantedby-target sysinit-post.target [lib/systemd/system/remount-secure.service]
+security-misc: systemd-service-file-refers-to-unusual-wantedby-target sysinit-post.target [usr/lib/systemd/system/remount-secure.service]
