@@ -33,17 +33,16 @@ permission_hardening_legacy_config_folder() {
 }
 
 permission_hardening() {
-    echo ""
     echo "Running SUID Disabler and Permission Hardener... See also:"
     echo "https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener"
-    echo ""
     echo "$0: INFO: running: permission-hardener enable"
+    echo ""
     if ! permission-hardener enable ; then
         echo "$0: ERROR: Permission hardening failed." >&2
         return 0
     fi
-    echo "$0: INFO: Permission hardening success."
     echo ""
+    echo "$0: INFO: Permission hardening success."
 }
 
 case "$1" in
@@ -64,6 +63,7 @@ case "$1" in
       echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\@: '$@' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
       /usr/libexec/security-misc/mmap-rnd-bits || true
+      permission_hardening
       exit 0
     ;;
 
