@@ -3,7 +3,6 @@
 
 ## This file was generated using 'genmkfile debinstfile'.
 
-bin/*
 etc/*
 usr/*
 var/*
