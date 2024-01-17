@@ -1,3 +1,77 @@
+commit 314e5b490c6864b745fbf5fd6d9bb2c724d478b8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 14:03:09 2024 -0500
+
+    use wildcards
+    
+    instead of outdated, incomplete list
+    
+    https://github.com/Kicksecure/security-misc/issues/160
+
+commit 08619d6a7307b6ab05a3ba7e71ea33b00db20b27
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:59:36 2024 -0500
+
+    minor RPM updates
+    
+    https://github.com/Kicksecure/security-misc/issues/160
+
+commit 3048e0ac76e4eba1c53b43ba2424157505578cdd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:54:07 2024 -0500
+
+    usrmerge
+    
+    https://github.com/Kicksecure/security-misc/issues/190
+
+commit 5a6cd4c2abd243c91575e9477a921aa290c68ba5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:51:30 2024 -0500
+
+    remove now empty /bin from copying since it is empty after usrmerge
+    
+    https://github.com/Kicksecure/security-misc/issues/190
+
+commit 071b984a1eaaa8a8ea6a40e4ee36eabcde2d630d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:49:05 2024 -0500
+
+    `sort -d`
+    
+    https://github.com/Kicksecure/security-misc/issues/190
+
+commit 011e55e3e52485ccd728b4bb249efbc816f38806
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:45:17 2024 -0500
+
+    remove duplicates after usrmerge
+    
+    https://github.com/Kicksecure/security-misc/issues/190
+
+commit 0efee2f50fd38feade7700c2f033cc3d4c200d34
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:39:56 2024 -0500
+
+    usrmerge
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/190
+
+commit 18a06935e0cca3dc090643aad406d861e4583085
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 17 13:23:20 2024 -0500
+
+    run permission hardener when new packages are install files to /usr or /opt
+    
+    (basically anywhere)
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/189
+
+commit 66e6371221c3395a0523e30e8ef1a051d3e6cdd0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 16 14:26:34 2024 +0000
+
+    bumped changelog version
+
 commit 0d78ecaee37536379ad2f230f45904f57425cb19
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 09:26:21 2024 -0500
