@@ -1,8 +1,8 @@
 # Enhances Miscellaneous Security Settings #
 
-https://github.com/Whonix/security-misc/blob/master/README.md
+https://github.com/Kicksecure/security-misc/blob/master/README.md
 
-https://www.whonix.org/wiki/Security-misc
+https://www.kicksecure.com/wiki/Security-misc
 
 Discussion:
 
