@@ -1,3 +1,17 @@
+commit 185bfe749787a8c6e93103ae8c6b0751a169e276
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 25 06:54:36 2024 -0500
+
+    use `interest-noawait` instead of `interest-await`
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/196
+
+commit 64e41b113cae893d1f27f441f99340389ba8b9b3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 18 14:10:51 2024 +0000
+
+    bumped changelog version
+
 commit 1855fa08b1386b1ea8697767104e7ad0f1521c9c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 18 08:54:39 2024 -0500
