@@ -1,5 +1,6 @@
 ## Copyright (C) 2024 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-interest-await /usr
-interest-await /opt
+## https://github.com/Kicksecure/security-misc/issues/196
+interest-noawait /usr
+interest-noawait /opt
