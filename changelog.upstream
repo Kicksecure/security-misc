@@ -1,3 +1,55 @@
+commit 02090da08cfd411314ffeeb6df95f73c701f06c6
+Merge: 8037ce5 ba13657
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Feb 3 12:51:07 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit ba13657d894f2f30d8deb7c08b85e5fbc1dcea21
+Merge: 8037ce5 b16c99a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Feb 3 12:50:28 2024 -0500
+
+    Merge pull request #197 from raja-grewal/mitigations
+    
+    Additional Explicit CPU Mitigations
+
+commit b16c99ab62a902b1f61b9d4fe63273cd614e757c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jan 29 13:39:40 2024 +0000
+
+    Remove hardcoded `spec_rstack_overflow` setting
+
+commit 139b10a9aad85018f87bdc4bb227e938f7955235
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jan 29 12:59:13 2024 +0000
+
+    Control RAS overflow mitigation on AMD Zen CPUs
+
+commit 6c54e35027e86ec045102cd1d95f84aa30bc55c9
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jan 29 12:58:51 2024 +0000
+
+    Enable mitigations for RETBleed vulnerability and disable SMT
+
+commit 4509a5fc95204080f2855849d22c7e05393455d9
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jan 29 12:58:14 2024 +0000
+
+    Enable known mitigations for CPU vulnerabilities and disable SMT
+
+commit 4231155efa0970d2456b67cc89c8828b0766cf7f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jan 29 12:57:48 2024 +0000
+
+    Add reference for kernel parameters
+
+commit 8037ce52f96dcc6f8007c1567daf38ff013352d6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 25 13:59:29 2024 +0000
+
+    bumped changelog version
+
 commit 185bfe749787a8c6e93103ae8c6b0751a169e276
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 25 06:54:36 2024 -0500
