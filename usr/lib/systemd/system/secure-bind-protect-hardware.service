@@ -1,0 +1,9 @@
+[Unit]
+Description=Securely bind directories to themselves with hardened mount options, remount api filesystems with hardened options, secure sensitive and volative non-persistent filesystems
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/secure-bind-protect-hardware
+
+[Install]
+WantedBy=multi-user.target
