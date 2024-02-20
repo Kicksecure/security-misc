@@ -1,0 +1,30 @@
+#!/bin/bash
+mount --options defaults,nosuid,nodev --bind --make-private /opt /opt
+mount --options defaults,nosuid,nodev --bind --make-private /home /home
+mount --options defaults,nodev,nosuid --bind --make-private /tmp /tmp
+mount --options defaults,nodev,nosuid,noexec --bind --make-private /boot/efi /boot/efi
+mount --options defaults,nodev,noosuid,noexec --bind --make-private /boot /boot
+mount --options defaults,nodev --bind --make-private /usr /usr
+mount --options defaults,nosuid,nodev --bind --make-private /var /var
+mount --options defaults,nosuid,nodev,noexec --bind --make-private /etc /etc
+mount --options defaults,nosuid,nodev,noexec --bind --make-private /srv /srv
+mount --options defaults,nosuid,nodev,noexec --bind --make-private /root /root
+mount --options defaults,nosuid,nodev,noexec --bind --make-private /media /media
+mount --options defaults,nosuid,nodev --bind --make-private /mnt /mnt
+mount --options defaults,nosuid,nodev,noexec,remount,subset=pid /proc
+mount --options defaults,nosuid,nodev,noexec,remount /sys
+mount --options defaults,nosuid,nodev,noexec,remount /run
+mount --options defaults,nosuid,nodev,noexec,remount /dev/shm
+mount --options defaults,nosuid,noexec,remount /dev
+
+chmod 0500 /sys/block
+#chmod 0500 /sys/class
+#chmod 0500 /sys/devices
+#chmod 0500 /sys/fs
+chmod 0500 /sys/kernel
+chmod 0500 /sys/power
+chmod 0500 /sys/bus
+#chmod 0500 /sys/dev
+chmod 0500 /sys/firmware
+chmod 0500 /sys/hypervisor
+chmod 0500 /sys/module
