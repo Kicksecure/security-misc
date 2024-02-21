@@ -80,6 +80,23 @@ do
   fi
 done
 
+## restrict permissions on everything but
+## what is needed
+for i in /sys/* /sys/fs/*
+do
+  ## Using '|| true':
+  ## https://github.com/Kicksecure/security-misc/pull/108
+  if [ "${sysfs_whitelist}" = "1" ]; then
+    chmod o-rwx "${i}" || true
+  else
+    chmod og-rwx "${i}" || true
+  fi
+done
+
+## polkit needs stat access to /sys/fs/cgroup
+## to function properly
+chmod o+rx /sys /sys/fs
+
 ## on SELinux systems, at least /sys/fs/selinux
 ## must be visible to unprivileged users, else
 ## SELinux userspace utilities will not function
@@ -88,18 +105,6 @@ if [ -d /sys/fs/selinux ]; then
   echo "INFO: SELinux detected because folder /sys/fs/selinux exists. See also:"
   echo "https://www.kicksecure.com/wiki/Security-misc#selinux"
   if [ "${selinux}" = "1" ]; then
-    ## restrict permissions on everything but
-    ## what is needed
-    for i in /sys/* /sys/fs/*
-    do
-      ## Using '|| true':
-      ## https://github.com/Kicksecure/security-misc/pull/108
-      if [ "${sysfs_whitelist}" = "1" ]; then
-        chmod o-rwx "${i}" || true
-      else
-        chmod og-rwx "${i}" || true
-      fi
-    done
     chmod o+rx /sys /sys/fs /sys/fs/selinux
     echo "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
   else
