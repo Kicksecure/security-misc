@@ -208,6 +208,13 @@ _boot() {
    remount_secure
 }
 
+_boot_efi() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/boot/efi"
+   intended_mount_options="nosuid,nodev,noexec"
+   remount_secure
+}
+
 _run() {
    mount_folder="/run"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
@@ -226,6 +233,13 @@ _dev() {
 _dev_shm() {
    mount_folder="/dev/shm"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
+   remount_secure
+}
+
+_sys() {
+   ## TODO: new, test
+   mount_folder="/sys"
+   intended_mount_options="nosuid,nodev,noexec"
    remount_secure
 }
 
@@ -255,9 +269,60 @@ _var() {
    remount_secure
 }
 
+_usr() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/usr"
+   intended_mount_options="nodev"
+   remount_secure
+}
+
 _home() {
    mount_folder="$NEWROOT/home"
    intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_root() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/root"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_srv() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/srv"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_media() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/media"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_mnt() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/mnt"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_opt() {
+   ## TODO: new, test
+   mount_folder="$NEWROOT/opt"
+   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   remount_secure
+}
+
+_etc() {
+   ## TODO: new, test
+   ## /etc cannot be noexec because various executables are there. To find, run:
+   ## sudo find /etc -executable
+   mount_folder="$NEWROOT/etc"
+   intended_mount_options="nosuid,nodev"
    remount_secure
 }
 
@@ -277,6 +342,7 @@ main() {
    preparation
 
    _boot
+   _boot_efi
    _run
    _dev
    _dev_shm
@@ -284,9 +350,19 @@ main() {
    _var_tmp
    _var_log
    _var
+   _usr
    _home
+   _root
+   _srv
+   _media
+   _mnt
+   _opt
+   _etc
 
    end
 }
+
+## TODO: see also hidepid /usr/lib/systemd/system/proc-hidepid.service
+#mount --options defaults,nosuid,nodev,noexec,remount,subset=pid /proc
 
 main "$@"
