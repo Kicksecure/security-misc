@@ -1,11 +1,28 @@
 #!/bin/bash
 
-## Copyright (C) 2019 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2019 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
+
+## features:
+## - nodev,nosuid where appropriate
+## - optional noexec for most except /home
+## - optional noexec for all including /home
+## - idempotent (script can be safely re-run)
+## - can be run from:
+##   - systemd
+##   - dracut
+##   - manually from command line
+## - can safely handle non-existing folders
+## - error handling
+## - log output:
+##   - shows each and every command executed
+##   - shows old mount options prior running remount-secure
+##   - shows new mount options after running remount-secure
 
 ## noexec in /tmp and/or /home can break some malware but also legitimate
 ## applications.
 
+## https://www.kicksecure.com/wiki/Noexec
 ## https://www.kicksecure.com/wiki/Dev/remount-secure
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
