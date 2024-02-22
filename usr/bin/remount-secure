@@ -292,21 +292,21 @@ _root() {
 _srv() {
    ## TODO: new, test
    mount_folder="$NEWROOT/srv"
-   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _media() {
    ## TODO: new, test
    mount_folder="$NEWROOT/media"
-   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _mnt() {
    ## TODO: new, test
    mount_folder="$NEWROOT/mnt"
-   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
