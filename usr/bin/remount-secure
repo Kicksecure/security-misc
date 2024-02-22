@@ -313,6 +313,8 @@ _mnt() {
 _opt() {
    ## TODO: new, test
    mount_folder="$NEWROOT/opt"
+   ## Allow /opt exec as usually optional binaries are placed there such as Firefox
+   ## when manually installed from tarball.
    intended_mount_options="nosuid,nodev"
    remount_secure
 }
