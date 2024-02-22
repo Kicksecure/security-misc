@@ -5,6 +5,8 @@
 Description=remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
 Documentation=https://github.com/Kicksecure/security-misc
 
+ConditionKernelCommandLine=!remountsecure=0
+
 DefaultDependencies=no
 
 Before=sysinit-post.target
