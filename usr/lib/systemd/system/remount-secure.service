@@ -24,7 +24,7 @@ Requires=sysinit.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=remount-secure
+ExecStart=remount-secure 3
 
 [Install]
 WantedBy=sysinit-post.target
