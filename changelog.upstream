@@ -1,3 +1,67 @@
+commit 6d7cf3c12a8a772fee1cd893d5504767690b3b77
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 09:49:48 2024 -0500
+
+    output
+
+commit f7831db197b2fff33b66eeb44efd749e482315e0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 09:17:41 2024 -0500
+
+    do not exit non-zero if folder does not exist
+
+commit 5bdd7b8475bdfde8dbee5318fb43d0c2a236e3b0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 09:14:52 2024 -0500
+
+    output
+
+commit 44a15cd97da3066e39d2d7df1f456e703036a6e9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 09:13:56 2024 -0500
+
+    mount --make-private
+    
+    https://github.com/Kicksecure/security-misc/issues/172
+
+commit c0f98b05b609c7c8ac6f86e123af9e0642d82697
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 06:03:59 2024 -0500
+
+    comment
+    
+    https://github.com/Kicksecure/security-misc/pull/202
+
+commit 1e1613aa93dca1e7fe7f24dbd32028a0cadd21fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 06:02:28 2024 -0500
+
+    allow /opt exec as usually optional binaries are placed there such as firefox
+    
+    https://github.com/Kicksecure/security-misc/pull/202
+
+commit 7c7b4b24b4959f3ef96ff7ef0b11fa4c0bd48c8e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 06:01:00 2024 -0500
+
+    fix home_noexec_maybe -> most_noexec_maybe
+    
+    https://github.com/Kicksecure/security-misc/pull/202
+
+commit 38783faf60b85c4e855bf78c87e1c07765776b50
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 05:58:53 2024 -0500
+
+    add more bind mounts of mount options hardening
+    
+    as suggested in https://github.com/Kicksecure/security-misc/pull/202
+
+commit ad9d913902d7e696f1114da74d84f9cdcb22bc25
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Feb 3 18:28:27 2024 +0000
+
+    bumped changelog version
+
 commit 02090da08cfd411314ffeeb6df95f73c701f06c6
 Merge: 8037ce5 ba13657
 Author: Patrick Schleizer <adrelanos@whonix.org>
