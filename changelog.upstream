@@ -1,3 +1,15 @@
+commit c0924321b84874ae7fc72c59fd58e4c4ae8bc6d9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 09:52:36 2024 -0500
+
+    fix systemd unit ExecStart
+
+commit d148a769b7106831c0b27a7ad63d91ab42257678
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 14:50:05 2024 +0000
+
+    bumped changelog version
+
 commit 6d7cf3c12a8a772fee1cd893d5504767690b3b77
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 09:49:48 2024 -0500
