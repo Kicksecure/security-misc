@@ -196,7 +196,7 @@ remount_secure() {
    fi
 
    new_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
-   $output_command "INFO: '$mount_folder' new_mount_options: $new_mount_options"
+   $output_command "INFO: '$mount_folder' new_mount_options: '$new_mount_options'"
 
    touch "$status_file_full_path"
 }
