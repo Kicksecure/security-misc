@@ -313,7 +313,7 @@ _mnt() {
 _opt() {
    ## TODO: new, test
    mount_folder="$NEWROOT/opt"
-   intended_mount_options="nosuid,nodev${home_noexec_maybe}"
+   intended_mount_options="nosuid,nodev"
    remount_secure
 }
 
