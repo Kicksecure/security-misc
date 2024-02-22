@@ -187,12 +187,12 @@ remount_secure() {
 
    if findmnt --noheadings "$mount_folder" >/dev/null ; then
       $output_command "INFO: '$mount_folder' already mounted, therefore using remount."
-      $output_command INFO: Executing: mount --options "remount,${intended_mount_options}" "$mount_folder"
-      mount --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
+      $output_command INFO: Executing: mount --make-private --options "remount,${intended_mount_options}" "$mount_folder"
+      mount --make-private --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
    else
       $output_command "INFO: '$mount_folder' not yet mounted, therefore using mount bind."
-      $output_command INFO: Executing: mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
-      mount --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
+      $output_command INFO: Executing: mount --make-private --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
+      mount --make-private --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
    fi
 
    new_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
