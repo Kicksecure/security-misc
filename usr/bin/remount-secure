@@ -333,6 +333,7 @@ end() {
    #$output_command "INFO: 'findmnt --list' output at the END."
    #$output_command "$(findmnt --list)"
 
+   $output_command ""
    $output_command "INFO: exit_code: $exit_code"
    $output_command "$0: INFO: END"
    exit $exit_code
