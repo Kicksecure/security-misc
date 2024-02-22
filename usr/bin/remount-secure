@@ -179,8 +179,8 @@ remount_secure() {
    fi
 
    if ! test -d "$mount_folder" ; then
+      ## For example /boot/efi does not always exist on all systems.
       $output_command "INFO: '$mount_folder' folder exists: no"
-      exit_code=102
       return 0
    fi
    $output_command "INFO: '$mount_folder' folder exists: yes"
