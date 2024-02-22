@@ -1,3 +1,15 @@
+commit 37a7abdf0c1e6d8179bd09d3c1bd0363e8bc0a96
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 11:07:01 2024 -0500
+
+    ConditionKernelCommandLine=!remountsecure=0
+
+commit eb3e0b9292f71a5dba312500508f893779fb1b9c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 14:52:55 2024 +0000
+
+    bumped changelog version
+
 commit c0924321b84874ae7fc72c59fd58e4c4ae8bc6d9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 09:52:36 2024 -0500
