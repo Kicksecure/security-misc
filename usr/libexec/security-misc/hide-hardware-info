@@ -6,7 +6,12 @@
 set -e
 
 run_cmd() {
-  echo "INFO: executing: $@"
+  echo "INFO: normal executing   : $@"
+  "$@"
+}
+
+run_cmd_whitelist() {
+  echo "INFO: whitelist executing: $@"
   "$@"
 }
 
@@ -43,9 +48,9 @@ create_whitelist() {
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed.
-    run_cmd chgrp -fR "${1}" "${whitelist_path}" || true
+    run_cmd_whitelist chgrp -fR "${1}" "${whitelist_path}" || true
 
-    run_cmd chmod o-rwx "${whitelist_path}"
+    run_cmd_whitelist chmod o-rwx "${whitelist_path}"
   else
     echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
   fi
@@ -67,17 +72,16 @@ do
         if [ "${sysfs_whitelist}" = "1" ]; then
           create_whitelist sysfs
         else
+          echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly. Full sysfs hardening..."
           run_cmd chmod og-rwx /sys
-          echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly."
         fi
       fi
     elif [ "${i}" = "/proc/cpuinfo" ]; then
-      ## Whitelist for /proc/cpuinfo.
       if [ "${cpuinfo_whitelist}" = "1" ]; then
         create_whitelist cpuinfo
       else
+        echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly. Full cpuinfo hardening..."
         run_cmd chmod og-rwx /proc/cpuinfo
-        echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly."
       fi
     else
       run_cmd chmod og-rwx "${i}"
