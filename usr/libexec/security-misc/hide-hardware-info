@@ -48,7 +48,7 @@ create_whitelist() {
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed.
-    run_cmd_whitelist chgrp -fR "${1}" "${whitelist_path}" || true
+    run_cmd_whitelist chgrp --quiet --recursive "${1}" "${whitelist_path}" || true
 
     run_cmd_whitelist chmod o-rwx "${whitelist_path}"
   else
