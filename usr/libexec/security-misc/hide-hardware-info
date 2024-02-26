@@ -5,6 +5,13 @@
 
 set -e
 
+run_cmd() {
+  echo "INFO: executing: $@"
+  "$@"
+}
+
+echo "$0: INFO: START"
+
 sysfs_whitelist=1
 cpuinfo_whitelist=1
 
@@ -36,9 +43,9 @@ create_whitelist() {
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed.
-    chgrp -fR "${1}" "${whitelist_path}" || true
+    run_cmd chgrp -fR "${1}" "${whitelist_path}" || true
 
-    chmod o-rwx "${whitelist_path}"
+    run_cmd chmod o-rwx "${whitelist_path}"
   else
     echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
   fi
@@ -60,7 +67,7 @@ do
         if [ "${sysfs_whitelist}" = "1" ]; then
           create_whitelist sysfs
         else
-          chmod og-rwx /sys
+          run_cmd chmod og-rwx /sys
           echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly."
         fi
       fi
@@ -69,7 +76,7 @@ do
       if [ "${cpuinfo_whitelist}" = "1" ]; then
         create_whitelist cpuinfo
       else
-        chmod og-rwx /proc/cpuinfo
+        run_cmd chmod og-rwx /proc/cpuinfo
         echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly."
       fi
     else
@@ -93,15 +100,15 @@ if [ "${sysfs}" = "1" ]; then
     ## Using '|| true':
     ## https://github.com/Kicksecure/security-misc/pull/108
     if [ "${sysfs_whitelist}" = "1" ]; then
-      chmod o-rwx "${i}" || true
+      run_cmd chmod o-rwx "${i}" || true
     else
-      chmod og-rwx "${i}" || true
+      run_cmd chmod og-rwx "${i}" || true
     fi
   done
 
   ## polkit needs stat access to /sys/fs/cgroup
   ## to function properly
-  chmod o+rx /sys /sys/fs
+  run_cmd chmod o+rx /sys /sys/fs
 
   ## on SELinux systems, at least /sys/fs/selinux
   ## must be visible to unprivileged users, else
@@ -111,10 +118,12 @@ if [ "${sysfs}" = "1" ]; then
     echo "INFO: SELinux detected because folder /sys/fs/selinux exists. See also:"
     echo "https://www.kicksecure.com/wiki/Security-misc#selinux"
     if [ "${selinux}" = "1" ]; then
-      chmod o+rx /sys /sys/fs /sys/fs/selinux
+      run_cmd chmod o+rx /sys /sys/fs /sys/fs/selinux
       echo "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
     else
       echo "INFO: SELinux detected, but SELinux mode is not enabled. Some userspace utilities may not work properly."
     fi
   fi
 fi
+
+echo "$0: INFO: END"
