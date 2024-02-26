@@ -80,7 +80,7 @@ do
         echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly."
       fi
     else
-      chmod og-rwx "${i}"
+      run_cmd chmod og-rwx "${i}"
     fi
   else
     ## /proc/scsi doesn't exist on Debian so errors
