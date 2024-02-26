@@ -1,3 +1,63 @@
+commit 808e72f24bf30b3476ab6b87f96eb636632c195c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 08:11:26 2024 -0500
+
+    use long options
+    
+    https://github.com/Kicksecure/security-misc/issues/172
+
+commit 2d1d1b246f3fe061d4f817da5cecf46010839e1d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 08:07:29 2024 -0500
+
+    improve output
+    
+    https://github.com/Kicksecure/security-misc/issues/172
+
+commit d8f5376c4f36f5deb734e6dead42a62566d13480
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 07:58:06 2024 -0500
+
+    improve output
+    
+    https://github.com/Kicksecure/security-misc/issues/172
+
+commit cf84762a3a84d2be3b9510dddb32bdc433170dfa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 07:52:41 2024 -0500
+
+    improve output
+    
+    https://github.com/Kicksecure/security-misc/issues/172
+
+commit f2958bbfa5e67ee10380a25d996826233469080a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 07:49:30 2024 -0500
+
+    comment
+
+commit bc8f9edc3197e33e75ea1d691834d9abbdcdefd0
+Merge: 02d6f67 b23d167
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 07:48:19 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit b23d167342ef242a1e9d4e91b6a4b945e80c3e7e
+Merge: 02d6f67 ef44ece
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 07:46:02 2024 -0500
+
+    Merge pull request #204 from DanWin/sysfs-mount
+    
+    Make /sys hardening optional and allow access to /sys/fs to make polkit work
+
+commit 02d6f67741ef93d9ab39e02ac56b27c551a19dca
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 22 20:08:17 2024 +0000
+
+    bumped changelog version
+
 commit d13d1aa7ec7e9ac9f1aa87e4b36228bfd3af6eb2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 15:07:53 2024 -0500
@@ -15,6 +75,18 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 14:57:50 2024 -0500
 
     output
+
+commit ef44ecea44ee516b1ba92175eb78b2e8143c4502
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Thu Feb 22 16:51:23 2024 +0100
+
+    Add option to disabe /sys hardening
+
+commit 3bc1765dbbd333a1d607ab6962281b4d0a5c4b60
+Author: Daniel Winzen <daniel@danwin1210.de>
+Date:   Wed Feb 21 20:37:34 2024 +0100
+
+    Allow access to /sys/fs for polkit
 
 commit 6b73e6c2a9ff1efe211e41e005e4ecaa63731d82
 Author: Patrick Schleizer <adrelanos@whonix.org>
