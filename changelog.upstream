@@ -1,3 +1,33 @@
+commit 6b76373395622bac0e701c6d15c6656658febced
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 4 06:44:26 2024 -0500
+
+    fix panic-on-oops started every 10s in Qubes-Whonix
+    
+    by changing from a /etc/profile.d etc. related mechanism to start to a systemd unit file based approach
+    
+    Thanks to @marmarek for the bug report!
+    
+    https://forums.whonix.org/t/panic-on-oops-started-every-10s/19450
+
+commit af6c6971a741c69a584ba3f92dbfed12e40784dc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 4 06:33:51 2024 -0500
+
+    comment
+
+commit e013070e0bfc43d006e09ae1c5ae3533f7bebc5f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 4 06:33:21 2024 -0500
+
+    newline
+
+commit a5cc1774f2fbf6475e7b56601fbcd84a2a63fed0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 26 13:32:44 2024 +0000
+
+    bumped changelog version
+
 commit 808e72f24bf30b3476ab6b87f96eb636632c195c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 08:11:26 2024 -0500
