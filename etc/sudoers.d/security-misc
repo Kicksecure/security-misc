@@ -3,4 +3,3 @@
 
 user ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
 %sudo ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
-
