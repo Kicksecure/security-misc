@@ -1,0 +1,20 @@
+## Copyright (C) 2024 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Sets 'sysctl kernel.panic_on_oops=1' late during the boot process.
+Documentation=https://github.com/Kicksecure/security-misc
+
+ConditionKernelCommandLine=!panic-on-oops=0
+
+After=multi-user.target
+After=graphical.target
+After=getty.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/security-misc/panic-on-oops
+
+[Install]
+WantedBy=multi-user.target
