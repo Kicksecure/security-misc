@@ -12,7 +12,7 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2 /proc
+ExecStart=/bin/mount -o remount,nosuid,nodev,noexec,hidepid=2,gid=proc /proc
 RemainAfterExit=yes
 
 [Install]
