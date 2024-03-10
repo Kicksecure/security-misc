@@ -1,3 +1,19 @@
+commit a5206bde336c159be065345e7dd5cb86b2b6a27f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 10 08:44:53 2024 -0400
+
+    `proc-hidepid.service` add `gid=proc`
+    
+    This allows users that are a member of the `proc` group to be excluded from `hidepid` protections.
+    
+    https://github.com/Kicksecure/security-misc/issues/208
+
+commit 0f0d9ca2a42cf9fc04e405ae90f3d67bc0794e12
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 4 11:48:30 2024 +0000
+
+    bumped changelog version
+
 commit 6b76373395622bac0e701c6d15c6656658febced
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 4 06:44:26 2024 -0500
