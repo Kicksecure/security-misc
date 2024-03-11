@@ -1,3 +1,33 @@
+commit 0a018bdebca167d671d8bda81a2b0d929d396945
+Merge: 57fc487 0b81316
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 11 10:13:57 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 0b8131630041dbd80f1aa61dcedde446208c06f7
+Merge: 57fc487 03ed546
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 11 10:12:46 2024 -0400
+
+    Merge pull request #211 from wryMitts/patch-1
+    
+    Create proc group on install
+
+commit 03ed546cd8992b29855ca1c2748ed988dd3c765d
+Author: wryMitts <158655396+wryMitts@users.noreply.github.com>
+Date:   Sun Mar 10 16:55:10 2024 -0400
+
+    Create proc group on install
+    
+    Fixes https://github.com/Kicksecure/security-misc/issues/210
+
+commit 57fc487e5e5ffad765f1418236744319cc666871
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 10 13:19:26 2024 +0000
+
+    bumped changelog version
+
 commit a5206bde336c159be065345e7dd5cb86b2b6a27f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Mar 10 08:44:53 2024 -0400
