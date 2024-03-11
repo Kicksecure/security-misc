@@ -20,6 +20,9 @@ user_groups_modifications() {
    addgroup --system sysfs
    addgroup --system cpuinfo
 
+   ## /usr/lib/systemd/system/proc-hidepid.service
+   addgroup --system proc
+
    ## group 'sudo' membership required to use 'su'
    ## /usr/share/pam-configs/wheel-security-misc
    adduser root sudo
