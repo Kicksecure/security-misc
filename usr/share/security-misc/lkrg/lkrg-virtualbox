@@ -3,7 +3,7 @@
 ## Copyright (C) 2021 - 2023 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-set -x
+#set -x
 set -e
 
 if ! command -v vboxmanage &>/dev/null ; then
