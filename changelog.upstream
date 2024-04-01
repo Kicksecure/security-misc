@@ -1,3 +1,17 @@
+commit 7dba3fb7bebd4fdc7f168df378c2d505971f2c04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Apr 1 02:55:59 2024 -0400
+
+    no longer disable MSR by default
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/215
+
+commit d9ac01ba5c26f9730feb17fe573d447e625e59f8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 18 15:10:10 2024 +0000
+
+    bumped changelog version
+
 commit ecaa024f226f4f45ac9d2a4f38bcdb82a6e35a2f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 18 11:01:56 2024 -0400
