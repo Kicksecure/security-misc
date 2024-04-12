@@ -1,3 +1,31 @@
+commit 5cbdf3c1262d26ae03b28baee87b1d268329da40
+Merge: 7fba04d ab8b6da
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 12 02:54:17 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit ab8b6da484a90e9a62f8ba515c757aa3758baf48
+Merge: 7fba04d 4935768
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 12 02:53:08 2024 -0400
+
+    Merge pull request #216 from raja-grewal/spectre_bhi
+    
+    BHI mitigation on Intel CPUs
+
+commit 493576836c90653f9c3514fcd5b3bf816e56d689
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Apr 12 00:17:06 2024 +1000
+
+    BHI mitigation on Intel CPUs
+
+commit 7fba04d1485187fe648f3d3ab44cd834b0eb9791
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Apr 1 06:56:45 2024 +0000
+
+    bumped changelog version
+
 commit 7dba3fb7bebd4fdc7f168df378c2d505971f2c04
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Apr 1 02:55:59 2024 -0400
