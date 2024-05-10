@@ -1,3 +1,142 @@
+commit 9b589bc3116c8f9d6d574021bcec7b5dec3888b8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:49:34 2024 -0400
+
+    comment
+
+commit 8d01fc2d351285c9c2f810bf5cf10797c9b9eb41
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:48:26 2024 -0400
+
+    chmod +x
+
+commit 8a28c1bc38b87bf55f25764c96a0e81e22137232
+Merge: a9886a3 0f1119f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:48:04 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 0f1119f326cd769db8995e8eb54ff35503c70562
+Merge: 547757f 677f75a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:45:57 2024 -0400
+
+    Merge pull request #221 from raja-grewal/firewire
+    
+    Disable Firewire Module
+
+commit 547757f4514a54437d044656c5e2b6d413a4cc30
+Merge: 7b9fe44 06f13bb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:45:34 2024 -0400
+
+    Merge pull request #220 from raja-grewal/block_gps
+    
+    Block Several GPS-related Modules
+
+commit 7b9fe44a20f3caf67f386969a5fc7c980e5f0282
+Merge: 62ea4dc 132b41a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:43:43 2024 -0400
+
+    Merge pull request #219 from raja-grewal/logging_martians
+    
+    Revert Logging of Martians
+
+commit 62ea4dc1768f69bb28a69c20e55c87ae692cc0c8
+Merge: a9886a3 4694268
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri May 10 06:43:15 2024 -0400
+
+    Merge pull request #218 from raja-grewal/secure_cpu
+    
+    More CPU Mitigations and Additional References
+
+commit 677f75ae8ed64af599f837ced15f34990df498e5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu May 9 02:34:02 2024 +0000
+
+    Disable `firewire-net` module
+
+commit 06f13bb766bd84182331aeb1632b917de4b36020
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu May 9 02:28:53 2024 +0000
+
+    Disable GPS modules like GNSS
+
+commit f3800a4e2b7bef87cc3bd8791f9e7f654f8d782a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu May 9 02:25:46 2024 +0000
+
+    Create disabled-gps-by-security-misc
+
+commit 132b41ae73e9ea72bc3d8aff22ae75fc622758a3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu May 9 02:16:50 2024 +0000
+
+    Revert logging of martians
+
+commit 4694268b8f779c1a0a56546dc6d12bf9f23a7cdd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun May 5 12:52:51 2024 +0000
+
+    Remove a word
+
+commit 8f7768ce96e32e3f1ec52118afffc2a44a160976
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun May 5 12:50:39 2024 +0000
+
+    Add vendor links
+
+commit 0c031a29d33d13d9106746d61b87f9d98a80b5cd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:55:09 2024 +1000
+
+    RFDS mitigation on Intel Atom CPUs (including E-cores)
+
+commit 1122b3402c0856a087415d7ba1a313048b7e3eea
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:50:42 2024 +1000
+
+    GDS mitigation for CPUs
+
+commit c002bd62e8584a19e73b3f42673a3f9bafba6a2c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:49:34 2024 +1000
+
+    Clarify use of `mitigations=auto`
+
+commit d89d7e8ef8ee3fd45456e82e8f649f7f28c93e80
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:49:00 2024 +1000
+
+    Add reference for RETBleed
+
+commit 015dcc4212736417a2202ea0e0a92e5c2e58d6a5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:48:13 2024 +1000
+
+    Add reference for SSB
+
+commit de4f4be94762c9751ea62f744d7d6ede3ef30e88
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:47:40 2024 +1000
+
+    Merge spectre mitigations
+
+commit 965c8641fd28e0ee592b50605edb7494fe9c3a28
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed May 1 13:47:02 2024 +1000
+
+    Update BHI mitigation reference
+
+commit a9886a3119f9b662b15fc26d28a7fedf316b72c4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 12 06:56:39 2024 +0000
+
+    bumped changelog version
+
 commit 5cbdf3c1262d26ae03b28baee87b1d268329da40
 Merge: 7fba04d ab8b6da
 Author: Patrick Schleizer <adrelanos@whonix.org>
