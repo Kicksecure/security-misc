@@ -52,9 +52,6 @@ configuration file.
 
 -   TCP timestamps are disabled as it can allow detecting the system time.
 
--   Enforces the logging of martian packets, those with a source address which
-    is blatantly wrong.
-
 -   Set coredump file name based on core_pattern value instead of the default of
     naming it 'core'.
 
