@@ -52,11 +52,11 @@ configuration file.
 
 -   TCP timestamps are disabled as it can allow detecting the system time.
 
--   Enforces the logging of martian packets, those with a source address which
-    is blatantly wrong.
-
 -   Set coredump file name based on core_pattern value instead of the default of
     naming it 'core'.
+
+-   Will disable `io_uring` interface for performing asynchronous I/O as it has 
+    historically been a significant attack surface.
 
 ### mmap ASLR
 
@@ -89,7 +89,7 @@ Boot parameters are outlined in configuration files located in the
 
 -   Enables randomisation of the kernel stack offset on syscall entries.
 
--   All mitigations for known CPU vulnerabilities are enabled and SMT is
+-   Mitigations for known CPU vulnerabilities are enabled and SMT is
     disabled.
 
 -   IOMMU is enabled to prevent DMA attacks along with strict enforcement of
@@ -168,6 +168,9 @@ surface via the `/etc/modprobe.d/30_security-misc.conf` configuration file.
 -   Provides some disabling of the interface between the [Intel Management
     Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html)
     and the OS.
+
+-   Disables several kernel modules responsible for GPS such as GNSS (Global
+    Navigation Satellite System).
 
 -   Incorporates much of
     [Ubuntu's](https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d?h=ubuntu/disco)
