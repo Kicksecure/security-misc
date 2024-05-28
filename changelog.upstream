@@ -1,3 +1,50 @@
+commit ae24a97d4d0ffcfb3d1cc92edb61e7ecf4535ee7
+Merge: bfca98e a735857
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 28 08:02:21 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit a7358578520294b51e1001199670a0bbeeb43eb1
+Merge: bfca98e 4efa293
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 28 07:55:31 2024 -0400
+
+    Merge pull request #226 from Kicksecure/gitconfig
+    
+    add `/etc/gitconfig` by default for better `git` security
+
+commit 4efa293f3b76814bc5399a959482d7db6e7431ec
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 28 07:51:06 2024 -0400
+
+    add `/etc/gitconfig` by default for better `git` security
+    
+    ```
+    [core]
+            symlinks = false
+    
+    [transfer]
+            fsckobjects = true
+            fsckobjects = true
+    [fetch]
+            fsckobjects = true
+            fsckobjects = true
+    [receive]
+            fsckobjects = true
+            fsckobjects = true
+    ```
+    
+    + additional suggestions as comments
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/225
+
+commit bfca98ea89cea0f8604ecca0c8640860320e8e33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat May 18 20:45:12 2024 +0000
+
+    bumped changelog version
+
 commit eb82884fb2e3d3bb4fa5555d8212146042ba8aa4
 Merge: 5867b1b 12e006e
 Author: Patrick Schleizer <adrelanos@whonix.org>
