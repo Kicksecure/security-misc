@@ -1,0 +1,41 @@
+## Copyright (C) 2024 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Lines starting with a hash symbol ('#') are comments.
+## https://github.com/Kicksecure/security-misc/issues/225
+
+[core]
+## https://github.com/git/git/security/advisories/GHSA-8prw-h3cq-mghm
+	symlinks = false
+
+## https://forums.whonix.org/t/git-users-enable-fsck-by-default-for-better-security/2066
+[transfer]
+	fsckobjects = true
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+	fsckobjects = true
+[receive]
+	fsckobjects = true
+	fsckobjects = true
+
+## Generally a good idea but too intrusive to enable by default.
+## Listed here as suggestions what users should put into their ~/.gitconfig
+## file.
+
+## Not enabled by default because it requires essential knowledge about OpenPG
+## and an already existing local signing key. Otherwise would prevent all new
+## commits.
+#[commit]
+#	gpgsign = true
+
+## Not enabled by default because it would break the 'git merge' command for
+## unsigned commits and require the '--no-verify-signature' command line
+## option.
+#[merge]
+#	verifySignatures = true
+
+## Not enabled by default because it would break for users who are not having
+## an account at the git server and having added a SSH public key.
+#[url "ssh://git@github.com/"]
+#	insteadOf = https://github.com/
