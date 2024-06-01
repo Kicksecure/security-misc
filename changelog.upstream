@@ -1,3 +1,15 @@
+commit e0cd9579d64e6d16667832de51f77a3091ef213e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jun 1 13:32:13 2024 -0400
+
+    remove duplicate `fsckobjects = true` from `/etc/gitconfig`
+
+commit bbe64a0b7992610dfef6002271718a2aee115cae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 28 12:04:53 2024 +0000
+
+    bumped changelog version
+
 commit ae24a97d4d0ffcfb3d1cc92edb61e7ecf4535ee7
 Merge: bfca98e a735857
 Author: Patrick Schleizer <adrelanos@whonix.org>
