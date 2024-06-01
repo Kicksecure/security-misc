@@ -11,12 +11,9 @@
 ## https://forums.whonix.org/t/git-users-enable-fsck-by-default-for-better-security/2066
 [transfer]
 	fsckobjects = true
-	fsckobjects = true
 [fetch]
 	fsckobjects = true
-	fsckobjects = true
 [receive]
-	fsckobjects = true
 	fsckobjects = true
 
 ## Generally a good idea but too intrusive to enable by default.
