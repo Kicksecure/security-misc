@@ -55,7 +55,7 @@ configuration file.
 -   Set coredump file name based on core_pattern value instead of the default of
     naming it 'core'.
 
--   Will disable `io_uring` interface for performing asynchronous I/O as it has 
+-   Will disable `io_uring` interface for performing asynchronous I/O as it has
     historically been a significant attack surface.
 
 ### mmap ASLR
@@ -478,6 +478,8 @@ See:
 -   Deactivates previews in Nautilus -
     `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
 -   Deactivates thumbnails in Thunar.
+    -   rationale: lower attack surface when using the file manager
+    -   https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
 -   Thunderbird is hardened with the following options:
     -   Displays domain names in punycode to prevent IDN homograph attacks (a
         form of phishing).
