@@ -1,3 +1,34 @@
+commit e48115588caae8e51bb980ac84b1f0f415ca0d17
+Merge: b316352 cad8d85
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jun 11 07:25:47 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit cad8d857556e29544f742fdac8fe82758a4f885c
+Merge: b316352 e198447
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jun 11 07:25:07 2024 -0400
+
+    Merge pull request #227 from 3uryd1ce/fix-pam.d-path
+    
+    fix(etc): delete typo in /etc/apparmor.d tunables
+
+commit e1984478662fc51e6eacc989bc6bba0ca1fc07cd
+Author: Ashlen <dev@anthes.is>
+Date:   Sat Jun 8 22:17:05 2024 -0600
+
+    fix(etc): delete typo in /etc/apparmor.d tunables
+    
+    /etc/pam.d was present twice in a row ("/etc/pam.d//etc/pam.d") in this
+    file: /etc/apparmor.d/tunables/home.d/security-misc.
+
+commit b316352ede379d96cff4813735b93eb59506fe42
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jun 1 18:13:08 2024 +0000
+
+    bumped changelog version
+
 commit c815304026d30f7774f804498d20431ccdf8dc7f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jun 1 14:12:57 2024 -0400
