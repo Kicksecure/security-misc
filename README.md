@@ -122,10 +122,11 @@ preventing new modules from being loaded. Since this isn't configured directly
 within systemctl, it does not break the loading of legitimate and necessary
 modules for the user, like drivers etc., given they are plugged in on startup.
 
-#### Disables and blacklists kernel modules
+#### Blacklist and disable kernel modules
 
-Certain kernel modules are disabled and blacklisted by default to reduce attack
-surface via the `/etc/modprobe.d/30_security-misc.conf` configuration file.
+Certain kernel modules are blacklisted and disabled by default to reduce attack
+surface via both the `/etc/modprobe.d/30_security-misc_blacklist.conf` and
+`/etc/modprobe.d/30_security-misc_disable.conf` configuration files respectively.
 
 -   Deactivates Netfilter's connection tracking helper - this module increases
     kernel attack surface by enabling superfluous functionality such as IRC
