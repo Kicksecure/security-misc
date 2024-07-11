@@ -60,9 +60,15 @@ add_nosuid_statoverride_entry() {
   local fso_to_process
   fso_to_process="${fso}"
   local should_be_counter
-  should_be_counter="$(find "${fso_to_process}" -perm /u=s,g=s | wc -l)" || true
+  should_be_counter=0
   local counter_actual
   counter_actual=0
+
+  local dummy_line
+  while read -r dummy_line; do
+    true "DEBUG: test would evaluate parse" "${dummy_line}"
+    should_be_counter=$((should_be_counter + 1))
+  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
 
   local line
   while read -r line; do
