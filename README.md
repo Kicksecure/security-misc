@@ -124,62 +124,44 @@ modules for the user, like drivers etc., given they are plugged in on startup.
 
 #### Blacklist and disable kernel modules
 
-Certain kernel modules are blacklisted and disabled by default to reduce attack
-surface via both the `/etc/modprobe.d/30_security-misc_blacklist.conf` and
-`/etc/modprobe.d/30_security-misc_disable.conf` configuration files respectively.
+Certain kernel modules are blacklisted by default to reduce attack surface via
+`/etc/modprobe.d/30_security-misc_blacklist.conf`. Blacklisting prevents kernel
+modules from automatically starting.
 
--   Deactivates Netfilter's connection tracking helper - this module increases
-    kernel attack surface by enabling superfluous functionality such as IRC
-    parsing in the kernel. Hence, this feature is disabled.
+-   CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
 
--   Thunderbolt and numerous FireWire kernel modules are also disabled as they
-    are often vulnerable to DMA attacks.
+-   Conntrack: Deactivates Netfilter's connection tracking helper - this module
+    increases kernel attack surface by enabling superfluous functionality such
+    as IRC parsing in the kernel. Hence, this feature is disabled.
 
--   The MSR kernel module is disabled to prevent CPU MSRs from being abused to
-    write to arbitrary memory.
+-   Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause 
+    kernel panics, and are generally only used by legacy devices. 
 
--   Uncommon network protocols are blacklisted. This includes:
+-   Miscellaneous: Blacklist an assortment other modules to prevent them from
+    automatically loading.
 
-    -   DCCP - Datagram Congestion Control Protocol
-    -   SCTP - Stream Control Transmission Protocol
-    -   RDS - Reliable Datagram Sockets
-    -   TIPC - Transparent Inter-process Communication
-    -   HDLC - High-Level Data Link Control
-    -   AX25 - Amateur X.25
-    -   NetRom
-    -   X25
-    -   ROSE
-    -   DECnet
-    -   Econet
-    -   af_802154 - IEEE 802.15.4
-    -   IPX - Internetwork Packet Exchange
-    -   AppleTalk
-    -   PSNAP - Subnetwork Access Protocol
-    -   p8023 - Novell raw IEEE 802.3
-    -   p8022 - IEEE 802.2
-    -   CAN - Controller Area Network
-    -   ATM
+Specific kernel modules are entirely disabled to reduce attack surface via
+`/etc/modprobe.d/30_security-misc_disable.conf`. Disabling prohibits kernel
+modules from starting. This approach should not be considered comprehensive,
+rather it is a form of badness enumeration.
 
--   Disables a large array of uncommon file systems and network file systems
-    that reduces the attack surface especially against legacy approaches.
+-   File Systems: Disable uncommon and legacy file systems.
 
--   The vivid kernel module is only required for testing and has been the cause
-    of multiple vulnerabilities so it is disabled.
+-   FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
--   Provides some disabling of the interface between the [Intel Management
-    Engine (ME)](https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html)
-    and the OS.
+-   GPS: Disables GPS-related modules responsible systems such as for Global
+    Navigation Satellite System (GNSS).
 
--   Disables several kernel modules responsible for GPS such as GNSS (Global
-    Navigation Satellite System).
+-   Intel Management Engine (ME): Provides some disabling of the interface between the
+    Intel ME and the OS.
 
--   Incorporates much of
-    [Ubuntu's](https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d?h=ubuntu/disco)
-    default blacklist of modules to be blocked from automatically loading.
-    However, they are still permitted to load.
+-   Network File Systems: Disable uncommon and legacy network file systems.
 
--   Blocks automatic loading of the modules needed to use of CD-ROM devices by
-    default. Not completely disabled yet.
+-   Network Protocols: Wide array of uncommon and legacy network protocols are disabled.
+
+-   Miscellaneous: Disable an assortment other modules such as vivid.
+
+-   Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
 ### Other
 
