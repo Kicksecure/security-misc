@@ -124,15 +124,15 @@ modules for the user, like drivers etc., given they are plugged in on startup.
 
 #### Blacklist and disable kernel modules
 
+Conntrack: Deactivates Netfilter's connection tracking helper module which
+increases kernel attack surface by enabling superfluous functionality such
+as IRC parsing in the kernel. See `/etc/modprobe.d/30_security-misc_conntrack.conf`.
+
 Certain kernel modules are blacklisted by default to reduce attack surface via
 `/etc/modprobe.d/30_security-misc_blacklist.conf`. Blacklisting prevents kernel
 modules from automatically starting.
 
 -   CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
-
--   Conntrack: Deactivates Netfilter's connection tracking helper - this module
-    increases kernel attack surface by enabling superfluous functionality such
-    as IRC parsing in the kernel. Hence, this feature is disabled.
 
 -   Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause 
     kernel panics, and are generally only used by legacy devices. 
