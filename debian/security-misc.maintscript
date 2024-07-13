@@ -24,7 +24,7 @@ rm_conffile /etc/sysctl.d/kexec.conf
 rm_conffile /etc/sysctl.d/tcp_hardening.conf
 rm_conffile /etc/sysctl.d/tcp_sack.conf
 
-## merged into 2 files /etc/modprobe.d/30_security-misc_blacklist.conf and /etc/modprobe.d/30_security-misc_disable.conf
+## merged into 3 files /etc/modprobe.d/30_security-misc_blacklist.conf, 30_security-misc_conntrack.conf, and /etc/modprobe.d/30_security-misc_disable.conf
 rm_conffile /etc/modprobe.d/uncommon-network-protocols.conf
 rm_conffile /etc/modprobe.d/blacklist-bluetooth.conf
 rm_conffile /etc/modprobe.d/vivid.conf
