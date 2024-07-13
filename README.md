@@ -143,7 +143,8 @@ modules from automatically starting.
 Specific kernel modules are entirely disabled to reduce attack surface via
 `/etc/modprobe.d/30_security-misc_disable.conf`. Disabling prohibits kernel
 modules from starting. This approach should not be considered comprehensive,
-rather it is a form of badness enumeration.
+rather it is a form of badness enumeration. Any potential candidates for future
+disabling should first be blacklisted for a suitable amount of time.
 
 -   File Systems: Disable uncommon and legacy file systems.
 
