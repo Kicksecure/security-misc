@@ -1,3 +1,83 @@
+commit ad860063aba0443a8ac8b9cf191d008617d6d904
+Merge: f34b9d7 9f58266
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 13 10:55:45 2024 -0400
+
+    Merge remote-tracking branch 'raja/modprobe'
+
+commit 9f582665467fd4fdf20c83841305785024bceedf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 13 23:32:01 2024 +1000
+
+    Move nf_conntrack_helper disabling into separate file
+
+commit 8f2ec75f8173b6ab970a5ef213dcf5a3f67aa84a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 13 23:30:55 2024 +1000
+
+    Clarify README.mmd relating to module disabling
+
+commit 98580bb39a495a141e7b40792fd9d232fcf29d23
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 13 23:29:52 2024 +1000
+
+    Update modprobe presentation
+
+commit f34b9d7c45cd723535eedd3df99896ee7f852388
+Merge: 05c1711 5f10cc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 13 06:14:43 2024 -0400
+
+    Merge remote-tracking branch 'raja/modules'
+
+commit 5f10cc8bcf11654f5e0f97c07e0a7ff198013c1e
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 16:22:10 2024 +1000
+
+    Update README.md relating to modprobe
+
+commit 41a3bf92fbdac88a1884dee735600cafa35134bf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 16:21:41 2024 +1000
+
+    Sort `30_security-misc_disable.conf`
+
+commit f31dc8aebc652b2037c375351fc478d9b5ba4c27
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 16:21:03 2024 +1000
+
+    Fix error in error script
+
+commit b02230a783941da412be72fb52053db0c6b8010f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 02:42:37 2024 +1000
+
+    Split modprobe into blacklisted and disabled configurations
+
+commit fc792ff23234399ed299c3fdc086d47c87d9b4a3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 02:29:36 2024 +1000
+
+    Alphabetically sort existing modprobe
+
+commit fe20f3240e2f31099bcaa9f9e2045320df810edf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 02:28:48 2024 +1000
+
+    Refactor existing modprobe for clarity
+
+commit 275a4ffc1114856cbd9a1cd49701dcb25d87bfb5
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 12 02:27:56 2024 +1000
+
+    Remove redundant disabled modules
+
+commit 05c1711b16c96a221c13a011a6666fe6b385ec1e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jun 11 12:56:56 2024 +0000
+
+    bumped changelog version
+
 commit e48115588caae8e51bb980ac84b1f0f415ca0d17
 Merge: b316352 cad8d85
 Author: Patrick Schleizer <adrelanos@whonix.org>
