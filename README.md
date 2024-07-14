@@ -104,6 +104,9 @@ configuration file.
 
 -   Provide option to modify machine check exception handler.
 
+-   Provide option to disable support for all x86 processes and syscalls to reduce
+    attack surface (when using Linux kernel version >= 6.7).
+
 -   Enable strict IOMMU translation to protect against DMA attacks and disable
     the busmaster bit on all PCI bridges during the early boot process.
 
