@@ -35,6 +35,9 @@ space, user space, core dumps, and swap space.
 -   Entirely disables the SysRq key so that the Secure Attention Key (SAK)
     can no longer be utilised.
 
+-   Provide option to disable unprivileged user namespaces as they can lead to
+    privilege escalation.
+
 -   Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
 -   Randomise the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
@@ -42,7 +45,8 @@ space, user space, core dumps, and swap space.
 -   Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
 -   Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-    enables programs to inspect and modify other active processes.
+    enables programs to inspect and modify other active processes. Provide option 
+    to also entirely disable the use of `ptrace()` for all processes.
 
 -   Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
@@ -75,7 +79,13 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 -   Do not accept IPv6 router advertisements and solicitations.
 
+-   Provide option to disable SACK and DSACK as they have historically been a
+    vector for exploitation.
+
 -   Disable TCP timestamps as it can allow detecting the system time.
+
+-   Provide option to log of packets with impossible source or destination 
+    addresses to enable inspection and further analysis.
 
 ### mmap ASLR
 
