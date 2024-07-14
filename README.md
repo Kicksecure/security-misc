@@ -113,6 +113,8 @@ configuration file.
 -   Obtain more entropy at boot from RAM as the runtime memory allocator is 
     being initialised.
 
+-   Provide option to disable the entire IPv6 stack to reduce attack surface.
+
 Disallow sensitive kernel information leaks in the console during boot. See
 the `/etc/default/grub.d/40_quiet_boot.cfg` configuration file.
 
