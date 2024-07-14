@@ -54,7 +54,8 @@ space, user space, core dumps, and swap space.
 
 -   Increase the maximum number of memory map areas a process is able to utilise.
 
--   Disable core dump files and prevent their creation.
+-   Disable core dump files and prevent their creation. If core dump files are
+    enabled, they will be nammed based on `core.PID` instead of the default `core`.
 
 -   Limit the copying of potentially sensitive content in memory to the swap device.
 
