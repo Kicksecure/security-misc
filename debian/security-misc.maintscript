@@ -66,3 +66,17 @@ rm_conffile /etc/permission-hardening.d/25_default_whitelist_sudo.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_unix_chkpwd.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_virtualbox.conf
 rm_conffile /etc/permission-hardening.d/30_default.conf
+
+## merged into 1 file /etc/default/grub.d/40_kernel_hardening.cfg
+rm /etc/default/grub.d/40_distrust_bootloader.cfg
+rm /etc/default/grub.d/40_distrust_cpu.cfg
+rm /etc/default/grub.d/40_enable_iommu.cfg
+
+## renamed to /etc/default/grub.d/40_remount_secure.cfg
+rm /etc/default/grub.d/40_remmount-secure.cfg
+
+## renamed to /etc/default/grub.d/40_signed_modules.cfg
+rm /etc/default/grub.d/40_only_allow_signed_modules.cfg
+
+## renamed to /etc/default/grub.d/41_quiet_boot.cfg
+rm /etc/default/grub.d/41_quiet.cfg
