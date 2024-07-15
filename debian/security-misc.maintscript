@@ -31,6 +31,7 @@ rm_conffile /etc/modprobe.d/vivid.conf
 rm_conffile /etc/modprobe.d/blacklist-dma.conf
 rm_conffile /etc/modprobe.d/msr.conf
 rm_conffile /etc/modprobe.d/30_nf_conntrack_helper_disable.conf
+rm_conffile /etc/modprobe.d/30_security-misc.conf
 
 ## renamed to /etc/security/limits.d/30_security-misc.conf
 rm_conffile /etc/security/limits.d/disable-coredumps.conf
