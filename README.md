@@ -78,7 +78,7 @@ configuration file.
 -   Disable merging of slabs with similar size which reduces the risk of 
     triggering heap overflows and limits influencing slab cache layout.
 
--   Enable Memory zeroing at both allocation and free time which mitigate some
+-   Enable memory zeroing at both allocation and free time which mitigate some
     use-after-free vulnerabilities by erasing sensitive information in memory.
 
 -   Enable the kernel page allocator to randomise free lists to limit some data 
@@ -108,7 +108,7 @@ configuration file.
     the busmaster bit on all PCI bridges during the early boot process.
 
 -   Do not credit the CPU or bootloader as entropy sources at boot in order to
-    maximise the absolute quantity of entropy the pool.
+    maximise the absolute quantity of entropy in the combined pool.
 
 -   Obtain more entropy at boot from RAM as the runtime memory allocator is 
     being initialised.
