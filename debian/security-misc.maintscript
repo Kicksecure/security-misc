@@ -67,3 +67,6 @@ rm_conffile /etc/permission-hardening.d/25_default_whitelist_sudo.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_unix_chkpwd.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_virtualbox.conf
 rm_conffile /etc/permission-hardening.d/30_default.conf
+
+## repalced with /usr/bin/disabled-miscellaneous-by-security-misc
+rm_conffile /usr/bin/disabled-vivid-by-security-misc
