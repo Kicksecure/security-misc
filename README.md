@@ -160,7 +160,8 @@ disabling should first be blacklisted for a suitable amount of time.
 
 -   Network Protocols: Wide array of uncommon and legacy network protocols are disabled.
 
--   Miscellaneous: Disable an assortment other modules such as vivid.
+-   Miscellaneous: Disable an assortment other modules such as those required
+    for amateur radio, floppy disks, and vivid.
 
 -   Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
