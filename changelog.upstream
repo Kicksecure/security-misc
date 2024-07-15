@@ -1,3 +1,124 @@
+commit 6e63fc8985b97902dbae2553ded51950168dc222
+Merge: fe0846c b7796a5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 15 17:14:25 2024 -0400
+
+    Merge remote-tracking branch 'ben-grande/fuzz'
+
+commit fe0846c8c2bdfc0534850b1e9bf9c4130381def9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 15 12:30:38 2024 -0400
+
+    fix
+    
+    https://github.com/Kicksecure/security-misc/pull/234#discussion_r1678065395
+
+commit 94df2e3d244f5e6e8e4320c1f28cc11dba00dd36
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 15 12:29:52 2024 -0400
+
+    further discussion required
+    
+    https://github.com/Kicksecure/security-misc/pull/234#issuecomment-2228909249
+
+commit 41f0b53dd62d2968a6ff88a6fd907ca42f581847
+Merge: 5ba5a85 9300c20
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 15 12:28:03 2024 -0400
+
+    Merge remote-tracking branch 'raja/kernel_modules'
+
+commit 9300c208e25d936f2c633a0904126566afc1c275
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:36:25 2024 +1000
+
+    Fix script
+
+commit f2db11269e89d4c945642b661aa9cbe356f89037
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:18:32 2024 +1000
+
+    Fix script
+
+commit a8bc1144c32b4b4f20904af5f813da1051fe4c9c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:10:13 2024 +1000
+
+    Updated wording of error files for disabled modules
+
+commit fda3832eaf293915ab77ce73a0be2caec15e21fa
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:08:45 2024 +1000
+
+    Replace bash file presented for disabling of miscellaneous modules
+
+commit 8219a1e257525d487a49e7b3a6b14c1e180a7b52
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:02:10 2024 +1000
+
+    Update README.md relating to disabled miscellaneous modules
+
+commit cb2fb95b81efa2ebb2bd80aeaacad9122f0f073c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:01:36 2024 +1000
+
+    Disable more miscellaneous drivers
+
+commit c52b1a3fd269ef4f98028dd5eead476abe5d138d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:58:45 2024 +1000
+
+    Create `disabled-miscellaneous-by-security-misc`
+
+commit 96aa63267a6fcee03f252f0791f37b7b6222a7c1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:57:14 2024 +1000
+
+    Disable more Thunderbolt modules
+
+commit 51f7776bc8722752d53fc503b0c79564d8715d4c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:56:12 2024 +1000
+
+    Disable more network protocols/drivers
+
+commit 9e40ff055195b1e8637d1e957c3f8db01f99bbc1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:54:18 2024 +1000
+
+    Disable more network file systems
+
+commit 82c5a93f7cf2846490120c5262a146a313a5ce47
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:53:07 2024 +1000
+
+    Disable another GPS module
+
+commit 99b0ce7948213e7f7adf42ddd7c7beb229374bd4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:47:56 2024 +1000
+
+    Disable more file systems
+
+commit 4476a477a77c98cf4334fbcb866bc8f113f568ac
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:47:07 2024 +1000
+
+    Provide option to disable more Bluetooth modules
+
+commit e0696d02a234e6f7ab9fb601ffe58e7d953846a2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 20:46:04 2024 +1000
+
+    Update `security-misc.maintscript`
+    Due to previous splitting IN https://github.com/Kicksecure/security-misc/commit/b02230a783941da412be72fb52053db0c6b8010f.
+
+commit 5ba5a85ad09b74a29c5ed0e5c265d54d93da9d32
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 13 15:01:16 2024 +0000
+
+    bumped changelog version
+
 commit ad860063aba0443a8ac8b9cf191d008617d6d904
 Merge: f34b9d7 9f58266
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -71,6 +192,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Fri Jul 12 02:27:56 2024 +1000
 
     Remove redundant disabled modules
+
+commit b7796a5334075d5fa538d7579003fde6287d7e6d
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Thu Jul 11 11:04:22 2024 +0200
+
+    Unify method to find SUID files
 
 commit 05c1711b16c96a221c13a011a6666fe6b385ec1e
 Author: Patrick Schleizer <adrelanos@whonix.org>
