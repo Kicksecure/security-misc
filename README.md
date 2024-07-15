@@ -150,8 +150,8 @@ disabling should first be blacklisted for a suitable amount of time.
 
 -   FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
--   GPS: Disables GPS-related modules responsible systems such as for Global
-    Navigation Satellite System (GNSS).
+-   GPS: Disable GPS-related modules such as those required for Global Navigation 
+    Satellite Systems (GNSS).
 
 -   Intel Management Engine (ME): Provides some disabling of the interface between the
     Intel ME and the OS.
@@ -160,7 +160,8 @@ disabling should first be blacklisted for a suitable amount of time.
 
 -   Network Protocols: Wide array of uncommon and legacy network protocols are disabled.
 
--   Miscellaneous: Disable an assortment other modules such as vivid.
+-   Miscellaneous: Disable an assortment other modules such as those required
+    for amateur radio, floppy disks, and vivid.
 
 -   Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
