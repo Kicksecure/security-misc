@@ -16,7 +16,8 @@ configuration file.
 Significant hardening is applied by default to a myriad of components within kernel
 space, user space, core dumps, and swap space.
 
--   Restrict kernel addresses regardless of user privileges.
+-   Restrict access to kernel addresses through the us of kernel pointers regardless 
+    of user privileges.
 
 -   Restrict access to the kernel logs to `CAP_SYSLOG` as the often contain 
     sensitive information.
@@ -33,7 +34,7 @@ space, user space, core dumps, and swap space.
 -   Disable `kexec` as it can be used to replace the running kernel.
 
 -   Entirely disables the SysRq key so that the Secure Attention Key (SAK)
-    can no longer be utilised.
+    can no longer be utilised. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
 -   Provide option to disable unprivileged user namespaces as they can lead to
     privilege escalation.
@@ -50,12 +51,13 @@ space, user space, core dumps, and swap space.
 
 -   Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
--   Disallow unintentional writes to attacker-controlled files.
+-   Disallow unintentional writes to files in world-writable directories unless
+    they are owned by the directory owner to mitigate some data spoofing attacks.
 
 -   Increase the maximum number of memory map areas a process is able to utilise.
 
 -   Disable core dump files and prevent their creation. If core dump files are
-    enabled, they will be nammed based on `core.PID` instead of the default `core`.
+    enabled, they will be named based on `core.PID` instead of the default `core`.
 
 -   Limit the copying of potentially sensitive content in memory to the swap device.
 
