@@ -36,8 +36,8 @@ space, user space, core dumps, and swap space.
 -   Entirely disables the SysRq key so that the Secure Attention Key (SAK)
     can no longer be utilised. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
--   Provide option to disable unprivileged user namespaces as they can lead to
-    privilege escalation.
+-   Provide the option to disable unprivileged user namespaces as they can lead to
+    substantial privilege escalation.
 
 -   Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
@@ -46,8 +46,8 @@ space, user space, core dumps, and swap space.
 -   Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
 -   Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-    enables programs to inspect and modify other active processes. Provide option 
-    to also entirely disable the use of `ptrace()` for all processes.
+    enables programs to inspect and modify other active processes. Provide the 
+    option to also entirely disable the use of `ptrace()` for all processes.
 
 -   Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
@@ -82,13 +82,15 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 -   Do not accept IPv6 router advertisements and solicitations.
 
--   Provide option to disable SACK and DSACK as they have historically been a
-    vector for exploitation.
+-   Provide the option to disable SACK and DSACK as they have historically been
+    a known vector for exploitation.
 
 -   Disable TCP timestamps as it can allow detecting the system time.
 
--   Provide option to log of packets with impossible source or destination 
-    addresses to enable inspection and further analysis.
+-   Provide the option to log of packets with impossible source or destination 
+    addresses to enable further inspection and analysis.
+
+-   Provide the option to enable IPv6 Privacy Extensions.
 
 ### mmap ASLR
 
@@ -224,6 +226,12 @@ rather it is a form of badness enumeration.
     by the author of this part of the readme.
 
 ## Network hardening
+
+Not yet due to issues:
+
+-   https://github.com/Kicksecure/security-misc/pull/145
+
+-   https://github.com/Kicksecure/security-misc/issues/184
 
 -   Unlike version 4, IPv6 addresses can provide information not only about the
     originating network, but also the originating device. We prevent this from
