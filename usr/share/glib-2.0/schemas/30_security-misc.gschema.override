@@ -1,2 +1,5 @@
+## Copyright (C) 2017 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
 [org.gnome.nautilus.preferences]
 show-image-thumbnails="never"

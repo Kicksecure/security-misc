@@ -1,2 +1,5 @@
+## Copyright (C) 2019 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
 /etc/profile.d/30_security-misc.sh /etc/zprofile.d/30_security-misc.zsh
 /etc/profile.d/30_security-misc.sh /etc/X11/Xsession.d/30_security-misc
