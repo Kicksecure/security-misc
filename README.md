@@ -361,31 +361,31 @@ See:
 
 However, a locked root password will break rescue and emergency shell.
 Therefore, this package enables passwordless rescue and emergency shell. This is
-the same solution that Debian will likely adapt for Debian installer:
+the same solution that Debian will likely adopt for the Debian installer:
 https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
 
 See:
 
--   `/etc/systemd/system/emergency.service.d/override.conf`
--   `/etc/systemd/system/rescue.service.d/override.conf`
+- `/etc/systemd/system/emergency.service.d/override.conf`
+- `/etc/systemd/system/rescue.service.d/override.conf`
 
 Adverse security effects can be prevented by setting up BIOS password
-protection, GRUB password protection and/or full disk encryption.
+protection, GRUB password protection, and/or full disk encryption.
 
 ## Console lockdown
 
-This uses pam_access to allow members of group `console` to use console but
+This uses pam_access to allow members of group `console` to use the console but
 restrict everyone else (except members of group `console-unrestricted`) from
-using console with ancient, unpopular login methods such as `/bin/login` over
+using the console with ancient, unpopular login methods such as `/bin/login` over
 networks as this might be exploitable. (CVE-2001-0797)
 
 This is not enabled by default in this package since this package does not know
-which users shall be added to group 'console' and thus, would break console.
+which users should be added to group 'console' and thus, would break console access.
 
 See:
 
--   `/usr/share/pam-configs/console-lockdown-security-misc`
--   `/etc/security/access-security-misc.conf`
+- `/usr/share/pam-configs/console-lockdown-security-misc`
+- `/etc/security/access-security-misc.conf`
 
 ## Brute force attack protection
 
@@ -393,16 +393,16 @@ User accounts are locked after 50 failed login attempts using `pam_faillock`.
 
 Informational output during Linux PAM:
 
--   Show failed and remaining password attempts.
--   Document unlock procedure if Linux user account got locked.
--   Point out that there is no password feedback for `su`.
--   Explain locked root account if locked.
+- Show failed and remaining password attempts.
+- Document unlock procedure if Linux user account got locked.
+- Point out that there is no password feedback for `su`.
+- Explain locked root account if locked.
 
 See:
 
--   `/usr/share/pam-configs/tally2-security-misc`
--   `/usr/libexec/security-misc/pam-info`
--   `/usr/libexec/security-misc/pam-abort-on-locked-password`
+- `/usr/share/pam-configs/tally2-security-misc`
+- `/usr/libexec/security-misc/pam-info`
+- `/usr/libexec/security-misc/pam-abort-on-locked-password`
 
 ## Access rights restrictions
 
@@ -410,11 +410,13 @@ See:
 
 #### Permission Lockdown
 
-Read, write and execute access for "others" are removed during package
-installation, upgrade or PAM `mkhomedir` for all users who have home folders in
+Read, write, and execute access for "others" are removed during package
+installation, upgrade, or PAM `mkhomedir` for all users who have home folders in
 `/home` by running, for example:
 
-    chmod o-rwx /home/user
+```
+chmod o-rwx /home/user
+```
 
 This will be done only once per folder in `/home` so users who wish to relax
 file permissions are free to do so. This is to protect files in a home folder
@@ -423,20 +425,20 @@ of this package.
 
 See:
 
--   `debian/security-misc.postinst`
--   `/usr/libexec/security-misc/permission-lockdown`
--   `/usr/share/pam-configs/mkhomedir-security-misc`
+- `debian/security-misc.postinst`
+- `/usr/libexec/security-misc/permission-lockdown`
+- `/usr/share/pam-configs/mkhomedir-security-misc`
 
 #### umask
 
-Default `umask` is set to `027` for files created by non-root users such as for
-example user `user`. Broken. Disabled. See:
+Default `umask` is set to `027` for files created by non-root users such as
+user `user`. Broken. Disabled. See:
 
 * https://github.com/Kicksecure/security-misc/issues/184
 
-This is doing using pam module `pam_mkhomedir.so umask=027`.
+This is done using the PAM module `pam_mkhomedir.so umask=027`.
 
-This means, files created by non-root users cannot be read by other non-root
+This means files created by non-root users cannot be read by other non-root
 users by default. While Permission Lockdown already protects the `/home` folder,
 this protects other folders such as `/tmp`.
 
@@ -444,13 +446,13 @@ this protects other folders such as `/tmp`.
 use of User Private Groups (UPGs). See also:
 https://wiki.debian.org/UserPrivateGroups
 
-Default `umask` is unchanged for root, because then configuration files created
+Default `umask` is unchanged for root because then configuration files created
 in `/etc` by the system administrator would be unreadable by "others" and break
 applications. Examples include `/etc/firefox-esr` and `/etc/thunderbird`.
 
 See:
 
--   `/usr/share/pam-configs/umask-security-misc`
+- `/usr/share/pam-configs/umask-security-misc`
 
 ### SUID / SGID removal and permission hardening
 
@@ -464,13 +466,13 @@ are often used in privilege escalation attacks.
 Various file permissions are reset with more secure and hardened defaults. These
 include but are not limited to:
 
--   Limiting `/home` and `/root` to the root only.
--   Limiting crontab to root as well as all the configuration files for cron.
--   Limiting the configuration for cups and ssh.
--   Protecting the information of sudoers from others.
--   Protecting various system relevant files and modules.
+- Limiting `/home` and `/root` to the root only.
+- Limiting crontab to root as well as all the configuration files for cron.
+- Limiting the configuration for cups and ssh.
+- Protecting the information of sudoers from others.
+- Protecting various system-relevant files and modules.
 
-##### permission-hardener #####
+##### permission-hardener
 
 `permission-hardener` removes SUID / SGID bits from non-essential binaries as
 these are often used in privilege escalation attacks. It is enabled by default
@@ -479,7 +481,7 @@ and applied at security-misc package installation and upgrade time.
 There is also an optional systemd unit which does the same at boot time that
 can be enabled by running `systemctl enable permission-hardener.service` as
 root. The hardening at boot time is not the default because this slows down
-the boot too much.
+the boot process too much.
 
 See:
 
@@ -505,43 +507,43 @@ See:
 
 ## Application-specific hardening
 
--   Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
-    transient failures. - `/etc/apt/apt.conf.d/40error-on-any`.
--   Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
--   Deactivates previews in Dolphin.
--   Deactivates previews in Nautilus -
-    `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
--   Deactivates thumbnails in Thunar.
-    -   rationale: lower attack surface when using the file manager
-    -   https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
--   Thunderbird is hardened with the following options:
-    -   Displays domain names in punycode to prevent IDN homograph attacks (a
-        form of phishing).
-    -   Strips email client information for sent email headers.
-    -   Stripts user time information from sent email headers by replacing the
-        originating time zone with UTC and rounding the timestamp to the nearest
-        minute.
-    -   Disables scripting when viewing pdf files.
-    -   Disables implicit outgoing connections.
-    -   Disables all and any kind of telemetry.
--   Security and privacy enhancements for gnupg's config file
-    `/etc/skel/.gnupg/gpg.conf`. See also:
-    -   https://raw.github.com/ioerror/torbirdy/master/gpg.conf
-    -   https://github.com/ioerror/torbirdy/pull/11
+- Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
+  transient failures. - `/etc/apt/apt.conf.d/40error-on-any`.
+- Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
+- Deactivates previews in Dolphin.
+- Deactivates previews in Nautilus -
+  `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
+- Deactivates thumbnails in Thunar.
+  - Rationale: lower attack surface when using the file manager
+  - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
+- Thunderbird is hardened with the following options:
+  - Displays domain names in punycode to prevent IDN homograph attacks (a
+    form of phishing).
+  - Strips email client information from sent email headers.
+  - Strips user time information from sent email headers by replacing the
+    originating time zone with UTC and rounding the timestamp to the nearest
+    minute.
+  - Disables scripting when viewing PDF files.
+  - Disables implicit outgoing connections.
+  - Disables all and any kind of telemetry.
+- Security and privacy enhancements for gnupg's config file
+  `/etc/skel/.gnupg/gpg.conf`. See also:
+  - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
+  - https://github.com/ioerror/torbirdy/pull/11
 
-### project scope of application-specific hardening
+### Project scope of application-specific hardening
 
 Added in December 2023.
 
 Before sending pull requests to harden arbitrary applications, please note the
 scope of security-misc is limited to default installed applications in
-Kicksecure, Whonix. This includes:
+Kicksecure and Whonix. This includes:
 
--   Thunderbird, VLC Media Player, KeepassXC
--   Debian Specific System Components (APT, DPKG)
--   System Services (NetworkManager IPv6 privacy options, MAC address
-    randomization)
--   Actually used development utilities such as `git`.
+- Thunderbird, VLC Media Player, KeePassXC
+- Debian Specific System Components (APT, DPKG)
+- System Services (NetworkManager IPv6 privacy options, MAC address
+  randomization)
+- Actually used development utilities such as `git`.
 
 It will not be possible to review and merge "1500" settings profiles for
 arbitrary applications outside of this context.
@@ -552,26 +554,26 @@ compatible with Debian, reflecting a commitment to clean implementation and
 sound design principles. However, it's important to note that security-misc is a
 component of Kicksecure, not a substitute for it. The intention isn't to
 recreate Kicksecure within security-misc. Instead, specific security
-enhancements, like for example recommending a curated list of security-focused
+enhancements, like recommending a curated list of security-focused
 default packages (e.g., `libpam-tmpdir`), should be integrated directly into
-those appropriate areas of Kicksecure (e.g.`kicksecure-meta-packages`).
+those appropriate areas of Kicksecure (e.g. `kicksecure-meta-packages`).
 
 Discussion: https://github.com/Kicksecure/security-misc/issues/154
 
-### development philosophy
+### Development philosophy
 
 Added in December 2023.
 
-"Maintainability is a key priority \[1\]. Before modifying settings in the
+Maintainability is a key priority \[1\]. Before modifying settings in the
 downstream security-misc, it's essential to first engage with upstream
 developers to propose these changes as defaults. This step should only be
 bypassed if there's a clear, prior indication from upstream that such changes
 won't be accepted. Additionally, before implementing any workarounds, consulting
-with upstream is necessary to future unmaintainable complexity.
+with upstream is necessary to avoid future unmaintainable complexity.
 
 If debugging features are disabled, pull requests won't be merged until there is
 a corresponding pull request for the debug-misc package to re-enable these. This
-is to avoid configuring the system into a corner where it can be no longer
+is to avoid configuring the system into a corner where it can no longer be
 debugged.
 
 \[1\] https://www.kicksecure.com/wiki/Dev/maintainability
@@ -581,26 +583,26 @@ debugged.
 Some hardening is opt-in as it causes too much breakage to be enabled by
 default.
 
--   An optional systemd service mounts `/proc` with `hidepid=2` at boot to
-    prevent users from seeing another user's processes. This is disabled by
-    default because it is incompatible with `pkexec`. It can be enabled by
-    executing `systemctl enable proc-hidepid.service` as root.
+- An optional systemd service mounts `/proc` with `hidepid=2` at boot to
+  prevent users from seeing another user's processes. This is disabled by
+  default because it is incompatible with `pkexec`. It can be enabled by
+  executing `systemctl enable proc-hidepid.service` as root.
 
--   A systemd service restricts `/proc/cpuinfo`, `/proc/bus`, `/proc/scsi` and
-    `/sys` to the root user. This hides a lot of hardware identifiers from
-    unprivileged users and increases security as `/sys` exposes a lot of
-    information that shouldn't be accessible to unprivileged users. As this will
-    break many things, it is disabled by default and can optionally be enabled
-    by executing `systemctl enable hide-hardware-info.service` as root.
+- A systemd service restricts `/proc/cpuinfo`, `/proc/bus`, `/proc/scsi`, and
+  `/sys` to the root user. This hides a lot of hardware identifiers from
+  unprivileged users and increases security as `/sys` exposes a lot of
+  information that shouldn't be accessible to unprivileged users. As this will
+  break many things, it is disabled by default and can optionally be enabled
+  by executing `systemctl enable hide-hardware-info.service` as root.
 
-## miscellaneous
+## Miscellaneous
 
--   hardened malloc compatibility for haveged workaround
-    `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
+- Hardened malloc compatibility for haveged workaround
+  `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
 
--   set `dracut` `reproducible=yes` setting
+- Set `dracut` `reproducible=yes` setting
 
-## legal
+## Legal
 
 `/usr/lib/issue.d/20_security-misc.issue`
 
