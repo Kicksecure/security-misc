@@ -29,7 +29,7 @@ root_check() {
 
 parse_cmd_options() {
    ## Thanks to:
-   ## http://mywiki.wooledge.org/BashFAQ/035
+   ## https://mywiki.wooledge.org/BashFAQ/035
 
    while :
    do

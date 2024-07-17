@@ -1,2 +1,5 @@
+## Copyright (C) 2019 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
 # /etc/securetty: list of terminals on which root is allowed to login.
 # See securetty(5) and login(1).

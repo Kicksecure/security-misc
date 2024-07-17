@@ -34,7 +34,7 @@ switch_user=false
 original_args="$@"
 
 ## Thanks to:
-## http://mywiki.wooledge.org/BashFAQ/035
+## https://mywiki.wooledge.org/BashFAQ/035
 
 while :
 do
