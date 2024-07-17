@@ -5,8 +5,8 @@
 This section is inspired by the Kernel Self Protection Project (KSPP). It
 implements all recommended Linux kernel settings by the KSPP and many more.
 
--   https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
--   https://kspp.github.io/Recommended_Settings
+- https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
+- https://kspp.github.io/Recommended_Settings
 
 ### sysctl
 
@@ -16,88 +16,88 @@ configuration file.
 Significant hardening is applied by default to a myriad of components within kernel
 space, user space, core dumps, and swap space.
 
--   Restrict access to kernel addresses through the us of kernel pointers regardless
-    of user privileges.
+- Restrict access to kernel addresses through the use of kernel pointers regardless
+  of user privileges.
 
--   Restrict access to the kernel logs to `CAP_SYSLOG` as the often contain
-    sensitive information.
+- Restrict access to the kernel logs to `CAP_SYSLOG` as they often contain
+  sensitive information.
 
--   Prevent kernel information leaks in the console during boot.
+- Prevent kernel information leaks in the console during boot.
 
--   Restrict eBPF access to `CAP_BPF` and enable associated JIT compiler hardening.
+- Restrict eBPF access to `CAP_BPF` and enable associated JIT compiler hardening.
 
--   Restrict loading TTY line disciplines to `CAP_SYS_MODULE`.
+- Restrict loading TTY line disciplines to `CAP_SYS_MODULE`.
 
--   Restricts the `userfaultfd()` syscall to `CAP_SYS_PTRACE` which reduces the
-    likelihood of use-after-free exploits.
+- Restrict the `userfaultfd()` syscall to `CAP_SYS_PTRACE`, which reduces the
+  likelihood of use-after-free exploits.
 
--   Disable `kexec` as it can be used to replace the running kernel.
+- Disable `kexec` as it can be used to replace the running kernel.
 
--   Entirely disables the SysRq key so that the Secure Attention Key (SAK)
-    can no longer be utilised. See [documentation](https://www.kicksecure.com/wiki/SysRq).
+- Entirely disable the SysRq key so that the Secure Attention Key (SAK)
+  can no longer be utilized. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
--   Provide the option to disable unprivileged user namespaces as they can lead to
-    substantial privilege escalation.
+- Provide the option to disable unprivileged user namespaces as they can lead to
+  substantial privilege escalation.
 
--   Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
+- Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
--   Randomise the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
+- Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
--   Disable asynchronous I/O (when using Linux kernel version >= 6.6).
+- Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
--   Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-    enables programs to inspect and modify other active processes. Provide the
-    option to also entirely disable the use of `ptrace()` for all processes.
+- Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
+  enables programs to inspect and modify other active processes. Provide the
+  option to entirely disable the use of `ptrace()` for all processes.
 
--   Prevent hardlink and symlink TOCTOU races in world-writable directories.
+- Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
--   Disallow unintentional writes to files in world-writable directories unless
-    they are owned by the directory owner to mitigate some data spoofing attacks.
+- Disallow unintentional writes to files in world-writable directories unless
+  they are owned by the directory owner to mitigate some data spoofing attacks.
 
--   Increase the maximum number of memory map areas a process is able to utilise.
+- Increase the maximum number of memory map areas a process is able to utilize.
 
--   Disable core dump files and prevent their creation. If core dump files are
-    enabled, they will be named based on `core.PID` instead of the default `core`.
+- Disable core dump files and prevent their creation. If core dump files are
+  enabled, they will be named based on `core.PID` instead of the default `core`.
 
--   Limit the copying of potentially sensitive content in memory to the swap device.
+- Limit the copying of potentially sensitive content in memory to the swap device.
 
 Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
--   Enable TCP SYN cookie protection to assist against SYN flood attacks.
+- Enable TCP SYN cookie protection to assist against SYN flood attacks.
 
--   Protect against TCP time-wait assassination hazards.
+- Protect against TCP time-wait assassination hazards.
 
--   Enables reverse path filtering (source validation) of packets received
-    from all interfaces to prevent IP spoofing.
+- Enable reverse path filtering (source validation) of packets received
+  from all interfaces to prevent IP spoofing.
 
--   Disable ICMP redirect acceptance and redirect sending messages to
-    prevent man-in-the-middle attacks and minimise information disclosure.
+- Disable ICMP redirect acceptance and redirect sending messages to
+  prevent man-in-the-middle attacks and minimize information disclosure.
 
--   Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
+- Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 
--   Ignore bogus ICMP error responses.
+- Ignore bogus ICMP error responses.
 
--   Disable source routing which allows users redirect network traffic that
-    can result in man-in-the-middle attacks.
+- Disable source routing which allows users to redirect network traffic that
+  can result in man-in-the-middle attacks.
 
--   Do not accept IPv6 router advertisements and solicitations.
+- Do not accept IPv6 router advertisements and solicitations.
 
--   Provide the option to disable SACK and DSACK as they have historically been
-    a known vector for exploitation.
+- Provide the option to disable SACK and DSACK as they have historically been
+  a known vector for exploitation.
 
--   Disable TCP timestamps as it can allow detecting the system time.
+- Disable TCP timestamps as they can allow detecting the system time.
 
--   Provide the option to log of packets with impossible source or destination
-    addresses to enable further inspection and analysis.
+- Provide the option to log packets with impossible source or destination
+  addresses to enable further inspection and analysis.
 
--   Provide the option to enable IPv6 Privacy Extensions.
+- Provide the option to enable IPv6 Privacy Extensions.
 
 ### mmap ASLR
 
--   The bits of entropy used for mmap ASLR are maxed out via
-    `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
-    `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
-    that the kernel was built with), therefore improving its effectiveness.
+- The bits of entropy used for mmap ASLR are maxed out via
+  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
+  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
+  that the kernel was built with), therefore improving its effectiveness.
 
 ### Boot parameters
 
@@ -109,45 +109,45 @@ Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
 
--   Disable merging of slabs with similar size which reduces the risk of
-    triggering heap overflows and limits influencing slab cache layout.
+- Disable merging of slabs with similar size, which reduces the risk of
+  triggering heap overflows and limits influencing slab cache layout.
 
--   Enable memory zeroing at both allocation and free time which mitigate some
-    use-after-free vulnerabilities by erasing sensitive information in memory.
+- Enable memory zeroing at both allocation and free time, which mitigates some
+  use-after-free vulnerabilities by erasing sensitive information in memory.
 
--   Enable the kernel page allocator to randomise free lists to limit some data
-    exfiltration and ROP attacks especially during the early boot process.
+- Enable the kernel page allocator to randomize free lists to limit some data
+  exfiltration and ROP attacks, especially during the early boot process.
 
--   Enable kernel page table isolation increase KASLR effectiveness and also
-    mitigate the Meltdown CPU vulnerability.
+- Enable kernel page table isolation to increase KASLR effectiveness and also
+  mitigate the Meltdown CPU vulnerability.
 
--   Enables randomisation of the kernel stack offset on syscall entries to harden
-    against memory corruption attacks.
+- Enable randomization of the kernel stack offset on syscall entries to harden
+  against memory corruption attacks.
 
--   Disable vsyscalls as they are vulnerable to ROP attacks and have now been
-    replaced by vDSO.
+- Disable vsyscalls as they are vulnerable to ROP attacks and have now been
+  replaced by vDSO.
 
--   Restrict access to debugfs by not registering the file system since it can
-    contain sensitive information.
+- Restrict access to debugfs by not registering the file system since it can
+  contain sensitive information.
 
--   Force kernel panics on "oopses" to potentially indicate and thwart certain
-    kernel exploitation attempts.
+- Force kernel panics on "oopses" to potentially indicate and thwart certain
+  kernel exploitation attempts.
 
--   Provide option to modify machine check exception handler.
+- Provide option to modify machine check exception handler.
 
--   Provide option to disable support for all x86 processes and syscalls to reduce
-    attack surface (when using Linux kernel version >= 6.7).
+- Provide option to disable support for all x86 processes and syscalls to reduce
+  attack surface (when using Linux kernel version >= 6.7).
 
--   Enable strict IOMMU translation to protect against DMA attacks and disable
-    the busmaster bit on all PCI bridges during the early boot process.
+- Enable strict IOMMU translation to protect against DMA attacks and disable
+  the busmaster bit on all PCI bridges during the early boot process.
 
--   Do not credit the CPU or bootloader as entropy sources at boot in order to
-    maximise the absolute quantity of entropy in the combined pool.
+- Do not credit the CPU or bootloader as entropy sources at boot in order to
+  maximize the absolute quantity of entropy in the combined pool.
 
--   Obtain more entropy at boot from RAM as the runtime memory allocator is
-    being initialised.
+- Obtain more entropy at boot from RAM as the runtime memory allocator is
+  being initialized.
 
--   Provide option to disable the entire IPv6 stack to reduce attack surface.
+- Provide option to disable the entire IPv6 stack to reduce attack surface.
 
 Disallow sensitive kernel information leaks in the console during boot. See
 the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
@@ -156,20 +156,20 @@ the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
 
 #### Kernel Module Signature Verification
 
-Not yet due to issues:
+Not yet implemented due to issues:
 
--   https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/64
--   https://github.com/dell/dkms/issues/359
+- https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/64
+- https://github.com/dell/dkms/issues/359
 
 See:
 
--   `/etc/default/grub.d/40_signed_modules.cfg`
+- `/etc/default/grub.d/40_signed_modules.cfg`
 
 #### Disables the loading of new modules to the kernel after the fact
 
-Not yet due to issues:
+Not yet implemented due to issues:
 
--   https://github.com/Kicksecure/security-misc/pull/152
+- https://github.com/Kicksecure/security-misc/pull/152
 
 A systemd service dynamically sets the kernel parameter `modules_disabled` to 1,
 preventing new modules from being loaded. Since this isn't configured directly
@@ -186,47 +186,47 @@ Certain kernel modules are blacklisted by default to reduce attack surface via
 `/etc/modprobe.d/30_security-misc_blacklist.conf`. Blacklisting prevents kernel
 modules from automatically starting.
 
--   CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
+- CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
 
--   Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause
-    kernel panics, and are generally only used by legacy devices.
+- Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause
+  kernel panics, and are generally only used by legacy devices.
 
--   Miscellaneous: Blacklist an assortment other modules to prevent them from
-    automatically loading.
+- Miscellaneous: Blacklist an assortment of other modules to prevent them from
+  automatically loading.
 
 Specific kernel modules are entirely disabled to reduce attack surface via
 `/etc/modprobe.d/30_security-misc_disable.conf`. Disabling prohibits kernel
-modules from starting. This approach should not be considered comprehensive,
-rather it is a form of badness enumeration. Any potential candidates for future
+modules from starting. This approach should not be considered comprehensive;
+rather, it is a form of badness enumeration. Any potential candidates for future
 disabling should first be blacklisted for a suitable amount of time.
 
--   File Systems: Disable uncommon and legacy file systems.
+- File Systems: Disable uncommon and legacy file systems.
 
--   FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
+- FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
--   GPS: Disable GPS-related modules such as those required for Global Navigation
-    Satellite Systems (GNSS).
+- GPS: Disable GPS-related modules such as those required for Global Navigation
+  Satellite Systems (GNSS).
 
--   Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
-    Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
+- Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
+  Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
--   Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
-    of the Intel PMT components.
+- Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
+  of the Intel PMT components.
 
--   Network File Systems: Disable uncommon and legacy network file systems.
+- Network File Systems: Disable uncommon and legacy network file systems.
 
--   Network Protocols: Wide array of uncommon and legacy network protocols are disabled.
+- Network Protocols: A wide array of uncommon and legacy network protocols are disabled.
 
--   Miscellaneous: Disable an assortment other modules such as those required
-    for amateur radio, floppy disks, and vivid.
+- Miscellaneous: Disable an assortment of other modules such as those required
+  for amateur radio, floppy disks, and vivid.
 
--   Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+- Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
 ### Other
 
--   A systemd service clears the System.map file on boot as these contain kernel
-    pointers. The file is completely overwritten with zeroes to ensure it cannot
-    be recovered. See:
+- A systemd service clears the System.map file on boot as these contain kernel
+  pointers. The file is completely overwritten with zeroes to ensure it cannot
+  be recovered. See:
 
 `/etc/kernel/postinst.d/30_remove-system-map`
 
@@ -234,8 +234,8 @@ disabling should first be blacklisted for a suitable amount of time.
 
 `/usr/libexec/security-misc/remove-system.map`
 
--   Coredumps are disabled as they may contain important information such as
-    encryption keys or passwords. See:
+- Coredumps are disabled as they may contain important information such as
+  encryption keys or passwords. See:
 
 `/etc/security/limits.d/30_security-misc.conf`
 
@@ -243,34 +243,34 @@ disabling should first be blacklisted for a suitable amount of time.
 
 `/lib/systemd/coredump.conf.d/30_security-misc.conf`
 
--   An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
-    `/etc/sysctl.d` before init is executed so sysctl hardening is enabled as
-    early as possible. This is implemented for `initramfs-tools` only because
-    this is not needed for `dracut` because `dracut` does that by default, at
-    least on `systemd` enabled systems. Not researched for non-`systemd` systems
-    by the author of this part of the readme.
+- An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
+  `/etc/sysctl.d` before init is executed so sysctl hardening is enabled as
+  early as possible. This is implemented for `initramfs-tools` only because
+  this is not needed for `dracut` as `dracut` does that by default, at
+  least on `systemd` enabled systems. Not researched for non-`systemd` systems
+  by the author of this part of the readme.
 
 ## Network hardening
 
-Not yet due to issues:
+Not yet implemented due to issues:
 
--   https://github.com/Kicksecure/security-misc/pull/145
+- https://github.com/Kicksecure/security-misc/pull/145
 
--   https://github.com/Kicksecure/security-misc/issues/184
+- https://github.com/Kicksecure/security-misc/issues/184
 
--   Unlike version 4, IPv6 addresses can provide information not only about the
-    originating network, but also the originating device. We prevent this from
-    happening by enabling the respective privacy extensions for IPv6.
+- Unlike version 4, IPv6 addresses can provide information not only about the
+  originating network but also the originating device. We prevent this from
+  happening by enabling the respective privacy extensions for IPv6.
 
--   In addition, we deny the capability to track the originating device in the
-    network at all, by using randomized MAC addresses per connection per
-    default.
+- In addition, we deny the capability to track the originating device in the
+  network at all, by using randomized MAC addresses per connection by
+  default.
 
 See:
 
--   `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf`
--   `/usr/lib/NetworkManager/conf.d/80_randomize-mac.conf`
--   `/usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf`
+- `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf`
+- `/usr/lib/NetworkManager/conf.d/80_randomize-mac.conf`
+- `/usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf`
 
 ## Bluetooth Hardening
 
@@ -303,16 +303,16 @@ See:
 
 ## Entropy collection improvements
 
--   The `jitterentropy_rng` kernel module is loaded as early as possible during
-    boot to gather more entropy via the
-    `/usr/lib/modules-load.d/30_security-misc.conf` configuration file.
+- The `jitterentropy_rng` kernel module is loaded as early as possible during
+  boot to gather more entropy via the
+  `/usr/lib/modules-load.d/30_security-misc.conf` configuration file.
 
--   Distrusts the CPU for initial entropy at boot as it is not possible to
-    audit, may contain weaknesses or a backdoor. Similarly, do not credit the
-    bootloader seed for initial entropy. For references, see:
-    `/etc/default/grub.d/40_kernel_hardening.cfg`
+- Distrusts the CPU for initial entropy at boot as it is not possible to
+  audit, may contain weaknesses or a backdoor. Similarly, do not credit the
+  bootloader seed for initial entropy. For references, see:
+  `/etc/default/grub.d/40_kernel_hardening.cfg`
 
--   Gathers more entropy during boot if using the linux-hardened kernel patch.
+- Gathers more entropy during boot if using the linux-hardened kernel patch.
 
 ## Restrictive mount options
 
@@ -320,44 +320,44 @@ A systemd service is triggered on boot to remount all sensitive partitions and
 directories with significantly more secure hardened mount options. Since this
 would require manual tuning for a given specific system, we handle it by
 creating a very solid configuration file for that very system on package
-install.
+installation.
 
 Not enabled by default yet. In development. Help welcome.
 
--   https://www.kicksecure.com/wiki/Dev/remount-secure
--   https://github.com/Kicksecure/security-misc/issues/157
--   https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
+- https://www.kicksecure.com/wiki/Dev/remount-secure
+- https://github.com/Kicksecure/security-misc/issues/157
+- https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/
 
 ## Root access restrictions
 
--   `su` is restricted to only users within the group `sudo` which prevents
-    users from using `su` to gain root access or to switch user accounts -
-    `/usr/share/pam-configs/wheel-security-misc` (which results in a change in
-    file `/etc/pam.d/common-auth`).
+- `su` is restricted to only users within the group `sudo` which prevents
+  users from using `su` to gain root access or to switch user accounts -
+  `/usr/share/pam-configs/wheel-security-misc` (which results in a change in
+  file `/etc/pam.d/common-auth`).
 
--   Add user `root` to group `sudo`. This is required due to the above
-    restriction so that logging in from a virtual console is still possible -
-    `debian/security-misc.postinst`
+- Add user `root` to group `sudo`. This is required due to the above
+  restriction so that logging in from a virtual console is still possible -
+  `debian/security-misc.postinst`
 
--   Abort login for users with locked passwords -
-    `/usr/libexec/security-misc/pam-abort-on-locked-password`.
+- Abort login for users with locked passwords -
+  `/usr/libexec/security-misc/pam-abort-on-locked-password`.
 
--   Logging into the root account from a virtual, serial, whatnot console is
-    prevented by shipping an existing and empty `/etc/securetty` file (deletion
-    of `/etc/securetty` has a different effect).
+- Logging into the root account from a virtual, serial, or other console is
+  prevented by shipping an existing and empty `/etc/securetty` file (deletion
+  of `/etc/securetty` has a different effect).
 
 This package does not yet automatically lock the root account password. It is
-not clear if this would be sane in such a package although, it is recommended to
+not clear if this would be sane in such a package, although it is recommended to
 lock and expire the root account.
 
-In new Kicksecure builds, root account will be locked by package
+In new Kicksecure builds, the root account will be locked by package
 dist-base-files.
 
 See:
 
--   https://www.kicksecure.com/wiki/Root
--   https://www.kicksecure.com/wiki/Dev/Permissions
--   https://forums.whonix.org/t/restrict-root-access/7658
+- https://www.kicksecure.com/wiki/Root
+- https://www.kicksecure.com/wiki/Dev/Permissions
+- https://forums.whonix.org/t/restrict-root-access/7658
 
 However, a locked root password will break rescue and emergency shell.
 Therefore, this package enables passwordless rescue and emergency shell. This is
