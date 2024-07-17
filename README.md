@@ -101,36 +101,56 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 ### Boot parameters
 
-Boot parameters are outlined in configuration files located in the
-`etc/default/grub.d/` directory.
+Mitigations for known CPU vulnerabilities are enabled in their strictest form
+and simultaneous multithreading (SMT) is disabled. See the 
+`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
 
--   Slab merging is disabled which significantly increases the difficulty of
-    heap exploitation by preventing overwriting objects from merged caches and
-    by making it harder to influence slab cache layout.
+Boot parameters relating to kernel hardening, DMA mitigations, and entropy
+generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
+configuration file.
 
--   Memory zeroing at allocation and free time is enabled to mitigate some
-    use-after-free vulnerabilities and erase sensitive information in memory.
+-   Disable merging of slabs with similar size which reduces the risk of 
+    triggering heap overflows and limits influencing slab cache layout.
 
--   Page allocator freelist randomization is enabled.
+-   Enable memory zeroing at both allocation and free time which mitigate some
+    use-after-free vulnerabilities by erasing sensitive information in memory.
 
--   Kernel Page Table Isolation is enabled to mitigate Meltdown and increase
-    KASLR effectiveness.
+-   Enable the kernel page allocator to randomise free lists to limit some data 
+    exfiltration and ROP attacks especially during the early boot process.
 
--   vsyscalls are disabled as they are obsolete, are at fixed addresses and
-    thus, are a potential target for ROP.
+-   Enable kernel page table isolation increase KASLR effectiveness and also
+    mitigate the Meltdown CPU vulnerability.
 
--   The kernel panics on oopses to thwart certain kernel exploits.
+-   Enables randomisation of the kernel stack offset on syscall entries to harden
+    against memory corruption attacks.
 
--   Enables randomisation of the kernel stack offset on syscall entries.
+-   Disable vsyscalls as they are vulnerable to ROP attacks and have now been 
+    replaced by vDSO.
 
--   Mitigations for known CPU vulnerabilities are enabled and SMT is
-    disabled.
+-   Restrict access to debugfs by not registering the file system since it can 
+    contain sensitive information.
 
--   IOMMU is enabled to prevent DMA attacks along with strict enforcement of
-    IOMMU TLB invalidation so devices will never be able to access stale data
-    contents.
+-   Force kernel panics on "oopses" to potentially indicate and thwart certain 
+    kernel exploitation attempts.
 
--   Distrust the 'randomly' generated CPU and bootloader seeds.
+-   Provide option to modify machine check exception handler.
+
+-   Provide option to disable support for all x86 processes and syscalls to reduce
+    attack surface (when using Linux kernel version >= 6.7).
+
+-   Enable strict IOMMU translation to protect against DMA attacks and disable
+    the busmaster bit on all PCI bridges during the early boot process.
+
+-   Do not credit the CPU or bootloader as entropy sources at boot in order to
+    maximise the absolute quantity of entropy in the combined pool.
+
+-   Obtain more entropy at boot from RAM as the runtime memory allocator is 
+    being initialised.
+
+-   Provide option to disable the entire IPv6 stack to reduce attack surface.
+
+Disallow sensitive kernel information leaks in the console during boot. See
+the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
 
 ### Kernel Modules
 
@@ -143,7 +163,7 @@ Not yet due to issues:
 
 See:
 
--   `/etc/default/grub.d/40_only_allow_signed_modules.cfg`
+-   `/etc/default/grub.d/40_signed_modules.cfg`
 
 #### Disables the loading of new modules to the kernel after the fact
 
@@ -285,8 +305,9 @@ See:
     `/usr/lib/modules-load.d/30_security-misc.conf` configuration file.
 
 -   Distrusts the CPU for initial entropy at boot as it is not possible to
-    audit, may contain weaknesses or a backdoor. For references, see:
-    `/etc/default/grub.d/40_distrust_cpu.cfg`
+    audit, may contain weaknesses or a backdoor. Similarly, do not credit the 
+    bootloader seed for initial entropy. For references, see:
+    `/etc/default/grub.d/40_kernel_hardening.cfg`
 
 -   Gathers more entropy during boot if using the linux-hardened kernel patch.
 
