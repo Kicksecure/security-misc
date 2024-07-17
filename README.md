@@ -207,8 +207,8 @@ disabling should first be blacklisted for a suitable amount of time.
 -   GPS: Disable GPS-related modules such as those required for Global Navigation
     Satellite Systems (GNSS).
 
--   Intel Management Engine (ME): Provides some disabling of the interface between the
-    Intel ME and the OS.
+-   Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
+    Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
 -   Network File Systems: Disable uncommon and legacy network file systems.
 
