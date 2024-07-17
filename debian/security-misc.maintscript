@@ -10,7 +10,7 @@ rm_conffile /etc/sysctl.d/sysrq.conf
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.pam_tally2-info
 rm_conffile /etc/apparmor.d/usr.lib.security-misc.permission-lockdown
 
-## merged into 1 file /etc/sysctl.d/30_security-misc.conf
+## merged into 3 files /usr/lib/sysctl.d/30_security-misc_kexec-disable.conf, /usr/lib/sysctl.d/30_silent-kernel-printk.conf, and /usr/lib/sysctl.d/990-security-misc.conf
 rm_conffile /etc/sysctl.d/fs_protected.conf
 rm_conffile /etc/sysctl.d/kptr_restrict.conf
 rm_conffile /etc/sysctl.d/suid_dumpable.conf

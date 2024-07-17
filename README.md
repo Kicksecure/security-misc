@@ -6,57 +6,89 @@ This section is inspired by the Kernel Self Protection Project (KSPP). It
 implements all recommended Linux kernel settings by the KSPP and many more.
 
 -   https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
+-   https://kspp.github.io/Recommended_Settings
 
 ### sysctl
 
-sysctl settings are configured via the `/etc/sysctl.d/30_security-misc.conf`
+sysctl settings are configured via the `/usr/lib/sysctl.d/990-security-misc.conf`
 configuration file.
 
--   A kernel pointer points to a specific location in kernel memory. These can
-    be very useful in exploiting the kernel so they are restricted to
-    `CAP_SYSLOG`.
+Significant hardening is applied by default to a myriad of components within kernel
+space, user space, core dumps, and swap space.
 
--   The kernel logs are restricted to `CAP_SYSLOG` as they can often leak
-    sensitive information such as kernel pointers.
+-   Restrict access to kernel addresses through the us of kernel pointers regardless 
+    of user privileges.
 
--   The `ptrace()` system call is restricted to `CAP_SYS_PTRACE`.
+-   Restrict access to the kernel logs to `CAP_SYSLOG` as the often contain 
+    sensitive information.
 
--   eBPF is restricted to `CAP_BPF` (`CAP_SYS_ADMIN` on kernel versions prior to
-    5.8) and JIT hardening techniques such as constant blinding are enabled.
+-   Prevent kernel information leaks in the console during boot.
 
--   Restricts performance events to `CAP_PERFMON` (`CAP_SYS_ADMIN` on kernel
-    versions prior to 5.8).
+-   Restrict eBPF access to `CAP_BPF` and enable associated JIT compiler hardening.
 
--   Restricts loading line disciplines to `CAP_SYS_MODULE` to prevent
-    unprivileged attackers from loading vulnerable line disciplines with the
-    `TIOCSETD` ioctl which has been abused in a number of exploits before.
+-   Restrict loading TTY line disciplines to `CAP_SYS_MODULE`.
 
--   Restricts the `userfaultfd()` syscall to `CAP_SYS_PTRACE` as `userfaultfd()`
-    is often abused to exploit use-after-free flaws.
+-   Restricts the `userfaultfd()` syscall to `CAP_SYS_PTRACE` which reduces the
+    likelihood of use-after-free exploits.
 
--   Kexec is disabled as it can be used to load a malicious kernel and gain
-    arbitrary code execution in kernel mode.
+-   Disable `kexec` as it can be used to replace the running kernel.
 
--   Randomises the addresses for mmap base, heap, stack, and VDSO pages.
+-   Entirely disables the SysRq key so that the Secure Attention Key (SAK)
+    can no longer be utilised. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
--   Prevents unintentional writes to attacker-controlled files.
+-   Provide option to disable unprivileged user namespaces as they can lead to
+    privilege escalation.
 
--   Prevents common symlink and hardlink TOCTOU races.
+-   Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
--   Disables SysRq key completely.
-    * Therefore Secure Attention Key (SAK) cannot be used.
-    * https://www.kicksecure.com/wiki/SysRq
+-   Randomise the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
--   The kernel is only allowed to swap if it is absolutely necessary. This
-    prevents writing potentially sensitive contents of memory to disk.
+-   Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
--   TCP timestamps are disabled as it can allow detecting the system time.
+-   Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
+    enables programs to inspect and modify other active processes. Provide option 
+    to also entirely disable the use of `ptrace()` for all processes.
 
--   Set coredump file name based on core_pattern value instead of the default of
-    naming it 'core'.
+-   Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
--   Will disable `io_uring` interface for performing asynchronous I/O as it has
-    historically been a significant attack surface.
+-   Disallow unintentional writes to files in world-writable directories unless
+    they are owned by the directory owner to mitigate some data spoofing attacks.
+
+-   Increase the maximum number of memory map areas a process is able to utilise.
+
+-   Disable core dump files and prevent their creation. If core dump files are
+    enabled, they will be named based on `core.PID` instead of the default `core`.
+
+-   Limit the copying of potentially sensitive content in memory to the swap device.
+
+Various networking components of the TCP/IP stack are hardened for IPv4/6.
+
+-   Enable TCP SYN cookie protection to assist against SYN flood attacks.
+
+-   Protect against TCP time-wait assassination hazards.
+
+-   Enables reverse path filtering (source validation) of packets received 
+    from all interfaces to prevent IP spoofing.
+
+-   Disable ICMP redirect acceptance and redirect sending messages to 
+    prevent man-in-the-middle attacks and minimise information disclosure.
+
+-   Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
+
+-   Ignore bogus ICMP error responses.
+
+-   Disable source routing which allows users redirect network traffic that
+    can result in man-in-the-middle attacks.
+
+-   Do not accept IPv6 router advertisements and solicitations.
+
+-   Provide option to disable SACK and DSACK as they have historically been a
+    vector for exploitation.
+
+-   Disable TCP timestamps as it can allow detecting the system time.
+
+-   Provide option to log of packets with impossible source or destination 
+    addresses to enable inspection and further analysis.
 
 ### mmap ASLR
 
@@ -194,21 +226,6 @@ disabling should first be blacklisted for a suitable amount of time.
     by the author of this part of the readme.
 
 ## Network hardening
-
--   TCP syncookies are enabled to prevent SYN flood attacks.
-
--   ICMP redirect acceptance, ICMP redirect sending, source routing and IPv6
-    router advertisements are disabled to prevent man-in-the-middle attacks.
-
--   The kernel is configured to ignore all ICMP requests to avoid Smurf attacks,
-    make the device more difficult to enumerate on the network and prevent clock
-    fingerprinting through ICMP timestamps.
-
--   RFC1337 is enabled to protect against time-wait assassination attacks by
-    dropping RST packets for sockets in the time-wait state.
-
--   Reverse path filtering is enabled to prevent IP spoofing and mitigate
-    vulnerabilities such as CVE-2019-14899.
 
 -   Unlike version 4, IPv6 addresses can provide information not only about the
     originating network, but also the originating device. We prevent this from
