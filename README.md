@@ -210,6 +210,9 @@ disabling should first be blacklisted for a suitable amount of time.
 -   Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
     Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
+-   Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
+    of the Intel PMT components.
+    
 -   Network File Systems: Disable uncommon and legacy network file systems.
 
 -   Network Protocols: Wide array of uncommon and legacy network protocols are disabled.
