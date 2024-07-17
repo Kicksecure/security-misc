@@ -16,10 +16,10 @@ configuration file.
 Significant hardening is applied by default to a myriad of components within kernel
 space, user space, core dumps, and swap space.
 
--   Restrict access to kernel addresses through the us of kernel pointers regardless 
+-   Restrict access to kernel addresses through the us of kernel pointers regardless
     of user privileges.
 
--   Restrict access to the kernel logs to `CAP_SYSLOG` as the often contain 
+-   Restrict access to the kernel logs to `CAP_SYSLOG` as the often contain
     sensitive information.
 
 -   Prevent kernel information leaks in the console during boot.
@@ -46,7 +46,7 @@ space, user space, core dumps, and swap space.
 -   Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
 -   Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-    enables programs to inspect and modify other active processes. Provide the 
+    enables programs to inspect and modify other active processes. Provide the
     option to also entirely disable the use of `ptrace()` for all processes.
 
 -   Prevent hardlink and symlink TOCTOU races in world-writable directories.
@@ -67,10 +67,10 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 -   Protect against TCP time-wait assassination hazards.
 
--   Enables reverse path filtering (source validation) of packets received 
+-   Enables reverse path filtering (source validation) of packets received
     from all interfaces to prevent IP spoofing.
 
--   Disable ICMP redirect acceptance and redirect sending messages to 
+-   Disable ICMP redirect acceptance and redirect sending messages to
     prevent man-in-the-middle attacks and minimise information disclosure.
 
 -   Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
@@ -87,7 +87,7 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 -   Disable TCP timestamps as it can allow detecting the system time.
 
--   Provide the option to log of packets with impossible source or destination 
+-   Provide the option to log of packets with impossible source or destination
     addresses to enable further inspection and analysis.
 
 -   Provide the option to enable IPv6 Privacy Extensions.
@@ -102,20 +102,20 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 ### Boot parameters
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
-and simultaneous multithreading (SMT) is disabled. See the 
+and simultaneous multithreading (SMT) is disabled. See the
 `/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
 
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
 
--   Disable merging of slabs with similar size which reduces the risk of 
+-   Disable merging of slabs with similar size which reduces the risk of
     triggering heap overflows and limits influencing slab cache layout.
 
 -   Enable memory zeroing at both allocation and free time which mitigate some
     use-after-free vulnerabilities by erasing sensitive information in memory.
 
--   Enable the kernel page allocator to randomise free lists to limit some data 
+-   Enable the kernel page allocator to randomise free lists to limit some data
     exfiltration and ROP attacks especially during the early boot process.
 
 -   Enable kernel page table isolation increase KASLR effectiveness and also
@@ -124,13 +124,13 @@ configuration file.
 -   Enables randomisation of the kernel stack offset on syscall entries to harden
     against memory corruption attacks.
 
--   Disable vsyscalls as they are vulnerable to ROP attacks and have now been 
+-   Disable vsyscalls as they are vulnerable to ROP attacks and have now been
     replaced by vDSO.
 
--   Restrict access to debugfs by not registering the file system since it can 
+-   Restrict access to debugfs by not registering the file system since it can
     contain sensitive information.
 
--   Force kernel panics on "oopses" to potentially indicate and thwart certain 
+-   Force kernel panics on "oopses" to potentially indicate and thwart certain
     kernel exploitation attempts.
 
 -   Provide option to modify machine check exception handler.
@@ -144,7 +144,7 @@ configuration file.
 -   Do not credit the CPU or bootloader as entropy sources at boot in order to
     maximise the absolute quantity of entropy in the combined pool.
 
--   Obtain more entropy at boot from RAM as the runtime memory allocator is 
+-   Obtain more entropy at boot from RAM as the runtime memory allocator is
     being initialised.
 
 -   Provide option to disable the entire IPv6 stack to reduce attack surface.
@@ -188,8 +188,8 @@ modules from automatically starting.
 
 -   CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
 
--   Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause 
-    kernel panics, and are generally only used by legacy devices. 
+-   Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause
+    kernel panics, and are generally only used by legacy devices.
 
 -   Miscellaneous: Blacklist an assortment other modules to prevent them from
     automatically loading.
@@ -204,7 +204,7 @@ disabling should first be blacklisted for a suitable amount of time.
 
 -   FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
--   GPS: Disable GPS-related modules such as those required for Global Navigation 
+-   GPS: Disable GPS-related modules such as those required for Global Navigation
     Satellite Systems (GNSS).
 
 -   Intel Management Engine (ME): Provides some disabling of the interface between the
@@ -305,7 +305,7 @@ See:
     `/usr/lib/modules-load.d/30_security-misc.conf` configuration file.
 
 -   Distrusts the CPU for initial entropy at boot as it is not possible to
-    audit, may contain weaknesses or a backdoor. Similarly, do not credit the 
+    audit, may contain weaknesses or a backdoor. Similarly, do not credit the
     bootloader seed for initial entropy. For references, see:
     `/etc/default/grub.d/40_kernel_hardening.cfg`
 
