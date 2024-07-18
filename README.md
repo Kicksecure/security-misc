@@ -200,6 +200,10 @@ modules from starting. This approach should not be considered comprehensive;
 rather, it is a form of badness enumeration. Any potential candidates for future
 disabling should first be blacklisted for a suitable amount of time.
 
+- Optional - Bluetooth: Disabled to reduce attack surface.
+
+- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+
 - File Systems: Disable uncommon and legacy file systems.
 
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
@@ -207,20 +211,25 @@ disabling should first be blacklisted for a suitable amount of time.
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
 
-- Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
-  Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
+- Optional - Intel Management Engine (ME): Provides some disabling of the interface
+  between the Intel ME and the OS. May lead to breakages in places such as security,
+  power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
 - Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
   of the Intel PMT components.
 
 - Network File Systems: Disable uncommon and legacy network file systems.
 
-- Network Protocols: A wide array of uncommon and legacy network protocols are disabled.
+- Network Protocols: A wide array of uncommon and legacy network protocols and drivers
+  are disabled.
 
 - Miscellaneous: Disable an assortment of other modules such as those required
   for amateur radio, floppy disks, and vivid.
 
 - Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+
+- Optional - USB Video Device Class: Disables the USB-based video streaming driver for
+  devices like some webcams and digital camcorders.
 
 ### Other
 
