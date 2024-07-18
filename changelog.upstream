@@ -1,3 +1,283 @@
+commit d454f36c63bd653e47353fb1c93107b2d5584fe2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 11:52:29 2024 -0400
+
+    spelling
+
+commit f4da582aa31b869413aef6f4e252b7985e961339
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 11:44:17 2024 -0400
+
+    spelling
+
+commit 9e976474d5d620be9e4f8d8a97f73c6cc3e64573
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 11:40:51 2024 -0400
+
+    spelling
+
+commit b569fc02a4650187e69b62b95439c05ee2611e91
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 11:38:53 2024 -0400
+
+    spelling
+
+commit a2e26f441b6f44831c7b1bf3bf9dc2cf6f06e176
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 11:04:03 2024 -0400
+
+    spelling
+
+commit c8be4ac83c2563798ee35d56200eb8d11a2c32e3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:56:14 2024 -0400
+
+    comment
+
+commit 24cd70a014b221b25669755b955bc114fe083643
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:55:12 2024 -0400
+
+    spelling
+
+commit 5cec685cf9b0845838f17fba78ac65d6c2e63386
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:49:21 2024 -0400
+
+    spelling
+
+commit 821a416fe39e11ca030c63f25a5220772d80eae5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:43:16 2024 -0400
+
+    spelling
+
+commit 9a387f95e9346030e2adc3252a45942949561b52
+Merge: fd41acd 4afe257
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:32:26 2024 -0400
+
+    Merge remote-tracking branch 'raja/miscellaneous'
+
+commit fd41acdc721a6463813bc347cb965b6211fb9447
+Merge: 0da22c2 1087387
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 10:27:31 2024 -0400
+
+    Merge remote-tracking branch 'raja/fack_off'
+
+commit 4afe257a42576158a54a68948440a2b4c043b67c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 00:14:13 2024 +1000
+
+    minor
+
+commit d0a59617f6b8a90fd5c758699e910af9d7496c98
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 00:13:30 2024 +1000
+
+    Add missing Copyright (C) statements
+
+commit 8f3896c3dac13b604e36d4249f976598f271a215
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 23:44:37 2024 +1000
+
+    Upgrade hyperlinks to HTTPS
+
+commit 1087387b362d5598e44262db07ab0fff9118b064
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 23:35:25 2024 +1000
+
+    Remove obsolete `#net.ipv4.tcp_fack=0`
+
+commit 0da22c20316c8f0f574e0127926506e52ccbc269
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 09:07:31 2024 -0400
+
+    minor
+
+commit c336b266f61528cce27e1cafac6377370927a787
+Merge: afe3c25 df80385
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 09:06:44 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit df80385289717fee0266436d056c9aedd0fb06af
+Merge: afe3c25 724435e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 09:04:18 2024 -0400
+
+    Merge pull request #237 from raja-grewal/intel_pmt
+    
+    Disable some Intel PMT kernel modules
+
+commit afe3c25a49940f7f322414c08e8dbd631e696215
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:58:00 2024 -0400
+
+    update readme
+    
+    https://github.com/Kicksecure/security-misc/issues/239
+
+commit f7772fb85a1fe6d3c0749e5f34fc29111b6a8125
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:57:35 2024 -0400
+
+    minor
+
+commit 6157e328f40a7f3780208489b1ffecef8e6d738a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:52:11 2024 -0400
+
+    no longer disable Intel ME related kernel modules
+    
+    https://github.com/Kicksecure/security-misc/issues/239
+
+commit daee8b900b3057235aedc17b1231c3c05599140c
+Merge: 954ff1b a4ba6e4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:47:55 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit a4ba6e485d94512fdf737b9f66137c3f692c9904
+Merge: 9a75135 abafb19
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:46:27 2024 -0400
+
+    Merge pull request #236 from raja-grewal/intel_me
+    
+    Disable more Intel ME kernel modules
+
+commit 954ff1be41288b5fa2e50d492d92544915f93bb5
+Merge: d29a616 9a75135
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:42:52 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 9a75135633ad172f7cbf318e1206865493c28bb4
+Merge: d29a616 a340899
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:41:43 2024 -0400
+
+    Merge pull request #238 from raja-grewal/uvcvideo_2
+    
+    Minor additions to `30_security-misc_disable.conf`
+
+commit d29a616142562492db6c45c299f002100e905828
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:39:20 2024 -0400
+
+    minor
+
+commit a2802f352fc7021ead0d431c665cc16b2821ae0b
+Merge: 0b873b7 81a3715
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:38:23 2024 -0400
+
+    Merge remote-tracking branch 'raja/kargs'
+
+commit 0b873b765e20b06113d808075fa95c8acbb1e0fc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:05:27 2024 -0400
+
+    minor
+
+commit 070bb46a08afcd84fb638472c39bd543bad4fb17
+Merge: 6d6e547 25fd532
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:02:45 2024 -0400
+
+    Merge remote-tracking branch 'raja/sysctl'
+
+commit 6d6e5473f2778a2a5b1ca7826d0a3a5a63cff08a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 08:00:24 2024 -0400
+
+    minor
+
+commit cf5f0edbb85589a72ec891e9c3e090f9e81c4fda
+Merge: fe5c840 693b47e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 17 07:59:35 2024 -0400
+
+    Merge remote-tracking branch 'raja/sysctl'
+
+commit 25fd532ce62399d5bb42d844ad32b5128eaf748d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 21:56:40 2024 +1000
+
+    Update README.md relating to `sysctl`'s
+
+commit 39fd125eb0f0c16c8a64933bbd04709287a2686a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 21:44:44 2024 +1000
+
+    Provide explanation on the disabling of IPv6 Privacy Extensions
+
+commit a3408990ab439e6edbf8691cf7d65fb16c0d24df
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 15:03:39 2024 +1000
+
+    Uncomment disabling of already disabled ATM modules
+
+commit 693b47e6235528ab7a9032818cce22fd63a4f5ea
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 14:58:30 2024 +1000
+
+    Clarify ICMP redirect acceptance and sending
+
+commit 81a3715c7c0b73796a62297ebe55e861a46f7686
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 13:32:08 2024 +1000
+
+    Add info regarding the downsides of disabling SMT
+
+commit abafb1945cace774429fefd0c1a037fb2ec3f774
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 13:26:03 2024 +1000
+
+    Add Intel ME references
+
+commit f317aaebab126bafe3cfaef8159bf0820c392c87
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 01:09:02 2024 +1000
+
+    Disable two network modules
+    These were previously blacklisted for two years in https://github.com/Kicksecure/security-misc/commit/61ef9bd59f9ff39c140f782ff5b41d0a3c6d97bc.
+
+commit d69fe88091c7212a9af86306c797aed40398584b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 01:08:01 2024 +1000
+
+    Provide option to disable `uvcvideo` driver
+
+commit 49594ccb223c09d70f00434e5875c9dae1a2360d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 00:49:25 2024 +1000
+
+    Partially revert https://github.com/raja-grewal/security-misc/commit/f4d652fa7b5dd350b577521c6bba22c9eb3c13f1
+
+commit 824d9b82e53485eed8eaf24e9815ac07ad0f2406
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 00:36:18 2024 +1000
+
+    Uncomment redundant disabling of TCP FACK`
+
+commit d1119c38b6ad4193919d4b800de0a3cb014f92c1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 17 00:31:23 2024 +1000
+
+    Apply changes from code review
+
+commit fe5c840b79c4aabd5c21a286d3ce1a3ee460812c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 15 21:18:55 2024 +0000
+
+    bumped changelog version
+
 commit 6e63fc8985b97902dbae2553ded51950168dc222
 Merge: fe0846c b7796a5
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -28,6 +308,30 @@ Date:   Mon Jul 15 12:28:03 2024 -0400
 
     Merge remote-tracking branch 'raja/kernel_modules'
 
+commit 73f6d4b26f51f0c920fe020677f464c536d75410
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 16 01:03:41 2024 +1000
+
+    Fix transcription error
+
+commit 724435e56ea059183241044a4fc09423187533eb
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 22:38:43 2024 +1000
+
+    Disable some Intel Platform Monitoring Technology Telemetry (PMT) modules
+
+commit 61941da37509a4bb809212536b79f461a209f584
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 22:38:09 2024 +1000
+
+    Create `disabled-intelpmt-by-security-misc`
+
+commit 22ba7a7c393a8c9005dfe26aea396815a4d54803
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 22:21:20 2024 +1000
+
+    Disable more Intel Management Engine (ME) modules
+
 commit 9300c208e25d936f2c633a0904126566afc1c275
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Mon Jul 15 21:36:25 2024 +1000
@@ -39,6 +343,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Mon Jul 15 21:18:32 2024 +1000
 
     Fix script
+
+commit 382f1e9ec00ab5f012f028fa324d6cf73040c37d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 21:13:25 2024 +1000
+
+    Fix error
 
 commit a8bc1144c32b4b4f20904af5f813da1051fe4c9c
 Author: Raja Grewal <rg_public@proton.me>
@@ -113,6 +423,102 @@ Date:   Mon Jul 15 20:46:04 2024 +1000
     Update `security-misc.maintscript`
     Due to previous splitting IN https://github.com/Kicksecure/security-misc/commit/b02230a783941da412be72fb52053db0c6b8010f.
 
+commit b2657bc61fb15bb89d62f0743a36835c1f0dda8a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 15:05:00 2024 +1000
+
+    Improve docs
+
+commit 1c2afc1f253e15d2605d1bef0e323e6e972a2484
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 15:01:48 2024 +1000
+
+    Update presentation of the `kernel.printk` sysctl
+
+commit c8385d82fbd6ba16ba1f0b4969661474966b74f1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 14:57:40 2024 +1000
+
+    Clarify instructions for increasing log verbosity
+
+commit d229e8b04d914803fa66c3a695022cfb2d9b2a25
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 14:50:29 2024 +1000
+
+    Fix link
+
+commit fbfdb0fa99087e4160979b612db04e63a1d3e3b1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 14:40:03 2024 +1000
+
+    Update `security-misc.maintscript` relating to grub
+
+commit f4d652fa7b5dd350b577521c6bba22c9eb3c13f1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 14:39:12 2024 +1000
+
+    Update presentation of `quiet loglevel=0`
+
+commit 69c8e849270393537d3e024137bc20a42c848333
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 14:38:21 2024 +1000
+
+    Fix typos
+
+commit 48e1ac416314d2c66f3a0d5044a3c51cb6fb4093
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 02:04:25 2024 +1000
+
+    Remove the optional `slub_debug` parameter since it is no longer recommended
+
+commit 99038c7a0621f5c9852638c1706c5306b42e6480
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 02:02:01 2024 +1000
+
+    Add option to disable support for x86 processes and syscalls in the future
+
+commit f550fbe07cafb75112e98268730d1bcc511489e2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 01:59:04 2024 +1000
+
+    Add option to disable the entire IPv6 stack functionality
+
+commit a33d4cd099b8cbf569ff35627eeacf3562a4371e
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 15 01:56:25 2024 +1000
+
+    Refactor existing kernel parameters for clarity
+
+commit acd60e45d8cbc98ea935c9bf035f2840622ab58d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 14 20:07:31 2024 +1000
+
+    Add comment about enabling core dump files
+
+commit 5cf9afc21563712b851850e2041141807503807c
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 14 17:05:49 2024 +1000
+
+    Include optional `sysctl`'s in README.md
+
+commit 2b9e174c9db69f2c30828aae236c631d46255e07
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 14 16:22:52 2024 +1000
+
+    Remove empty lines
+
+commit dd1741c4a1cd18f34f69437c00f3a78a9ebd402a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 14 13:40:53 2024 +1000
+
+    Some documentation additions and fixes
+
+commit 565597c9a282b08697d04204f5eb9c22153e77bd
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 14 01:21:24 2024 +1000
+
+    Minor documentation changes and fixes
+
 commit 5ba5a85ad09b74a29c5ed0e5c265d54d93da9d32
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 13 15:01:16 2024 +0000
@@ -143,6 +549,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Sat Jul 13 23:29:52 2024 +1000
 
     Update modprobe presentation
+
+commit 2de3a795990234134be15be90aa55f547c064d92
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 13 22:41:40 2024 +1000
+
+    Refactor existing sysctl for clarity
 
 commit f34b9d7c45cd723535eedd3df99896ee7f852388
 Merge: 05c1711 5f10cc8
