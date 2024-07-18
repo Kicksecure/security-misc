@@ -1,3 +1,27 @@
+commit cac5bbad99a9c083c5b5f85f07c7368287c64f72
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 14:04:00 2024 -0400
+
+    comment
+
+commit a5eed00eba76f83c310f62d000830f38b0e87d21
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 14:02:38 2024 -0400
+
+    cleanup comments
+
+commit 21efacf1b111d9599e72cef23b791cf4961c04c3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 14:00:28 2024 -0400
+
+    cleanup duplicate comments which are already in `/etc/dkms/framework.conf`
+
+commit 61628c2baf58ca2859bc5fc99782985ef0822750
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 14:11:35 2024 +0000
+
+    bumped changelog version
+
 commit 05cf438199ca75f96cf8e67131f4a409b465e7e7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 18 10:11:03 2024 -0400
