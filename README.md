@@ -45,9 +45,8 @@ space, user space, core dumps, and swap space.
 
 - Disable asynchronous I/O (when using Linux kernel version >= 6.6).
 
-- Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-  enables programs to inspect and modify other active processes. Provide the
-  option to entirely disable the use of `ptrace()` for all processes.
+- Disable the usage of `ptrace()` by all processes as it enables programs to
+  inspect and modify other active processes.
 
 - Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
