@@ -43,7 +43,8 @@ space, user space, core dumps, and swap space.
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
-- Disable asynchronous I/O (when using Linux kernel version >= 6.6).
+- Provide the option to disable asynchronous I/O as `io_uring` has been the source
+  of numerous kernel exploits (when using Linux kernel version >= 6.6).
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
   enables programs to inspect and modify other active processes. Provide the
