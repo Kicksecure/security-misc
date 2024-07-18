@@ -133,9 +133,9 @@ configuration file.
 - Force kernel panics on "oopses" to potentially indicate and thwart certain
   kernel exploitation attempts.
 
-- Provide option to modify machine check exception handler.
+- Provide the option to modify machine check exception handler.
 
-- Provide option to disable support for all x86 processes and syscalls to reduce
+- Provide the option to disable support for all x86 processes and syscalls to reduce
   attack surface (when using Linux kernel version >= 6.7).
 
 - Enable strict IOMMU translation to protect against DMA attacks and disable
@@ -147,7 +147,7 @@ configuration file.
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
-- Provide option to disable the entire IPv6 stack to reduce attack surface.
+- Provide the option to disable the entire IPv6 stack to reduce attack surface.
 
 Disallow sensitive kernel information leaks in the console during boot. See
 the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
