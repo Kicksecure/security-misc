@@ -1,3 +1,15 @@
+commit 05cf438199ca75f96cf8e67131f4a409b465e7e7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 10:11:03 2024 -0400
+
+    no comments / copyright allowed in .displace-extension
+
+commit 2ccc95f6d44bacd3da97d586542695f33d5faf38
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 14:05:23 2024 +0000
+
+    bumped changelog version
+
 commit d454f36c63bd653e47353fb1c93107b2d5584fe2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 11:52:29 2024 -0400
