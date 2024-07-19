@@ -47,7 +47,7 @@ rm_conffile /etc/sysctl.d/30_security-misc.conf
 rm_conffile /etc/sysctl.d/30_silent-kernel-printk.conf
 rm_conffile /etc/sysctl.d/30_security-misc_kexec-disable.conf
 
-## moved to etc/permission-hardener.d
+## moved to /etc/permission-hardener.d
 rm_conffile /etc/permission-hardening.d/25_default_passwd.conf
 rm_conffile /etc/permission-hardening.d/25_default_sudo.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_bubblewrap.conf

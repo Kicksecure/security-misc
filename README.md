@@ -43,7 +43,8 @@ space, user space, core dumps, and swap space.
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
-- Disable asynchronous I/O (when using Linux kernel version >= 6.6).
+- Provide the option to disable asynchronous I/O as `io_uring` has been the source
+  of numerous kernel exploits (when using Linux kernel version >= 6.6).
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
   enables programs to inspect and modify other active processes. Provide the
@@ -71,7 +72,8 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
   from all interfaces to prevent IP spoofing.
 
 - Disable ICMP redirect acceptance and redirect sending messages to
-  prevent man-in-the-middle attacks and minimize information disclosure.
+  prevent man-in-the-middle attacks and minimize information disclosure. If
+  ICMP redirect messages are permitted, only do so from approved gateways.
 
 - Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 
@@ -133,9 +135,9 @@ configuration file.
 - Force kernel panics on "oopses" to potentially indicate and thwart certain
   kernel exploitation attempts.
 
-- Provide option to modify machine check exception handler.
+- Provide the option to modify machine check exception handler.
 
-- Provide option to disable support for all x86 processes and syscalls to reduce
+- Provide the option to disable support for all x86 processes and syscalls to reduce
   attack surface (when using Linux kernel version >= 6.7).
 
 - Enable strict IOMMU translation to protect against DMA attacks and disable
@@ -147,7 +149,7 @@ configuration file.
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
-- Provide option to disable the entire IPv6 stack to reduce attack surface.
+- Provide the option to disable the entire IPv6 stack to reduce attack surface.
 
 Disallow sensitive kernel information leaks in the console during boot. See
 the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
@@ -200,6 +202,10 @@ modules from starting. This approach should not be considered comprehensive;
 rather, it is a form of badness enumeration. Any potential candidates for future
 disabling should first be blacklisted for a suitable amount of time.
 
+- Optional - Bluetooth: Disabled to reduce attack surface.
+
+- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+
 - File Systems: Disable uncommon and legacy file systems.
 
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
@@ -207,20 +213,25 @@ disabling should first be blacklisted for a suitable amount of time.
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
 
-- Not yet enabled: Intel Management Engine (ME): Provides some disabling of the interface between the
-  Intel ME and the OS. See discussion: https://github.com/Kicksecure/security-misc/issues/239
+- Optional - Intel Management Engine (ME): Provides some disabling of the interface
+  between the Intel ME and the OS. May lead to breakages in places such as security,
+  power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
 - Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
   of the Intel PMT components.
 
 - Network File Systems: Disable uncommon and legacy network file systems.
 
-- Network Protocols: A wide array of uncommon and legacy network protocols are disabled.
+- Network Protocols: A wide array of uncommon and legacy network protocols and drivers
+  are disabled.
 
 - Miscellaneous: Disable an assortment of other modules such as those required
   for amateur radio, floppy disks, and vivid.
 
 - Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+
+- Optional - USB Video Device Class: Disables the USB-based video streaming driver for
+  devices like some webcams and digital camcorders.
 
 ### Other
 
