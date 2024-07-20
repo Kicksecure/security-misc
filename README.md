@@ -190,9 +190,6 @@ modules from automatically starting.
 
 - CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
 
-- Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause
-  kernel panics, and are generally only used by legacy devices.
-
 - Miscellaneous: Blacklist an assortment of other modules to prevent them from
   automatically loading.
 
@@ -209,6 +206,9 @@ disabling should first be blacklisted for a suitable amount of time.
 - File Systems: Disable uncommon and legacy file systems.
 
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
+
+- Framebuffer Drivers: Disabled as they are well-known to be buggy, cause
+  kernel panics, and are generally only used by legacy devices.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
