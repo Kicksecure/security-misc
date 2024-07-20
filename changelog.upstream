@@ -1,3 +1,41 @@
+commit f0a478c7c91697988926a73d3a1880dd8caaca68
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 20 12:57:56 2024 -0400
+
+    permission hardener: allow postfix
+    
+    postqueue matchwhitelist
+    postdrop matchwhitelist
+
+commit 9f53a0182b5f6a7cf8228bf19b04661d39c7a2fe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 19 07:20:59 2024 -0400
+
+    undo io_uring related changes
+    
+    as these should be done in a separate pull request (if apprpriate)
+    
+    https://github.com/Kicksecure/security-misc/pull/244#issuecomment-2238889062
+
+commit 8791aecb38a41aa0b0c108505726bc6a1ace903e
+Merge: 2d11436 06894d1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 19 07:19:09 2024 -0400
+
+    Merge remote-tracking branch 'raja/fixes'
+
+commit 06894d1c98e91f43af58cc438559ea76b6a361e3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 19 18:30:42 2024 +1000
+
+    Typo
+
+commit 2d11436432d3b2b75f84b05550de06cd77ec6e79
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 18 18:05:07 2024 +0000
+
+    bumped changelog version
+
 commit cac5bbad99a9c083c5b5f85f07c7368287c64f72
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 18 14:04:00 2024 -0400
@@ -33,6 +71,30 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 18 14:05:23 2024 +0000
 
     bumped changelog version
+
+commit 95286df50274953326accb615487e21d409b652a
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 15:28:31 2024 +1000
+
+    Update README.md regarding secure ICMP redirects
+
+commit 13cc1f0986033855a399b50442a86a8d8552eb96
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 12:25:00 2024 +1000
+
+    Clarify (future) disabling of `io_uring`
+
+commit 9e6facda7017498e8310a9c39403e95e81c5a903
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 12:21:37 2024 +1000
+
+    Update module disabling presentation
+
+commit faa9181a6c0c78b9471c9a4e6bdd3291aec704f6
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 12:19:27 2024 +1000
+
+    Typos
 
 commit d454f36c63bd653e47353fb1c93107b2d5584fe2
 Author: Patrick Schleizer <adrelanos@whonix.org>
