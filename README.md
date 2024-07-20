@@ -226,7 +226,8 @@ disabling should first be blacklisted for a suitable amount of time.
   are disabled.
 
 - Miscellaneous: Disable an assortment of other modules such as those required
-  for amateur radio, floppy disks, and vivid.
+  for amateur radio, floppy disks, and vivid. Also disable legacy drivers that
+  have been entirely replaced by newer drivers.
 
 - Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
