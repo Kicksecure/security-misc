@@ -1,3 +1,21 @@
+commit 64f8b2eb5870664fca06aa060f2f50af358ced55
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 21 06:36:22 2024 -0400
+
+    Revert "no longer disable Intel ME related kernel modules"
+    
+    This reverts commit 6157e328f40a7f3780208489b1ffecef8e6d738a.
+    
+    https://www.kicksecure.com/wiki/Out-of-band_Management_Technology#Intel_ME_Kernel_Modules
+    
+    https://github.com/Kicksecure/security-misc/issues/239
+
+commit 04fb00572f2e4c9bdfaaa0f6da8007999daab641
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 20 17:02:05 2024 +0000
+
+    bumped changelog version
+
 commit f0a478c7c91697988926a73d3a1880dd8caaca68
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 20 12:57:56 2024 -0400
