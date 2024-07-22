@@ -65,18 +65,18 @@ add_nosuid_statoverride_entry() {
   counter_actual=0
 
   local dummy_line
-  while read -r dummy_line; do
+  while IFS="" read -r -d "" dummy_line; do
     true "DEBUG: test would evaluate parse" "${dummy_line}"
     should_be_counter=$((should_be_counter + 1))
   done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
 
   local line
-  while read -r line; do
+  while IFS="" read -r -d "" line; do
     true "line: ${line}"
     counter_actual="$((counter_actual + 1))"
 
     local arr file_name existing_mode existing_owner existing_group
-    IFS=" " read -r -a arr <<< "${line}"
+    read -r -a arr <<< "${line}"
     file_name="${arr[0]}"
     existing_mode="${arr[1]}"
     existing_owner="${arr[2]}"
@@ -153,7 +153,7 @@ add_nosuid_statoverride_entry() {
 
     local is_exact_whitelisted
     is_exact_whitelisted=""
-    for white_list_entry in ${exact_white_list}; do
+    for white_list_entry in "${exact_white_list[@]:-}"; do
       if test "${file_name}" = "${white_list_entry}"; then
         is_exact_whitelisted="true"
         ## Stop looping through the whitelist.
@@ -163,7 +163,7 @@ add_nosuid_statoverride_entry() {
 
     local is_match_whitelisted
     is_match_whitelisted=""
-    for matchwhite_list_entry in ${match_white_list}; do
+    for matchwhite_list_entry in "${match_white_list[@]:-}"; do
       if echo "${file_name}" | grep --quiet --fixed-strings "${matchwhite_list_entry}"; then
         is_match_whitelisted="true"
         ## Stop looping through the match_white_list.
@@ -173,7 +173,7 @@ add_nosuid_statoverride_entry() {
 
     local is_disable_whitelisted
     is_disable_whitelisted=""
-    for disablematch_list_entry in ${disable_white_list:-}; do
+    for disablematch_list_entry in "${disable_white_list[@]:-}"; do
       if echo "${file_name}" | grep --quiet --fixed-strings "${disablematch_list_entry}"; then
         is_disable_whitelisted="true"
         ## Stop looping through the disablewhitelist.
@@ -234,10 +234,9 @@ add_nosuid_statoverride_entry() {
 
   ## Sanity test.
   if test ! "${should_be_counter}" = "${counter_actual}"; then
-    echo "INFO: fso_to_process: '${fso_to_process}' | counter_actual   : '${counter_actual}'"
-    echo "INFO: fso_to_process: '${fso_to_process}' | should_be_counter: '${should_be_counter}'"
+    echo "INFO: file system object (parsed/wanted): '${fso_to_process}': (${counter_actual}/${should_be_counter})"
+    echo "ERROR: expected number of files to be parsed was not met." >&2
     exit_code=202
-    echo "ERROR: counter does not check out." >&2
   fi
 }
 
@@ -249,7 +248,7 @@ set_file_perms() {
       continue
     fi
 
-    if [[ "${line}" =~ ^# ]]; then
+    if [[ "${line}" =~ ^\s*# ]]; then
       continue
     fi
 
@@ -291,23 +290,21 @@ set_file_perms() {
     local fso_without_trailing_slash
     fso_without_trailing_slash="${fso%/}"
 
-    if test "${mode_from_config}" = "disablewhitelist"; then
-      ## TODO: test/add white spaces inside file name support
-      disable_white_list+="${fso} "
-      continue
-    fi
-
-    if test "${mode_from_config}" = "exactwhitelist"; then
-      ## TODO: test/add white spaces inside file name support
-      exact_white_list+="${fso} "
-      continue
-    fi
-
-    if test "${mode_from_config}" = "matchwhitelist"; then
-      ## TODO: test/add white spaces inside file name support
-      match_white_list+="${fso} "
-      continue
-    fi
+    ## TODO: test/add white spaces inside file name support
+    case "${mode_from_config}" in
+      disablewhitelist)
+        disable_white_list+=("${fso}")
+        continue
+        ;;
+      exactwhitelist)
+        exact_white_list+=("${fso}")
+        continue
+        ;;
+      matchwhitelist)
+        match_white_list+=("${fso}")
+        continue
+        ;;
+    esac
 
     if test ! -e "${fso}"; then
       true "INFO: fso: '${fso}' - does not exist. This is likely normal."
@@ -358,7 +355,7 @@ set_file_perms() {
       fi
 
       local arr file_name existing_mode existing_owner existing_group
-      IFS=" " read -r -a arr <<< "${stat_output}"
+      read -r -a arr <<< "${stat_output}"
       file_name="${arr[0]}"
       existing_mode="${arr[1]}"
       existing_owner="${arr[2]}"
@@ -548,7 +545,7 @@ spare() {
   fi
 
   local line
-  while read -r line; do
+  while IFS="" read -r -d "" line; do
     ## example line:
     ## root root 4755 /usr/lib/eject/dmcrypt-get-device
 
