@@ -14,33 +14,23 @@ dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 
 echo_wrapper_ignore() {
-  echo "INFO: run: $*"
-  "$@" 2>/dev/null || true
-}
-
-echo_wrapper_silent_ignore() {
-  #echo "INFO: run: $@"
+  if test "${1}" = "verbose"; then
+    echo "INFO: run: $*"
+  fi
+  shift
   "$@" 2>/dev/null || true
 }
 
 echo_wrapper_audit() {
-  echo "INFO: run: $*"
+  if test "${1}" = "verbose"; then
+    echo "INFO: run: $*"
+  fi
+  shift
   return_code=0
   "$@" ||
     {
       return_code="$?"
       exit_code=203
-      echo "ERROR: above command failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
-    }
-}
-
-echo_wrapper_silent_audit() {
-  #echo "run (debugging): $@"
-  return_code=0
-  "$@" ||
-    {
-      return_code="$?"
-      exit_code=204
       echo "ERROR: above command '$*' failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
     }
 }
@@ -52,7 +42,7 @@ make_store_dir(){
 }
 
 sanity_tests() {
-  echo_wrapper_silent_audit which \
+  echo_wrapper_audit silent which \
     capsh getcap setcap stat find dpkg-statoverride getent xargs grep 1>/dev/null
 }
 
@@ -205,7 +195,7 @@ add_nosuid_statoverride_entry() {
       ## Save existing_mode in separate database.
       ## Not using --update as not intending to enforce existing_mode.
       # shellcheck disable=SC2086
-      echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${file_name}"
+      echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${file_name}"
     fi
 
     ## No need to check "dpkg-statoverride --list" for existing entries.
@@ -214,18 +204,18 @@ add_nosuid_statoverride_entry() {
     ## and re-add.
 
     ## Remove from real database.
-    echo_wrapper_silent_ignore dpkg-statoverride --remove "${file_name}"
+    echo_wrapper_ignore silent dpkg-statoverride --remove "${file_name}"
 
     ## Remove from separate database.
     # shellcheck disable=SC2086
-    echo_wrapper_silent_ignore dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}"
+    echo_wrapper_ignore silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}"
 
     ## Add to real database and use --update to make changes on disk.
-    echo_wrapper_audit dpkg-statoverride --add --update "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+    echo_wrapper_audit verbose dpkg-statoverride --add --update "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
 
     ## Not using --update as this is only for recording.
     # shellcheck disable=SC2086
-    echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+    echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
 
     ## /usr/lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/usr/lib/**'.
     ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
@@ -414,20 +404,20 @@ set_file_perms() {
             ## Save existing_mode in separate database.
             ## Not using --update as not intending to enforce existing_mode.
             # shellcheck disable=SC2086
-            echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+            echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
           fi
 
           # shellcheck disable=SC2086
-          echo_wrapper_silent_ignore dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${fso_without_trailing_slash}"
+          echo_wrapper_ignore silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${fso_without_trailing_slash}"
 
           ## Remove from and add to real database.
-          echo_wrapper_silent_ignore dpkg-statoverride --remove "${fso_without_trailing_slash}"
-          echo_wrapper_audit dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+          echo_wrapper_ignore silent dpkg-statoverride --remove "${fso_without_trailing_slash}"
+          echo_wrapper_audit verbose dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
 
           ## Save in separate database.
           ## Not using --update as this is only for saving.
           # shellcheck disable=SC2086
-          echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+          echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
         fi
       else
         true "There is no fso entry. Therefore add one."
@@ -439,16 +429,16 @@ set_file_perms() {
           ## Save existing_mode in separate database.
           ## Not using --update as not intending to enforce existing_mode.
           # shellcheck disable=SC2086
-          echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+          echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
         fi
 
         ## Add to real database.
-        echo_wrapper_audit dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+        echo_wrapper_audit verbose dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
 
         ## Save in separate database.
         ## Not using --update as this is only for saving.
         # shellcheck disable=SC2086
-        echo_wrapper_silent_audit dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+        echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
       fi
     fi
     if test -z "${capability_from_config}"; then
@@ -462,7 +452,7 @@ set_file_perms() {
       ## The value of the capability argument is not permitted for a file. Or
       ## the file is not a regular (non-symlink) file
       ## Therefore use echo_wrapper_ignore.
-      echo_wrapper_ignore setcap -r "${fso}"
+      echo_wrapper_ignore verbose setcap -r "${fso}"
       getcap_output="$(getcap "${fso}")"
       if test -n "${getcap_output}"; then
         exit_code=205
@@ -477,7 +467,7 @@ set_file_perms() {
 
       ## feature request: dpkg-statoverride: support for capabilities
       ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502580
-      echo_wrapper_audit setcap "${capability_from_config}+ep" "${fso}"
+      echo_wrapper_audit verbose setcap "${capability_from_config}+ep" "${fso}"
     fi
   done <"${config_file}"
   true "INFO: END parsing config_file: '${config_file}'"
