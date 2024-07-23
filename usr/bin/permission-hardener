@@ -63,40 +63,47 @@ add_nosuid_statoverride_entry() {
   counter_actual=0
 
   local dummy_line
-  while IFS="" read -r dummy_line; do
+  while IFS="" read -r -d "" dummy_line; do
     log info "Test would parse line: ${dummy_line}"
     should_be_counter=$((should_be_counter + 1))
-  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
+  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0)
 
   local line
-  while IFS="" read -r line; do
+  while IFS="" read -r -d "" line; do
     counter_actual="$((counter_actual + 1))"
 
     local arr file_name existing_mode existing_owner existing_group
-    read -r -a arr <<< "${line}"
-    file_name="${arr[0]}"
-    existing_mode="${arr[1]}"
-    existing_owner="${arr[2]}"
-    existing_group="${arr[3]}"
+    file_name="${line}"
+    stat_output="$(stat -c "%a %U %G" "${line}")"
+    read -r -a arr <<< "${stat_output}"
+    existing_mode="${arr[0]}"
+    existing_owner="${arr[1]}"
+    existing_group="${arr[2]}"
 
     if test "${#arr[@]}" = 0; then
       log error "Line is empty: '${line}'" >&2
       continue
     fi
     if test -z "${file_name}"; then
-      log error "File name is empty. line: '${line}'" >&2
+      log error "File name is empty in line: ${line}" >&2
       continue
     fi
     if test -z "${existing_mode}"; then
-      log error "Existing mode is empty. line: '${line}'" >&2
+      log error "Existing mode is empty in line: ${line}" >&2
       continue
     fi
     if test -z "${existing_owner}"; then
-      log error "Existing owner is empty. line: '${line}'" >&2
+      log error "Existing owner is empty in line: ${line}" >&2
       continue
     fi
     if test -z "${existing_group}"; then
-      log error "Existing group is empty. line: '${line}'" >&2
+      log error "Existing group is empty in line: ${line}" >&2
+      continue
+    fi
+
+    ## dpkg-statoverride: error: path may not contain newlines
+    if [[ "${file_name}" == *$'\n'* ]]; then
+      log warn "Skipping file name that contains newlines: ${file_name}" >&2
       continue
     fi
 
@@ -236,7 +243,7 @@ add_nosuid_statoverride_entry() {
     ## /usr/lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/usr/lib/**'.
     ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
     ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
-  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
+  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0)
 
   ## Sanity test.
   if test ! "${should_be_counter}" = "${counter_actual}"; then
@@ -356,17 +363,17 @@ set_file_perms() {
 
       local stat_output
       stat_output=""
-      if ! stat_output="$(stat -c "%n %a %U %G" "${fso_without_trailing_slash}")"; then
+      if ! stat_output="$(stat -c "%a %U %G" "${fso_without_trailing_slash}")"; then
         log error "Failed to run 'stat' on file: '${fso_without_trailing_slash}'!" >&2
         continue
       fi
 
       local arr file_name existing_mode existing_owner existing_group
       read -r -a arr <<< "${stat_output}"
-      file_name="${arr[0]}"
-      existing_mode="${arr[1]}"
-      existing_owner="${arr[2]}"
-      existing_group="${arr[3]}"
+      file_name="${fso_without_trailing_slash}"
+      existing_mode="${arr[0]}"
+      existing_owner="${arr[1]}"
+      existing_group="${arr[2]}"
 
       if test "${#arr[@]}" = 0; then
         log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
@@ -589,7 +596,7 @@ spare() {
       # shellcheck disable=SC2086
       chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
     else
-      log warn "File does not exist: '${file_name}'"
+      log warn "File does not exist: ${file_name}"
     fi
 
     dpkg-statoverride --remove "${file_name}" &>/dev/null || true
