@@ -137,9 +137,9 @@ configuration file.
 
 - Provide the option to modify machine check exception handler.
 
-- Provide the option to use kCFI as the default CFI implementation as it may be
-  slightly more resilient to attacks that can construct arbitrary executable
-  memory contents (when using Linux kernel version >= 6.5).
+- Provide the option to use kCFI as the default CFI implementation since it may be
+  slightly more resilient to attacks that are able to write arbitrary executables
+  in memory (when using Linux kernel version >= 6.2).
 
 - Provide the option to disable support for all x86 processes and syscalls to reduce
   attack surface (when using Linux kernel version >= 6.7).
