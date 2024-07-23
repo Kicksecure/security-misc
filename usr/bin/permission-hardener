@@ -31,7 +31,7 @@ echo_wrapper_audit() {
     {
       return_code="$?"
       exit_code=203
-      echo "ERROR: above command '$*' failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
+      echo "ERROR: command '$*' failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
     }
 }
 
@@ -56,13 +56,13 @@ add_nosuid_statoverride_entry() {
 
   local dummy_line
   while IFS="" read -r -d "" dummy_line; do
-    true "DEBUG: test would evaluate parse" "${dummy_line}"
+    true "DEBUG: test would parse line:" "${dummy_line}"
     should_be_counter=$((should_be_counter + 1))
   done < <(find "${fso_to_process}" -perm /u=s,g=s -print0 | xargs -I{} -0 stat -c "%n %a %U %G" {})
 
   local line
   while IFS="" read -r -d "" line; do
-    true "line: ${line}"
+    true "DEBUG: line: ${line}"
     counter_actual="$((counter_actual + 1))"
 
     local arr file_name existing_mode existing_owner existing_group
@@ -73,23 +73,23 @@ add_nosuid_statoverride_entry() {
     existing_group="${arr[3]}"
 
     if test "${#arr[@]}" = 0; then
-      echo "ERROR: arr is empty. line: '${line}'" >&2
+      echo "ERROR: line is empty: '${line}'" >&2
       continue
     fi
     if test -z "${file_name}"; then
-      echo "ERROR: file_name is empty. line: '${line}'" >&2
+      echo "ERROR: file name is empty. line: '${line}'" >&2
       continue
     fi
     if test -z "${existing_mode}"; then
-      echo "ERROR: existing_mode is empty. line: '${line}'" >&2
+      echo "ERROR: existing mode is empty. line: '${line}'" >&2
       continue
     fi
     if test -z "${existing_owner}"; then
-      echo "ERROR: existing_owner is empty. line: '${line}'" >&2
+      echo "ERROR: existing owner is empty. line: '${line}'" >&2
       continue
     fi
     if test -z "${existing_group}"; then
-      echo "ERROR: existing_group is empty. line: '${line}'" >&2
+      echo "ERROR: existing group is empty. line: '${line}'" >&2
       continue
     fi
 
@@ -99,12 +99,12 @@ add_nosuid_statoverride_entry() {
 
     if test -h "${file_name}"; then
       ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
-      true "skip symlink: ${file_name}"
+      true "DEBUG: skip symlink: ${file_name}"
       continue
     fi
 
     if test -d "${file_name}"; then
-      true "skip directory: ${file_name}"
+      true "DEBUG: skip directory: ${file_name}"
       continue
     fi
 
@@ -171,26 +171,27 @@ add_nosuid_statoverride_entry() {
       fi
     done
 
+    clean_output="setuid=${setuid_output} setgid=${setsgid_output} existing_mode=${existing_mode} new_mode=${new_mode} file='${file_name}'"
     if test "${whitelists_disable_all:-}" = "true"; then
-      true "INFO: whitelists_disable_all=true - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+    echo "INFO: whitelists_disable_all=true ${clean_output}"
     elif test "${is_disable_whitelisted}" = "true"; then
-      true "INFO: white list disabled - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+      true "INFO: white list disabled ${clean_output}"
     else
       if test "${is_exact_whitelisted}" = "true"; then
-        true "INFO: SKIP whitelisted - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}'"
+        true "INFO: is_exact_whitelisted=true ${clean_output}"
         continue
       fi
       if test "${is_match_whitelisted}" = "true"; then
-        true "INFO: SKIP matchwhitelisted - ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}' | matchwhite_list_entry: '${matchwhite_list_entry}'"
+        true "INFO: is_match_whitelisted=true ${clean_output} matchwhite_list_entry: '${matchwhite_list_entry}'"
         continue
       fi
     fi
 
-    echo "INFO: ${setuid_output} ${setsgid_output} found - file_name: '${file_name}' | existing_mode: '${existing_mode}' | new_mode: '${new_mode}'"
+    echo "INFO: ${clean_output}"
 
     # shellcheck disable=SC2086
     if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${file_name}" >/dev/null; then
-      true "OK Existing mode already saved previously. Not saving again."
+      true "INFO: Existing mode already saved previously. Not saving again."
     else
       ## Save existing_mode in separate database.
       ## Not using --update as not intending to enforce existing_mode.
@@ -224,14 +225,14 @@ add_nosuid_statoverride_entry() {
 
   ## Sanity test.
   if test ! "${should_be_counter}" = "${counter_actual}"; then
-    echo "INFO: file system object (parsed/wanted): '${fso_to_process}': (${counter_actual}/${should_be_counter})"
+    echo "INFO: file (parsed/wanted): '${fso_to_process}': (${counter_actual}/${should_be_counter})"
     echo "ERROR: expected number of files to be parsed was not met." >&2
     exit_code=202
   fi
 }
 
 set_file_perms() {
-  true "INFO: START parsing config_file: '${config_file}'"
+  true "INFO: START parsing config file: '${config_file}'"
   local line
   while read -r line || test -n "${line}"; do
     if test -z "${line}"; then
@@ -243,10 +244,10 @@ set_file_perms() {
     fi
 
     if [[ "${line}" =~ [0-9a-zA-Z/] ]]; then
-      true "OK line contains only white listed characters."
+      true "INFO: line contains only white listed characters."
     else
       exit_code=200
-      echo "ERROR: cannot parse line with invalid character. line: '${line}'" >&2
+      echo "ERROR: cannot parse line with invalid character in line: '${line}'" >&2
       ## Safer to exit with error in this case.
       ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
       exit "${exit_code}"
@@ -254,7 +255,7 @@ set_file_perms() {
 
     if test "${line}" = 'whitelists_disable_all=true'; then
       whitelists_disable_all=true
-      echo "INFO: whitelists_disable_all=true - all whitelists disabled."
+      echo "INFO: whitelists_disable_all=true"
       continue
     fi
 
@@ -262,7 +263,7 @@ set_file_perms() {
     local mode_from_config owner_from_config group_from_config capability_from_config
     if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<<"${line}"; then
       exit_code=201
-      echo "ERROR: cannot parse. line: '${line}'" >&2
+      echo "ERROR: cannot parse line: '${line}'" >&2
       ## Debugging.
       du -hs /tmp || true
       echo "test -w /tmp: '$(test -w /tmp)'" >&2 || true
@@ -297,7 +298,7 @@ set_file_perms() {
     esac
 
     if test ! -e "${fso}"; then
-      true "INFO: fso: '${fso}' - does not exist. This is likely normal."
+      true "INFO: file does not exist: '${fso}'"
       continue
     fi
 
@@ -311,21 +312,21 @@ set_file_perms() {
       local string_length_of_mode_from_config
       string_length_of_mode_from_config="${#mode_from_config}"
       if test "${string_length_of_mode_from_config}" -gt "4"; then
-        echo "ERROR: Mode '${mode_from_config}' is invalid!" >&2
+        echo "ERROR: Invalid mode: '${mode_from_config}'" >&2
         continue
       fi
       if test "${string_length_of_mode_from_config}" -lt "3"; then
-        echo "ERROR: Mode '${mode_from_config}' is invalid!" >&2
+        echo "ERROR: Invalid mode: '${mode_from_config}'" >&2
         continue
       fi
 
       if ! grep --quiet --fixed-strings "${owner_from_config}:" "${store_dir}/private/passwd"; then
-        echo "ERROR: owner_from_config '${owner_from_config}' does not exist!" >&2
+        echo "ERROR: owner from config does not exist: '${owner_from_config}'" >&2
         continue
       fi
 
       if ! grep --quiet --fixed-strings "${group_from_config}:" "${store_dir}/private/group"; then
-        echo "ERROR: group_from_config '${group_from_config}' does not exist!" >&2
+        echo "ERROR: group from config does not exist: '${group_from_config}'" >&2
         continue
       fi
 
@@ -340,7 +341,7 @@ set_file_perms() {
       local stat_output
       stat_output=""
       if ! stat_output="$(stat -c "%n %a %U %G" "${fso_without_trailing_slash}")"; then
-        echo "ERROR: failed to run 'stat' for fso_without_trailing_slash: '${fso_without_trailing_slash}'!" >&2
+        echo "ERROR: failed to run 'stat' on file: '${fso_without_trailing_slash}'!" >&2
         continue
       fi
 
@@ -352,15 +353,15 @@ set_file_perms() {
       existing_group="${arr[3]}"
 
       if test "${#arr[@]}" = 0; then
-        echo "ERROR: arr is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        echo "ERROR: line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
       if test -z "${file_name}"; then
-        echo "ERROR: file_name is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        echo "ERROR: file name is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
       if test -z "${existing_mode}"; then
-        echo "ERROR: existing_mode is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        echo "ERROR: existing mode is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
       if test -z "${existing_owner}"; then
@@ -368,7 +369,7 @@ set_file_perms() {
         continue
       fi
       if test -z "${existing_group}"; then
-        echo "ERROR: ${existing_group} is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        echo "ERROR: existing group is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
 
@@ -387,19 +388,19 @@ set_file_perms() {
       }
 
       if test "${dpkg_statoverride_list_exit_code}" = "0"; then
-        true "There is an fso entry. Check if owner/group/mode match."
+        true "INFO: There is an fso entry. Check if owner/group/mode matches."
         local grep_line
         grep_line="${owner_from_config} ${group_from_config} ${mode_for_grep} ${fso_without_trailing_slash}"
         if echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings "${grep_line}"; then
-          true "OK The owner/group/mode matches. No further action required."
+          true "INFO: The owner/group/mode matches. No further action required."
         else
-          true "The owner/group/mode do not match, therefore remove and re-add the entry to update it."
+          true "INFO: The owner/group/mode does not match, removing and re-adding the entry to update it."
           ## fso_without_trailing_slash instead of fso to prevent
           ## "dpkg-statoverride: warning: stripping trailing /"
 
           # shellcheck disable=SC2086
           if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
-            true "OK Existing mode already saved previously. No need to save again."
+            true "INFO: Existing mode already saved previously. Not saving again."
           else
             ## Save existing_mode in separate database.
             ## Not using --update as not intending to enforce existing_mode.
@@ -420,11 +421,11 @@ set_file_perms() {
           echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
         fi
       else
-        true "There is no fso entry. Therefore add one."
+        true "INFO: There is no fso entry, adding one."
 
         # shellcheck disable=SC2086
         if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
-          true "OK Existing mode already saved previously. No need to save again."
+          true "INFO: Existing mode already saved previously. Not saving again."
         else
           ## Save existing_mode in separate database.
           ## Not using --update as not intending to enforce existing_mode.
@@ -456,12 +457,12 @@ set_file_perms() {
       getcap_output="$(getcap "${fso}")"
       if test -n "${getcap_output}"; then
         exit_code=205
-        echo "ERROR: removing capabilities for fso '${fso}' failed!" >&2
+        echo "ERROR: removing capabilities failed. File: '${fso}'" >&2
         continue
       fi
     else
       if ! capsh --print | grep --fixed-strings "Bounding set" | grep --quiet "${capability_from_config}"; then
-        echo "ERROR: capability_from_config '${capability_from_config}' does not exist!" >&2
+        echo "ERROR: capability from config does not exist: '${capability_from_config}'" >&2
         continue
       fi
 
@@ -470,7 +471,7 @@ set_file_perms() {
       echo_wrapper_audit verbose setcap "${capability_from_config}+ep" "${fso}"
     fi
   done <"${config_file}"
-  true "INFO: END parsing config_file: '${config_file}'"
+  true "INFO: END parsing config file: '${config_file}'"
 }
 
 parse_config_folder() {
@@ -513,11 +514,8 @@ apply() {
   parse_config_folder
 
   echo "\
-INFO: To compare the current and previous permission modes:
-  Install 'meld' (or preferred diff tool) for comparison of file mode changes:
+INFO: To compare the current and previous permission modes, install 'meld' (or preferred diff tool) for comparison of file mode changes:
     sudo apt install --no-install-recommends meld
-
-  Use 'meld' or another diff tool to view the differences:
     meld ${store_dir}/existing_mode/statoverride ${store_dir}/new_mode/statoverride"
 }
 
@@ -545,7 +543,7 @@ spare() {
       echo "ERROR: cannot parse line: ${line}" >&2
       continue
     fi
-    true "owner: '${owner}' group: '${group}' mode: '${mode}' file_name: '${file_name}'"
+    true "INFO: owner=${owner} group=${group} mode=${mode} file_name='${file_name}'"
 
     if test "${remove_file}" = "all"; then
       verbose=""
@@ -573,7 +571,7 @@ spare() {
       # shellcheck disable=SC2086
       chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
     else
-      echo "INFO: file_name: '${file_name}' - does not exist. This is likely normal."
+      echo "INFO: file doesn't exist: '${file_name}'"
     fi
 
     dpkg-statoverride --remove "${file_name}" &>/dev/null || true
@@ -593,18 +591,11 @@ spare() {
     if test "$(cat "${store_dir}/remove_one")" = "false"; then
       echo "INFO: no file was removed.
 
-  File '${remove_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation of this program.
+  File '${remove_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation. This is expected if already done earlier.
 
-  Note: This is expected if already done earlier.
-
-  Note: This program expects the full path to the file. Example:
-    $0 disable /usr/bin/newgrp
-
-  The following syntax will not work:
-    $0 disable program-name
-
-  The following example will not work:
-    $0 disable newgrp
+  This program expects the full path to the file. Example:
+    $0 disable /usr/bin/newgrp  # absolute path: works
+    $0 disable newgrp           # relative path: does not work
 
   To remove all:
     $0 disable all
