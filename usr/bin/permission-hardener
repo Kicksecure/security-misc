@@ -212,6 +212,7 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
       fi
     done
 
+    local clean_output_prefix clean_output
     clean_output_prefix="Managing (S|G)UID of line:"
     clean_output="setuid=${setuid_output} setgid=${setsgid_output} existing_mode=${existing_mode} new_mode=${new_mode} file='${file_name}'"
     if test "${whitelists_disable_all:-}" = "true"; then
