@@ -12,6 +12,7 @@ exit_code=0
 store_dir="/var/lib/permission-hardener"
 dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+delimiter="#permission-hardener-delimiter#"
 
 log_level=notice
 # shellcheck disable=SC1091
@@ -81,11 +82,11 @@ add_nosuid_statoverride_entry() {
       continue
     fi
 
-    ## Capture the stat output with fields separated by NUL characters.
     ## Delimiter at the end to avoid the last field to be interpreted as having a newline.
-    stat_output=$(stat -c '%n\0%a\0%U\0%G\0%' "${line}")
+    stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}%" "${line}")
+    stat_output_simple=$(stat -c '%n %a %U %G' "${line}")
 
-    readarray -d '\0' -t arr <<< "${stat_output}"
+    readarray -d "${delimiter}" -t arr <<< "${stat_output}"
 
     if test "${#arr[@]}" = 0; then
       log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
@@ -382,13 +383,13 @@ set_file_perms() {
 
       local stat_output
       stat_output=""
-      if ! stat_output="$(stat -c '%n\0%a\0%U\0%G\0%' "${fso_without_trailing_slash}")"; then
+      if ! stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}%" "${fso_without_trailing_slash}"); then
         log error "Failed to run 'stat' on file: '${fso_without_trailing_slash}'!" >&2
         continue
       fi
 
       local arr file_name file_name_from_stat existing_mode existing_owner existing_group
-      readarray -d '\0' -t arr <<< "${stat_output}"
+      readarray -d "${delimiter}" -t arr <<< "${stat_output}"
       file_name="${fso_without_trailing_slash}"
 
       if test "${#arr[@]}" = 0; then
