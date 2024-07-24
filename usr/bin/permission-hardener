@@ -401,10 +401,6 @@ set_file_perms() {
       existing_owner="${arr[2]}"
       existing_group="${arr[3]}"
 
-      if test "${#arr[@]}" = 0; then
-        log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
-        continue
-      fi
       if test -z "${file_name}"; then
         log error "File name is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
