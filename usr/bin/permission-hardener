@@ -73,7 +73,14 @@ add_nosuid_statoverride_entry() {
     counter_actual="$((counter_actual + 1))"
 
     local arr file_name existing_mode existing_owner existing_group
+
     file_name="${line}"
+
+    if test -z "${file_name}"; then
+      log error "File name is empty in line: ${line}" >&2
+      continue
+    fi
+
     ## Capture the stat output with fields separated by NUL characters.
     ## Delimiter at the end to avoid the last field to be interpreted as having a newline.
     stat_output=$(stat -c '%n\0%a\0%U\0%G\0%' "${line}")
@@ -90,10 +97,6 @@ add_nosuid_statoverride_entry() {
     existing_owner="${arr[2]}"
     existing_group="${arr[3]}"
 
-    if test -z "${file_name}"; then
-      log error "File name is empty in line: ${line}" >&2
-      continue
-    fi
     if test -z "${existing_mode}"; then
       log error "Existing mode is empty in line: ${line}" >&2
       continue
