@@ -73,7 +73,7 @@ add_nosuid_statoverride_entry() {
   while IFS="" read -r -d "" line; do
     counter_actual="$((counter_actual + 1))"
 
-    local arr file_name file_name_from_stat existing_mode existing_owner existing_group stat_output
+    local arr file_name file_name_from_stat existing_mode existing_owner existing_group stat_output stat_output_newlined
 
     file_name="${line}"
 
@@ -82,10 +82,9 @@ add_nosuid_statoverride_entry() {
       continue
     fi
 
-    ## Delimiter at the end to avoid the last field to be interpreted as having a newline.
-    stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}%" "${line}")
-
-    readarray -d "${delimiter}" -t arr <<< "${stat_output}"
+    stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}" "${line}")
+    stat_output_newlined=$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")
+    readarray -t arr <<< "${stat_output_newlined}"
 
     if test "${#arr[@]}" = 0; then
       log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
@@ -381,15 +380,16 @@ set_file_perms() {
         mode_for_grep="${mode_from_config:1}"
       fi
 
-      local stat_output
+      local stat_output stat_output_newlined
       stat_output=""
-      if ! stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}%" "${fso_without_trailing_slash}"); then
+      if ! stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}" "${fso_without_trailing_slash}"); then
         log error "Failed to run 'stat' on file: '${fso_without_trailing_slash}'!" >&2
         continue
       fi
+      stat_output_newlined=$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")
 
       local arr file_name file_name_from_stat existing_mode existing_owner existing_group
-      readarray -d "${delimiter}" -t arr <<< "${stat_output}"
+      readarray -t arr <<< "${stat_output_newlined}"
       file_name="${fso_without_trailing_slash}"
 
       if test "${#arr[@]}" = 0; then
