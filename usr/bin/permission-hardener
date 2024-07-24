@@ -72,7 +72,7 @@ add_nosuid_statoverride_entry() {
   while IFS="" read -r -d "" line; do
     counter_actual="$((counter_actual + 1))"
 
-    local arr file_name existing_mode existing_owner existing_group stat_output
+    local arr file_name file_name_from_stat existing_mode existing_owner existing_group stat_output
 
     file_name="${line}"
 
@@ -88,7 +88,7 @@ add_nosuid_statoverride_entry() {
     readarray -d '\0' -t arr <<< "${stat_output}"
 
     if test "${#arr[@]}" = 0; then
-      log error "Line is empty: '${line}'" >&2
+      log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
       continue
     fi
 
@@ -387,12 +387,19 @@ set_file_perms() {
         continue
       fi
 
-      local arr file_name existing_mode existing_owner existing_group
-      read -r -a arr <<< "${stat_output}"
+      local arr file_name file_name_from_stat existing_mode existing_owner existing_group
+      readarray -d '\0' -t arr <<< "${stat_output}"
       file_name="${fso_without_trailing_slash}"
-      existing_mode="${arr[0]}"
-      existing_owner="${arr[1]}"
-      existing_group="${arr[2]}"
+
+      if test "${#arr[@]}" = 0; then
+        log error "Line is empty: '${line}'" >&2
+        continue
+      fi
+
+      file_name_from_stat="${arr[0]}"
+      existing_mode="${arr[1]}"
+      existing_owner="${arr[2]}"
+      existing_group="${arr[3]}"
 
       if test "${#arr[@]}" = 0; then
         log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
