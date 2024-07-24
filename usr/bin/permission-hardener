@@ -97,6 +97,15 @@ add_nosuid_statoverride_entry() {
     existing_owner="${arr[2]}"
     existing_group="${arr[3]}"
 
+    if [ ! "$file_name" = "$file_name_from_stat" ]; then
+      log error "\
+file_name is different from file_name_from_stat:
+line: '${line}'
+file_name '${file_name}'
+file_name_from_stat: '${file_name_from_stat}'" >&2
+      continue
+    fi
+
     if test -z "${existing_mode}"; then
       log error "Existing mode is empty in line: ${line}" >&2
       continue
