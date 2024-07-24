@@ -99,6 +99,7 @@ add_nosuid_statoverride_entry() {
 
     if [ ! "$file_name" = "$file_name_from_stat" ]; then
       log error "\
+function add_nosuid_statoverride_entry:
 file_name is different from file_name_from_stat:
 line: '${line}'
 file_name '${file_name}'
@@ -400,6 +401,16 @@ set_file_perms() {
       existing_mode="${arr[1]}"
       existing_owner="${arr[2]}"
       existing_group="${arr[3]}"
+
+    if [ ! "$file_name" = "$file_name_from_stat" ]; then
+      log error "\
+function set_file_perms:
+file_name is different from file_name_from_stat:
+line: '${line}'
+file_name '${file_name}'
+file_name_from_stat: '${file_name_from_stat}'" >&2
+      continue
+    fi
 
       if test -z "${file_name}"; then
         log error "File name is empty. Stat output: '${stat_output}', line: '${line}'" >&2
