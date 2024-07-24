@@ -392,7 +392,7 @@ set_file_perms() {
       file_name="${fso_without_trailing_slash}"
 
       if test "${#arr[@]}" = 0; then
-        log error "Line is empty: '${line}'" >&2
+        log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
 
@@ -414,7 +414,7 @@ set_file_perms() {
         continue
       fi
       if test -z "${existing_owner}"; then
-        log error "Existing_owner is empty. stat_output: '${stat_output}' | line: '${line}'" >&2
+        log error "Existing_owner is empty. Stat output: '${stat_output}' | line: '${line}'" >&2
         continue
       fi
       if test -z "${existing_group}"; then
