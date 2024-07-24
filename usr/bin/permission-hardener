@@ -618,7 +618,7 @@ spare() {
       # shellcheck disable=SC2086
       chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
     else
-      log warn "File does not exist: ${file_name}"
+      log info "File does not exist: ${file_name}"
     fi
 
     dpkg-statoverride --remove "${file_name}" &>/dev/null || true
