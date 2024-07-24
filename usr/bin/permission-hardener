@@ -6,6 +6,9 @@
 ## https://forums.whonix.org/t/disable-suid-binaries/7706
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
+## TODO:
+## - unduplicate stat_output related source code
+
 set -o errexit -o nounset -o pipefail
 
 exit_code=0
