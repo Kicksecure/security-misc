@@ -84,7 +84,6 @@ add_nosuid_statoverride_entry() {
 
     ## Delimiter at the end to avoid the last field to be interpreted as having a newline.
     stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}%" "${line}")
-    stat_output_simple=$(stat -c '%n %a %U %G' "${line}")
 
     readarray -d "${delimiter}" -t arr <<< "${stat_output}"
 
