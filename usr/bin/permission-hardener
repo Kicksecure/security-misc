@@ -553,7 +553,7 @@ spare() {
   dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 
   if test ! -f "${store_dir}/existing_mode/statoverride"; then
-    true debug "Stat file does not exist, hardening was not applied not applied before"
+    true "DEBUG: Stat file does not exist, hardening was not applied before."
     return 0
   fi
 
