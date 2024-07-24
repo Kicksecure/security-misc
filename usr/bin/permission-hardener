@@ -72,7 +72,7 @@ add_nosuid_statoverride_entry() {
   while IFS="" read -r -d "" line; do
     counter_actual="$((counter_actual + 1))"
 
-    local arr file_name existing_mode existing_owner existing_group
+    local arr file_name existing_mode existing_owner existing_group stat_output
 
     file_name="${line}"
 
