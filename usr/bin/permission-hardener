@@ -160,6 +160,7 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
       setuid_or_setsgid=true
     fi
     if test -z "${setuid_or_setsgid}"; then
+      log info "Neither setuid nor setsgid. Skipping. file_name: '${file_name}'"
       continue
     fi
 
@@ -177,10 +178,12 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
     is_exact_whitelisted=""
     for white_list_entry in "${exact_white_list[@]:-}"; do
       if test -z "${white_list_entry}"; then
+        log info "white_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
       if test "${file_name}" = "${white_list_entry}"; then
         is_exact_whitelisted="true"
+        log info "is_exact_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the whitelist.
         break
       fi
@@ -190,10 +193,12 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
     is_match_whitelisted=""
     for matchwhite_list_entry in "${match_white_list[@]:-}"; do
       if test -z "${matchwhite_list_entry}"; then
+        log info "matchwhite_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
       if echo "${file_name}" | grep --quiet --fixed-strings "${matchwhite_list_entry}"; then
         is_match_whitelisted="true"
+        log info "is_match_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the match_white_list.
         break
       fi
@@ -203,10 +208,12 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
     is_disable_whitelisted=""
     for disablematch_list_entry in "${disable_white_list[@]:-}"; do
       if test -z "${disablematch_list_entry}"; then
+        log info "disablematch_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
       if echo "${file_name}" | grep --quiet --fixed-strings "${disablematch_list_entry}"; then
         is_disable_whitelisted="true"
+        log info "is_disable_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the disablewhitelist.
         break
       fi
@@ -229,6 +236,8 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
         continue
       fi
     fi
+
+    log notice "${clean_output_prefix} ${clean_output}"
 
     # shellcheck disable=SC2086
     if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${file_name}" >/dev/null; then
@@ -277,6 +286,7 @@ set_file_perms() {
   local line
   while read -r line || test -n "${line}"; do
     if test -z "${line}"; then
+      true "DEBUG: line is empty. Skipping."
       continue
     fi
 
@@ -498,6 +508,7 @@ file_name_from_stat: '${file_name_from_stat}'" >&2
       fi
     fi
     if test -z "${capability_from_config}"; then
+      log info "capability_from_config is empty. Skipping. file_name: '${file_name}'"
       continue
     fi
 
