@@ -13,14 +13,14 @@ store_dir="/var/lib/permission-hardener"
 dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 
-log_level=info
+log_level=notice
 # shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/log_run_die.sh
 
 echo_wrapper_ignore() {
   if test "${1}" = "verbose"; then
     shift
-    log info "Run: $*"
+    log notice "Run: $*"
   else
     shift
   fi
@@ -30,7 +30,7 @@ echo_wrapper_ignore() {
 echo_wrapper_audit() {
   if test "${1}" = "verbose"; then
     shift
-    log info "Run: $*"
+    log notice "Run: $*"
   else
     shift
   fi
@@ -559,7 +559,7 @@ apply() {
   sanity_tests
   parse_config_folder
 
-  log info "\
+  log notice "\
 To compare the current and previous permission modes, install 'meld' (or preferred diff tool) for comparison of file mode changes:
     sudo apt install --no-install-recommends meld
     meld ${store_dir}/existing_mode/statoverride ${store_dir}/new_mode/statoverride"
