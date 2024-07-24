@@ -77,16 +77,19 @@ add_nosuid_statoverride_entry() {
     ## Capture the stat output with fields separated by NUL characters.
     ## Delimiter at the end to avoid the last field to be interpreted as having a newline.
     stat_output=$(stat -c '%n\0%a\0%U\0%G\0%' "${line}")
+
     readarray -d '\0' -t arr <<< "${stat_output}"
-    file_name_from_stat="${arr[0]}"
-    existing_mode="${arr[1]}"
-    existing_owner="${arr[2]}"
-    existing_group="${arr[3]}"
 
     if test "${#arr[@]}" = 0; then
       log error "Line is empty: '${line}'" >&2
       continue
     fi
+
+    file_name_from_stat="${arr[0]}"
+    existing_mode="${arr[1]}"
+    existing_owner="${arr[2]}"
+    existing_group="${arr[3]}"
+
     if test -z "${file_name}"; then
       log error "File name is empty in line: ${line}" >&2
       continue
