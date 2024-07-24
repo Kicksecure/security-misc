@@ -340,7 +340,7 @@ set_file_perms() {
     esac
 
     if test ! -e "${fso}"; then
-      log warn "File does not exist: '${fso}'"
+      log info "File does not exist: '${fso}'"
       continue
     fi
 
