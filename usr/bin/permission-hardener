@@ -6,9 +6,6 @@
 ## https://forums.whonix.org/t/disable-suid-binaries/7706
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
-## TODO:
-## - unduplicate stat_output related source code
-
 set -o errexit -o nounset -o pipefail
 
 exit_code=0
@@ -17,6 +14,7 @@ dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 delimiter="#permission-hardener-delimiter#"
 
+# shellcheck disable=SC2034
 log_level=notice
 # shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/log_run_die.sh
@@ -53,6 +51,78 @@ make_store_dir(){
   mkdir --parents "${store_dir}/new_mode"
 }
 
+## Some tools may fail on newlines and even variable assignment to array may
+## fail if a variable that will be assigned to an array element contains
+## characters that are used as delimiters.
+block_newlines(){
+  local newline_variable newline_value
+  newline_variable="${1}"
+  newline_value="${2}"
+  ## dpkg-statoverride: error: path may not contain newlines
+  #if [[ "${newline_value}" == *$'\n'* ]]; then
+  if [[ "${newline_value}" != "${newline_value//$'\n'/NEWLINE}" ]]; then
+    log warn "Skipping ${newline_variable} that contains newlines: '${newline_value}'" >&2
+    return 1
+  fi
+}
+
+output_stat(){
+  local file_name
+  file_name="${1}"
+
+  if test -z "${file_name}"; then
+    log error "File name is empty. file_name: '${file_name}'" >&2
+    return 1
+  fi
+
+  block_newlines file "${file_name}"
+
+  declare -a arr
+  local file_name_from_stat existing_mode existing_owner existing_group stat_output stat_output_newlined
+
+  if ! stat_output="$(stat -c "%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" "${file_name}")"; then
+    log error "Failed to run 'stat' on file: '${file_name}'!" >&2
+    return 1
+  fi
+
+  stat_output_newlined="$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")"
+  readarray -t arr <<< "${stat_output_newlined}"
+
+  if test "${#arr[@]}" = 0; then
+    log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+
+  existing_mode="${arr[0]}"
+  existing_owner="${arr[1]}"
+  existing_group="${arr[2]}"
+  file_name_from_stat="${arr[3]}"
+
+  if [ ! "$file_name" = "$file_name_from_stat" ]; then
+    log error "\
+function ${FUNCNAME[1]}:
+File name is different from file name received from stat:
+File name '${file_name}'
+File name from stat: '${file_name_from_stat}'" >&2
+    return 1
+  fi
+
+  if test -z "${existing_mode}"; then
+    log error "Existing mode is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+  if test -z "${existing_owner}"; then
+    log error "Existing owner is empty. Stat output: '${stat_output}' | line: '${line}'" >&2
+    return 1
+  fi
+  if test -z "${existing_group}"; then
+    log error "Existing group is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+
+  (IFS=$'\n'; echo "${arr[*]}")
+}
+
 sanity_tests() {
   echo_wrapper_audit silent which \
     capsh getcap setcap stat find dpkg-statoverride getent xargs grep 1>/dev/null
@@ -73,60 +143,21 @@ add_nosuid_statoverride_entry() {
   done < <(find "${fso_to_process}" -perm /u=s,g=s -print0)
 
   local line
-  while IFS="" read -r -d "" line; do
-    counter_actual="$((counter_actual + 1))"
+  while IFS="" read -r -d "" file_name; do
+    counter_actual=$((counter_actual + 1))
 
-    local arr file_name file_name_from_stat existing_mode existing_owner existing_group stat_output stat_output_newlined
+    declare -a arr
+    local existing_mode existing_owner existing_group
 
-    file_name="${line}"
-
-    if test -z "${file_name}"; then
-      log error "File name is empty in line: '${line}'" >&2
-      continue
-    fi
-
-    stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}" "${line}")
-    stat_output_newlined=$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")
-    readarray -t arr <<< "${stat_output_newlined}"
-
+    readarray -t arr < <(output_stat "${file_name}")
+    ## Above command creates a subshell that cannot be returned.
     if test "${#arr[@]}" = 0; then
-      log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
       continue
     fi
 
-    file_name_from_stat="${arr[0]}"
-    existing_mode="${arr[1]}"
-    existing_owner="${arr[2]}"
-    existing_group="${arr[3]}"
-
-    if [ ! "$file_name" = "$file_name_from_stat" ]; then
-      log error "\
-function add_nosuid_statoverride_entry:
-file_name is different from file_name_from_stat:
-line: '${line}'
-file_name '${file_name}'
-file_name_from_stat: '${file_name_from_stat}'" >&2
-      continue
-    fi
-
-    if test -z "${existing_mode}"; then
-      log error "Existing mode is empty in line: '${line}'" >&2
-      continue
-    fi
-    if test -z "${existing_owner}"; then
-      log error "Existing owner is empty in line: '${line}'" >&2
-      continue
-    fi
-    if test -z "${existing_group}"; then
-      log error "Existing group is empty in line: '${line}'" >&2
-      continue
-    fi
-
-    ## dpkg-statoverride: error: path may not contain newlines
-    if [[ "${file_name}" == *$'\n'* ]]; then
-      log warn "Skipping file name that contains newlines: '${file_name}'" >&2
-      continue
-    fi
+    existing_mode="${arr[0]}"
+    existing_owner="${arr[1]}"
+    existing_group="${arr[2]}"
 
     ## -h file      True if file is a symbolic Link.
     ## -u file      True if file has its set-user-id bit set.
@@ -335,7 +366,6 @@ set_file_perms() {
     local fso_without_trailing_slash
     fso_without_trailing_slash="${fso%/}"
 
-    ## TODO: test/add white spaces inside file name support
     declare -g disable_white_list exact_white_list match_white_list
     case "${mode_from_config}" in
       disablewhitelist)
@@ -393,54 +423,19 @@ set_file_perms() {
         mode_for_grep="${mode_from_config:1}"
       fi
 
-      local stat_output stat_output_newlined
-      stat_output=""
-      if ! stat_output=$(stat -c "%n${delimiter}%a${delimiter}%U${delimiter}%G${delimiter}" "${fso_without_trailing_slash}"); then
-        log error "Failed to run 'stat' on file: '${fso_without_trailing_slash}'!" >&2
-        continue
-      fi
-      stat_output_newlined=$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")
+      declare -a arr
+      local existing_mode existing_owner existing_group
 
-      local arr file_name file_name_from_stat existing_mode existing_owner existing_group
-      readarray -t arr <<< "${stat_output_newlined}"
       file_name="${fso_without_trailing_slash}"
-
+      readarray -t arr < <(output_stat "${file_name}")
+      ## Above command creates a subshell that cannot be returned from.
       if test "${#arr[@]}" = 0; then
-        log error "Line is empty. Stat output: '${stat_output}', line: '${line}'" >&2
         continue
       fi
 
-      file_name_from_stat="${arr[0]}"
-      existing_mode="${arr[1]}"
-      existing_owner="${arr[2]}"
-      existing_group="${arr[3]}"
-
-    if [ ! "$file_name" = "$file_name_from_stat" ]; then
-      log error "\
-function set_file_perms:
-file_name is different from file_name_from_stat:
-line: '${line}'
-file_name '${file_name}'
-file_name_from_stat: '${file_name_from_stat}'" >&2
-      continue
-    fi
-
-      if test -z "${file_name}"; then
-        log error "File name is empty. Stat output: '${stat_output}', line: '${line}'" >&2
-        continue
-      fi
-      if test -z "${existing_mode}"; then
-        log error "Existing mode is empty. Stat output: '${stat_output}', line: '${line}'" >&2
-        continue
-      fi
-      if test -z "${existing_owner}"; then
-        log error "Existing owner is empty. Stat output: '${stat_output}' | line: '${line}'" >&2
-        continue
-      fi
-      if test -z "${existing_group}"; then
-        log error "Existing group is empty. Stat output: '${stat_output}', line: '${line}'" >&2
-        continue
-      fi
+      existing_mode="${arr[0]}"
+      existing_owner="${arr[1]}"
+      existing_group="${arr[2]}"
 
       ## Check there is an entry for the fso.
       ##
@@ -558,9 +553,9 @@ parse_config_folder() {
   ## 'grep' exits after the first match in this case causing 'getent' to
   ## receive SIGPIPE, which then fails the pipeline since 'set -o pipefail' is
   ## set for this script.
-  passwd_file_contents_temp=$(getent passwd)
+  passwd_file_contents_temp="$(getent passwd)"
   echo "${passwd_file_contents_temp}" | tee "${store_dir}/private/passwd" >/dev/null
-  group_file_contents_temp=$(getent group)
+  group_file_contents_temp="$(getent group)"
   echo "${group_file_contents_temp}" | tee "${store_dir}/private/group" >/dev/null
 
   #passwd_file_contents="$(cat "${store_dir}/private/passwd")"
