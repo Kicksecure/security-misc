@@ -174,27 +174,23 @@ add_nosuid_statoverride_entry() {
       continue
     fi
 
-    local setuid setuid_output setsgid setsgid_output
+    local setuid setgid
     setuid=""
-    setuid_output=""
     if test -u "${file_name}"; then
       setuid=true
-      setuid_output="set-user-id"
     fi
-    setsgid=""
-    setsgid_output=""
+    setgid=""
     if test -g "${file_name}"; then
-      setsgid=true
-      setsgid_output="set-group-id"
+      setgid=true
     fi
 
-    local setuid_or_setsgid
-    setuid_or_setsgid=""
-    if test "${setuid}" = "true" || test "${setsgid}" = "true"; then
-      setuid_or_setsgid=true
+    local setuid_or_setgid
+    setuid_or_setgid=""
+    if test "${setuid}" = "true" || test "${setgid}" = "true"; then
+      setuid_or_setgid=true
     fi
-    if test -z "${setuid_or_setsgid}"; then
-      log info "Neither setuid nor setsgid. Skipping. file_name: '${file_name}'"
+    if test -z "${setuid_or_setgid}"; then
+      log info "Neither setuid nor setgid. Skipping. file_name: '${file_name}'"
       continue
     fi
 
@@ -255,7 +251,7 @@ add_nosuid_statoverride_entry() {
 
     local clean_output_prefix clean_output
     clean_output_prefix="Managing (S|G)UID of line:"
-    clean_output="setuid='${setuid_output}' setgid='${setsgid_output}' existing_mode='${existing_mode}' new_mode='${new_mode}' file='${file_name}'"
+    clean_output="${setuid:+setuid='true'} ${setgid:+setgid='true'} existing_mode='${existing_mode}' new_mode='${new_mode}' file='${file_name}'"
     if test "${whitelists_disable_all:-}" = "true"; then
     log info "${clean_output_prefix} whitelists_disable_all=true ${clean_output}"
     elif test "${is_disable_whitelisted}" = "true"; then
