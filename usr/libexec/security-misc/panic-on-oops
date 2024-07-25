@@ -16,3 +16,4 @@ fi
 ## from continuing to run a flawed processes. Many kernel exploits
 ## will also cause an oops which this will make the kernel kill.
 sysctl kernel.panic_on_oops=1
+#sysctl kernel.panic=-1

@@ -42,7 +42,8 @@ space, user space, core dumps, and swap space.
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
 - Force the kernel to panic on "oopses" that can potentially indicate and thwart
-  certain kernel exploitation attempts.
+  certain kernel exploitation attempts. Provide the option to reboot immediately
+  on a kernel panic.
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
