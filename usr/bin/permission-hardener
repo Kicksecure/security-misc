@@ -80,7 +80,7 @@ output_stat(){
   declare -a arr
   local file_name_from_stat stat_output stat_output_newlined
 
-  if ! stat_output="$(stat --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" "${file_name}")"; then
+  if ! stat_output="$(stat --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" -- "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
     return 1
   fi
@@ -217,7 +217,7 @@ add_nosuid_statoverride_entry() {
         log info "matchwhite_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
-      if echo "${file_name}" | grep --quiet --fixed-strings "${matchwhite_list_entry}"; then
+      if echo "${file_name}" | grep --quiet --fixed-strings -- "${matchwhite_list_entry}"; then
         is_match_whitelisted="true"
         log info "is_match_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the match_white_list.
@@ -232,7 +232,7 @@ add_nosuid_statoverride_entry() {
         log info "disablematch_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
-      if echo "${file_name}" | grep --quiet --fixed-strings "${disablematch_list_entry}"; then
+      if echo "${file_name}" | grep --quiet --fixed-strings -- "${disablematch_list_entry}"; then
         is_disable_whitelisted="true"
         log info "is_disable_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the disablewhitelist.
@@ -392,12 +392,12 @@ set_file_perms() {
         continue
       fi
 
-      if ! grep --quiet --fixed-strings "${owner_from_config}:" "${store_dir}/private/passwd"; then
+      if ! grep --quiet --fixed-strings -- "${owner_from_config}:" "${store_dir}/private/passwd"; then
         log error "Owner from config does not exist: '${owner_from_config}'" >&2
         continue
       fi
 
-      if ! grep --quiet --fixed-strings "${group_from_config}:" "${store_dir}/private/group"; then
+      if ! grep --quiet --fixed-strings -- "${group_from_config}:" "${store_dir}/private/group"; then
         log error "Group from config does not exist: '${group_from_config}'" >&2
         continue
       fi
@@ -435,7 +435,7 @@ set_file_perms() {
       if test "${dpkg_statoverride_list_exit_code}" = "0"; then
         local grep_line
         grep_line="${owner_from_config} ${group_from_config} ${mode_for_grep} ${fso_without_trailing_slash}"
-        if echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings "${grep_line}"; then
+        if echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings -- "${grep_line}"; then
           log info "The owner/group/mode matches fso entry. No further action required."
         else
           log info "The owner/group/mode does not match fso entry, updating entry."
@@ -498,22 +498,22 @@ set_file_perms() {
       ## The value of the capability argument is not permitted for a file. Or
       ## the file is not a regular (non-symlink) file
       ## Therefore use echo_wrapper_ignore.
-      echo_wrapper_ignore verbose setcap -r "${fso}"
-      getcap_output="$(getcap "${fso}")"
+      echo_wrapper_ignore verbose setcap -r -- "${fso}"
+      getcap_output="$(getcap -- "${fso}")"
       if test -n "${getcap_output}"; then
         exit_code=205
         log error "Removing capabilities failed. File: '${fso}'" >&2
         continue
       fi
     else
-      if ! capsh --print | grep --fixed-strings "Bounding set" | grep --quiet "${capability_from_config}"; then
+      if ! capsh --print | grep --fixed-strings -- "Bounding set" | grep --quiet -- "${capability_from_config}"; then
         log error "Capability from config does not exist: '${capability_from_config}'" >&2
         continue
       fi
 
       ## feature request: dpkg-statoverride: support for capabilities
       ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502580
-      echo_wrapper_audit verbose setcap "${capability_from_config}+ep" "${fso}"
+      echo_wrapper_audit verbose setcap "${capability_from_config}+ep" -- "${fso}"
     fi
 
   done <"${config_file}"
@@ -530,7 +530,7 @@ parse_config_folder() {
   ## Query contents of password and group databases only once and buffer them
   ##
   ## If we don't buffer we sometimes get incorrect results when checking for
-  ## entries using 'if getent passwd | grep --quiet '^root:'; ...' since
+  ## entries using 'if getent passwd | grep --quiet -- '^root:'; ...' since
   ## 'grep' exits after the first match in this case causing 'getent' to
   ## receive SIGPIPE, which then fails the pipeline since 'set -o pipefail' is
   ## set for this script.
