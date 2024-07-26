@@ -307,6 +307,7 @@ add_nosuid_statoverride_entry() {
 
 set_file_perms() {
   log info "START parsing config file: '${config_file}'"
+
   local line
   while read -r line || test -n "${line}"; do
     if test -z "${line}"; then
