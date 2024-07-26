@@ -123,7 +123,8 @@ File name from stat: '${file_name_from_stat}'" >&2
 
 sanity_tests() {
   echo_wrapper_audit silent \
-    which capsh getcap setcap stat find dpkg-statoverride getent xargs grep 1>/dev/null
+    which \
+      capsh getcap setcap stat find dpkg-statoverride getent xargs grep 1>/dev/null
 }
 
 add_nosuid_statoverride_entry() {
