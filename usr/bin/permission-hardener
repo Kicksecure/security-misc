@@ -80,7 +80,7 @@ output_stat(){
   declare -a arr
   local file_name_from_stat stat_output stat_output_newlined
 
-  if ! stat_output="$(stat -c "%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" "${file_name}")"; then
+  if ! stat_output="$(stat --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
     return 1
   fi
