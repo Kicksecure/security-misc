@@ -16,6 +16,7 @@ dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 delimiter="#permission-hardener-delimiter#"
 
+# shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/safe_echo.sh
 # shellcheck disable=SC2034
 log_level=notice
