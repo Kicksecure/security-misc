@@ -78,7 +78,7 @@ output_stat(){
   block_newlines file "${file_name}"
 
   declare -a arr
-  local file_name_from_stat existing_mode existing_owner existing_group stat_output stat_output_newlined
+  local file_name_from_stat stat_output stat_output_newlined
 
   if ! stat_output="$(stat -c "%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
@@ -119,8 +119,6 @@ File name from stat: '${file_name_from_stat}'" >&2
     log error "Existing group is empty. Stat output: '${stat_output}', line: '${line}'" >&2
     return 1
   fi
-
-  (IFS=$'\n'; echo "${arr[*]}")
 }
 
 sanity_tests() {
@@ -146,18 +144,11 @@ add_nosuid_statoverride_entry() {
   while IFS="" read -r -d "" file_name; do
     counter_actual=$((counter_actual + 1))
 
-    declare -a arr
-    local existing_mode existing_owner existing_group
-
-    readarray -t arr < <(output_stat "${file_name}")
-    ## Above command creates a subshell that cannot be returned.
-    if test "${#arr[@]}" = 0; then
-      continue
-    fi
-
-    existing_mode="${arr[0]}"
-    existing_owner="${arr[1]}"
-    existing_group="${arr[2]}"
+    ## sets:
+    ## exiting_mode
+    ## existing_owner
+    ## existing_group
+    output_stat "${file_name}"
 
     ## -h file      True if file is a symbolic Link.
     ## -u file      True if file has its set-user-id bit set.
@@ -419,19 +410,13 @@ set_file_perms() {
         mode_for_grep="${mode_from_config:1}"
       fi
 
-      declare -a arr
-      local existing_mode existing_owner existing_group
-
       file_name="${fso_without_trailing_slash}"
-      readarray -t arr < <(output_stat "${file_name}")
-      ## Above command creates a subshell that cannot be returned from.
-      if test "${#arr[@]}" = 0; then
-        continue
-      fi
 
-      existing_mode="${arr[0]}"
-      existing_owner="${arr[1]}"
-      existing_group="${arr[2]}"
+      ## sets:
+      ## exiting_mode
+      ## existing_owner
+      ## existing_group
+      output_stat "${file_name}"
 
       ## Check there is an entry for the fso.
       ##
