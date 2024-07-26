@@ -79,6 +79,11 @@ output_stat(){
 
   block_newlines file "${file_name}"
 
+  if [[ $file_name == --* ]]; then
+    log warn "File name starts with '--'. This would be interpreted by dpkg-statoverride as an option. Skipping. file_name: '${file_name}'" >&2
+    return 1
+  fi
+
   declare -a arr
   local file_name_from_stat stat_output stat_output_newlined
 
