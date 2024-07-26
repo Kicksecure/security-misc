@@ -87,7 +87,28 @@ output_stat(){
     return 1
   fi
 
+  if [ "$stat_output" = "" ]; then
+    log error "stat_output is empty.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
   stat_output_newlined="$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")"
+
+  if test "${stat_output_newlined}" = ""; then
+    log error "stat_output_newlined is empty.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
   readarray -t arr <<< "${stat_output_newlined}"
 
   if test "${#arr[@]}" = 0; then
