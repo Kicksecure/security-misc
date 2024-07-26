@@ -91,7 +91,12 @@ output_stat(){
   readarray -t arr <<< "${stat_output_newlined}"
 
   if test "${#arr[@]}" = 0; then
-    log error "Array is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    log error "Array is empty.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
     return 1
   fi
 
@@ -102,10 +107,11 @@ output_stat(){
 
   if [ ! "$file_name" = "$file_name_from_stat" ]; then
     log error "\
-function ${FUNCNAME[1]}:
 File name is different from file name received from stat:
-File name '${file_name}'
-File name from stat: '${file_name_from_stat}'" >&2
+File name: '${file_name}'
+File name from stat: '${file_name_from_stat}'
+line: '${line}'
+" >&2
     return 1
   fi
 
