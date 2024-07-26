@@ -174,7 +174,7 @@ add_nosuid_statoverride_entry() {
   while IFS="" read -r -d "" dummy_line; do
     log info "Test would parse line: '${dummy_line}'"
     should_be_counter=$((should_be_counter + 1))
-  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0)
+  done < <(printf -- "${fso_to_process}" | find -files0-from - -perm /u=s,g=s -print0)
 
   local line
   while IFS="" read -r -d "" file_name; do
@@ -328,7 +328,7 @@ add_nosuid_statoverride_entry() {
     ## /usr/lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/usr/lib/**'.
     ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
     ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
-  done < <(find "${fso_to_process}" -perm /u=s,g=s -print0)
+  done < <(printf -- "${fso_to_process}" | find -files0-from - -perm /u=s,g=s -print0)
 
   ## Sanity test.
   if test ! "${should_be_counter}" = "${counter_actual}"; then
