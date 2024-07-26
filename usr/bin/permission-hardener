@@ -91,7 +91,7 @@ output_stat(){
   readarray -t arr <<< "${stat_output_newlined}"
 
   if test "${#arr[@]}" = 0; then
-    log error "Array is empty.
+    log error "Array length is 0.
 File name: '${file_name}'
 Stat output: '${stat_output}'
 stat_output_newlined: '${stat_output_newlined}'
