@@ -1,3 +1,182 @@
+commit 9231f058911ab9059e91c4c0c1677ef66b5bb666
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 13:31:49 2024 -0400
+
+    todo
+
+commit 4cc1289e89b341e15725d65e405e607ea4784f9f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 13:30:30 2024 -0400
+
+    output
+
+commit 10c73b326f824f783169383888b9464965a53cbb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 12:07:26 2024 -0400
+
+    fix delimiter parsing
+
+commit a16dd8474bf72c2b8c63adc7500140e89d19fedb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:50:30 2024 -0400
+
+    sanity test
+
+commit cc2b335ee692cc04a2c4e298902f3503927b2c50
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:48:32 2024 -0400
+
+    cleanup
+
+commit 6cadc70a96cd709fb7a94abcb14e7dd97c57fdb8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:47:52 2024 -0400
+
+    output
+
+commit cda0d26af7c057dab8edf4897f98c2e8f83e3d56
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:45:13 2024 -0400
+
+    cannot use NULL inside a bash variable
+    
+    use custom delimiter instead
+
+commit 4a5312b3a9419c8b3e07dda2b650d5fbf9a38d34
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:27:51 2024 -0400
+
+    output
+
+commit 3bf1f26c0bb271d63c16b314e4da040abf5b3713
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:20:26 2024 -0400
+
+    downgrade warning of non-existing folders to info
+    
+    to avoid all users by default getting a warning for expected non-existing folders
+
+commit 151ca659a9f5565744ff57f3b581c8c051def148
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:19:15 2024 -0400
+
+    output
+
+commit c9fd2ceb61ea176c731432f02a9fa40652fbddc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:13:35 2024 -0400
+
+    downgrade warning of non-existing files to info
+    
+    to avoid all users by default getting a warning for expected non-existing files
+
+commit 721392901be384014298f59deb57747b825c8b37
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:12:39 2024 -0400
+
+    remove duplicate test
+
+commit 9712b5b4e3cff3eac8ef03b5e562ff89d74ef4b8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:12:18 2024 -0400
+
+    output
+
+commit 00911df5c1de24960ad6d21b4cd99450f2d08a88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:10:56 2024 -0400
+
+    modify call of stat to use NUL delimiter
+    
+    for more robust string parsing
+
+commit d5366835112cc5fabef7ec46a9c582c08121cb14
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:03:28 2024 -0400
+
+    local clean_output_prefix clean_output
+
+commit a6e517736b83c124cf8cec52bac184612a29ad0d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:02:25 2024 -0400
+
+    local stat_output
+
+commit ced02fb9e03e12c7d51923511e7d6a54b09a6274
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 11:01:24 2024 -0400
+
+    add sanity test for file_name output from stat
+
+commit b9dfe70a016e46e1f275918be19890526182cfa2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 10:58:05 2024 -0400
+
+    check first if file_name is empty
+
+commit 1cbda7998196dc04e83c48526d15f9ad5f11e6c9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 10:57:13 2024 -0400
+
+    check first if array is empty before parsing further
+
+commit a077ae54ea050af8828813b781738cba24e27624
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 10:56:08 2024 -0400
+
+    modify call of stat to use NUL delimiter
+    
+    for more robust string parsing
+
+commit 7200e9bd8c793f5ea30c3448fd03fbd38c6292b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 09:15:02 2024 -0400
+
+    output
+
+commit 1b6161c2dcd9a0686503c84cda4c9f6a29fe4e02
+Merge: d2563ed 8be21b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 24 09:13:48 2024 -0400
+
+    Merge remote-tracking branch 'ben-grande/fuzz'
+
+commit 8be21b6eff40fdd3909ef63468463fc52e8bf45f
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jul 23 19:36:12 2024 +0200
+
+    Handle newlines in file names
+
+commit aa99de68d307cd88462665424996d9b730ab5087
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jul 23 18:46:47 2024 +0200
+
+    Log output with defined levels
+
+commit 06fbcdac1de6f1830d911f05a4f7c14fd522fad4
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Tue Jul 23 09:55:02 2024 +0200
+
+    Prettify log messages
+
+commit 7ee1ea2cc7dd62feee3243d64b414130e68d35e9
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Mon Jul 22 17:06:07 2024 +0200
+
+    Unify functions that evaluate commands
+
+commit 9c3566f524f748b9f7c98a36b3f2b1064cdba3ed
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Mon Jul 22 16:01:14 2024 +0200
+
+    Delimit file names with null terminator
+
+commit d2563ed92317a029340dbb83f30da008b01325f2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 21 10:40:14 2024 +0000
+
+    bumped changelog version
+
 commit 64f8b2eb5870664fca06aa060f2f50af358ced55
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 21 06:36:22 2024 -0400
