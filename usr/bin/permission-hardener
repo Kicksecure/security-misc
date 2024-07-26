@@ -177,6 +177,8 @@ add_nosuid_statoverride_entry() {
     log info "Test would parse line: '${dummy_line}'"
     should_be_counter=$((should_be_counter + 1))
   done < <(safe_echo_nonewline "${fso_to_process}" | find -files0-from - -perm /u=s,g=s -print0)
+  ## False positive on SC2185 (find without path argument) #1748
+  ## https://github.com/koalaman/shellcheck/issues/1748
 
   local line
   while IFS="" read -r -d "" file_name; do
