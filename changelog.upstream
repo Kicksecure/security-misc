@@ -1,3 +1,238 @@
+commit 62bb4bc6269a0603c15f1efaad7ca365ea15c9d7
+Merge: 7969e86 886f609
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 11:10:25 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 886f6095dba71d76d5fd98277374417657e0cd31
+Merge: 7969e86 ed33366
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 11:08:30 2024 -0400
+
+    Merge pull request #250 from raja-grewal/Panik-Kalm
+    
+    Add details on "oopes" and kernel panics
+
+commit 7969e8607160eae0cb5a3adddeec8d07c1d6e097
+Merge: e2ae93a 0318f57
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 11:06:13 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 0318f577ab554ae2ac0f9417b18134723ea2b580
+Merge: e2ae93a 4397de0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 11:04:29 2024 -0400
+
+    Merge pull request #246 from raja-grewal/cfi
+    
+    Provide the option to change the default CFI implementation in the future
+
+commit e2ae93a9571f2f0c9077ea61436a540a3be5a894
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:30:45 2024 -0400
+
+    port to safe_echo
+
+commit 8ec23ed7128580ed0092df43945ba55e94163a6d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:28:57 2024 -0400
+
+    echo does not support end-of-options
+
+commit 6096ed1109a0d5a62a844552fee500ebe66071c8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:26:43 2024 -0400
+
+    comment
+
+commit ac41d1cfff8b722248a5ef1dfe38a8c704f04134
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:25:59 2024 -0400
+
+    comment
+
+commit 3b033ceba24e5e14056d54710d782397e5c669df
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:17:24 2024 -0400
+
+    shellcheck
+
+commit 04d9ca1ebe79cae5cce04b6533285b8d1299d692
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 10:16:20 2024 -0400
+
+    use `find` with `safe_echo_nonewline`
+
+commit 6bbf176e3b91f842cf4cdeaf8cb1f4c60e159a0c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 09:33:45 2024 -0400
+
+    consider end-of-options for `find`
+
+commit 794f6a25fa87a9d6d796b07ee06b690ea0badc92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 09:08:29 2024 -0400
+
+    comment
+
+commit 7e0f1a87010674c63963b70c87e903cf27b288ef
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 09:08:04 2024 -0400
+
+    dpkg-statoverride can actually handle '--file-name'.
+
+commit ee037c01a1208b9247c3ae144fa3faa68657ffdb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:58:44 2024 -0400
+
+    Skip file names starting with '--',
+    
+    because this would be interpreted by dpkg-statoverride as an option.
+
+commit 82d401a7de58b74448113bed36c8f0cc073c7f82
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:52:42 2024 -0400
+
+    sanity test
+
+commit 0e661bc688c7222840c9d83fb3ccab6549b3ac11
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:49:14 2024 -0400
+
+    output
+
+commit d144f68d1a06a1153c4178b2f6ba9643dededbb8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:46:08 2024 -0400
+
+    output
+
+commit 05504b9ab251ae6e48b5d28eb5fdcd12d730ea8a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:40:10 2024 -0400
+
+    minor
+
+commit d96c0633d431dafd034ae8d1ae0ffbb59c49be4a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:39:11 2024 -0400
+
+    more use of end of options
+
+commit 8e40c10c319a76e0256c8f135182b0ca7f532f85
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:31:17 2024 -0400
+
+    comment
+
+commit f2c9c2f5d1b59127b22fae4dd4b8bb7a6f98a485
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:26:16 2024 -0400
+
+    output
+
+commit 2b40ea75e9c3f679fd09ae331a56f294c3ac7607
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:24:23 2024 -0400
+
+    cleanup
+
+commit 6f0551b944cbf83d82f7a1a554c4461bc971520b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:23:54 2024 -0400
+
+    refactoring
+
+commit aac450f80836b03478b9e2632afc5a4519f9b37a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:22:04 2024 -0400
+
+    refactoring
+
+commit 30f46790a4df7662926fa43d44ac34c3286dd590
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:21:21 2024 -0400
+
+    use end of options whenever possible
+
+commit 95722d6d7902367afb44175263a8628df9ad01b2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:13:33 2024 -0400
+
+    use long option name
+
+commit 19f131c7426aaa5199504e75aba180a7771a2520
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 08:07:08 2024 -0400
+
+    code simplification
+    
+    https://github.com/Kicksecure/security-misc/pull/251
+
+commit 9694cf0cd1a225c68d45814e0f4d6995659a0066
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 07:43:59 2024 -0400
+
+    output
+
+commit bdfe764f9d805b14dca4196e623e81ce95145d9b
+Merge: 9f13523 652a06c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 07:19:05 2024 -0400
+
+    Merge remote-tracking branch 'ben-grande/stat-dedup'
+
+commit 9f135231ccdc3f6eba27db2e1794eff23f03fc0f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 06:43:01 2024 -0400
+
+    no longer disable Intel ME related kernel modules
+    
+    because that might break firmware updates
+    
+    This reverts commit 64f8b2eb5870664fca06aa060f2f50af358ced55.
+    
+    https://github.com/Kicksecure/security-misc/issues/239
+
+commit f616da7c0690fc0dffc21be59174ed8754ec55fb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 26 09:40:59 2024 +0000
+
+    bumped changelog version
+
+commit 4397de0138dac47aee66570fcfe4ef38c8179321
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Jul 26 11:30:46 2024 +1000
+
+    Update description of `cfi=kcfi` kerenel parameter
+
+commit 652a06c8e9f841e043cc5b5fb030b149cb70dc85
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Thu Jul 25 12:37:21 2024 +0200
+
+    Only print SUID or SGID values when set
+
+commit 3b8a3f9b832ee1eee959fbcce8b5eed417d4712e
+Author: Ben Grande <ben.grande.b@gmail.com>
+Date:   Thu Jul 25 12:20:16 2024 +0200
+
+    Unduplicate stat call
+
+commit ed3336694ce35614ab47db42bce29d3c69d46752
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 25 10:28:27 2024 +1000
+
+    Provide the option to immediately reboot on a kernel panics
+
+commit 3926b91dcf371377d38c747e5c7718ac2fed3c83
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 25 10:26:23 2024 +1000
+
+    Add documentation on `sysctl kernel.panic_on_oops=1`
+
 commit 9231f058911ab9059e91c4c0c1677ef66b5bb666
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 13:31:49 2024 -0400
@@ -128,6 +363,12 @@ Date:   Wed Jul 24 10:56:08 2024 -0400
     
     for more robust string parsing
 
+commit 1135d34ab334c9b39e51a147dc94df568f982512
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 24 23:33:36 2024 +1000
+
+    Reword description of `cfi=kcfi` kerenel parameter
+
 commit 7200e9bd8c793f5ea30c3448fd03fbd38c6292b5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 09:15:02 2024 -0400
@@ -159,6 +400,12 @@ Date:   Tue Jul 23 09:55:02 2024 +0200
 
     Prettify log messages
 
+commit fb494c2ba5b7fd0f864a59896710d9cddf92b458
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Tue Jul 23 13:12:13 2024 +1000
+
+    Update docs relating to the `cfi=kcfi` kernel parameter
+
 commit 7ee1ea2cc7dd62feee3243d64b414130e68d35e9
 Author: Ben Grande <ben.grande.b@gmail.com>
 Date:   Mon Jul 22 17:06:07 2024 +0200
@@ -170,6 +417,12 @@ Author: Ben Grande <ben.grande.b@gmail.com>
 Date:   Mon Jul 22 16:01:14 2024 +0200
 
     Delimit file names with null terminator
+
+commit d6fc71dba78a9c871015ebdde3bef61943369b47
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Jul 22 17:26:00 2024 +1000
+
+    Add option to switch (back) to using kCFI in the future
 
 commit d2563ed92317a029340dbb83f30da008b01325f2
 Author: Patrick Schleizer <adrelanos@whonix.org>
