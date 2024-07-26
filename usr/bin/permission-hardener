@@ -112,7 +112,7 @@ File name from stat: '${file_name_from_stat}'" >&2
     return 1
   fi
   if test -z "${existing_owner}"; then
-    log error "Existing owner is empty. Stat output: '${stat_output}' | line: '${line}'" >&2
+    log error "Existing owner is empty. Stat output: '${stat_output}', line: '${line}'" >&2
     return 1
   fi
   if test -z "${existing_group}"; then
