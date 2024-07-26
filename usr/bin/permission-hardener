@@ -261,7 +261,7 @@ add_nosuid_statoverride_entry() {
         log info "matchwhite_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
-      if echo -- "${file_name}" | grep --quiet --fixed-strings -- "${matchwhite_list_entry}"; then
+      if echo "${file_name}" | grep --quiet --fixed-strings -- "${matchwhite_list_entry}"; then
         is_match_whitelisted="true"
         log info "is_match_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the match_white_list.
@@ -276,7 +276,7 @@ add_nosuid_statoverride_entry() {
         log info "disablematch_list_entry unset. Skipping. file_name: '${file_name}'"
         continue
       fi
-      if echo -- "${file_name}" | grep --quiet --fixed-strings -- "${disablematch_list_entry}"; then
+      if echo "${file_name}" | grep --quiet --fixed-strings -- "${disablematch_list_entry}"; then
         is_disable_whitelisted="true"
         log info "is_disable_whitelisted=true. Skipping. file_name: '${file_name}'"
         ## Stop looping through the disablewhitelist.
@@ -377,7 +377,7 @@ set_file_perms() {
       log error "Cannot parse line: '${line}'" >&2
       ## Debugging.
       du -hs /tmp || true
-      echo -- "test -w /tmp: '$(test -w /tmp)'" >&2 || true
+      echo "test -w /tmp: '$(test -w /tmp)'" >&2 || true
       ## Safer to exit with error in this case.
       ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
       exit "${exit_code}"
@@ -476,7 +476,7 @@ set_file_perms() {
       if test "${dpkg_statoverride_list_exit_code}" = "0"; then
         local grep_line
         grep_line="${owner_from_config} ${group_from_config} ${mode_for_grep} ${fso_without_trailing_slash}"
-        if echo -- "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings -- "${grep_line}"; then
+        if echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings -- "${grep_line}"; then
           log info "The owner/group/mode matches fso entry. No further action required."
         else
           log info "The owner/group/mode does not match fso entry, updating entry."
@@ -576,9 +576,9 @@ parse_config_folder() {
   ## receive SIGPIPE, which then fails the pipeline since 'set -o pipefail' is
   ## set for this script.
   passwd_file_contents_temp="$(getent passwd)"
-  echo -- "${passwd_file_contents_temp}" | tee -- "${store_dir}/private/passwd" >/dev/null
+  echo "${passwd_file_contents_temp}" | tee -- "${store_dir}/private/passwd" >/dev/null
   group_file_contents_temp="$(getent group)"
-  echo -- "${group_file_contents_temp}" | tee -- "${store_dir}/private/group" >/dev/null
+  echo "${group_file_contents_temp}" | tee -- "${store_dir}/private/group" >/dev/null
 
   #passwd_file_contents="$(cat "${store_dir}/private/passwd")"
   #group_file_contents="$(cat "${store_dir}/private/group")"
@@ -641,9 +641,9 @@ spare() {
       if test "${remove_file}" = "${file_name}"; then
         verbose="--verbose"
         remove_one=true
-        echo -- "${remove_one}" | tee -- "${store_dir}/remove_one" >/dev/null
+        echo "${remove_one}" | tee -- "${store_dir}/remove_one" >/dev/null
       else
-        echo -- "false" | tee -- "${store_dir}/remove_one" >/dev/null
+        echo "false" | tee -- "${store_dir}/remove_one" >/dev/null
         continue
       fi
     fi
@@ -712,7 +712,7 @@ check_root(){
 }
 
 usage(){
-  echo -- "Usage: ${0##*/} enable
+  echo "Usage: ${0##*/} enable
        ${0##*/} disable [FILE|all]
 
 Examples:
