@@ -1,8 +1,44 @@
+commit d036094089e3e3a74df981c50882481273fcb6c0
+Merge: e60ce50 0f86fbd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 28 15:44:40 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 0f86fbd8ceea3157ee035eb9f4a0ff13024f1bc9
+Merge: e60ce50 73979d4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 28 15:43:54 2024 -0400
+
+    Merge pull request #242 from raja-grewal/ptrace
+    
+    Disable the usage of `ptrace()` by all processes
+
+commit e60ce50d30c8981f13d8bab1d6ca8b8efb9d8928
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jul 27 16:13:35 2024 +0000
+
+    bumped changelog version
+
 commit e86b2e7f8fcda5727b158579610cb6a0354e89cf
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 27 12:13:18 2024 -0400
 
     output
+
+commit 73979d4342dae2017be52d5182bb66fa28be398d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 27 13:28:59 2024 +1000
+
+    Link to `ptrace()` discussion
+
+commit 1c9f33f90606fb930744f1b9afc11caf87626194
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 27 13:24:08 2024 +1000
+
+    Revert "Disable the usage of `ptrace()` by all processes"
+    
+    This reverts commit b04828f858fa6d101099773d3156841fd6d33b6f.
 
 commit 330cf14eab248d035fa467dba4f7bc3eb92a33bb
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -557,6 +593,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Jul 18 12:19:27 2024 +1000
 
     Typos
+
+commit b04828f858fa6d101099773d3156841fd6d33b6f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 11:01:41 2024 +1000
+
+    Disable the usage of `ptrace()` by all processes
 
 commit d454f36c63bd653e47353fb1c93107b2d5584fe2
 Author: Patrick Schleizer <adrelanos@whonix.org>
