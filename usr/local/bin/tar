@@ -1,0 +1,5 @@
+#!/bin/sh
+## tar stores usernames and groups
+## mitigate showing user/group in metadata
+## set user and group to user/user
+exec /bin/tar --owner="user" --group="user" "$@"
