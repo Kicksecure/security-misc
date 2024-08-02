@@ -145,6 +145,8 @@ configuration file.
   safety error detector which can identify heap out-of-bounds access, use-after-free,
   and invalid-free errors.
 
+- Provide the option to disable 32 bit vDSO mappings.
+
 - Provide the option to use kCFI as the default CFI implementation since it may be
   slightly more resilient to attacks that are able to write arbitrary executables
   in memory (when using Linux kernel version >= 6.2).
