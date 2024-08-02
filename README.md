@@ -141,6 +141,10 @@ configuration file.
 
 - Provide the option to modify machine check exception handler.
 
+- Provide the option to enable the kernel Electric-Fence sampling-based memory
+  safety error detector which can identify heap out-of-bounds access, use-after-free,
+  and invalid-free errors.
+
 - Provide the option to use kCFI as the default CFI implementation since it may be
   slightly more resilient to attacks that are able to write arbitrary executables
   in memory (when using Linux kernel version >= 6.2).
