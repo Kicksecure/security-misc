@@ -47,6 +47,9 @@ space, user space, core dumps, and swap space.
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
+- Provide the option to disable the use of legacy TIOCSTI operation which can be
+  used to inject keypresses.
+
 - Disable asynchronous I/O as `io_uring` has been the source
   of numerous kernel exploits (when using Linux kernel version >= 6.6).
 
