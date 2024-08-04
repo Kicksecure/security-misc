@@ -36,8 +36,8 @@ space, user space, core dumps, and swap space.
 - Entirely disable the SysRq key so that the Secure Attention Key (SAK)
   can no longer be utilized. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
-- Provide the option to disable unprivileged user namespaces as they can lead to
-  substantial privilege escalation.
+- Restrict user namespaces to `CAP_SYS_ADMIN` as they can lead to substantial
+  privilege escalation.
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
