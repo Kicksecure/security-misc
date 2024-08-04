@@ -121,6 +121,9 @@ configuration file.
 - Disable merging of slabs with similar size, which reduces the risk of
   triggering heap overflows and limits influencing slab cache layout.
 
+- Provide the option to enable sanity checks and red zoning via slab debugging.
+  Enabling this feature will implicitly disable kernel pointer hashing.
+
 - Enable memory zeroing at both allocation and free time, which mitigates some
   use-after-free vulnerabilities by erasing sensitive information in memory.
 
