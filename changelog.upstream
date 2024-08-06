@@ -1,3 +1,174 @@
+commit 967f9e257b09bc73ddb579292d507f7cb9832643
+Merge: fa90918 a25aaf9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 09:57:56 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit a25aaf900a12666046278a9fab6933b3d5670679
+Merge: 6bc039a 8559079
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 09:55:20 2024 -0400
+
+    Merge pull request #260 from raja-grewal/vdso32
+    
+    Enable `vdso32=0`
+
+commit 6bc039a430289342f06857a52a5f13829d6e50f5
+Merge: ce60d56 d102ec1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 09:52:56 2024 -0400
+
+    Merge pull request #259 from raja-grewal/kfence
+    
+    Enable `kfence.sample_interval=100`
+
+commit ce60d5615fe99e41c48d459f562d581a688c295a
+Merge: b027842 c0d140f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 09:48:08 2024 -0400
+
+    Merge pull request #258 from raja-grewal/legacy_tiocsti
+    
+    Enable `dev.tty.legacy_tiocsti=0`
+
+commit b0278428a73cd3d329aaa36626005e0c593331f0
+Merge: fa90918 aa34d86
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 09:39:04 2024 -0400
+
+    Merge pull request #257 from raja-grewal/slab_debug
+    
+    Enable `slab_debug=FZ`
+
+commit 8559079312adb4ed92e5f478120b408dfe7a1124
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 5 15:10:02 2024 +1000
+
+    Enable `vdso32=0`
+
+commit d102ec19972865032f12f90bffe3e592546f0267
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 5 15:07:56 2024 +1000
+
+    Enable `kfence.sample_interval=100`
+
+commit c0d140f2211e6490d13e3cd327005027c668905f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 5 15:06:34 2024 +1000
+
+    Enable `dev.tty.legacy_tiocsti=0`
+
+commit aa34d86598f5b846b007730104e4c99c59f9984d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 5 14:27:17 2024 +1000
+
+    Enable `slab_debug=FZ`
+
+commit fa9091869d417c6494840d0cb32623037d70c8be
+Merge: 06f0c27 725118c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:20:36 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 725118c5759b45118bbd2804492526ea2a7c1a81
+Merge: 6d97408 6d211fa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:19:52 2024 -0400
+
+    Merge pull request #243 from raja-grewal/namespaces
+    
+    Restrict unprivileged user namespaces
+
+commit 06f0c27128a66c1074f405de3139651519e48204
+Merge: 8abc5ae 6d97408
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:15:01 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 6d97408a6d2f002461ae6ca1d647fbf24bf1b99e
+Merge: 8abc5ae 6f14d68
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:11:46 2024 -0400
+
+    Merge pull request #255 from raja-grewal/SLUB
+    
+    Restore option to enable `slub_debug=FZ`
+
+commit 8abc5ae8f0f152c68f855f0e8d993880589c5d5c
+Merge: de6f3ea eab66da
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:09:52 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit eab66dad0994e408c1beaade3fdcf2cd1d605b31
+Merge: de6f3ea ca2179b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 4 16:08:32 2024 -0400
+
+    Merge pull request #254 from raja-grewal/patch
+    
+    Updates to kernel and `sysctl` hardening
+
+commit 6f14d68cdcad3784311e33029eba6906ea0784c2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 15:12:15 2024 +1000
+
+    Update legacy name `slub_debug` -> `slab_debug`
+
+commit 22b6cee80c74aff3d0f9cd36822ae88f8fa8e601
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 15:11:14 2024 +1000
+
+    Add details about `slub_debug`
+
+commit b77d1a2b980ae20158aa628eec67b016282d0a40
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 14:49:48 2024 +1000
+
+    Revert "Remove the optional `slub_debug` parameter since it is no longer recommended"
+    
+    This reverts commit 48e1ac416314d2c66f3a0d5044a3c51cb6fb4093.
+
+commit ca2179bb6a01e3ebbb1e04e3507cc305f25bca4e
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 00:25:49 2024 +1000
+
+    Provide the option to disable legacy TIOCSTI operation
+
+commit 52aeacb4da4a8458b0ffdc1ade4094a178def6f4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 00:13:38 2024 +1000
+
+    Provide option to disable 32 bit vDSO mappings
+
+commit 9099ecce8ae12352f2b739d3d7adf6069488ff49
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 00:12:50 2024 +1000
+
+    Provide option to enable the kernel Electric-Fence
+
+commit f6a16258a116ce5c5f4f6bad9d8ab9b6e1ec6bb7
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 00:11:06 2024 +1000
+
+    Add references to KSPP
+
+commit e53d24fc48b51a21fc182cc59890e97a1d7ac647
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 3 00:09:42 2024 +1000
+
+    Add missing GRUB command lines for disabled boot parameters
+
+commit de6f3ea74a5a1408e4351c955ecb7010825364c5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jul 28 20:50:22 2024 +0000
+
+    bumped changelog version
+
 commit d036094089e3e3a74df981c50882481273fcb6c0
 Merge: e60ce50 0f86fbd
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -593,6 +764,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Jul 18 12:19:27 2024 +1000
 
     Typos
+
+commit 6d211faf591608ea6e7f484e8bc69dd567877abf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 18 11:04:54 2024 +1000
+
+    Restrict unprivileged user namespaces
 
 commit b04828f858fa6d101099773d3156841fd6d33b6f
 Author: Raja Grewal <rg_public@proton.me>
