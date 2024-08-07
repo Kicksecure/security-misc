@@ -214,10 +214,10 @@ disabling should first be blacklisted for a suitable amount of time.
   Satellite Systems (GNSS).
 
 - Optional - Intel Management Engine (ME): Provides some disabling of the interface
-  between the Intel ME and the OS. May lead to breakages in places such as security,
-  power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
+  between the Intel ME and the OS. May lead to breakages in places such as firmware
+  updates, security, power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
-- Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
+- Intel Platform Monitoring Technology (PMT) Telemetry: Disable some functionality
   of the Intel PMT components.
 
 - Network File Systems: Disable uncommon and legacy network file systems.
