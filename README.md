@@ -305,13 +305,24 @@ See:
 
 ### Bluetooth Status: Enabled but Defaulted to Off
 
-- **Default Behavior**: Although Bluetooth capability is 'enabled' in the kernel, security-misc deviates from the usual behavior by starting with Bluetooth turned off at system start. This setting remains until the user explicitly opts to activate Bluetooth.
+- **Default Behavior**: Although Bluetooth capability is 'enabled' in the kernel,
+  security-misc deviates from the usual behavior by starting with Bluetooth
+  turned off at system start. This setting remains until the user explicitly opts
+  to activate Bluetooth.
 
-- **User Control**: Users have the freedom to easily switch Bluetooth on and off in the usual way, exercising their own discretion. This can be done via the Bluetooth toggle through the usual way, that is either through GUI settings application or command line commands.
+- **User Control**: Users have the freedom to easily switch Bluetooth on and off
+  in the usual way, exercising their own discretion. This can be done via the
+  Bluetooth toggle through the usual way, that is either through GUI settings
+  application or command line commands.
 
-- **Enhanced Privacy Settings**: We enforce more private defaults for Bluetooth connections. This includes the use of private addresses and strict timeout settings for discoverability and visibility.
+- **Enhanced Privacy Settings**: We enforce more private defaults for Bluetooth
+  connections. This includes the use of private addresses and strict timeout
+  settings for discoverability and visibility.
 
-- **Security Considerations**: Despite these measures, it's important to note that Bluetooth technology, by its nature, may still be prone to exploits due to its history of security vulnerabilities. Thus, we recommend users to opt-out of using Bluetooth when possible.
+- **Security Considerations**: Despite these measures, it's important to note that
+  Bluetooth technology, by its nature, may still be prone to exploits due to its
+  history of security vulnerabilities. Thus, we recommend users to opt-out of
+  using Bluetooth when possible.
 
 ### Configuration Details
 
@@ -320,15 +331,25 @@ See:
 
 ### Understanding Bluetooth Terms
 
-- **Disabling Bluetooth**: This means the absence of the Bluetooth kernel module. When disabled, Bluetooth is non-existent in the system - it cannot be seen, set, configured, or interacted with in any way.
+- **Disabling Bluetooth**: This means the absence of the Bluetooth kernel module.
+  When disabled, Bluetooth is non-existent in the system - it cannot be seen, set,
+  configured, or interacted with in any way.
 
-- **Turning Bluetooth On/Off**: This refers to a software toggle. Normally, on Debian systems, Bluetooth is 'on' when the system boots up. It actively searches for known devices to auto-connect and may be discoverable or visible under certain conditions. Our default ensures that Bluetooth is off on startup. However, it remains 'enabled' in the kernel, meaning the kernel can use the Bluetooth protocol and has the necessary modules.
+- **Turning Bluetooth On/Off**: This refers to a software toggle. Normally, on
+  Debian systems, Bluetooth is 'on' when the system boots up. It actively searches
+  for known devices to auto-connect and may be discoverable or visible under certain
+  conditions. Our default ensures that Bluetooth is off on startup. However, it
+  remains 'enabled' in the kernel, meaning the kernel can use the Bluetooth protocol
+  and has the necessary modules.
 
 ### Quick Toggle Guide
 
-- **Turning Bluetooth On**: Simply click the Bluetooth button in the settings application or on the tray, and switch the toggle. It's a straightforward action that can be completed in less than a second.
+- **Turning Bluetooth On**: Simply click the Bluetooth button in the settings
+  application or on the tray, and switch the toggle. It's a straightforward action
+  that can be completed in less than a second.
 
-- **Turning Bluetooth Off**: Follow the same procedure as turning it on but switch the toggle to the off position.
+- **Turning Bluetooth Off**: Follow the same procedure as turning it on but switch
+  the toggle to the off position.
 
 ## Entropy collection improvements
 
