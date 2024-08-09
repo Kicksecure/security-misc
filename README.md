@@ -56,6 +56,8 @@ space, user space, core dumps, and swap space.
   enables programs to inspect and modify other active processes. Provide the
   option to entirely disable the use of `ptrace()` for all processes.
 
+- Maximize the bits of entropy used for mmap ASLR across all architectures.
+
 - Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
 - Disallow unintentional writes to files in world-writable directories unless
@@ -146,6 +148,8 @@ configuration file.
 
 - Provide the option to modify machine check exception handler.
 
+- Disallow sensitive kernel information leaks in the console during boot.
+
 - Enable the kernel Electric-Fence sampling-based memory safety error detector
   which can identify heap out-of-bounds access, use-after-free, and invalid-free errors.
 
@@ -168,9 +172,6 @@ configuration file.
   being initialized.
 
 - Provide the option to disable the entire IPv6 stack to reduce attack surface.
-
-Disallow sensitive kernel information leaks in the console during boot. See
-the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
 
 ### Kernel Modules
 
