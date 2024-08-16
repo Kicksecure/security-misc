@@ -214,9 +214,6 @@ modules from automatically starting.
 
 - CD-ROM/DVD: Blacklist modules required for CD-ROM/DVD devices.
 
-- Framebuffer Drivers: Blacklisted as they are well-known to be buggy, cause
-  kernel panics, and are generally only used by legacy devices.
-
 - Miscellaneous: Blacklist an assortment of other modules to prevent them from
   automatically loading.
 
@@ -234,14 +231,17 @@ disabling should first be blacklisted for a suitable amount of time.
 
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
+- Framebuffer (fbdev): Disabled as drivers are well-known to be buggy, cause
+  kernel panics, and are generally only used by legacy devices.
+
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
 
 - Optional - Intel Management Engine (ME): Provides some disabling of the interface
-  between the Intel ME and the OS. May lead to breakages in places such as security,
-  power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
+  between the Intel ME and the OS. May lead to breakages in places such as firmware
+  updates, security, power management, display, and DRM. See discussion: https://github.com/Kicksecure/security-misc/issues/239
 
-- Intel Platform Monitoring Technology Telemetry (PMT): Disable some functionality
+- Intel Platform Monitoring Technology (PMT) Telemetry: Disable some functionality
   of the Intel PMT components.
 
 - Network File Systems: Disable uncommon and legacy network file systems.
@@ -250,7 +250,8 @@ disabling should first be blacklisted for a suitable amount of time.
   are disabled.
 
 - Miscellaneous: Disable an assortment of other modules such as those required
-  for amateur radio, floppy disks, and vivid.
+  for amateur radio, floppy disks, and vivid. Also disable legacy drivers that
+  have been entirely replaced by newer drivers.
 
 - Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
 
