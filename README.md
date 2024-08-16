@@ -79,9 +79,8 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 - Enable reverse path filtering (source validation) of packets received
   from all interfaces to prevent IP spoofing.
 
-- Disable ICMP redirect acceptance and redirect sending messages to
-  prevent man-in-the-middle attacks and minimize information disclosure. If
-  ICMP redirect messages are permitted, only do so from approved gateways.
+- Disable ICMP redirect acceptance and redirect sending messages to prevent
+  man-in-the-middle attacks and minimize information disclosure.
 
 - Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 

@@ -1,3 +1,31 @@
+commit 9e61e37c17524b57f185b796f2ac19ba193205a8
+Merge: 89e816d dfd1c97
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 15 13:47:33 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit dfd1c97168249b229495cbd873d4d8493e244663
+Merge: 89e816d ec3038c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 15 13:46:30 2024 -0400
+
+    Merge pull request #248 from raja-grewal/secure_redirects
+    
+    Re-enable (default) `secure_redirects` for ICMP redirect messages
+
+commit ec3038c7bc625f6c8eddb753ffe295ff2697a717
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 7 13:48:53 2024 +1000
+
+    Clarify `secure_redirects`
+
+commit 89e816dda6c5a00512b276071c4d9fe108ee63b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 6 14:01:39 2024 +0000
+
+    bumped changelog version
+
 commit 967f9e257b09bc73ddb579292d507f7cb9832643
 Merge: fa90918 a25aaf9
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -64,6 +92,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Mon Aug 5 14:27:17 2024 +1000
 
     Enable `slab_debug=FZ`
+
+commit 4f7f82016015f61002ac8f778b61968c572dc7dc
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 5 14:16:33 2024 +1000
+
+    Add reference
 
 commit fa9091869d417c6494840d0cb32623037d70c8be
 Merge: 06f0c27 725118c
@@ -196,6 +230,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 27 12:13:18 2024 -0400
 
     output
+
+commit 144545762674e914046bb94100237329320e8ece
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 27 14:00:30 2024 +1000
+
+    Show details regarding `secure_redirects` (again)
 
 commit 73979d4342dae2017be52d5182bb66fa28be398d
 Author: Raja Grewal <rg_public@proton.me>
@@ -600,6 +640,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 09:13:48 2024 -0400
 
     Merge remote-tracking branch 'ben-grande/fuzz'
+
+commit 88c88187f2909322211cc08598717068ea7cf1d1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Jul 24 17:26:50 2024 +1000
+
+    Re-enable (default) `secure_redirects` for ICMP redirect messages
 
 commit 8be21b6eff40fdd3909ef63468463fc52e8bf45f
 Author: Ben Grande <ben.grande.b@gmail.com>
