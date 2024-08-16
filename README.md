@@ -42,26 +42,31 @@ space, user space, core dumps, and swap space.
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
 - Force the kernel to panic on "oopses" that can potentially indicate and thwart
-  certain kernel exploitation attempts. Provide the option to reboot immediately
-  on a kernel panic.
-
-- Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
+  certain kernel exploitation attempts. Optional - Force immediate reboot on the
+  occurrence of a kernel panic.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
-- Disable asynchronous I/O as `io_uring` has been the source
-  of numerous kernel exploits (when using Linux kernel version >= 6.6).
+- Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
+  the source of numerous kernel exploits.
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-  enables programs to inspect and modify other active processes. Provide the
-  option to entirely disable the use of `ptrace()` for all processes.
+  enables programs to inspect and modify other active processes. Optional - Disable
+  usage of `ptrace()` by all processes.
+
+- Maximize the bits of entropy used for mmap ASLR across all architectures.
 
 - Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
 - Disallow unintentional writes to files in world-writable directories unless
   they are owned by the directory owner to mitigate some data spoofing attacks.
 
+- Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
+
 - Increase the maximum number of memory map areas a process is able to utilize.
+
+- Disallow registering interpreters for various (miscellaneous) binary formats based
+  on a magic number or their file extension to prevent unintended code execution.
 
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
@@ -89,15 +94,15 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 - Do not accept IPv6 router advertisements and solicitations.
 
-- Provide the option to disable SACK and DSACK as they have historically been
-  a known vector for exploitation.
+- Optional - Disable SACK and DSACK as they have historically been a known
+  vector for exploitation.
 
 - Disable TCP timestamps as they can allow detecting the system time.
 
-- Provide the option to log packets with impossible source or destination
-  addresses to enable further inspection and analysis.
+- Optional - Log packets with impossible source or destination addresses to
+  enable further inspection and analysis.
 
-- Provide the option to enable IPv6 Privacy Extensions.
+- Optional - Enable IPv6 Privacy Extensions.
 
 ### mmap ASLR
 
@@ -143,22 +148,27 @@ configuration file.
 - Force kernel panics on "oopses" to potentially indicate and thwart certain
   kernel exploitation attempts.
 
-- Provide the option to modify machine check exception handler.
+- Optional - Modify the machine check exception handler.
+
+- Prevent sensitive kernel information leaks in the console during boot.
 
 - Enable the kernel Electric-Fence sampling-based memory safety error detector
   which can identify heap out-of-bounds access, use-after-free, and invalid-free errors.
 
 - Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
 
-- Provide the option to use kCFI as the default CFI implementation since it may be
-  slightly more resilient to attacks that are able to write arbitrary executables
-  in memory (when using Linux kernel version >= 6.2).
+- Optional - Use kCFI as the default CFI implementation (when using Linux kernel >= 6.2)
+  since it may be slightly more resilient to attacks that are able to write
+  arbitrary executables in memory.
 
-- Provide the option to disable support for all x86 processes and syscalls to reduce
-  attack surface (when using Linux kernel version >= 6.7).
+- Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
+  to reduce attack surface.
 
-- Enable strict IOMMU translation to protect against DMA attacks and disable
-  the busmaster bit on all PCI bridges during the early boot process.
+- Enable strict IOMMU translation to protect against some DMA attacks via the use
+  of both CPU manufacturer-specific drivers and kernel settings.
+
+- Clear the busmaster bit on all PCI bridges during the EFI hand-off, which disables
+  DMA before the IOMMU is configured. May cause boot failure on certain hardware.
 
 - Do not credit the CPU or bootloader as entropy sources at boot in order to
   maximize the absolute quantity of entropy in the combined pool.
@@ -166,10 +176,7 @@ configuration file.
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
-- Provide the option to disable the entire IPv6 stack to reduce attack surface.
-
-Disallow sensitive kernel information leaks in the console during boot. See
-the `/etc/default/grub.d/41_quiet_boot.cfg` configuration file.
+- Optional - Disable the entire IPv6 stack to reduce attack surface.
 
 ### Kernel Modules
 
@@ -304,13 +311,24 @@ See:
 
 ### Bluetooth Status: Enabled but Defaulted to Off
 
-- **Default Behavior**: Although Bluetooth capability is 'enabled' in the kernel, security-misc deviates from the usual behavior by starting with Bluetooth turned off at system start. This setting remains until the user explicitly opts to activate Bluetooth.
+- **Default Behavior**: Although Bluetooth capability is 'enabled' in the kernel,
+  security-misc deviates from the usual behavior by starting with Bluetooth
+  turned off at system start. This setting remains until the user explicitly opts
+  to activate Bluetooth.
 
-- **User Control**: Users have the freedom to easily switch Bluetooth on and off in the usual way, exercising their own discretion. This can be done via the Bluetooth toggle through the usual way, that is either through GUI settings application or command line commands.
+- **User Control**: Users have the freedom to easily switch Bluetooth on and off
+  in the usual way, exercising their own discretion. This can be done via the
+  Bluetooth toggle through the usual way, that is either through GUI settings
+  application or command line commands.
 
-- **Enhanced Privacy Settings**: We enforce more private defaults for Bluetooth connections. This includes the use of private addresses and strict timeout settings for discoverability and visibility.
+- **Enhanced Privacy Settings**: We enforce more private defaults for Bluetooth
+  connections. This includes the use of private addresses and strict timeout
+  settings for discoverability and visibility.
 
-- **Security Considerations**: Despite these measures, it's important to note that Bluetooth technology, by its nature, may still be prone to exploits due to its history of security vulnerabilities. Thus, we recommend users to opt-out of using Bluetooth when possible.
+- **Security Considerations**: Despite these measures, it's important to note that
+  Bluetooth technology, by its nature, may still be prone to exploits due to its
+  history of security vulnerabilities. Thus, we recommend users to opt-out of
+  using Bluetooth when possible.
 
 ### Configuration Details
 
@@ -319,15 +337,25 @@ See:
 
 ### Understanding Bluetooth Terms
 
-- **Disabling Bluetooth**: This means the absence of the Bluetooth kernel module. When disabled, Bluetooth is non-existent in the system - it cannot be seen, set, configured, or interacted with in any way.
+- **Disabling Bluetooth**: This means the absence of the Bluetooth kernel module.
+  When disabled, Bluetooth is non-existent in the system - it cannot be seen, set,
+  configured, or interacted with in any way.
 
-- **Turning Bluetooth On/Off**: This refers to a software toggle. Normally, on Debian systems, Bluetooth is 'on' when the system boots up. It actively searches for known devices to auto-connect and may be discoverable or visible under certain conditions. Our default ensures that Bluetooth is off on startup. However, it remains 'enabled' in the kernel, meaning the kernel can use the Bluetooth protocol and has the necessary modules.
+- **Turning Bluetooth On/Off**: This refers to a software toggle. Normally, on
+  Debian systems, Bluetooth is 'on' when the system boots up. It actively searches
+  for known devices to auto-connect and may be discoverable or visible under certain
+  conditions. Our default ensures that Bluetooth is off on startup. However, it
+  remains 'enabled' in the kernel, meaning the kernel can use the Bluetooth protocol
+  and has the necessary modules.
 
 ### Quick Toggle Guide
 
-- **Turning Bluetooth On**: Simply click the Bluetooth button in the settings application or on the tray, and switch the toggle. It's a straightforward action that can be completed in less than a second.
+- **Turning Bluetooth On**: Simply click the Bluetooth button in the settings
+  application or on the tray, and switch the toggle. It's a straightforward action
+  that can be completed in less than a second.
 
-- **Turning Bluetooth Off**: Follow the same procedure as turning it on but switch the toggle to the off position.
+- **Turning Bluetooth Off**: Follow the same procedure as turning it on but switch
+  the toggle to the off position.
 
 ## Entropy collection improvements
 
