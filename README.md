@@ -45,8 +45,6 @@ space, user space, core dumps, and swap space.
   certain kernel exploitation attempts. Optional - Force immediate reboot on the
   occurrence of a kernel panic.
 
-- Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
-
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
 - Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
@@ -62,6 +60,8 @@ space, user space, core dumps, and swap space.
 
 - Disallow unintentional writes to files in world-writable directories unless
   they are owned by the directory owner to mitigate some data spoofing attacks.
+
+- Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
 - Increase the maximum number of memory map areas a process is able to utilize.
 
