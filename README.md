@@ -63,6 +63,9 @@ space, user space, core dumps, and swap space.
 
 - Increase the maximum number of memory map areas a process is able to utilize.
 
+- Disallow registering interpreters for various (miscellaneous) binary formats based
+  on a magic number or their file extension to prevent unintended code execution.
+
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
 
