@@ -161,8 +161,11 @@ configuration file.
 - Provide the option to disable support for all x86 processes and syscalls to reduce
   attack surface (when using Linux kernel version >= 6.7).
 
-- Enable strict IOMMU translation to protect against DMA attacks and disable
-  the busmaster bit on all PCI bridges during the early boot process.
+- Enable strict IOMMU translation to protect against some DMA attacks via the use
+  of both CPU manufacturer-specific drivers and kernel settings.
+
+- Clear the busmaster bit on all PCI bridges during the EFI hand-off, which disables
+  DMA before the IOMMU is configured. May cause boot failure on certain hardware.
 
 - Do not credit the CPU or bootloader as entropy sources at boot in order to
   maximize the absolute quantity of entropy in the combined pool.
