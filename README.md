@@ -145,9 +145,9 @@ configuration file.
 - Force kernel panics on "oopses" to potentially indicate and thwart certain
   kernel exploitation attempts.
 
-- Provide the option to modify machine check exception handler.
+- Provide the option to modify the machine check exception handler.
 
-- Disallow sensitive kernel information leaks in the console during boot.
+- Prevent sensitive kernel information leaks in the console during boot.
 
 - Enable the kernel Electric-Fence sampling-based memory safety error detector
   which can identify heap out-of-bounds access, use-after-free, and invalid-free errors.
