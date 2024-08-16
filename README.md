@@ -37,7 +37,7 @@ space, user space, core dumps, and swap space.
   can no longer be utilized. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
 - Restrict user namespaces to `CAP_SYS_ADMIN` as they can lead to substantial
-  privilege escalation.
+  privilege escalation. Optional - Disable all use of user namespaces.
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
