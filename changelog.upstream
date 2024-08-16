@@ -1,3 +1,94 @@
+commit 40b12f5a2a4a40d7033569b11ad4e1c228e7389b
+Merge: 12296c6 305467c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 04:30:29 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 305467c652af933bb5aa5a677b10a992a5f19cab
+Merge: 12296c6 a5373af
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 04:25:43 2024 -0400
+
+    Merge pull request #245 from raja-grewal/blacklist_to_disable
+    
+    Update `/etc/modprobe.d/*`
+
+commit 12296c68dc0aaa3703e1c36f854a02de8db412fe
+Merge: 4bc12b0 036bcea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 04:22:43 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 036bcea4e6757de094fcafdadcf56aaa90729d79
+Merge: ef60c5b 81bf7a8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 04:20:32 2024 -0400
+
+    Merge pull request #262 from raja-grewal/docs
+    
+    Miscellaneous updates to presentation
+
+commit 81bf7a8f90098a7107dcb3c783b87a168f5c090f
+Merge: cea8e75 ef60c5b
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Aug 16 16:57:01 2024 +1000
+
+    Merge branch 'Kicksecure:master' into docs
+
+commit ef60c5b153a521e1cfd522ac471a8ca6dc076d90
+Merge: 4bc12b0 b552b92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 02:43:57 2024 -0400
+
+    Merge pull request #249 from raja-grewal/binfmt_misc
+    
+    Disallow registering interpreters for miscellaneous binary formats
+
+commit cea8e753786d100ebe961ad74a99925e54d47771
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 14:55:22 2024 +1000
+
+    Consistent formating
+
+commit 84376d23fc17d2ced890ffca0b05d15907d42a6f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 13:39:11 2024 +1000
+
+    Add details on ASLR and move to user space section
+
+commit a13298002350a39491a509d15633edb95a2e3edd
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 13:24:25 2024 +1000
+
+    Update README.md
+
+commit 9212a4e93754a4505be3fcf0ff4b029c073d2f07
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 13:12:07 2024 +1000
+
+    Typos
+
+commit e3a3207a4447568a17129afe9dde34debc465e21
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 12:41:36 2024 +1000
+
+    Clarify DMA hardening
+
+commit be9308e490f79a7b7788a744524d1d91cc870726
+Merge: 73db68d 4bc12b0
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Aug 16 11:45:43 2024 +1000
+
+    Merge branch 'Kicksecure:master' into docs
+
+commit 4bc12b07b42def786862b938e3f63c18cf874158
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 15 17:51:18 2024 +0000
+
+    bumped changelog version
+
 commit 9e61e37c17524b57f185b796f2ac19ba193205a8
 Merge: 89e816d dfd1c97
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -14,11 +105,97 @@ Date:   Thu Aug 15 13:46:30 2024 -0400
     
     Re-enable (default) `secure_redirects` for ICMP redirect messages
 
+commit b552b92401f67d59e12ac6fda2f7fe1c54b0c8a7
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Aug 15 11:54:21 2024 +1000
+
+    Add references on `fs.binfmt_misc.status`
+
+commit 326d82a9beee130956dd817812016a6ee16fccbc
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Aug 15 11:46:56 2024 +1000
+
+    Revert "Provide optional `sysctl fs.binfmt_misc.status=0`"
+    
+    This reverts commit debd7a7b7ae8b03e04d2c8597bcccf2c79000570.
+
+commit 73db68dbf9a1f9ded95a593db36a4960ce06a173
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 14:27:30 2024 +1000
+
+    Add details on KFENCE
+
+commit f8fa89b245d929aee9884937fdcf44a6551df4cf
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 14:21:59 2024 +1000
+
+    Add details on `tcp_timestamps`
+
+commit 3456f1c1d7725846ec201c28dd693bf9b07bab89
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:39:25 2024 +1000
+
+    Minor consistency update in README.md
+
+commit 15c638acad64cc3dcc7b5c43d9a6be2fa2350654
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:36:47 2024 +1000
+
+    Add reference on RDRAND
+
+commit 077bc48a26d1d3f5d1f758d7e251edccba64742b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:35:33 2024 +1000
+
+    Add reference on `rp_filter`
+
+commit d8bcec881f66604e29d6e0c1426635e2ad4979f1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:33:32 2024 +1000
+
+    Add some notices for future Debian 13 rebase
+
+commit 0b0683499a6a21e3995a115c377eb19008bc4cd1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:30:39 2024 +1000
+
+    Consistent line length formatting
+
+commit e5a38fc856c66d2bd6abc35fc08d4f2083ea8e54
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 9 13:30:15 2024 +1000
+
+    Typo
+
+commit a5373afc55e789f4657f3d843243e878e4afffa2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 7 14:44:14 2024 +1000
+
+    Details on disabled `fbdev` kernel modules
+
+commit e98dc8c4f8af32dd3b10c034477fd2154df189ac
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 7 14:14:47 2024 +1000
+
+    Update notifications for disabled kernel modules
+
+commit 50fa721fd54cd696ae90a35bc7df7c8f1eb17a13
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 7 14:01:49 2024 +1000
+
+    Update docs regarding Intel module disabling
+
 commit ec3038c7bc625f6c8eddb753ffe295ff2697a717
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Aug 7 13:48:53 2024 +1000
 
     Clarify `secure_redirects`
+
+commit debd7a7b7ae8b03e04d2c8597bcccf2c79000570
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 7 13:33:44 2024 +1000
+
+    Provide optional `sysctl fs.binfmt_misc.status=0`
 
 commit 89e816dda6c5a00512b276071c4d9fe108ee63b5
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -219,6 +396,24 @@ Date:   Sun Jul 28 15:43:54 2024 -0400
     
     Disable the usage of `ptrace()` by all processes
 
+commit 9cabaa1bd15a0639c87bf2e965755d06ff0a7bb4
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 28 22:04:30 2024 +1000
+
+    Typo
+
+commit d2d024ebe9a371eaf90b7b72f8a227e5d2e9babe
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 28 22:03:33 2024 +1000
+
+    Typo
+
+commit 9fbee9fc82768c3b436307459d174378ee471335
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Jul 28 21:57:25 2024 +1000
+
+    Clarify
+
 commit e60ce50d30c8981f13d8bab1d6ca8b8efb9d8928
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 27 16:13:35 2024 +0000
@@ -324,6 +519,13 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 10:16:20 2024 -0400
 
     use `find` with `safe_echo_nonewline`
+
+commit 20454fb81157f1f962f36d9c37d34f4ac650a1e6
+Merge: 28b25bd 6bbf176
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Jul 27 00:09:30 2024 +1000
+
+    Merge branch 'Kicksecure:master' into blacklist_to_disable
 
 commit 6bbf176e3b91f842cf4cdeaf8cb1f4c60e159a0c
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -480,6 +682,12 @@ Date:   Thu Jul 25 12:20:16 2024 +0200
 
     Unduplicate stat call
 
+commit 28b25bda3f51c7d5a6ee6d28446cb5f731f452d0
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 25 15:51:32 2024 +1000
+
+    Partial inclusion of GrapheneOS infrastructure blacklist
+
 commit ed3336694ce35614ab47db42bce29d3c69d46752
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Jul 25 10:28:27 2024 +1000
@@ -491,6 +699,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Jul 25 10:26:23 2024 +1000
 
     Add documentation on `sysctl kernel.panic_on_oops=1`
+
+commit f699eb02a27ef54b9ced5866447b63152984af66
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Jul 25 10:11:33 2024 +1000
+
+    Set `sysctl fs.binfmt_misc.status=0`
 
 commit 9231f058911ab9059e91c4c0c1677ef66b5bb666
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -689,6 +903,13 @@ Date:   Mon Jul 22 17:26:00 2024 +1000
 
     Add option to switch (back) to using kCFI in the future
 
+commit f582e543434ba20a2fb7f7300058f7c8a7d62878
+Merge: a189956 d2563ed
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Jul 22 15:12:00 2024 +1000
+
+    Merge branch 'Kicksecure:master' into blacklist_to_disable
+
 commit d2563ed92317a029340dbb83f30da008b01325f2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 21 10:40:14 2024 +0000
@@ -721,6 +942,26 @@ Date:   Sat Jul 20 12:57:56 2024 -0400
     
     postqueue matchwhitelist
     postdrop matchwhitelist
+
+commit a189956adc2cf5a1c8311d0e0e9c7cfbc6e4afe3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 20 20:11:09 2024 +1000
+
+    Typo
+
+commit 3c720a0715191c858e8d1df9795dddfea5dbdcf1
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 20 15:03:21 2024 +1000
+
+    Disable some legacy drivers
+    These were all previously blacklisted for over 2 years.
+
+commit c4965ed838b1df93ddb9e947fb2f0d23fa8ffc17
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Jul 20 14:55:10 2024 +1000
+
+    Disable legacy framebuffer drivers
+    These were all previously blacklisted for over 2 years.
 
 commit 9f53a0182b5f6a7cf8228bf19b04661d39c7a2fe
 Author: Patrick Schleizer <adrelanos@whonix.org>
