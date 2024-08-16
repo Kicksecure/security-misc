@@ -42,19 +42,19 @@ space, user space, core dumps, and swap space.
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
 - Force the kernel to panic on "oopses" that can potentially indicate and thwart
-  certain kernel exploitation attempts. Provide the option to reboot immediately
-  on a kernel panic.
+  certain kernel exploitation attempts. Optional - Force immediate reboot on the
+  occurrence of a kernel panic.
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
-- Disable asynchronous I/O as `io_uring` has been the source
-  of numerous kernel exploits (when using Linux kernel version >= 6.6).
+- Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
+  the source of numerous kernel exploits.
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
-  enables programs to inspect and modify other active processes. Provide the
-  option to entirely disable the use of `ptrace()` for all processes.
+  enables programs to inspect and modify other active processes. Optional - Disable
+  usage of `ptrace()` by all processes.
 
 - Maximize the bits of entropy used for mmap ASLR across all architectures.
 
@@ -91,15 +91,15 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 - Do not accept IPv6 router advertisements and solicitations.
 
-- Provide the option to disable SACK and DSACK as they have historically been
-  a known vector for exploitation.
+- Optional - Disable SACK and DSACK as they have historically been a known
+  vector for exploitation.
 
 - Disable TCP timestamps as they can allow detecting the system time.
 
-- Provide the option to log packets with impossible source or destination
-  addresses to enable further inspection and analysis.
+- Optional - Log packets with impossible source or destination addresses to
+  enable further inspection and analysis.
 
-- Provide the option to enable IPv6 Privacy Extensions.
+- Optional - Enable IPv6 Privacy Extensions.
 
 ### mmap ASLR
 
@@ -145,7 +145,7 @@ configuration file.
 - Force kernel panics on "oopses" to potentially indicate and thwart certain
   kernel exploitation attempts.
 
-- Provide the option to modify the machine check exception handler.
+- Optional - Modify the machine check exception handler.
 
 - Prevent sensitive kernel information leaks in the console during boot.
 
@@ -154,12 +154,12 @@ configuration file.
 
 - Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
 
-- Provide the option to use kCFI as the default CFI implementation since it may be
-  slightly more resilient to attacks that are able to write arbitrary executables
-  in memory (when using Linux kernel version >= 6.2).
+- Optional - Use kCFI as the default CFI implementation (when using Linux kernel >= 6.2)
+  since it may be slightly more resilient to attacks that are able to write
+  arbitrary executables in memory.
 
-- Provide the option to disable support for all x86 processes and syscalls to reduce
-  attack surface (when using Linux kernel version >= 6.7).
+- Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
+  to reduce attack surface.
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
   of both CPU manufacturer-specific drivers and kernel settings.
@@ -173,7 +173,7 @@ configuration file.
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
-- Provide the option to disable the entire IPv6 stack to reduce attack surface.
+- Optional - Disable the entire IPv6 stack to reduce attack surface.
 
 ### Kernel Modules
 
