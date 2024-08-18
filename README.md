@@ -3,7 +3,8 @@
 ## Kernel hardening
 
 This section is inspired by the Kernel Self Protection Project (KSPP). It
-implements all recommended Linux kernel settings by the KSPP and many more.
+attempts to implement all recommended Linux kernel settings by the KSPP and
+many more sources.
 
 - https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kspp.github.io/Recommended_Settings
