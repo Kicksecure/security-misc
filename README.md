@@ -121,6 +121,8 @@ Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
 
+Kernel space:
+
 - Disable merging of slabs with similar size, which reduces the risk of
   triggering heap overflows and limits influencing slab cache layout.
 
@@ -164,17 +166,23 @@ configuration file.
 - Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
   to reduce attack surface.
 
+Direct memory access:
+
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
   of both CPU manufacturer-specific drivers and kernel settings.
 
 - Clear the busmaster bit on all PCI bridges during the EFI hand-off, which disables
   DMA before the IOMMU is configured. May cause boot failure on certain hardware.
 
+Entropy:
+
 - Do not credit the CPU or bootloader as entropy sources at boot in order to
   maximize the absolute quantity of entropy in the combined pool.
 
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
+
+Networking:
 
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
 
