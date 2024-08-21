@@ -11,10 +11,9 @@ implements all recommended Linux kernel settings by the KSPP and many more.
 ### sysctl
 
 sysctl settings are configured via the `/usr/lib/sysctl.d/990-security-misc.conf`
-configuration file.
+configuration file and significant hardening is applied to a myriad of components.
 
-Significant hardening is applied by default to a myriad of components within kernel
-space, user space, core dumps, and swap space.
+Kernel space:
 
 - Restrict access to kernel addresses through the use of kernel pointers regardless
   of user privileges.
@@ -50,6 +49,8 @@ space, user space, core dumps, and swap space.
 - Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
   the source of numerous kernel exploits.
 
+User space:
+
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
   enables programs to inspect and modify other active processes. Optional - Disable
   usage of `ptrace()` by all processes.
@@ -68,12 +69,14 @@ space, user space, core dumps, and swap space.
 - Disallow registering interpreters for various (miscellaneous) binary formats based
   on a magic number or their file extension to prevent unintended code execution.
 
+Core dumps:
+
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
 
 - Limit the copying of potentially sensitive content in memory to the swap device.
 
-Various networking components of the TCP/IP stack are hardened for IPv4/6.
+Networking:
 
 - Enable TCP SYN cookie protection to assist against SYN flood attacks.
 
@@ -103,13 +106,6 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
   enable further inspection and analysis.
 
 - Optional - Enable IPv6 Privacy Extensions.
-
-### mmap ASLR
-
-- The bits of entropy used for mmap ASLR are maxed out via
-  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
-  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
-  that the kernel was built with), therefore improving its effectiveness.
 
 ### Boot parameters
 
@@ -177,6 +173,13 @@ configuration file.
   being initialized.
 
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
+
+### mmap ASLR
+
+- The bits of entropy used for mmap ASLR are maxed out via
+  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
+  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
+  that the kernel was built with), therefore improving its effectiveness.
 
 ### Kernel Modules
 
