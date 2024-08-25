@@ -1,3 +1,39 @@
+commit 500568e322b2e3623fc649209d671c7b9d9fa097
+Merge: 43d13b7 73900b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 11:01:58 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 73900b59db37d77bc24bd5088aae3cc760aacc69
+Merge: 43d13b7 1f51d4e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 11:00:51 2024 -0400
+
+    Merge pull request #263 from raja-grewal/max_user_namespaces
+    
+    Provide option to disable user namespaces
+
+commit 43d13b70f12d2198a800054ce4d1ff901cc474f9
+Merge: 8353764 fae586c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 10:55:52 2024 -0400
+
+    Merge remote-tracking branch 'raja/syntax'
+
+commit 835376418d616699023f8e638666f43d34241863
+Merge: ae85fd5 342caf8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 10:48:25 2024 -0400
+
+    Merge remote-tracking branch 'raja/mod'
+
+commit ae85fd5b4ce6f4716f95332c19b79d3daa8f7220
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 14:33:40 2024 +0000
+
+    bumped changelog version
+
 commit 433b15f985545f531b87d09659bbbb89993b5a67
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Aug 21 12:51:51 2024 +1000
@@ -9,6 +45,42 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Aug 21 12:52:48 2024 +1000
 
     README.md: Organise kernel boot parameters
+
+commit 342caf82b20acc2931563449fafe9a98cbedaba2
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 21 12:52:48 2024 +1000
+
+    README.md: Organise kernel boot parameters
+
+commit b87a18d4050bbf2add5cc4920684876a440e65bb
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 21 12:51:51 2024 +1000
+
+    README.md: Organise `sysctl`s
+
+commit 18ed77ecc93e9ee759a4990a32edb3dd671b8c26
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 21 12:50:14 2024 +1000
+
+    Refactor modprobe.d to minimise potential future merge conflicts
+
+commit 1f51d4eeb2b0c6e23ce64fb272eecb97e089324d
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Aug 18 13:53:11 2024 +1000
+
+    Add details on user namespaces
+
+commit 759aee8150a2d1258d73217c071b25432d47496f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 22:54:57 2024 +1000
+
+    Provide option to disable user namespaces
+
+commit fae586c3c5e8382ca01c60f810b26d88189a5514
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 19:23:48 2024 +1000
+
+    Patch bug in existing `rp_filter` `sysctl`
 
 commit e962153f84c4cb8e13fb0cc25d611ae481c7a0c7
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -87,6 +159,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Fri Aug 16 13:12:07 2024 +1000
 
     Typos
+
+commit 23a77d4973ec20b2aaab6a9c3a9fd8a98034923e
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Fri Aug 16 12:46:51 2024 +1000
+
+    Simplify syntax of some network-related `sysctl`'s
 
 commit e3a3207a4447568a17129afe9dde34debc465e21
 Author: Raja Grewal <rg_public@proton.me>
