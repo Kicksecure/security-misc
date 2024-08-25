@@ -234,16 +234,11 @@ modules from starting. This approach should not be considered comprehensive;
 rather, it is a form of badness enumeration. Any potential candidates for future
 disabling should first be blacklisted for a suitable amount of time.
 
+Hardware modules:
+
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
-
-- File Systems: Disable uncommon and legacy file systems.
-
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
-
-- Framebuffer (fbdev): Disabled as drivers are well-known to be buggy, cause
-  kernel panics, and are generally only used by legacy devices.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
@@ -255,19 +250,37 @@ disabling should first be blacklisted for a suitable amount of time.
 - Intel Platform Monitoring Technology (PMT) Telemetry: Disable some functionality
   of the Intel PMT components.
 
+- Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+
+File system modules:
+
+- File Systems: Disable uncommon and legacy file systems.
+
 - Network File Systems: Disable uncommon and legacy network file systems.
+
+Networking modules:
 
 - Network Protocols: A wide array of uncommon and legacy network protocols and drivers
   are disabled.
 
-- Miscellaneous: Disable an assortment of other modules such as those required
-  for amateur radio, floppy disks, and vivid. Also disable legacy drivers that
-  have been entirely replaced by newer drivers.
+Miscellaneous modules:
 
-- Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+- Amateur Radios: Disabled to reduce attack surface.
+
+- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+
+- Floppy Disks: Disabled to reduce attack surface.
+
+- Framebuffer (fbdev): Disabled as these drivers are well-known to be buggy, cause
+  kernel panics, and are generally only used by legacy devices.
+
+- Replaced Modules: Disabled legacy drivers that have been entirely replaced and
+  superseded by newer drivers.
 
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
+
+- Vivid: Disabled to reduce attack surface given previous vulnerabilities.
 
 ### Other
 
