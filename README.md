@@ -44,7 +44,7 @@ space, user space, core dumps, and swap space.
 
 - Force the kernel to panic on "oopses" that can potentially indicate and thwart
   certain kernel exploitation attempts. Optional - Force immediate reboot on the
-  occurrence of a kernel panic.
+  occurrence of a kernel panic and also set panic limit to one (when using Linux kernel >= 6.2).
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
