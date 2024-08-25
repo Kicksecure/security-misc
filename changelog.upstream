@@ -1,3 +1,21 @@
+commit 433b15f985545f531b87d09659bbbb89993b5a67
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 21 12:51:51 2024 +1000
+
+    README.md: Organise `sysctl`s
+
+commit af87a84b4f40b2ad9ac05dd9bce837665f239454
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Wed Aug 21 12:52:48 2024 +1000
+
+    README.md: Organise kernel boot parameters
+
+commit e962153f84c4cb8e13fb0cc25d611ae481c7a0c7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 16 08:38:12 2024 +0000
+
+    bumped changelog version
+
 commit 40b12f5a2a4a40d7033569b11ad4e1c228e7389b
 Merge: 12296c6 305467c
 Author: Patrick Schleizer <adrelanos@whonix.org>
