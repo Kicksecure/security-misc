@@ -25,7 +25,8 @@ Kernel space:
 
 - Prevent kernel information leaks in the console during boot.
 
-- Restrict eBPF access to `CAP_BPF` and enable associated JIT compiler hardening.
+- Restrict usage of `bpf()` to `CAP_BPF` to prevent the loading of BPF programs
+  by unprivileged users.
 
 - Restrict loading TTY line disciplines to `CAP_SYS_MODULE`.
 
@@ -81,6 +82,8 @@ Swap space:
 - Limit the copying of potentially sensitive content in memory to the swap device.
 
 Networking:
+
+- Enable hardening of the BPF JIT compiler protect against JIT spraying.
 
 - Enable TCP SYN cookie protection to assist against SYN flood attacks.
 
