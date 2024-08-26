@@ -12,10 +12,9 @@ many more sources.
 ### sysctl
 
 sysctl settings are configured via the `/usr/lib/sysctl.d/990-security-misc.conf`
-configuration file.
+configuration file and significant hardening is applied to a myriad of components.
 
-Significant hardening is applied by default to a myriad of components within kernel
-space, user space, core dumps, and swap space.
+Kernel space:
 
 - Restrict access to kernel addresses through the use of kernel pointers regardless
   of user privileges.
@@ -38,7 +37,7 @@ space, user space, core dumps, and swap space.
   can no longer be utilized. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
 - Restrict user namespaces to `CAP_SYS_ADMIN` as they can lead to substantial
-  privilege escalation.
+  privilege escalation. Optional - Disable all use of user namespaces.
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
@@ -50,6 +49,8 @@ space, user space, core dumps, and swap space.
 
 - Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
   the source of numerous kernel exploits.
+
+User space:
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
   enables programs to inspect and modify other active processes. Optional - Disable
@@ -69,12 +70,14 @@ space, user space, core dumps, and swap space.
 - Disallow registering interpreters for various (miscellaneous) binary formats based
   on a magic number or their file extension to prevent unintended code execution.
 
+Core dumps:
+
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
 
 - Limit the copying of potentially sensitive content in memory to the swap device.
 
-Various networking components of the TCP/IP stack are hardened for IPv4/6.
+Networking:
 
 - Enable TCP SYN cookie protection to assist against SYN flood attacks.
 
@@ -105,13 +108,6 @@ Various networking components of the TCP/IP stack are hardened for IPv4/6.
 
 - Optional - Enable IPv6 Privacy Extensions.
 
-### mmap ASLR
-
-- The bits of entropy used for mmap ASLR are maxed out via
-  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
-  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
-  that the kernel was built with), therefore improving its effectiveness.
-
 ### Boot parameters
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
@@ -121,6 +117,8 @@ and simultaneous multithreading (SMT) is disabled. See the
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
+
+Kernel space:
 
 - Disable merging of slabs with similar size, which reduces the risk of
   triggering heap overflows and limits influencing slab cache layout.
@@ -165,11 +163,15 @@ configuration file.
 - Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
   to reduce attack surface.
 
+Direct memory access:
+
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
   of both CPU manufacturer-specific drivers and kernel settings.
 
 - Clear the busmaster bit on all PCI bridges during the EFI hand-off, which disables
   DMA before the IOMMU is configured. May cause boot failure on certain hardware.
+
+Entropy:
 
 - Do not credit the CPU or bootloader as entropy sources at boot in order to
   maximize the absolute quantity of entropy in the combined pool.
@@ -177,7 +179,16 @@ configuration file.
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
+Networking:
+
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
+
+### mmap ASLR
+
+- The bits of entropy used for mmap ASLR are maxed out via
+  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
+  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
+  that the kernel was built with), therefore improving its effectiveness.
 
 ### Kernel Modules
 
@@ -224,16 +235,11 @@ modules from starting. This approach should not be considered comprehensive;
 rather, it is a form of badness enumeration. Any potential candidates for future
 disabling should first be blacklisted for a suitable amount of time.
 
+Hardware modules:
+
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
-
-- File Systems: Disable uncommon and legacy file systems.
-
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
-
-- Framebuffer (fbdev): Disabled as drivers are well-known to be buggy, cause
-  kernel panics, and are generally only used by legacy devices.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
   Satellite Systems (GNSS).
@@ -245,19 +251,37 @@ disabling should first be blacklisted for a suitable amount of time.
 - Intel Platform Monitoring Technology (PMT) Telemetry: Disable some functionality
   of the Intel PMT components.
 
+- Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+
+File system modules:
+
+- File Systems: Disable uncommon and legacy file systems.
+
 - Network File Systems: Disable uncommon and legacy network file systems.
+
+Networking modules:
 
 - Network Protocols: A wide array of uncommon and legacy network protocols and drivers
   are disabled.
 
-- Miscellaneous: Disable an assortment of other modules such as those required
-  for amateur radio, floppy disks, and vivid. Also disable legacy drivers that
-  have been entirely replaced by newer drivers.
+Miscellaneous modules:
 
-- Thunderbolt: Disabled as they are often vulnerable to DMA attacks.
+- Amateur Radios: Disabled to reduce attack surface.
+
+- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+
+- Floppy Disks: Disabled to reduce attack surface.
+
+- Framebuffer (fbdev): Disabled as these drivers are well-known to be buggy, cause
+  kernel panics, and are generally only used by legacy devices.
+
+- Replaced Modules: Disabled legacy drivers that have been entirely replaced and
+  superseded by newer drivers.
 
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
+
+- Vivid: Disabled to reduce attack surface given previous vulnerabilities.
 
 ### Other
 

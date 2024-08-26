@@ -1,3 +1,15 @@
+security-misc (3:39.2-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@whonix.org>  Sun, 25 Aug 2024 15:34:54 +0000
+
+security-misc (3:39.1-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@whonix.org>  Sun, 25 Aug 2024 14:33:39 +0000
+
 security-misc (3:39.0-1) unstable; urgency=medium
 
   * New upstream version (local package).
