@@ -8,6 +8,7 @@ many more sources.
 
 - https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kspp.github.io/Recommended_Settings
+- https://github.com/KSPP/kspp.github.io
 
 ### sysctl
 
@@ -74,6 +75,8 @@ Core dumps:
 
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
+
+Swap space:
 
 - Limit the copying of potentially sensitive content in memory to the swap device.
 
