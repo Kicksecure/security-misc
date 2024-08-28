@@ -69,8 +69,9 @@ User space:
 
 - Increase the maximum number of memory map areas a process is able to utilize.
 
-- Disallow registering interpreters for various (miscellaneous) binary formats based
+- Optional - Disallow registering interpreters for various (miscellaneous) binary formats based
   on a magic number or their file extension to prevent unintended code execution.
+  See issue: https://github.com/Kicksecure/security-misc/issues/267
 
 Core dumps:
 
