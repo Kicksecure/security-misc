@@ -1,3 +1,69 @@
+commit f70fe308a9f65873d34de2d1906d825f3a56e272
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 28 06:49:50 2024 -0400
+
+    no longer set sysctl `fs.binfmt_misc.status=0` /
+    no longer disallow registering interpreters for miscellaneous binary formats
+    
+    causing file/folder permissions issue `d????????? ? ? ? ?            ? .`
+    
+    Firefox no longer starting (probably not not a Firefox issue)
+    
+    https://github.com/Kicksecure/security-misc/issues/267
+
+commit 463aa58f28b6389d0925fed87096b348b652cc16
+Merge: cf824dd 328840c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 28 06:42:49 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 328840c933a583adc5458aa08c63fb627b31b298
+Merge: cf824dd 9e91c98
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 28 06:38:57 2024 -0400
+
+    Merge pull request #264 from raja-grewal/kspp_compliance
+    
+    Add KSPP compliance notices to corresponding parameters and `sysctls`
+
+commit 9e91c98cc926e7a166458cd78e3c1d1ced23c753
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 26 12:40:04 2024 +1000
+
+    Add details on BPF hardening and split the `sysctl`s
+
+commit 2c356e8b0ef7db56e7b453535c8cb6c83fc2e3c6
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 26 11:34:12 2024 +1000
+
+    Add KSPP notice definitions
+
+commit 2841d789bebbd43f855b6ffb92a3a6f017007a72
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 26 11:21:26 2024 +1000
+
+    README: Update
+
+commit ac6602ac3531ae57603e8a9e5ac2ee1652164b23
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 26 11:19:20 2024 +1000
+
+    Add detail on disabling user namespaces breaking UPower
+
+commit 9dbd200be415c86e7039463c6269fad8395a4373
+Merge: 32de5e7 cf824dd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Aug 26 11:08:21 2024 +1000
+
+    Merge branch 'Kicksecure:master' into kspp_compliance
+
+commit cf824ddb248957fd9e542c1a5adc5e90381f684c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 25 15:34:55 2024 +0000
+
+    bumped changelog version
+
 commit 500568e322b2e3623fc649209d671c7b9d9fa097
 Merge: 43d13b7 73900b5
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -46,6 +112,18 @@ Date:   Wed Aug 21 12:52:48 2024 +1000
 
     README.md: Organise kernel boot parameters
 
+commit 32de5e7c49d301b62b838ba88550f58b02b6562b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Aug 25 12:57:22 2024 +1000
+
+    Add details on oopses and warnings
+
+commit e4909b5e28e16f09de0e548c9221578ebe1190a3
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sun Aug 25 12:47:04 2024 +1000
+
+    Add details on kernel panics
+
 commit 342caf82b20acc2931563449fafe9a98cbedaba2
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Aug 21 12:52:48 2024 +1000
@@ -64,11 +142,35 @@ Date:   Wed Aug 21 12:50:14 2024 +1000
 
     Refactor modprobe.d to minimise potential future merge conflicts
 
+commit 56b28e38264fe742b8d694176f1057c15574fc08
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 19 11:50:08 2024 +1000
+
+    Typo
+
+commit 94dab1b7c503429e2fa91019a0183b2f36c6693f
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 19 10:53:05 2024 +1000
+
+    Partial compliance with the KSPP on kernel panics
+
+commit 683110e7f02fa5fc6415354386552640cdb8758b
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 19 01:34:14 2024 +1000
+
+    Correction
+
 commit 1f51d4eeb2b0c6e23ce64fb272eecb97e089324d
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Sun Aug 18 13:53:11 2024 +1000
 
     Add details on user namespaces
+
+commit 248e094b8e0bbf7892f79ad1c3ec77c7ed00d008
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Sat Aug 17 01:06:21 2024 +1000
+
+    Include KSPP compliance notices
 
 commit 759aee8150a2d1258d73217c071b25432d47496f
 Author: Raja Grewal <rg_public@proton.me>
