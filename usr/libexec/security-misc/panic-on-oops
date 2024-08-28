@@ -14,6 +14,10 @@ fi
 
 ## Makes the kernel panic on oopses. This prevents the kernel
 ## from continuing to run a flawed processes. Many kernel exploits
-## will also cause an oops which this will make the kernel kill.
-sysctl kernel.panic_on_oops=1
+## will also cause an oops which this will make the kernel kill
+## the offending processes.
 #sysctl kernel.panic=-1
+sysctl kernel.panic_on_oops=1
+#sysctl kernel.panic_on_warn=1
+#sysctl kernel.oops_limit=1
+#sysctl kernel.warn_limit=1
