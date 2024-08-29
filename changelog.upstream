@@ -1,3 +1,31 @@
+commit 7e2838ec077b53e41d468d5655290152761c8745
+Merge: 9c918eb 0762794
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 29 05:06:07 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 0762794ff684049a62b5b92b61177615a5376ad7
+Merge: 9c918eb 6294729
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 29 04:46:26 2024 -0400
+
+    Merge pull request #269 from raja-grewal/tidy
+    
+    Minor correction
+
+commit 6294729c8ef24077cd342b4557653806c3aacd34
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Aug 29 15:34:24 2024 +1000
+
+    Follow-up on https://github.com/Kicksecure/security-misc/commit/f70fe308a9f65873d34de2d1906d825f3a56e272
+
+commit 9c918eb4313b60dc15aa9fa4474a7977602030c1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 28 11:01:37 2024 +0000
+
+    bumped changelog version
+
 commit f70fe308a9f65873d34de2d1906d825f3a56e272
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 28 06:49:50 2024 -0400
