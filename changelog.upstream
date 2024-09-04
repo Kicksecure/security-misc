@@ -1,3 +1,56 @@
+commit 5a255d4831470449a26b324a8f16594432bf834b
+Merge: d618f9f 563a898
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 10:12:34 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 563a8980133e15e33ac95a631e37ecfff88f6f8f
+Merge: 175945e e61027a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 10:11:48 2024 -0400
+
+    Merge pull request #265 from raja-grewal/mmap_min_addr
+    
+    Set `sysctl vm.mmap_min_addr=65536`
+
+commit d618f9f35b8e8c6eee1e164a6ec300d63b1ee797
+Merge: 59374ce 175945e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 10:07:50 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 175945ec9a28bf1e5b0fa0d2ae2bd6546d6c6172
+Merge: b0a8544 3101035
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 10:05:47 2024 -0400
+
+    Merge pull request #268 from raja-grewal/panic_on_warn
+    
+    Enable `panic_on_warn=1`
+
+commit b0a8544182f6ff3c8c3f1068176ff5e9e4f557ef
+Merge: 59374ce 7393ba1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 10:04:45 2024 -0400
+
+    Merge pull request #270 from raja-grewal/typo
+    
+    Small typo
+
+commit 7393ba159192fdfc45ef31a3fa60786f899dbf25
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Sep 4 23:23:24 2024 +1000
+
+    Typo
+
+commit 59374ce902127e2125addc2ebb57d0d856a63671
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 29 09:49:51 2024 +0000
+
+    bumped changelog version
+
 commit 7e2838ec077b53e41d468d5655290152761c8745
 Merge: 9c918eb 0762794
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -19,6 +72,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Aug 29 15:34:24 2024 +1000
 
     Follow-up on https://github.com/Kicksecure/security-misc/commit/f70fe308a9f65873d34de2d1906d825f3a56e272
+
+commit 3101035a3fd5fbe87c79e95e51dc2da39fee93d5
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Thu Aug 29 01:57:32 2024 +1000
+
+    Enable `panic_on_warn=1`
 
 commit 9c918eb4313b60dc15aa9fa4474a7977602030c1
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -175,6 +234,12 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Mon Aug 19 11:50:08 2024 +1000
 
     Typo
+
+commit e61027a40e2ab82fac3ae4cfd5f91fd0a47f31e5
+Author: Raja Grewal <rg_public@proton.me>
+Date:   Mon Aug 19 11:32:20 2024 +1000
+
+    Set `sysctl vm.mmap_min_addr=65536`
 
 commit 94dab1b7c503429e2fa91019a0183b2f36c6693f
 Author: Raja Grewal <rg_public@proton.me>
