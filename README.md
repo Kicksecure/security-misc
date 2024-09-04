@@ -68,6 +68,9 @@ User space:
 
 - Randomize the addresses (ASLR) for mmap base, stack, VDSO pages, and heap.
 
+- Raise the minimum address a process can request for memory mapping to 64KB to
+  protect against kernel null pointer dereference vulnerabilities.
+
 - Increase the maximum number of memory map areas a process is able to utilize.
 
 - Optional - Disallow registering interpreters for various (miscellaneous) binary formats based
