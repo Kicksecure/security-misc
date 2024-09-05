@@ -196,45 +196,45 @@ Networking:
 
 ## Kernel Self Protection Project (KSPP) Compliance Status
 
-**Summary:***
+**Summary:**
 
-security-misc is in full compliance with KSPP as much as reasonable. In a few exception cases there is only partial compliance or non-compliance.
+`security-misc` is in full compliance with KSPP recommendations wherever feasible. However, there are a few cases of partial or non-compliance due to technical limitations.
 
-* https://kspp.github.io/Recommended_Settings
+* [KSPP Recommended Settings](https://kspp.github.io/Recommended_Settings)
 
 **Full compliance:**
 
-More than 30 kernel boot parameters and more than 30 sysctl settings are fully compliant with recommendations by KSPP.
+More than 30 kernel boot parameters and over 30 sysctl settings are fully aligned with KSPP's recommendations.
 
 **Partial compliance:**
 
 1. `sysctl kernel.yama.ptrace_scope=3`
 
-Disable `ptrace()` entirely. Can easily enable.
+Completely disables `ptrace()`. Can be enabled easily if needed.
 
-* https://github.com/Kicksecure/security-misc/pull/242
+* [security-misc pull request #242](https://github.com/Kicksecure/security-misc/pull/242)
 
 2. `sysctl kernel.panic=-1`
 
-Force immediate reboot upon a kernel panic. Can enable but may cause system crashes.
+Forces an immediate reboot on kernel panic. This can be enabled, but it may lead to unexpected system crashes.
 
-* https://github.com/Kicksecure/security-misc/pull/264
-* https://github.com/Kicksecure/security-misc/pull/268
+* [security-misc pull request #264](https://github.com/Kicksecure/security-misc/pull/264)
+* [security-misc pull request #268](https://github.com/Kicksecure/security-misc/pull/268)
 
 3. `sysctl user.max_user_namespaces=0`
 
-Disable user namespaces entirely. Unadvisable due to numerous potential breakages.
+Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
-* https://github.com/Kicksecure/security-misc/pull/263
+* [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
 
 **Non-compliance:**
 
 4. `sysctl fs.binfmt_misc.status=0`
 
-Disable registering interpreters for miscellaneous binary formats. Currently unadvisable due to breakage with Firefox.
+Disables the registration of interpreters for miscellaneous binary formats. Currently not feasible due to compatibility issues with Firefox.
 
-* https://github.com/Kicksecure/security-misc/pull/249
-* https://github.com/Kicksecure/security-misc/issues/267
+* [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
+* [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
 
 ### mmap ASLR
 
