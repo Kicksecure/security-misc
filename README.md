@@ -194,6 +194,48 @@ Networking:
 
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
 
+## Kernel Self Protection Project (KSPP) Compliance Status
+
+**Summary:***
+
+security-misc is in full compliance with KSPP as much as reasonable. In a few exception cases there is only partial compliance or non-compliance.
+
+* https://kspp.github.io/Recommended_Settings
+
+**Full compliance:**
+
+More than 30 kernel boot parameters and more than 30 sysctl settings are fully compliant with recommendations by KSPP.
+
+**Partial compliance:**
+
+1. `sysctl kernel.yama.ptrace_scope=3`
+
+Disable `ptrace()` entirely. Can easily enable.
+
+* https://github.com/Kicksecure/security-misc/pull/242
+
+2. `sysctl kernel.panic=-1`
+
+Force immediate reboot upon a kernel panic. Can enable but may cause system crashes.
+
+* https://github.com/Kicksecure/security-misc/pull/264
+* https://github.com/Kicksecure/security-misc/pull/268
+
+3. `sysctl user.max_user_namespaces=0`
+
+Disable user namespaces entirely. Unadvisable due to numerous potential breakages.
+
+* https://github.com/Kicksecure/security-misc/pull/263
+
+**Non-compliance:**
+
+4. `sysctl fs.binfmt_misc.status=0`
+
+Disable registering interpreters for miscellaneous binary formats. Currently unadvisable due to breakage with Firefox.
+
+* https://github.com/Kicksecure/security-misc/pull/249
+* https://github.com/Kicksecure/security-misc/issues/267
+
 ### mmap ASLR
 
 - The bits of entropy used for mmap ASLR are maxed out via
