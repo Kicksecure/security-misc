@@ -1,3 +1,23 @@
+commit 01908d505a59e7ec37cc3de3e1d49ff35ba127aa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 5 07:00:11 2024 -0400
+
+    readme
+
+commit e914028be7a48a3bfdf86e09c029011807f080d7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 5 06:03:05 2024 -0400
+
+    add KSPP compliance status to readme based on comment by @raja-grewal
+    
+    https://github.com/Kicksecure/security-misc/issues/256#issuecomment-2330376651
+
+commit 40fb14c654df94e9bdfb30ae55fc3bc4f0a0aef4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 4 14:13:15 2024 +0000
+
+    bumped changelog version
+
 commit 5a255d4831470449a26b324a8f16594432bf834b
 Merge: d618f9f 563a898
 Author: Patrick Schleizer <adrelanos@whonix.org>
