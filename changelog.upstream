@@ -1,3 +1,22 @@
+commit 3280dbd5d562d7f6b50118ac0da36c3285493be6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 13 22:52:47 2024 -0400
+
+    Fix VirtualBox audio device ICH AC97.
+    
+    no longer `blacklist snd_intel8x0`
+    
+    Breaks VirtualBox audio device ICH AC97, which is unfortunately still required by some users.
+    https://www.kicksecure.com/wiki/Dev/audio
+    
+    Fixes https://github.com/Kicksecure/security-misc/issues/271
+
+commit 1bc694fa124eaeb6e1517d2191a8fd97446872c4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 8 17:41:30 2024 +0000
+
+    bumped changelog version
+
 commit 01908d505a59e7ec37cc3de3e1d49ff35ba127aa
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 5 07:00:11 2024 -0400
