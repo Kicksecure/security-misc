@@ -59,7 +59,7 @@ User space:
   enables programs to inspect and modify other active processes. Optional - Disable
   usage of `ptrace()` by all processes.
 
-- Maximize the bits of entropy used for mmap ASLR across all architectures.
+- Maximize the bits of entropy used for mmap ASLR across all CPU architectures.
 
 - Prevent hardlink and symlink TOCTOU races in world-writable directories.
 
@@ -194,6 +194,13 @@ Networking:
 
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
 
+### mmap ASLR
+
+- The bits of entropy used for mmap ASLR for all CPU architectures are maxed
+  out via `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
+  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
+  that the kernel was built with), therefore improving its effectiveness.
+  
 ## Kernel Self Protection Project (KSPP) Compliance Status
 
 **Summary:**
@@ -235,13 +242,6 @@ Disables the registration of interpreters for miscellaneous binary formats. Curr
 
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
-
-### mmap ASLR
-
-- The bits of entropy used for mmap ASLR are maxed out via
-  `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
-  `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
-  that the kernel was built with), therefore improving its effectiveness.
 
 ### Kernel Modules
 
