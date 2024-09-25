@@ -1,3 +1,37 @@
+commit e04f9cd4c17305d5201aa973c34778e81508734b
+Merge: 18d426f 65aa910
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 24 20:16:06 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 65aa910503c07f708abf20f78be2f519ef58764a
+Merge: 18d426f 870ff88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 24 20:15:03 2024 -0400
+
+    Merge pull request #272 from raja-grewal/text
+    
+    Documentation update
+
+commit 870ff88605b8167c8882162cc3da005d71ca0cd3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Sep 25 10:01:45 2024 +1000
+
+    Comment on Flatpak requiring unprivileged user namespaces
+
+commit 769767a96a5de2a8bc05e70ca490d8340b553061
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Sep 25 09:54:49 2024 +1000
+
+    Update mmap ASLR docs
+
+commit 18d426f521b2b1369fe68e143dc8a0be064d0dcc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 14 02:56:09 2024 +0000
+
+    bumped changelog version
+
 commit 3280dbd5d562d7f6b50118ac0da36c3285493be6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 13 22:52:47 2024 -0400
