@@ -71,7 +71,7 @@ User space:
 - Raise the minimum address a process can request for memory mapping to 64KB to
   protect against kernel null pointer dereference vulnerabilities.
 
-- Increase the maximum number of memory map areas a process is able to utilize.
+- Increase the maximum number of memory map areas a process is able to utilize to 1,048,576.
 
 - Optional - Disallow registering interpreters for various (miscellaneous) binary formats based
   on a magic number or their file extension to prevent unintended code execution.
