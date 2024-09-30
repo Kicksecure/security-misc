@@ -201,7 +201,7 @@ Networking:
   `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
   that the kernel was built with), therefore improving its effectiveness.
   
-## Kernel Self Protection Project (KSPP) Compliance Status
+### Kernel Self Protection Project (KSPP) compliance status
 
 **Summary:**
 
