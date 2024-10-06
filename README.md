@@ -6,7 +6,6 @@ This section is inspired by the Kernel Self Protection Project (KSPP). It
 attempts to implement all recommended Linux kernel settings by the KSPP and
 many more sources.
 
-- https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kspp.github.io/Recommended_Settings
 - https://github.com/KSPP/kspp.github.io
 
@@ -200,7 +199,7 @@ Networking:
   out via `/usr/libexec/security-misc/mmap-rnd-bits` (set to the values of
   `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
   that the kernel was built with), therefore improving its effectiveness.
-  
+
 ### Kernel Self Protection Project (KSPP) compliance status
 
 **Summary:**
