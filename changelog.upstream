@@ -1,3 +1,27 @@
+commit 0e3ffa3f11a0049e57803c8f2e75dbb7d8ceb22c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 3 02:58:58 2024 -0400
+
+    no longer set `kernel.unprivileged_userns_clone=0`
+    
+    because it breaks too much
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/274
+
+commit f401d94d5e0d0f26e93be55deda440fe565a6b22
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 3 02:44:06 2024 -0400
+
+    expand documentation on `kernel.unprivileged_userns_clone=0` sysctl
+    
+    https://github.com/Kicksecure/security-misc/issues/274
+
+commit 5572eb897a10455041df8abec6b6be6de29431a0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 25 01:03:42 2024 +0000
+
+    bumped changelog version
+
 commit e04f9cd4c17305d5201aa973c34778e81508734b
 Merge: 18d426f 65aa910
 Author: Patrick Schleizer <adrelanos@whonix.org>

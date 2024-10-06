@@ -37,8 +37,10 @@ Kernel space:
 - Entirely disable the SysRq key so that the Secure Attention Key (SAK)
   can no longer be utilized. See [documentation](https://www.kicksecure.com/wiki/SysRq).
 
-- Restrict user namespaces to `CAP_SYS_ADMIN` as they can lead to substantial
-  privilege escalation. Optional - Disable all use of user namespaces.
+- Optional - Restrict user namespaces to `CAP_SYS_ADMIN` as they can lead to substantial
+  privilege escalation.
+
+- Optional - Disable all use of user namespaces.
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
@@ -227,13 +229,13 @@ Forces an immediate reboot on kernel panic. This can be enabled, but it may lead
 * [security-misc pull request #264](https://github.com/Kicksecure/security-misc/pull/264)
 * [security-misc pull request #268](https://github.com/Kicksecure/security-misc/pull/268)
 
+**Non-compliance:**
+
 3. `sysctl user.max_user_namespaces=0`
 
 Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
 * [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
-
-**Non-compliance:**
 
 4. `sysctl fs.binfmt_misc.status=0`
 
