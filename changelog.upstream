@@ -1,3 +1,38 @@
+commit 9169611645d0cd5a308ff48862f351ef5ea5f7e8
+Merge: 8a2d432 8227a3d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 8 05:54:50 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 8227a3dde2995ceb113164baf49591d52c2b53e1
+Merge: 8a2d432 0c0774f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 8 05:53:48 2024 -0400
+
+    Merge pull request #273 from raja-grewal/text_2
+    
+    Documentation update 2
+
+commit 0c0774f6c0927ed1cc599f931175985b8f01ec30
+Merge: dc470ca 8a2d432
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 6 10:48:52 2024 +0000
+
+    Merge branch 'master' into text_2
+
+commit dc470cac1d93656354aeaaac0a6f8cbbd39f9f0f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 6 10:46:05 2024 +0000
+
+    Remmove deprecated link
+
+commit 8a2d432ffe6d4eb661026b6e7dbf534bb1db971b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 3 07:22:23 2024 +0000
+
+    bumped changelog version
+
 commit 0e3ffa3f11a0049e57803c8f2e75dbb7d8ceb22c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 3 02:58:58 2024 -0400
@@ -15,6 +50,30 @@ Date:   Thu Oct 3 02:44:06 2024 -0400
     expand documentation on `kernel.unprivileged_userns_clone=0` sysctl
     
     https://github.com/Kicksecure/security-misc/issues/274
+
+commit ac1378743c7448c9a7e7e02bebcf3270592d42a5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Sep 30 16:56:18 2024 +1000
+
+    Consistent formatting
+
+commit eae38e72f30ff9b9f8d0b8b0b33182a918333e48
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Sep 26 13:10:36 2024 +0000
+
+    README.md: Show the current max_map_count
+
+commit f3b50a23c976ba4feff34eee721c50f698ecc5bf
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Sep 26 13:10:01 2024 +0000
+
+    Add reference on unprivileged_userns_restriction
+
+commit 39d063d494cb540f45747f6253ab896200ba03c3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Sep 26 13:09:21 2024 +0000
+
+    Add KSPP=no definition
 
 commit 5572eb897a10455041df8abec6b6be6de29431a0
 Author: Patrick Schleizer <adrelanos@whonix.org>
