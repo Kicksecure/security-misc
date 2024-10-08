@@ -6,7 +6,6 @@ This section is inspired by the Kernel Self Protection Project (KSPP). It
 attempts to implement all recommended Linux kernel settings by the KSPP and
 many more sources.
 
-- https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project
 - https://kspp.github.io/Recommended_Settings
 - https://github.com/KSPP/kspp.github.io
 
@@ -73,7 +72,7 @@ User space:
 - Raise the minimum address a process can request for memory mapping to 64KB to
   protect against kernel null pointer dereference vulnerabilities.
 
-- Increase the maximum number of memory map areas a process is able to utilize.
+- Increase the maximum number of memory map areas a process is able to utilize to 1,048,576.
 
 - Optional - Disallow registering interpreters for various (miscellaneous) binary formats based
   on a magic number or their file extension to prevent unintended code execution.
@@ -203,7 +202,7 @@ Networking:
   `CONFIG_ARCH_MMAP_RND_BITS_MAX` and `CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX`
   that the kernel was built with), therefore improving its effectiveness.
 
-## Kernel Self Protection Project (KSPP) Compliance Status
+### Kernel Self Protection Project (KSPP) compliance status
 
 **Summary:**
 
