@@ -46,7 +46,8 @@ Kernel space:
 
 - Force the kernel to panic on both "oopses", which can potentially indicate and thwart
   certain kernel exploitation attempts, and also kernel warnings in the `WARN()` path.
-  Optional - Force immediate reboot on the occurrence of a single kernel panic and also
+  
+- Optional - Force immediate reboot on the occurrence of a single kernel panic and also
   (when using Linux kernel >= 6.2) limit the number of allowed panics to one.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
