@@ -207,13 +207,15 @@ Networking:
 
 **Summary:**
 
-`security-misc` is in full compliance with KSPP recommendations wherever feasible. However, there are a few cases of partial or non-compliance due to technical limitations.
+`security-misc` is in full compliance with KSPP recommendations wherever feasible. However,
+there are a few cases of partial or non-compliance due to technical limitations.
 
 * [KSPP Recommended Settings](https://kspp.github.io/Recommended_Settings)
 
 **Full compliance:**
 
-More than 30 kernel boot parameters and over 30 sysctl settings are fully aligned with KSPP's recommendations.
+More than 30 kernel boot parameters and over 30 sysctl settings are fully aligned with
+the KSPP's recommendations.
 
 **Partial compliance:**
 
@@ -225,7 +227,8 @@ Completely disables `ptrace()`. Can be enabled easily if needed.
 
 2. `sysctl kernel.panic=-1`
 
-Forces an immediate reboot on kernel panic. This can be enabled, but it may lead to unexpected system crashes.
+Forces an immediate reboot on kernel panic. This can be enabled, but it may lead to unexpected
+system crashes.
 
 * [security-misc pull request #264](https://github.com/Kicksecure/security-misc/pull/264)
 * [security-misc pull request #268](https://github.com/Kicksecure/security-misc/pull/268)
@@ -240,7 +243,8 @@ Disables user namespaces entirely. Not recommended due to the potential for wide
 
 4. `sysctl fs.binfmt_misc.status=0`
 
-Disables the registration of interpreters for miscellaneous binary formats. Currently not feasible due to compatibility issues with Firefox.
+Disables the registration of interpreters for miscellaneous binary formats. Currently not
+feasible due to compatibility issues with Firefox.
 
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
