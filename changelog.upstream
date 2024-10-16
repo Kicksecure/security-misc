@@ -1,3 +1,43 @@
+commit 0adb9b7c0609a51d503b61ab40ae7d8e55635043
+Merge: 263335f e50ad80
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 16 06:31:09 2024 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit e50ad807c01b5753c67d579126d7b79d38070c0a
+Merge: 263335f eb72163
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 16 06:29:25 2024 -0400
+
+    Merge pull request #276 from raja-grewal/KSPP_header
+    
+    Clarify KSPP compliance header
+
+commit eb72163d5707c7673db1f12405d2e04261bd43c8
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 14 03:01:15 2024 +0000
+
+    README.md: Make line lengths consistent
+
+commit a9f238fe048acfeff49f96c00570acc6ca4c37e8
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 14 02:57:31 2024 +0000
+
+    README.md: Split optional setting to new line
+
+commit 09fe46adc956e8c6de232f1093c37cdd30933acd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 14 02:54:30 2024 +0000
+
+    Clarify KSPP compliance header for the undocumented case
+
+commit 263335f74ea0f050f9c259e20141c3345e7fa789
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 8 11:24:56 2024 +0000
+
+    bumped changelog version
+
 commit 9169611645d0cd5a308ff48862f351ef5ea5f7e8
 Merge: 8a2d432 8227a3d
 Author: Patrick Schleizer <adrelanos@whonix.org>
