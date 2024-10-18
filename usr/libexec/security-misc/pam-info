@@ -32,22 +32,22 @@ if [ "$PAM_USER" = "" ]; then
    exit 0
 fi
 
-grep_result="$(grep "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
+grep_result="$(grep -- "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
 
 ## Check if grep matched something.
 if [ ! "$grep_result" = "" ]; then
    ## Yes, grep matched.
 
    ## Check if not out commented.
-   if ! echo "$grep_result" | grep -q "#" ; then
+   if ! echo "$grep_result" | grep --quiet -- "#" ; then
       ## Not out commented indeed.
 
       ## https://forums.whonix.org/t/etc-security-hardening-console-lockdown/8592
 
-      if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console"; then
+      if id --name --groups --zero -- "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings -- "console"; then
          console_allowed=true
       fi
-      if id --name --groups --zero "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings "console-unrestricted"; then
+      if id --name --groups --zero -- "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings -- "console-unrestricted"; then
          console_allowed=true
       fi
 
@@ -102,7 +102,7 @@ fi
 ##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
-if ! pam_faillock_output="$(faillock --user "$PAM_USER")" ; then
+if ! pam_faillock_output="$(faillock --user -- "$PAM_USER")" ; then
    true "$0: faillock non-zero exit code."
    exit 0
 fi
@@ -159,7 +159,7 @@ fi
 deny=3
 
 if test -f /etc/security/faillock.conf ; then
-   deny_line=$(grep --invert-match "#" /etc/security/faillock.conf | grep "deny =")
+   deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =")
    deny="$(echo "$deny_line" | LANG=C str_replace "=" "" | LANG=C str_replace "deny" "" | LANG=C str_replace " " "")"
    ## Example:
    #deny=50
@@ -181,7 +181,7 @@ $0: ERROR: Login blocked after $failed_login_counter attempts.
 To unlock, run the following command as superuser:
 (If you still have a sudo/root shell somewhere.)
 
-faillock --reset --user $PAM_USER
+faillock --reset --user -- $PAM_USER
 
 However, most likely unlock procedure is required.
 First boot into recovery mode at grub boot menu and then run above command.
