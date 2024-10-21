@@ -186,7 +186,7 @@ $0: ERROR: Login blocked after $failed_login_counter attempts.
 To unlock, run the following command as superuser:
 (If you still have a sudo/root shell somewhere.)
 
-faillock --reset --user -- $PAM_USER
+faillock --reset --user $PAM_USER
 
 However, most likely unlock procedure is required.
 First boot into recovery mode at grub boot menu and then run above command.
