@@ -21,6 +21,9 @@ true "$0: START PHASE 2"
 
 set -o pipefail
 
+## Named constants.
+pam_faillock_state_dir="/var/lib/security-misc/faillock"
+
 ## Debugging.
 who_ami="$(whoami)"
 true "$0: who_ami: $who_ami"
@@ -102,7 +105,7 @@ fi
 ##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
-if ! pam_faillock_output="$(faillock --user -- "$PAM_USER")" ; then
+if ! pam_faillock_output="$(faillock --dir "$pam_faillock_state_dir" --user "$PAM_USER")" ; then
    true "$0: faillock non-zero exit code."
    exit 0
 fi

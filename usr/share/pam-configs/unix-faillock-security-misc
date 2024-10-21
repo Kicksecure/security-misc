@@ -1,0 +1,20 @@
+Name: Unix authentication with faillock (by package security-misc)
+Default: yes
+Priority: 384
+Auth-Type: Primary
+Auth:
+	[success=3 default=ignore]	pam_unix.so nullok	try_first_pass
+	[success=1 default=ignore]	pam_exec.so	seteuid	quiet	/usr/libexec/security-misc/pam_faillock_not_if_x
+	[default=die]	pam_faillock.so	authfail
+	requisite	pam_deny.so
+	[success=1 default=ignore]	pam_exec.so	seteuid	quiet	/usr/libexec/security-misc/pam_faillock_not_if_x
+	optional	pam_faillock.so	authsucc
+	required	pam_permit.so
+Auth-Initial:
+	[success=3 default=ignore]	pam_unix.so nullok
+	[success=1 default=ignore]	pam_exec.so	seteuid	quiet	/usr/libexec/security-misc/pam_faillock_not_if_x
+	[default=die]	pam_faillock.so	authfail
+	requisite	pam_deny.so
+	[success=1 default=ignore]	pam_exec.so	seteuid	quiet	/usr/libexec/security-misc/pam_faillock_not_if_x
+	optional	pam_faillock.so	authsucc
+	required	pam_permit.so

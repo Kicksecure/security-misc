@@ -6,7 +6,7 @@
 #
 # The directory where the user files with the failure records are kept.
 # The default is /var/run/faillock.
-# dir = /var/run/faillock
+dir = /var/lib/security-misc/faillock
 #
 # Will log the user name into the system log if the user is not found.
 # Enabled if option is present.
@@ -38,14 +38,19 @@ deny = 50
 # authentication failures must happen for the user account
 # lock out is <replaceable>n</replaceable> seconds.
 # The default is 900 (15 minutes).
-# fail_interval = 900
+# security-misc note: the interval should be set to infinity if possible,
+# however pam_faillock arbitrarily limits this variable to a maximum of 604800
+# seconds (7 days). See
+# https://github.com/linux-pam/linux-pam/blob/539816e4a0a277dbb632412be91e482fff9d9d09/modules/pam_faillock/faillock_config.h#L59
+# for details. Therefore we set this to the maximum allowable value of 7 days.
+fail_interval = 604800
 #
 # The access will be re-enabled after n seconds after the lock out.
 # The value 0 has the same meaning as value `never` - the access
 # will not be re-enabled without resetting the faillock
 # entries by the `faillock` command.
 # The default is 600 (10 minutes).
-# unlock_time = 600
+unlock_time = never
 #
 # Root account can become locked as well as regular accounts.
 # Enabled if option is present.
