@@ -105,6 +105,8 @@ fi
 ##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
+##
+## end-of-options ("--") unsupported by faillock.
 if ! pam_faillock_output="$(faillock --dir "$pam_faillock_state_dir" --user "$PAM_USER")" ; then
    true "$0: faillock non-zero exit code."
    exit 0
