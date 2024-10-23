@@ -1,3 +1,40 @@
+commit 566cda5e4bc69f54d63d72f1e30703074fdf0ce8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 21 05:47:38 2024 -0400
+
+    output
+
+commit 5991a23049491dd04c19d9ea80f7d7381dd494a0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 21 05:47:25 2024 -0400
+
+    comment
+
+commit fd34baff8ff17ed572469d9d6d884e6c0d881d20
+Merge: b643330 690e8dd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 21 05:43:53 2024 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/master'
+
+commit 690e8dd826d1cb39c0c12c03792781862cc2dd23
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Oct 19 23:49:07 2024 -0500
+
+    Avoid faillock lock/tally reset on reboot or timeout
+
+commit b6433309fd7d6839cfba89e1197590e1ff62ef58
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 18 12:45:02 2024 -0400
+
+    use end-of-options
+
+commit 0cfcdf4f89dc75f2a8e3f8a9e8c69dc3ba3da78a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 16 10:57:20 2024 +0000
+
+    bumped changelog version
+
 commit 0adb9b7c0609a51d503b61ab40ae7d8e55635043
 Merge: 263335f e50ad80
 Author: Patrick Schleizer <adrelanos@whonix.org>
