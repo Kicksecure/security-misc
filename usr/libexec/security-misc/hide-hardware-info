@@ -3,7 +3,10 @@
 ## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-set -e
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
 shopt -s nullglob
 
 run_cmd() {
