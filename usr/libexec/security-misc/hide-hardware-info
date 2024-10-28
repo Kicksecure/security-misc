@@ -4,6 +4,7 @@
 ## See the file COPYING for copying conditions.
 
 set -e
+shopt -s nullglob
 
 run_cmd() {
   echo "INFO: normal executing   : $@"
@@ -26,8 +27,6 @@ default_variables_set() {
   ## https://www.kicksecure.com/wiki/Security-misc#selinux
   selinux=0
 }
-
-shopt -s nullglob
 
 parse_configuration() {
   ## Allows for disabling the whitelist.
