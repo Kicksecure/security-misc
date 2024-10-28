@@ -24,9 +24,7 @@ echo "$0: INFO: START"
 default_variables_set() {
   sysfs_whitelist=1
   cpuinfo_whitelist=1
-
   sysfs=1
-
   ## https://www.kicksecure.com/wiki/Security-misc#selinux
   selinux=0
 }
