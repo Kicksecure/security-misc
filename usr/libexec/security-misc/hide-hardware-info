@@ -28,8 +28,7 @@ selinux=0
 shopt -s nullglob
 
 ## Allows for disabling the whitelist.
-for i in /etc/hide-hardware-info.d/*.conf
-do
+for i in /etc/hide-hardware-info.d/*.conf ; do
   bash -n "${i}"
   source "${i}"
 done
@@ -63,8 +62,7 @@ create_whitelist() {
 ## and /proc/scsi to the root user only. This hides
 ## many hardware identifiers from ordinary users
 ## and increases security.
-for i in /proc/cpuinfo /proc/bus /proc/scsi /sys
-do
+for i in /proc/cpuinfo /proc/bus /proc/scsi /sys ; do
   if [ -e "${i}" ]; then
     if [ "${i}" = "/sys" ]; then
       if [ "${sysfs}" = "1" ]; then
@@ -99,8 +97,7 @@ done
 if [ "${sysfs}" = "1" ]; then
   ## restrict permissions on everything but
   ## what is needed
-  for i in /sys/* /sys/fs/*
-  do
+  for i in /sys/* /sys/fs/* ; do
     ## Using '|| true':
     ## https://github.com/Kicksecure/security-misc/pull/108
     if [ "${sysfs_whitelist}" = "1" ]; then
