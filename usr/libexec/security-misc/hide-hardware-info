@@ -17,21 +17,25 @@ run_cmd_whitelist() {
 
 echo "$0: INFO: START"
 
-sysfs_whitelist=1
-cpuinfo_whitelist=1
+default_variables_set() {
+  sysfs_whitelist=1
+  cpuinfo_whitelist=1
 
-sysfs=1
+  sysfs=1
 
-## https://www.kicksecure.com/wiki/Security-misc#selinux
-selinux=0
+  ## https://www.kicksecure.com/wiki/Security-misc#selinux
+  selinux=0
+}
 
 shopt -s nullglob
 
-## Allows for disabling the whitelist.
-for i in /usr/local/etc/hide-hardware-info.d/*.conf /etc/hide-hardware-info.d/*.conf ; do
-  bash -n "${i}"
-  source "${i}"
-done
+parse_configuration() {
+  ## Allows for disabling the whitelist.
+  for i in /usr/local/etc/hide-hardware-info.d/*.conf /etc/hide-hardware-info.d/*.conf ; do
+    bash -n "${i}"
+    source "${i}"
+  done
+}
 
 create_whitelist() {
   if [ "${1}" = "sysfs" ]; then
@@ -54,6 +58,9 @@ create_whitelist() {
     echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
   fi
 }
+
+default_variables_set
+parse_configuration
 
 ## sysfs and debugfs expose a lot of information
 ## that should not be accessible by an unprivileged
