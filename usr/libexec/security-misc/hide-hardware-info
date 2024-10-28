@@ -30,6 +30,7 @@ default_variables_set() {
 
 parse_configuration() {
   ## Allows for disabling the whitelist.
+  local i
   for i in /usr/local/etc/hide-hardware-info.d/*.conf /etc/hide-hardware-info.d/*.conf ; do
     bash -n "${i}"
     source "${i}"
