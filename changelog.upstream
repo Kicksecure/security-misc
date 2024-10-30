@@ -1,3 +1,51 @@
+commit 71c58442ca6d57cd95b72a76ed87f8c248cdbd98
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:10:19 2024 -0400
+
+    minor
+
+commit cfe19e31d858d7899f4d95e21117c992d236d328
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:09:53 2024 -0400
+
+    shell options
+
+commit 0d506156587f87a303184f22259ffb57dd92cbc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:07:00 2024 -0400
+
+    local
+
+commit ef0eb5f7a0c5a62c5d26bf6dc534f6aa3decc4b0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:06:26 2024 -0400
+
+    refactoring
+
+commit fdd1f4b7f88efc22bb57c2ad3e83c0c2e8cbb064
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:06:05 2024 -0400
+
+    refactoring
+
+commit d00235897d686895a7e2e7da7435832fee008164
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:03:59 2024 -0400
+
+    hide-hardware-info: also parse `/usr/local/etc/hide-hardware-info.d/*.conf`
+
+commit 6c2e808b9f34900840bd2857fed10d1ffd4cc4c2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 28 05:03:20 2024 -0400
+
+    refactoring
+
+commit b44e507900defe3db68f31f3e110b1c3e5aa684c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 23 09:56:05 2024 +0000
+
+    bumped changelog version
+
 commit 566cda5e4bc69f54d63d72f1e30703074fdf0ce8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Oct 21 05:47:38 2024 -0400
