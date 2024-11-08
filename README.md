@@ -121,6 +121,9 @@ Networking:
 
 - Optional - Enable IPv6 Privacy Extensions.
 
+- Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
+  via man-in-the-middle and denial-of-service attacks.
+
 ### Boot parameters
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
