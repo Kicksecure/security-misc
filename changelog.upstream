@@ -1,3 +1,44 @@
+commit 29b1f1ec5f3a4bf3991fc1b862751c8eb9769ecd
+Merge: 5bd0a27 238f32e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 10 06:32:30 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 5bd0a277bf39812c6adf40a7a3ef6390935fa08e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 10 06:29:17 2024 -0500
+
+    fix permission-hardener issue "Removing capabilities failed. File: '/bin/ping'"
+    
+    no longer user end-of-options marker (`--`) for `setcap`
+    since setcap does not support it
+    
+    Fixes https://github.com/QubesOS/qubes-issues/issues/9569
+    
+    https://forums.whonix.org/t/permission-hardener-error/20719
+
+commit 238f32e81d835e5b9d3bc43a0654d05efa4c4313
+Merge: 3af2684 8107782
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 8 07:39:40 2024 -0500
+
+    Merge pull request #280 from raja-grewal/ssbd
+    
+     Enable `ssbd=force-on`
+
+commit 8107782fa54ec0e21893e6bd4a6baabb71eb864b
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 8 15:36:04 2024 +1100
+
+     Enable `ssbd=force-on`
+
+commit 3af2684134279ba6f5b18b40986f02a50baa5604
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 30 09:43:05 2024 +0000
+
+    bumped changelog version
+
 commit 71c58442ca6d57cd95b72a76ed87f8c248cdbd98
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Oct 28 05:10:19 2024 -0400
