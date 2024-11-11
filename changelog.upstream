@@ -1,3 +1,60 @@
+commit 50161f5d79eea2ab796863e4eb30eccc17e0b41d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 05:48:11 2024 -0500
+
+    moved /etc/dkms/framework.conf.d/30_security-misc.conf (renamed) to usability-misc
+
+commit 7c06e22c7d11c345428f3ad42ba43805ebc8d810
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 05:43:25 2024 -0500
+
+    deleted `/usr/bin/pkexec.security-misc`
+    
+    This was not used anymore for anything. In the past, we used to `config-package-dev` `replace` `/usr/bin/pkexec` with `/usr/bin/pkexec.security-misc` for the purpose of:
+    
+    > Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with hidepid.
+    
+    * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+    * https://forums.whonix.org/t/cannot-use-pkexec/8129
+    
+    This was a worthwhile effort, interesting approach but ultimately a dead-end.
+
+commit ef05b1a160b24d5aa42da9cc15009d94a37cf120
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 05:40:41 2024 -0500
+
+    disable legacy matroxfb_base framebuffer driver
+    
+    fix typo matroxfb_bases -> matroxfb_base
+    
+    Thanks to @ArrayBolt3 for the bug report!
+
+commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 05:36:41 2024 -0500
+
+    fix `panic-on-oops.service`
+    
+    remove `After=multi-user.target` because already using `WantedBy=multi-user.target`
+    
+    Thanks to @ArrayBolt3 for the bug report!
+
+commit 29ae5f5980d521f6a4b468f5bf41210f78fdf10a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 05:28:31 2024 -0500
+
+    fix optional opt-in `harden-module-loading.service`
+    
+    by making `/usr/libexec/security-misc/disable-kernel-module-loading` executable
+    
+    Thanks to @ArrayBolt3 for the bug report!
+
+commit 4c649577f053af12bcd02c20576bf2d8aec1476d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 10 11:52:42 2024 +0000
+
+    bumped changelog version
+
 commit 29b1f1ec5f3a4bf3991fc1b862751c8eb9769ecd
 Merge: 5bd0a27 238f32e
 Author: Patrick Schleizer <adrelanos@whonix.org>
