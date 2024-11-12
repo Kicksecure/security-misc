@@ -1,3 +1,21 @@
+commit 7987a3914d364e674eb7479b15708c450041af02
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 12 02:29:42 2024 -0500
+
+    deleted no longer used and out-commented `/etc/sudoers.d/xfce-security-misc` leftover
+
+commit 8c2e8e69798e5255529ab3dbee6ca07b8b293100
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 12 01:41:12 2024 -0500
+
+    deleted no longer used and out-commented `etc/sudoers.d/pkexec-security-misc` leftover
+
+commit 65fc0419a84d62e07c61d7e37ef27d144b6b6794
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 11 11:07:57 2024 +0000
+
+    bumped changelog version
+
 commit 50161f5d79eea2ab796863e4eb30eccc17e0b41d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 11 05:48:11 2024 -0500
