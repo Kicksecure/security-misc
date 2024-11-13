@@ -7,7 +7,6 @@ Documentation=https://github.com/Kicksecure/security-misc
 
 ConditionKernelCommandLine=!panic-on-oops=0
 
-After=multi-user.target
 After=graphical.target
 After=getty.target
 

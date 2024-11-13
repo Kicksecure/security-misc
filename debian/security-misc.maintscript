@@ -81,3 +81,6 @@ rm_conffile /etc/default/grub.d/40_only_allow_signed_modules.cfg
 
 ## renamed to /etc/default/grub.d/41_quiet_boot.cfg
 rm_conffile /etc/default/grub.d/41_quiet.cfg
+
+## moved to usability-misc
+rm_conffile /etc/dkms/framework.conf.d/30_security-misc.conf
