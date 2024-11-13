@@ -102,6 +102,9 @@ Networking:
 - Disable ICMP redirect acceptance and redirect sending messages to prevent
   man-in-the-middle attacks and minimize information disclosure.
 
+- Optional - Enable ARP filtering to mitigate some ARP spoofing and ARP
+  cache poisoning attacks.
+
 - Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
   via man-in-the-middle and denial-of-service attacks.
 
