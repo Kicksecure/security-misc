@@ -102,6 +102,9 @@ Networking:
 - Disable ICMP redirect acceptance and redirect sending messages to prevent
   man-in-the-middle attacks and minimize information disclosure.
 
+- Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
+  via man-in-the-middle and denial-of-service attacks.
+
 - Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 
 - Ignore bogus ICMP error responses.
@@ -120,9 +123,6 @@ Networking:
   enable further inspection and analysis.
 
 - Optional - Enable IPv6 Privacy Extensions.
-
-- Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
-  via man-in-the-middle and denial-of-service attacks.
 
 ### Boot parameters
 
