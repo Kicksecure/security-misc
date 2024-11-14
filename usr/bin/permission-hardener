@@ -26,7 +26,7 @@ source /usr/libexec/helper-scripts/log_run_die.sh
 echo_wrapper_ignore() {
   if test "${1}" = "verbose"; then
     shift
-    log notice "Run: $*"
+    log notice "Executing: $*"
   else
     shift
   fi
@@ -36,7 +36,7 @@ echo_wrapper_ignore() {
 echo_wrapper_audit() {
   if test "${1}" = "verbose"; then
     shift
-    log notice "Run: $*"
+    log notice "Executing: $*"
   else
     shift
   fi
