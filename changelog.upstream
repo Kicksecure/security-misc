@@ -1,3 +1,17 @@
+commit ef95b3f9a5aed9652c541cf4bf05b20011718466
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 14 14:41:14 2024 -0500
+
+    Revert "fix `panic-on-oops.service`"
+    
+    This reverts commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751.
+
+commit 57e1edde23aa3f313ce087e00ebc14d158356d6c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 12 09:11:57 2024 +0000
+
+    bumped changelog version
+
 commit 7987a3914d364e674eb7479b15708c450041af02
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 12 02:29:42 2024 -0500
