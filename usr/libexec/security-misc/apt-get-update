@@ -3,6 +3,13 @@
 ## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+write_pid_file() {
+  safe-rm -rf /tmp/security-misc-apt-get-update-pid;
+  install -m644 /dev/null /tmp/security-misc-apt-get-update-pid \
+     || exit 1
+  echo "$$" > /tmp/security-misc-apt-get-update-pid
+}
+
 sigterm_trap() {
    if [ "$lastpid" = "" ]; then
       exit 143
@@ -20,6 +27,8 @@ trap "sigterm_trap" SIGTERM SIGINT
 
 [ -n "$timeout_after" ] || timeout_after="600"
 [ -n "$kill_after" ] || kill_after="10"
+
+write_pid_file
 
 timeout \
    --kill-after="$kill_after" \
