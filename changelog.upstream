@@ -1,3 +1,40 @@
+commit 98d7c245ee11f16e566422a17543aaed2c155d88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 25 15:57:30 2024 -0500
+
+    "|| exit 1" no longer required thanks to errexit
+
+commit f9b5d7d3f4f2ed8d1baae67d8427f13cf26aee8d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 25 15:48:01 2024 -0500
+
+    use strict shell options
+
+commit d32cb8c95b09721e52c4d682a0ddd39d590a4368
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 25 15:44:00 2024 -0500
+
+    use TMP, sponge, refactoring
+
+commit 62a551cfe39a6a640f32e6e97f3e915aa8673514
+Merge: af43472 d7475e2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 25 15:38:01 2024 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/sudoers'
+
+commit d7475e252a64e296913ed8893261e52e72163d55
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Nov 21 20:03:42 2024 -0600
+
+    Make apt-get-update able to be terminated securely
+
+commit af43472d0ccdecb1725a200d10aeeb1b8d51f31a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Nov 14 22:24:50 2024 +0000
+
+    bumped changelog version
+
 commit c7e9460b2ae8dcb96196fef69a7e0ed992c1b43b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Nov 14 16:31:12 2024 -0500
