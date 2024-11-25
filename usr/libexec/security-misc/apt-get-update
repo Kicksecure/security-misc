@@ -3,6 +3,11 @@
 ## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
 write_pid_file() {
   [[ -z "${TMP:-}" ]] && error "TMP is unset"
   safe-rm -rf "$TMP/security-misc-apt-get-update-pid";
@@ -25,8 +30,8 @@ sigterm_trap() {
 
 trap "sigterm_trap" SIGTERM SIGINT
 
-[ -n "$timeout_after" ] || timeout_after="600"
-[ -n "$kill_after" ] || kill_after="10"
+[[ -v timeout_after ]] || timeout_after="600"
+[[ -v kill_after ]] || kill_after="10"
 
 write_pid_file
 
