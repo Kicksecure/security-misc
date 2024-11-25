@@ -11,7 +11,7 @@ set -o pipefail
 write_pid_file() {
   [[ -z "${TMP:-}" ]] && error "TMP is unset"
   safe-rm -rf "$TMP/security-misc-apt-get-update-pid";
-  install -m644 /dev/null "$TMP/security-misc-apt-get-update-pid" || exit 1
+  install -m644 /dev/null "$TMP/security-misc-apt-get-update-pid"
   echo "$$" | sponge -- "$TMP/security-misc-apt-get-update-pid"
 }
 
