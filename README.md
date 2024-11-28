@@ -46,7 +46,7 @@ Kernel space:
 
 - Force the kernel to panic on both "oopses", which can potentially indicate and thwart
   certain kernel exploitation attempts, and also kernel warnings in the `WARN()` path.
-  
+
 - Optional - Force immediate reboot on the occurrence of a single kernel panic and also
   (when using Linux kernel >= 6.2) limit the number of allowed panics to one.
 
@@ -573,9 +573,7 @@ See:
 #### umask
 
 Default `umask` is set to `027` for files created by non-root users such as
-user `user`. Broken. Disabled. See:
-
-* https://github.com/Kicksecure/security-misc/issues/184
+user `user`.
 
 This is done using the PAM module `pam_mkhomedir.so umask=027`.
 
@@ -589,7 +587,13 @@ https://wiki.debian.org/UserPrivateGroups
 
 Default `umask` is unchanged for root because then configuration files created
 in `/etc` by the system administrator would be unreadable by "others" and break
-applications. Examples include `/etc/firefox-esr` and `/etc/thunderbird`.
+applications. Examples include `/etc/firefox-esr` and `/etc/thunderbird`. The
+`umask` is also set to 022 via `sudoers` configuration, so that files created
+as root are world-readable even when using commands such as `sudo vi
+/etc/file` or `sudo -i; touch /etc/file`.
+
+`umask` is set to 022 rather than 027 when using `sudo`, so that commands such
+as `sudo vi /etc/configfile` and `sudo -i; touch /etc/file`
 
 See:
 
