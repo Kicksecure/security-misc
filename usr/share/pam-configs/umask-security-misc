@@ -1,0 +1,8 @@
+Name: Restrict umask to 027 (by package security-misc)
+Default: yes
+Priority: 100
+Session-Type: Additional
+Session-Interactive-Only: yes
+Session:
+	[success=1 default=ignore]	pam_succeed_if.so uid eq 0
+	optional	pam_umask.so umask=027

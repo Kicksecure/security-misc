@@ -3,3 +3,8 @@
 
 user ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
 %sudo ALL=NOPASSWD: /usr/libexec/security-misc/panic-on-oops
+
+## Use a more open umask when executing commands with sudo
+## Can be overridden on a per-user basis using .[z]profile if desirable
+Defaults umask_override
+Defaults umask=0022
