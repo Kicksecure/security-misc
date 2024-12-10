@@ -1,3 +1,22 @@
+commit 58722324ec0be98c3e44938df8cb60ca9b261210
+Merge: 518224b 439fa7f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 10 14:18:50 2024 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/no-recovery-mode'
+
+commit 518224b8cf9e99a830b584d8d54b5dea2925c8f5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 10 19:17:10 2024 +0000
+
+    bumped changelog version
+
+commit 439fa7f3be74f5eba4b98f73c0bb50fd37e8b0e1
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Dec 8 03:21:27 2024 -0600
+
+    Harden/disable recovery mode options
+
 commit 7902311c570edd4286ba36f0cb85223d1e909a03
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Dec 7 04:54:47 2024 -0500
