@@ -1,3 +1,21 @@
+commit 7902311c570edd4286ba36f0cb85223d1e909a03
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Dec 7 04:54:47 2024 -0500
+
+    do not create /etc/sysctl.d/30-lkrg-virtualbox.conf if LKRG is not installed
+
+commit 1ce37d42cd2c132eca8c45ddb04fdb594349d08f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Dec 7 04:50:40 2024 -0500
+
+    .
+
+commit 59299a6639fef31565b8f3cef857c9faa331e0f7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 25 21:07:42 2024 +0000
+
+    bumped changelog version
+
 commit 98d7c245ee11f16e566422a17543aaed2c155d88
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 25 15:57:30 2024 -0500
