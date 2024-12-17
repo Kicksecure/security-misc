@@ -1,0 +1,61 @@
+#!/bin/bash
+set -eu
+
+get_and_save_file(){
+  file_save="${1}"
+  file_field="${2}"
+  shift 2
+  if test -z "${1}"; then
+    return 1
+  fi
+  grep -h -v -e "^$" -e "^\s*#" -- "${@}" |
+    cut -d " " "-f${file_field}" | sed 's|/$||' | sort -u |
+    tee -- "${file_save}" >/dev/null
+}
+
+store_dir="/var/lib/permission-hardener"
+unregistered_dir="${store_dir}/extraneous"
+unregistered_suid="${unregistered_dir}/unregistered-suid"
+existing_mode="${store_dir}/existing_mode/statoverride"
+#new_mode="${store_dir}/new_mode/statoverride"
+tmp_dir="/var/tmp/permission-hardener"
+conf_out="${tmp_dir}/suid-from-conf"
+stat_out="${tmp_dir}/suid-from-stat"
+rm -f -- "${conf_out}" "${stat_out}"
+if ! test -f "${existing_mode}"; then
+  exit
+fi
+if ! test -d "${tmp_dir}"; then
+  mkdir -p -- "${tmp_dir}"
+fi
+if ! test -d "${unregistered_dir}"; then
+  mkdir -p -- "${unregistered_dir}"
+fi
+
+# shellcheck disable=SC2046
+get_and_save_file "${conf_out}" 1 $(find /etc/permission-hardener.d/ /usr/local/etc/permission-hardener.d/ -maxdepth 1 -type f -name "*.conf" 2>/dev/null)
+get_and_save_file "${stat_out}" 4 "${existing_mode}"
+
+out="$(comm -13 --nocheck-order "${conf_out}" "${stat_out}")"
+
+if test -z "${out}"; then
+  exit
+fi
+
+if ! test -f "${unregistered_suid}"; then
+  while read -r file; do
+    mode="$(grep -e " ${file}$" -- "${existing_mode}" | cut -d " " -f3)"
+    case "${mode}" in
+      [24][0-7][0-7][0-7])
+        printf '%s\n' "${file}" | tee -a -- "${unregistered_suid}" >/dev/null
+        ;;
+    esac
+  done <<< "$out"
+fi
+
+for file in $(comm --nocheck-order -13 "${unregistered_suid}" - <<<"${out}"); do
+  if ! test -e "${file}"; then
+    continue
+  fi
+  permission-hardener disable "${file}"
+done

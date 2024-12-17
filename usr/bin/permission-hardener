@@ -285,7 +285,7 @@ add_nosuid_statoverride_entry() {
     done
 
     local clean_output_prefix clean_output
-    clean_output_prefix="Managing (S|G)UID of line:"
+    clean_output_prefix="Managing S(G|U)ID of line:"
     clean_output="${setuid:+setuid='true'} ${setgid:+setgid='true'} existing_mode='${existing_mode}' new_mode='${new_mode}' file='${file_name}'"
     if test "${whitelists_disable_all:-}" = "true"; then
     log info "${clean_output_prefix} whitelists_disable_all=true ${clean_output}"
@@ -728,7 +728,11 @@ Examples:
 }
 
 case "${1:-}" in
-  enable) shift; apply "$@";;
+  enable)
+    shift
+    /usr/lib/security-misc/permission-hardener-extraneous
+    apply "$@"
+    ;;
   disable)
     shift
     case "${1:-}" in
