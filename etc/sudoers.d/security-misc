@@ -7,5 +7,6 @@
 
 ## Use a more open umask when executing commands with sudo
 ## Can be overridden on a per-user basis using .[z]profile if desirable
+## https://www.kicksecure.com/wiki/Dev/Strong_Linux_User_Account_Isolation#umask_hardening
 Defaults umask_override
 Defaults umask=0022
