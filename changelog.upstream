@@ -1,3 +1,17 @@
+commit daf0a0900b780a9d44d0d9b49b3fca6ddbd20d18
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 04:39:34 2024 -0500
+
+    fix apt-get-update for non-English locale
+    
+    https://forums.kicksecure.com/t/systemcheck-reports-warning-debian-package-update-check-result-apt-get-reports-that-packages-can-be-updated-but-system-is-already-fully-upgraded/785
+
+commit e9a5b14a0db6f071424c19e6f4b006386afb6ab4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 06:57:42 2024 +0000
+
+    bumped changelog version
+
 commit 3135a03e21f9e5816097e25aaa7f4a1671f8f87d
 Merge: f0c611d c7f7196
 Author: Patrick Schleizer <adrelanos@whonix.org>
