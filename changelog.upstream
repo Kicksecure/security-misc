@@ -1,3 +1,119 @@
+commit 3135a03e21f9e5816097e25aaa7f4a1671f8f87d
+Merge: f0c611d c7f7196
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:34:56 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit c7f7196471b07a580c6d4a5d86739215508142cd
+Merge: e5b67e0 3749f8f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:31:25 2024 -0500
+
+    Merge pull request #287 from raja-grewal/patch
+    
+    Refactor and add two CPU mitigations
+
+commit f0c611d9edb5fd7a3e00d13b248c65abda2c9d8a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:18:25 2024 -0500
+
+    comment
+
+commit 4f681be77429984695a1b0f689065051884e7bf7
+Merge: 4c3ca68 4cf5757
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:17:44 2024 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit e5b67e044bb5011dd667879a73a670f2c5f74057
+Merge: 4cf5757 c116796
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:15:02 2024 -0500
+
+    Merge pull request #279 from raja-grewal/arp
+    
+    Provide network-related hardening options via `sysctl`'s
+
+commit 4cf5757575c1257a14331f0169a9d8d163e1326d
+Merge: 9d06341 1708a03
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 00:08:56 2024 -0500
+
+    Merge pull request #282 from ArrayBolt3/arraybolt3/umask
+    
+    Enable umask hardening
+
+commit 3749f8ff097551a843e5ed80de52c6770a32e0c6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Dec 18 03:36:09 2024 +0000
+
+    Update presentation on user namespaces
+
+commit 0dff2cd28fd769955757cdef1b7f9d637a1180c5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Dec 18 03:32:35 2024 +0000
+
+    Minor additions
+
+commit 3e96fdd9ccb6268403d6c4f9a061c4a33e6f6dd2
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 17 11:44:11 2024 +0000
+
+    Enable `kvm.mitigate_smt_rsb=1`
+
+commit 45355aabdc180a6a2fdd4a374c6f7d72f4d36240
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 17 11:42:52 2024 +0000
+
+    Enable `kvm-intel.vmentry_l1d_flush=always`
+
+commit defba1f2450b2c8bbc668bf5f6f6f0d101338cc7
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 17 11:42:03 2024 +0000
+
+    Refactor CPU mitigations
+
+commit 943c421889ce5dfe3869380e4587ca22724f2ce7
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 17 11:40:38 2024 +0000
+
+    Minor refactoring
+
+commit ca3a73ac13d805515f71f1be7ecedc33d3a1b519
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 17 11:37:10 2024 +0000
+
+    Typo
+
+commit 4c3ca68453b44074025a1ec9f31451c57344f3cf
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 9 12:37:11 2024 -0600
+
+    Disable unnecessary sudoers exceptions
+
+commit 9d06341c91b51f9c737fe67457045924323635f0
+Merge: a9dd592 5b88e92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Dec 14 15:18:56 2024 -0500
+
+    Merge pull request #285 from Kicksecure/permission-hardener-mount
+    
+    Permission Hardener: treat mount same as umount
+
+commit c1167968542a62d0677517e11505f6e9222ec378
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 12 06:36:47 2024 +0000
+
+    `arp_ignore`: Add reference to 2024-12-10 Mullvad VPN audit details
+
+commit a9dd592a8b49226f326e90111178aebba3cc144f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 10 19:19:10 2024 +0000
+
+    bumped changelog version
+
 commit 58722324ec0be98c3e44938df8cb60ca9b261210
 Merge: 518224b 439fa7f
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -28,6 +144,30 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Dec 7 04:50:40 2024 -0500
 
     .
+
+commit 5b88e92e5c4b951e659e1574fc248bd11158dfb2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 6 09:48:58 2024 -0500
+
+    permission hardner: treat `mount` the same way we treat `umount`
+    
+    Thanks to @the-moog for the bug report!
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/284
+
+commit 93b51819d4693955936456916188b4118fe68a66
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 6 09:47:08 2024 -0500
+
+    permission hardener mount chmod change from `745` to `755`
+    
+    https://github.com/Kicksecure/security-misc/issues/284
+
+commit 1708a03e1edda821ef091f10c46d32f740511d38
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Nov 28 15:20:57 2024 -0600
+
+    Enable umask hardening
 
 commit 59299a6639fef31565b8f3cef857c9faa331e0f7
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -91,6 +231,37 @@ Date:   Thu Nov 14 14:41:14 2024 -0500
     Revert "fix `panic-on-oops.service`"
     
     This reverts commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751.
+
+commit 412b371e85044962f6620386b767369b9e25d71e
+Merge: 141b84c 57e1edd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 13 16:47:57 2024 +1100
+
+    Merge branch 'Kicksecure:master' into arp
+
+commit 141b84c40de76988ec78bdccf1c1d67fc4367b3f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 13 05:42:56 2024 +0000
+
+    Provide option to deny sending and receiving shared media redirects
+
+commit 18aec201bfb0477fee8800ad1388099e11920016
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 13 05:41:25 2024 +0000
+
+    Provide option to harden response to ARP requests
+
+commit a25d4f8df88908e83e56049204aa625f1196a948
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 13 05:40:21 2024 +0000
+
+    Provide option to enable ARP filtering
+
+commit c2aae73ce161811571e4c85609a0b043399c1b65
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 13 05:38:03 2024 +0000
+
+    Add reference and move text
 
 commit 57e1edde23aa3f313ce087e00ebc14d158356d6c
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -207,6 +378,12 @@ Author: raja-grewal <rg_public@proton.me>
 Date:   Fri Nov 8 15:36:04 2024 +1100
 
      Enable `ssbd=force-on`
+
+commit a1d1f97955fd9fd3cee77dc04e2eb5e5fa29d243
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 8 03:58:23 2024 +0000
+
+    Provide option to drop gratuitous ARP packets
 
 commit 3af2684134279ba6f5b18b40986f02a50baa5604
 Author: Patrick Schleizer <adrelanos@whonix.org>
