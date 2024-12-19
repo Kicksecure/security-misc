@@ -1,3 +1,22 @@
+commit 175b442d5bb9dfcb4e9b524ec2077e72c74598cc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 05:56:50 2024 -0500
+
+    use long option name
+
+commit c99021bb0c1d5b6bf361cc483449330cdd218ee6
+Merge: 95b5357 9d69cd1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 05:56:01 2024 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/sysmaint'
+
+commit 95b535764c8a98b67a71ee1fd57b7f01da464106
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 09:43:26 2024 +0000
+
+    bumped changelog version
+
 commit daf0a0900b780a9d44d0d9b49b3fca6ddbd20d18
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 04:39:34 2024 -0500
@@ -58,6 +77,12 @@ Date:   Thu Dec 19 00:08:56 2024 -0500
     Merge pull request #282 from ArrayBolt3/arraybolt3/umask
     
     Enable umask hardening
+
+commit 9d69cd1912ab657e7916b38f56b477c2b7abd0a3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Dec 18 21:34:16 2024 -0600
+
+    Add sysmaint account lock detection
 
 commit 3749f8ff097551a843e5ed80de52c6770a32e0c6
 Author: raja-grewal <rg_public@proton.me>
