@@ -8,6 +8,8 @@ set -o nounset
 set -o errtrace
 set -o pipefail
 
+export LANG=C
+
 write_pid_file() {
   [[ -z "${TMP:-}" ]] && error "TMP is unset"
   safe-rm -rf "$TMP/security-misc-apt-get-update-pid";
