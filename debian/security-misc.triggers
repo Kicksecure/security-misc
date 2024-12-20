@@ -9,8 +9,8 @@ interest-noawait /usr
 interest-noawait /opt
 
 ## Trigger permission hardener when new configuration files are being installed.
-/usr/lib/permission-hardener.d
-/etc/permission-hardener.d
-/usr/local/etc/permission-hardener.d
-/etc/permission-hardening.d
-/usr/local/etc/permission-hardening.d
+interest-noawait /usr/lib/permission-hardener.d
+interest-noawait /etc/permission-hardener.d
+interest-noawait /usr/local/etc/permission-hardener.d
+interest-noawait /etc/permission-hardening.d
+interest-noawait /usr/local/etc/permission-hardening.d
