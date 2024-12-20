@@ -1,3 +1,15 @@
+commit a4c76c617a18a49168e0ffdba2d8b0ae834f2877
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 01:01:13 2024 -0500
+
+    syntax fix
+
+commit b40bc0a2c9b17b3569918a6839bce1c67af5c9df
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 05:58:24 2024 +0000
+
+    bumped changelog version
+
 commit b21c394ea52401c0d77b6ec396af6a49335f5e0b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 20 00:56:20 2024 -0500
