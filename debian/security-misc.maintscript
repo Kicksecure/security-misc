@@ -68,6 +68,28 @@ rm_conffile /etc/permission-hardening.d/25_default_whitelist_unix_chkpwd.conf
 rm_conffile /etc/permission-hardening.d/25_default_whitelist_virtualbox.conf
 rm_conffile /etc/permission-hardening.d/30_default.conf
 
+## moved to /usr/lib/permission-hardener.d
+rm_conffile /etc/permission-hardener.d/25_default_passwd.conf
+rm_conffile /etc/permission-hardener.d/25_default_sudo.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_bubblewrap.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_chromium.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_dbus.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_firejail.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_fuse.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_hardened_malloc.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_mount.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_pam.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_policykit.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_postfix.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_qubes.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_selinux.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_spice.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_ssh.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_sudo.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_unix_chkpwd.conf
+rm_conffile /etc/permission-hardener.d/25_default_whitelist_virtualbox.conf
+rm_conffile /etc/permission-hardener.d/30_default.conf
+
 ## merged into 1 file /etc/default/grub.d/40_kernel_hardening.cfg
 rm_conffile /etc/default/grub.d/40_distrust_bootloader.cfg
 rm_conffile /etc/default/grub.d/40_distrust_cpu.cfg
