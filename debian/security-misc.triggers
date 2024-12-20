@@ -1,6 +1,16 @@
 ## Copyright (C) 2024 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## use noawait
 ## https://github.com/Kicksecure/security-misc/issues/196
+
+## Trigger permission hardener when new binaries are being installed.
 interest-noawait /usr
 interest-noawait /opt
+
+## Trigger permission hardener when new configuration files are being installed.
+/usr/lib/permission-hardener.d
+/etc/permission-hardener.d
+/usr/local/etc/permission-hardener.d
+/etc/permission-hardening.d
+/usr/local/etc/permission-hardening.d
