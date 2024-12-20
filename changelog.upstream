@@ -1,3 +1,28 @@
+commit ad6e1f5ad490e12fc5e69b82da5dc1830cc41c96
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 00:41:06 2024 -0500
+
+    move from `/etc/permission-hardener.d` to `/usr/lib/permission-hardener.d`
+
+commit a2c1e8c218117a47ef70dd767d753be5d084adfa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 00:39:51 2024 -0500
+
+    clean up old files in `/etc/permission-hardener.d`
+    because will be moved to `/usr/lib/permission-hardener.d`
+
+commit 6de5d2d0763539d6d0d4b19b501bb316ed3b2c94
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 00:37:44 2024 -0500
+
+    permission hardener: also parse `/usr/lib/permission-hardener.d/*.conf` folder
+
+commit 721b100fb64136b7c36c8d43c90c716a1fed42d0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Dec 19 10:58:50 2024 +0000
+
+    bumped changelog version
+
 commit 175b442d5bb9dfcb4e9b524ec2077e72c74598cc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 05:56:50 2024 -0500
