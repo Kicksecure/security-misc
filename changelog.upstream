@@ -1,3 +1,15 @@
+commit b21c394ea52401c0d77b6ec396af6a49335f5e0b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 00:56:20 2024 -0500
+
+    Trigger permission hardener when new configuration files are being installed.
+
+commit cd027b86e710b6f6b8fac6dd0ebcdcd691e86dd3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 05:48:48 2024 +0000
+
+    bumped changelog version
+
 commit ad6e1f5ad490e12fc5e69b82da5dc1830cc41c96
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 20 00:41:06 2024 -0500
