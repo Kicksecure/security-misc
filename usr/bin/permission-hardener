@@ -590,6 +590,7 @@ parse_config_folder() {
 
   shopt -s nullglob
   for config_file in \
+    /usr/lib/permission-hardener.d/*.conf \
     /etc/permission-hardener.d/*.conf \
     /usr/local/etc/permission-hardener.d/*.conf \
     /etc/permission-hardening.d/*.conf \
