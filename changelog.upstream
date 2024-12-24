@@ -1,3 +1,22 @@
+commit 27d015d58ebc5e750d9d06f042b761720473941d
+Merge: 3c73c0c 2f3a2bc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 24 00:08:58 2024 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/sysmaint'
+
+commit 2f3a2bce7756efe75cd8aaf5066b599b4c49bbdc
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Dec 20 11:04:22 2024 -0600
+
+    Add warning about using non-sysmaint accounts in sysmaint mode
+
+commit 3c73c0cd3a845d1a484551ff50f59e5f2ef56a68
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 20 06:01:27 2024 +0000
+
+    bumped changelog version
+
 commit a4c76c617a18a49168e0ffdba2d8b0ae834f2877
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 20 01:01:13 2024 -0500
