@@ -1,0 +1,748 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## https://forums.whonix.org/t/disable-suid-binaries/7706
+## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
+
+## dpkg-statoverride does not support end-of-options ("--").
+
+set -o errexit -o nounset -o pipefail
+
+exit_code=0
+store_dir="/var/lib/permission-hardener"
+dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
+dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+delimiter="#permission-hardener-delimiter#"
+
+# shellcheck disable=SC1091
+source /usr/libexec/helper-scripts/safe_echo.sh
+# shellcheck disable=SC2034
+log_level=notice
+# shellcheck disable=SC1091
+source /usr/libexec/helper-scripts/log_run_die.sh
+
+echo_wrapper_ignore() {
+  if test "${1}" = "verbose"; then
+    shift
+    log notice "Executing: $*"
+  else
+    shift
+  fi
+  "$@" 2>/dev/null || true
+}
+
+echo_wrapper_audit() {
+  if test "${1}" = "verbose"; then
+    shift
+    log notice "Executing: $*"
+  else
+    shift
+  fi
+  return_code=0
+  "$@" ||
+    {
+      return_code="$?"
+      exit_code=203
+      log error "Command '$*' failed with exit code '${return_code}'! calling function name: '${FUNCNAME[1]}'" >&2
+    }
+}
+
+make_store_dir(){
+  mkdir --parents "${store_dir}/private"
+  mkdir --parents "${store_dir}/existing_mode"
+  mkdir --parents "${store_dir}/new_mode"
+}
+
+## Some tools may fail on newlines and even variable assignment to array may
+## fail if a variable that will be assigned to an array element contains
+## characters that are used as delimiters.
+block_newlines(){
+  local newline_variable newline_value
+  newline_variable="${1}"
+  newline_value="${2}"
+  ## dpkg-statoverride: error: path may not contain newlines
+  #if [[ "${newline_value}" == *$'\n'* ]]; then
+  if [[ "${newline_value}" != "${newline_value//$'\n'/NEWLINE}" ]]; then
+    log warn "Skipping ${newline_variable} that contains newlines: '${newline_value}'" >&2
+    return 1
+  fi
+}
+
+output_stat(){
+  local file_name
+  file_name="${1}"
+
+  if test -z "${file_name}"; then
+    log error "File name is empty. file_name: '${file_name}'" >&2
+    return 1
+  fi
+
+  block_newlines file "${file_name}"
+
+  ## dpkg-statoverride can actually handle '--file-name'.
+#   if [[ $file_name == --* ]]; then
+#     log warn "File name starts with '--'. This would be interpreted by dpkg-statoverride as an option. Skipping. file_name: '${file_name}'" >&2
+#     return 1
+#   fi
+
+  declare -a arr
+  local file_name_from_stat stat_output stat_output_newlined
+
+  if ! stat_output="$(stat --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" -- "${file_name}")"; then
+    log error "Failed to run 'stat' on file: '${file_name}'!" >&2
+    return 1
+  fi
+
+  if [ "$stat_output" = "" ]; then
+    log error "stat_output is empty.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
+  stat_output_newlined="$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")"
+
+  if test "${stat_output_newlined}" = ""; then
+    log error "stat_output_newlined is empty.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
+  readarray -t arr <<< "${stat_output_newlined}"
+
+  if test "${#arr[@]}" = 0; then
+    log error "Array length is 0.
+File name: '${file_name}'
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
+  existing_mode="${arr[0]}"
+  existing_owner="${arr[1]}"
+  existing_group="${arr[2]}"
+  file_name_from_stat="${arr[3]}"
+
+  if [ ! "$file_name" = "$file_name_from_stat" ]; then
+    log error "\
+File name is different from file name received from stat:
+File name: '${file_name}'
+File name from stat: '${file_name_from_stat}'
+line: '${line}'
+" >&2
+    return 1
+  fi
+
+  if test -z "${existing_mode}"; then
+    log error "Existing mode is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+  if test -z "${existing_owner}"; then
+    log error "Existing owner is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+  if test -z "${existing_group}"; then
+    log error "Existing group is empty. Stat output: '${stat_output}', line: '${line}'" >&2
+    return 1
+  fi
+}
+
+sanity_tests() {
+  echo_wrapper_audit silent \
+    which \
+      capsh getcap setcap stat find dpkg-statoverride getent grep 1>/dev/null
+}
+
+add_nosuid_statoverride_entry() {
+  local fso_to_process
+  fso_to_process="${fso}"
+  local should_be_counter
+  should_be_counter=0
+  local counter_actual
+  counter_actual=0
+
+  local dummy_line
+  while IFS="" read -r -d "" dummy_line; do
+    log info "Test would parse line: '${dummy_line}'"
+    should_be_counter=$((should_be_counter + 1))
+  done < <(safe_echo_nonewline "${fso_to_process}" | find -files0-from - -perm /u=s,g=s -print0)
+  ## False positive on SC2185 (find without path argument) #1748
+  ## https://github.com/koalaman/shellcheck/issues/1748
+  ##
+  ## /usr/lib will hit ARG_MAX if using bash 'shopt -s globstar' and '/usr/lib/**'.
+  ## Using 'find' with '-perm /u=s,g=s' is faster and avoids ARG_MAX.
+  ## https://forums.whonix.org/t/disable-suid-binaries/7706/17
+
+  local line
+  while IFS="" read -r -d "" file_name; do
+    counter_actual=$((counter_actual + 1))
+
+    ## sets:
+    ## exiting_mode
+    ## existing_owner
+    ## existing_group
+    output_stat "${file_name}"
+
+    ## -h file      True if file is a symbolic Link.
+    ## -u file      True if file has its set-user-id bit set.
+    ## -g file      True if file has its set-group-id bit set.
+
+    if test -h "${file_name}"; then
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
+      log info "Skip symlink: '${file_name}'"
+      continue
+    fi
+
+    if test -d "${file_name}"; then
+      log info "Skip directory: '${file_name}'"
+      continue
+    fi
+
+    local setuid setgid
+    setuid=""
+    if test -u "${file_name}"; then
+      setuid=true
+    fi
+    setgid=""
+    if test -g "${file_name}"; then
+      setgid=true
+    fi
+
+    local setuid_or_setgid
+    setuid_or_setgid=""
+    if test "${setuid}" = "true" || test "${setgid}" = "true"; then
+      setuid_or_setgid=true
+    fi
+    if test -z "${setuid_or_setgid}"; then
+      log info "Neither setuid nor setgid. Skipping. file_name: '${file_name}'"
+      continue
+    fi
+
+    ## Remove suid / gid and execute permission for 'group' and 'others'.
+    ## Similar to: chmod og-ugx /path/to/filename
+    ## Removing execution permission is useful to make binaries such as 'su'
+    ## fail closed rather than fail open if suid was removed from these.
+    ## Do not remove read access since no security benefit and easier to
+    ## manually undo for users.
+    ## Are there suid or sgid binaries which are still useful if suid / sgid
+    ## has been removed from these?
+    new_mode="744"
+
+    local is_exact_whitelisted
+    is_exact_whitelisted=""
+    for white_list_entry in "${exact_white_list[@]:-}"; do
+      if test -z "${white_list_entry}"; then
+        log info "white_list_entry unset. Skipping. file_name: '${file_name}'"
+        continue
+      fi
+      if test "${file_name}" = "${white_list_entry}"; then
+        is_exact_whitelisted="true"
+        log info "is_exact_whitelisted=true. Skipping. file_name: '${file_name}'"
+        ## Stop looping through the whitelist.
+        break
+      fi
+    done
+
+    local is_match_whitelisted
+    is_match_whitelisted=""
+    for matchwhite_list_entry in "${match_white_list[@]:-}"; do
+      if test -z "${matchwhite_list_entry}"; then
+        log info "matchwhite_list_entry unset. Skipping. file_name: '${file_name}'"
+        continue
+      fi
+      if safe_echo "${file_name}" | grep --quiet --fixed-strings -- "${matchwhite_list_entry}"; then
+        is_match_whitelisted="true"
+        log info "is_match_whitelisted=true. Skipping. file_name: '${file_name}'"
+        ## Stop looping through the match_white_list.
+        break
+      fi
+    done
+
+    local is_disable_whitelisted
+    is_disable_whitelisted=""
+    for disablematch_list_entry in "${disable_white_list[@]:-}"; do
+      if test -z "${disablematch_list_entry}"; then
+        log info "disablematch_list_entry unset. Skipping. file_name: '${file_name}'"
+        continue
+      fi
+      if safe_echo "${file_name}" | grep --quiet --fixed-strings -- "${disablematch_list_entry}"; then
+        is_disable_whitelisted="true"
+        log info "is_disable_whitelisted=true. Skipping. file_name: '${file_name}'"
+        ## Stop looping through the disablewhitelist.
+        break
+      fi
+    done
+
+    local clean_output_prefix clean_output
+    clean_output_prefix="Managing (S|G)UID of line:"
+    clean_output="${setuid:+setuid='true'} ${setgid:+setgid='true'} existing_mode='${existing_mode}' new_mode='${new_mode}' file='${file_name}'"
+    if test "${whitelists_disable_all:-}" = "true"; then
+    log info "${clean_output_prefix} whitelists_disable_all=true ${clean_output}"
+    elif test "${is_disable_whitelisted}" = "true"; then
+      log info "${clean_output_prefix} is_disable_whitelisted=true ${clean_output}"
+    else
+      if test "${is_exact_whitelisted}" = "true"; then
+        log info "${clean_output_prefix} is_exact_whitelisted=true ${clean_output}"
+        continue
+      fi
+      if test "${is_match_whitelisted}" = "true"; then
+        log info "${clean_output_prefix} is_match_whitelisted=true matchwhite_list_entry='${matchwhite_list_entry}' ${clean_output}"
+        continue
+      fi
+    fi
+
+    log notice "${clean_output_prefix} ${clean_output}"
+
+    # shellcheck disable=SC2086
+    if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${file_name}" >/dev/null; then
+      log info "Existing mode already saved previously. Not saving again."
+    else
+      ## Save existing_mode in separate database.
+      ## Not using --update as not intending to enforce existing_mode.
+      # shellcheck disable=SC2086
+      echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${file_name}"
+    fi
+
+    ## No need to check "dpkg-statoverride --list" for existing entries.
+    ## If existing_mode was correct already, we would not have reached this
+    ## point. Since existing_mode is incorrect, remove from dpkg-statoverride
+    ## and re-add.
+
+    ## Remove from real database.
+    echo_wrapper_ignore silent dpkg-statoverride --remove "${file_name}"
+
+    ## Remove from separate database.
+    # shellcheck disable=SC2086
+    echo_wrapper_ignore silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}"
+
+    ## Add to real database and use --update to make changes on disk.
+    echo_wrapper_audit verbose dpkg-statoverride --add --update "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+
+    ## Not using --update as this is only for recording.
+    # shellcheck disable=SC2086
+    echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${existing_owner}" "${existing_group}" "${new_mode}" "${file_name}"
+  done < <(safe_echo_nonewline "${fso_to_process}" | find -files0-from - -perm /u=s,g=s -print0)
+
+  ## Sanity test.
+  if test ! "${should_be_counter}" = "${counter_actual}"; then
+    log info "File (parsed/wanted): '${fso_to_process}': (${counter_actual}/${should_be_counter})"
+    log error "Expected number of files to be parsed was not met." >&2
+    exit_code=202
+  fi
+}
+
+set_file_perms() {
+  log info "START parsing config file: '${config_file}'"
+
+  local line
+  while read -r line || test -n "${line}"; do
+    if test -z "${line}"; then
+      true "DEBUG: line is empty. Skipping."
+      continue
+    fi
+
+    if [[ "${line}" =~ ^\s*# ]]; then
+      continue
+    fi
+
+    if ! [[ "${line}" =~ [0-9a-zA-Z/] ]]; then
+      exit_code=200
+      log error "Line contains invalid characters: '${line}'" >&2
+      ## Safer to exit with error in this case.
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
+      exit "${exit_code}"
+    fi
+
+    if test "${line}" = 'whitelists_disable_all=true'; then
+      whitelists_disable_all=true
+      log info "whitelists_disable_all=true"
+      continue
+    fi
+
+    #global fso
+    local mode_from_config owner_from_config group_from_config capability_from_config
+    if ! read -r fso mode_from_config owner_from_config group_from_config capability_from_config <<<"${line}"; then
+      exit_code=201
+      log error "Cannot parse line: '${line}'" >&2
+      ## Debugging.
+      du -hs /tmp || true
+      safe_echo "test -w /tmp: '$(test -w /tmp)'" >&2 || true
+      ## Safer to exit with error in this case.
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
+      exit "${exit_code}"
+    fi
+
+    log info "Parsing line: fso='${fso}' mode_from_config='${mode_from_config}' owner_from_config='${owner_from_config}' group_from_config='${group_from_config}' capability_from_config='${capability_from_config}'"
+
+    ## Debugging.
+    #safe_echo "line: '${line}'"
+    #safe_echo "fso: '${fso}'"
+    #safe_echo "mode_from_config: '${mode_from_config}'"
+    #safe_echo "owner_from_config: '${owner_from_config}'"
+
+    local fso_without_trailing_slash
+    fso_without_trailing_slash="${fso%/}"
+
+    declare -g disable_white_list exact_white_list match_white_list
+    case "${mode_from_config}" in
+      disablewhitelist)
+        disable_white_list+=("${fso}")
+        continue
+        ;;
+      exactwhitelist)
+        exact_white_list+=("${fso}")
+        continue
+        ;;
+      matchwhitelist)
+        match_white_list+=("${fso}")
+        continue
+        ;;
+    esac
+
+    if test ! -e "${fso}"; then
+      log info "File does not exist: '${fso}'"
+      continue
+    fi
+
+    ## Use dpkg-statoverride so permissions are not reset during upgrades.
+
+    if test "${mode_from_config}" = "nosuid"; then
+      ## If mode_from_config is "nosuid" the config does not set owner and
+      ## group. Therefore do not enforce owner/group check.
+      add_nosuid_statoverride_entry
+    else
+      local string_length_of_mode_from_config
+      string_length_of_mode_from_config="${#mode_from_config}"
+      if test "${string_length_of_mode_from_config}" -gt "4"; then
+        log error "Invalid mode: '${mode_from_config}'" >&2
+        continue
+      fi
+      if test "${string_length_of_mode_from_config}" -lt "3"; then
+        log error "Invalid mode: '${mode_from_config}'" >&2
+        continue
+      fi
+
+      if ! grep --quiet --fixed-strings -- "${owner_from_config}:" "${store_dir}/private/passwd"; then
+        log error "Owner from config does not exist: '${owner_from_config}'" >&2
+        continue
+      fi
+
+      if ! grep --quiet --fixed-strings -- "${group_from_config}:" "${store_dir}/private/group"; then
+        log error "Group from config does not exist: '${group_from_config}'" >&2
+        continue
+      fi
+
+      local mode_for_grep
+      mode_for_grep="${mode_from_config}"
+      first_character_of_mode_from_config="${mode_from_config::1}"
+      if test "${first_character_of_mode_from_config}" = "0"; then
+        ## Remove leading '0'.
+        mode_for_grep="${mode_from_config:1}"
+      fi
+
+      file_name="${fso_without_trailing_slash}"
+
+      ## sets:
+      ## exiting_mode
+      ## existing_owner
+      ## existing_group
+      output_stat "${file_name}"
+
+      ## Check there is an entry for the fso.
+      ##
+      ## example: dpkg-statoverride --list | grep /home
+      ## output:
+      ## root root 755 /home
+      ##
+      ## dpkg-statoverride does not show leading '0'.
+      local dpkg_statoverride_list_output=""
+      local dpkg_statoverride_list_exit_code=0
+      dpkg_statoverride_list_output="$(dpkg-statoverride --list "${fso_without_trailing_slash}")" || {
+        dpkg_statoverride_list_exit_code=$?
+        true
+      }
+
+      if test "${dpkg_statoverride_list_exit_code}" = "0"; then
+        local grep_line
+        grep_line="${owner_from_config} ${group_from_config} ${mode_for_grep} ${fso_without_trailing_slash}"
+        if safe_echo "${dpkg_statoverride_list_output}" | grep --quiet --fixed-strings -- "${grep_line}"; then
+          log info "The owner/group/mode matches fso entry. No further action required."
+        else
+          log info "The owner/group/mode does not match fso entry, updating entry."
+          ## fso_without_trailing_slash instead of fso to prevent
+          ## "dpkg-statoverride: warning: stripping trailing /"
+
+          # shellcheck disable=SC2086
+          if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
+            log info "Existing mode already saved previously. Not saving again."
+          else
+            ## Save existing_mode in separate database.
+            ## Not using --update as not intending to enforce existing_mode.
+            # shellcheck disable=SC2086
+            echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+          fi
+
+          # shellcheck disable=SC2086
+          echo_wrapper_ignore silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${fso_without_trailing_slash}"
+
+          ## Remove from and add to real database.
+          echo_wrapper_ignore silent dpkg-statoverride --remove "${fso_without_trailing_slash}"
+          echo_wrapper_audit verbose dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+
+          ## Save in separate database.
+          ## Not using --update as this is only for saving.
+          # shellcheck disable=SC2086
+          echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+        fi
+      else
+        log info "There is no fso entry, adding one."
+
+        # shellcheck disable=SC2086
+        if dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --list "${fso_without_trailing_slash}" >/dev/null; then
+          log info "Existing mode already saved previously. Not saving again."
+        else
+          ## Save existing_mode in separate database.
+          ## Not using --update as not intending to enforce existing_mode.
+          # shellcheck disable=SC2086
+          echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --add "${existing_owner}" "${existing_group}" "${existing_mode}" "${fso_without_trailing_slash}"
+        fi
+
+        ## Add to real database.
+        echo_wrapper_audit verbose dpkg-statoverride --add --update "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+
+        ## Save in separate database.
+        ## Not using --update as this is only for saving.
+        # shellcheck disable=SC2086
+        echo_wrapper_audit silent dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --add "${owner_from_config}" "${group_from_config}" "${mode_from_config}" "${fso_without_trailing_slash}"
+      fi
+    fi
+    if test -z "${capability_from_config}"; then
+      log info "capability_from_config is empty. Skipping. file_name: '${file_name}'"
+      continue
+    fi
+
+    if test "${capability_from_config}" = "none"; then
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/45
+      ## sudo setcap -r /bin/ping 2>/dev/null
+      ## Failed to set capabilities on file '/bin/ping' (No data available)
+      ## The value of the capability argument is not permitted for a file. Or
+      ## the file is not a regular (non-symlink) file
+      ## Therefore use echo_wrapper_ignore.
+      ##
+      ## NOTE: setcap does not support End-of-Options Marker ('--') yet.
+      ## setcap bug report:
+      ## setcap Command Does Not Support End-of-Options Marker ('--')
+      ## https://bugzilla.kernel.org/show_bug.cgi?id=219487
+      echo_wrapper_ignore verbose setcap -r "${fso}"
+      getcap_output="$(getcap -- "${fso}")"
+      if test -n "${getcap_output}"; then
+        exit_code=205
+        log error "Removing capabilities failed. File: '${fso}'" >&2
+        continue
+      fi
+    else
+      if ! capsh --print | grep --fixed-strings -- "Bounding set" | grep --quiet -- "${capability_from_config}"; then
+        log error "Capability from config does not exist: '${capability_from_config}'" >&2
+        continue
+      fi
+
+      ## feature request: dpkg-statoverride: support for capabilities
+      ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=502580
+      echo_wrapper_audit verbose setcap "${capability_from_config}+ep" -- "${fso}"
+    fi
+
+  done <"${config_file}"
+  log info "END parsing config file: '${config_file}'"
+}
+
+parse_config_folder() {
+  touch "${store_dir}/private/passwd"
+  chmod og-rwx "${store_dir}/private/passwd"
+  touch "${store_dir}/private/group"
+  chmod og-rwx "${store_dir}/private/group"
+
+  local passwd_file_contents_temp
+  ## Query contents of password and group databases only once and buffer them
+  ##
+  ## If we don't buffer we sometimes get incorrect results when checking for
+  ## entries using 'if getent passwd | grep --quiet -- '^root:'; ...' since
+  ## 'grep' exits after the first match in this case causing 'getent' to
+  ## receive SIGPIPE, which then fails the pipeline since 'set -o pipefail' is
+  ## set for this script.
+  passwd_file_contents_temp="$(getent passwd)"
+  safe_echo "${passwd_file_contents_temp}" | tee -- "${store_dir}/private/passwd" >/dev/null
+  group_file_contents_temp="$(getent group)"
+  safe_echo "${group_file_contents_temp}" | tee -- "${store_dir}/private/group" >/dev/null
+
+  #passwd_file_contents="$(cat "${store_dir}/private/passwd")"
+  #group_file_contents="$(cat "${store_dir}/private/group")"
+
+  shopt -s nullglob
+  for config_file in \
+    /usr/lib/permission-hardener.d/*.conf \
+    /etc/permission-hardener.d/*.conf \
+    /usr/local/etc/permission-hardener.d/*.conf \
+    /etc/permission-hardening.d/*.conf \
+    /usr/local/etc/permission-hardening.d/*.conf
+  do
+    set_file_perms
+
+  done
+}
+
+apply() {
+  check_root
+  make_store_dir
+  sanity_tests
+  parse_config_folder
+
+  log notice "\
+To compare the current and previous permission modes, install 'meld' (or preferred diff tool) for comparison of file mode changes:
+    sudo apt install --no-install-recommends meld
+    meld ${store_dir}/existing_mode/statoverride ${store_dir}/new_mode/statoverride"
+}
+
+spare() {
+  check_root
+  make_store_dir
+
+  remove_file="${1}"
+  exit_code=0
+  dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
+  dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+
+  if test ! -f "${store_dir}/existing_mode/statoverride"; then
+    true "DEBUG: Stat file does not exist, hardening was not applied before."
+    return 0
+  fi
+
+  local line
+  while read -r line; do
+    ## example line:
+    ## root root 4755 /usr/lib/eject/dmcrypt-get-device
+
+    local owner group mode file_name
+    if ! read -r owner group mode file_name <<< "${line}"; then
+      exit_code=201
+      log error "Cannot parse line: '${line}'" >&2
+      continue
+    fi
+    log info "Parsing line: owner='${owner}' group='${group}' mode='${mode}' file_name='${file_name}'"
+
+    if test "${remove_file}" = "all"; then
+      verbose=""
+      remove_one=false
+    else
+      if test "${remove_file}" = "${file_name}"; then
+        verbose="--verbose"
+        remove_one=true
+        safe_echo "${remove_one}" | tee -- "${store_dir}/remove_one" >/dev/null
+      else
+        safe_echo "false" | tee -- "${store_dir}/remove_one" >/dev/null
+        continue
+      fi
+    fi
+
+    if test "${remove_one}" = "true"; then
+      set -o xtrace
+    fi
+
+    if test -e "${file_name}"; then
+      # shellcheck disable=SC2086
+      chown ${verbose} "${owner}:${group}" "${file_name}" || exit_code=202
+      ## chmod need to be run after chown since chown removes suid.
+      ## https://unix.stackexchange.com/questions/53665/chown-removes-setuid-bit-bug-or-feature
+      # shellcheck disable=SC2086
+      chmod ${verbose} "${mode}" "${file_name}" || exit_code=203
+    else
+      log info "File does not exist: '${file_name}'"
+    fi
+
+    dpkg-statoverride --remove "${file_name}" &>/dev/null || true
+    # shellcheck disable=SC2086
+    dpkg-statoverride ${dpkg_admindir_parameter_existing_mode} --remove "${file_name}" &>/dev/null || true
+    # shellcheck disable=SC2086
+    dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --remove "${file_name}" &>/dev/null || true
+
+    if test "${remove_one}" = "true"; then
+      set +o xtrace
+      break
+    fi
+
+  done < "${store_dir}/existing_mode/statoverride"
+
+  if test ! "${remove_file}" = "all"; then
+    if test "$(cat "${store_dir}/remove_one")" = "false"; then
+      log info "No file was removed.
+
+  File '${remove_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation. This is expected if already done earlier.
+
+  This program expects the full path to the file. Example:
+    $0 disable /usr/bin/newgrp  # absolute path: works
+    $0 disable newgrp           # relative path: does not work
+
+  To remove all:
+    $0 disable all
+
+  This change might not be permanent. For full instructions, see:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
+
+  To view list of changed by SUID Disabler and Permission Hardener:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#View_List_of_Permissions_Changed_by_SUID_Disabler_and_Permission_Hardener
+
+  For re-enabling any specific SUID binary:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Re-Enable_Specific_SUID_Binaries
+
+  For completely disabling SUID Disabler and Permission Hardener:
+    https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#Disable_SUID_Disabler_and_Permission_Hardener"
+    fi
+  fi
+}
+
+check_root(){
+  if test "$(id -u)" != "0"; then
+    log error "Not running as root, aborting."
+    exit 1
+  fi
+}
+
+usage(){
+  safe_echo "Usage: ${0##*/} enable
+       ${0##*/} disable [FILE|all]
+
+Examples:
+  ${0##*/} enable
+  ${0##*/} disable all
+  ${0##*/} disable /usr/bin/newgrp" >&2
+  exit "${1}"
+}
+
+case "${1:-}" in
+  enable) shift; apply "$@";;
+  disable)
+    shift
+    case "${1:-}" in
+      "") usage 1;;
+      *) spare "${1}";;
+    esac
+    ;;
+  -h|--help) usage 0;;
+  *) usage 1;;
+esac
+
+if test "${exit_code}" != "0"; then
+  log error "Exiting with non-zero exit code: '${exit_code}'" >&2
+fi
+
+exit "${exit_code}"
