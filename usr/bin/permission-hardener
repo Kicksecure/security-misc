@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2076
 
 ## Copyright (C) 2012 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
@@ -8,32 +9,52 @@
 
 ## dpkg-statoverride does not support end-of-options ("--").
 
+## SC2076 is disabled because ShellCheck seems to think that any use of
+## [[ ... =~ ... ]] is supposed to be a regex match. But [[ '...' =~ '...' ]]
+## works very well for literal matching, and it is used that way extensively
+## throughout this script.
+
 set -o errexit -o nounset -o pipefail
 
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/safe_echo.sh
+## Constants
 # shellcheck disable=SC2034
 log_level=notice
+store_dir="/var/lib/permission-hardener"
+state_file="${store_dir}/existing_mode/statoverride"
+dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
+dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
+delimiter="#permission-hardener-delimiter#"
+
+## Library imports
+# shellcheck disable=SC1091
+source /usr/libexec/helper-scripts/safe_echo.sh
 # shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/log_run_die.sh
 
+## Functions
 echo_wrapper_ignore() {
-  if test "${1}" = "verbose"; then
+  if [ "${1}" = 'verbose' ]; then
     shift
     log notice "Executing: $*"
-  else
+  elif [ "${1}" = 'silent' ]; then
     shift
+  else
+    log error "Unrecognized command '${1}'! calling function name: '${FUNCNAME[1]}'" >&2
+    return
   fi
   "$@" 2>/dev/null || true
 }
 
 echo_wrapper_audit() {
   local return_code
-  if test "${1}" = "verbose"; then
+  if [ "${1}" = 'verbose' ]; then
     shift
     log notice "Executing: $*"
-  else
+  elif [ "${1}" = 'silent' ]; then
     shift
+  else
+    log error "Unrecognized command '${1}'! calling function name: '${FUNCNAME[1]}'" >&2
+    return
   fi
   return_code=0
   "$@" ||
@@ -59,25 +80,34 @@ block_newlines() {
 }
 
 output_stat() {
-  local file_name
+  local file_name stat_output stat_output_newlined
+  declare -a arr
   file_name="${1:-}"
 
-  if test -z "${file_name}"; then
+  if [ -z "${file_name}" ]; then
     log error "File name is empty. file_name: '${file_name}'" >&2
     return 1
   fi
 
   block_newlines file "${file_name}"
 
-  declare -a arr
-  local file_name_from_stat stat_output stat_output_newlined
+  if [ ! -e "${file_name}" ]; then
+    log info "File does not exist. file_name: '${file_name}'" >&2
+    existing_mode=''
+    existing_owner=''
+    existing_group=''
+    file_name_from_stat=''
+    return 0
+  fi
 
-  if ! stat_output="$(stat -L --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" -- "${file_name}")"; then
+  if ! stat_output="$(stat -L \
+    --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" \
+    -- "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
     return 1
   fi
 
-  if [ "$stat_output" = "" ]; then
+  if [ "$stat_output" = '' ]; then
     log error "stat_output is empty.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -89,7 +119,7 @@ line: '${processed_config_line}'
 
   stat_output_newlined="$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")"
 
-  if test "${stat_output_newlined}" = ""; then
+  if [ "${stat_output_newlined}" = '' ]; then
     log error "stat_output_newlined is empty.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -101,7 +131,7 @@ line: '${processed_config_line}'
 
   readarray -t arr <<< "${stat_output_newlined}"
 
-  if test "${#arr[@]}" = 0; then
+  if [ "${#arr[@]}" = '0' ]; then
     log error "Array length is 0.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -116,7 +146,7 @@ line: '${processed_config_line}'
   existing_group="${arr[2]}"
   file_name_from_stat="${arr[3]}"
 
-  if [ ! "$file_name" = "$file_name_from_stat" ]; then
+  if [ "$file_name" != "$file_name_from_stat" ]; then
     log error "\
 File name is different from file name received from stat:
 File name: '${file_name}'
@@ -126,15 +156,15 @@ line: '${processed_config_line}'
     return 1
   fi
 
-  if test -z "${existing_mode}"; then
+  if [ -z "${existing_mode}" ]; then
     log error "Existing mode is empty. Stat output: '${stat_output}', line: '${processed_config_line}'" >&2
     return 1
   fi
-  if test -z "${existing_owner}"; then
+  if [ -z "${existing_owner}" ]; then
     log error "Existing owner is empty. Stat output: '${stat_output}', line: '${processed_config_line}'" >&2
     return 1
   fi
-  if test -z "${existing_group}"; then
+  if [ -z "${existing_group}" ]; then
     log error "Existing group is empty. Stat output: '${stat_output}', line: '${processed_config_line}'" >&2
     return 1
   fi
@@ -143,6 +173,9 @@ line: '${processed_config_line}'
 print_usage(){
   safe_echo "Usage: ${0##*/} enable
        ${0##*/} disable [FILE|all]
+       ${0##*/} print-policy
+       ${0##*/} print-state
+       ${0##*/} print-policy-applied-state
 
 Examples:
   ${0##*/} enable
@@ -150,7 +183,6 @@ Examples:
   ${0##*/} disable /usr/bin/newgrp" >&2
 }
 
-## TODO: Validate input before you blindly trust it!
 add_to_policy() {
   local file_name file_mode file_owner file_group updated_entry policy_idx \
     file_capabilities
@@ -187,24 +219,22 @@ check_nosuid_whitelist() {
   target_file="${1:-}"
 
   ## Handle whitelists, if we're supposed to
-  if [ "${whitelists_disable_all}" = 'false' ]; then
-    ## literal matching is intentional here
-    # shellcheck disable=SC2076
-    if ! [[ " ${policy_disable_white_list[*]} " =~ " ${target_file} " ]]; then
-      ## literal matching is intentional here too
-      # shellcheck disable=SC2076
-      if [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]]; then
-        return 1
-      fi
+  [  "${whitelists_disable_all}" = 'true' ] && return 0
 
-      for match_white_list_entry in "${policy_match_white_list[@]:-}"; do
-        if safe_echo "${target_file}" \
-          | grep --quiet --fixed-strings -- "${match_white_list_entry}"; then
-          return 1
-        fi
-      done
-    fi
+  ## literal matching is intentional here
+  [[ " ${policy_disable_white_list[*]} " =~ " ${target_file} " ]] && return 0
+
+  ## literal matching is intentional here too
+  if [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]]; then
+    return 1
   fi
+
+  for match_white_list_entry in "${policy_match_white_list[@]:-}"; do
+    if safe_echo "${target_file}" \
+      | grep --quiet --fixed-strings -- "${match_white_list_entry}"; then
+      return 1
+    fi
+  done
 
   return 0
 }
@@ -223,11 +253,11 @@ load_early_nosuid_policy() {
     ## existing_owner
     ## existing_group
     output_stat "${find_list_item}"
+    if [ -z "${file_name_from_stat}" ]; then
+      continue
+    fi
 
-    ## -h file      True if file is a symbolic Link.
-    ## -u file      True if file has its set-user-id bit set.
-    ## -g file      True if file has its set-group-id bit set.
-
+    ## -h file      True if file is a symbolic link.
     if [ -h "${find_list_item}" ]; then
       ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
       log info "Skip symlink: '${find_list_item}'"
@@ -239,48 +269,94 @@ load_early_nosuid_policy() {
       continue
     fi
 
-    ## Trim off the most significant digit of the mode, this discards S(U|G)ID
-    ## bits (and the sticky bit too but that doesn't matter on Linux)
-    ##
-    ## Actually, the old behavior is better here.
+    ## Remove suid / gid and execute permission for 'group' and 'others'.
+    ## Similar to: chmod og-ugx /path/to/filename
+    ## Removing execution permission is useful to make binaries such as 'su'
+    ## fail closed rather than fail open if suid was removed from these.
+    ## Do not remove read access since no security benefit and easier to
+    ## manually undo for users.
+    ## Are there suid or sgid binaries which are still useful if suid / sgid
+    ## has been removed from these?
     local new_mode
-    # new_mode="${existing_mode:1}"
     new_mode='744'
 
     add_to_policy "${find_list_item}" "${new_mode}" "${existing_owner}" \
       "${existing_group}"
-  done < <(safe_echo_nonewline "${target_file}" | find -files0-from - -perm /u=s,g=s -print0)
+  done < <(safe_echo_nonewline "${target_file}" \
+    | find -files0-from - -perm /u=s,g=s -print0)
+}
+
+match_dir() {
+  local base_str match_str base_arr match_arr base_idx
+
+  base_str="${1}"
+  match_str="${2}"
+  [[ "${base_str}" =~ '//' ]] && return 1
+  [[ "${match_str}" =~ '//' ]] && return 1
+
+  IFS='/' read -r -a base_arr <<< "${base_str}"
+  IFS='/' read -r -a match_arr <<< "${match_str}"
+  (( ${#base_arr[@]} > ${#match_arr[@]} )) && return 1
+
+  for (( base_idx=0; base_idx < ${#base_arr[@]}; base_idx++ )); do
+    if [ "${base_arr[base_idx]}" != "${match_arr[base_idx]}" ]; then
+      return 1
+    fi
+  done
+
+  return 0
 }
 
 load_late_nosuid_policy() {
   local target_file state_idx state_file_item state_user_owner_item \
-    state_group_owner_item
+    state_group_owner_item new_mode
 
   target_file="${1:-}"
   for (( state_idx=0; state_idx < ${#state_file_list[@]}; state_idx++ )); do
     state_file_item="${state_file_list[state_idx]}"
-    state_user_owner_item="${state_user_owner_list[state_idx]}"
-    state_group_owner_item="${state_group_owner_list[state_idx]}"
     check_nosuid_whitelist "${state_file_item}" || continue
 
-    if [[ ${state_file_item} == ${target_file}* ]]; then
-      if [ -h "${state_file_item}" ]; then
-        ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
-        log info "Skip symlink: '${state_file_item}'"
-        continue
-      fi
+    ## If the "target file" matches the start of the state file name, that's
+    ## a likely match.
+    match_dir "${target_file}" "${state_file_item}" || continue
 
-      if [ -d "${state_file_item}" ]; then
-        log info "Skip directory: '${state_file_item}'"
-        continue
-      fi
-
-      local new_mode
-      new_mode='744'
-      add_to_policy "${state_file_item}" "${new_mode}" \
-        "${state_user_owner_item}" "${state_group_owner_item}"
+    if [ -h "${state_file_item}" ]; then
+      ## https://forums.whonix.org/t/disable-suid-binaries/7706/14
+      log info "Skip symlink: '${state_file_item}'"
+      continue
     fi
+
+    if [ -d "${state_file_item}" ]; then
+      log info "Skip directory: '${state_file_item}'"
+      continue
+    fi
+
+    state_user_owner_item="${state_user_owner_list[state_idx]}"
+    state_group_owner_item="${state_group_owner_list[state_idx]}"
+    new_mode='744'
+    add_to_policy "${state_file_item}" "${new_mode}" \
+      "${state_user_owner_item}" "${state_group_owner_item}"
   done
+}
+
+load_state_without_policy() {
+  local line bit_list
+
+  ## Load the state file from disk
+  if [ -f "${state_file}" ]; then
+    while read -r line; do
+      read -r -a bit_list <<< "${line}"
+      if (( ${#bit_list[@]} != 4 )); then
+        log info \
+          "Invalid number of fields in state file line: '${line}'. Skipping."
+        continue
+      fi
+      state_user_owner_list+=( "${bit_list[0]}" )
+      state_group_owner_list+=( "${bit_list[1]}" )
+      state_mode_list+=( "${bit_list[2]}" )
+      state_file_list+=( "${bit_list[3]}" )
+    done < "${state_file}"
+  fi
 }
 
 load_state() {
@@ -289,8 +365,11 @@ load_state() {
   ## where options is one of:
   ##   user_owner group_owner filemode [capability-setting]
   ##   [nosuid|exactwhitelist|matchwhitelist|disablewhitelist]
+  ##
+  ## Additionally, the special value 'whitelists_disable_all=true' is understood
+  ## to mean that all whitelisting should be ignored.
 
-  local config_file line bit_list file_path policy_nosuid_file_item
+  local config_file line bit_list policy_nosuid_file_item policy_file_item
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -303,14 +382,17 @@ load_state() {
     if [ ! -f "${config_file}" ]; then
       continue
     fi
+
     while read -r line; do
       if [ -z "${line}" ]; then
         true 'DEBUG: line is empty. Skipping.'
         continue
       fi
+
       if [[ "${line}" =~ ^\s*# ]]; then
         continue
       fi
+
       if ! [[ "${line}" =~ [0-9a-zA-Z/] ]]; then
         exit_code=200
         log error "Line contains invalid characters: '${line}'" >&2
@@ -339,28 +421,27 @@ load_state() {
 
       # Strip trailing slash if appropriate
       bit_list[0]="${bit_list[0]%/}"
-      file_path="${bit_list[0]}"
 
       case "${bit_list[1]}" in
         'exactwhitelist')
-          [ ! -e "${file_path}" ] && continue
-          policy_exact_white_list+=( "${file_path}" )
+          [ ! -e "${bit_list[0]}" ] && continue
+          policy_exact_white_list+=( "${bit_list[0]}" )
           continue
           ;;
         'matchwhitelist')
-          policy_match_white_list+=( "${file_path}" )
+          policy_match_white_list+=( "${bit_list[0]}" )
           continue
           ;;
         'disablewhitelist')
-          policy_disable_white_list+=( "${file_path}" )
+          policy_disable_white_list+=( "${bit_list[0]}" )
           continue
           ;;
         'nosuid')
-          [ ! -e "${file_path}" ] && continue
-          policy_nosuid_file_list+=( "${file_path}" )
+          [ ! -e "${bit_list[0]}" ] && continue
+          policy_nosuid_file_list+=( "${bit_list[0]}" )
           ;;
         *)
-          [ ! -e "${file_path}" ] && continue
+          [ ! -e "${bit_list[0]}" ] && continue
           add_to_policy "${bit_list[@]}"
           ;;
       esac
@@ -373,32 +454,19 @@ load_state() {
     load_early_nosuid_policy "${policy_nosuid_file_item}"
   done
 
-  local line bit_list policy_file_item
-
-  ## Load the state file from disk
-  if [ -f "${state_file}" ]; then
-    while read -r line; do
-      read -r -a bit_list <<< "${line}"
-      if (( ${#bit_list[@]} != 4 )); then
-        log info "Invalid number of fields in state file line: '${line}'. Skipping."
-        continue
-      fi
-      state_user_owner_list+=( "${bit_list[0]}" )
-      state_group_owner_list+=( "${bit_list[1]}" )
-      state_mode_list+=( "${bit_list[2]}" )
-      state_file_list+=( "${bit_list[3]}" )
-    done < "${state_file}"
-  fi
+  load_state_without_policy
 
   ## Find any files in the policy that don't already have a matching file in
   ## the state. Add those files to the state, and save them to the state file
   ## as well.
   for policy_file_item in "${policy_file_list[@]}"; do
-    # shellcheck disable=SC2076
     if [[ " ${state_file_list[*]} " =~ " ${policy_file_item} " ]]; then
       continue
     fi
     output_stat "${policy_file_item}"
+    if [ -z "${file_name_from_stat}" ]; then
+      continue
+    fi
     state_file_list+=( "${policy_file_item}" )
     state_user_owner_list+=( "${existing_owner}" )
     state_group_owner_list+=( "${existing_group}" )
@@ -410,6 +478,7 @@ load_state() {
       "${policy_file_item}"
   done
 
+  ## Fix up nosuid policies using state information
   for policy_nosuid_file_item in "${policy_nosuid_file_list[@]}"; do
     load_late_nosuid_policy "${policy_nosuid_file_item}"
   done
@@ -433,7 +502,8 @@ apply_policy() {
     done
     if [ "${did_state_update}" = 'false' ]; then
       exit_code=206
-      log error "File exists in policy but not in state! File: '${policy_file_list[policy_idx]}'"
+      log error \
+        "File exists in policy but not in state! File: '${policy_file_list[policy_idx]}'"
       exit "${exit_code}"
     fi
   done
@@ -469,22 +539,24 @@ commit_policy() {
     state_mode_item="${BASH_REMATCH[2]}"
 
     output_stat "${state_file_item}"
+    if [ -z "${file_name_from_stat}" ]; then
+      continue
+    fi
 
     if [ "${existing_owner}" != "${state_user_owner_item}" ] \
       || [ "${existing_group}" != "${state_group_owner_item}" ] \
       || [ "${existing_mode}" != "${state_mode_item}" ]; then
-      if ! grep --quiet --fixed-strings -- "${state_user_owner_item}:" "${store_dir}/private/passwd"; then
+      if ! [[ "${passwd_file_contents}" =~ "${state_user_owner_item}:" ]]; then
         log error "Owner from config does not exist: '${state_user_owner_item}'" >&2
         continue
       fi
 
-      if ! grep --quiet --fixed-strings -- "${state_group_owner_item}:" "${store_dir}/private/group"; then
+      if ! [[ "${group_file_contents}" =~ "${state_group_owner_item}:" ]]; then
         log error "Group from config does not exist: '${state_group_owner_item}'" >&2
         continue
       fi
-      # Remove and reapply in main list
-      if grep --quiet --fixed-strings \
-        -- "${state_file_item}" <<< "${orig_main_statoverride_db}"; then
+      ## Remove and reapply in main list
+      if [[ "${orig_main_statoverride_db}" =~ "${state_file_item}" ]]; then
         echo_wrapper_ignore silent dpkg-statoverride --remove \
           "${state_file_item}"
       fi
@@ -492,9 +564,8 @@ commit_policy() {
         "${state_user_owner_item}" "${state_group_owner_item}" \
         "${state_mode_item}" "${state_file_item}"
 
-      # Update item in secondary list
-      if grep --quiet --fixed-strings \
-        -- "${state_file_item}" <<< "${orig_new_statoverride_db}"; then
+      ## Update item in secondary list
+      if [[ "${orig_new_statoverride_db}" =~ "${state_file_item}" ]]; then
         # shellcheck disable=SC2086
         echo_wrapper_ignore silent dpkg-statoverride \
           ${dpkg_admindir_parameter_new_mode} --remove \
@@ -574,14 +645,12 @@ undo_policy_for_file() {
       # shellcheck disable=SC2086
       orig_new_statoverride_db="$(dpkg-statoverride ${dpkg_admindir_parameter_new_mode} --list)" || true
 
-      if grep --quiet --fixed-strings \
-        -- "${undo_file}" <<< "${orig_main_statoverride_db}"; then
+      if [[ "${orig_main_statoverride_db}" =~ "${undo_file}" ]]; then
         echo_wrapper_ignore silent dpkg-statoverride --remove \
           "${undo_file}"
       fi
 
-      if grep --quiet --fixed-strings \
-        -- "${undo_file}" <<< "${orig_new_statoverride_db}"; then
+      if [[ "${orig_new_statoverride_db}" =~ "${undo_file}" ]]; then
         # shellcheck disable=SC2086
         echo_wrapper_ignore silent dpkg-statoverride \
           ${dpkg_admindir_parameter_new_mode} --remove \
@@ -594,13 +663,16 @@ undo_policy_for_file() {
         state_mode_item="${state_mode_list[state_idx]}"
         chown ${verbose} "${state_user_owner_item}:${state_group_owner_item}" \
           "${undo_file}" || exit_code=202
-        ## chmod need to be run after chown since chown removes suid.
+        ## chmod needs to be run after chown since chown removes suid.
         chmod ${verbose} "${state_mode_item}" "${undo_file}" || exit_code=203
       else
         log info "File does not exist: '${undo_file}'"
       fi
       did_undo=true
-      break
+
+      if [ "${undo_all}" = 'false' ]; then
+        break
+      fi
     fi
   done
 
@@ -637,7 +709,7 @@ print_columns() {
     format_str="${format_str}%s\t"
   done
   format_str="${format_str}\n"
-  # Using a dynamically generated format string on purpose.
+  ## Using a dynamically generated format string on purpose.
   # shellcheck disable=SC2059
   printf "${format_str}" "$@"
 }
@@ -670,13 +742,6 @@ print_state() {
   done
 }
 
-## Constants
-store_dir="/var/lib/permission-hardener"
-state_file="${store_dir}/existing_mode/statoverride"
-dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
-dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
-delimiter="#permission-hardener-delimiter#"
-
 ## Global variables
 policy_file_list=()
 policy_user_owner_list=()
@@ -696,6 +761,9 @@ existing_mode=''
 existing_owner=''
 existing_group=''
 processed_config_line=''
+file_name_from_stat=''
+passwd_file_contents="$(getent passwd)"
+group_file_contents="$(getent group)"
 exit_code=0
 
 ## Setup and sanity checking
@@ -704,15 +772,8 @@ if [ "$(id -u)" != '0' ]; then
   exit 1
 fi
 
-mkdir --parents "${store_dir}/private"
 mkdir --parents "${store_dir}/existing_mode"
 mkdir --parents "${store_dir}/new_mode"
-touch "${store_dir}/private/passwd"
-chmod og-rwx "${store_dir}/private/passwd"
-touch "${store_dir}/private/group"
-chmod og-rwx "${store_dir}/private/group"
-getent passwd | sponge -- "${store_dir}/private/passwd"
-getent group | sponge -- "${store_dir}/private/group"
 
 echo_wrapper_audit silent which capsh getcap setcap stat find \
   dpkg-statoverride getent grep 1>/dev/null
@@ -733,7 +794,7 @@ case "${1:-}" in
         exit 1
         ;;
       *)
-        load_state
+        load_state_without_policy
         undo_policy_for_file "${1}"
         ;;
     esac
@@ -761,6 +822,7 @@ case "${1:-}" in
     ;;
 esac
 
+## Exit
 if test "${exit_code}" != "0"; then
   log error "Exiting with non-zero exit code: '${exit_code}'" >&2
 fi
