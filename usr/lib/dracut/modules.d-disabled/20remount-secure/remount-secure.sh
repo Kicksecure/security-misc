@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## Copyright (C) 2023 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2023 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 ## This script is intended to remount specified mount points with more secure

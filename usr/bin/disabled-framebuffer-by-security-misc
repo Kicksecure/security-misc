@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Copyright (C) 2024 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2024 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 ## Alerts user that a kernel module failed to load due to it being explicitly disabled by default.
