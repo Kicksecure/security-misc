@@ -584,28 +584,30 @@ See:
 
 #### umask
 
-Default `umask` is set to `027` for files created by non-root users such as
-user `user`.
+The default `umask` is set to `027` for files created by non-root users, such
+as the account `user`.
 
 This is done using the PAM module `pam_mkhomedir.so umask=027`.
 
-This means files created by non-root users cannot be read by other non-root
-users by default. While Permission Lockdown already protects the `/home` folder,
-this protects other folders such as `/tmp`.
+This configuration ensures that files created by non-root users cannot be read
+by other non-root users by default. While Permission Lockdown already protects
+the `/home` folder, this setting extends protection to other folders such as
+`/tmp`.
 
 `group` read permissions are not removed. This is unnecessary due to Debian's
 use of User Private Groups (UPGs). See also:
 https://wiki.debian.org/UserPrivateGroups
 
-Default `umask` is unchanged for root because then configuration files created
-in `/etc` by the system administrator would be unreadable by "others" and break
-applications. Examples include `/etc/firefox-esr` and `/etc/thunderbird`. The
-`umask` is also set to 022 via `sudoers` configuration, so that files created
-as root are world-readable even when using commands such as `sudo vi
-/etc/file` or `sudo -i; touch /etc/file`.
+The default `umask` is unchanged for root because configuration files created
+in `/etc` by the system administrator would otherwise be unreadable by
+"others," potentially breaking applications. Examples include `/etc/firefox-esr`
+and `/etc/thunderbird`. Additionally, the `umask` is set to `022` via `sudoers`
+configuration, ensuring that files created as root are world-readable, even
+when using commands such as `sudo vi /etc/file` or `sudo -i; touch /etc/file`.
 
-`umask` is set to 022 rather than 027 when using `sudo`, so that commands such
-as `sudo vi /etc/configfile` and `sudo -i; touch /etc/file`
+When using `sudo`, the `umask` is set to `022` rather than `027` to ensure
+compatibility with commands such as `sudo vi /etc/configfile` and
+`sudo -i; touch /etc/file`.
 
 See:
 
