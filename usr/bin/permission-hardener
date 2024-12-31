@@ -107,7 +107,7 @@ output_stat() {
     return 1
   fi
 
-  if [ "$stat_output" = '' ]; then
+  if [ -z "$stat_output" ]; then
     log error "stat_output is empty.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -119,7 +119,7 @@ line: '${processed_config_line}'
 
   stat_output_newlined="$(printf '%s\n' "${stat_output//${delimiter}/$'\n'}")"
 
-  if [ "${stat_output_newlined}" = '' ]; then
+  if [ -z "${stat_output_newlined}" ]; then
     log error "stat_output_newlined is empty.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -225,9 +225,7 @@ check_nosuid_whitelist() {
   [[ " ${policy_disable_white_list[*]} " =~ " ${target_file} " ]] && return 0
 
   ## literal matching is intentional here too
-  if [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]]; then
-    return 1
-  fi
+  [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]] && return 1
 
   for match_white_list_entry in "${policy_match_white_list[@]:-}"; do
     if safe_echo "${target_file}" \
@@ -286,6 +284,9 @@ load_early_nosuid_policy() {
     | find -files0-from - -perm /u=s,g=s -print0)
 }
 
+## If the "target file" matches the start of the state file name, that's a
+## likely match. This is used by load_late_nosuid_policy for detecting info
+## about files that need SUID-locked that are in the state.
 match_dir() {
   local base_str match_str base_arr match_arr base_idx
 
@@ -316,8 +317,6 @@ load_late_nosuid_policy() {
     state_file_item="${state_file_list[state_idx]}"
     check_nosuid_whitelist "${state_file_item}" || continue
 
-    ## If the "target file" matches the start of the state file name, that's
-    ## a likely match.
     match_dir "${target_file}" "${state_file_item}" || continue
 
     if [ -h "${state_file_item}" ]; then
@@ -340,21 +339,21 @@ load_late_nosuid_policy() {
 }
 
 load_state_without_policy() {
-  local line bit_list
+  local line field_list
 
   ## Load the state file from disk
   if [ -f "${state_file}" ]; then
     while read -r line; do
-      read -r -a bit_list <<< "${line}"
-      if (( ${#bit_list[@]} != 4 )); then
+      read -r -a field_list <<< "${line}"
+      if (( ${#field_list[@]} != 4 )); then
         log info \
           "Invalid number of fields in state file line: '${line}'. Skipping."
         continue
       fi
-      state_user_owner_list+=( "${bit_list[0]}" )
-      state_group_owner_list+=( "${bit_list[1]}" )
-      state_mode_list+=( "${bit_list[2]}" )
-      state_file_list+=( "${bit_list[3]}" )
+      state_user_owner_list+=( "${field_list[0]}" )
+      state_group_owner_list+=( "${field_list[1]}" )
+      state_mode_list+=( "${field_list[2]}" )
+      state_file_list+=( "${field_list[3]}" )
     done < "${state_file}"
   fi
 }
@@ -369,7 +368,7 @@ load_state() {
   ## Additionally, the special value 'whitelists_disable_all=true' is understood
   ## to mean that all whitelisting should be ignored.
 
-  local config_file line bit_list policy_nosuid_file_item policy_file_item
+  local config_file line field_list policy_nosuid_file_item policy_file_item
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -393,7 +392,7 @@ load_state() {
         continue
       fi
 
-      if ! [[ "${line}" =~ [0-9a-zA-Z/] ]]; then
+      if ! [[ "${line}" =~ ^[-0-9a-zA-Z._/[:space:]]*$ ]]; then
         exit_code=200
         log error "Line contains invalid characters: '${line}'" >&2
         ## Safer to exit with error in this case.
@@ -409,40 +408,40 @@ load_state() {
 
       processed_config_line="${line}"
 
-      IFS=' ' read -r -a bit_list <<< "${line}"
+      IFS=' ' read -r -a field_list <<< "${line}"
 
-      if (( ${#bit_list[@]} < 2 )) \
-        || (( ${#bit_list[@]} > 5 )) \
-        || (( ${#bit_list[@]} == 3 )); then
+      if (( ${#field_list[@]} != 2 )) \
+        && (( ${#field_list[@]} != 4 )) \
+        && (( ${#field_list[@]} != 5 )); then
         exit_code=200
         log error "Line contains an invalid number of fields: '${line}'" >&2
         exit "${exit_code}"
       fi
 
       # Strip trailing slash if appropriate
-      bit_list[0]="${bit_list[0]%/}"
+      field_list[0]="${field_list[0]%/}"
 
-      case "${bit_list[1]}" in
+      case "${field_list[1]}" in
         'exactwhitelist')
-          [ ! -e "${bit_list[0]}" ] && continue
-          policy_exact_white_list+=( "${bit_list[0]}" )
+          [ ! -e "${field_list[0]}" ] && continue
+          policy_exact_white_list+=( "${field_list[0]}" )
           continue
           ;;
         'matchwhitelist')
-          policy_match_white_list+=( "${bit_list[0]}" )
+          policy_match_white_list+=( "${field_list[0]}" )
           continue
           ;;
         'disablewhitelist')
-          policy_disable_white_list+=( "${bit_list[0]}" )
+          policy_disable_white_list+=( "${field_list[0]}" )
           continue
           ;;
         'nosuid')
-          [ ! -e "${bit_list[0]}" ] && continue
-          policy_nosuid_file_list+=( "${bit_list[0]}" )
+          [ ! -e "${field_list[0]}" ] && continue
+          policy_nosuid_file_list+=( "${field_list[0]}" )
           ;;
         *)
-          [ ! -e "${bit_list[0]}" ] && continue
-          add_to_policy "${bit_list[@]}"
+          [ ! -e "${field_list[0]}" ] && continue
+          add_to_policy "${field_list[@]}"
           ;;
       esac
     done < "${config_file}"
@@ -661,7 +660,7 @@ undo_policy_for_file() {
         state_user_owner_item="${state_user_owner_list[state_idx]}"
         state_group_owner_item="${state_group_owner_list[state_idx]}"
         state_mode_item="${state_mode_list[state_idx]}"
-        chown ${verbose} "${state_user_owner_item}:${state_group_owner_item}" \
+        chown ${verbose} -- "${state_user_owner_item}:${state_group_owner_item}" \
           "${undo_file}" || exit_code=202
         ## chmod needs to be run after chown since chown removes suid.
         chmod ${verbose} "${state_mode_item}" "${undo_file}" || exit_code=203
