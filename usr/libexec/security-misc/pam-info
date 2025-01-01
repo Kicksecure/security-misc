@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Copyright (C) 2019 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2019 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 ## To enable debug log, run:
@@ -84,7 +84,7 @@ kernel_cmdline="$(cat /proc/cmdline)"
 
 if [ "$PAM_USER" != 'sysmaint' ] \
    && [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
-   echo "$0: WARNING: Reboot and choose 'PERSISTENT mode USER' for normal work. See https://www.kicksecure.com/wiki/Sysmaint"
+   echo "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
 fi
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698

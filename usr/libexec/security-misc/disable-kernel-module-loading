@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Copyright (C) 2023 - 2024 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## Copyright (C) 2023 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
 set -x
