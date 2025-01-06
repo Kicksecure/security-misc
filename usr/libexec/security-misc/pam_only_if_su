@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Similar to:
+## /usr/libexec/security-misc/pam_only_if_login
+
+set -x
+
+true "PAM_SERVICE: $PAM_SERVICE"
+
+if [ "$PAM_SERVICE" = "su" ]; then
+   exit 1
+else
+   exit 0
+fi
