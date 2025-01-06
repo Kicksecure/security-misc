@@ -1,3 +1,24 @@
+commit 6e0787957b53a64132b64e2a29bafe3e4b66d178
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 6 05:29:40 2025 -0500
+
+    increase priority of pam wheel so it is checked even before faillock
+    
+    in case of attemtping to use `su` without being a member of the required group `sudo`, it's useful to abort the PAM stack as early as possible to avoid needlessly propmting for a password to later
+    be rejected tu to lack of group membership
+
+commit d4767b75206b46f1a006cd91b00239a7b828fc89
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 6 04:24:44 2025 -0500
+
+    fix: apply PAM wheal only to `su` PAM service
+
+commit 40b23cfad40825eefc3686e562d78250b58bbc82
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 31 18:42:01 2024 +0000
+
+    bumped changelog version
+
 commit 33114f771aaeb4dccb0b465861d1239129deb8b2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 31 13:26:21 2024 -0500
