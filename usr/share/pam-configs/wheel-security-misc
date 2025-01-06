@@ -1,6 +1,6 @@
 Name: group sudo membership required to use su (by package security-misc)
 Default: yes
-Priority: 280
+Priority: 1050
 Auth-Type: Primary
 Auth:
 	[success=1 default=ignore]	pam_exec.so	seteuid quiet /usr/libexec/security-misc/pam_only_if_su
