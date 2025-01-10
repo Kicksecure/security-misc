@@ -102,8 +102,8 @@ Networking:
 - Disable ICMP redirect acceptance and redirect sending messages to prevent
   man-in-the-middle attacks and minimize information disclosure.
 
-- Optional - Deny sending and receiving shared media redirects to reduce
-  the risk of IP spoofing attacks.
+- Deny sending and receiving shared media redirects to reduce the risk of IP
+  spoofing attacks.
 
 - Optional - Enable ARP filtering to mitigate some ARP spoofing and ARP
   cache poisoning attacks.
