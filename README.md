@@ -110,8 +110,8 @@ Networking:
 - Respond to ARP requests only if the target IP address is  on-link,
   preventing some IP spoofing attacks.
 
-- Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
-  via man-in-the-middle and denial-of-service attacks.
+- Drop gratuitous ARP packets to prevent ARP cache poisoning via
+  man-in-the-middle and denial-of-service attacks.
 
 - Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 
