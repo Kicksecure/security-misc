@@ -102,17 +102,16 @@ Networking:
 - Disable ICMP redirect acceptance and redirect sending messages to prevent
   man-in-the-middle attacks and minimize information disclosure.
 
-- Optional - Deny sending and receiving shared media redirects to reduce
-  the risk of IP spoofing attacks.
+- Deny sending and receiving shared media redirects to reduce the risk of IP
+  spoofing attacks.
 
-- Optional - Enable ARP filtering to mitigate some ARP spoofing and ARP
-  cache poisoning attacks.
+- Enable ARP filtering to mitigate some ARP spoofing and ARP cache poisoning attacks.
 
-- Optional - Respond to ARP requests only if the target IP address is
-  on-link, preventing some IP spoofing attacks.
+- Respond to ARP requests only if the target IP address is  on-link,
+  preventing some IP spoofing attacks.
 
-- Optional - Drop gratuitous ARP packets to prevent ARP cache poisoning
-  via man-in-the-middle and denial-of-service attacks.
+- Drop gratuitous ARP packets to prevent ARP cache poisoning via
+  man-in-the-middle and denial-of-service attacks.
 
 - Ignore ICMP echo requests to prevent clock fingerprinting and Smurf attacks.
 
@@ -137,7 +136,9 @@ Networking:
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
 and simultaneous multithreading (SMT) is disabled. See the
-`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
+`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file. Note, to achieve
+complete protection for known CPU vulnerabilities, the latest security microcode
+(BIOS/UEFI) updates must also be installed on the system.
 
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
