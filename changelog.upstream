@@ -1,3 +1,113 @@
+commit c17485baa118e76cc8074ce3e72ac3ac38c577cd
+Merge: 482960d e9ef360
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:32:26 2025 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit e9ef3602dd1661de0c0c3781d7e0246720643354
+Merge: 1b33e83 cf435a8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:30:34 2025 -0500
+
+    Merge pull request #292 from raja-grewal/cpu_table
+    
+    Add link to tabular comparison of CPU mitigations
+
+commit 1b33e83529d652dab4468e0b386e333b3ca4745b
+Merge: 486757b 2e6e170
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:29:30 2025 -0500
+
+    Merge pull request #291 from raja-grewal/drop_gratuitous_arp
+    
+    Drop gratuitous ARP packets
+
+commit 486757bfae5e7ecc389b16c49704e742fd267565
+Merge: 17ff249 c37f4ef
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:29:12 2025 -0500
+
+    Merge pull request #290 from raja-grewal/arp_ignore
+    
+    Respond to ARP requests only if the target IP address is on-link
+
+commit 17ff24915062736a32d4d54da7163fe34aa70fd3
+Merge: 27d19ba 1f8eee4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:28:48 2025 -0500
+
+    Merge pull request #289 from raja-grewal/arp_filter
+    
+    Enable ARP filtering
+
+commit 27d19ba568e601c37035a310ae6cdd7d953be286
+Merge: 482960d 5e3785d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:28:05 2025 -0500
+
+    Merge pull request #288 from raja-grewal/shared_media
+    
+    Deny sending and receiving shared media redirects
+
+commit 482960d056ec8d624f127bfe9b1c69a4c30c7e34
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 10:21:12 2025 -0500
+
+    permission-hardener: move to new state folder `/var/lib/permission-hardener-v2` without migration
+    
+    https://github.com/Kicksecure/security-misc/pull/294
+
+commit cf435a8fa8e6f795a25ef004cf44a65d461dd32c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Jan 10 13:22:21 2025 +1100
+
+    README.md: Note importance of microcode updates
+
+commit 3a31cc99b34617cdd3c5f8e8950a37158849cb56
+Merge: c4cfb85 5941195
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 9 09:30:58 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/usrmerge'
+
+commit 538b312349a97bcecb12e62519d77840afcd6ca3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Jan 9 15:28:56 2025 +1100
+
+    Add comment about microcode updates
+
+commit 1f8eee47200221e2e38291a31e852e9c222d8c64
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Jan 8 18:36:00 2025 +1100
+
+    Add missing sentence full stop
+
+commit 5e3785d76e616f49407e720b37138f35a50fe4fb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Jan 8 18:35:52 2025 +1100
+
+    README.md: Remove double space
+
+commit 5941195e96880b8beb2a791d3c21f3a4c6d429eb
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 7 14:10:46 2025 -0600
+
+    Don't worry about files under /bin anymore, Bookworm uses a merged /usr directory
+
+commit c4cfb8597d1a8631a4cbfa7e88212b798e2bc514
+Merge: c6be621 93ebf17
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 6 08:43:54 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/permission-hardener-refactor'
+
+commit c6be621968c898f792ef1a450d2e1be5cd6056da
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 6 10:31:40 2025 +0000
+
+    bumped changelog version
+
 commit 6e0787957b53a64132b64e2a29bafe3e4b66d178
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 6 05:29:40 2025 -0500
@@ -12,6 +122,19 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 6 04:24:44 2025 -0500
 
     fix: apply PAM wheal only to `su` PAM service
+
+commit 93ebf176c5f38bd268e5394e01421e46b9ae7dff
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Jan 2 20:41:40 2025 -0500
+
+    Make the main field count check in permission-hardener a bit more elegant
+
+commit 895c0f541fb34f9ebfee9c7ef79c053d5af4a7cc
+Merge: 717e6fc 40b23cf
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Jan 1 15:04:01 2025 -0600
+
+    Merge branch 'master' into arraybolt3/permission-hardener-refactor
 
 commit 40b23cfad40825eefc3686e562d78250b58bbc82
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -37,6 +160,18 @@ Date:   Tue Dec 31 06:14:29 2024 -0500
 
     readme
 
+commit 717e6fcfbea38cef9d3e201cf2e2b725e3da2267
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 30 19:23:20 2024 -0600
+
+    Post-review improvements to permission-hardener
+
+commit dbcb612517abbf8d162cfb31ba0585c518df8817
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Dec 25 19:48:28 2024 -0600
+
+    Polish permission-hardener refactor
+
 commit 397b476a822c9f7e41ec911f5d689b67026660ad
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 26 04:12:02 2024 +0000
@@ -49,6 +184,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Dec 25 22:43:04 2024 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/sysmaint'
+
+commit 83d386795940099e0835c51f3522aae3d9217dc8
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Dec 24 20:14:57 2024 -0600
+
+    Refactor permission-hardener to be more idempotent
 
 commit 6602fb102dedc21300ae4c4519f3d9ef4e668045
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -130,6 +271,12 @@ Date:   Thu Dec 19 10:58:50 2024 +0000
 
     bumped changelog version
 
+commit 642b4eeedc43e69bb82ea259b52c0946ce638983
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 19 21:57:25 2024 +1100
+
+    Add link to tabular comparison of CPU mitigations
+
 commit 175b442d5bb9dfcb4e9b524ec2077e72c74598cc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 05:56:50 2024 -0500
@@ -142,6 +289,30 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 05:56:01 2024 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/sysmaint'
+
+commit 2e6e1701a052ef32711f6c3abaad693a773323f6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 19 10:35:08 2024 +0000
+
+    Set `net.ipv4.conf.*.drop_gratuitous_arp=1`
+
+commit c37f4efadf8f046168732871172cb66f58eb7c78
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 19 10:33:49 2024 +0000
+
+    Set `net.ipv4.conf.*.arp_ignore=2`
+
+commit af1d06973bdd46af3e39b0bdfda81b950ccac996
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 19 10:31:43 2024 +0000
+
+    Set `net.ipv4.conf.*.arp_filter=1`
+
+commit 750367a9066ca2a0ff819b438a92cb1f6c325edb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 19 10:29:56 2024 +0000
+
+    Set `net.ipv4.conf.*.shared_media=0`
 
 commit 95b535764c8a98b67a71ee1fd57b7f01da464106
 Author: Patrick Schleizer <adrelanos@whonix.org>
