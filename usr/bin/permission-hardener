@@ -19,7 +19,7 @@ set -o errexit -o nounset -o pipefail
 ## Constants
 # shellcheck disable=SC2034
 log_level=notice
-store_dir="/var/lib/permission-hardener"
+store_dir="/var/lib/permission-hardener-v2"
 state_file="${store_dir}/existing_mode/statoverride"
 dpkg_admindir_parameter_existing_mode="--admindir ${store_dir}/existing_mode"
 dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
