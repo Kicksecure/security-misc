@@ -136,7 +136,9 @@ Networking:
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
 and simultaneous multithreading (SMT) is disabled. See the
-`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
+`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file. Note, to achieve
+complete protection for known CPU vulnerabilities, the latest security microcode
+(BIOS/UEFI) updates must also be installed on the system.
 
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
