@@ -132,6 +132,8 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Optional - Enable IPv6 Privacy Extensions.
 
+- Documentation: https://www.kicksecure.com/wiki/Networking
+
 ### Boot parameters
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
