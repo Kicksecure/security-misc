@@ -14,7 +14,7 @@ many more sources.
 sysctl settings are configured via the `/usr/lib/sysctl.d/990-security-misc.conf`
 configuration file and significant hardening is applied to a myriad of components.
 
-Kernel space:
+#### Kernel space
 
 - Restrict access to kernel addresses through the use of kernel pointers regardless
   of user privileges.
@@ -55,7 +55,7 @@ Kernel space:
 - Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
   the source of numerous kernel exploits.
 
-User space:
+#### User space
 
 - Restrict usage of `ptrace()` to only processes with `CAP_SYS_PTRACE` as it
   enables programs to inspect and modify other active processes. Optional - Disable
@@ -79,16 +79,16 @@ User space:
   on a magic number or their file extension to prevent unintended code execution.
   See issue: https://github.com/Kicksecure/security-misc/issues/267
 
-Core dumps:
+#### Core dumps
 
 - Disable core dump files and prevent their creation. If core dump files are
   enabled, they will be named based on `core.PID` instead of the default `core`.
 
-Swap space:
+#### Swap space
 
 - Limit the copying of potentially sensitive content in memory to the swap device.
 
-Networking:
+#### Networking
 
 - Enable hardening of the BPF JIT compiler protect against JIT spraying.
 
