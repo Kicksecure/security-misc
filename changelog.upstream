@@ -1,3 +1,23 @@
+commit b0baa8baa57937358dc988b88adab4858a1d8cae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 12 05:38:35 2025 -0500
+
+    add link
+
+commit d6a7cd3e0d1e677c1fa8c1fb3b307cdbe0f45031
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 12 05:36:16 2025 -0500
+
+    formatting.
+    
+    use chapter to make allow for deep linking
+
+commit 485d9abd1d14e445b48f0fd63290a985b05a5ac7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 10 15:34:21 2025 +0000
+
+    bumped changelog version
+
 commit c17485baa118e76cc8074ce3e72ac3ac38c577cd
 Merge: 482960d e9ef360
 Author: Patrick Schleizer <adrelanos@whonix.org>
