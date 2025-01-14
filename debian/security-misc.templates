@@ -1,9 +1,9 @@
 Template: security-misc/alert-on-permission-hardener-v2-upgrade
 Type: note
 _Description: Manual intervention may be required for permission-hardener update
- No panic. Nothing is broken. Just some rare condition has been hit.
- permission-hardener is being updated to correct a minor bug that caused
- permission-hardener state file corruption. If you installed your own custom
- permission-hardener configuration, some manual intervention may be required.
- See:
+ No need to panic. Nothing is broken. A rare condition has been encountered.
+ permission-hardener is being updated to fix a minor bug that caused
+ corruption in the permission-hardener state file. If you installed your own
+ custom permission-hardener configuration, some manual intervention may be
+ required. See:
  https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#fixing_state_files
