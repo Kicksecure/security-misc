@@ -1,3 +1,15 @@
+commit 9bb92e91a8f364a9d9e5d69e907fe8ed8a3c58a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 09:16:25 2025 -0500
+
+    debhelper
+
+commit 95dd8f419fc7e9832d8ce6f74d35af9b36752f3f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 14:07:50 2025 +0000
+
+    bumped changelog version
+
 commit 0a2f06b456854f1cec3ff93952edef928ac7a184
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 09:07:32 2025 -0500
