@@ -4,4 +4,4 @@ _Description: Manual intervention may be required for permission-hardener update
  permission-hardener is being updated to correct a bug that caused state file
  corruption. If you installed your own custom permission-hardener configuration,
  some manual intervention may be required. See
- https://www.kicksecure.com/wiki/Permission-hardener#Fixing_state_files
+ https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#fixing_state_files
