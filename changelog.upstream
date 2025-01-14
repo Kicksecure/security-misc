@@ -1,3 +1,15 @@
+commit 0a2f06b456854f1cec3ff93952edef928ac7a184
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 09:07:32 2025 -0500
+
+    use pre.bsh
+
+commit 6a4f9c1bd8c48bb1a711eee077ea7a05646b0598
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 14:06:50 2025 +0000
+
+    bumped changelog version
+
 commit e60183ec073d278f8d69a5475aa52d75870cd9b0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 09:06:41 2025 -0500
