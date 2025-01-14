@@ -1,3 +1,77 @@
+commit eec2e2c8ee621c6ebb152abbfe3951fa0322a0d0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 04:13:39 2025 -0500
+
+    comment
+
+commit 6d282226ef653accf1de32582b999ff31775f60f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 04:12:12 2025 -0500
+
+    comment
+
+commit 466308e4f9ebd496ff54dd9f77881ce10a558802
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 04:09:57 2025 -0500
+
+    permission hardener: disable SUID for `chrome-sandbox`
+
+commit 7a5f8b87af7142ce973bd88abf98279ce15559a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 04:06:44 2025 -0500
+
+    permission hardener: disable SUID for `ssh-agent`, `ssh-keysign`, `/lib/openssh/*`
+    
+    This might break SSH host-based authentication.
+
+commit d89ffcde30f6115c25c1bc807eb30b18c21e2b6e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 04:04:09 2025 -0500
+
+    comment
+
+commit 9f1759ba0ea7ecee87c8777226eb8a56482deeb5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:56:55 2025 -0500
+
+    comment
+
+commit 0ac85ea9f56abdf621ec1b4f2acf08a2450067ba
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:54:35 2025 -0500
+
+    comment
+
+commit fce6a5f8303cd891efd8bbfef861e357dc90e88e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:51:43 2025 -0500
+
+    comment
+
+commit 1e9940481318d8d7a443b98f0906089759f27a5d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:50:16 2025 -0500
+
+    comment
+
+commit b198591537a01f5b35c9301ca28a24c70864bcbd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:49:42 2025 -0500
+
+    comment
+
+commit 7d44db2cb268c4eb31b50bbd44b87b8001dc068c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:49:15 2025 -0500
+
+    usrmerge
+
+commit 7e7632a55396e10e20a6e9d8d563011694cccc85
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 08:24:05 2025 +0000
+
+    bumped changelog version
+
 commit 420cb3f86f69c4505702a8f38271fb095316cb6f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 03:19:21 2025 -0500
