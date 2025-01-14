@@ -38,51 +38,16 @@ permission_hardening() {
 }
 
 migrate_permission_hardener_state() {
-   local v2_state_file
-
    if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
      return 0
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
 
-   ## This has to be stored in the postinst rather than installed by the
-   ## package, because permission-hardener *will* change it and we *cannot*
-   ## allow future package updates to overwrite it.
-   v2_state_file="root root 644 /etc/passwd-
-root root 755 /etc/cron.monthly
-root root 755 /etc/sudoers.d
-root shadow 2755 /usr/bin/expiry
-root root 4755 /usr/bin/umount
-root root 4755 /usr/bin/gpasswd
-root root 755 /usr/lib/modules
-root root 644 /etc/issue.net
-root root 644 /etc/group-
-root root 4755 /usr/bin/newgrp
-root root 755 /etc/cron.weekly
-root root 644 /etc/hosts.deny
-root root 4755 /usr/bin/su
-root root 644 /etc/hosts.allow
-root root 700 /root
-root root 755 /etc/cron.daily
-root root 755 /bin/ping
-root root 777 /etc/motd
-root root 755 /boot
-root root 755 /home
-root shadow 2755 /usr/bin/chage
-root root 4755 /usr/bin/chsh
-root root 4755 /usr/bin/passwd
-root root 4755 /usr/bin/chfn
-root root 644 /etc/group
-root root 755 /etc/permission-hardener.d
-root root 644 /etc/passwd
-root root 755 /usr/src
-root root 4755 /usr/bin/mount
-root root 777 /etc/issue
-root root 755 /etc/cron.d"
+   if [ -d '/var/lib/permission-hardener' ]; then
+      mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
+      cp '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
+   fi
 
-   ## Not using sponge since moreutils might not be installed at this point.
-   mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
-   echo "${v2_state_file}" > '/var/lib/permission-hardener-v2/existing_mode/statoverride'
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
 
