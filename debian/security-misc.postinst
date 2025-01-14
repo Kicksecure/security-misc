@@ -7,11 +7,15 @@ if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
 fi
 
+## Required since this package uses debconf - this is mandatory even though
+## the postinst itself does not use debconf commands.
+source /usr/share/debconf/confmodule
+
 set -e
 
 true "
 #####################################################################
-## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $*
 #####################################################################
 "
 
@@ -33,6 +37,20 @@ permission_hardening() {
     echo "$0: INFO: Permission hardening success."
 }
 
+migrate_permission_hardener_state() {
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
+     return 0
+   fi
+   mkdir --parents '/var/lib/security-misc/do_once'
+
+   if [ -d '/var/lib/permission-hardener' ]; then
+      mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
+      cp '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
+   fi
+
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+}
+
 case "$1" in
     configure)
         if [ -d /etc/skel/.gnupg ]; then
@@ -45,13 +63,16 @@ case "$1" in
 
         ## state dir for faillock
         mkdir -p /var/lib/security-misc/faillock
+
+        ## migrate permission_hardener state to v2 if applicable
+        migrate_permission_hardener_state
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
     triggered)
-      echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\@: '$@' 2: '$2'"
+      echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\*: '$*' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
       /usr/libexec/security-misc/mmap-rnd-bits || true
       permission_hardening
@@ -94,7 +115,7 @@ permission_hardening_legacy_config_folder
 
 true "
 #####################################################################
-## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $*
 #####################################################################
 "
 
