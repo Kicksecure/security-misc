@@ -1,3 +1,58 @@
+commit 420cb3f86f69c4505702a8f38271fb095316cb6f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:19:21 2025 -0500
+
+    refactoring
+
+commit b7e7b2767eb957dd1401f5abcff07bfcb47a4c00
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:18:17 2025 -0500
+
+    refactoring
+
+commit b2a1a0ec9f8db1d84c222e734737b7ed149f6d92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:17:00 2025 -0500
+
+    refactoring
+
+commit 69ae2d9ea0826aa81c70e957bb5a9241a84346ad
+Merge: de1f31e de9ebab
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 03:15:45 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/permission-hardener-migrate'
+
+commit de9ebabd46798ff2afa259907b6a7b976070e7f0
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Jan 13 21:57:10 2025 -0600
+
+    Fix minor migration bugs, don't run the migration code on new image builds
+
+commit a9e87e9d308f5e61a2d2054fa038dae6faadad3a
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jan 12 21:13:43 2025 -0600
+
+    Prevent installation failures when installing non-interactively
+
+commit 5570d3e5b9f97f14c772facff16dc45df66d42e9
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jan 12 20:40:41 2025 -0600
+
+    Add a forgotten set -e
+
+commit 07786de03953b91310588e0b37b9e150bf1b4736
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jan 12 19:34:41 2025 -0600
+
+    Enable smooth migration from permission-hardener-v1 to permission-hardener-v2
+
+commit de1f31e3df1a0fba0a4c6e41b9b46e076266cfd4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 12 11:47:18 2025 +0000
+
+    bumped changelog version
+
 commit b0baa8baa57937358dc988b88adab4858a1d8cae
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 12 05:38:35 2025 -0500
