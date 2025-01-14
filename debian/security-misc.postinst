@@ -38,15 +38,17 @@ permission_hardening() {
 }
 
 migrate_permission_hardener_state() {
+   if [ ! -d '/var/lib/permission-hardener' ]; then
+      return 0
+   fi
+
    if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
      return 0
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
 
-   if [ -d '/var/lib/permission-hardener' ]; then
-      mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
-      cp '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
-   fi
+   mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
+   cp '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
 
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
