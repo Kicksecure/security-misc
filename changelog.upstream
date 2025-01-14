@@ -1,3 +1,15 @@
+commit 709036c79f8efc9fefa9e7709780a75f9f5004d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 09:31:58 2025 -0500
+
+    debconf-updatepo
+
+commit 659c7037c6956f6d905e55a1ebb13ebe6a273dee
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 14:30:58 2025 +0000
+
+    bumped changelog version
+
 commit 86d3db15bf94dc0f4547105e18ef5f26ca124fa8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 09:30:46 2025 -0500
