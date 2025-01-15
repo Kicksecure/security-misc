@@ -1,3 +1,46 @@
+commit ca257164105c4f66576024b64c52a42921455d16
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 15 09:44:48 2025 -0500
+
+    improve permission hardener migration code
+
+commit 2dfd30a44ae332faa50bc4920486cdd9480c7e5d
+Merge: a84d3ba 328f747
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 15 09:33:57 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/more-permission-hardener'
+
+commit 328f747179ffb2e7705a73bc9a0c5133a17da829
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 14 20:35:28 2025 -0600
+
+    Restore permission-hardener's notice about how to compare old and new states
+
+commit c6f09748f383fdf7c1b07441c73477b3f18d2768
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 14 20:27:53 2025 -0600
+
+    Handle de-corruption of new_mode a bit better
+
+commit a0f81958dfb020d311d86cbd00d4f86f678d8be9
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 14 19:25:15 2025 -0600
+
+    De-corrupt the new_mode permission-hardener statoverride database too
+
+commit 396372c1295e2a09d596f3e23fccc26794a26f05
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 14 18:50:24 2025 -0600
+
+    Avoid scanning unnecessary packages for modified permission-hardener config
+
+commit a84d3ba732bcbd2fb93ea2bc145a0db0f33f1b77
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jan 14 14:32:13 2025 +0000
+
+    bumped changelog version
+
 commit 709036c79f8efc9fefa9e7709780a75f9f5004d2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 09:31:58 2025 -0500
