@@ -49,7 +49,9 @@ migrate_permission_hardener_state() {
    mkdir --parents '/var/lib/security-misc/do_once'
 
    mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
+   mkdir --parents '/var/lib/permission-hardener-v2/new_mode'
    cp --verbose '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
+   cp --verbose '/usr/share/security-misc/permission-hardener-new-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/new_mode/statoverride'
 
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
