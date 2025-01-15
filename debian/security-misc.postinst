@@ -38,6 +38,7 @@ permission_hardening() {
 }
 
 migrate_permission_hardener_state() {
+   local existing_mode_dir new_mode_dir dpkg_statoverride_list
    ## If folder /var/lib/permission-hardener (version 1) does not exist, this migration is unneeded.
    if [ ! -d '/var/lib/permission-hardener' ]; then
       return 0
@@ -48,10 +49,27 @@ migrate_permission_hardener_state() {
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
 
-   mkdir --parents '/var/lib/permission-hardener-v2/existing_mode'
-   mkdir --parents '/var/lib/permission-hardener-v2/new_mode'
-   cp --verbose '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/existing_mode/statoverride'
-   cp --verbose '/usr/share/security-misc/permission-hardener-new-mode-legacy-hardcoded' '/var/lib/permission-hardener-v2/new_mode/statoverride'
+   existing_mode_dir='/var/lib/permission-hardener-v2/existing_mode'
+   new_mode_dir='/var/lib/permission-hardener-v2/new_mode'
+
+   mkdir --parents "${existing_mode_dir}";
+   mkdir --parents "${new_mode_dir}";
+
+   cp --verbose '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' "${existing_mode_dir}/statoverride"
+   cp --verbose '/usr/share/security-misc/permission-hardener-new-mode-legacy-hardcoded' "${new_mode_dir}/statoverride"
+
+   dpkg_statoverride_list="$(dpkg-statoverride --admindir "${new_mode_dir}" --list)"
+
+   if [ "$(stat --format '%G' /usr/bin/sudo)" = 'sysmaint' ]; then
+      if ! [[ "${dpkg_statoverride_list}" =~ '/usr/bin/sudo' ]]; then
+         dpkg-statoverride --admindir "${new_mode_dir}" --add 'root' 'sysmaint' '4750' '/usr/bin/sudo'
+      fi
+   fi
+   if [ "$(stat --format '%G' /usr/bin/pkexec)" = 'sysmaint' ]; then
+      if ! [[ "${dpkg_statoverride_list}" =~ '/usr/bin/pkexec' ]]; then
+         dpkg-statoverride --admindir "${new_mode_dir}" --add 'root' 'sysmaint' '4750' '/usr/bin/pkexec'
+      fi
+   fi
 
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }

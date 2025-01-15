@@ -8,6 +8,7 @@ root root 744 /usr/bin/newgrp
 root root 700 /etc/cron.weekly
 root root 744 /usr/bin/su
 root root 700 /etc/cron.daily
+root root 755 /bin/ping
 root root 644 /etc/motd
 root _ssh 744 /usr/bin/ssh-agent
 root root 700 /boot
