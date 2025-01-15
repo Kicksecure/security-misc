@@ -612,6 +612,11 @@ commit_policy() {
         -- "${policy_file_item}"
     fi
   done
+
+  log notice "\
+To compare the current and previous permission modes, install 'meld' (or preferred diff tool) for comparison of file mode changes:
+    sudo apt install --no-install-recommends meld
+    meld ${store_dir}/existing_mode/statoverride ${store_dir}/new_mode/statoverride"
 }
 
 undo_policy_for_file() {
