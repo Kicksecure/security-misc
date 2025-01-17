@@ -1,3 +1,28 @@
+commit 876d596a071ac916f7d220ee2449358aedba7efe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 17 07:55:54 2025 -0500
+
+    comment
+
+commit c9e2f82bd01813682998c775f75bac0841239e5e
+Merge: 5971869 bf73f1f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 17 07:53:59 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/master'
+
+commit bf73f1f2b5e429caaf01bfbcdc7d5d032e3c0efb
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Jan 15 19:10:41 2025 -0600
+
+    Avoid impossible-to-satisfy dependency on helper-scripts, improve string handling robustness in postinst
+
+commit 597186972e463ce7a0b44662f7656f351ddf1030
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 15 15:02:44 2025 +0000
+
+    bumped changelog version
+
 commit ca257164105c4f66576024b64c52a42921455d16
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 15 09:44:48 2025 -0500
