@@ -1,3 +1,21 @@
+commit 4e0d5a196ccb8ef3fdf2b67d974f28d02a532f91
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 20 04:30:26 2025 -0500
+
+    delete comment only configuration file (moved to user-sysmaint-split)
+
+commit 1b4d1edfc316f125ff5039bf17897802205750e2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 20 04:29:42 2025 -0500
+
+    comments
+
+commit 51c7010e8f47ce6e6a28e6267c735e897dcfb053
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 17 13:35:28 2025 +0000
+
+    bumped changelog version
+
 commit 876d596a071ac916f7d220ee2449358aedba7efe
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 17 07:55:54 2025 -0500
