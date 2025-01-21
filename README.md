@@ -145,6 +145,38 @@ security microcode (BIOS/UEFI) updates must be installed on the system. Furtherm
 if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
 up to date through [UEFI Revocation List](https://uefi.org/revocationlistfile) updates.
 
+CPU mitigations:
+
+- Disable Simultaneous Multithreading (SMT)
+
+- Spectre Side Channels (BTI and BHI)
+
+- Speculative Store Bypass (SSB)
+
+- L1 Terminal Fault (L1TF)
+
+- Microarchitectural Data Sampling (MDS)
+
+- TSX Asynchronous Abort (TAA)
+
+- iTLB Multihit
+
+- Special Register Buffer Data Sampling (SRBDS)
+
+- L1D Flushing
+
+- Processor MMIO Stale Data
+
+- Arbitrary Speculative Code Execution with Return Instructions (Retbleed)
+
+- Cross-Thread Return Address Predictions
+
+- Speculative Return Stack Overflow (SRSO)
+
+- Gather Data Sampling (GDS)
+
+- Register File Data Sampling (RFDS)
+
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
