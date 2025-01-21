@@ -749,6 +749,7 @@ print_state() {
 }
 
 print_raw_policy_config() {
+  local config_file
   for config_file in \
     /usr/lib/permission-hardener.d/*.conf \
     /etc/permission-hardener.d/*.conf \
@@ -776,7 +777,8 @@ print_raw_state() {
 }
 
 print_fs_audit() {
-  local state_idx
+  local state_idx state_file_item state_user_owner_item state_group_owner_item \
+    state_mode_item
 
   echo 'Legend:'
   echo '... - Warning about an unusual, but not necessarily wrong, condition'
