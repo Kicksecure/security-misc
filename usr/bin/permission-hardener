@@ -176,6 +176,7 @@ print_usage(){
        ${0##*/} print-policy
        ${0##*/} print-state
        ${0##*/} print-policy-applied-state
+       ${0##*/} print-diagnostics
 
 Examples:
   ${0##*/} enable
@@ -747,29 +748,113 @@ print_state() {
   done
 }
 
-## Global variables
-policy_file_list=()
-policy_user_owner_list=()
-policy_group_owner_list=()
-policy_mode_list=()
-policy_capability_list=()
-policy_exact_white_list=()
-policy_match_white_list=()
-policy_disable_white_list=()
-policy_nosuid_file_list=()
-state_file_list=()
-state_user_owner_list=()
-state_group_owner_list=()
-state_mode_list=()
-whitelists_disable_all=false
-existing_mode=''
-existing_owner=''
-existing_group=''
-processed_config_line=''
-file_name_from_stat=''
-passwd_file_contents="$(getent passwd)"
-group_file_contents="$(getent group)"
-exit_code=0
+print_raw_policy_config() {
+  for config_file in \
+    /usr/lib/permission-hardener.d/*.conf \
+    /etc/permission-hardener.d/*.conf \
+    /usr/local/etc/permission-hardener.d/*.conf \
+    /etc/permission-hardening.d/*.conf \
+    /usr/local/etc/permission-hardening.d/*.conf
+  do
+    if [ ! -f "${config_file}" ]; then
+      continue
+    fi
+    echo "*** begin ${config_file} ***"
+    cat "${config_file}"
+    echo "***   end ${config_file} ***"
+  done
+}
+
+print_raw_state() {
+  local state_file
+  for state_file in "${store_dir}/existing_mode/statoverride" \
+    "${store_dir}/new_mode/statoverride"; do
+    echo "*** begin ${state_file} ***"
+    cat "${state_file}"
+    echo "***   end ${state_file} ***"
+  done
+}
+
+print_fs_audit() {
+  local state_idx
+
+  echo 'Legend:'
+  echo '... - Warning about an unusual, but not necessarily wrong, condition'
+  echo '!!! - Warning about an unusual and definitely wrong condition'
+  echo '*** - File permission data, actual state on filesystem is consistent with policy'
+  echo '^^^ - File permission data, actual state on filesystem is inconsistent with policy'
+  echo 'vvv - File permissions specified by state, always shown after a ^^^ item'
+  echo
+
+  for (( state_idx=0; state_idx < ${#state_file_list[@]}; state_idx++ )); do
+    state_file_item="${state_file_list[state_idx]}"
+    state_user_owner_item="${state_user_owner_list[state_idx]}"
+    state_group_owner_item="${state_group_owner_list[state_idx]}"
+    state_mode_item="${state_mode_list[state_idx]}"
+
+    ## Get rid of leading zeros, stat doesn't output them due to how we use it.
+    ## Using BASH_REMATCH is faster than sed. We capture all leading zeros into
+    ## one group, and the rest of the string into a second group. The second
+    ## group is the string we want. BASH_REMATCH[0] is the entire string,
+    ## BASH_REMATCH[1] is the first match that we want to discard, and
+    ## BASH_REMATCH[2] is the desired second group.
+    [[ "${state_mode_item}" =~ ^(0*)(.*) ]] || true;
+    state_mode_item="${BASH_REMATCH[2]}"
+
+    output_stat "${state_file_item}"
+    if [ -z "${file_name_from_stat}" ]; then
+      echo "... '${state_file_item}' does not exist"
+      continue
+    fi
+
+    if [ "${existing_owner}" != "${state_user_owner_item}" ] \
+      || [ "${existing_group}" != "${state_group_owner_item}" ] \
+      || [ "${existing_mode}" != "${state_mode_item}" ]; then
+      if ! [[ "${passwd_file_contents}" =~ "${state_user_owner_item}:" ]]; then
+        echo "!!! Owner from config does not exist: '${state_user_owner_item}'"
+        continue
+      fi
+
+      if ! [[ "${group_file_contents}" =~ "${state_group_owner_item}:" ]]; then
+        echo "!!! Group from config does not exist: '${state_group_owner_item}'"
+        continue
+      fi
+
+      echo "^^^ ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
+      echo "vvv ${state_file_item} ${state_user_owner_item}:${state_group_owner_item} ${state_mode_item}"
+    else
+      echo "*** ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
+    fi
+  done
+}
+
+reset_global_vars() {
+  ## Global variables
+  policy_file_list=()
+  policy_user_owner_list=()
+  policy_group_owner_list=()
+  policy_mode_list=()
+  policy_capability_list=()
+  policy_exact_white_list=()
+  policy_match_white_list=()
+  policy_disable_white_list=()
+  policy_nosuid_file_list=()
+  state_file_list=()
+  state_user_owner_list=()
+  state_group_owner_list=()
+  state_mode_list=()
+  whitelists_disable_all=false
+  existing_mode=''
+  existing_owner=''
+  existing_group=''
+  processed_config_line=''
+  file_name_from_stat=''
+  passwd_file_contents="$(getent passwd)"
+  group_file_contents="$(getent group)"
+  exit_code=0
+}
+
+reset_global_vars
 
 ## Setup and sanity checking
 if [ "$(id -u)" != '0' ]; then
@@ -816,6 +901,51 @@ case "${1:-}" in
     load_state
     apply_policy
     print_state
+    ;;
+  print-diagnostics)
+    echo '=== BEGIN PERMISSION-HARDENER DIAGNOSTICS ==='
+
+    echo '--- BEGIN State without policy ---'
+    load_state_without_policy
+    print_state
+    echo '---   END State without policy ---'
+
+    reset_global_vars
+
+    echo '--- BEGIN Policy without state ---'
+    load_state
+    print_policy
+    echo '---   END Policy without state ---'
+
+    reset_global_vars
+
+    echo '--- BEGIN Policy-applied-state ---'
+    load_state
+    apply_policy
+    print_state
+    echo '---   END Policy-applied state ---'
+
+    reset_global_vars
+
+    echo '--- BEGIN Master dpkg-statoverride database ---'
+    dpkg-statoverride --list
+    echo '---   END Master dpkg-statoverride database ---'
+
+    echo '--- BEGIN Raw policy configuration ---'
+    print_raw_policy_config
+    echo '---   END Raw policy configuration ---'
+
+    echo '--- BEGIN Raw state data ---'
+    print_raw_state
+    echo '---   END Raw state data ---'
+
+    echo '--- BEGIN Filesystem state audit ---'
+    load_state
+    apply_policy
+    print_fs_audit
+    echo '---   END Filesystem state audit ---'
+
+    echo '===  END PERMISSION-HARDENER DIAGNOSTICS ==='
     ;;
   -h|--help)
     print_usage
