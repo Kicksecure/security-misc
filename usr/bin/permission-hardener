@@ -80,7 +80,7 @@ block_newlines() {
 }
 
 output_stat() {
-  local file_name stat_output stat_output_newlined
+  local file_name stat_output stat_output_newlined hardlink_count
   declare -a arr
   file_name="${1:-}"
 
@@ -101,7 +101,7 @@ output_stat() {
   fi
 
   if ! stat_output="$(stat -L \
-    --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" \
+    --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}%h${delimiter}" \
     -- "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
     return 1
@@ -145,6 +145,7 @@ line: '${processed_config_line}'
   existing_owner="${arr[1]}"
   existing_group="${arr[2]}"
   file_name_from_stat="${arr[3]}"
+  hardlink_count="${arr[4]}"
 
   if [ "$file_name" != "$file_name_from_stat" ]; then
     log error "\
@@ -154,6 +155,22 @@ File name from stat: '${file_name_from_stat}'
 line: '${processed_config_line}'
 " >&2
     return 1
+  fi
+
+  ## We can't handle files with hardlinks because figuring out all of the files
+  ## in a "hardlink pool" requires scanning the whole filesystem, which would
+  ## result in an unacceptable performance hit for this script. We don't check
+  ## directory hardlinks since directories can't have traditional hardlinks.
+  if [ ! -d "${file_name_from_stat}" ]; then
+    if (( hardlink_count > 1 )); then
+      log error "\
+File has unexpected hardlinks, cannot handle.
+File name: '${file_name}'
+File name from stat: '${file_name_from_stat}'
+line: '${processed_config_line}'
+" >&2
+      return 1
+    fi
   fi
 
   if [ -z "${existing_mode}" ]; then
