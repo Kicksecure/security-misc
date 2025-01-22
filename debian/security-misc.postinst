@@ -44,7 +44,7 @@ migrate_permission_hardener_state() {
       return 0
    fi
 
-   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2" ]; then
      return 0
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
@@ -71,7 +71,7 @@ migrate_permission_hardener_state() {
       fi
    fi
 
-   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2"
 }
 
 case "$1" in
