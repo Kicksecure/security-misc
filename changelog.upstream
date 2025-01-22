@@ -1,3 +1,53 @@
+commit 80bd314436b99b723359f25e52bbd14683929b56
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 08:25:14 2025 -0500
+
+    add `.whonix` files to hardcoded files
+
+commit 9b012bdeee03e73de537e7fe65c0bb8d16b38e79
+Merge: 507130a 42f34f5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 08:23:49 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/permission-hardener-symlink-fix'
+
+commit 507130a1cc0592bd4a4b280da7496dade470e637
+Merge: f1b6bff ed767e0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 08:21:39 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/permission-hardener-diag'
+
+commit 42f34f5a4ccf95d504e28a26aeb0747fef4685ba
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 21 21:49:03 2025 -0600
+
+    Don't handle files with multiple hardlinks
+
+commit 5e60416c864a7d06f635161a185864fc36d5685c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 21 21:05:03 2025 -0600
+
+    Make permission-hardener always apply changes to real files, not symlinks
+
+commit ed767e00b0260d29c18c710efe07d68a9beffb34
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jan 21 16:41:30 2025 -0600
+
+    Add some local variable declarations
+
+commit a97620a2e491cc039adb15af94958f26b39319a2
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Jan 20 22:43:55 2025 -0600
+
+    Add print-diagnostics command to permission-hardener
+
+commit f1b6bff30b1891bfbe870de9edd78fa7dbd66e7c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 20 11:35:08 2025 +0000
+
+    bumped changelog version
+
 commit df9d058ed9635b168508ded20277c174a24cf3f5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 20 06:28:16 2025 -0500
