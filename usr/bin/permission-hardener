@@ -80,7 +80,7 @@ block_newlines() {
 }
 
 output_stat() {
-  local file_name stat_output stat_output_newlined
+  local file_name stat_output stat_output_newlined hardlink_count
   declare -a arr
   file_name="${1:-}"
 
@@ -101,7 +101,7 @@ output_stat() {
   fi
 
   if ! stat_output="$(stat -L \
-    --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}" \
+    --format="%a${delimiter}%U${delimiter}%G${delimiter}%n${delimiter}%h${delimiter}" \
     -- "${file_name}")"; then
     log error "Failed to run 'stat' on file: '${file_name}'!" >&2
     return 1
@@ -145,6 +145,7 @@ line: '${processed_config_line}'
   existing_owner="${arr[1]}"
   existing_group="${arr[2]}"
   file_name_from_stat="${arr[3]}"
+  hardlink_count="${arr[4]}"
 
   if [ "$file_name" != "$file_name_from_stat" ]; then
     log error "\
@@ -154,6 +155,22 @@ File name from stat: '${file_name_from_stat}'
 line: '${processed_config_line}'
 " >&2
     return 1
+  fi
+
+  ## We can't handle files with hardlinks because figuring out all of the files
+  ## in a "hardlink pool" requires scanning the whole filesystem, which would
+  ## result in an unacceptable performance hit for this script. We don't check
+  ## directory hardlinks since directories can't have traditional hardlinks.
+  if [ ! -d "${file_name_from_stat}" ]; then
+    if (( hardlink_count > 1 )); then
+      log error "\
+File has unexpected hardlinks, cannot handle.
+File name: '${file_name}'
+File name from stat: '${file_name_from_stat}'
+line: '${processed_config_line}'
+" >&2
+      return 1
+    fi
   fi
 
   if [ -z "${existing_mode}" ]; then
@@ -167,6 +184,12 @@ line: '${processed_config_line}'
   if [ -z "${existing_group}" ]; then
     log error "Existing group is empty. Stat output: '${stat_output}', line: '${processed_config_line}'" >&2
     return 1
+  fi
+
+  ## If a symlink was passed as input, return the original file's path rather
+  ## than the symlink to avoid problems stemming from using the wrong path
+  if [ -h "${file_name_from_stat}" ]; then
+    file_name_from_stat="$(realpath "${file_name_from_stat}")"
   fi
 }
 
@@ -193,6 +216,10 @@ add_to_policy() {
   file_group="${4:-}"
   file_capabilities="${5:-}"
   updated_entry=false
+
+  if [ -h "${file_name}" ]; then
+    file_name="$(realpath "${file_name}")" || return 1
+  fi
 
   for (( policy_idx=0; policy_idx < ${#policy_file_list[@]}; policy_idx++ )); do
     if [ "${policy_file_list[policy_idx]}" = "${file_name}" ]; then
@@ -279,7 +306,7 @@ load_early_nosuid_policy() {
     local new_mode
     new_mode='744'
 
-    add_to_policy "${find_list_item}" "${new_mode}" "${existing_owner}" \
+    add_to_policy "${file_name_from_stat}" "${new_mode}" "${existing_owner}" \
       "${existing_group}"
   done < <(safe_echo_nonewline "${target_file}" \
     | find -files0-from - -perm /u=s,g=s -print0)
@@ -468,7 +495,7 @@ load_state() {
     if [ -z "${file_name_from_stat}" ]; then
       continue
     fi
-    state_file_list+=( "${policy_file_item}" )
+    state_file_list+=( "${file_name_from_stat}" )
     state_user_owner_list+=( "${existing_owner}" )
     state_group_owner_list+=( "${existing_group}" )
     state_mode_list+=( "${existing_mode}" )
@@ -476,7 +503,7 @@ load_state() {
     echo_wrapper_audit silent dpkg-statoverride \
       ${dpkg_admindir_parameter_existing_mode} \
       --add "${existing_owner}" "${existing_group}" "${existing_mode}" \
-      "${policy_file_item}"
+      "${file_name_from_stat}"
   done
 
   ## Fix up nosuid policies using state information
@@ -557,26 +584,26 @@ commit_policy() {
         continue
       fi
       ## Remove and reapply in main list
-      if [[ "${orig_main_statoverride_db}" =~ "${state_file_item}" ]]; then
+      if [[ "${orig_main_statoverride_db}" =~ "${file_name_from_stat}" ]]; then
         echo_wrapper_ignore silent dpkg-statoverride --remove \
-          "${state_file_item}"
+          "${file_name_from_stat}"
       fi
       echo_wrapper_audit verbose dpkg-statoverride --add --update \
         "${state_user_owner_item}" "${state_group_owner_item}" \
-        "${state_mode_item}" "${state_file_item}"
+        "${state_mode_item}" "${file_name_from_stat}"
 
       ## Update item in secondary list
-      if [[ "${orig_new_statoverride_db}" =~ "${state_file_item}" ]]; then
+      if [[ "${orig_new_statoverride_db}" =~ "${file_name_from_stat}" ]]; then
         # shellcheck disable=SC2086
         echo_wrapper_ignore silent dpkg-statoverride \
           ${dpkg_admindir_parameter_new_mode} --remove \
-          "${state_file_item}"
+          "${file_name_from_stat}"
       fi
       # shellcheck disable=SC2086
       echo_wrapper_audit verbose dpkg-statoverride \
         ${dpkg_admindir_parameter_new_mode} --add \
         "${state_user_owner_item}" "${state_group_owner_item}" \
-        "${state_mode_item}" "${state_file_item}"
+        "${state_mode_item}" "${file_name_from_stat}"
     fi
   done
 
@@ -805,7 +832,7 @@ print_fs_audit() {
 
     output_stat "${state_file_item}"
     if [ -z "${file_name_from_stat}" ]; then
-      echo "... '${state_file_item}' does not exist"
+      echo "... '${file_name_from_stat}' does not exist"
       continue
     fi
 
@@ -823,7 +850,7 @@ print_fs_audit() {
       fi
 
       echo "^^^ ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
-      echo "vvv ${state_file_item} ${state_user_owner_item}:${state_group_owner_item} ${state_mode_item}"
+      echo "vvv ${file_name_from_stat} ${state_user_owner_item}:${state_group_owner_item} ${state_mode_item}"
     else
       echo "*** ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
     fi
