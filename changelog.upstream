@@ -1,3 +1,27 @@
+commit f90ffacac3d3c12f62f62106a69cb6caeca69041
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 09:09:56 2025 -0500
+
+    bump permission hardner migration code version
+
+commit 3a056c9d9c17ed3968f48ac332cee94f714320c7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 09:05:50 2025 -0500
+
+    bump permission hardner migration code version
+
+commit d5ad29a7324dfbece3185026a3f4c58121c453b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 09:04:44 2025 -0500
+
+    add /usr/lib/polkit-1/polkit-agent-helper-1 to permission hardener hardcoded statoverride file
+
+commit c8a2483cf6735b29ef9b265cc09b58b00b14b6f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 22 13:52:29 2025 +0000
+
+    bumped changelog version
+
 commit 80bd314436b99b723359f25e52bbd14683929b56
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 22 08:25:14 2025 -0500
