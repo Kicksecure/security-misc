@@ -33,3 +33,4 @@ root root 777 /etc/issue.whonix
 root root 755 /etc/cron.d
 root root 4755 /usr/bin/sudo
 root root 4755 /usr/bin/pkexec
+root root 4755 /usr/lib/polkit-1/polkit-agent-helper-1
