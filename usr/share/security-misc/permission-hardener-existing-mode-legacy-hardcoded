@@ -16,6 +16,7 @@ root root 700 /root
 root root 755 /etc/cron.daily
 root root 755 /bin/ping
 root root 777 /etc/motd.kicksecure
+root root 777 /etc/motd.whonix
 root root 755 /boot
 root root 755 /home
 root shadow 2755 /usr/bin/chage
@@ -28,6 +29,7 @@ root root 644 /etc/passwd
 root root 755 /usr/src
 root root 4755 /usr/bin/mount
 root root 777 /etc/issue.kicksecure
+root root 777 /etc/issue.whonix
 root root 755 /etc/cron.d
 root root 4755 /usr/bin/sudo
 root root 4755 /usr/bin/pkexec

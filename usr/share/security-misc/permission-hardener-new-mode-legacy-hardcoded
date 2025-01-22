@@ -10,6 +10,7 @@ root root 744 /usr/bin/su
 root root 700 /etc/cron.daily
 root root 755 /bin/ping
 root root 644 /etc/motd.kicksecure
+root root 644 /etc/motd.whonix
 root _ssh 744 /usr/bin/ssh-agent
 root root 700 /boot
 root shadow 744 /usr/bin/chage
@@ -21,4 +22,5 @@ root root 600 /etc/permission-hardener.d
 root root 700 /usr/src
 root root 755 /usr/bin/mount
 root root 644 /etc/issue.kicksecure
+root root 644 /etc/issue.whonix
 root root 700 /etc/cron.d
