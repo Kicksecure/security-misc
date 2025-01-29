@@ -138,9 +138,44 @@ configuration file and significant hardening is applied to a myriad of component
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form
 and simultaneous multithreading (SMT) is disabled. See the
-`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file. Note, to achieve
-complete protection for known CPU vulnerabilities, the latest security microcode
-(BIOS/UEFI) updates must also be installed on the system.
+`/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
+
+Note, to achieve complete protection for known CPU vulnerabilities, the latest
+security microcode (BIOS/UEFI) updates must be installed on the system. Furthermore,
+if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
+up to date through [UEFI Revocation List](https://uefi.org/revocationlistfile) updates.
+
+CPU mitigations:
+
+- Disable Simultaneous Multithreading (SMT)
+
+- Spectre Side Channels (BTI and BHI)
+
+- Speculative Store Bypass (SSB)
+
+- L1 Terminal Fault (L1TF)
+
+- Microarchitectural Data Sampling (MDS)
+
+- TSX Asynchronous Abort (TAA)
+
+- iTLB Multihit
+
+- Special Register Buffer Data Sampling (SRBDS)
+
+- L1D Flushing
+
+- Processor MMIO Stale Data
+
+- Arbitrary Speculative Code Execution with Return Instructions (Retbleed)
+
+- Cross-Thread Return Address Predictions
+
+- Speculative Return Stack Overflow (SRSO)
+
+- Gather Data Sampling (GDS)
+
+- Register File Data Sampling (RFDS)
 
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
