@@ -1,3 +1,25 @@
+commit 10508cb5801c28f8fff306957e867a1626aa6489
+Merge: 6b4fa1e b9dee26
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 29 09:36:28 2025 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit b9dee2633128577245763bad41cf3cb6b49751f3
+Merge: 6b4fa1e 4b1e530
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 29 09:35:50 2025 -0500
+
+    Merge pull request #296 from raja-grewal/cpu_details
+    
+    Hardware-related Documentation
+
+commit 6b4fa1ef0055d36a45d65481129dabfee77027e4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 23 16:28:58 2025 +0000
+
+    bumped changelog version
+
 commit b10f5489a3e3317f01339ea34a0e5c7bfb850a01
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 23 11:12:26 2025 -0500
@@ -71,6 +93,18 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Tue Jan 21 16:41:30 2025 -0600
 
     Add some local variable declarations
+
+commit 4b1e530674146d4d2b62ff4a87fe3add5667403c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Jan 21 12:39:06 2025 +0000
+
+    README.md: List CPU mitigations
+
+commit 15d13a8571d1f38b2bc36387f61bce24c86be97b
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Jan 21 12:36:04 2025 +0000
+
+    Add info on DBX updates via the UEFI Revocation List
 
 commit a97620a2e491cc039adb15af94958f26b39319a2
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
