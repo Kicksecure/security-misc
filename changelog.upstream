@@ -1,3 +1,21 @@
+commit 9f5e522b83ba969112abf6a9fba77c1eff31b14d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 30 07:53:04 2025 -0500
+
+    LC_ALL=C
+
+commit 7c150d116d1d1f95e2fb729934906eb4391a389a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 30 07:45:08 2025 -0500
+
+    LANG=C str_replace: no longer requires LANG=C, therefore removed
+
+commit 6aaf7082177fe4d02415aac4317cde74665f495c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 29 14:36:41 2025 +0000
+
+    bumped changelog version
+
 commit 10508cb5801c28f8fff306957e867a1626aa6489
 Merge: 6b4fa1e b9dee26
 Author: Patrick Schleizer <adrelanos@whonix.org>
