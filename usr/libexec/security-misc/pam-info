@@ -152,7 +152,7 @@ true "pam_faillock_output_first_line: '$pam_faillock_output_first_line'"
 ## example pam_faillock_output_first_line:
 ## user:
 
-user_name="$(echo "$pam_faillock_output_first_line" | LANG=C str_replace ":" "")"
+user_name="$(echo "$pam_faillock_output_first_line" | str_replace ":" "")"
 ## example user_name:
 ## user
 ## root
@@ -180,7 +180,7 @@ deny=3
 
 if test -f /etc/security/faillock.conf ; then
    deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =")
-   deny="$(echo "$deny_line" | LANG=C str_replace "=" "" | LANG=C str_replace "deny" "" | LANG=C str_replace " " "")"
+   deny="$(echo "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
    ## Example:
    #deny=50
 fi
