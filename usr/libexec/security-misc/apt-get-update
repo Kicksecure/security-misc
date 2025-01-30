@@ -8,7 +8,7 @@ set -o nounset
 set -o errtrace
 set -o pipefail
 
-export LANG=C
+export LC_ALL=C
 
 write_pid_file() {
   [[ -z "${TMP:-}" ]] && error "TMP is unset"
