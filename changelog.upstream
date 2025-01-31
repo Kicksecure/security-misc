@@ -1,3 +1,21 @@
+commit 041caf286b343268e6db69f2957f23c1dd20812a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 31 14:33:54 2025 -0500
+
+    update pkg_installed function
+
+commit ac1493fcfc194b8d1a680d7e8bf53a90caa984ac
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 31 14:33:17 2025 -0500
+
+    comment
+
+commit c0f2f110146410428fc12815b30aaba67ff16126
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 30 12:58:48 2025 +0000
+
+    bumped changelog version
+
 commit 9f5e522b83ba969112abf6a9fba77c1eff31b14d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 30 07:53:04 2025 -0500
