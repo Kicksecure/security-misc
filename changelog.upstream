@@ -1,3 +1,31 @@
+commit 0615e6e995eb25d8e1bff181ecc49ff51e4029cc
+Merge: 2a4a228 4d62ee3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 9 18:01:43 2025 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 4d62ee3ab31bde80eebde265c2513233f10f751a
+Merge: 2a4a228 ce4b57d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 9 18:00:59 2025 -0500
+
+    Merge pull request #297 from raja-grewal/warn_path
+    
+    Update docs on kernel panics
+
+commit ce4b57d1cb179f18c1ac41681626d01054355fe6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Feb 3 00:31:45 2025 +0000
+
+    Update docs on kernel panics
+
+commit 2a4a228b150e06c7ff796315719d41e825dd8ad3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jan 31 19:38:42 2025 +0000
+
+    bumped changelog version
+
 commit 041caf286b343268e6db69f2957f23c1dd20812a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 31 14:33:54 2025 -0500
