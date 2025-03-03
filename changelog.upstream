@@ -1,3 +1,22 @@
+commit cd0ba94ac5e7e8360183ac6f440d941b4067025b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Mar 3 05:57:59 2025 -0500
+
+    no longer disable `vivid` kernel module by default,
+    because it breaks Qubes Video Companion
+    
+    Thanks to @marmarek for the bug report!
+    
+    https://forums.whonix.org/t/testing-qubes-video-companion-on-whonix/21393
+    
+    fixes https://github.com/Kicksecure/security-misc/issues/298
+
+commit 3e7d1b4e23e1e8ef4ad138dbe4119eee7e72511c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 9 23:04:36 2025 +0000
+
+    bumped changelog version
+
 commit 0615e6e995eb25d8e1bff181ecc49ff51e4029cc
 Merge: 2a4a228 4d62ee3
 Author: Patrick Schleizer <adrelanos@whonix.org>
