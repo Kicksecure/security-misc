@@ -79,6 +79,7 @@ pref("network.cookie.cookieBehavior", 2);
 // But we want it gone for good for no information leak at all
 // https://hg.mozilla.org/comm-central/rev/cbbbc8d93cd7
 pref("mailnews.headers.sendUserAgent", false);
+pref("general.useragent.override", "");
 
 // Normally we send emails after marking them with a time stamp
 // That includes our local time zone
@@ -92,3 +93,45 @@ pref("mail.sanitize_date_header", true);
 // Compact when it will save over 100 KB
 pref("mail.folder.compact_on_exit", true);
 pref("mail.folder.compact_threshold", 100);
+
+//### Privacy
+// Geolocation
+pref("geo.enabled", false);
+pref("geo.provider.use_geoclue", false)
+pref("geo.provider.network.url", "")
+
+// Disable Google Safe Browsing (#22567).
+pref("browser.safebrowsing.enabled", false);
+pref("browser.safebrowsing.malware.enabled", false);
+
+// Disable Microsoft Family Safety (From TBB: #21686).
+pref("security.family_safety.mode", 0);
+
+// Likely privacy violations
+// https://blog.torproject.org/blog/experimental-defense-website-traffic-fingerprinting
+// https://bugs.torproject.org/3914
+pref("network.http.pipelining", true);
+pref("network.http.pipelining.aggressive", true);
+pref("network.http.pipelining.maxrequests", 12);
+pref("network.http.connection-retry-timeout", 0);
+pref("network.http.max-persistent-connections-per-proxy", 256);
+pref("network.http.pipelining.reschedule-timeout", 15000);
+pref("network.http.pipelining.read-timeout", 60000);
+
+// We do not fully understand the privacy issues of the SPDY protocol
+pref("network.http.spdy.enabled", false);
+
+// Don't save email addresses from sent emails
+// Do not automatically add outgoing sent emails to address book "Collected Addresses" for privacy
+pref("mail.collect_email_address_outgoing", false);
+
+// Clean mailbox server-side
+// Delete messages from server regardless if POP3 or IMAP is set as protocol for accounts
+// Delete POP3 messages from server when moved for example when moved to trash in Thunderbird
+// Delete IMAP messages from server when deleted or marked for deletion in Thunderbird
+pref("mail.pop3.deleteFromServerOnMove", true);
+pref("mail.imap.expunge_after_delete", true);
+
+// Don't leak the locale "Date & Time" via reply quote header
+pref("mailnews.reply_header_type", 1);
+pref("mailnews.reply_header_authorwrotesingle", "#1 wrote:");
