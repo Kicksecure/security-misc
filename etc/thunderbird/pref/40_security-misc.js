@@ -42,10 +42,29 @@ pref("network.prefetch-next", false);
 pref("network.dns.disablePrefetch", true);
 pref("network.predictor.enabled", false);
 
+//### Security
 // No need to explain the problems with javascript
 // If you want javascript, use your browser
 // Thunderbird needs no javascript
 // pref("javascript.enabled", false); // Will break setting up services that require redirecting to their javascripted webpage for login, like gmail etc. So commented out for now.
+
+// JavaScript hardening. Source https://gitlab.torproject.org/tpo/applications/tor-browser/-/blob/tor-browser-115.10.0esr-13.5-1/browser/components/securitylevel/content/securityLevel.js?ref_type=heads
+// (we are applying the "high" profile)
+pref("javascript.options.ion", false);
+pref("javascript.options.baselinejit", false);
+pref("javascript.options.native_regexp", false);
+pref("media.webaudio.enabled", false);
+pref("mathml.disabled", true);
+pref("gfx.font_rendering.opentype_svg.enabled",  false);
+pref("svg.disabled",  true);
+
+// Disable WebGL.
+pref("webgl.disabled", true);
+
+// Disable WebM, WAV, Ogg, PeerConnection.
+pref("media.navigator.enabled", false);
+pref("media.peerconnection.enabled", false);
+pref("media.cache_size", 0);
 
 // Disable scripting when viewing pdf files
 user_pref("pdfjs.enableScripting", false);
