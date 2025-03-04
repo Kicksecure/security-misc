@@ -135,3 +135,8 @@ pref("mail.imap.expunge_after_delete", true);
 // Don't leak the locale "Date & Time" via reply quote header
 pref("mailnews.reply_header_type", 1);
 pref("mailnews.reply_header_authorwrotesingle", "#1 wrote:");
+
+//### Nuances & Annoyances 
+// Disable donation banner
+pref("mailnews.donationbanner.enabled", false);
+pref("app.donation.eoy.version.viewed", 999999);
