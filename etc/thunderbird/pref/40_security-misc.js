@@ -86,3 +86,9 @@ pref("mailnews.headers.sendUserAgent", false);
 // And rounds the time stamp to the closes minute
 // https://hg.mozilla.org/comm-central/rev/98aa0bf2e719
 pref("mail.sanitize_date_header", true);
+
+//### Performance
+// Compact folders on exit
+// Compact when it will save over 100 KB
+pref("mail.folder.compact_on_exit", true);
+pref("mail.folder.compact_threshold", 100);
