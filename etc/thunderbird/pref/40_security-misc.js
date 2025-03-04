@@ -10,6 +10,7 @@
 // https://forums.whonix.org/t/enable-network-idn-show-punycode-by-default-in-thunderbird-to-fix-url-not-showing-real-domain-name-homograph-attack-punycode/8415
 pref("network.IDN_show_punycode", true);
 
+//### Telemetry
 // Disable all and any kind of telemetry by default
 pref("toolkit.telemetry.enabled", false);
 pref("toolkit.telemetry.unified", false);
@@ -21,10 +22,19 @@ pref("toolkit.telemetry.firstShutdownPing.enabled", false);
 pref("toolkit.telemetry.newProfilePing.enabled", false);
 pref("toolkit.telemetry.server", ""); // Defense in depth
 pref("toolkit.telemetry.server_owner", ""); // Defense in depth
-pref("datareporting.healthreport.uploadEnabled", false);
-pref("datareporting.policy.dataSubmissionEnabled", false);
 pref("toolkit.telemetry.coverage.opt-out", true); // from Firefox
 pref("toolkit.coverage.opt-out", true); // from Firefox
+
+// Disable Thunderbird archiving telemetry data locally
+// Thunderbird saves data to ~/.thunderbird/profile.default/datareporting/ 
+pref("datareporting.healthreport.about.reportUrl", "data:text/plain,");
+pref("datareporting.policy.dataSubmissionEnabled", false);
+pref("datareporting.healthreport.uploadEnabled", false);
+pref("datareporting.healthreport.service.enabled", false);
+pref("datareporting.healthreport.service.firstRun", false);
+pref("datareporting.healthreport.service.lastDataSubmissionRequested", 0);
+pref("datareporting.healthreport.service.lastDataSubmissionSuccessful", 0);
+pref("datareporting.healthreport.service.submitEnabled", false);
 
 // Disable implicit outbound traffic
 pref("network.connectivity-service.enabled", false);
