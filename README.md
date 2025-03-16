@@ -226,6 +226,9 @@ Kernel space:
 - Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
   to reduce attack surface.
 
+- Disable EFI persistent storage feature, preventing the kernel from writing crash logs and
+  other persistent data to the EFI variable store.
+  
 Direct memory access:
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
