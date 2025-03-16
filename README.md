@@ -413,6 +413,11 @@ Miscellaneous modules:
 
 `/lib/systemd/coredump.conf.d/30_security-misc.conf`
 
+- PStore is disabled as crash logs can contain sensitive system data such as
+  kernel version, hostname, and users. See:
+
+  `/usr/lib/systemd/pstore.conf.d/30_security-misc.conf`
+
 - An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
   `/etc/sysctl.d` before init is executed so sysctl hardening is enabled as
   early as possible. This is implemented for `initramfs-tools` only because
