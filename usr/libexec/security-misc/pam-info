@@ -116,7 +116,7 @@ fi
 ##
 ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
 ##
-## https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
+## https://web.archive.org/web/20200919221439/https://www.whonix.org/pipermail/whonix-devel/2019-September/001439.html
 ##
 ## Checking exit code to avoid breaking when read-only disk boot but
 ## without ro-mode-init or grub-live being used.
