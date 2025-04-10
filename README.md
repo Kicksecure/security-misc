@@ -421,11 +421,12 @@ Miscellaneous modules:
 
   `/usr/lib/systemd/pstore.conf.d/30_security-misc.conf`
 
-- An initramfs hook sets the sysctl values in `/usr/lib/sysctl.d/` before init
-  is executed so sysctl hardening is enabled as early as possible. This is
-  implemented for `initramfs-tools` only because this is not needed for `dracut`
-  as `dracut` does that by default, at least on `systemd` enabled systems. Not 
-  researched for non-`systemd` systems by the author of this part of the readme.
+- An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
+  `/etc/sysctl.d` before init is executed so sysctl hardening is enabled as
+  early as possible. This is implemented for `initramfs-tools` only because
+  this is not needed for `dracut` as `dracut` does that by default, at
+  least on `systemd` enabled systems. Not researched for non-`systemd` systems
+  by the author of this part of the readme.
 
 ## Network hardening
 
