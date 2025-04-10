@@ -76,7 +76,7 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
    sysmaint_passwd_info="$(passwd --status sysmaint 2>/dev/null)" || true
    sysmaint_lock_info="$(cut -d' ' -f2 <<< "${sysmaint_passwd_info}")"
    if [ "${sysmaint_lock_info}" = 'L' ]; then
-      echo "$0: ERROR: Reboot and choose 'PERSISTENT mode SYSMAINT' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+      echo "$0: ERROR: Reboot and choose 'PERSISTENT Mode - SYSMAINT Session' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
    fi
 fi
 
