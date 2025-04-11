@@ -226,6 +226,9 @@ Kernel space:
 - Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
   to reduce attack surface.
 
+- Disable EFI persistent storage feature, preventing the kernel from writing crash logs and
+  other persistent data to the EFI variable store.
+
 Direct memory access:
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
@@ -400,7 +403,7 @@ Miscellaneous modules:
 
 `/etc/kernel/postinst.d/30_remove-system-map`
 
-`/lib/systemd/system/remove-system-map.service`
+`/usr/lib/systemd/system/remove-system-map.service`
 
 `/usr/libexec/security-misc/remove-system.map`
 
@@ -409,9 +412,14 @@ Miscellaneous modules:
 
 `/etc/security/limits.d/30_security-misc.conf`
 
-`/etc/sysctl.d/30_security-misc.conf`
+`/usr/lib/sysctl.d/30_security-misc.conf`
 
-`/lib/systemd/coredump.conf.d/30_security-misc.conf`
+`/usr/lib/systemd/coredump.conf.d/30_security-misc.conf`
+
+- PStore is disabled as crash logs can contain sensitive system data such as
+  kernel version, hostname, and users. See:
+
+  `/usr/lib/systemd/pstore.conf.d/30_security-misc.conf`
 
 - An initramfs hook sets the sysctl values in `/etc/sysctl.conf` and
   `/etc/sysctl.d` before init is executed so sysctl hardening is enabled as
