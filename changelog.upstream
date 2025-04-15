@@ -1,3 +1,25 @@
+commit e0e2a9b61c61b34a6fe10782e294d58adff15cfe
+Merge: 5e88dfe 9f2836d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Apr 15 15:27:10 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 9f2836d2baae900222cbae74d7a32bcdc69e589f
+Merge: 5e88dfe aa0ffff
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Apr 15 15:17:25 2025 -0400
+
+    Merge pull request #304 from raja-grewal/stop_pstore
+    
+    Disable PStore
+
+commit 5e88dfe809a762aeebf62ea2de131cfbdea9ae32
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 10 11:38:17 2025 +0000
+
+    bumped changelog version
+
 commit c0a18c5a7122fe3c7b52d0e02ca5e8817efb3996
 Merge: da9dd3c 74ca63d
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -10,6 +32,12 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Wed Apr 9 21:01:41 2025 -0500
 
     Mass-change "PERSISTENCE mode USERNAME" to "PERSISTENCE Mode - USERNAME Session"
+
+commit aa0ffff42753f68e67bc92680a22986a5b9ef9e0
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Apr 10 11:49:45 2025 +1000
+
+    README.md: Revert error
 
 commit da9dd3c3f14103701ad82af775b4fb547f5b3e2e
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -40,6 +68,24 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Apr 8 06:48:29 2025 -0400
 
     output
+
+commit f0d17c7e4134d8a54ce7331c1e9d3ce932278987
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Mar 16 03:31:24 2025 +0000
+
+    README: Fix a few links
+
+commit df2fc2cf6b0437d23c7641118ebd24d2e3a670ce
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Mar 16 03:30:04 2025 +0000
+
+    Set `efi_pstore.pstore_disable=1`
+
+commit f643ebc2f923ba4d7231e5aeaf1d91d1a9d1d0df
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Mar 16 03:28:39 2025 +0000
+
+    Disable pstore processing by systemd-pstore service
 
 commit d927fe238cc5369f7fe1632a4173fe4bdf0ffdfb
 Author: Patrick Schleizer <adrelanos@whonix.org>
