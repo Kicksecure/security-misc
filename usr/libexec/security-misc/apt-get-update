@@ -11,7 +11,7 @@ set -o pipefail
 export LC_ALL=C
 
 write_pid_file() {
-  safe-rm -rf "/run/helper-scripts/security-misc-apt-get-update-pid"
+  safe-rm -r -f -- "/run/helper-scripts/security-misc-apt-get-update-pid"
   install -m644 /dev/null "/run/helper-scripts/security-misc-apt-get-update-pid"
   echo "$$" | sponge -- "/run/helper-scripts/security-misc-apt-get-update-pid"
 }
