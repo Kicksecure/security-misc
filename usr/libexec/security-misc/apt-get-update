@@ -3,6 +3,8 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## TODO: Move this to helper-scripts.
+
 set -o errexit
 set -o nounset
 set -o errtrace
