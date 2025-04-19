@@ -1,3 +1,77 @@
+commit 9948ae114d4c6bbd650022c9985137c0fdea5675
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 13:24:17 2025 -0400
+
+    fix
+
+commit 4aca622706f33e85832e67650259a7751ba87a72
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 13:23:26 2025 -0400
+
+    fix
+
+commit 701f4a0e88a32e4c9312fd92b73cef5d4f755f0a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 13:20:04 2025 -0400
+
+    output
+
+commit a670c0d873eba8d84bde90ebbeecc7aecc22349e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 13:18:23 2025 -0400
+
+    comment
+
+commit 4799f3ce02e5683dad0fff13f5d7fe0aadb0a0db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 13:17:28 2025 -0400
+
+    make `/usr/libexec/security-misc/apt-get-update` more reliable
+
+commit c4f0e1d16f6999b055b0fa310456870f12a6dbea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:57:14 2025 -0400
+
+    refactoring
+
+commit 81634930fa13a240b9fff9a878dd84af1dccc6b3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:55:32 2025 -0400
+
+    refactoring
+
+commit 90330a1ec958f82f9322ecc62bcfb7169d641af4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:49:18 2025 -0400
+
+    refactoring
+
+commit ce2c9a21a357b3981335336eaf7ac8a6a3bcb052
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:47:40 2025 -0400
+
+    /usr/libexec/security-misc/apt-get-update: use `/run/helper-scripts` folder for pid file instead of `$TMP`
+    
+    to avoid permission issues
+
+commit 96ff7c8dc67809a3199d0b7f22d9e50483634a9c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:45:06 2025 -0400
+
+    refactoring
+
+commit 5a37790e6bd80ffd4f74d9596523ef72366d35d9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Apr 19 12:43:15 2025 -0400
+
+    cleanup
+
+commit 7512aa67572c97267fd176e63ae4862b6d37f8ae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Apr 15 20:59:37 2025 +0000
+
+    bumped changelog version
+
 commit e0e2a9b61c61b34a6fe10782e294d58adff15cfe
 Merge: 5e88dfe 9f2836d
 Author: Patrick Schleizer <adrelanos@whonix.org>
