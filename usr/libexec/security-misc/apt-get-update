@@ -11,34 +11,28 @@ set -o pipefail
 export LC_ALL=C
 pidfile="/run/helper-scripts/security-misc-apt-get-update-pid"
 
-write_pid_file() {
-  safe-rm -r -f -- "$pidfile"
-  install -m644 /dev/null "$pidfile"
-  echo "$$" | sponge -- "$pidfile"
-}
-
 sigterm_trap() {
-   if [ "$lastpid" = "" ]; then
-      exit 143
-   fi
-   if ! kill -0 -- "$lastpid" &>/dev/null ; then
-      exit 143
-   fi
-   kill -s sigterm -- "$lastpid"
+   /usr/libexec/helper-scripts/apt-get-update-kill-helper
    exit 143
 }
+
+## terminate potential previous invocations.
+/usr/libexec/helper-scripts/apt-get-update-kill-helper
 
 trap "sigterm_trap" SIGTERM SIGINT
 
 [[ -v timeout_after ]] || timeout_after="600"
 [[ -v kill_after ]] || kill_after="10"
 
-write_pid_file
-
-timeout \
-   --kill-after="$kill_after" \
-   "$timeout_after" \
-   apt-get update --error-on=any "$@" &
+start-stop-daemon \
+  --make-pidfile \
+  --pidfile "$pidfile" \
+  --exec /usr/bin/timeout \
+  --start \
+  -- \
+    --kill-after="$kill_after" \
+    "$timeout_after" \
+      apt-get update --error-on=any "$@" &
 
 lastpid="$!"
 wait "$lastpid"
