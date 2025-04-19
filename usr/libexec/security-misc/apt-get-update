@@ -10,6 +10,8 @@ set -o nounset
 set -o errtrace
 set -o pipefail
 
+command -v start-stop-daemon >/dev/null
+
 export LC_ALL=C
 pidfile="/run/helper-scripts/security-misc-apt-get-update-pid"
 
