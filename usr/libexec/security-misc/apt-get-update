@@ -21,12 +21,9 @@ sigterm_trap() {
    if [ "$lastpid" = "" ]; then
       exit 143
    fi
-   ps -p "$lastpid" >/dev/null 2>&1
-   if [ ! "$?" = "0" ]; then
-      ## Already terminated.
-      exit 143
+   if kill -0 -- "$lastpid" &>/dev/null ; then
+      kill -s sigterm -- "$lastpid"
    fi
-   kill -s sigterm "$lastpid"
    exit 143
 }
 
