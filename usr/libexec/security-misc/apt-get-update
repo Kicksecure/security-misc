@@ -14,12 +14,12 @@ export LC_ALL=C
 pidfile="/run/helper-scripts/security-misc-apt-get-update-pid"
 
 sigterm_trap() {
-   /usr/libexec/helper-scripts/apt-get-update-kill-helper
+   /usr/libexec/helper-scripts/apt-get-update-kill-helper &>/dev/null
    exit 143
 }
 
 ## terminate potential previous invocations.
-/usr/libexec/helper-scripts/apt-get-update-kill-helper
+/usr/libexec/helper-scripts/apt-get-update-kill-helper &>/dev/null
 
 trap "sigterm_trap" SIGTERM SIGINT
 
