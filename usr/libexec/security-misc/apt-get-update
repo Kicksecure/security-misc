@@ -9,11 +9,12 @@ set -o errtrace
 set -o pipefail
 
 export LC_ALL=C
+pidfile="/run/helper-scripts/security-misc-apt-get-update-pid"
 
 write_pid_file() {
-  safe-rm -r -f -- "/run/helper-scripts/security-misc-apt-get-update-pid"
-  install -m644 /dev/null "/run/helper-scripts/security-misc-apt-get-update-pid"
-  echo "$$" | sponge -- "/run/helper-scripts/security-misc-apt-get-update-pid"
+  safe-rm -r -f -- "$pidfile"
+  install -m644 /dev/null "$pidfile"
+  echo "$$" | sponge -- "$pidfile"
 }
 
 sigterm_trap() {
