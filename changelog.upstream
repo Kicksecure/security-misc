@@ -1,3 +1,28 @@
+commit a8f6132bec1a6f4a639d58295b3e50faf5494d98
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 25 03:11:27 2025 -0400
+
+    output
+
+commit 1d14a9f32435b8131c251e03bff2af5c929bbf49
+Merge: e154d0a 612f5f9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 25 02:59:09 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/fix-pkexec-umask'
+
+commit 612f5f92fde236b86928428fd0247c8e971b0460
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Apr 24 20:01:35 2025 -0500
+
+    Fix umask for pkexec-run commands
+
+commit e154d0af6dd41e392122fbe3d09219734c5ad588
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Apr 21 10:21:54 2025 +0000
+
+    bumped changelog version
+
 commit 4bf0e3a63667c284d053e5b8517440a884a42441
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Apr 21 04:57:07 2025 -0400
