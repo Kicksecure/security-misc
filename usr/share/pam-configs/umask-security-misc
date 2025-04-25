@@ -1,4 +1,4 @@
-Name: Restrict umask to 027 (by package security-misc)
+Name: Restrict umask to 027 for non-root users (by package security-misc)
 Default: yes
 Priority: 100
 Session-Type: Additional
