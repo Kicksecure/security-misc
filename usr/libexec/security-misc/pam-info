@@ -106,12 +106,12 @@ fi
 #    fi
 # fi
 
-## as user "user"
+## under account "user"
 ## /usr/sbin/faillock -u user
 ## faillock: Error opening /var/log/tallylog for update: Permission denied
 ## /usr/sbin/faillock: Authentication error
 ##
-## xscreensaver runs as user "user", therefore pam_faillock cannot function.
+## xscreensaver runs under account "user", therefore pam_faillock cannot function.
 ## xscreensaver has its own failed login counter.
 ##
 ## https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
