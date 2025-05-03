@@ -30,6 +30,7 @@ Depends: adduser,
          python3,
          secure-delete,
          sudo,
+         usbguard,
          ${misc:Depends}
 Replaces: anon-gpg-tweaks, swappiness-lowest, tcp-timestamps-disable
 Description: Enhances Miscellaneous Security Settings
