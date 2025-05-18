@@ -163,9 +163,9 @@ pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
 ## 4
 
-## Do not count the first two informational textual output lines
-## (starting with "user:" and "When").
-failed_login_counter=$(( pam_faillock_output_count - 2 ))
+## Do not count the first two informational textual output lines (starting with "user:" and "When") if present,
+## whilst ensuring failed_login_counter is not set to a negative value.
+failed_login_counter=$( [ $(( pam_faillock_output_count - 2 )) -gt 0 ] && echo $(( pam_faillock_output_count - 2 )) || echo "0" )
 
 ## example failed_login_counter:
 ## 2
