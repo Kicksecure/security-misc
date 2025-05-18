@@ -82,9 +82,10 @@ fi
 
 kernel_cmdline="$(cat -- /proc/cmdline)"
 
-if [ "$PAM_USER" != 'sysmaint' ] \
-   && [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
-   printf '%s\n' "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+if [ "$PAM_USER" != 'sysmaint' ]; then
+   if [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
+      printf '%s\n' "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+   fi
 fi
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
