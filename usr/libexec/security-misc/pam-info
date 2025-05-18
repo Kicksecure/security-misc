@@ -80,7 +80,9 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
    fi
 fi
 
-kernel_cmdline="$(cat -- /proc/cmdline)"
+if test -f /proc/cmdline; then
+   kernel_cmdline="$(cat -- /proc/cmdline)"
+fi
 
 if [ "$PAM_USER" != 'sysmaint' ]; then
    if [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
