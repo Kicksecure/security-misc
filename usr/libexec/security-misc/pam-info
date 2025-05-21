@@ -242,7 +242,7 @@ ERROR: Please report this bug.
    exit 0
 fi
 
-remaining_attempts="$(( $deny - $failed_login_counter ))"
+remaining_attempts="$(( deny - failed_login_counter ))"
 
 if [ "$remaining_attempts" -le "0" ]; then
    printf '%s\n' "\
