@@ -1,3 +1,31 @@
+commit 353b6e83c55d52b47a2a35063406324cec7237c4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:20:13 2025 -0400
+
+    test that `wc` is functional
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5930e270521e0e5d6a0a3877c813accbf5253051
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:05:25 2025 -0400
+
+    pam-info: improve error handling
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5c981e0891ef009c5c2355f5f6383aca22c45638
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 06:55:09 2025 -0400
+
+    pam-info: fix, consistently write errors and warnings to stderr
+
+commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 20 11:40:27 2025 +0000
+
+    bumped changelog version
+
 commit 405880e63b92319626332d083a6c5ad5101dbf77
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun May 18 06:44:42 2025 -0400
