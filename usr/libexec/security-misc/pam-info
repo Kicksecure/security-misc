@@ -76,7 +76,7 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
    sysmaint_passwd_info="$(passwd --status sysmaint 2>/dev/null)" || true
    sysmaint_lock_info="$(cut -d' ' -f2 <<< "${sysmaint_passwd_info}")"
    if [ "${sysmaint_lock_info}" = 'L' ]; then
-      printf '%s\n' "$0: ERROR: Reboot and choose 'PERSISTENT Mode - SYSMAINT Session' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+      printf '%s\n' "$0: ERROR: Reboot and choose 'PERSISTENT Mode - SYSMAINT Session' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint" >&2
    fi
 fi
 
@@ -86,7 +86,7 @@ fi
 
 if [ "$PAM_USER" != 'sysmaint' ]; then
    if [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
-      printf '%s\n' "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+      printf '%s\n' "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint" >&2
    fi
 fi
 
