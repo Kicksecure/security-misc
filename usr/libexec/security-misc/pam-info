@@ -212,7 +212,7 @@ fi
 deny=3
 
 if test -f /etc/security/faillock.conf ; then
-   deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =")
+   deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =") || true
    deny="$(printf '%s\n' "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
    ## Example:
    #deny=50
