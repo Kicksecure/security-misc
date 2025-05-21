@@ -19,7 +19,21 @@ fi
 
 true "$0: START PHASE 2"
 
+set -o errexit
+set -o errtrace
 set -o pipefail
+
+error_handler() {
+   exit_code="$?"
+   printf '%s\n' "\
+$0: ERROR: Unexpected error.
+BASH_COMMAND: '$BASH_COMMAND'
+exit_code: '$exit_code'
+ERROR: Please report this bug." >&2
+   exit 1
+}
+
+trap error_handler ERR
 
 ## Named constants.
 pam_faillock_state_dir="/var/lib/security-misc/faillock"
@@ -35,7 +49,7 @@ if [ "$PAM_USER" = "" ]; then
    exit 0
 fi
 
-grep_result="$(grep -- "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
+grep_result="$(grep -- "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)" || true
 
 ## Check if grep matched something.
 if [ ! "$grep_result" = "" ]; then
