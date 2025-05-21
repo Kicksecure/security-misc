@@ -46,7 +46,7 @@ https://github.com/rspamd/rspamd/issues/5137" >&2
   exit 1
 fi
 
-command -v pam_faillock_output &>/dev/null
+command -v str_replace &>/dev/null
 
 ## Named constants.
 pam_faillock_state_dir="/var/lib/security-misc/faillock"
