@@ -46,8 +46,13 @@ https://github.com/rspamd/rspamd/issues/5137" >&2
   exit 1
 fi
 
+command -v pam_faillock_output &>/dev/null
+
 ## Named constants.
 pam_faillock_state_dir="/var/lib/security-misc/faillock"
+
+[[ -v PAM_USER ]] || PAM_USER=""
+[[ -v SUDO_USER ]] || SUDO_USER=""
 
 ## Debugging.
 who_ami="$(whoami)"
@@ -72,6 +77,7 @@ if [ ! "$grep_result" = "" ]; then
 
       ## https://forums.whonix.org/t/etc-security-hardening-console-lockdown/8592
 
+      console_allowed=""
       if id --name --groups --zero -- "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings -- "console"; then
          console_allowed=true
       fi
