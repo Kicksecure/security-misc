@@ -22,6 +22,7 @@ true "$0: START PHASE 2"
 set -o errexit
 set -o errtrace
 set -o pipefail
+#set -o nounset
 
 error_handler() {
    exit_code="$?"
@@ -198,9 +199,9 @@ pam_faillock_output_count="$(printf '%s\n' "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
 ## 4
 
-if [[ "$deny" == *[!0-9]* ]]; then
+if [[ "$pam_faillock_output_count" == *[!0-9]* ]]; then
    printf '%s\n' "\
-$0: ERROR: Variable 'pam_faillock_output_count' is not numeric. pam_faillock_output_count: '$deny'
+$0: ERROR: Variable 'pam_faillock_output_count' is not numeric. pam_faillock_output_count: '$pam_faillock_output_count'
 ERROR: Please report this bug.
 " >&2
    exit 0
