@@ -22,7 +22,7 @@ true "$0: START PHASE 2"
 set -o errexit
 set -o errtrace
 set -o pipefail
-#set -o nounset
+set -o nounset
 
 error_handler() {
    exit_code="$?"
