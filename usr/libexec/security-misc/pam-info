@@ -190,6 +190,14 @@ pam_faillock_output_count="$(printf '%s\n' "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
 ## 4
 
+if [[ "$deny" == *[!0-9]* ]]; then
+   printf '%s\n' "\
+$0: ERROR: Variable pam_faillock_output_count is not numeric. pam_faillock_output_count: '$deny'
+ERROR: Please report this bug.
+" >&2
+   exit 0
+fi
+
 ## Do not count the first two informational textual output lines (starting with "user:" and "When") if present,
 failed_login_counter=$(( pam_faillock_output_count - 2 ))
 
