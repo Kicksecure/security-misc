@@ -35,6 +35,16 @@ ERROR: Please report this bug." >&2
 
 trap error_handler ERR
 
+if ! printf '%s\n' | wc -l >/dev/null ; then
+  printf "\
+$0: ERROR: command 'wc' test failed! Do not ignore this!
+
+'wc' can core dump. Example:
+zsh: illegal hardware instruction (core dumped) wc -l
+https://github.com/rspamd/rspamd/issues/5137" >&2
+  exit 1
+fi
+
 ## Named constants.
 pam_faillock_state_dir="/var/lib/security-misc/faillock"
 
