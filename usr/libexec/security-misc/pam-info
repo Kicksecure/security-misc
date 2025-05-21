@@ -253,7 +253,7 @@ https://www.kicksecure.com/wiki/root#unlock
 fi
 
 printf '%s\n' "\
-$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'.
+$0: WARNING: $failed_login_counter failed login attempts for account '$user_name'.
 Login will be blocked after $deny attempts.
 You have $remaining_attempts more attempts before unlock procedure is required.
 " >&2
