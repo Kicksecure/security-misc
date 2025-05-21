@@ -206,7 +206,7 @@ failed_login_counter=$(( pam_faillock_output_count - 2 ))
 
 ## Ensuring failed_login_counter is not set to a negative value.
 ## https://github.com/Kicksecure/security-misc/pull/305
-if [ "$failed_login_counter" -le "0" ]; then
+if [ "$failed_login_counter" -lt "0" ]; then
    true "$0: WARNING: Failed login counter is negative. Resetting to 0."
    failed_login_counter=0
 fi
