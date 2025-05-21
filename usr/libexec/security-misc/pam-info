@@ -124,7 +124,7 @@ fi
 #       if [ "$grep_result" = "" ]; then
 #          printf '%s\n' "\
 # $0: ERROR: Root login is disabled.
-# ERROR: This is because /etc/securetty is empty.
+# ERROR: This is because file '/etc/securetty' is empty.
 # See also:
 # https://www.kicksecure.com/wiki/root#login
 # " >&2
@@ -192,7 +192,7 @@ pam_faillock_output_count="$(printf '%s\n' "$pam_faillock_output" | wc -l)"
 
 if [[ "$deny" == *[!0-9]* ]]; then
    printf '%s\n' "\
-$0: ERROR: Variable pam_faillock_output_count is not numeric. pam_faillock_output_count: '$deny'
+$0: ERROR: Variable 'pam_faillock_output_count' is not numeric. pam_faillock_output_count: '$deny'
 ERROR: Please report this bug.
 " >&2
    exit 0
@@ -228,7 +228,7 @@ fi
 
 if [[ "$deny" == *[!0-9]* ]]; then
    printf '%s\n' "\
-$0: ERROR: deny is not numeric. deny: '$deny'
+$0: ERROR: Variable 'deny' is not numeric. deny: '$deny'
 ERROR: Please report this bug.
 " >&2
    exit 0
