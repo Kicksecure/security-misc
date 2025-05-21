@@ -184,6 +184,14 @@ user_name="$(printf '%s\n' "$pam_faillock_output_first_line" | str_replace ":" "
 ## user
 ## root
 
+if [ "$PAM_USER" != "$user_name" ]; then
+   printf '%s\n' "\
+$0: ERROR: Variable 'PAM_USER' '$PAM_USER' does not match variable 'user_name' '$user_name'.
+ERROR: Please report this bug.
+" >&2
+   exit 1
+fi
+
 pam_faillock_output_count="$(printf '%s\n' "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
 ## 2
