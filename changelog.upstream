@@ -1,3 +1,75 @@
+commit 142ea2118989faddafa17db48efed379c4ac3f45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:42:16 2025 -0400
+
+    fix
+
+commit a969fa350e28ca296966509821a7c62b68f09a5a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:40:27 2025 -0400
+
+    fix
+
+commit f023651c984c52a997bc241f99f118255cf60809
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:37 2025 -0400
+
+    nounset
+
+commit f086787464191a07e028dd92649c48b145023858
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:23 2025 -0400
+
+    fix
+
+commit d7643954d184846c8b7fb5eda7200779126274eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:33:50 2025 -0400
+
+    minor
+
+commit aa905fc8875c5c56351f10f4e40e6d2a7dd6d918
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:32:16 2025 -0400
+
+    further validation of output of `faillock`
+
+commit 92d3a36a0f43615db622c6b0daa7064b8e8ebbbb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:29:01 2025 -0400
+
+    fix
+
+commit 2c1abb23e03cfe449347ba692d35f5ba1f33cff4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:26:46 2025 -0400
+
+    output
+
+commit 0801b96ae74256f36dcf8757d0ba8abc66ea0b9b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:25:49 2025 -0400
+
+    output
+
+commit ef8515ba82996b137c386eeb91e6f853d58a515f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:23:45 2025 -0400
+
+    improve error handling
+
+commit 784867e24b4d6f2899fa9b215ec9e3c4e2fb9d84
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:21:45 2025 -0400
+
+    fix
+
+commit 0eea681ce893a259563f8e9d5a2ec9722fbc635d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 15:52:16 2025 +0000
+
+    bumped changelog version
+
 commit e1bae1c68aabc424924b6386fe4980d657dc2cdf
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 11:50:59 2025 -0400
