@@ -256,8 +256,7 @@ check_nosuid_whitelist() {
   [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]] && return 1
 
   for match_white_list_entry in "${policy_match_white_list[@]:-}"; do
-    if safe_echo "${target_file}" \
-      | grep --quiet --fixed-strings -- "${match_white_list_entry}"; then
+    if [[ "${target_file}" == *"${match_white_list_entry}"* ]]; then
       return 1
     fi
   done
