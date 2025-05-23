@@ -19,10 +19,40 @@ fi
 
 true "$0: START PHASE 2"
 
+set -o errexit
+set -o errtrace
 set -o pipefail
+set -o nounset
+
+error_handler() {
+   exit_code="$?"
+   printf '%s\n' "\
+$0: ERROR: Unexpected error.
+BASH_COMMAND: '$BASH_COMMAND'
+exit_code: '$exit_code'
+ERROR: Please report this bug." >&2
+   exit 1
+}
+
+trap error_handler ERR
+
+if ! printf '%s\n' "" | wc -l >/dev/null ; then
+  printf '%s\n' "\
+$0: ERROR: command 'wc' test failed! Do not ignore this!
+
+'wc' can core dump. Example:
+zsh: illegal hardware instruction (core dumped) wc -l
+https://github.com/rspamd/rspamd/issues/5137" >&2
+  exit 1
+fi
+
+command -v str_replace &>/dev/null
 
 ## Named constants.
 pam_faillock_state_dir="/var/lib/security-misc/faillock"
+
+[[ -v PAM_USER ]] || PAM_USER=""
+[[ -v SUDO_USER ]] || SUDO_USER=""
 
 ## Debugging.
 who_ami="$(whoami)"
@@ -35,18 +65,19 @@ if [ "$PAM_USER" = "" ]; then
    exit 0
 fi
 
-grep_result="$(grep -- "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)"
+grep_result="$(grep -- "accessfile=/etc/security/access-security-misc.conf" /etc/pam.d/common-account 2>/dev/null)" || true
 
 ## Check if grep matched something.
 if [ ! "$grep_result" = "" ]; then
    ## Yes, grep matched.
 
    ## Check if not out commented.
-   if ! echo "$grep_result" | grep --quiet -- "#" ; then
+   if ! printf '%s\n' "$grep_result" | grep --quiet -- "#" ; then
       ## Not out commented indeed.
 
       ## https://forums.whonix.org/t/etc-security-hardening-console-lockdown/8592
 
+      console_allowed=""
       if id --name --groups --zero -- "$PAM_USER" | grep --quiet --null-data --line-regexp --fixed-strings -- "console"; then
          console_allowed=true
       fi
@@ -55,7 +86,7 @@ if [ ! "$grep_result" = "" ]; then
       fi
 
       if [ ! "$console_allowed" = "true" ]; then
-         echo "\
+         printf '%s\n' "\
 $0: ERROR: PAM_USER: '$PAM_USER' is not a member of group 'console'
 To unlock, run the following command as superuser:
 (If you still have a sudo/root shell somewhere.)
@@ -76,15 +107,18 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
    sysmaint_passwd_info="$(passwd --status sysmaint 2>/dev/null)" || true
    sysmaint_lock_info="$(cut -d' ' -f2 <<< "${sysmaint_passwd_info}")"
    if [ "${sysmaint_lock_info}" = 'L' ]; then
-      echo "$0: ERROR: Reboot and choose 'PERSISTENT Mode - SYSMAINT Session' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+      printf '%s\n' "$0: ERROR: Reboot and choose 'PERSISTENT Mode - SYSMAINT Session' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint" >&2
    fi
 fi
 
-kernel_cmdline="$(cat /proc/cmdline)"
+if test -f /proc/cmdline; then
+   kernel_cmdline="$(cat -- /proc/cmdline)"
+fi
 
-if [ "$PAM_USER" != 'sysmaint' ] \
-   && [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
-   echo "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint"
+if [ "$PAM_USER" != 'sysmaint' ]; then
+   if [[ "${kernel_cmdline}" =~ 'boot-role=sysmaint' ]]; then
+      printf '%s\n' "$0: WARNING: Use account 'sysmaint' for system maintenance. See https://www.kicksecure.com/wiki/Sysmaint" >&2
+   fi
 fi
 
 ## https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
@@ -93,11 +127,11 @@ fi
 ## Also this should only run for login since securetty covers only login.
 # if [ "$PAM_USER" = "root" ]; then
 #    if [ -f /etc/securetty ]; then
-#       grep_result="$(grep "^[^#]" /etc/securetty)"
+#       grep_result="$(grep -- "^[^#]" /etc/securetty)"
 #       if [ "$grep_result" = "" ]; then
-#          echo "\
+#          printf '%s\n' "\
 # $0: ERROR: Root login is disabled.
-# ERROR: This is because /etc/securetty is empty.
+# ERROR: This is because file '/etc/securetty' is empty.
 # See also:
 # https://www.kicksecure.com/wiki/root#login
 # " >&2
@@ -143,7 +177,7 @@ fi
 ## Usage: faillock [--dir /path/to/tally-directory] [--user username] [--reset]
 
 ## Get first line.
-#pam_faillock_output_first_line="$(echo "$pam_faillock_output" | head --lines=1)"
+#pam_faillock_output_first_line="$(printf '%s\n' "$pam_faillock_output" | head --lines=1)"
 while read -t 10 -r pam_faillock_output_first_line ; do
    break
 done <<< "$pam_faillock_output"
@@ -152,23 +186,45 @@ true "pam_faillock_output_first_line: '$pam_faillock_output_first_line'"
 ## example pam_faillock_output_first_line:
 ## user:
 
-user_name="$(echo "$pam_faillock_output_first_line" | str_replace ":" "")"
+user_name="$(printf '%s\n' "$pam_faillock_output_first_line" | str_replace ":" "")"
 ## example user_name:
 ## user
 ## root
 
-pam_faillock_output_count="$(echo "$pam_faillock_output" | wc -l)"
+if [ "$PAM_USER" != "$user_name" ]; then
+   printf '%s\n' "\
+$0: ERROR: Variable 'PAM_USER' '$PAM_USER' does not match variable 'user_name' '$user_name'.
+ERROR: Please report this bug.
+" >&2
+   exit 1
+fi
+
+pam_faillock_output_count="$(printf '%s\n' "$pam_faillock_output" | wc -l)"
 ## example pam_faillock_output_count:
 ## 2
 ## example pam_faillock_output_count:
 ## 4
 
-## Do not count the first two informational textual output lines
-## (starting with "user:" and "When").
+if [[ "$pam_faillock_output_count" == *[!0-9]* ]]; then
+   printf '%s\n' "\
+$0: ERROR: Variable 'pam_faillock_output_count' is not numeric. pam_faillock_output_count: '$pam_faillock_output_count'
+ERROR: Please report this bug.
+" >&2
+   exit 0
+fi
+
+## Do not count the first two informational textual output lines (starting with "user:" and "When") if present,
 failed_login_counter=$(( pam_faillock_output_count - 2 ))
 
 ## example failed_login_counter:
 ## 2
+
+## Ensuring failed_login_counter is not set to a negative value.
+## https://github.com/Kicksecure/security-misc/pull/305
+if [ "$failed_login_counter" -lt "0" ]; then
+   true "$0: WARNING: Failed login counter is negative. Resetting to 0."
+   failed_login_counter=0
+fi
 
 if [ "$failed_login_counter" = "0" ]; then
    true "$0: INFO: Failed login counter is 0, ok."
@@ -179,24 +235,24 @@ fi
 deny=3
 
 if test -f /etc/security/faillock.conf ; then
-   deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =")
-   deny="$(echo "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
+   deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =") || true
+   deny="$(printf '%s\n' "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
    ## Example:
    #deny=50
 fi
 
 if [[ "$deny" == *[!0-9]* ]]; then
-   echo "\
-$0: ERROR: deny is not numeric. deny: '$deny'
+   printf '%s\n' "\
+$0: ERROR: Variable 'deny' is not numeric. deny: '$deny'
 ERROR: Please report this bug.
 " >&2
    exit 0
 fi
 
-remaining_attempts="$(( $deny - $failed_login_counter ))"
+remaining_attempts="$(( deny - failed_login_counter ))"
 
 if [ "$remaining_attempts" -le "0" ]; then
-   echo "\
+   printf '%s\n' "\
 $0: ERROR: Login blocked after $failed_login_counter attempts.
 To unlock, run the following command as superuser:
 (If you still have a sudo/root shell somewhere.)
@@ -211,14 +267,14 @@ https://www.kicksecure.com/wiki/root#unlock
    exit 0
 fi
 
-echo "\
-$0: WARNING: $failed_login_counter failed login attempts for user_name '$user_name'.
+printf '%s\n' "\
+$0: WARNING: $failed_login_counter failed login attempts for account '$user_name'.
 Login will be blocked after $deny attempts.
 You have $remaining_attempts more attempts before unlock procedure is required.
 " >&2
 
 if [ "$PAM_SERVICE" = "su" ]; then
-   echo "\
+   printf '%s\n' "\
 $0: NOTE: Type the password. When entering the password, no password feedback (no asterisk (\"*\") symbol) will be shown.
 " >&2
 fi

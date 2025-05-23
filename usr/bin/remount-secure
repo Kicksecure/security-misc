@@ -180,7 +180,7 @@ remount_secure() {
 
    $output_command "INFO: '$mount_folder' old_mount_options: '$old_mount_options'"
 
-   if echo "$old_mount_options" | grep --quiet "$intended_mount_options" ; then
+   if printf '%s\n' "$old_mount_options" | grep "$intended_mount_options" >/dev/null 2>/dev/null ; then
       $output_command "INFO: '$mount_folder' has already intended mount options. ('$intended_mount_options')"
       return 0
    fi

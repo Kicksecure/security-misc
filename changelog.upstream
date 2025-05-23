@@ -1,3 +1,207 @@
+commit 142ea2118989faddafa17db48efed379c4ac3f45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:42:16 2025 -0400
+
+    fix
+
+commit a969fa350e28ca296966509821a7c62b68f09a5a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:40:27 2025 -0400
+
+    fix
+
+commit f023651c984c52a997bc241f99f118255cf60809
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:37 2025 -0400
+
+    nounset
+
+commit f086787464191a07e028dd92649c48b145023858
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:23 2025 -0400
+
+    fix
+
+commit d7643954d184846c8b7fb5eda7200779126274eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:33:50 2025 -0400
+
+    minor
+
+commit aa905fc8875c5c56351f10f4e40e6d2a7dd6d918
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:32:16 2025 -0400
+
+    further validation of output of `faillock`
+
+commit 92d3a36a0f43615db622c6b0daa7064b8e8ebbbb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:29:01 2025 -0400
+
+    fix
+
+commit 2c1abb23e03cfe449347ba692d35f5ba1f33cff4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:26:46 2025 -0400
+
+    output
+
+commit 0801b96ae74256f36dcf8757d0ba8abc66ea0b9b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:25:49 2025 -0400
+
+    output
+
+commit ef8515ba82996b137c386eeb91e6f853d58a515f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:23:45 2025 -0400
+
+    improve error handling
+
+commit 784867e24b4d6f2899fa9b215ec9e3c4e2fb9d84
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:21:45 2025 -0400
+
+    fix
+
+commit 0eea681ce893a259563f8e9d5a2ec9722fbc635d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 15:52:16 2025 +0000
+
+    bumped changelog version
+
+commit e1bae1c68aabc424924b6386fe4980d657dc2cdf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 11:50:59 2025 -0400
+
+    fix
+
+commit bd01a683054b1f7d5a5f6cc4848da73b1b1ef5ff
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 13:58:18 2025 +0000
+
+    bumped changelog version
+
+commit 14cf205579ff65fa765d7574e5d0e301a30a1904
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 08:36:16 2025 -0400
+
+    fix
+
+commit ff6bc5d5b6097bcdddd8e66c2541106c2cbabbaf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 11:23:39 2025 +0000
+
+    bumped changelog version
+
+commit 353b6e83c55d52b47a2a35063406324cec7237c4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:20:13 2025 -0400
+
+    test that `wc` is functional
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5930e270521e0e5d6a0a3877c813accbf5253051
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:05:25 2025 -0400
+
+    pam-info: improve error handling
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5c981e0891ef009c5c2355f5f6383aca22c45638
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 06:55:09 2025 -0400
+
+    pam-info: fix, consistently write errors and warnings to stderr
+
+commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 20 11:40:27 2025 +0000
+
+    bumped changelog version
+
+commit 405880e63b92319626332d083a6c5ad5101dbf77
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:44:42 2025 -0400
+
+    handle case of non-existence of /proc/cmdline
+
+commit 88235cc97b8b54f3fe78d6ad76f64326e8b53f3e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:44:04 2025 -0400
+
+    refactoring
+
+commit 601ea77b005d18b57a85e0701f3981edd61b7881
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:42:39 2025 -0400
+
+    end-of-options
+
+commit d8feca12768441b0499ead7cc9f9bce4e89b1edf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:41:41 2025 -0400
+
+    printf
+
+commit 7f2ba0980d17360fc014c6a412fc4ee57e1032fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:40:50 2025 -0400
+
+    refactoring
+
+commit 4d1f8c44d28895587abce586ed5b2fe354544f6a
+Merge: 341dce3 e478750
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:36:08 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit e478750814798f3d9aa60354b6cecbb84769ed53
+Merge: 341dce3 91a76db
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun May 18 06:35:23 2025 -0400
+
+    Merge pull request #305 from DMHalford/pam-info-failed_login_counter-fix
+    
+    Prevent erroneous "Login blocked after [negative number] attempts" errors
+
+commit 91a76db66bb496ba4650ada38df31636297738cf
+Author: DMHalford <161769419+DMHalford@users.noreply.github.com>
+Date:   Thu May 15 15:42:50 2025 -0400
+
+    Prevent erroneous "Login blocked after [negative number] attempts" errors
+    
+    For root, faillock appears to always* return an empty string (i.e. no table headers are present), yielding a zero-initialized pam_faillock_output_count and thus resulting in the calculation of a negative failed_login_counter value.
+    
+    This can cause erroneous errors of the form "ERROR: Login blocked after [negative number] attempts" during sudo-ing and screen unlocking.
+    
+    This commit modifies the initialization of failed_login_counter such that it cannot be negative and prevents the display of these incorrect warnings.
+    
+    * Only rudimentary local tests were conducted
+
+commit 6c3be9ced071e73e78451c82e8def9c5a5b02598
+Author: DMHalford <161769419+DMHalford@users.noreply.github.com>
+Date:   Thu May 15 15:06:10 2025 -0400
+
+    Prevent erroneous "Login blocked after [negative number] attempts" errors
+    
+    For root, faillock appears to always* return an empty string (i.e. no table headers are present), yielding a zero-initialized pam_faillock_output_count and thus resulting in the calculation of a negative failed_login_counter value.
+    
+    This can cause erroneous errors of the form "ERROR: Login blocked after [negative number] attempts" during sudo-ing and screen unlocking.
+    
+    This commit modifies the initialization of failed_login_counter such that it cannot be negative and prevents the display of these incorrect warnings.
+    
+    * Only rudimentary tests were conducted
+
+commit 341dce33fb806ab03822470e6af91604662c22dd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 25 09:54:23 2025 +0000
+
+    bumped changelog version
+
 commit 06e1e44b0039807baa862102b12fc5e199c3ccb3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 25 05:51:21 2025 -0400
