@@ -626,7 +626,7 @@ commit_policy() {
     else
       if ! capsh --print \
         | grep --fixed-strings -- "Bounding set" \
-        | grep --quiet -- "${policy_capability_item}"; then
+        | grep -- "${policy_capability_item}" >/dev/null; then
         log error \
           "Capability from config does not exist: '${policy_capability_item}'" \
           >&2
