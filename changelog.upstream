@@ -1,3 +1,15 @@
+commit 5195977be474e29a29b6392306e909e9f2d05ada
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 11:57:21 2025 -0400
+
+    protect against grep pipefail
+
+commit abb2207313810966dad381c3a9f637c445a5834d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 15:51:50 2025 +0000
+
+    bumped changelog version
+
 commit 45016146f7c77d383f2254d19dc66ba9b883b8f2
 Merge: ace45d7 395169f
 Author: Patrick Schleizer <adrelanos@whonix.org>
