@@ -1,3 +1,25 @@
+commit 45016146f7c77d383f2254d19dc66ba9b883b8f2
+Merge: ace45d7 395169f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 11:03:23 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 395169fbce1854bfed727d1784f4e5c0d8e7c6ff
+Merge: ace45d7 e14b81b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 10:58:50 2025 -0400
+
+    Merge pull request #308 from maybebyte/permission-hardener-speedboost
+    
+    perf(permission-hardener): optimize string match
+
+commit ace45d7c95ed6b83c1897f76da5af4a0c97cab10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 22:06:02 2025 +0000
+
+    bumped changelog version
+
 commit 142ea2118989faddafa17db48efed379c4ac3f45
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 12:42:16 2025 -0400
@@ -115,6 +137,32 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 06:55:09 2025 -0400
 
     pam-info: fix, consistently write errors and warnings to stderr
+
+commit e14b81b15e479afbc4820a2b9bb60f3cf65bfb12
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 21:34:03 2025 -0600
+
+    perf(permission-hardener): optimize string match
+    
+    Replace subprocess grep calls with bash substring matching in
+    check_nosuid_whitelist function. This eliminates ~10k unneeded
+    subprocess spawns that were causing significant performance
+    degradation.
+    
+    In testing, it improves overall script execution speed by an
+    order of magnitude:
+    
+    Before patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     11.906 s ±  0.974 s    [User: 3.639 s, System: 8.728 s]
+      Range (min … max):   10.430 s … 14.090 s    10 runs
+    
+    After patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     802.8 ms ± 178.5 ms    [User: 283.0 ms, System: 471.9 ms]
+      Range (min … max):   639.4 ms … 1092.3 ms    10 runs
 
 commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
 Author: Patrick Schleizer <adrelanos@whonix.org>
