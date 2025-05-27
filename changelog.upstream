@@ -1,3 +1,175 @@
+commit 45016146f7c77d383f2254d19dc66ba9b883b8f2
+Merge: ace45d7 395169f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 11:03:23 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 395169fbce1854bfed727d1784f4e5c0d8e7c6ff
+Merge: ace45d7 e14b81b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 10:58:50 2025 -0400
+
+    Merge pull request #308 from maybebyte/permission-hardener-speedboost
+    
+    perf(permission-hardener): optimize string match
+
+commit ace45d7c95ed6b83c1897f76da5af4a0c97cab10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 22:06:02 2025 +0000
+
+    bumped changelog version
+
+commit 142ea2118989faddafa17db48efed379c4ac3f45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:42:16 2025 -0400
+
+    fix
+
+commit a969fa350e28ca296966509821a7c62b68f09a5a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:40:27 2025 -0400
+
+    fix
+
+commit f023651c984c52a997bc241f99f118255cf60809
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:37 2025 -0400
+
+    nounset
+
+commit f086787464191a07e028dd92649c48b145023858
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:35:23 2025 -0400
+
+    fix
+
+commit d7643954d184846c8b7fb5eda7200779126274eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:33:50 2025 -0400
+
+    minor
+
+commit aa905fc8875c5c56351f10f4e40e6d2a7dd6d918
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:32:16 2025 -0400
+
+    further validation of output of `faillock`
+
+commit 92d3a36a0f43615db622c6b0daa7064b8e8ebbbb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:29:01 2025 -0400
+
+    fix
+
+commit 2c1abb23e03cfe449347ba692d35f5ba1f33cff4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:26:46 2025 -0400
+
+    output
+
+commit 0801b96ae74256f36dcf8757d0ba8abc66ea0b9b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:25:49 2025 -0400
+
+    output
+
+commit ef8515ba82996b137c386eeb91e6f853d58a515f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:23:45 2025 -0400
+
+    improve error handling
+
+commit 784867e24b4d6f2899fa9b215ec9e3c4e2fb9d84
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 12:21:45 2025 -0400
+
+    fix
+
+commit 0eea681ce893a259563f8e9d5a2ec9722fbc635d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 15:52:16 2025 +0000
+
+    bumped changelog version
+
+commit e1bae1c68aabc424924b6386fe4980d657dc2cdf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 11:50:59 2025 -0400
+
+    fix
+
+commit bd01a683054b1f7d5a5f6cc4848da73b1b1ef5ff
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 13:58:18 2025 +0000
+
+    bumped changelog version
+
+commit 14cf205579ff65fa765d7574e5d0e301a30a1904
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 08:36:16 2025 -0400
+
+    fix
+
+commit ff6bc5d5b6097bcdddd8e66c2541106c2cbabbaf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 11:23:39 2025 +0000
+
+    bumped changelog version
+
+commit 353b6e83c55d52b47a2a35063406324cec7237c4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:20:13 2025 -0400
+
+    test that `wc` is functional
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5930e270521e0e5d6a0a3877c813accbf5253051
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 07:05:25 2025 -0400
+
+    pam-info: improve error handling
+    
+    https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
+
+commit 5c981e0891ef009c5c2355f5f6383aca22c45638
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 06:55:09 2025 -0400
+
+    pam-info: fix, consistently write errors and warnings to stderr
+
+commit e14b81b15e479afbc4820a2b9bb60f3cf65bfb12
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 21:34:03 2025 -0600
+
+    perf(permission-hardener): optimize string match
+    
+    Replace subprocess grep calls with bash substring matching in
+    check_nosuid_whitelist function. This eliminates ~10k unneeded
+    subprocess spawns that were causing significant performance
+    degradation.
+    
+    In testing, it improves overall script execution speed by an
+    order of magnitude:
+    
+    Before patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     11.906 s ±  0.974 s    [User: 3.639 s, System: 8.728 s]
+      Range (min … max):   10.430 s … 14.090 s    10 runs
+    
+    After patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     802.8 ms ± 178.5 ms    [User: 283.0 ms, System: 471.9 ms]
+      Range (min … max):   639.4 ms … 1092.3 ms    10 runs
+
+commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 20 11:40:27 2025 +0000
+
+    bumped changelog version
+
 commit 405880e63b92319626332d083a6c5ad5101dbf77
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun May 18 06:44:42 2025 -0400
