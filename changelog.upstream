@@ -1,3 +1,52 @@
+commit eda1d0aef640af1ea73c72d6caa876733de4e5a0
+Merge: e966774 5a10ad0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 07:22:16 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 5a10ad031d67acc8fa4c16f9e2db191bde559caa
+Merge: e966774 3559bc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 07:21:31 2025 -0400
+
+    Merge pull request #307 from maybebyte/ssh-agent-to-allowlist
+    
+    fix(permission-hardener): ssh-agent gets 2755 perms
+
+commit 3559bc86b7aed8122ff7996ce0ab4a65bdaf05c0
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 27 15:32:41 2025 -0600
+
+    fix(permission-hardener): ssh-agent gets 2755 perms
+    
+    Change from exactwhitelist to matchwhitelist. Discussion revealed that
+    there's a good reason to leave setgid in here, which is essentially
+    defense-in-depth (sometimes users may want to revert Kicksecure's
+    default of kernel.yama.ptrace_scope=2, e.g. to debug a program, and
+    Kicksecure should not be less secure than vanilla Debian in that
+    situation).
+
+commit c59b2e4bc53cad4c9cc90ddd5abaca0705ccff90
+Merge: 017ee29 e966774
+Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
+Date:   Tue May 27 20:33:07 2025 +0000
+
+    Merge branch 'Kicksecure:master' into ssh-agent-to-allowlist
+
+commit e96677486201ebddc145af7962ad5e89f6fa253b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 19:41:25 2025 +0000
+
+    bumped changelog version
+
+commit 017ee29eb39d84edc89f128a633a619cad852241
+Merge: 7a079c3 abb2207
+Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
+Date:   Tue May 27 18:25:47 2025 +0000
+
+    Merge branch 'Kicksecure:master' into ssh-agent-to-allowlist
+
 commit 5195977be474e29a29b6392306e909e9f2d05ada
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 27 11:57:21 2025 -0400
@@ -175,6 +224,34 @@ Date:   Tue May 20 21:34:03 2025 -0600
     Benchmark 1: ./permission-hardener enable
       Time (mean ± σ):     802.8 ms ± 178.5 ms    [User: 283.0 ms, System: 471.9 ms]
       Range (min … max):   639.4 ms … 1092.3 ms    10 runs
+
+commit 7a079c3de8bd8b4e026a1bd1b932a04610a1e386
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 18:41:48 2025 -0600
+
+    fix(permission-hardener): add exactwhitelist here
+    
+    Without this, the permissions for ssh-agent won't be changed properly.
+
+commit 94dc9da4ab8fb93760dbb3b325bdeaa155e492cb
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 17:07:51 2025 -0600
+
+    fix(permission-hardener): ssh-agent gets 755 perms
+    
+    Replace the commented-out matchwhitelist entry for ssh-agent with an
+    explicit permission entry (755) for /usr/bin/ssh-agent.
+    
+    When ssh-agent's matchwhitelist entry was commented out in commit
+    7a5f8b87af, permission-hardener began resetting it to restrictive
+    defaults (744), preventing non-root users from executing ssh-agent. This
+    broke split SSH functionality in Qubes OS for me because I was using
+    Kicksecure in the vault qube, and ssh-agent runs under a non-root user in
+    that configuration (see https://forum.qubes-os.org/t/split-ssh/19060).
+    
+    As noted in the comment, Debian installs with 2755 permissions as a way
+    to mitigate ptrace attacks, but this rationale doesn't apply due to
+    kernel.yama.ptrace_scope=2 being set in Kicksecure.
 
 commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
 Author: Patrick Schleizer <adrelanos@whonix.org>
