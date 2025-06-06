@@ -143,7 +143,7 @@ and simultaneous multithreading (SMT) is disabled. See the
 Note, to achieve complete protection for known CPU vulnerabilities, the latest
 security microcode (BIOS/UEFI) updates must be installed on the system. Furthermore,
 if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
-up to date through [UEFI Revocation List](https://uefi.org/revocationlistfile) updates.
+up to date through [UEFI Revocation List](https://github.com/microsoft/secureboot_objects) updates.
 
 CPU mitigations:
 
@@ -226,8 +226,8 @@ Kernel space:
 - Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
   to reduce attack surface.
 
-- Disable EFI persistent storage feature, preventing the kernel from writing crash logs and
-  other persistent data to the EFI variable store.
+- Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
+  and other persistent data to either the UEFI variable storage or ACPI ERST backends.
 
 Direct memory access:
 
