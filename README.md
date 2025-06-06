@@ -143,7 +143,7 @@ and simultaneous multithreading (SMT) is disabled. See the
 Note, to achieve complete protection for known CPU vulnerabilities, the latest
 security microcode (BIOS/UEFI) updates must be installed on the system. Furthermore,
 if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
-up to date through [UEFI Revocation List](https://uefi.org/revocationlistfile) updates.
+up to date through [UEFI Revocation List](https://github.com/microsoft/secureboot_objects) updates.
 
 CPU mitigations:
 
