@@ -1,3 +1,117 @@
+commit 4639d1aab572bb4ad751bd1da5b936b9d73d3264
+Merge: 5159de6 109c013
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jun 13 15:09:52 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/approx'
+
+commit 109c0134677d991c449aa009773cb22babeee8db
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Jun 12 01:08:34 2025 -0500
+
+    Add comment related to approx package caching proxy
+
+commit 5159de63438e8c1274658e7175a80fb693d6554a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 13:48:11 2025 +0000
+
+    bumped changelog version
+
+commit 3e102df76583a14b5efc18238aefbf539ab0d8a1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 08:37:03 2025 -0400
+
+    fix
+
+commit d5edc243ac2db861f1600d3906a02494eaf9a824
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 12:12:00 2025 +0000
+
+    bumped changelog version
+
+commit eda1d0aef640af1ea73c72d6caa876733de4e5a0
+Merge: e966774 5a10ad0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 07:22:16 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 5a10ad031d67acc8fa4c16f9e2db191bde559caa
+Merge: e966774 3559bc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 28 07:21:31 2025 -0400
+
+    Merge pull request #307 from maybebyte/ssh-agent-to-allowlist
+    
+    fix(permission-hardener): ssh-agent gets 2755 perms
+
+commit 3559bc86b7aed8122ff7996ce0ab4a65bdaf05c0
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 27 15:32:41 2025 -0600
+
+    fix(permission-hardener): ssh-agent gets 2755 perms
+    
+    Change from exactwhitelist to matchwhitelist. Discussion revealed that
+    there's a good reason to leave setgid in here, which is essentially
+    defense-in-depth (sometimes users may want to revert Kicksecure's
+    default of kernel.yama.ptrace_scope=2, e.g. to debug a program, and
+    Kicksecure should not be less secure than vanilla Debian in that
+    situation).
+
+commit c59b2e4bc53cad4c9cc90ddd5abaca0705ccff90
+Merge: 017ee29 e966774
+Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
+Date:   Tue May 27 20:33:07 2025 +0000
+
+    Merge branch 'Kicksecure:master' into ssh-agent-to-allowlist
+
+commit e96677486201ebddc145af7962ad5e89f6fa253b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 19:41:25 2025 +0000
+
+    bumped changelog version
+
+commit 017ee29eb39d84edc89f128a633a619cad852241
+Merge: 7a079c3 abb2207
+Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
+Date:   Tue May 27 18:25:47 2025 +0000
+
+    Merge branch 'Kicksecure:master' into ssh-agent-to-allowlist
+
+commit 5195977be474e29a29b6392306e909e9f2d05ada
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 11:57:21 2025 -0400
+
+    protect against grep pipefail
+
+commit abb2207313810966dad381c3a9f637c445a5834d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 15:51:50 2025 +0000
+
+    bumped changelog version
+
+commit 45016146f7c77d383f2254d19dc66ba9b883b8f2
+Merge: ace45d7 395169f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 11:03:23 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 395169fbce1854bfed727d1784f4e5c0d8e7c6ff
+Merge: ace45d7 e14b81b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue May 27 10:58:50 2025 -0400
+
+    Merge pull request #308 from maybebyte/permission-hardener-speedboost
+    
+    perf(permission-hardener): optimize string match
+
+commit ace45d7c95ed6b83c1897f76da5af4a0c97cab10
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed May 21 22:06:02 2025 +0000
+
+    bumped changelog version
+
 commit 142ea2118989faddafa17db48efed379c4ac3f45
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 12:42:16 2025 -0400
@@ -115,6 +229,60 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 06:55:09 2025 -0400
 
     pam-info: fix, consistently write errors and warnings to stderr
+
+commit e14b81b15e479afbc4820a2b9bb60f3cf65bfb12
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 21:34:03 2025 -0600
+
+    perf(permission-hardener): optimize string match
+    
+    Replace subprocess grep calls with bash substring matching in
+    check_nosuid_whitelist function. This eliminates ~10k unneeded
+    subprocess spawns that were causing significant performance
+    degradation.
+    
+    In testing, it improves overall script execution speed by an
+    order of magnitude:
+    
+    Before patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     11.906 s ±  0.974 s    [User: 3.639 s, System: 8.728 s]
+      Range (min … max):   10.430 s … 14.090 s    10 runs
+    
+    After patch:
+    $ sudo hyperfine -- './permission-hardener enable'
+    Benchmark 1: ./permission-hardener enable
+      Time (mean ± σ):     802.8 ms ± 178.5 ms    [User: 283.0 ms, System: 471.9 ms]
+      Range (min … max):   639.4 ms … 1092.3 ms    10 runs
+
+commit 7a079c3de8bd8b4e026a1bd1b932a04610a1e386
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 18:41:48 2025 -0600
+
+    fix(permission-hardener): add exactwhitelist here
+    
+    Without this, the permissions for ssh-agent won't be changed properly.
+
+commit 94dc9da4ab8fb93760dbb3b325bdeaa155e492cb
+Author: Ashlen <dev@anthes.is>
+Date:   Tue May 20 17:07:51 2025 -0600
+
+    fix(permission-hardener): ssh-agent gets 755 perms
+    
+    Replace the commented-out matchwhitelist entry for ssh-agent with an
+    explicit permission entry (755) for /usr/bin/ssh-agent.
+    
+    When ssh-agent's matchwhitelist entry was commented out in commit
+    7a5f8b87af, permission-hardener began resetting it to restrictive
+    defaults (744), preventing non-root users from executing ssh-agent. This
+    broke split SSH functionality in Qubes OS for me because I was using
+    Kicksecure in the vault qube, and ssh-agent runs under a non-root user in
+    that configuration (see https://forum.qubes-os.org/t/split-ssh/19060).
+    
+    As noted in the comment, Debian installs with 2755 permissions as a way
+    to mitigate ptrace attacks, but this rationale doesn't apply due to
+    kernel.yama.ptrace_scope=2 being set in Kicksecure.
 
 commit 19d7e1af5d7acf6eb3a20fe3ebf5f14cef041f92
 Author: Patrick Schleizer <adrelanos@whonix.org>

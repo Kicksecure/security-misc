@@ -111,6 +111,7 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
    fi
 fi
 
+kernel_cmdline=""
 if test -f /proc/cmdline; then
    kernel_cmdline="$(cat -- /proc/cmdline)"
 fi
