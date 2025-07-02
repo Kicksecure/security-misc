@@ -1,3 +1,53 @@
+commit b06fb5428051518390439ce95c9d6894e6338951
+Merge: 115b6f6 468cf40
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 2 13:47:12 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 468cf40e2a216625d02066b609b0991e37c50ebc
+Merge: 865a052 bb208fb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 2 13:45:28 2025 -0400
+
+    Merge pull request #306 from raja-grewal/erst
+    
+    Set `erst_disable`
+
+commit 865a052bf47f28c0084b2bbd51e3c606df9eda96
+Merge: 115b6f6 e3c4519
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 2 13:44:17 2025 -0400
+
+    Merge pull request #309 from RebornRider/patch-1
+    
+    remove  TemporaryTimeout=0 in Bluetooth config
+
+commit bb208fb134fe25fc3539494f331072a851369064
+Merge: 4314b1e 115b6f6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Jul 2 11:35:50 2025 +1000
+
+    Merge branch 'Kicksecure:master' into erst
+
+commit 4314b1e85bd5495832b4398bdbd358c41703dcc9
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Jul 1 13:36:39 2025 +1000
+
+    Add comment
+
+commit e3c451917931aa4e63056fb03470c203694d399f
+Author: Kevin Agwaze <7119346+RebornRider@users.noreply.github.com>
+Date:   Mon Jun 16 10:35:16 2025 +0100
+
+    remove misleading TemporaryTimeout=0 in Bluetooth config
+
+commit 115b6f6aa2a4d00ad5690c2c0889e142540c01ca
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Jun 14 11:51:44 2025 +0000
+
+    bumped changelog version
+
 commit 4639d1aab572bb4ad751bd1da5b936b9d73d3264
 Merge: 5159de6 109c013
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -10,6 +60,18 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Thu Jun 12 01:08:34 2025 -0500
 
     Add comment related to approx package caching proxy
+
+commit 72613203b9692d1098b13ff98119499a5a30a6da
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Jun 6 13:07:52 2025 +0000
+
+    Add reference
+
+commit dd0b55cc45f9ccd64d0075ba37ab6a4723d94a02
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Jun 3 12:32:17 2025 +1000
+
+    Add reference
 
 commit 5159de63438e8c1274658e7175a80fb693d6554a
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -105,6 +167,13 @@ Date:   Tue May 27 10:58:50 2025 -0400
     Merge pull request #308 from maybebyte/permission-hardener-speedboost
     
     perf(permission-hardener): optimize string match
+
+commit 1c353032046f556bb11c32506019310c9f6d47c0
+Merge: 35fa32e ace45d7
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri May 23 20:20:19 2025 +1000
+
+    Merge branch 'Kicksecure:master' into erst
 
 commit ace45d7c95ed6b83c1897f76da5af4a0c97cab10
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -335,6 +404,18 @@ Date:   Sun May 18 06:35:23 2025 -0400
     Merge pull request #305 from DMHalford/pam-info-failed_login_counter-fix
     
     Prevent erroneous "Login blocked after [negative number] attempts" errors
+
+commit 35fa32e4ed6333f3ab87d09828f13155aa1e7a72
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat May 17 15:06:49 2025 +1000
+
+    Reword
+
+commit a1bde21ccb475fc21a084559dbe766f6315d9287
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat May 17 04:41:06 2025 +0000
+
+    Set `erst_disable`
 
 commit 91a76db66bb496ba4650ada38df31636297738cf
 Author: DMHalford <161769419+DMHalford@users.noreply.github.com>
