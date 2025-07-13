@@ -25,6 +25,7 @@
 # /usr/libexec/security-misc/permission-lockdown: user: stunnel4 | chmod o-rwx "/var/run/stunnel4"
 # /usr/libexec/security-misc/permission-lockdown: user: iodine | chmod o-rwx "/var/run/iodine"
 # /usr/libexec/security-misc/permission-lockdown: user: apt-cacher-ng | chmod o-rwx "/var/cache/apt-cacher-ng"
+# /usr/libexec/security-misc/permission-lockdown: user: approx | chmod o-rwx "/var/cache/approx"
 # /usr/libexec/security-misc/permission-lockdown: user: statd | chmod o-rwx "/var/lib/nfs"
 # /usr/libexec/security-misc/permission-lockdown: user: timidity | chmod o-rwx "/etc/timidity"
 # /usr/libexec/security-misc/permission-lockdown: user: uuidd | chmod o-rwx "/run/uuidd"
