@@ -74,6 +74,13 @@
  * (there are other similar posts as well).
  */
 
+/*
+ * TODO: Consider handling signals more gracefully (perhaps use ppoll instead
+ * of poll, handle things like EINTR, etc.). Right now the plan is to simply
+ * terminate when a signal is received and let systemd restart the process,
+ * but it might be better to just be signal-resilient.
+ */
+
 #include <sys/socket.h>
 #include <sys/reboot.h>
 #include <unistd.h>
@@ -83,10 +90,182 @@
 #include <stdbool.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <poll.h>
+#include <linux/input.h>
 
 #define fd_stdin 0
 #define fd_stdout 1
 #define fd_stderr 2
+
+#define max_inputs 255
+#define input_path_size 20
+#define key_flags_len 12
+
+/* Adapted from kloak/src/keycodes.c */
+struct name_value {
+    const char *name;
+    const int value;
+};
+static struct name_value key_table[] = {
+        {"KEY_ESC", KEY_ESC},
+        {"KEY_1", KEY_1},
+        {"KEY_2", KEY_2},
+        {"KEY_3", KEY_3},
+        {"KEY_4", KEY_4},
+        {"KEY_5", KEY_5},
+        {"KEY_6", KEY_6},
+        {"KEY_7", KEY_7},
+        {"KEY_8", KEY_8},
+        {"KEY_9", KEY_9},
+        {"KEY_0", KEY_0},
+        {"KEY_MINUS", KEY_MINUS},
+        {"KEY_EQUAL", KEY_EQUAL},
+        {"KEY_BACKSPACE", KEY_BACKSPACE},
+        {"KEY_TAB", KEY_TAB},
+        {"KEY_Q", KEY_Q},
+        {"KEY_W", KEY_W},
+        {"KEY_E", KEY_E},
+        {"KEY_R", KEY_R},
+        {"KEY_T", KEY_T},
+        {"KEY_Y", KEY_Y},
+        {"KEY_U", KEY_U},
+        {"KEY_I", KEY_I},
+        {"KEY_O", KEY_O},
+        {"KEY_P", KEY_P},
+        {"KEY_LEFTBRACE", KEY_LEFTBRACE},
+        {"KEY_RIGHTBRACE", KEY_RIGHTBRACE},
+        {"KEY_ENTER", KEY_ENTER},
+        {"KEY_LEFTCTRL", KEY_LEFTCTRL},
+        {"KEY_A", KEY_A},
+        {"KEY_S", KEY_S},
+        {"KEY_D", KEY_D},
+        {"KEY_F", KEY_F},
+        {"KEY_G", KEY_G},
+        {"KEY_H", KEY_H},
+        {"KEY_J", KEY_J},
+        {"KEY_K", KEY_K},
+        {"KEY_L", KEY_L},
+        {"KEY_SEMICOLON", KEY_SEMICOLON},
+        {"KEY_APOSTROPHE", KEY_APOSTROPHE},
+        {"KEY_GRAVE", KEY_GRAVE},
+        {"KEY_LEFTSHIFT", KEY_LEFTSHIFT},
+        {"KEY_BACKSLASH", KEY_BACKSLASH},
+        {"KEY_Z", KEY_Z},
+        {"KEY_X", KEY_X},
+        {"KEY_C", KEY_C},
+        {"KEY_V", KEY_V},
+        {"KEY_B", KEY_B},
+        {"KEY_N", KEY_N},
+        {"KEY_M", KEY_M},
+        {"KEY_COMMA", KEY_COMMA},
+        {"KEY_DOT", KEY_DOT},
+        {"KEY_SLASH", KEY_SLASH},
+        {"KEY_RIGHTSHIFT", KEY_RIGHTSHIFT},
+        {"KEY_KPASTERISK", KEY_KPASTERISK},
+        {"KEY_LEFTALT", KEY_LEFTALT},
+        {"KEY_SPACE", KEY_SPACE},
+        {"KEY_CAPSLOCK", KEY_CAPSLOCK},
+        {"KEY_F1", KEY_F1},
+        {"KEY_F2", KEY_F2},
+        {"KEY_F3", KEY_F3},
+        {"KEY_F4", KEY_F4},
+        {"KEY_F5", KEY_F5},
+        {"KEY_F6", KEY_F6},
+        {"KEY_F7", KEY_F7},
+        {"KEY_F8", KEY_F8},
+        {"KEY_F9", KEY_F9},
+        {"KEY_F10", KEY_F10},
+        {"KEY_NUMLOCK", KEY_NUMLOCK},
+        {"KEY_SCROLLLOCK", KEY_SCROLLLOCK},
+        {"KEY_KP7", KEY_KP7},
+        {"KEY_KP8", KEY_KP8},
+        {"KEY_KP9", KEY_KP9},
+        {"KEY_KPMINUS", KEY_KPMINUS},
+        {"KEY_KP4", KEY_KP4},
+        {"KEY_KP5", KEY_KP5},
+        {"KEY_KP6", KEY_KP6},
+        {"KEY_KPPLUS", KEY_KPPLUS},
+        {"KEY_KP1", KEY_KP1},
+        {"KEY_KP2", KEY_KP2},
+        {"KEY_KP3", KEY_KP3},
+        {"KEY_KP0", KEY_KP0},
+        {"KEY_KPDOT", KEY_KPDOT},
+        {"KEY_ZENKAKUHANKAKU", KEY_ZENKAKUHANKAKU},
+        {"KEY_102ND", KEY_102ND},
+        {"KEY_F11", KEY_F11},
+        {"KEY_F12", KEY_F12},
+        {"KEY_RO", KEY_RO},
+        {"KEY_KATAKANA", KEY_KATAKANA},
+        {"KEY_HIRAGANA", KEY_HIRAGANA},
+        {"KEY_HENKAN", KEY_HENKAN},
+        {"KEY_KATAKANAHIRAGANA", KEY_KATAKANAHIRAGANA},
+        {"KEY_MUHENKAN", KEY_MUHENKAN},
+        {"KEY_KPJPCOMMA", KEY_KPJPCOMMA},
+        {"KEY_KPENTER", KEY_KPENTER},
+        {"KEY_RIGHTCTRL", KEY_RIGHTCTRL},
+        {"KEY_KPSLASH", KEY_KPSLASH},
+        {"KEY_SYSRQ", KEY_SYSRQ},
+        {"KEY_RIGHTALT", KEY_RIGHTALT},
+        {"KEY_LINEFEED", KEY_LINEFEED},
+        {"KEY_HOME", KEY_HOME},
+        {"KEY_UP", KEY_UP},
+        {"KEY_PAGEUP", KEY_PAGEUP},
+        {"KEY_LEFT", KEY_LEFT},
+        {"KEY_RIGHT", KEY_RIGHT},
+        {"KEY_END", KEY_END},
+        {"KEY_DOWN", KEY_DOWN},
+        {"KEY_PAGEDOWN", KEY_PAGEDOWN},
+        {"KEY_INSERT", KEY_INSERT},
+        {"KEY_DELETE", KEY_DELETE},
+        {"KEY_MACRO", KEY_MACRO},
+        {"KEY_MUTE", KEY_MUTE},
+        {"KEY_VOLUMEDOWN", KEY_VOLUMEDOWN},
+        {"KEY_VOLUMEUP", KEY_VOLUMEUP},
+        {"KEY_POWER", KEY_POWER},
+        {"KEY_POWER2", KEY_POWER2},
+        {"KEY_KPEQUAL", KEY_KPEQUAL},
+        {"KEY_KPPLUSMINUS", KEY_KPPLUSMINUS},
+        {"KEY_PAUSE", KEY_PAUSE},
+        {"KEY_SCALE", KEY_SCALE},
+        {"KEY_KPCOMMA", KEY_KPCOMMA},
+        {"KEY_HANGEUL", KEY_HANGEUL},
+        {"KEY_HANGUEL", KEY_HANGUEL},
+        {"KEY_HANJA", KEY_HANJA},
+        {"KEY_YEN", KEY_YEN},
+        {"KEY_LEFTMETA", KEY_LEFTMETA},
+        {"KEY_RIGHTMETA", KEY_RIGHTMETA},
+        {"KEY_COMPOSE", KEY_COMPOSE},
+        {"KEY_F13", KEY_F13},
+        {"KEY_F14", KEY_F14},
+        {"KEY_F15", KEY_F15},
+        {"KEY_F16", KEY_F16},
+        {"KEY_F17", KEY_F17},
+        {"KEY_F18", KEY_F18},
+        {"KEY_F19", KEY_F19},
+        {"KEY_F20", KEY_F20},
+        {"KEY_F21", KEY_F21},
+        {"KEY_F22", KEY_F22},
+        {"KEY_F23", KEY_F23},
+        {"KEY_F24", KEY_F24},
+        {"KEY_UNKNOWN", KEY_UNKNOWN},
+        {NULL, 0}
+};
+int lookup_keycode(const char *name) {
+  struct name_value *p;
+  for (p = key_table; p->name != NULL; ++p) {
+    if (strcmp(p->name, name) == 0) {
+      return p->value;
+    }
+  }
+  return -1;
+}
+
+/* Adapted from systemd/src/login/logind-button.c */
+bool bitset_get(const uint64_t *bits, uint32_t i) {
+  return (bits[i / 64] >> (i % 64)) & 1UL;
+}
 
 void print(int fd, char *str) {
   size_t len = strlen(str) + 1;
@@ -102,35 +281,151 @@ void print(int fd, char *str) {
 
 void print_usage() {
   print(fd_stderr, "Usage:\n");
-  print(fd_stderr, "  force-shutdown-when-device-removed DEVICE1 [DEVICE2...]\n");
+  print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2...]\n");
   print(fd_stderr, "Example:\n");
-  print(fd_stderr, "  force-shutdown-when-device-removed /dev/sda3\n");
+  print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
+}
+
+void *safe_calloc(size_t nmemb, size_t size) {
+  void *ret_buf = calloc(nmemb, size);
+  if (ret_buf == NULL) {
+    print(fd_stderr, "Out of memory!\n");
+    exit(1);
+  }
+  return ret_buf;
+}
+
+void *safe_reallocarray(void *ptr, size_t nmemb, size_t size) {
+  void *ret_buf = reallocarray(ptr, nmemb, size);
+  if (ret_buf == NULL) {
+    print(fd_stderr, "Out of memory!\n");
+    exit(1);
+  }
+  return ret_buf;
+}
+
+/* Inspired by https://www.strudel.org.uk/itoa/ */
+char *int_to_str(uint32_t val) {
+  static char buf[11];
+  int8_t i;
+  char *rslt = NULL;
+  const char *digits = "0123456789";
+
+  buf[10] = '\0';
+
+  for (i = 9; i >= 0; i--) {
+    buf[i] = digits[val % 10];
+    val /= 10;
+    if (val == 0) {
+      break;
+    }
+  }
+
+  rslt = safe_calloc(1, 11 - i);
+  memcpy(rslt, buf + i, 11 - i);
+  return rslt;
+}
+
+void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list_ref) {
+  char **result_list = NULL;
+  size_t result_list_len = 0;
+  int arg_copy_len = strlen(arg) + 1;
+  char *arg_copy = safe_calloc(1, arg_copy_len);
+  char *arg_val;
+  char *arg_part;
+
+  memcpy(arg_copy, arg, arg_copy_len);
+  /* returns "--whatever" */
+  arg_val = strtok(arg_copy, "=");
+  /* returns everything after the = sign */
+  arg_val = strtok(NULL, "");
+
+  arg_part = strtok(arg_val, ",");
+  if (arg_part == NULL) {
+    return;
+  }
+
+  do {
+    result_list_len++;
+    result_list = safe_reallocarray(result_list, result_list_len, sizeof(char *));
+    result_list[result_list_len - 1] = safe_calloc(1, strlen(arg_part) + 1);
+    strcpy(result_list[result_list_len - 1], arg_part);
+  } while ((arg_part = strtok(NULL, ",")) != NULL);
+
+  *result_list_len_ref = result_list_len;
+  *result_list_ref = result_list;
+  free(arg_copy);
 }
 
 int main(int argc, char **argv) {
+  /* Working variables */
+  size_t target_dev_list_len = 0;
+  char **target_dev_name_raw_list = NULL;
+  size_t panic_key_list_len = 0;
+  char **panic_key_str_list = NULL;
+  char **target_dev_list = NULL;
+  int *panic_key_list = NULL;
+  bool *panic_key_active_list = NULL;
+  size_t event_fd_list_len = 0;
+  int *event_fd_list = NULL;
+  char input_path_buf[input_path_size];
+  struct pollfd *pollfd_list = NULL;
+  struct input_event ie_buf[64];
+
+  /* Index variables */
+  int arg_idx = 0;
+  size_t tdl_idx = 0;
+  size_t tdp_char_idx = 0;
+  size_t pkl_idx = 0;
+  int input_idx = 0;
+  size_t efl_idx = 0;
+  int ie_idx = 0;
+
+  /* Prerequisite check */
   if (getuid() != 0) {
     print(fd_stderr, "This program must be run as root!\n");
     exit(1);
   }
 
+  /* Argument parsing */
   if (argc < 2) {
     print(fd_stderr, "Invalid number of arguments!\n");
     print_usage();
     exit(1);
   }
 
-  size_t target_dev_name_list_len = argc - 1;
-  char **target_dev_name_list = calloc(target_dev_name_list_len,
-    sizeof(char *));
-  if (target_dev_name_list == NULL) {
-    print(fd_stderr, "Out of memory during early setup!\n");
-    exit(1);
+  for (arg_idx = 1; arg_idx < argc; arg_idx++) {
+    if (strncmp(argv[arg_idx], "--devices=", strlen("--devices=")) == 0) {
+      if (target_dev_name_raw_list != NULL) {
+        print(fd_stderr, "--devices cannot be passed more than once!\n");
+        print_usage();
+        exit(1);
+      }
+      load_list(argv[arg_idx], &target_dev_list_len, &target_dev_name_raw_list);
+    } else if (strncmp(argv[arg_idx], "--keys=", strlen("--keys=")) == 0) {
+      if (panic_key_str_list != NULL) {
+        print(fd_stderr, "--keys cannot be passed more than once!\n");
+        print_usage();
+        exit(1);
+      }
+      load_list(argv[arg_idx], &panic_key_list_len, &panic_key_str_list);
+    }
   }
 
-  for (int i = 1; i < argc; i++) {
-    char *target_dev_path = argv[i];
+  target_dev_list = safe_calloc(target_dev_list_len, sizeof(char *));
+  panic_key_list = safe_calloc(panic_key_list_len, sizeof(int));
+  panic_key_active_list = safe_calloc(panic_key_list_len, sizeof(bool));
+
+  for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
+    char *target_dev_path = target_dev_name_raw_list[tdl_idx];
+    size_t device_path_slash_count = 0;
+    char *target_dev_parse = safe_calloc(1, strlen(target_dev_path) + 1);
+    char *target_dev_name = NULL;
+
     if (access(target_dev_path, F_OK) != 0) {
-      print(fd_stderr, "One of the specified devices does not exist!\n");
+      print(fd_stderr, "The device '");
+      print(fd_stderr, target_dev_path);
+      print(fd_stderr, "' does not exist!\n");
       print_usage();
       exit(1);
     }
@@ -142,46 +437,58 @@ int main(int argc, char **argv) {
       && strncmp(target_dev_path, "/dev/vd", strlen("/dev/vd")) != 0
       && strncmp(target_dev_path, "/dev/xvd", strlen("/dev/xvd")) != 0
       && strncmp(target_dev_path, "/dev/hd", strlen("/dev/hd")) != 0) {
-      print(fd_stderr, "One of the specified devices is not supported!\n");
+      print(fd_stderr, "The device '");
+      print(fd_stderr, target_dev_path);
+      print(fd_stderr, "' is not supported!\n");
       print_usage();
       exit(1);
     }
 
-    size_t device_path_slash_count = 0;
-    for (size_t j = 0; j < strlen(target_dev_path); j++) {
-      if (target_dev_path[j] == '/') {
+    for (tdp_char_idx = 0; tdp_char_idx < strlen(target_dev_path); tdp_char_idx++) {
+      if (target_dev_path[tdp_char_idx] == '/') {
         device_path_slash_count++;
       }
     }
     if (device_path_slash_count != 2) {
-      print(fd_stderr, "One of the specified devices is not supported!\n");
+      print(fd_stderr, "The device '");
+      print(fd_stderr, target_dev_path);
+      print(fd_stderr, "' is not supported!\n");
       print_usage();
       exit(1);
     }
 
-    char *target_dev_parse = calloc(1, strlen(target_dev_path) + 1);
-    if (target_dev_parse == NULL) {
-      print(fd_stderr, "Out of memory during early setup!\n");
-      exit(1);
-    }
     memcpy(target_dev_parse, target_dev_path, strlen(target_dev_path) + 1);
 
     /* returns "dev" */
-    char *target_dev_name = strtok(target_dev_parse, "/");
+    target_dev_name = strtok(target_dev_parse, "/");
     /* returns the actual device name we want */
     target_dev_name = strtok(NULL, "/");
     if (target_dev_name == NULL) {
-      print(fd_stderr, "One of the specified devices is not supported!\n");
+      print(fd_stderr, "The device '");
+      print(fd_stderr, target_dev_path);
+      print(fd_stderr, "' is not supported!\n");
       print_usage();
       exit(1);
     }
 
-    target_dev_name_list[i - 1] = calloc(1, strlen(target_dev_name) + 1);
-    memcpy(target_dev_name_list[i - 1], target_dev_name,
-      strlen(target_dev_name) + 1);
+    target_dev_list[tdl_idx] = calloc(1, strlen(target_dev_name) + 1);
+    memcpy(target_dev_list[tdl_idx], target_dev_name, strlen(target_dev_name) + 1);
     free(target_dev_parse);
   }
 
+  for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+    int keycode = lookup_keycode(panic_key_str_list[pkl_idx]);
+    if (keycode < 0) {
+      print(fd_stderr, "Invalid key code '");
+      print(fd_stderr, panic_key_str_list[pkl_idx]);
+      print(fd_stderr, "'!\n");
+      print_usage();
+      exit(1);
+    }
+    panic_key_list[pkl_idx] = keycode;
+  }
+
+  /* Device event listener setup */
   struct sockaddr_nl sa = {
     .nl_family = AF_NETLINK,
     .nl_pad = 0,
@@ -199,97 +506,218 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  while (true) {
-    /*
-     * So, you looked at `man 7 netlink`, then looked at this code, and can't
-     * figure out how on earth any of this makes sense? Well guess what, turns
-     * out NETLINK_KOBJECT_UEVENT messages break all of the rules about how
-     * netlink messages work specified in that manpage. What you actually
-     * get... well, depends.
-     *
-     * - The messages we actually want are just NUL-separated string lists.
-     *   These are the actual kernel uevents.
-     * - Mixed in with those will be uevents generated by systemd-udevd, which
-     *   use a different format and are unsuitable for our purposes. We have
-     *   to ignore those. Thankfully those messages start with the
-     *   NUL-terminated string "libudev" so they're easy to filter out.
-     */
+  /* Keyboard event listener setup
+   * Heavily inspired by systemd/src/login/logind-button.c and
+   * kloak/src/main.c */
+  for (input_idx = 0; input_idx <= max_inputs; input_idx++) {
+    int tmp_fd = 0;
+    uint64_t key_flags[key_flags_len];
+    bool supports_panic = true;
+    char *loop_str = NULL;
 
-    int len;
-    char buf[16384];
-    struct iovec iov = { buf, sizeof(buf) };
-    struct sockaddr_nl sa2;
-    struct msghdr msg = { &sa2, sizeof(sa2), &iov, 1, NULL, 0, 0 };
-    len = recvmsg(ns, &msg, 0);
-    if (len == -1) {
-      reboot(RB_POWER_OFF);
-      //print(fd_stderr, "SHUTDOWN!!!\n");
-      exit(0);
-    }
+    strcpy(input_path_buf, "/dev/input/event");
+    loop_str = int_to_str(input_idx);
+    strcat(input_path_buf, loop_str);
+    free(loop_str);
 
-    if (len < 8) {
-      /* There aren't any super-short messages we're interested in, discard
-       * them */
-      continue;
-    }
-    if (memcmp(buf, "libudev", 8) == 0) {
-      /* udevd message, ignore */
+    tmp_fd = open(input_path_buf, O_RDONLY | O_CLOEXEC | O_NOCTTY | O_NONBLOCK);
+    if (tmp_fd < 0) {
       continue;
     }
 
-    char *tmpbuf = buf;
-    bool device_removed = false;
-    while (len > 0) {
-      if (strcmp(tmpbuf, "ACTION=remove") == 0) {
-        device_removed = true;
-        goto next_str;
+    if (ioctl(tmp_fd, EVIOCGBIT(EV_SYN, sizeof(key_flags)), key_flags) < 0) {
+      print(fd_stderr, "Failed to query properties of input device '");
+      print(fd_stderr, input_path_buf);
+      print(fd_stderr, "'!\n");
+      exit(1);
+    }
+
+    if (!bitset_get(key_flags, EV_KEY)) {
+      continue;
+    }
+
+    if (ioctl(tmp_fd, EVIOCGBIT(EV_KEY, sizeof(key_flags)), key_flags) < 0) {
+      print(fd_stderr, "Failed to query keys available on input device '");
+      print(fd_stderr, input_path_buf);
+      print(fd_stderr, "'!\n");
+      exit(1);
+    }
+
+    for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+      if (!bitset_get(key_flags, panic_key_list[pkl_idx])) {
+        supports_panic = false;
+        break;
+      }
+    }
+    if (!supports_panic) {
+      continue;
+    }
+
+    event_fd_list_len++;
+    event_fd_list = safe_reallocarray(event_fd_list, event_fd_list_len, sizeof(int));
+    event_fd_list[event_fd_list_len - 1] = tmp_fd;
+  }
+
+  if (event_fd_list_len == 0) {
+    print(fd_stderr, "Failed to find any input device supporting panic keys!\n");
+    exit(1);
+  }
+
+  /* Poll setup */
+  pollfd_list = safe_calloc(event_fd_list_len + 1, sizeof(struct pollfd));
+  for (efl_idx = 0; efl_idx < event_fd_list_len; efl_idx++) {
+    pollfd_list[efl_idx].fd = event_fd_list[efl_idx];
+    pollfd_list[efl_idx].events = POLLIN;
+  }
+  pollfd_list[event_fd_list_len].fd = ns;
+  pollfd_list[event_fd_list_len].events = POLLIN;
+
+  /* Event loop */
+  while (poll(pollfd_list, event_fd_list_len + 1, -1) != -1) {
+    /* Panic key handler */
+    for (efl_idx = 0; efl_idx < event_fd_list_len; efl_idx++) {
+      if (!(pollfd_list[efl_idx].revents & POLLIN)) {
+        continue;
       }
 
-      if (strncmp(tmpbuf, "DEVNAME=", strlen("DEVNAME=")) == 0) {
-        if (device_removed) {
-          char *rem_devname_line;
-          /*
-           * Try to allocate the memory needed to check DEVNAME in a loop. We
-           * really do not want to simply abort here due to an out of memory
-           * condition, because that would result in the shutdown never
-           * occurring. We also don't want to force a shutdown when memory
-           * runs out, as that could result in the user losing work because
-           * they opened too many browser tabs.
-           */
-          while(true) {
-            rem_devname_line = calloc(1, strlen(tmpbuf) + 1);
-            if (rem_devname_line == NULL) {
-              print(fd_stderr, "Out of memory while parsing devname, retrying in one second\n");
-              sleep(1);
-              continue;
+      size_t ieread_bytes = read(event_fd_list[efl_idx], ie_buf, sizeof(struct input_event) * 64);
+
+      if (ieread_bytes == -1
+        || ieread_bytes == 0
+        || (ieread_bytes % sizeof(struct input_event)) != 0) {
+        /* This will probably terminate the service if the user unplugs a
+         * keyboard or similar, however systemd can start it again. The
+         * alternative is to handle device hotplug, which sounds like a
+         * recipe for bugs. */
+        print(fd_stderr, "Error reading from input device!\n");
+        exit(1);
+      }
+
+      for (ie_idx = 0; ie_idx < ieread_bytes / sizeof(struct input_event); ie_idx++) {
+        if (ie_buf[ie_idx].type != EV_KEY) {
+          continue;
+        }
+
+        for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+          if (ie_buf[ie_idx].code == panic_key_list[pkl_idx]) {
+            if (ie_buf[ie_idx].value == 0) {
+              panic_key_active_list[pkl_idx] = false;
             } else {
-              break;
+              panic_key_active_list[pkl_idx] = true;
             }
           }
+        }
 
-          memcpy(rem_devname_line, tmpbuf, strlen(tmpbuf) + 1);
-          /* returns DEVNAME */
-          char *rem_dev_name = strtok(rem_devname_line, "=");
-          /* returns the actual device name */
-          rem_dev_name = strtok(NULL, "=");
-          if (rem_dev_name == NULL) {
-            continue;
+        for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+          if (!panic_key_active_list[pkl_idx]) {
+            break;
           }
-
-          for (int i = 0; i < target_dev_name_list_len; i++) {
-            if (strcmp(rem_dev_name, target_dev_name_list[i]) == 0) {
-              reboot(RB_POWER_OFF);
-              //print(fd_stderr, "SHUTDOWN!!!\n");
-              exit(0);
-            }
+          if (pkl_idx == (panic_key_list_len - 1)) {
+            print(fd_stderr, "SHUTDOWN!!!\n");
+            exit(0);
           }
-          free(rem_devname_line);
         }
       }
+    }
 
-next_str:
-      len -= strlen(tmpbuf) + 1;
-      tmpbuf += strlen(tmpbuf) + 1;
+    /* Netlink socket handler */
+    if (pollfd_list[event_fd_list_len].revents & POLLIN) {
+      /*
+       * So, you looked at `man 7 netlink`, then looked at this code, and can't
+       * figure out how on earth any of this makes sense? Well guess what, turns
+       * out NETLINK_KOBJECT_UEVENT messages break all of the rules about how
+       * netlink messages work specified in that manpage. What you actually
+       * get... well, depends.
+       *
+       * - The messages we actually want are just NUL-separated string lists.
+       *   These are the actual kernel uevents.
+       * - Mixed in with those will be uevents generated by systemd-udevd, which
+       *   use a different format and are unsuitable for our purposes. We have
+       *   to ignore those. Thankfully those messages start with the
+       *   NUL-terminated string "libudev" so they're easy to filter out.
+       */
+
+      int len;
+      char buf[16384];
+      struct iovec iov = { buf, sizeof(buf) };
+      struct sockaddr_nl sa2;
+      struct msghdr msg = { &sa2, sizeof(sa2), &iov, 1, NULL, 0, 0 };
+      char *tmpbuf = NULL;
+      bool device_removed = false;
+
+      len = recvmsg(ns, &msg, 0);
+      if (len == -1) {
+        //reboot(RB_POWER_OFF);
+        print(fd_stderr, "SHUTDOWN!!!\n");
+        exit(0);
+      }
+
+      if (len < 8) {
+        /* There aren't any super-short messages we're interested in, discard
+         * them */
+        continue;
+      }
+      if (memcmp(buf, "libudev", 8) == 0) {
+        /* udevd message, ignore */
+        continue;
+      }
+
+      tmpbuf = buf;
+      while (len > 0) {
+        if (strcmp(tmpbuf, "ACTION=remove") == 0) {
+          device_removed = true;
+          goto next_str;
+        }
+
+        if (strncmp(tmpbuf, "DEVNAME=", strlen("DEVNAME=")) == 0) {
+          if (device_removed) {
+            char *rem_devname_line = NULL;
+            char *rem_dev_name = NULL;
+
+            /*
+             * Try to allocate the memory needed to check DEVNAME in a loop. We
+             * really do not want to simply abort here due to an out of memory
+             * condition, because that would result in the shutdown never
+             * occurring. We also don't want to force a shutdown when memory
+             * runs out, as that could result in the user losing work because
+             * they opened too many browser tabs.
+             */
+            while(true) {
+              rem_devname_line = calloc(1, strlen(tmpbuf) + 1);
+              if (rem_devname_line == NULL) {
+                print(fd_stderr, "Out of memory while parsing devname, retrying in one second\n");
+                sleep(1);
+                continue;
+              } else {
+                break;
+              }
+            }
+
+            memcpy(rem_devname_line, tmpbuf, strlen(tmpbuf) + 1);
+            /* returns DEVNAME */
+            rem_dev_name = strtok(rem_devname_line, "=");
+            /* returns the actual device name */
+            rem_dev_name = strtok(NULL, "=");
+            if (rem_dev_name == NULL) {
+              free(rem_devname_line);
+              continue;
+            }
+
+            for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
+              if (strcmp(rem_dev_name, target_dev_list[tdl_idx]) == 0) {
+                //reboot(RB_POWER_OFF);
+                print(fd_stderr, "SHUTDOWN!!!\n");
+                exit(0);
+              }
+            }
+            free(rem_devname_line);
+          }
+        }
+
+  next_str:
+        len -= strlen(tmpbuf) + 1;
+        tmpbuf += strlen(tmpbuf) + 1;
+      }
     }
   }
 }
