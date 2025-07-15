@@ -5,9 +5,9 @@
 
 gcc \
   -o \
-  /run/force-shutdown-when-device-removed \
+  /run/emerg-shutdown \
   -static \
-  /usr/src/security-misc/force-shutdown-when-device-removed.c \
+  /usr/src/security-misc/emerg-shutdown.c \
   || {
     printf "%s\n" 'Could not compile force-shutdown executable!'
     exit 1;
@@ -18,7 +18,10 @@ readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-fo
 ## memlockd daemonizes itself, so no need to background it
 memlockd -c /usr/share/security-misc/security-misc-memlockd.cfg
 
-/run/force-shutdown-when-device-removed "${root_devices}" &
+OLDIFS="$IFS"
+IFS=','
+/run/emerg-shutdown "--devices=${root_devices[*]}" '--keys=KEY_LEFTCTRL|KEY_RIGHTCTRL,KEY_LEFTALT|KEY_RIGHTALT,KEY_DELETE' &
+IFS="$OLDIFS"
 sleep 1
 disown
 exit 0

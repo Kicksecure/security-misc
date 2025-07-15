@@ -281,7 +281,7 @@ void print(int fd, char *str) {
 
 void print_usage() {
   print(fd_stderr, "Usage:\n");
-  print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2...]\n");
+  print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2|KEY_3...]\n");
   print(fd_stderr, "Example:\n");
   print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
 }
@@ -326,7 +326,7 @@ char *int_to_str(uint32_t val) {
   return rslt;
 }
 
-void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list_ref) {
+void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list_ref, const char *sep, bool parse_opt) {
   char **result_list = NULL;
   size_t result_list_len = 0;
   int arg_copy_len = strlen(arg) + 1;
@@ -335,12 +335,16 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
   char *arg_part;
 
   memcpy(arg_copy, arg, arg_copy_len);
-  /* returns "--whatever" */
-  arg_val = strtok(arg_copy, "=");
-  /* returns everything after the = sign */
-  arg_val = strtok(NULL, "");
+  if (parse_opt) {
+    /* returns "--whatever" */
+    arg_val = strtok(arg_copy, "=");
+    /* returns everything after the = sign */
+    arg_val = strtok(NULL, "");
+  } else {
+    arg_val = arg_copy;
+  }
 
-  arg_part = strtok(arg_val, ",");
+  arg_part = strtok(arg_val, sep);
   if (arg_part == NULL) {
     return;
   }
@@ -364,7 +368,7 @@ int main(int argc, char **argv) {
   size_t panic_key_list_len = 0;
   char **panic_key_str_list = NULL;
   char **target_dev_list = NULL;
-  int *panic_key_list = NULL;
+  int **panic_key_list = NULL;
   bool *panic_key_active_list = NULL;
   size_t event_fd_list_len = 0;
   int *event_fd_list = NULL;
@@ -380,6 +384,7 @@ int main(int argc, char **argv) {
   int input_idx = 0;
   size_t efl_idx = 0;
   int ie_idx = 0;
+  size_t kg_idx = 0;
 
   /* Prerequisite check */
   if (getuid() != 0) {
@@ -401,19 +406,19 @@ int main(int argc, char **argv) {
         print_usage();
         exit(1);
       }
-      load_list(argv[arg_idx], &target_dev_list_len, &target_dev_name_raw_list);
+      load_list(argv[arg_idx], &target_dev_list_len, &target_dev_name_raw_list, ",", true);
     } else if (strncmp(argv[arg_idx], "--keys=", strlen("--keys=")) == 0) {
       if (panic_key_str_list != NULL) {
         print(fd_stderr, "--keys cannot be passed more than once!\n");
         print_usage();
         exit(1);
       }
-      load_list(argv[arg_idx], &panic_key_list_len, &panic_key_str_list);
+      load_list(argv[arg_idx], &panic_key_list_len, &panic_key_str_list, ",", true);
     }
   }
 
   target_dev_list = safe_calloc(target_dev_list_len, sizeof(char *));
-  panic_key_list = safe_calloc(panic_key_list_len, sizeof(int));
+  panic_key_list = safe_calloc(panic_key_list_len, sizeof(int *));
   panic_key_active_list = safe_calloc(panic_key_list_len, sizeof(bool));
 
   for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
@@ -477,15 +482,27 @@ int main(int argc, char **argv) {
   }
 
   for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
-    int keycode = lookup_keycode(panic_key_str_list[pkl_idx]);
-    if (keycode < 0) {
-      print(fd_stderr, "Invalid key code '");
-      print(fd_stderr, panic_key_str_list[pkl_idx]);
-      print(fd_stderr, "'!\n");
-      print_usage();
-      exit(1);
+    size_t keygroup_str_list_len = 0;
+    char **keygroup_str_list = NULL;
+    load_list(panic_key_str_list[pkl_idx], &keygroup_str_list_len, &keygroup_str_list, "|", false);
+    int *pkl_element = safe_calloc(keygroup_str_list_len + 1, sizeof(int));
+
+    pkl_element[keygroup_str_list_len] = 0;
+    for (kg_idx = 0; kg_idx < keygroup_str_list_len; kg_idx++) {
+      int keycode = lookup_keycode(keygroup_str_list[kg_idx]);
+      if (keycode < 0) {
+        print(fd_stderr, "Invalid key code '");
+        print(fd_stderr, keygroup_str_list[kg_idx]);
+        print(fd_stderr, "'!\n");
+        print_usage();
+        exit(1);
+      }
+      pkl_element[kg_idx] = keycode;
+      free(keygroup_str_list[kg_idx]);
     }
-    panic_key_list[pkl_idx] = keycode;
+
+    free(keygroup_str_list);
+    panic_key_list[pkl_idx] = pkl_element;
   }
 
   /* Device event listener setup */
@@ -544,8 +561,13 @@ int main(int argc, char **argv) {
     }
 
     for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
-      if (!bitset_get(key_flags, panic_key_list[pkl_idx])) {
-        supports_panic = false;
+      for (kg_idx = 0; panic_key_list[pkl_idx][kg_idx] != 0; kg_idx++) {
+        if (!bitset_get(key_flags, panic_key_list[pkl_idx][kg_idx])) {
+          supports_panic = false;
+          break;
+        }
+      }
+      if (!supports_panic) {
         break;
       }
     }
@@ -599,11 +621,14 @@ int main(int argc, char **argv) {
         }
 
         for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
-          if (ie_buf[ie_idx].code == panic_key_list[pkl_idx]) {
-            if (ie_buf[ie_idx].value == 0) {
-              panic_key_active_list[pkl_idx] = false;
-            } else {
-              panic_key_active_list[pkl_idx] = true;
+          for (kg_idx = 0; panic_key_list[pkl_idx][kg_idx] != 0; kg_idx++) {
+            if (ie_buf[ie_idx].code == panic_key_list[pkl_idx][kg_idx]) {
+              if (ie_buf[ie_idx].value == 0) {
+                panic_key_active_list[pkl_idx] = false;
+              } else {
+                panic_key_active_list[pkl_idx] = true;
+              }
+              break; /* only breaks inner loop */
             }
           }
         }
@@ -644,6 +669,7 @@ int main(int argc, char **argv) {
       struct msghdr msg = { &sa2, sizeof(sa2), &iov, 1, NULL, 0, 0 };
       char *tmpbuf = NULL;
       bool device_removed = false;
+      bool device_changed = false;
 
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
@@ -668,9 +694,13 @@ int main(int argc, char **argv) {
           device_removed = true;
           goto next_str;
         }
+        if (strcmp(tmpbuf, "ACTION=change") == 0) {
+          device_changed = true;
+          goto next_str;
+        }
 
         if (strncmp(tmpbuf, "DEVNAME=", strlen("DEVNAME=")) == 0) {
-          if (device_removed) {
+          if (device_removed || device_changed) {
             char *rem_devname_line = NULL;
             char *rem_dev_name = NULL;
 
@@ -703,6 +733,11 @@ int main(int argc, char **argv) {
               continue;
             }
 
+            if (device_changed && strncmp(rem_dev_name, "sr", 2) != 0) {
+              free(rem_devname_line);
+              continue;
+            }
+
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
               if (strcmp(rem_dev_name, target_dev_list[tdl_idx]) == 0) {
                 //reboot(RB_POWER_OFF);
@@ -710,6 +745,7 @@ int main(int argc, char **argv) {
                 exit(0);
               }
             }
+
             free(rem_devname_line);
           }
         }

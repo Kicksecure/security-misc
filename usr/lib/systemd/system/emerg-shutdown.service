@@ -7,7 +7,7 @@ Documentation=https://github.com/Kicksecure/security-misc
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/security-misc/force-poweroff-on-boot-media-removal
+ExecStart=/usr/libexec/security-misc/emerg-shutdown
 RemainAfterExit=true
 
 [Install]
