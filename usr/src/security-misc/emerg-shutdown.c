@@ -638,7 +638,8 @@ int main(int argc, char **argv) {
             break;
           }
           if (pkl_idx == (panic_key_list_len - 1)) {
-            print(fd_stderr, "SHUTDOWN!!!\n");
+            reboot(RB_POWER_OFF);
+            /*print(fd_stderr, "SHUTDOWN!!!\n");*/
             exit(0);
           }
         }
@@ -673,8 +674,8 @@ int main(int argc, char **argv) {
 
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
-        //reboot(RB_POWER_OFF);
-        print(fd_stderr, "SHUTDOWN!!!\n");
+        reboot(RB_POWER_OFF);
+        /*print(fd_stderr, "SHUTDOWN!!!\n");*/
         exit(0);
       }
 
@@ -730,18 +731,18 @@ int main(int argc, char **argv) {
             rem_dev_name = strtok(NULL, "=");
             if (rem_dev_name == NULL) {
               free(rem_devname_line);
-              continue;
+              goto next_str;
             }
 
             if (device_changed && strncmp(rem_dev_name, "sr", 2) != 0) {
               free(rem_devname_line);
-              continue;
+              goto next_str;
             }
 
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
               if (strcmp(rem_dev_name, target_dev_list[tdl_idx]) == 0) {
-                //reboot(RB_POWER_OFF);
-                print(fd_stderr, "SHUTDOWN!!!\n");
+                reboot(RB_POWER_OFF);
+                /*print(fd_stderr, "SHUTDOWN!!!\n");*/
                 exit(0);
               }
             }
@@ -750,7 +751,7 @@ int main(int argc, char **argv) {
           }
         }
 
-  next_str:
+next_str:
         len -= strlen(tmpbuf) + 1;
         tmpbuf += strlen(tmpbuf) + 1;
       }
