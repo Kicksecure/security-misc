@@ -177,6 +177,8 @@ CPU mitigations:
 
 - Register File Data Sampling (RFDS)
 
+- Indirect Target Selection (ITS)
+
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
