@@ -82,7 +82,7 @@
  */
 
 #include <sys/socket.h>
-#include <sys/reboot.h>
+#include <linux/reboot.h>
 #include <unistd.h>
 #include <asm/types.h>
 #include <linux/netlink.h>
@@ -94,6 +94,7 @@
 #include <stdbool.h>
 #include <poll.h>
 #include <linux/input.h>
+#include <sys/syscall.h>
 
 #define fd_stdin 0
 #define fd_stdout 1
@@ -359,6 +360,10 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
   *result_list_len_ref = result_list_len;
   *result_list_ref = result_list;
   free(arg_copy);
+}
+
+int kill_system() {
+  return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_POWER_OFF, NULL);
 }
 
 int main(int argc, char **argv) {
@@ -638,7 +643,7 @@ int main(int argc, char **argv) {
             break;
           }
           if (pkl_idx == (panic_key_list_len - 1)) {
-            reboot(RB_POWER_OFF);
+            kill_system();
             /*print(fd_stderr, "SHUTDOWN!!!\n");*/
             exit(0);
           }
@@ -667,14 +672,21 @@ int main(int argc, char **argv) {
       char buf[16384];
       struct iovec iov = { buf, sizeof(buf) };
       struct sockaddr_nl sa2;
-      struct msghdr msg = { &sa2, sizeof(sa2), &iov, 1, NULL, 0, 0 };
+      struct msghdr msg = { 0 };
+      msg.msg_name = &sa2;
+      msg.msg_namelen = sizeof(sa2);
+      msg.msg_iov = &iov;
+      msg.msg_iovlen = 1;
+      msg.msg_control = NULL;
+      msg.msg_controllen = 0;
+      msg.msg_flags = 0;
       char *tmpbuf = NULL;
       bool device_removed = false;
       bool device_changed = false;
 
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
-        reboot(RB_POWER_OFF);
+        kill_system();
         /*print(fd_stderr, "SHUTDOWN!!!\n");*/
         exit(0);
       }
@@ -741,7 +753,7 @@ int main(int argc, char **argv) {
 
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
               if (strcmp(rem_dev_name, target_dev_list[tdl_idx]) == 0) {
-                reboot(RB_POWER_OFF);
+                kill_system();
                 /*print(fd_stderr, "SHUTDOWN!!!\n");*/
                 exit(0);
               }
