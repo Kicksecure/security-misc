@@ -1,3 +1,31 @@
+commit 36114e29a2ce1045b5f5d82372fcf0463efc5ca7
+Merge: e3ce9c3 f851886
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 21 06:00:11 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit f851886ffd0fc82ba0b0add501964d1c812c6c15
+Merge: e3ce9c3 6f9763f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 21 05:58:44 2025 -0400
+
+    Merge pull request #310 from raja-grewal/its
+    
+    Enable `indirect_target_selection=force`
+
+commit 6f9763f525097b8f8ad5f9864c1694a2642e1bd6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Jul 19 05:19:27 2025 +0000
+
+    Enable `indirect_target_selection=force`
+
+commit e3ce9c38c5b241f789945de7229c0ee15fa0a266
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jul 2 20:52:17 2025 +0000
+
+    bumped changelog version
+
 commit b06fb5428051518390439ce95c9d6894e6338951
 Merge: 115b6f6 468cf40
 Author: Patrick Schleizer <adrelanos@whonix.org>
