@@ -6,9 +6,8 @@ Description=Emergency shutdown when boot media is removed
 Documentation=https://github.com/Kicksecure/security-misc
 
 [Service]
-Type=oneshot
+Type=exec
 ExecStart=/usr/libexec/security-misc/emerg-shutdown
-RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target

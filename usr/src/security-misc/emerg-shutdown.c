@@ -94,6 +94,8 @@
 #include <stdbool.h>
 #include <poll.h>
 #include <linux/input.h>
+#include <linux/vt.h>
+#include <sys/ioctl.h>
 #include <sys/syscall.h>
 
 #define fd_stdin 0
@@ -103,6 +105,8 @@
 #define max_inputs 255
 #define input_path_size 20
 #define key_flags_len 12
+
+int console_fd = 0;
 
 /* Adapted from kloak/src/keycodes.c */
 struct name_value {
@@ -283,6 +287,8 @@ void print(int fd, char *str) {
 void print_usage() {
   print(fd_stderr, "Usage:\n");
   print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2|KEY_3...]\n");
+  print(fd_stderr, "Or:\n");
+  print(fd_stderr, "  emerg-shutdown --instant-shutdown\n");
   print(fd_stderr, "Example:\n");
   print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
 }
@@ -363,7 +369,74 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
 }
 
 int kill_system() {
-  return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_POWER_OFF, NULL);
+  /*
+   * It isn't safe to simply call the reboot syscall here - there is a
+   * graphics driver bug in the i915 driver on Bookworm that will throw a
+   * kernel warning during shutdown. Kicksecure sets panic_on_oops and
+   * panic_on_warn to 1 during bootup, which means this bug will cause a
+   * kernel panic and thus hang the system rather than shutting down.
+   *
+   * To mitigate this, we do two things:
+   *
+   * - We disable the panic_on_oops and panic_on_warn kernel settings before
+   *   calling the reboot syscall. This way if a warn or oops does occur, at
+   *   least it isn't as likely to block shutdown.
+   * - We switch virtual terminals before initiating the shutdown. This should
+   *   hopefully keep whatever is going wrong from going wrong in the first
+   *   place.
+   *
+   * This is probably a good idea for any system, because switching TTYs is a
+   * rather basic operation that is likely to work, while forcibly shutting
+   * down while X11 or Wayland still has control of the display is probably
+   * not as well tested (if it's been tested at all).
+   *
+   * Above all else though, we want to at least *try* to shutdown. Even if all
+   * our attempts to switch VTs fail and /proc isn't available for us to tweak
+   * kernel settings, we still need to try. Therefore we absolutely do not
+   * crash or block, except when waiting for a VT to become activated. (If VT
+   * activation blocks forever, the kernel is probably horribly broken and
+   * would probably panic imminently anyway.)
+   */
+
+  const char *panic_on_oops_path = "/proc/sys/kernel/panic_on_oops";
+  const char *panic_on_warn_path = "/proc/sys/kernel/panic_on_warn";
+
+  int ret = 0;
+  int tgt_vt = 0;
+  int sysctl_fd = 0;
+
+  /* Turn off panic_on_oops. */
+  sysctl_fd = open(panic_on_oops_path, O_WRONLY);
+  if (sysctl_fd != -1) {
+    write(sysctl_fd, "0", 1);
+    close(sysctl_fd);
+  }
+
+  /* Turn off panic_on_warn. */
+  sysctl_fd = open(panic_on_warn_path, O_WRONLY);
+  if (sysctl_fd != -1) {
+    write(sysctl_fd, "0", 1);
+    close(sysctl_fd);
+  }
+
+  /* Determine which VT to switch to. Anything that isn't open yet will do. */
+  ret = ioctl(console_fd, VT_OPENQRY, &tgt_vt);
+  if (ret == -1) {
+    goto trykill;
+  }
+
+  /* Try to switch to it. */
+  ret = ioctl(console_fd, VT_ACTIVATE, tgt_vt);
+  if (ret == -1) {
+    goto trykill;
+  }
+
+  /* Wait for it to become active. */
+  ioctl(console_fd, VT_WAITACTIVE, tgt_vt);
+
+trykill:
+  return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+    LINUX_REBOOT_CMD_POWER_OFF, NULL);
 }
 
 int main(int argc, char **argv) {
@@ -405,6 +478,9 @@ int main(int argc, char **argv) {
   }
 
   for (arg_idx = 1; arg_idx < argc; arg_idx++) {
+    if (strncmp(argv[arg_idx], "--instant-shutdown", strlen("--instant-shutdown")) == 0) {
+      kill_system();
+    }
     if (strncmp(argv[arg_idx], "--devices=", strlen("--devices=")) == 0) {
       if (target_dev_name_raw_list != NULL) {
         print(fd_stderr, "--devices cannot be passed more than once!\n");
@@ -420,6 +496,12 @@ int main(int argc, char **argv) {
       }
       load_list(argv[arg_idx], &panic_key_list_len, &panic_key_str_list, ",", true);
     }
+  }
+
+  console_fd = open("/dev/console", O_RDWR);
+  if (console_fd == -1) {
+    print(fd_stderr, "Could not open /dev/console!\n");
+    exit(1);
   }
 
   target_dev_list = safe_calloc(target_dev_list_len, sizeof(char *));
