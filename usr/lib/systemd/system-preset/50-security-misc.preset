@@ -17,3 +17,7 @@ disable proc-hidepid.service
 ## Disable due to issues. See:
 ## https://github.com/Kicksecure/security-misc/issues/159
 disable harden-module-loading.service
+
+## Disable due to timing difficulties. See:
+## https://github.com/systemd/systemd/issues/38261#issuecomment-3134580852
+disable ensure-shutdown.service

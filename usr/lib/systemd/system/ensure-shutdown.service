@@ -1,0 +1,18 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Forcibly shut down the system if normal shutdown gets stuck
+Documentation=https://github.com/Kicksecure/security-misc
+Wants=emerg-shutdown.service
+After=emerg-shutdown.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/libexec/security-misc/ensure-shutdown
+ExecStop=bash -c -- 'echo "d" > /run/emerg-shutdown-trigger'
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

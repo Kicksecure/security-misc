@@ -74,13 +74,6 @@
  * (there are other similar posts as well).
  */
 
-/*
- * TODO: Consider handling signals more gracefully (perhaps use ppoll instead
- * of poll, handle things like EINTR, etc.). Right now the plan is to simply
- * terminate when a signal is received and let systemd restart the process,
- * but it might be better to just be signal-resilient.
- */
-
 #include <sys/socket.h>
 #include <linux/reboot.h>
 #include <unistd.h>
@@ -97,6 +90,10 @@
 #include <linux/vt.h>
 #include <sys/ioctl.h>
 #include <sys/syscall.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <signal.h>
+#include <errno.h>
 
 #define fd_stdin 0
 #define fd_stdout 1
@@ -105,6 +102,11 @@
 #define max_inputs 255
 #define input_path_size 20
 #define key_flags_len 12
+
+#define hw_monitor_val 1
+#define fifo_monitor_val 2
+
+#define max_sig_num 31
 
 int console_fd = 0;
 
@@ -289,6 +291,8 @@ void print_usage() {
   print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2|KEY_3...]\n");
   print(fd_stderr, "Or:\n");
   print(fd_stderr, "  emerg-shutdown --instant-shutdown\n");
+  print(fd_stderr, "Or:\n");
+  print(fd_stderr, "  emerg-shutdown --monitor-fifo --timeout=TIMEOUT\n");
   print(fd_stderr, "Example:\n");
   print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
 }
@@ -439,7 +443,8 @@ trykill:
     LINUX_REBOOT_CMD_POWER_OFF, NULL);
 }
 
-int main(int argc, char **argv) {
+/* Monitor for device removal and emergency shutdown key combos. */
+void hw_monitor(int argc, char **argv) {
   /* Working variables */
   size_t target_dev_list_len = 0;
   char **target_dev_name_raw_list = NULL;
@@ -464,23 +469,7 @@ int main(int argc, char **argv) {
   int ie_idx = 0;
   size_t kg_idx = 0;
 
-  /* Prerequisite check */
-  if (getuid() != 0) {
-    print(fd_stderr, "This program must be run as root!\n");
-    exit(1);
-  }
-
-  /* Argument parsing */
-  if (argc < 2) {
-    print(fd_stderr, "Invalid number of arguments!\n");
-    print_usage();
-    exit(1);
-  }
-
   for (arg_idx = 1; arg_idx < argc; arg_idx++) {
-    if (strncmp(argv[arg_idx], "--instant-shutdown", strlen("--instant-shutdown")) == 0) {
-      kill_system();
-    }
     if (strncmp(argv[arg_idx], "--devices=", strlen("--devices=")) == 0) {
       if (target_dev_name_raw_list != NULL) {
         print(fd_stderr, "--devices cannot be passed more than once!\n");
@@ -495,6 +484,12 @@ int main(int argc, char **argv) {
         exit(1);
       }
       load_list(argv[arg_idx], &panic_key_list_len, &panic_key_str_list, ",", true);
+    } else {
+      print(fd_stderr, "Unrecognized argument '");
+      print(fd_stderr, argv[arg_idx]);
+      print(fd_stderr, "' passed!\n");
+      print_usage();
+      exit(1);
     }
   }
 
@@ -850,5 +845,162 @@ next_str:
         tmpbuf += strlen(tmpbuf) + 1;
       }
     }
+  }
+
+  print(fd_stderr, "Hardware monitor poll gave up!\n");
+  exit(1);
+}
+
+/*
+ * Monitor for a kill command on a fifo. Two commands are recognized:
+ *
+ * - 'k': Instantly kill the system.
+ * - 'd': Wait 15 seconds, then kill the system. This is used to keep systemd
+ *        from delaying shutdown excessively.
+ */
+void fifo_monitor(int argc, char **argv) {
+  long monitor_fifo_timeout = 0;
+  char *arg_copy = NULL;
+  char *arg_part = NULL;
+  char *arg_num_end = NULL;
+  const char *trigger_fifo_path = "/run/emerg-shutdown-trigger";
+  int trigger_fifo_fd = 0;
+  struct pollfd trigger_fifo_poll = { 0 };
+  char trigger_fifo_charbuf = '\0';
+  ssize_t trigger_fifo_readlen = 0;
+  int sig_idx = 0;
+  struct sigaction sigact_swallow = { 0 };
+
+  if (strncmp(argv[2], "--timeout=", strlen("--timeout=")) != 0) {
+    print(fd_stderr, "Timeout not passed for --monitor-fifo!\n");
+    print_usage();
+    exit(1);
+  }
+
+  arg_copy = safe_calloc(1, strlen(argv[2]) + 1);
+  memcpy(arg_copy, argv[2], strlen(argv[2]) + 1);
+  /* returns "--timeout" */
+  arg_part = strtok(arg_copy, "=");
+  /* returns everything after the = sign */
+  arg_part = strtok(NULL, "");
+  monitor_fifo_timeout = strtol(arg_part, &arg_num_end, 10);
+  if (errno == ERANGE) {
+    print(fd_stderr, "Timeout out of range!\n");
+    print_usage();
+    exit(1);
+  }
+  if (*arg_num_end != '\0') {
+    print(fd_stderr, "Timeout is not purely numeric!\n");
+    print_usage();
+    exit(1);
+  }
+  if (monitor_fifo_timeout < 1) {
+    print(fd_stderr, "Timeout is less than one!\n");
+    print_usage();
+    exit(1);
+  }
+
+  free(arg_copy);
+  arg_copy = NULL;
+  arg_part = NULL;
+  arg_num_end = NULL;
+
+  if (mkfifo(trigger_fifo_path, 0777) == -1) {
+    print(fd_stderr, "Cannot create trigger fifo!\n");
+    exit(1);
+  }
+
+  trigger_fifo_fd = open(trigger_fifo_path, O_RDONLY | O_NONBLOCK);
+  if (trigger_fifo_fd == -1) {
+    print(fd_stderr, "Cannot open trigger fifo for reading!\n");
+    exit(1);
+  }
+
+  trigger_fifo_poll.fd = trigger_fifo_fd;
+  trigger_fifo_poll.events = POLLIN;
+
+  /* Swallow all signals that we can. */
+  sigact_swallow.sa_handler = SIG_IGN;
+  for (sig_idx = 1; sig_idx < max_sig_num; sig_idx++) {
+    if (sig_idx == SIGSTOP) {
+      continue;
+    }
+    if (sig_idx == SIGKILL) {
+      continue;
+    }
+    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
+      print(fd_stderr, "Failed to set up signal ignores!\n");
+      exit(1);
+    }
+  }
+  for (sig_idx = SIGRTMIN; sig_idx <= SIGRTMAX; sig_idx++) {
+    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
+      print(fd_stderr, "Failed to set up real-time signal ignores!\n");
+      exit(1);
+    }
+  }
+
+  while (poll(&trigger_fifo_poll, 1, -1) != -1) {
+    trigger_fifo_readlen = read(trigger_fifo_fd, &trigger_fifo_charbuf, 1);
+    if (trigger_fifo_readlen != 1) {
+      print(fd_stderr, "Error reading from trigger fifo!\n");
+      exit(1);
+    }
+    if (trigger_fifo_charbuf == 'k') {
+      kill_system();
+    } else if (trigger_fifo_charbuf == 'd') {
+      sleep(monitor_fifo_timeout);
+      kill_system();
+    }
+  }
+
+  print(fd_stderr, "Trigger fifo poll gave up!\n");
+  exit(1);
+}
+
+int main(int argc, char **argv) {
+  int monitor_mode = hw_monitor_val;
+
+  /* Prerequisite check */
+  if (getuid() != 0) {
+    print(fd_stderr, "This program must be run as root!\n");
+    exit(1);
+  }
+
+  if (argc < 2) {
+    print(fd_stderr, "Not enough arguments!\n");
+    print_usage();
+    exit(1);
+  }
+
+  if (strcmp(argv[1], "--instant-shutdown") == 0) {
+    if (argc != 2) {
+      print(fd_stderr, "Too many arguments, --instant-shutdown must be passed alone!\n");
+      print_usage();
+      exit(1);
+    }
+
+    kill_system();
+  }
+  if (strcmp(argv[1], "--monitor-fifo") == 0) {
+    if (argc != 3) {
+      print(fd_stderr, "Wrong number of arguments for --monitor-fifo!\n");
+      print_usage();
+      exit(1);
+    }
+
+    monitor_mode = fifo_monitor_val;
+  }
+
+  if (monitor_mode == hw_monitor_val) {
+    /* hw_monitor handles its own argument parsing */
+    hw_monitor(argc, argv);
+  } else if (monitor_mode == fifo_monitor_val) {
+    /* fifo_monitor handles its own argument parsing */
+    fifo_monitor(argc, argv);
+  } else {
+    print(fd_stderr, "Unknown monitor mode chosen!\n");
+    print_usage();
+    exit(1);
   }
 }

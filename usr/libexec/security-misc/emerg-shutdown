@@ -39,8 +39,9 @@ if [ ! -f '/run/emerg-shutdown' ]; then
       printf "%s\n" 'Could not compile force-shutdown executable!'
       exit 1;
     }
-
 fi
+
+systemd-notify --ready
 
 ## memlockd daemonizes itself, so no need to background it.
 memlockd -c /usr/share/security-misc/security-misc-memlockd.cfg || true
