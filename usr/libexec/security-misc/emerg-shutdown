@@ -13,8 +13,10 @@ export LC_ALL=C
 
 ## Read emergency shutdown key configuration
 for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/security-misc/emerg-shutdown/*.conf; do
-  bash -n "${config_file}"
-  source "${config_file}"
+  if [ -f "${config_file}" ]; then
+    bash -n "${config_file}"
+    source "${config_file}"
+  fi
 done
 if [ -z "${EMERG_SHUTDOWN_KEYS}" ]; then
   ## Default to Ctrl+Alt+Delete if nothing else is set

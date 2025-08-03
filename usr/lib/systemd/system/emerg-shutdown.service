@@ -4,6 +4,12 @@
 [Unit]
 Description=Emergency shutdown when boot media is removed
 Documentation=https://github.com/Kicksecure/security-misc
+DefaultDependencies=no
+Before=sysinit.target
+Requires=udev.service
+After=udev.service
+Requires=local-fs.service
+After=local-fs.service
 
 [Service]
 Type=notify
@@ -11,4 +17,4 @@ ExecStart=/usr/libexec/security-misc/emerg-shutdown
 NotifyAccess=main
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
