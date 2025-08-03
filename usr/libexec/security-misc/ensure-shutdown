@@ -14,7 +14,7 @@ source /usr/libexec/helper-scripts/strings.bsh
 export LC_ALL=C
 
 ## Read emergency shutdown key configuration
-for config_file in /etc/security-misc/emerg-shutdown/*.conf; do
+for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/security-misc/emerg-shutdown/*.conf; do
   bash -n "${config_file}"
   source "${config_file}"
 done
