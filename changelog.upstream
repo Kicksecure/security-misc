@@ -1,3 +1,53 @@
+commit 92bcd824e4af8a90a18a7726d4a5715c0b20e2ca
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 3 07:17:25 2025 -0400
+
+    also parse /usr/local/etc
+
+commit 4da810c8fa4fd40b8701e7dfe217125d965ee03e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 3 07:16:00 2025 -0400
+
+    comment
+
+commit b9416fa77a1e8850c5f579314875671799a55c60
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 3 07:15:41 2025 -0400
+
+    validate configuration file
+
+commit 4ba029471e8c12d5691f7ee94897137fb3cbe15f
+Merge: c1e76aa 1a60da7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 3 07:04:20 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 1a60da71eddfcc6fb72a34596c770cd754146887
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Jul 29 21:16:51 2025 -0500
+
+    emerg-shutdown: Add shutdown timeout for preventing stuck shutdowns, briefly document feature set and usage
+
+commit e42078e90d7d7e5339a7c4682eb93c844fd38580
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Jul 28 20:42:14 2025 -0500
+
+    emerg-shutdown: fix the hang-on-shutdown bug, add autodetection of new keyboards, shutdown key configuration, and instant shutdown option
+
+commit a1d1c5603300106f06c1a798088521b77430ff95
+Merge: 5889d13 c1e76aa
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jul 27 21:43:43 2025 -0500
+
+    Merge branch 'master' into arraybolt3/emerg-shutdown
+
+commit c1e76aa52cd28f38c1ab6550e0f4de0010a9ea14
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jul 21 10:00:25 2025 +0000
+
+    bumped changelog version
+
 commit 36114e29a2ce1045b5f5d82372fcf0463efc5ca7
 Merge: e3ce9c3 f851886
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -14,11 +64,42 @@ Date:   Mon Jul 21 05:58:44 2025 -0400
     
     Enable `indirect_target_selection=force`
 
+commit 5889d134a23b3d4f8db5d81171ea12907bb10d4d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jul 20 14:14:09 2025 -0500
+
+    emerg-shutdow: Improve recvmsg handling, call reboot syscall directly
+
 commit 6f9763f525097b8f8ad5f9864c1694a2642e1bd6
 Author: raja-grewal <rg_public@proton.me>
 Date:   Sat Jul 19 05:19:27 2025 +0000
 
     Enable `indirect_target_selection=force`
+
+commit b745c8ddae74d5e1684919442fa74d64e95263b8
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Jul 14 21:51:52 2025 -0500
+
+    emerg-shutdown: Enable actual shutdown code, fix infinite loop when started too early
+
+commit e387086de4b6e6b90b23d4c32ddf8a566beb858c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Jul 14 21:05:16 2025 -0500
+
+    Allow specifying alternative keys in panic key combo, fix optical disk eject handling
+
+commit dfb6f143f0324d0903ae2dd106bc0fb6907c1cb0
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jul 13 20:53:29 2025 -0500
+
+    Add panic key handling to emergency shutdown utility
+
+commit 2a7071055f94f984398fe2ec49c32b206913bea2
+Merge: f3d46ee e3ce9c3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Jul 13 15:21:34 2025 -0500
+
+    Merge branch 'master' into arraybolt3/emerg-shutdown
 
 commit e3ce9c38c5b241f789945de7229c0ee15fa0a266
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -472,6 +553,12 @@ Date:   Thu May 15 15:06:10 2025 -0400
     This commit modifies the initialization of failed_login_counter such that it cannot be negative and prevents the display of these incorrect warnings.
     
     * Only rudimentary tests were conducted
+
+commit f3d46ee56233c4ef0552c20304413d137e90acfe
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri May 9 18:46:41 2025 -0500
+
+    Add emergency shutdown feature, triggered by root device removal
 
 commit 341dce33fb806ab03822470e6af91604662c22dd
 Author: Patrick Schleizer <adrelanos@whonix.org>
