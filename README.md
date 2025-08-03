@@ -712,6 +712,19 @@ See:
 * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
 * https://forums.whonix.org/t/cannot-use-pkexec/8129
 
+## Emergency shutdown
+
+- Forcibly powers off the system if the drive the system booted from is
+  removed from the system.
+- Forcibly powers off the system if a user-configurable "panic key sequence"
+  is pressed (Ctrl+Alt+Delete by default).
+- Forcibly powers off the system if
+  `sudo /run/emerg-shutdown --instant-shutdown` is called.
+- Optional - Forcibly powers off the system if shutdown gets stuck for longer
+  than a user-configurable number of seconds (30 by default). Requires tuning
+  by the user to function properly, see notes in
+  `/etc/security-misc/emerg-shutdown/30_security_misc.conf`.
+
 ## Application-specific hardening
 
 - Enables "`apt-get --error-on=any`" which makes apt exit non-zero for

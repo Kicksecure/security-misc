@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+# See the file COPYING for copying conditions.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+## Make sure globs sort in a predictable, reproducible fashion
+export LC_ALL=C
+
+## Read emergency shutdown key configuration
+for config_file in /etc/security-misc/emerg-shutdown/*.conf; do
+  source "${config_file}"
+done
+if [ -z "${EMERG_SHUTDOWN_KEYS}" ]; then
+  ## Default to Ctrl+Alt+Delete if nothing else is set
+  EMERG_SHUTDOWN_KEYS="KEY_LEFTCTRL|KEY_RIGHTCTRL,KEY_LEFTALT|KEY_RIGHTALT,KEY_DELETE"
+fi
+
+## Find the devices that make up the root device
+readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-for-mountpoint '/') || true;
+if [ "${#root_devices[@]}" = '0' ] \
+  || [ "${root_devices[0]}" == '' ]; then
+  ## /dev/sda1 might be the right one...
+  root_devices[0]='/dev/sda1'
+fi
+
+## Build the actual emerg-shutdown executable
+if [ ! -f '/run/emerg-shutdown' ]; then
+  gcc \
+    -o \
+    /run/emerg-shutdown \
+    -static \
+    /usr/src/security-misc/emerg-shutdown.c \
+    || {
+      printf "%s\n" 'Could not compile force-shutdown executable!'
+      exit 1;
+    }
+fi
+
+systemd-notify --ready
+
+## memlockd daemonizes itself, so no need to background it.
+memlockd -c /usr/share/security-misc/security-misc-memlockd.cfg || true
+
+## Launch emerg-shutdown
+OLDIFS="$IFS"
+IFS=','
+/run/emerg-shutdown "--devices=${root_devices[*]}" "--keys=${EMERG_SHUTDOWN_KEYS}"
