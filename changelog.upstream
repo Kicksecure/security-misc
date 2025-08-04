@@ -1,3 +1,22 @@
+commit 166bc257b0b2eea87d684cc847bf6da1fba7c4b4
+Merge: d1bca02 63f2909
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Aug 4 05:26:55 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 63f29093416a5f21ae14b398cf805c864b5541d7
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 3 15:00:14 2025 -0500
+
+    Fix emerg-shutdown and ensure-shutdown libexec scripts, start emerg-shutdown and ensure-shutdown earlier
+
+commit d1bca0204fa1dac9ec3fb6e9b121af9526778181
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 3 11:33:03 2025 +0000
+
+    bumped changelog version
+
 commit 92bcd824e4af8a90a18a7726d4a5715c0b20e2ca
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 3 07:17:25 2025 -0400
