@@ -21,3 +21,4 @@ disable harden-module-loading.service
 ## Disable due to timing difficulties. See:
 ## https://github.com/systemd/systemd/issues/38261#issuecomment-3134580852
 disable ensure-shutdown.service
+disable ensure-shutdown-trigger.service
