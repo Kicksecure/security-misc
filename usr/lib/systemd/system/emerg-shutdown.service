@@ -8,8 +8,8 @@ DefaultDependencies=no
 Before=sysinit.target
 Requires=udev.service
 After=udev.service
-Requires=local-fs.service
-After=local-fs.service
+Requires=local-fs.target
+After=local-fs.target
 
 [Service]
 Type=notify
