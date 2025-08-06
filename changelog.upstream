@@ -1,3 +1,22 @@
+commit 784ff8af3616765a9c22febf66b522376ecedf12
+Merge: c2690ef 5a17e67
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 6 04:26:37 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 5a17e67c0a7678300f6342d5c90ded5494ebc838
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Aug 5 20:14:07 2025 -0500
+
+    Fix local-fs.target dependency in emerg-shutdown.service
+
+commit c2690efcacbf7be7c57751ba1cee7f910d350cfc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Aug 4 09:27:11 2025 +0000
+
+    bumped changelog version
+
 commit 166bc257b0b2eea87d684cc847bf6da1fba7c4b4
 Merge: d1bca02 63f2909
 Author: Patrick Schleizer <adrelanos@whonix.org>
