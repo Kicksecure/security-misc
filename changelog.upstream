@@ -1,3 +1,46 @@
+commit 505a2b7d7995ad48a17add86513ced3499f64ee9
+Merge: 4294165 3a77abe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 7 03:08:02 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 3a77abe5c9807caec530e69c41d5cf803b625e70
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 20:05:57 2025 -0500
+
+    Port hardening options from kloak to emerg-shutdown, fix new compiler warnings
+
+commit 0c1af00aae50dba2983c3736744e0da320bb9330
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 19:33:38 2025 -0500
+
+    Implement paranoid mode in emerg-shutdown
+
+commit 29480df770047c8ada3e993cf28f87ffbfd71dec
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 19:24:34 2025 -0500
+
+    Improve emerg-shutdown usage documentation
+
+commit 2a3bc39eba317d5f9b0e710dd3663c82d92add94
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 19:10:37 2025 -0500
+
+    Use Ctrl+Alt+End as the default panic key rather than Ctrl+Alt+Delete
+
+commit 44e7d3059a5618991a1408f77707132bfea86fef
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 19:10:14 2025 -0500
+
+    Integrate emerg-shutdown into the initramfs
+
+commit 42941653621311187650f12e8d7aa39c45cb6984
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 6 08:27:15 2025 +0000
+
+    bumped changelog version
+
 commit 784ff8af3616765a9c22febf66b522376ecedf12
 Merge: c2690ef 5a17e67
 Author: Patrick Schleizer <adrelanos@whonix.org>
