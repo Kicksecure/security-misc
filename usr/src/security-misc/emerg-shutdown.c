@@ -298,6 +298,10 @@ void print_usage() {
   print(fd_stderr, "    pressed at the same time, an emergency shutdown will occur.\n");
   print(fd_stderr, "    Keys separated with a pipe will be treated as aliases of each\n");
   print(fd_stderr, "    other.\n");
+  print(fd_stderr, "  --paranoid\n");
+  print(fd_stderr, "    Watches for the removal of any removable device whatsoever. An\n");
+  print(fd_stderr, "    emergency shutdown will be triggered if any device is removed.\n");
+  print(fd_stderr, "    Cannot be combined with --devices.\n");
   print(fd_stderr, "  --instant-shutdown\n");
   print(fd_stderr, "    Immediately triggers an emergency shutdown. Cannot be combined\n");
   print(fd_stderr, "    with other options.\n");
@@ -474,6 +478,7 @@ void hw_monitor(int argc, char **argv) {
   char input_path_buf[input_path_size];
   struct pollfd *pollfd_list = NULL;
   struct input_event ie_buf[64];
+  bool paranoid_mode = false;
 
   /* Index variables */
   int arg_idx = 0;
@@ -493,6 +498,8 @@ void hw_monitor(int argc, char **argv) {
         exit(1);
       }
       load_list(argv[arg_idx], &target_dev_list_len, &target_dev_name_raw_list, ",", true);
+    } else if (strcmp(argv[arg_idx], "--paranoid") == 0) {
+      paranoid_mode = true;
     } else if (strncmp(argv[arg_idx], "--keys=", strlen("--keys=")) == 0) {
       if (panic_key_str_list != NULL) {
         print(fd_stderr, "--keys cannot be passed more than once!\n");
@@ -507,6 +514,11 @@ void hw_monitor(int argc, char **argv) {
       print_usage();
       exit(1);
     }
+  }
+  if (target_dev_name_raw_list != NULL && paranoid_mode) {
+    print(fd_stderr, "--devices and --paranoid are mutually exclusive!\n");
+    print_usage();
+    exit(1);
   }
 
   console_fd = open("/dev/console", O_RDWR);
@@ -842,6 +854,11 @@ void hw_monitor(int argc, char **argv) {
             if (device_changed && strncmp(rem_dev_name, "sr", 2) != 0) {
               free(rem_devname_line);
               goto next_str;
+            }
+
+            if (paranoid_mode) {
+              /* Something was removed, we don't care what, shut down now */
+              kill_system();
             }
 
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
