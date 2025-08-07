@@ -9,8 +9,8 @@ Description=Forcibly shut down the system if normal shutdown gets stuck
 Documentation=https://github.com/Kicksecure/security-misc
 DefaultDependencies=no
 Before=sysinit.target
-Requires=udev.service
-After=udev.service
+Requires=systemd-udevd.service
+After=systemd-udevd.service
 Wants=emerg-shutdown.service
 After=emerg-shutdown.service
 
