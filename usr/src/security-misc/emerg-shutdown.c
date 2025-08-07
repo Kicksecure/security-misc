@@ -42,7 +42,7 @@
  * be entirely possible. To give our feature the highest chance of success:
  *
  * - We use memlockd to lock systemd and all libraries it depends on into
- *   memory. It can holds its own pretty well in the event of a segfault, but
+ *   memory. It can hold its own pretty well in the event of a segfault, but
  *   if its crash handler ends up re-segfaulting, that could get ugly.
  * - We compile the utility at boot time, statically link it against all of
  *   its dependencies (really only one, glibc), and load it into /run. This
@@ -288,13 +288,29 @@ void print(int fd, char *str) {
 
 void print_usage() {
   print(fd_stderr, "Usage:\n");
-  print(fd_stderr, "  emerg-shutdown --devices=DEVICE1[,DEVICE2...] --keys=KEY_1[,KEY_2|KEY_3...]\n");
-  print(fd_stderr, "Or:\n");
-  print(fd_stderr, "  emerg-shutdown --instant-shutdown\n");
-  print(fd_stderr, "Or:\n");
-  print(fd_stderr, "  emerg-shutdown --monitor-fifo --timeout=TIMEOUT\n");
+  print(fd_stderr, "  emerg-shutdown [OPTIONS...]\n");
+  print(fd_stderr, "Options:\n");
+  print(fd_stderr, "  --devices=DEVICE1[,DEVICE2...]\n");
+  print(fd_stderr, "    A comma-separated list of devices. If any of these devices are\n");
+  print(fd_stderr, "    removed from the system, an emergency shutdown will occur.\n");
+  print(fd_stderr, "  --keys=KEY_1[,KEY_2|KEY_3...]\n");
+  print(fd_stderr, "    A comma-separated list of keys. If all of the specified keys are\n");
+  print(fd_stderr, "    pressed at the same time, an emergency shutdown will occur.\n");
+  print(fd_stderr, "    Keys separated with a pipe will be treated as aliases of each\n");
+  print(fd_stderr, "    other.\n");
+  print(fd_stderr, "  --instant-shutdown\n");
+  print(fd_stderr, "    Immediately triggers an emergency shutdown. Cannot be combined\n");
+  print(fd_stderr, "    with other options.\n");
+  print(fd_stderr, "  --monitor-fifo\n");
+  print(fd_stderr, "    Used internally to implement the ensure-shutdown service. Do\n");
+  print(fd_stderr, "    not use.\n");
+  print(fd_stderr, "  --timeout=TIMEOUT\n");
+  print(fd_stderr, "    Used internally to implement the ensure-shutdown service. Do\n");
+  print(fd_stderr, "    not use.\n");
   print(fd_stderr, "Example:\n");
   print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
+  print(fd_stderr, "See /etc/security-misc/emerg-shutdown/30_security-misc.cofn to\n");
+  print(fd_stderr, "configure the emerg-shutdown service.\n");
 }
 
 void *safe_calloc(size_t nmemb, size_t size) {
