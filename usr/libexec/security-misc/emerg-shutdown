@@ -19,6 +19,19 @@ binary_prefix='/run'
 EMERG_SHUTDOWN_KEYS=''
 root_devices[0]=''
 
+## Taken from kloak/Makefile, see it for more information
+gcc_hardening_options=(
+  "-Wall" "-Wformat" "-Wformat=2" "-Wconversion"
+  "-Wimplicit-fallthrough" "-Werror=format-security" "-Werror=implicit"
+  "-Werror=int-conversion" "-Werror=incompatible-pointer-types"
+  "-Wtrampolines" "-Wbidi-chars=any" "-U_FORTIFY_SOURCE" "-D_FORTIFY_SOURCE=3"
+  "-fstack-clash-protection" "-fstack-protector-strong"
+  "-fno-delete-null-pointer-checks" "-fno-strict-overflow"
+  "-fno-strict-aliasing" "-fsanitize=undefined" "-fcf-protection=full"
+  "-Wl,-z,nodlopen" "-Wl,-z,noexecstack" "-Wl,-z,relro" "-Wl,-z,now"
+  "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
+)
+
 ## Read emergency shutdown key configuration
 for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/security-misc/emerg-shutdown/*.conf; do
   if [ -f "${config_file}" ]; then
@@ -46,6 +59,7 @@ else
       -o \
       /run/emerg-shutdown \
       -static \
+      "${gcc_hardening_options[@]}" \
       /usr/src/security-misc/emerg-shutdown.c \
       || {
         printf "%s\n" 'Could not compile force-shutdown executable!'

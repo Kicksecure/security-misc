@@ -94,6 +94,7 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include <errno.h>
+#include <limits.h>
 
 #define fd_stdin 0
 #define fd_stdout 1
@@ -113,7 +114,7 @@ int console_fd = 0;
 /* Adapted from kloak/src/keycodes.c */
 struct name_value {
     const char *name;
-    const int value;
+    const uint32_t value;
 };
 static struct name_value key_table[] = {
         {"KEY_ESC", KEY_ESC},
@@ -259,14 +260,14 @@ static struct name_value key_table[] = {
         {"KEY_UNKNOWN", KEY_UNKNOWN},
         {NULL, 0}
 };
-int lookup_keycode(const char *name) {
+uint32_t lookup_keycode(const char *name) {
   struct name_value *p;
   for (p = key_table; p->name != NULL; ++p) {
     if (strcmp(p->name, name) == 0) {
       return p->value;
     }
   }
-  return -1;
+  return 0;
 }
 
 /* Adapted from systemd/src/login/logind-button.c */
@@ -278,7 +279,11 @@ void print(int fd, char *str) {
   size_t len = strlen(str) + 1;
   while (true) {
     ssize_t write_len = write(fd, str, len);
-    len -= write_len;
+    if (write_len < 0) {
+      /* File descriptor was closed, continue regardless */
+      return;
+    }
+    len -= (size_t)write_len;
     if (len == 0) {
       return;
     }
@@ -338,7 +343,7 @@ void *safe_reallocarray(void *ptr, size_t nmemb, size_t size) {
 /* Inspired by https://www.strudel.org.uk/itoa/ */
 char *int_to_str(uint32_t val) {
   static char buf[11];
-  int8_t i;
+  uint8_t i;
   char *rslt = NULL;
   const char *digits = "0123456789";
 
@@ -360,7 +365,7 @@ char *int_to_str(uint32_t val) {
 void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list_ref, const char *sep, bool parse_opt) {
   char **result_list = NULL;
   size_t result_list_len = 0;
-  int arg_copy_len = strlen(arg) + 1;
+  size_t arg_copy_len = strlen(arg) + 1;
   char *arg_copy = safe_calloc(1, arg_copy_len);
   char *arg_val;
   char *arg_part;
@@ -392,7 +397,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
   free(arg_copy);
 }
 
-int kill_system() {
+long int kill_system() {
   /*
    * It isn't safe to simply call the reboot syscall here - there is a
    * graphics driver bug in the i915 driver on Bookworm that will throw a
@@ -471,7 +476,7 @@ void hw_monitor(int argc, char **argv) {
   size_t panic_key_list_len = 0;
   char **panic_key_str_list = NULL;
   char **target_dev_list = NULL;
-  int **panic_key_list = NULL;
+  uint32_t **panic_key_list = NULL;
   bool *panic_key_active_list = NULL;
   size_t event_fd_list_len = 0;
   int *event_fd_list = NULL;
@@ -485,7 +490,7 @@ void hw_monitor(int argc, char **argv) {
   size_t tdl_idx = 0;
   size_t tdp_char_idx = 0;
   size_t pkl_idx = 0;
-  int input_idx = 0;
+  uint32_t input_idx = 0;
   size_t efl_idx = 0;
   int ie_idx = 0;
   size_t kg_idx = 0;
@@ -528,7 +533,7 @@ void hw_monitor(int argc, char **argv) {
   }
 
   target_dev_list = safe_calloc(target_dev_list_len, sizeof(char *));
-  panic_key_list = safe_calloc(panic_key_list_len, sizeof(int *));
+  panic_key_list = safe_calloc(panic_key_list_len, sizeof(uint32_t *));
   panic_key_active_list = safe_calloc(panic_key_list_len, sizeof(bool));
 
   for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
@@ -595,12 +600,12 @@ void hw_monitor(int argc, char **argv) {
     size_t keygroup_str_list_len = 0;
     char **keygroup_str_list = NULL;
     load_list(panic_key_str_list[pkl_idx], &keygroup_str_list_len, &keygroup_str_list, "|", false);
-    int *pkl_element = safe_calloc(keygroup_str_list_len + 1, sizeof(int));
+    uint32_t *pkl_element = safe_calloc(keygroup_str_list_len + 1, sizeof(uint32_t));
 
     pkl_element[keygroup_str_list_len] = 0;
     for (kg_idx = 0; kg_idx < keygroup_str_list_len; kg_idx++) {
-      int keycode = lookup_keycode(keygroup_str_list[kg_idx]);
-      if (keycode < 0) {
+      uint32_t keycode = lookup_keycode(keygroup_str_list[kg_idx]);
+      if (keycode == 0) {
         print(fd_stderr, "Invalid key code '");
         print(fd_stderr, keygroup_str_list[kg_idx]);
         print(fd_stderr, "'!\n");
@@ -619,7 +624,7 @@ void hw_monitor(int argc, char **argv) {
   struct sockaddr_nl sa = {
     .nl_family = AF_NETLINK,
     .nl_pad = 0,
-    .nl_pid = getpid(),
+    .nl_pid = (uint32_t)getpid(),
     .nl_groups = NETLINK_KOBJECT_UEVENT,
   };
   int ns = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT);
@@ -712,11 +717,10 @@ void hw_monitor(int argc, char **argv) {
         continue;
       }
 
-      size_t ieread_bytes = read(event_fd_list[efl_idx], ie_buf, sizeof(struct input_event) * 64);
+      ssize_t ieread_bytes = read(event_fd_list[efl_idx], ie_buf, sizeof(struct input_event) * 64);
 
-      if (ieread_bytes == -1
-        || ieread_bytes == 0
-        || (ieread_bytes % sizeof(struct input_event)) != 0) {
+      if (ieread_bytes <= 0
+        || ((size_t)ieread_bytes % sizeof(struct input_event)) != 0) {
         /* This will probably terminate the service if the user unplugs a
          * keyboard or similar, however systemd can start it again. The
          * alternative is to handle device hotplug, which sounds like a
@@ -725,7 +729,8 @@ void hw_monitor(int argc, char **argv) {
         exit(1);
       }
 
-      for (ie_idx = 0; ie_idx < ieread_bytes / sizeof(struct input_event); ie_idx++) {
+      for (ie_idx = 0; ie_idx < (size_t)ieread_bytes / sizeof(struct input_event);
+        ie_idx++) {
         if (ie_buf[ie_idx].type != EV_KEY) {
           continue;
         }
@@ -773,7 +778,7 @@ void hw_monitor(int argc, char **argv) {
        *   NUL-terminated string "libudev" so they're easy to filter out.
        */
 
-      int len;
+      ssize_t len;
       char buf[16384];
       struct iovec iov = { buf, sizeof(buf) };
       struct sockaddr_nl sa2;
@@ -874,7 +879,7 @@ void hw_monitor(int argc, char **argv) {
         }
 
 next_str:
-        len -= strlen(tmpbuf) + 1;
+        len = len - (ssize_t)(strlen(tmpbuf) + 1);
         tmpbuf += strlen(tmpbuf) + 1;
       }
     }
@@ -916,8 +921,9 @@ void fifo_monitor(int argc, char **argv) {
   arg_part = strtok(arg_copy, "=");
   /* returns everything after the = sign */
   arg_part = strtok(NULL, "");
+  errno = 0;
   monitor_fifo_timeout = strtol(arg_part, &arg_num_end, 10);
-  if (errno == ERANGE) {
+  if (errno == ERANGE || monitor_fifo_timeout > UINT_MAX) {
     print(fd_stderr, "Timeout out of range!\n");
     print_usage();
     exit(1);
@@ -982,7 +988,7 @@ void fifo_monitor(int argc, char **argv) {
     if (trigger_fifo_charbuf == 'k') {
       kill_system();
     } else if (trigger_fifo_charbuf == 'd') {
-      sleep(monitor_fifo_timeout);
+      sleep((unsigned int)monitor_fifo_timeout);
       kill_system();
     }
   }
