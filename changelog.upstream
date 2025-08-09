@@ -1,3 +1,17 @@
+commit 046c932898290d250a7900e3c59973a698e5c55f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Aug 9 05:40:11 2025 -0400
+
+    `disable emerg-shutdown.service`:
+    
+    Disabled due to bug: breaks ISO Live Mode Calamares installer
+
+commit 0cc0a8310020afc10de6512095336e55559a84d9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 7 07:08:19 2025 +0000
+
+    bumped changelog version
+
 commit 505a2b7d7995ad48a17add86513ced3499f64ee9
 Merge: 4294165 3a77abe
 Author: Patrick Schleizer <adrelanos@whonix.org>
