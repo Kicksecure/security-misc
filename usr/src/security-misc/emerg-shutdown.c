@@ -793,6 +793,7 @@ void hw_monitor(int argc, char **argv) {
       char *tmpbuf = NULL;
       bool device_removed = false;
       bool device_changed = false;
+      bool disk_media_changed = false;
 
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
@@ -819,6 +820,10 @@ void hw_monitor(int argc, char **argv) {
         }
         if (strcmp(tmpbuf, "ACTION=change") == 0) {
           device_changed = true;
+          goto next_str;
+        }
+        if (strcmp(tmpbuf, "DISK_MEDIA_CHANGE=1") == 0) {
+          disk_media_changed = true;
           goto next_str;
         }
 
@@ -857,6 +862,11 @@ void hw_monitor(int argc, char **argv) {
             }
 
             if (device_changed && strncmp(rem_dev_name, "sr", 2) != 0) {
+              free(rem_devname_line);
+              goto next_str;
+            }
+
+            if (device_changed && !disk_media_changed) {
               free(rem_devname_line);
               goto next_str;
             }
