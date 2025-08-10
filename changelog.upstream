@@ -1,3 +1,22 @@
+commit 3629f2c3a59d44e265f0c66389435de1b2414998
+Merge: 5dc251c c59a3b2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 10 02:25:48 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit c59a3b233bd8893d466c020a2e2695ab545c6e60
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Aug 9 21:55:03 2025 -0500
+
+    Fix unexpected shutdowns when booting Kicksecure from optical media
+
+commit 5dc251c5da724092d264481740e4f6ed347aa0a7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Aug 9 09:45:35 2025 +0000
+
+    bumped changelog version
+
 commit 046c932898290d250a7900e3c59973a698e5c55f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Aug 9 05:40:11 2025 -0400
