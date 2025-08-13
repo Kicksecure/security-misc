@@ -19,8 +19,7 @@ fi
 sysctl kernel.oops_limit=1
 sysctl kernel.warn_limit=1
 
-## Makes the system immediately reboot on the occur occurrence of
-## a single kernel panic. This is an extreme safety option which also
-## creates a large opening for targeted denial of service attacks.
+## Makes the system immediately reboot on the occurrence of a single
+## kernel panic. This is an extreme safety option which also creates
+## a large opening for targeted denial of service attacks.
 #sysctl kernel.panic=-1
-
