@@ -220,9 +220,8 @@ Kernel space:
 
 - Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
 
-- Optional - Use kCFI as the default CFI implementation (when using Linux kernel >= 6.2)
-  since it may be slightly more resilient to attacks that are able to write
-  arbitrary executables in memory.
+- Use kCFI as the default CFI implementation as it is more resilient to attacks that are
+  able to write arbitrary executables into memory omitting the necessary hash validation.
 
 - Optional - Disable support for all x86 processes and syscalls to reduce attack surface.
 
