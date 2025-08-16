@@ -13,9 +13,10 @@ if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
 fi
 
 ## Makes the kernel immediately panic on both oopses and warnings.
-## This prevents the kernel from continuing to run a potentially
-## flawed processes. Many kernel exploits will also cause an oops,
-## these settings will make the kernel kill the offending processes.
+## These settings force a full system crash rather than continuing
+## to run after an inconsistent state is triggered by a potentially
+## flawed processes. The reasons for the errors could be kernel
+## exploit attempts but may also simply be general software bugs.
 sysctl kernel.oops_limit=1
 sysctl kernel.warn_limit=1
 
