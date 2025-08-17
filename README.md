@@ -223,7 +223,8 @@ Kernel space:
 - Use kCFI as the default CFI implementation as it is more resilient to attacks that are
   able to write arbitrary executables into memory omitting the necessary hash validation.
 
-- Optional - Disable support for all 32-bit x86 processes and syscalls to reduce attack surface.
+- Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
+  to reduce attack surface.
 
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
