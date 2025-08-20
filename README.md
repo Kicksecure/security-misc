@@ -725,16 +725,6 @@ See:
 - Deactivates thumbnails in Thunar.
   - Rationale: lower attack surface when using the file manager
   - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
-- Thunderbird is hardened with the following options:
-  - Displays domain names in punycode to prevent IDN homograph attacks (a
-    form of phishing).
-  - Strips email client information from sent email headers.
-  - Strips user time information from sent email headers by replacing the
-    originating time zone with UTC and rounding the timestamp to the nearest
-    minute.
-  - Disables scripting when viewing PDF files.
-  - Disables implicit outgoing connections.
-  - Disables all and any kind of telemetry.
 - Security and privacy enhancements for gnupg's config file
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
