@@ -13,7 +13,7 @@ Build-Depends: config-package-dev,
 Homepage: https://www.kicksecure.com/wiki/Security-misc
 Vcs-Browser: https://github.com/Kicksecure/security-misc
 Vcs-Git: https://github.com/Kicksecure/security-misc.git
-Standards-Version: 4.6.2
+Standards-Version: 4.7.2
 Rules-Requires-Root: no
 
 Package: security-misc
