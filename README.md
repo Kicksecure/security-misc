@@ -729,6 +729,10 @@ See:
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
   - https://github.com/ioerror/torbirdy/pull/11
+- Hardens SSH client
+  `/etc/ssh/ssh_config.d/30_security-misc.conf`
+- Hardens SSH server
+  `/etc/ssh/sshd_config.d/30_security-misc.conf`
 
 ### Project scope of application-specific hardening
 
