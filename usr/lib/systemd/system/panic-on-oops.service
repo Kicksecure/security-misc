@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=Sets 'sysctl kernel.panic_on_oops=1' late during the boot process.
+Description=Sets 'sysctl' settings relating to kernel panics on both oopses and warnings late during the boot process.
 Documentation=https://github.com/Kicksecure/security-misc
 
 ConditionKernelCommandLine=!panic-on-oops=0

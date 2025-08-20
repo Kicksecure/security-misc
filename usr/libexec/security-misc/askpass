@@ -7,4 +7,4 @@ set -e
 
 title="$0: password required for $(whoami) to perform action as superuser"
 
-zenity --password --title="$title"
+yad --password --title="$title"

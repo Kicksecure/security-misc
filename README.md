@@ -44,16 +44,15 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
-- Force the kernel to panic on both "oopses", which can potentially indicate and thwart
-  certain kernel exploitation attempts, and also kernel warnings in the `WARN()` path.
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
-- Optional - Force immediate reboot on the occurrence of a single kernel panic and also
-  (when using Linux kernel >= 6.2) limit the number of allowed panics to one.
+- Force immediate system reboot on the occurrence of a single kernel panic, reducing the
+  risk and impact of both denial of service and cold boot attacks.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
-- Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
-  the source of numerous kernel exploits.
+- Disable asynchronous I/O as `io_uring` has been the source of numerous kernel exploits.
 
 #### User space
 
@@ -221,12 +220,10 @@ Kernel space:
 
 - Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
 
-- Optional - Use kCFI as the default CFI implementation (when using Linux kernel >= 6.2)
-  since it may be slightly more resilient to attacks that are able to write
-  arbitrary executables in memory.
+- Use kCFI as the default CFI implementation as it is more resilient to attacks that are
+  able to write arbitrary executables into memory omitting the necessary hash validation.
 
-- Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
-  to reduce attack surface.
+- Disable support for all 32-bit x86 processes and syscalls to reduce attack surface.
 
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
@@ -280,23 +277,15 @@ Completely disables `ptrace()`. Can be enabled easily if needed.
 
 * [security-misc pull request #242](https://github.com/Kicksecure/security-misc/pull/242)
 
-2. `sysctl kernel.panic=-1`
-
-Forces an immediate reboot on kernel panic. This can be enabled, but it may lead to unexpected
-system crashes.
-
-* [security-misc pull request #264](https://github.com/Kicksecure/security-misc/pull/264)
-* [security-misc pull request #268](https://github.com/Kicksecure/security-misc/pull/268)
-
 **Non-compliance:**
 
-3. `sysctl user.max_user_namespaces=0`
+2. `sysctl user.max_user_namespaces=0`
 
 Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
 * [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
 
-4. `sysctl fs.binfmt_misc.status=0`
+3. `sysctl fs.binfmt_misc.status=0`
 
 Disables the registration of interpreters for miscellaneous binary formats. Currently not
 feasible due to compatibility issues with Firefox.
