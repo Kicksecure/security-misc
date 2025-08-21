@@ -1,0 +1,25 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## NOTE: If enabling this unit, also enable ensure-shutdown-trigger.service,
+## otherwise this will likely be unable to unstick a stuck shutdown.
+
+[Unit]
+Description=Forcibly shut down the system if normal shutdown gets stuck
+Documentation=https://github.com/Kicksecure/security-misc
+DefaultDependencies=no
+Before=sysinit.target
+Requires=systemd-udevd.service
+After=systemd-udevd.service
+Wants=emerg-shutdown.service
+After=emerg-shutdown.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/libexec/security-misc/ensure-shutdown
+ExecStop=bash -c -- 'echo "d" > /run/emerg-shutdown-trigger'
+KillMode=process
+
+[Install]
+WantedBy=sysinit.target

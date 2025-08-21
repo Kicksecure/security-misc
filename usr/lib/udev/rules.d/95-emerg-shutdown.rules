@@ -1,0 +1,9 @@
+SUBSYSTEM!="input", GOTO="end"
+
+# new keyboard or mouse attached or removed, restart emerg-shutdown
+KERNEL=="event*", ACTION=="add", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="/usr/bin/systemctl restart emerg-shutdown.service"
+KERNEL=="event*", ACTION=="add", ENV{ID_INPUT_KEYBOARD}=="1", GOTO="end"
+KERNEL=="event*", ACTION=="remove", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="/usr/bin/systemctl restart emerg-shutdown.service"
+KERNEL=="event*", ACTION=="remove", ENV{ID_INPUT_KEYBOARD}=="1", GOTO="end"
+
+LABEL="end"

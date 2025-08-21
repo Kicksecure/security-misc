@@ -1,0 +1,29 @@
+## Copyright (C) 2019 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## This unit, if uncommented and started, will prevent the system from ever
+## shutting down unless ensure-shutdown.service is enabled and correctly
+## configured. If you have enabled ensure-shutdown.service and tuned the
+## ENSURE_SHUTDOWN_TIMEOUT and DefaultTimeoutStopSec variables (in
+## /etc/security-misc/emerg-shutdown/30_security_misc.conf and
+## /etc/systemd/system.conf respectively) and want to make sure
+## ensure-shutdown.service actually works, you can uncomment this unit and
+## start it with `sudo systemctl start block-shutdown.service`. If the systems
+## successfully powers down even with this unit started,
+## ensure-shutdown.service is working.
+
+# [Unit]
+# Description=Blocks shutdown indefinitely unless ensure-shutdown.service is enabled
+#
+# [Service]
+# Type=exec
+# ExecStart=bash -c -- "trap '' SIGTERM; sleep infinity"
+# KillSignal=SIGTERM
+# FinalKillSignal=SIGTERM
+# RestartKillSignal=SIGTERM
+# WatchdogSignal=SIGTERM
+# SendSIGHUP=no
+# TimeoutStopSec=infinity
+#
+# [Install]
+# WantedBy=multi-user.target

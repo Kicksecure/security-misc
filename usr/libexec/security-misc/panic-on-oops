@@ -12,12 +12,19 @@ if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
 fi
 
-## Makes the kernel panic on oopses and warnings. This prevents the
-## kernel from continuing to run a flawed processes. Many kernel
-## exploits will also cause an oops, these settings will make the
-## kernel kill the offending processes.
-#sysctl kernel.panic=-1
-sysctl kernel.panic_on_oops=1
-sysctl kernel.panic_on_warn=1
-#sysctl kernel.oops_limit=1
-#sysctl kernel.warn_limit=1
+## Makes the kernel immediately panic on both oopses and warnings.
+## These settings force a full system crash rather than continuing
+## to run after an inconsistent state is triggered by a potentially
+## flawed processes. The reasons for the errors could be kernel
+## exploit attempts but may also simply be general software bugs.
+##
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#oops-limit
+sysctl kernel.oops_limit=1
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#warn-limit
+sysctl kernel.warn_limit=1
+
+## Makes the system immediately reboot on the occurrence of a single
+## kernel panic. This reduces the risk and impact of both denial of
+## service and cold boot attacks.
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#panic
+sysctl kernel.panic=-1

@@ -1,0 +1,18 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## NOTE: If enabling this unit, also enable ensure-shutdown.service, otherwise
+## this will do nothing.
+
+[Unit]
+Description=Forcibly shut down the system if normal shutdown gets stuck (alternate trigger unit)
+Documentation=https://github.com/Kicksecure/security-misc
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=true
+ExecStop=bash -c -- 'echo "d" > /run/emerg-shutdown-trigger'
+
+[Install]
+WantedBy=multi-user.target

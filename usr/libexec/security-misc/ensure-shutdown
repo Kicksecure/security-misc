@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+# See the file COPYING for copying conditions.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+source /usr/libexec/helper-scripts/strings.bsh
+
+## Make sure globs sort in a predictable, reproducible fashion
+export LC_ALL=C
+
+## Read emergency shutdown key configuration
+for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/security-misc/emerg-shutdown/*.conf; do
+  if [ -f "${config_file}" ]; then
+    bash -n "${config_file}"
+    source "${config_file}"
+  fi
+done
+if [ -z "${ENSURE_SHUTDOWN_TIMEOUT}" ] \
+  || ! is_whole_number "${ENSURE_SHUTDOWN_TIMEOUT}"; then
+  ENSURE_SHUTDOWN_TIMEOUT=30;
+fi
+
+/run/emerg-shutdown --monitor-fifo "--timeout=${ENSURE_SHUTDOWN_TIMEOUT}" &
+sleep 1
+disown
+exit 0

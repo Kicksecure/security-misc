@@ -15,3 +15,6 @@ security-misc: uses-dpkg-database-directly [usr/bin/remount-secure]
 
 ## Special target to make sure this runs as non-parallelized as possible to avoid race conditions.
 security-misc: systemd-service-file-refers-to-unusual-wantedby-target sysinit-post.target [usr/lib/systemd/system/remount-secure.service]
+
+## False-positive. Unit is commented out by default.
+security-misc: systemd-service-file-missing-install-key [usr/lib/systemd/system/block-shutdown.service]

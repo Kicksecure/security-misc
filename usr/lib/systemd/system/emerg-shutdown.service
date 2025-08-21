@@ -1,0 +1,20 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=Emergency shutdown when boot media is removed
+Documentation=https://github.com/Kicksecure/security-misc
+DefaultDependencies=no
+Before=sysinit.target
+Requires=systemd-udevd.service
+After=systemd-udevd.service
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+Type=notify
+ExecStart=/usr/libexec/security-misc/emerg-shutdown
+NotifyAccess=main
+
+[Install]
+WantedBy=sysinit.target

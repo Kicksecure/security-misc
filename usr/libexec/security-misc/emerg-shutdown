@@ -1,0 +1,79 @@
+#!/bin/bash
+
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+## Make sure globs sort in a predictable, reproducible fashion
+export LC_ALL=C
+
+in_dracut='false'
+if [ -f '/dracut-state.sh' ]; then
+  in_dracut='true'
+fi
+binary_prefix='/run'
+EMERG_SHUTDOWN_KEYS=''
+root_devices[0]=''
+
+## Taken from kloak/Makefile, see it for more information
+gcc_hardening_options=(
+  "-Wall" "-Wformat" "-Wformat=2" "-Wconversion"
+  "-Wimplicit-fallthrough" "-Werror=format-security" "-Werror=implicit"
+  "-Werror=int-conversion" "-Werror=incompatible-pointer-types"
+  "-Wtrampolines" "-Wbidi-chars=any" "-U_FORTIFY_SOURCE" "-D_FORTIFY_SOURCE=3"
+  "-fstack-clash-protection" "-fstack-protector-strong"
+  "-fno-delete-null-pointer-checks" "-fno-strict-overflow"
+  "-fno-strict-aliasing" "-fsanitize=undefined" "-fcf-protection=full"
+  "-Wl,-z,nodlopen" "-Wl,-z,noexecstack" "-Wl,-z,relro" "-Wl,-z,now"
+  "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
+)
+
+## Read emergency shutdown key configuration
+for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/security-misc/emerg-shutdown/*.conf; do
+  if [ -f "${config_file}" ]; then
+    bash -n "${config_file}"
+    source "${config_file}"
+  fi
+done
+
+if [ "${in_dracut}" = 'true' ]; then
+  binary_prefix=''
+  modprobe evdev || {
+    printf '%s\n' 'Failed to load evdev driver!'
+    exit 1
+  }
+  ## modules may not work immediately after loaded, give them time to
+  ## initialize
+  sleep 0.1
+else
+  ## Find the devices that make up the root device
+  readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-for-mountpoint '/') || true;
+
+  ## Build the actual emerg-shutdown executable
+  if [ ! -f '/run/emerg-shutdown' ]; then
+    gcc \
+      -o \
+      /run/emerg-shutdown \
+      -static \
+      "${gcc_hardening_options[@]}" \
+      /usr/src/security-misc/emerg-shutdown.c \
+      || {
+        printf "%s\n" 'Could not compile force-shutdown executable!'
+        exit 1
+      }
+  fi
+
+  ## memlockd daemonizes itself, so no need to background it.
+  memlockd -c /usr/share/security-misc/security-misc-memlockd.cfg || true
+fi
+
+systemd-notify --ready
+
+## Launch emerg-shutdown
+OLDIFS="$IFS"
+IFS=','
+"${binary_prefix}/emerg-shutdown" "--devices=${root_devices[*]}" "--keys=${EMERG_SHUTDOWN_KEYS}"
