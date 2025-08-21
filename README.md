@@ -48,7 +48,7 @@ configuration file and significant hardening is applied to a myriad of component
   and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
-  risk and impact of both denial of service and cold boot attacks.
+  risk and impact of denial of service attacks and both cold and warm boot attacks.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
