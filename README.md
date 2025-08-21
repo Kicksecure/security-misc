@@ -52,8 +52,7 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
-- Disable asynchronous I/O (when using Linux kernel >= 6.6) as `io_uring` has been
-  the source of numerous kernel exploits.
+- Disable asynchronous I/O as `io_uring` has been the source of numerous kernel exploits.
 
 #### User space
 
@@ -221,12 +220,10 @@ Kernel space:
 
 - Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
 
-- Optional - Use kCFI as the default CFI implementation (when using Linux kernel >= 6.2)
-  since it may be slightly more resilient to attacks that are able to write
-  arbitrary executables in memory.
+- Use kCFI as the default CFI implementation as it is more resilient to attacks that are
+  able to write arbitrary executables into memory omitting the necessary hash validation.
 
-- Optional - Disable support for all x86 processes and syscalls (when using Linux kernel >= 6.7)
-  to reduce attack surface.
+- Disable support for all 32-bit x86 processes and syscalls to reduce attack surface.
 
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
@@ -728,20 +725,14 @@ See:
 - Deactivates thumbnails in Thunar.
   - Rationale: lower attack surface when using the file manager
   - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
-- Thunderbird is hardened with the following options:
-  - Displays domain names in punycode to prevent IDN homograph attacks (a
-    form of phishing).
-  - Strips email client information from sent email headers.
-  - Strips user time information from sent email headers by replacing the
-    originating time zone with UTC and rounding the timestamp to the nearest
-    minute.
-  - Disables scripting when viewing PDF files.
-  - Disables implicit outgoing connections.
-  - Disables all and any kind of telemetry.
 - Security and privacy enhancements for gnupg's config file
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
   - https://github.com/ioerror/torbirdy/pull/11
+- Hardens SSH client
+  `/etc/ssh/ssh_config.d/30_security-misc.conf`
+- Hardens SSH server
+  `/etc/ssh/sshd_config.d/30_security-misc.conf`
 
 ### Project scope of application-specific hardening
 

@@ -18,7 +18,11 @@ disable proc-hidepid.service
 ## https://github.com/Kicksecure/security-misc/issues/159
 disable harden-module-loading.service
 
+## TODO: polish, test
 ## Disable due to timing difficulties. See:
 ## https://github.com/systemd/systemd/issues/38261#issuecomment-3134580852
 disable ensure-shutdown.service
 disable ensure-shutdown-trigger.service
+
+## TODO: Disabled due to bug: breaks ISO Live Mode Calamares installer
+disable emerg-shutdown.service

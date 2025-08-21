@@ -1,6 +1,9 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## This file should not be installed on the host system, it is intended for
+## inclusion in a dracut initramfs only.
+
 [Unit]
 Description=Emergency shutdown when boot media is removed
 Documentation=https://github.com/Kicksecure/security-misc
@@ -8,8 +11,6 @@ DefaultDependencies=no
 Before=sysinit.target
 Requires=systemd-udevd.service
 After=systemd-udevd.service
-Requires=local-fs.target
-After=local-fs.target
 
 [Service]
 Type=notify
