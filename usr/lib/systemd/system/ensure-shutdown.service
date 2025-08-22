@@ -13,6 +13,7 @@ Requires=systemd-udevd.service
 After=systemd-udevd.service
 Wants=emerg-shutdown.service
 After=emerg-shutdown.service
+ConditionPathExists=!/usr/share/qubes/marker-vm
 
 [Service]
 Type=oneshot

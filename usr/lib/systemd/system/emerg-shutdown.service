@@ -10,6 +10,7 @@ Requires=systemd-udevd.service
 After=systemd-udevd.service
 Requires=local-fs.target
 After=local-fs.target
+ConditionPathExists=!/usr/share/qubes/marker-vm
 
 [Service]
 Type=notify
