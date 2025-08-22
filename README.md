@@ -48,7 +48,7 @@ configuration file and significant hardening is applied to a myriad of component
   and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
-  risk and impact of both denial of service and cold boot attacks.
+  risk and impact of denial of service attacks and both cold and warm boot attacks.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
@@ -725,20 +725,14 @@ See:
 - Deactivates thumbnails in Thunar.
   - Rationale: lower attack surface when using the file manager
   - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
-- Thunderbird is hardened with the following options:
-  - Displays domain names in punycode to prevent IDN homograph attacks (a
-    form of phishing).
-  - Strips email client information from sent email headers.
-  - Strips user time information from sent email headers by replacing the
-    originating time zone with UTC and rounding the timestamp to the nearest
-    minute.
-  - Disables scripting when viewing PDF files.
-  - Disables implicit outgoing connections.
-  - Disables all and any kind of telemetry.
 - Security and privacy enhancements for gnupg's config file
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
   - https://github.com/ioerror/torbirdy/pull/11
+- Hardens SSH client
+  `/etc/ssh/ssh_config.d/30_security-misc.conf`
+- Hardens SSH server
+  `/etc/ssh/sshd_config.d/30_security-misc.conf`
 
 ### Project scope of application-specific hardening
 

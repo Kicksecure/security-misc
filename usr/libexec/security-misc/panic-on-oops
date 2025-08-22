@@ -17,10 +17,14 @@ fi
 ## to run after an inconsistent state is triggered by a potentially
 ## flawed processes. The reasons for the errors could be kernel
 ## exploit attempts but may also simply be general software bugs.
+##
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#oops-limit
 sysctl kernel.oops_limit=1
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#warn-limit
 sysctl kernel.warn_limit=1
 
 ## Makes the system immediately reboot on the occurrence of a single
-## kernel panic. This reduces the risk and impact of both denial of
-## service and cold boot attacks.
+## kernel panic. This reduces the risk and impact of denial of
+## service attacks and both cold and warm boot attacks.
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html#panic
 sysctl kernel.panic=-1
