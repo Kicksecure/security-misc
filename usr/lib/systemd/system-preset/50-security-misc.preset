@@ -26,3 +26,7 @@ disable ensure-shutdown-trigger.service
 
 ## TODO: Disabled due to bug: breaks ISO Live Mode Calamares installer
 disable emerg-shutdown.service
+
+## memlockd is needed by emerg-shutdown, but the service is not, the user can
+## enable this manually if desired.
+disable memlockd.service
