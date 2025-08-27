@@ -92,7 +92,9 @@ case "$1" in
 
         ## Fix usbguard config permissions, this seemingly can't be done
         ## during the unpack stage
-        chmod 0600 /etc/usbguard/rules.d/30_security-misc.conf
+        if test -f /etc/usbguard/rules.d/30_security-misc.conf; then
+          chmod 0600 /etc/usbguard/rules.d/30_security-misc.conf || true
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
