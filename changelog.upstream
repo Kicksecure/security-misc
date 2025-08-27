@@ -1,3 +1,60 @@
+commit 28d695fd2ddbf91b43dcbf8087c3a852f5ab86a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 27 04:29:48 2025 -0400
+
+    fix
+
+commit 0a61107b5adf053db71cad63c40b1c8362e9162b
+Merge: ef458ce 94ebb5c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 27 04:28:25 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 94ebb5c84ca278a840e2158a5d4207fbfed90a22
+Merge: 893faa9 ef458ce
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Aug 26 19:20:41 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit ef458ce0d338009387999789259a3e644861b9d3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 26 09:16:15 2025 +0000
+
+    bumped changelog version
+
+commit 893faa98223cee2f6c90f0224c94724e32f6e014
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 22 19:48:47 2025 -0500
+
+    Remove initramfs-tools support
+
+commit cd44a7e1369cd798b06595fdb118e0c7bea52194
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 22 16:00:25 2025 -0500
+
+    Disable memlockd service by default, fix systemd path
+
+commit 28f44d2e1d54da990cf203d2965431bc12a5d008
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 22 15:50:28 2025 -0500
+
+    Disable emerg-shutdown and ensure-shutdown on Qubes OS
+
+commit 53e930b4cc30a8857348758ab65d1a5687ed94a1
+Merge: df8a323 5898a64
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 21 20:09:48 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit df8a323d03747858b55d905465c1f9415bbb8022
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 21 18:39:28 2025 -0500
+
+    Fix XDG handling, replace Xfce with LXQt where appropriate, make USBGuard configuration work
+
 commit 5898a6457a99ab0036b3e62ded09eeb9cdd9522a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:45:04 2025 -0400
