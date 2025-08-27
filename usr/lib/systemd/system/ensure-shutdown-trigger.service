@@ -7,6 +7,7 @@
 [Unit]
 Description=Forcibly shut down the system if normal shutdown gets stuck (alternate trigger unit)
 Documentation=https://github.com/Kicksecure/security-misc
+ConditionPathExists=!/usr/share/qubes/marker-vm
 
 [Service]
 Type=oneshot
