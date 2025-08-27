@@ -1,3 +1,314 @@
+commit 5898a6457a99ab0036b3e62ded09eeb9cdd9522a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:45:04 2025 -0400
+
+    typo
+
+commit f713dceff42c6c79a5718ba69358d2fe66ad3245
+Merge: f6f4fd7 8cdbbf8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:44:35 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 8cdbbf8292c354224e2d22fad9087d9f542687e2
+Merge: 2baf5cf e48897c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:43:07 2025 -0400
+
+    Merge pull request #313 from raja-grewal/panic_limits
+    
+    Upgrade `sysctl` settings and docs on kernel panics
+
+commit 2baf5cfc0bf061b2cc772dfceadaef84a36d9c1e
+Merge: f6f4fd7 45fcd16
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:42:28 2025 -0400
+
+    Merge pull request #314 from raja-grewal/trixie_docs
+    
+    Update documentation
+
+commit f6f4fd77e5bd3a7a7d00c33543fc4ce5a685a3d1
+Merge: 81d437f 7f21120
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:40:39 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 7f211209f7942a332e0568a60eba8a78f3a8a15b
+Merge: 81d437f 19b7e4b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:40:11 2025 -0400
+
+    Merge pull request #311 from nrz-21/master
+    
+    Set soft limit for core dumps to 0
+
+commit 19b7e4b4d0b625b8505de122e790a14de63fafdf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:39:56 2025 -0400
+
+    newline
+
+commit 3229dd8967d15edc6066ab6148df4738774f36b0
+Merge: 8dcd349 81d437f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 21 06:39:13 2025 -0400
+
+    Merge branch 'master' into master
+
+commit 81d437fe3efca99b0d1a29b2a1a3e486e91716c1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 21:40:39 2025 -0400
+
+    fix
+
+commit e48897cc44eef10779a28bdadc7e7bbfe007064a
+Merge: add0549 c2d5bf3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Aug 21 10:27:44 2025 +1000
+
+    Merge branch 'master' into panic_limits
+
+commit add054933b69e97e0f856d7cf04d88290d4b1b7c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Aug 21 00:24:28 2025 +0000
+
+    Update docs on instant reboot when kernel panic
+
+commit c2d5bf38f539703c4858818f29d73b21d5776c80
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 10:44:10 2025 -0400
+
+    comment
+
+commit 812f05f847de0f1cb5586ccfd4c5b684d507dd46
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 10:11:49 2025 -0400
+
+    comments
+
+commit 2b876c74a3ed9ec91954c8d4f776dc803d212fd0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 10:09:10 2025 -0400
+
+    readme
+
+commit 0e4664daa0267fe62888a9559db2b14d5e1ae8ea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 10:07:58 2025 -0400
+
+    cleanup
+
+commit 31fd316e72a87323f83e7e63d6a3440bf77cb350
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 09:48:20 2025 -0400
+
+    comments
+
+commit 5d67277c9f27a54d373e683a1d4e1ddf8c16ac25
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 09:46:43 2025 -0400
+
+    comments
+
+commit f77c71dd15b38db6f1c33602dd0c5623e501c3eb
+Merge: e15bdd2 37c0bc0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 09:44:37 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit e15bdd2de513fbdcdb3b0fed4c1c1c5f74652291
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 06:57:29 2025 -0400
+
+    bumped Standards-Version
+
+commit 312586307b2999d46e4673079fb1538f76ff329e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 20 06:25:35 2025 -0400
+
+    readme
+
+commit a4710693783b8817a6a5c9f17b4268b654c4c0c9
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Aug 19 11:03:05 2025 +1000
+
+    Remove link
+
+commit c0ad57779342c138ade0d6ddff0898f75411157a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Aug 19 11:01:06 2025 +1000
+
+    Update docs on oops boot parameter
+
+commit 45fcd163d1422b43ec033166c889a237301ad83d
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Aug 18 20:23:50 2025 +1000
+
+    Add reference on conntrack helpers
+
+commit 37c0bc0c5ddfb901d016f8a4edae16840a58f1fa
+Merge: b5a36e0 f175d19
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 17 14:02:01 2025 -0500
+
+    Merge remote-tracking branch 'raja/block_32bit' into arraybolt3/trixie
+
+commit b5a36e02f1be901da1695056877471398deedf1e
+Merge: 210aa97 6df3e3c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 17 13:52:01 2025 -0500
+
+    Merge remote-tracking branch 'raja/panic_limits' into arraybolt3/trixie
+
+commit 210aa97650b760acb207f29b1e99e1bb2e65e168
+Merge: 7a8dfa5 3de9cd5
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 17 13:50:25 2025 -0500
+
+    Merge remote-tracking branch 'raja/trixie_docs' into arraybolt3/trixie
+
+commit f175d1961e4e028539f5a90c0db1fcd1f760cdba
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Aug 17 07:08:08 2025 +0000
+
+    Enable `ia32_emulation=0`
+
+commit 3de9cd5646ad45fe745711b83f79f4d469fc8473
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Aug 17 07:06:55 2025 +0000
+
+    Remove whitespace
+
+commit e06b78a52225db02415aeafb833160c9ea0280d9
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Aug 17 07:05:32 2025 +0000
+
+    Temporarily revert IA32 doc updates
+
+commit 6df3e3cde8053d6b2771f510457da774336546bf
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Aug 17 06:32:11 2025 +0000
+
+    Update kernel panic service description
+
+commit 247015bcc6e924e24874d16ed7ad78165ace58a3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Aug 17 06:27:44 2025 +0000
+
+    Set `sysctl kernel.panic=-1`
+
+commit 7a8dfa528c629aa0023943dcd34025ef56a1b1e1
+Merge: cba1687 1f75426
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Aug 16 21:10:19 2025 -0500
+
+    Merge remote-tracking branch 'raja/trixie_docs' into arraybolt3/trixie
+
+commit 8dcd3493f851f78933f9dbf6d4e9f04f741bed5a
+Author: nexus$ <nexus-x@tuta.io>
+Date:   Sat Aug 16 09:39:42 2025 +0000
+
+    Update 30_security-misc.conf
+
+commit f1de0da69b46f91ea7fd34db601393d23599b3bb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Aug 16 04:01:12 2025 +0000
+
+    Clarify description on panics on oopses and warns
+
+commit c33f7d04e2cef477b675fbf6c2a91583ba3bf808
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Aug 16 03:32:48 2025 +0000
+
+    Remove duplicate comment
+
+commit 1f75426f079d6e0aecd8fac22088ad36a7c16398
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Aug 16 02:20:00 2025 +0000
+
+    Clarify docs for disabling 32-bit x86 support
+
+commit cba16879eff9d3d998c127e41c38d2067cdf04cc
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 17:16:42 2025 -0500
+
+    Polish USBGuard configuration
+
+commit b4086b8e779366127c22eb0a43d1b77fe534ef0e
+Merge: 66ec5bd 4cae74d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:57:34 2025 -0500
+
+    Merge remote-tracking branch 'monsieuremre/patch-3' into arraybolt3/trixie
+
+commit 66ec5bda5872bbf51eb480836d3ffb3bb2f934cf
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:51:07 2025 -0500
+
+    Remove obsolete Thunderbird configuration hardening
+
+commit 94668b2e93c37a3879968f455575c631f9f8bcac
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:46:35 2025 -0500
+
+    Set hard and soft limits on core file size at the same time
+
+commit e2c65a2a6fcb246cb5925394f00ec2d8401c2dda
+Merge: 65afc31 28ce706
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:45:18 2025 -0500
+
+    Merge remote-tracking branch 'nrz/master' into arraybolt3/trixie
+
+commit 65afc31ba7f8c5ee6dc14627de82a122b4992d21
+Merge: a2a9e84 00c660d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:31:50 2025 -0500
+
+    Merge branch 'kcfi' into arraybolt3/trixie
+
+commit a2a9e8440b812b07546722f5842e3ddb16ee5bc2
+Merge: c33ea7b 4166d6d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Aug 15 16:06:35 2025 -0500
+
+    Merge branch 'trixie_docs' into arraybolt3/trixie
+
+commit 00c660d40dce06d979fc7b9dbf7a6e952a9e51cc
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Aug 15 11:29:27 2025 +1000
+
+    Typo
+
+commit fce86dccb67db0a37601899bf3115bd9f4fa714a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Aug 13 10:44:40 2025 +1000
+
+    Typo
+
+commit c33ea7be6d2a82462042cf482a32bf259bf51bd5
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 10 15:23:48 2025 -0500
+
+    Move security-misc/apt-get-update* to helper-scripts
+
+commit 51d5ba29df44d021cfeab1dea6f00919d246388e
+Merge: 7aa3824 c7bdca3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Aug 10 14:09:41 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit c7bdca32c05ddc70b785a28ebe5be13614407dc8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 10 06:34:30 2025 +0000
+
+    bumped changelog version
+
 commit 3629f2c3a59d44e265f0c66389435de1b2414998
 Merge: 5dc251c c59a3b2
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -5,11 +316,25 @@ Date:   Sun Aug 10 02:25:48 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
 
+commit 7aa38245dedab28cce4c96fd9f533a60c9d05ac4
+Merge: 4930703 c59a3b2
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Aug 9 23:31:55 2025 -0500
+
+    Merge branch 'arraybolt3/emerg-shutdown' into arraybolt3/trixie
+
 commit c59a3b233bd8893d466c020a2e2695ab545c6e60
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sat Aug 9 21:55:03 2025 -0500
 
     Fix unexpected shutdowns when booting Kicksecure from optical media
+
+commit 4930703b8c90766304122e6e74ccd29e87800714
+Merge: 2ada07c 5dc251c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Aug 9 21:30:45 2025 -0500
+
+    Merge branch 'master' into arraybolt3/trixie
 
 commit 5dc251c5da724092d264481740e4f6ed347aa0a7
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -25,6 +350,12 @@ Date:   Sat Aug 9 05:40:11 2025 -0400
     
     Disabled due to bug: breaks ISO Live Mode Calamares installer
 
+commit 2ada07cf66727ea66283c55c0ba078489b3db94e
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 7 22:23:03 2025 -0500
+
+    Add SSH hardening config
+
 commit 0cc0a8310020afc10de6512095336e55559a84d9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 7 07:08:19 2025 +0000
@@ -37,6 +368,13 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 7 03:08:02 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 5f2425ba6f747bf65b5beb4336d1e7bf6b8cdf71
+Merge: 86f4406 3a77abe
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Aug 6 20:21:01 2025 -0500
+
+    Merge branch 'arraybolt3/emerg-shutdown' into arraybolt3/trixie
 
 commit 3a77abe5c9807caec530e69c41d5cf803b625e70
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -80,6 +418,36 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 6 04:26:37 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 4166d6d1e60d564be4c3fb2ad530e7a180638e6a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Aug 6 15:53:49 2025 +1000
+
+    Update docs on recovery restrictions
+
+commit 86f44063eb753fe1bbdd754ce104670d26aed6ca
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Aug 5 22:58:06 2025 -0500
+
+    Port to Trixie.
+
+commit 498551536c71f1c1ac33f3c1992e18c9277e6618
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Aug 6 03:12:06 2025 +0000
+
+    Update docs
+
+commit 45d20dd972e6501237d35d1605c81d4e3fde43b1
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Aug 6 02:35:15 2025 +0000
+
+    Upgrade sysctls and docs on kernel panics
+
+commit 1f7525722e7027b5c3379460eee5f62669631dee
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Aug 6 01:48:47 2025 +0000
+
+    Enable `cfi=kcfi`
 
 commit 5a17e67c0a7678300f6342d5c90ded5494ebc838
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -136,6 +504,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 3 07:04:20 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
+
+commit 28ce70644147f637e91bd4941bcbc139d875e5e7
+Author: nexus$ <nexus-x@tuta.io>
+Date:   Fri Aug 1 15:03:26 2025 +0000
+
+    Set soft limit for core dumps to 0
 
 commit 1a60da71eddfcc6fb72a34596c770cd754146887
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -3699,6 +4073,12 @@ Date:   Sun Jul 21 06:36:22 2024 -0400
     
     https://github.com/Kicksecure/security-misc/issues/239
 
+commit 4cae74d610ad37066e8a334019cfa5c82f088a2e
+Author: monsieuremre <monsieuremre@posteo.com>
+Date:   Sun Jul 21 11:19:32 2024 +0200
+
+    Update 30_security-misc.conf
+
 commit 04fb00572f2e4c9bdfaaa0f6da8007999daab641
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 20 17:02:05 2024 +0000
@@ -5771,6 +6151,18 @@ Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Sat Nov 18 10:02:16 2023 +0000
 
     20_security-misc
+
+commit 7c8b9b294678056d684fd3dc22f012d75da40426
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Nov 17 17:14:01 2023 +0000
+
+    30_security-misc.conf
+
+commit 7d31e17fc5a8fe3055568c1a0f541dea064f30a0
+Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
+Date:   Fri Nov 17 17:02:41 2023 +0000
+
+    usbguard
 
 commit 4e4df5dd7c6b5cf1deb179a2c3f8fe7a8844884d
 Author: Patrick Schleizer <adrelanos@whonix.org>
