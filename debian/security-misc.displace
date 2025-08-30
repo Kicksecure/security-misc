@@ -3,3 +3,4 @@
 
 /etc/securetty.security-misc
 /etc/security/faillock.conf.security-misc
+/etc/usbguard/usbguard-daemon.conf.security-misc

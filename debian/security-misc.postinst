@@ -95,6 +95,9 @@ case "$1" in
         if test -f /etc/usbguard/rules.d/30_security-misc.conf; then
           chmod 0600 /etc/usbguard/rules.d/30_security-misc.conf || true
         fi
+        if test -f /etc/usbguard/usbguard-daemon.conf.security-misc; then
+          chmod 0600 /etc/usbguard/usbguard-daemon.conf.security-misc || true
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
