@@ -1,3 +1,34 @@
+commit ac6bc65e3c77f4bcbada69525e8cb1d4c273da8a
+Merge: 78b66ba 2319bd9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Aug 30 08:01:26 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 2319bd91648f30b85b49aed2ce7ee7864582495d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 28 17:34:41 2025 -0500
+
+    Allow USB devices that are connected at USBGuard start time
+
+commit 85fd8ea52b6614cb416514e1c541c46da708f502
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 28 16:42:16 2025 -0500
+
+    Enable USB video and audio devices, reject USB RNDIS devices
+
+commit b95598b6f7536da08026af37ab3c9fb2ba2f2bb3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Aug 28 16:18:14 2025 -0500
+
+    Disable RNDIS due to unfixable security issues
+
+commit 78b66ba159d41dc0559a09c038002c702aaa43c2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 27 19:31:06 2025 +0000
+
+    bumped changelog version
+
 commit 28d695fd2ddbf91b43dcbf8087c3a852f5ab86a9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 27 04:29:48 2025 -0400
