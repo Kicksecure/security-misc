@@ -92,12 +92,16 @@ case "$1" in
 
         ## Fix usbguard config permissions, this seemingly can't be done
         ## during the unpack stage
-        if test -f /etc/usbguard/rules.d/30_security-misc.conf; then
-          chmod 0600 /etc/usbguard/rules.d/30_security-misc.conf || true
-        fi
-        if test -f /etc/usbguard/usbguard-daemon.conf.security-misc; then
-          chmod 0600 /etc/usbguard/usbguard-daemon.conf.security-misc || true
-        fi
+        usbguard_config_file_list=(
+          '/etc/usbguard/rules.d/30_security-misc.conf'
+          '/etc/usbguard/usbguard-daemon.conf.security-misc'
+          '/etc/usbguard/IPCAccessControl.d/:sudo'
+        )
+        for usbguard_config_file in "${usbguard_config_file_list[@]}"; do
+          if test -f "${usbguard_config_file}"; then
+            chmod 0600 "${usbguard_config_file}"
+          fi
+        done
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
