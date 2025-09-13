@@ -1,3 +1,22 @@
+commit 95eeb579a6af3079b79a954351ab69646ec8ec09
+Merge: d262db2 90b6486
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 13 04:04:10 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 90b6486ffe95bf50bbf1fa60964c80853917c3c8
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Sep 12 18:08:00 2025 -0500
+
+    Allow users in the sudo group to use usbguard-notifier
+
+commit d262db2e6cc88cd58d73f5b53481ac43fa1ebee7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 2 15:25:49 2025 +0000
+
+    bumped changelog version
+
 commit 75306a3f96038038958aa7e7adee3952e692ad91
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Aug 30 14:19:31 2025 +0000
