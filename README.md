@@ -178,6 +178,8 @@ CPU mitigations:
 
 - Indirect Target Selection (ITS)
 
+- VMScape
+
 Boot parameters relating to kernel hardening, DMA mitigations, and entropy
 generation are outlined in the `/etc/default/grub.d/40_kernel_hardening.cfg`
 configuration file.
