@@ -814,6 +814,41 @@ default.
 
 https://github.com/Kicksecure/security-misc/pull/167
 
+## Package split
+
+The `security-misc` source code repository builds three different software packages:
+
+* `security-misc-shared`
+* `security-misc-desktop`
+* `security-misc-server`
+
+The guiding principle has been: if there are no adverse effects, or if it is unclear whether a file belongs in the `desktop` or `server` package, then it will be placed in the `shared` package.
+
+The hash symbol ("`#`") is used as a separator character.
+
+Some clear examples where files belong only in `security-misc-desktop`:
+
+* `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy#security-misc-desktop.conf`
+* `/usr/lib/NetworkManager/conf.d/80_randomize-mac#security-misc-desktop.conf`
+* `./usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf#security-misc-desktop`
+
+This is because enabling IPv6 privacy extensions or MAC randomization on a server will not increase privacy but instead carries a high risk of breaking connectivity.
+
+A less clear example is `/etc/bluetooth/30_security-misc.conf#security-misc-desktop`. Also refer to the above chapter "Bluetooth Hardening". A server usually doesn't have Bluetooth, so on a server it may instead be useful to fully disable Bluetooth.
+
+Some clear examples where files belong only in `security-misc-shared`:
+
+`/etc/profile.d/30_security-misc.sh#security-misc-shared` indeed belongs in `security-misc-shared` and not `security-misc-desktop`. For the reason, see below.
+
+Other considerations have been:
+
+* Just because it's a server, it does not follow that there is no GUI (graphical user interface) desktop environment.
+* Just because it's a desktop computer, it doesn't mean it's a GUI and not a CLI (command line interface).
+* Therefore, the split is between `security-misc-desktop` and `security-misc-server`.
+* Therefore, the split is not between `security-misc-gui` and `security-misc-cli`.
+
+\[1\] https://github.com/Kicksecure/security-misc/issues/187
+
 ## Related
 
 -   Linux Kernel Runtime Guard (LKRG)
