@@ -16,7 +16,7 @@ Vcs-Git: https://github.com/Kicksecure/security-misc.git
 Standards-Version: 4.7.2
 Rules-Requires-Root: no
 
-Package: security-misc
+Package: security-misc-shared
 Architecture: all
 Depends: adduser,
          apparmor-profile-dist,
@@ -43,3 +43,12 @@ Description: Enhances Miscellaneous Security Settings
  .
  Happening primarily in Whonix forums.
  https://forums.whonix.org/t/kernel-hardening/7296
+
+Package: security-misc-desktop
+Architecture: all
+Depends: security-misc-shared,
+         ${misc:Depends}
+Description: Security improvements for desktops
+ For desktops.
+ .
+ (Or servers running a desktop.)
