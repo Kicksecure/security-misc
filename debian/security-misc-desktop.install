@@ -3,7 +3,7 @@
 
 ## This file was generated using 'genmkfile debinstfile'.
 
-/etc/bluetooth/30_security-misc.conf
-/usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf
-/usr/lib/NetworkManager/conf.d/80_randomize-mac.conf
-/usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf
+etc/bluetooth/30_security-misc.conf#security-misc-desktop /etc/bluetooth/30_security-misc.conf
+usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf#security-misc-desktop /usr/lib/NetworkManager/conf.d/80_ipv6-privacy.conf
+usr/lib/NetworkManager/conf.d/80_randomize-mac.conf#security-misc-desktop /usr/lib/NetworkManager/conf.d/80_randomize-mac.conf
+usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf#security-misc-desktop /usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf
