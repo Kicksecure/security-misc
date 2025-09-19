@@ -1,0 +1,8 @@
+#!/usr/bin/dh-exec
+
+## Copyright (C) 2020 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## This file was generated using 'genmkfile debinstfile'.
+
+usr/libexec/security-misc/placeholder#security-misc-server => /usr/libexec/security-misc/placeholder

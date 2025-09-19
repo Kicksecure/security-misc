@@ -1,0 +1,9 @@
+#!/bin/bash
+
+## Copyright (C) 2019 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -x
+set -e
+echo "$0: This is just a placeholder until security-misc-server gets implemented."
+exit 0
