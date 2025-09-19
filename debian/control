@@ -52,4 +52,13 @@ Depends: security-misc-shared,
 Description: Security improvements for desktops
  For desktops.
  .
- (Or servers running a desktop.)
+ (Or servers running a desktop?)
+
+Package: security-misc-server
+Architecture: all
+Depends: security-misc-shared,
+         ${misc:Depends}
+Description: Security improvements for servers
+ For servers.
+ .
+ (Or desktops running a server?)
