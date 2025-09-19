@@ -1,3 +1,156 @@
+commit 67b1cb319ddcb94232ee385d5e67a9cec33b2567
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 12:05:29 2025 -0400
+
+    `Replaces: security-misc`
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 4bd08f8c818cc862ffb45cd47b7346f7cf89dd4f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 12:05:03 2025 -0400
+
+    wrap-and-sort
+
+commit 068750543aef8a74e7168cc58c667c940560a92a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 11:59:22 2025 -0400
+
+    update link
+
+commit ca90feb8d5cfa91e7ba3e13dd66d7df0c8343c58
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 11:54:04 2025 -0400
+
+    security-misc-server placeholder
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 4eb9ec15e11548bd472977c411fecd2bd1c527c0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 11:51:14 2025 -0400
+
+    packaging
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit c2594a022e86c79a44e2023e518da3f1294346aa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 11:29:55 2025 -0400
+
+    rename
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 41ba668d23efb5f052394cfd9ab494e595058c17
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 11:23:10 2025 -0400
+
+    rename
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 1b194f9fd6de847b3450ea5b9b3cd51a3fbfb81f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 10:59:23 2025 -0400
+
+    adjust lintian overrides file
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 80562557ef5ac360aea2ea7c7a5c6faf76bdb2f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 10:53:25 2025 -0400
+
+    make install files executable
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit c99ea95410ef8fd8fd5d6134a914c344c8eea174
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 10:49:17 2025 -0400
+
+    genmkfile debinstfile
+
+commit 13e926207c606b0d009613fd41759d9f683cfea4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 10:30:42 2025 -0400
+
+    packaging
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 55a8ec685d87a1327ac73d942370409b38e9ad3a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 18 10:53:21 2025 -0400
+
+    packaging split
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit b4a7d84bf507600cd181081fa85aaab26a3c7c59
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 18 10:53:10 2025 -0400
+
+    genmkfile debinstfile
+
+commit 43ed739479f0e764bf4ecc485094a926a1a4634e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 18 10:38:50 2025 -0400
+
+    genmkfile debinstfile
+
+commit ea878c351f73185411defa7e3f7980e85e8e91ae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 18 10:27:48 2025 -0400
+
+    genmkfile debinstfile
+
+commit 06c045f70ffc9b3c6a195dc900f3a6a16a39c4b1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Sep 18 10:00:33 2025 -0400
+
+    genmkfile debdistfile
+
+commit f70550d0150793874f8bf30e8aecb090b60fa8e5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 17 14:49:28 2025 -0400
+
+    Split the `security-misc` into `security-misc-shared`, `security-misc-desktop` and `security-misc-server`: rename files
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 2de10d5b7b7589a6da03a6554b231ab55f7cc83c
+Merge: ad367c0 24424bc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 17 13:32:44 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 24424bcbc072bbb7ad9c00371a3a2adc27432532
+Merge: 2d3b4ee 21c605e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 17 13:31:27 2025 -0400
+
+    Merge pull request #318 from raja-grewal/vmscape
+    
+    Enable `vmscape=force`
+
+commit 2d3b4ee12425182c88f1bf7ac632f7672b25e00c
+Merge: ad367c0 7b32e93
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 17 13:27:13 2025 -0400
+
+    Merge pull request #317 from raja-grewal/srso_docs
+    
+    Update SRSO docs
+
+commit ad367c0bbc230357098d246f0fa88d19dad412a1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 13 08:33:02 2025 +0000
+
+    bumped changelog version
+
 commit 95eeb579a6af3079b79a954351ab69646ec8ec09
 Merge: d262db2 90b6486
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -5,11 +158,23 @@ Date:   Sat Sep 13 04:04:10 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
 
+commit 21c605e27efaf10b3fd182e102c49135843ad21f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Sep 13 03:41:59 2025 +0000
+
+    Enable `vmscape=force`
+
 commit 90b6486ffe95bf50bbf1fa60964c80853917c3c8
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Sep 12 18:08:00 2025 -0500
 
     Allow users in the sudo group to use usbguard-notifier
+
+commit 7b32e9339e1da769df38ff9afb849a975b1c1668
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Sep 12 23:10:34 2025 +1000
+
+    Update SRSO docs
 
 commit d262db2e6cc88cd58d73f5b53481ac43fa1ebee7
 Author: Patrick Schleizer <adrelanos@whonix.org>
