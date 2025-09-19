@@ -17,6 +17,17 @@ Vcs-Git: https://github.com/Kicksecure/security-misc.git
 Standards-Version: 4.7.2
 Rules-Requires-Root: no
 
+## 'Package: security-misc-shared' Comments
+##
+## 'Conflicts: security-misc' is needed.
+## > dpkg-divert: error: 'diversion of /etc/securetty to /etc/securetty.security-misc-orig by security-misc-shared' clashes with 'diversion of /etc/securetty to /etc/securetty.security-misc-orig by security-misc'
+##
+## 'Provides: security-misc' is useful.
+## sudo dpkg -i /home/user/derivative-binary/genmkfile-packages-result/security-misc-shared_47.7-1_all.deb
+## > dpkg: considering removing security-misc in favour of security-misc-shared ...
+## > dpkg: no, cannot proceed with removal of security-misc (--auto-deconfigure will help):
+## > systemcheck depends on security-misc
+## >  security-misc is to be removed
 Package: security-misc-shared
 Architecture: all
 Depends: adduser,
@@ -38,6 +49,8 @@ Replaces: anon-gpg-tweaks,
           security-misc,
           swappiness-lowest,
           tcp-timestamps-disable
+Conflicts: security-misc
+Provides: security-misc
 Description: Enhances Miscellaneous Security Settings
  https://github.com/Kicksecure/security-misc/blob/master/README.md
  .
