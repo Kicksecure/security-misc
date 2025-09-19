@@ -1,3 +1,23 @@
+commit 9acdfc741b1b9da243d22ec6fed84f241c446b79
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 14:42:35 2025 -0400
+
+    description
+
+commit 62ea7e50410cb354d13600a26de27eaa3af8e309
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 14:41:05 2025 -0400
+
+    `security-misc` -> `security-misc-shared` package migration
+    
+    https://github.com/Kicksecure/security-misc/issues/187
+
+commit 02d0ba49bb187f46dbc5969fa00d26f668446a71
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 18:10:09 2025 +0000
+
+    bumped changelog version
+
 commit 0c7bee33a79dcd4c96cf374203418c83e1f7ca51
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 14:01:16 2025 -0400
