@@ -8,6 +8,7 @@ Maintainer: Patrick Schleizer <adrelanos@kicksecure.com>
 Build-Depends: config-package-dev,
                debhelper (>= 13),
                debhelper-compat (= 13),
+               dh-exec,
                dh-apparmor,
                po-debconf
 Homepage: https://www.kicksecure.com/wiki/Security-misc
