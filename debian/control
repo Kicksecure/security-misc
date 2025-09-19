@@ -35,6 +35,7 @@ Depends: adduser,
          sudo,
          ${misc:Depends}
 Replaces: anon-gpg-tweaks,
+          security-misc,
           swappiness-lowest,
           tcp-timestamps-disable
 Description: Enhances Miscellaneous Security Settings
