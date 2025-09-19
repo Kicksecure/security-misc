@@ -5,11 +5,11 @@ Source: security-misc
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@kicksecure.com>
-Build-Depends: config-package-dev,
-               debhelper (>= 13),
+Build-Depends: debhelper (>= 13),
                debhelper-compat (= 13),
-               dh-exec,
                dh-apparmor,
+               dh-exec,
+               config-package-dev,
                po-debconf
 Homepage: https://www.kicksecure.com/wiki/Security-misc
 Vcs-Browser: https://github.com/Kicksecure/security-misc
@@ -34,7 +34,9 @@ Depends: adduser,
          secure-delete,
          sudo,
          ${misc:Depends}
-Replaces: anon-gpg-tweaks, swappiness-lowest, tcp-timestamps-disable
+Replaces: anon-gpg-tweaks,
+          swappiness-lowest,
+          tcp-timestamps-disable
 Description: Enhances Miscellaneous Security Settings
  https://github.com/Kicksecure/security-misc/blob/master/README.md
  .
@@ -47,8 +49,7 @@ Description: Enhances Miscellaneous Security Settings
 
 Package: security-misc-desktop
 Architecture: all
-Depends: security-misc-shared,
-         ${misc:Depends}
+Depends: security-misc-shared, ${misc:Depends}
 Description: Security improvements for desktops
  For desktops.
  .
@@ -56,8 +57,7 @@ Description: Security improvements for desktops
 
 Package: security-misc-server
 Architecture: all
-Depends: security-misc-shared,
-         ${misc:Depends}
+Depends: security-misc-shared, ${misc:Depends}
 Description: Security improvements for servers
  For servers.
  .
