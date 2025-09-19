@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the security-misc package.
+# This file is distributed under the same license as the security-misc-shared package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: security-misc\n"
-"Report-Msgid-Bugs-To: security-misc@packages.debian.org\n"
+"Project-Id-Version: security-misc-shared\n"
+"Report-Msgid-Bugs-To: security-misc-shared@packages.debian.org\n"
 "POT-Creation-Date: 2025-01-14 09:31-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -19,13 +19,13 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../security-misc.templates:1001
+#: ../security-misc-shared.templates:1001
 msgid "Manual intervention may be required for permission-hardener update"
 msgstr ""
 
 #. Type: note
 #. Description
-#: ../security-misc.templates:1001
+#: ../security-misc-shared.templates:1001
 msgid ""
 "No need to panic. Nothing is broken. A rare condition has been encountered. "
 "permission-hardener is being updated to fix a minor bug that caused "

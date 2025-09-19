@@ -1,4 +1,4 @@
-Template: security-misc/alert-on-permission-hardener-v2-upgrade
+Template: security-misc-shared/alert-on-permission-hardener-v2-upgrade
 Type: note
 _Description: Manual intervention may be required for permission-hardener update
  No need to panic. Nothing is broken. A rare condition has been encountered.
