@@ -3,7 +3,8 @@
 
 ## Please use "/etc/permission-hardener.d/20_user.conf" or
 ## "/usr/local/etc/permission-hardener.d/20_user.conf" for your custom
-## configuration. When security-misc is updated, this file may be overwritten.
+## configuration. When security-misc-shared is updated, this file may be
+## overwritten.
 
 ## https://forums.whonix.org/t/disable-suid-binaries/7706/61
 ## Protect from 'chmod -x' (and SUID removal).

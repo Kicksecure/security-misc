@@ -3,7 +3,8 @@
 
 ## Please use "/etc/permission-hardener.d/20_user.conf" or
 ## "/usr/local/etc/permission-hardener.d/20_user.conf" for your custom
-## configuration. When security-misc is updated, this file may be overwritten.
+## configuration. When security-misc-shared is updated, this file may be
+## overwritten.
 
 ## Needed for D-Bus system activation to work.
 ## https://dbus.freedesktop.org/doc/system-activation.txt

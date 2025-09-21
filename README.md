@@ -449,9 +449,9 @@ See:
 ### Bluetooth Status: Enabled but Defaulted to Off
 
 - **Default Behavior**: Although Bluetooth capability is 'enabled' in the kernel,
-  security-misc deviates from the usual behavior by starting with Bluetooth
-  turned off at system start. This setting remains until the user explicitly opts
-  to activate Bluetooth.
+  security-misc-desktop deviates from the usual behavior by starting with
+  Bluetooth turned off at system start. This setting remains until the user
+  explicitly opts to activate Bluetooth.
 
 - **User Control**: Users have the freedom to easily switch Bluetooth on and off
   in the usual way, exercising their own discretion. This can be done via the
@@ -745,7 +745,7 @@ Before sending pull requests to harden arbitrary applications, please note the
 scope of security-misc is limited to default installed applications in
 Kicksecure and Whonix. This includes:
 
-- Thunderbird, VLC Media Player, KeePassXC
+- VLC Media Player, KeePassXC
 - Debian Specific System Components (APT, DPKG)
 - System Services (NetworkManager IPv6 privacy options, MAC address
   randomization)

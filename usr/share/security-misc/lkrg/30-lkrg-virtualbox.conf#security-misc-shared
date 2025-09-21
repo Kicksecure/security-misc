@@ -13,7 +13,7 @@
 ## /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf
 ## to:
 ## /etc/sysctl.d/30-lkrg-virtualbox.conf
-## by package security-misc, files:
+## by package security-misc-shared, files:
 ## /usr/share/security-misc/lkrg/lkrg-virtualbox
 ## /usr/lib/systemd/system/lkrg.service.d/40-virtualbox.conf
 

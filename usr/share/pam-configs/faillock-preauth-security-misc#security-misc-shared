@@ -1,4 +1,4 @@
-Name: lock accounts after 50 failed authentication attempts (preauth component) (by package security-misc)
+Name: lock accounts after 50 failed authentication attempts (preauth component) (by package security-misc-shared)
 Default: yes
 Priority: 1024
 Auth-Type: Primary

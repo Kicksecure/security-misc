@@ -351,7 +351,7 @@ vm.max_map_count=1048576
 
 ## Disable core dump files by preventing any pattern names.
 ## This setting may be overwritten by systemd and is not comprehensive.
-## Core dumps are also disabled in security-misc via other means.
+## Core dumps are also disabled in security-misc-shared via other means.
 ##
 ## https://wiki.archlinux.org/title/Core_dump#Disabling_automatic_core_dumps
 ##

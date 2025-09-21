@@ -1,4 +1,4 @@
-Name: Unix authentication with faillock (by package security-misc)
+Name: Unix authentication with faillock (by package security-misc-shared)
 Default: yes
 Priority: 384
 Auth-Type: Primary

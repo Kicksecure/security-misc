@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=Permission Hardener at Boot Time (opt-in in addition to security-misc package installation time hardening)
+Description=Permission Hardener at Boot Time (opt-in in addition to security-misc-shared package installation time hardening)
 Documentation=https://github.com/Kicksecure/security-misc
 
 DefaultDependencies=no

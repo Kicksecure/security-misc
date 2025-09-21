@@ -2,7 +2,7 @@
 ## See the file COPYING for copying conditions.
 
 [Unit]
-Description=sys-init.target by security-misc
+Description=sys-init.target by security-misc-shared
 
 After=sysinit.target
 Before=basic.target

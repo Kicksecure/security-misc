@@ -5,6 +5,6 @@
 
 ## Alerts user that a kernel module failed to load due to it being explicitly disabled by default.
 
-echo "$0: ALERT: This FireWire (IEEE 1394) kernel module is disabled by package security-misc by default. See the configuration file /etc/modprobe.d/30_security-misc_disable.conf for details. | args: $@" >&2
+echo "$0: ALERT: This FireWire (IEEE 1394) kernel module is disabled by package security-misc-shared by default. See the configuration file /etc/modprobe.d/30_security-misc_disable.conf for details. | args: $@" >&2
 
 exit 1
