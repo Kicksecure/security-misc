@@ -1,3 +1,22 @@
+commit c45a4ffdd221964cee5ee5e5b70a0e4ba02eec11
+Merge: 5738bb61 2a39d599
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 22 13:04:33 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 2a39d5997c410da2cf314f82826d1281879f8a6c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 21 16:06:11 2025 -0500
+
+    security-misc split string changes
+
+commit 5738bb61045fb00d570c61cefd4c80fbc31d92e3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 18:43:36 2025 +0000
+
+    bumped changelog version
+
 commit 9acdfc741b1b9da243d22ec6fed84f241c446b79
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 14:42:35 2025 -0400
@@ -153,14 +172,14 @@ Date:   Wed Sep 17 14:49:28 2025 -0400
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 2de10d5b7b7589a6da03a6554b231ab55f7cc83c
-Merge: ad367c0 24424bc
+Merge: ad367c0b 24424bcb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 13:32:44 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 24424bcbc072bbb7ad9c00371a3a2adc27432532
-Merge: 2d3b4ee 21c605e
+Merge: 2d3b4ee1 21c605e2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 13:31:27 2025 -0400
 
@@ -169,7 +188,7 @@ Date:   Wed Sep 17 13:31:27 2025 -0400
     Enable `vmscape=force`
 
 commit 2d3b4ee12425182c88f1bf7ac632f7672b25e00c
-Merge: ad367c0 7b32e93
+Merge: ad367c0b 7b32e933
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 13:27:13 2025 -0400
 
@@ -184,7 +203,7 @@ Date:   Sat Sep 13 08:33:02 2025 +0000
     bumped changelog version
 
 commit 95eeb579a6af3079b79a954351ab69646ec8ec09
-Merge: d262db2 90b6486
+Merge: d262db2e 90b6486f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Sep 13 04:04:10 2025 -0400
 
@@ -221,7 +240,7 @@ Date:   Sat Aug 30 14:19:31 2025 +0000
     bumped changelog version
 
 commit ac6bc65e3c77f4bcbada69525e8cb1d4c273da8a
-Merge: 78b66ba 2319bd9
+Merge: 78b66ba1 2319bd91
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Aug 30 08:01:26 2025 -0400
 
@@ -258,14 +277,14 @@ Date:   Wed Aug 27 04:29:48 2025 -0400
     fix
 
 commit 0a61107b5adf053db71cad63c40b1c8362e9162b
-Merge: ef458ce 94ebb5c
+Merge: ef458ce0 94ebb5c8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 27 04:28:25 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
 
 commit 94ebb5c84ca278a840e2158a5d4207fbfed90a22
-Merge: 893faa9 ef458ce
+Merge: 893faa98 ef458ce0
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Tue Aug 26 19:20:41 2025 -0500
 
@@ -296,7 +315,7 @@ Date:   Fri Aug 22 15:50:28 2025 -0500
     Disable emerg-shutdown and ensure-shutdown on Qubes OS
 
 commit 53e930b4cc30a8857348758ab65d1a5687ed94a1
-Merge: df8a323 5898a64
+Merge: df8a323d 5898a645
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Thu Aug 21 20:09:48 2025 -0500
 
@@ -315,14 +334,14 @@ Date:   Thu Aug 21 06:45:04 2025 -0400
     typo
 
 commit f713dceff42c6c79a5718ba69358d2fe66ad3245
-Merge: f6f4fd7 8cdbbf8
+Merge: f6f4fd77 8cdbbf82
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:44:35 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 8cdbbf8292c354224e2d22fad9087d9f542687e2
-Merge: 2baf5cf e48897c
+Merge: 2baf5cfc e48897cc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:43:07 2025 -0400
 
@@ -331,7 +350,7 @@ Date:   Thu Aug 21 06:43:07 2025 -0400
     Upgrade `sysctl` settings and docs on kernel panics
 
 commit 2baf5cfc0bf061b2cc772dfceadaef84a36d9c1e
-Merge: f6f4fd7 45fcd16
+Merge: f6f4fd77 45fcd163
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:42:28 2025 -0400
 
@@ -340,14 +359,14 @@ Date:   Thu Aug 21 06:42:28 2025 -0400
     Update documentation
 
 commit f6f4fd77e5bd3a7a7d00c33543fc4ce5a685a3d1
-Merge: 81d437f 7f21120
+Merge: 81d437fe 7f211209
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:40:39 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 7f211209f7942a332e0568a60eba8a78f3a8a15b
-Merge: 81d437f 19b7e4b
+Merge: 81d437fe 19b7e4b4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:40:11 2025 -0400
 
@@ -362,7 +381,7 @@ Date:   Thu Aug 21 06:39:56 2025 -0400
     newline
 
 commit 3229dd8967d15edc6066ab6148df4738774f36b0
-Merge: 8dcd349 81d437f
+Merge: 8dcd3493 81d437fe
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:39:13 2025 -0400
 
@@ -375,7 +394,7 @@ Date:   Wed Aug 20 21:40:39 2025 -0400
     fix
 
 commit e48897cc44eef10779a28bdadc7e7bbfe007064a
-Merge: add0549 c2d5bf3
+Merge: add05493 c2d5bf38
 Author: raja-grewal <rg_public@proton.me>
 Date:   Thu Aug 21 10:27:44 2025 +1000
 
@@ -424,7 +443,7 @@ Date:   Wed Aug 20 09:46:43 2025 -0400
     comments
 
 commit f77c71dd15b38db6f1c33602dd0c5623e501c3eb
-Merge: e15bdd2 37c0bc0
+Merge: e15bdd2d 37c0bc0c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 20 09:44:37 2025 -0400
 
@@ -461,21 +480,21 @@ Date:   Mon Aug 18 20:23:50 2025 +1000
     Add reference on conntrack helpers
 
 commit 37c0bc0c5ddfb901d016f8a4edae16840a58f1fa
-Merge: b5a36e0 f175d19
+Merge: b5a36e02 f175d196
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Aug 17 14:02:01 2025 -0500
 
     Merge remote-tracking branch 'raja/block_32bit' into arraybolt3/trixie
 
 commit b5a36e02f1be901da1695056877471398deedf1e
-Merge: 210aa97 6df3e3c
+Merge: 210aa976 6df3e3cd
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Aug 17 13:52:01 2025 -0500
 
     Merge remote-tracking branch 'raja/panic_limits' into arraybolt3/trixie
 
 commit 210aa97650b760acb207f29b1e99e1bb2e65e168
-Merge: 7a8dfa5 3de9cd5
+Merge: 7a8dfa52 3de9cd56
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Aug 17 13:50:25 2025 -0500
 
@@ -512,7 +531,7 @@ Date:   Sun Aug 17 06:27:44 2025 +0000
     Set `sysctl kernel.panic=-1`
 
 commit 7a8dfa528c629aa0023943dcd34025ef56a1b1e1
-Merge: cba1687 1f75426
+Merge: cba16879 1f75426f
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sat Aug 16 21:10:19 2025 -0500
 
@@ -549,7 +568,7 @@ Date:   Fri Aug 15 17:16:42 2025 -0500
     Polish USBGuard configuration
 
 commit b4086b8e779366127c22eb0a43d1b77fe534ef0e
-Merge: 66ec5bd 4cae74d
+Merge: 66ec5bda 4cae74d6
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Aug 15 16:57:34 2025 -0500
 
@@ -568,21 +587,21 @@ Date:   Fri Aug 15 16:46:35 2025 -0500
     Set hard and soft limits on core file size at the same time
 
 commit e2c65a2a6fcb246cb5925394f00ec2d8401c2dda
-Merge: 65afc31 28ce706
+Merge: 65afc31b 28ce7064
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Aug 15 16:45:18 2025 -0500
 
     Merge remote-tracking branch 'nrz/master' into arraybolt3/trixie
 
 commit 65afc31ba7f8c5ee6dc14627de82a122b4992d21
-Merge: a2a9e84 00c660d
+Merge: a2a9e844 00c660d4
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Aug 15 16:31:50 2025 -0500
 
     Merge branch 'kcfi' into arraybolt3/trixie
 
 commit a2a9e8440b812b07546722f5842e3ddb16ee5bc2
-Merge: c33ea7b 4166d6d
+Merge: c33ea7be 4166d6d1
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Aug 15 16:06:35 2025 -0500
 
@@ -607,7 +626,7 @@ Date:   Sun Aug 10 15:23:48 2025 -0500
     Move security-misc/apt-get-update* to helper-scripts
 
 commit 51d5ba29df44d021cfeab1dea6f00919d246388e
-Merge: 7aa3824 c7bdca3
+Merge: 7aa38245 c7bdca32
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Aug 10 14:09:41 2025 -0500
 
@@ -620,14 +639,14 @@ Date:   Sun Aug 10 06:34:30 2025 +0000
     bumped changelog version
 
 commit 3629f2c3a59d44e265f0c66389435de1b2414998
-Merge: 5dc251c c59a3b2
+Merge: 5dc251c5 c59a3b23
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 10 02:25:48 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
 
 commit 7aa38245dedab28cce4c96fd9f533a60c9d05ac4
-Merge: 4930703 c59a3b2
+Merge: 4930703b c59a3b23
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sat Aug 9 23:31:55 2025 -0500
 
@@ -640,7 +659,7 @@ Date:   Sat Aug 9 21:55:03 2025 -0500
     Fix unexpected shutdowns when booting Kicksecure from optical media
 
 commit 4930703b8c90766304122e6e74ccd29e87800714
-Merge: 2ada07c 5dc251c
+Merge: 2ada07cf 5dc251c5
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sat Aug 9 21:30:45 2025 -0500
 
@@ -673,14 +692,14 @@ Date:   Thu Aug 7 07:08:19 2025 +0000
     bumped changelog version
 
 commit 505a2b7d7995ad48a17add86513ced3499f64ee9
-Merge: 4294165 3a77abe
+Merge: 42941653 3a77abe5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 7 03:08:02 2025 -0400
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/emerg-shutdown'
 
 commit 5f2425ba6f747bf65b5beb4336d1e7bf6b8cdf71
-Merge: 86f4406 3a77abe
+Merge: 86f44063 3a77abe5
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Wed Aug 6 20:21:01 2025 -0500
 
@@ -723,7 +742,7 @@ Date:   Wed Aug 6 08:27:15 2025 +0000
     bumped changelog version
 
 commit 784ff8af3616765a9c22febf66b522376ecedf12
-Merge: c2690ef 5a17e67
+Merge: c2690efc 5a17e67c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 6 04:26:37 2025 -0400
 
@@ -772,7 +791,7 @@ Date:   Mon Aug 4 09:27:11 2025 +0000
     bumped changelog version
 
 commit 166bc257b0b2eea87d684cc847bf6da1fba7c4b4
-Merge: d1bca02 63f2909
+Merge: d1bca020 63f29093
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Aug 4 05:26:55 2025 -0400
 
@@ -809,7 +828,7 @@ Date:   Sun Aug 3 07:15:41 2025 -0400
     validate configuration file
 
 commit 4ba029471e8c12d5691f7ee94897137fb3cbe15f
-Merge: c1e76aa 1a60da7
+Merge: c1e76aa5 1a60da71
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 3 07:04:20 2025 -0400
 
@@ -834,7 +853,7 @@ Date:   Mon Jul 28 20:42:14 2025 -0500
     emerg-shutdown: fix the hang-on-shutdown bug, add autodetection of new keyboards, shutdown key configuration, and instant shutdown option
 
 commit a1d1c5603300106f06c1a798088521b77430ff95
-Merge: 5889d13 c1e76aa
+Merge: 5889d134 c1e76aa5
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Jul 27 21:43:43 2025 -0500
 
@@ -847,14 +866,14 @@ Date:   Mon Jul 21 10:00:25 2025 +0000
     bumped changelog version
 
 commit 36114e29a2ce1045b5f5d82372fcf0463efc5ca7
-Merge: e3ce9c3 f851886
+Merge: e3ce9c38 f851886f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 21 06:00:11 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit f851886ffd0fc82ba0b0add501964d1c812c6c15
-Merge: e3ce9c3 6f9763f
+Merge: e3ce9c38 6f9763f5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 21 05:58:44 2025 -0400
 
@@ -893,7 +912,7 @@ Date:   Sun Jul 13 20:53:29 2025 -0500
     Add panic key handling to emergency shutdown utility
 
 commit 2a7071055f94f984398fe2ec49c32b206913bea2
-Merge: f3d46ee e3ce9c3
+Merge: f3d46ee5 e3ce9c38
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Jul 13 15:21:34 2025 -0500
 
@@ -906,14 +925,14 @@ Date:   Wed Jul 2 20:52:17 2025 +0000
     bumped changelog version
 
 commit b06fb5428051518390439ce95c9d6894e6338951
-Merge: 115b6f6 468cf40
+Merge: 115b6f6a 468cf40e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 2 13:47:12 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 468cf40e2a216625d02066b609b0991e37c50ebc
-Merge: 865a052 bb208fb
+Merge: 865a052b bb208fb1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 2 13:45:28 2025 -0400
 
@@ -922,7 +941,7 @@ Date:   Wed Jul 2 13:45:28 2025 -0400
     Set `erst_disable`
 
 commit 865a052bf47f28c0084b2bbd51e3c606df9eda96
-Merge: 115b6f6 e3c4519
+Merge: 115b6f6a e3c45191
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 2 13:44:17 2025 -0400
 
@@ -931,7 +950,7 @@ Date:   Wed Jul 2 13:44:17 2025 -0400
     remove  TemporaryTimeout=0 in Bluetooth config
 
 commit bb208fb134fe25fc3539494f331072a851369064
-Merge: 4314b1e 115b6f6
+Merge: 4314b1e8 115b6f6a
 Author: raja-grewal <rg_public@proton.me>
 Date:   Wed Jul 2 11:35:50 2025 +1000
 
@@ -956,7 +975,7 @@ Date:   Sat Jun 14 11:51:44 2025 +0000
     bumped changelog version
 
 commit 4639d1aab572bb4ad751bd1da5b936b9d73d3264
-Merge: 5159de6 109c013
+Merge: 5159de63 109c0134
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jun 13 15:09:52 2025 -0400
 
@@ -999,14 +1018,14 @@ Date:   Wed May 28 12:12:00 2025 +0000
     bumped changelog version
 
 commit eda1d0aef640af1ea73c72d6caa876733de4e5a0
-Merge: e966774 5a10ad0
+Merge: e9667748 5a10ad03
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 28 07:22:16 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 5a10ad031d67acc8fa4c16f9e2db191bde559caa
-Merge: e966774 3559bc8
+Merge: e9667748 3559bc86
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 28 07:21:31 2025 -0400
 
@@ -1028,7 +1047,7 @@ Date:   Tue May 27 15:32:41 2025 -0600
     situation).
 
 commit c59b2e4bc53cad4c9cc90ddd5abaca0705ccff90
-Merge: 017ee29 e966774
+Merge: 017ee29e e9667748
 Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
 Date:   Tue May 27 20:33:07 2025 +0000
 
@@ -1041,7 +1060,7 @@ Date:   Tue May 27 19:41:25 2025 +0000
     bumped changelog version
 
 commit 017ee29eb39d84edc89f128a633a619cad852241
-Merge: 7a079c3 abb2207
+Merge: 7a079c3d abb22073
 Author: maybebyte <99762926+maybebyte@users.noreply.github.com>
 Date:   Tue May 27 18:25:47 2025 +0000
 
@@ -1060,14 +1079,14 @@ Date:   Tue May 27 15:51:50 2025 +0000
     bumped changelog version
 
 commit 45016146f7c77d383f2254d19dc66ba9b883b8f2
-Merge: ace45d7 395169f
+Merge: ace45d7c 395169fb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 27 11:03:23 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 395169fbce1854bfed727d1784f4e5c0d8e7c6ff
-Merge: ace45d7 e14b81b
+Merge: ace45d7c e14b81b1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 27 10:58:50 2025 -0400
 
@@ -1076,7 +1095,7 @@ Date:   Tue May 27 10:58:50 2025 -0400
     perf(permission-hardener): optimize string match
 
 commit 1c353032046f556bb11c32506019310c9f6d47c0
-Merge: 35fa32e ace45d7
+Merge: 35fa32e4 ace45d7c
 Author: raja-grewal <rg_public@proton.me>
 Date:   Fri May 23 20:20:19 2025 +1000
 
@@ -1297,14 +1316,14 @@ Date:   Sun May 18 06:40:50 2025 -0400
     refactoring
 
 commit 4d1f8c44d28895587abce586ed5b2fe354544f6a
-Merge: 341dce3 e478750
+Merge: 341dce33 e4787508
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun May 18 06:36:08 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit e478750814798f3d9aa60354b6cecbb84769ed53
-Merge: 341dce3 91a76db
+Merge: 341dce33 91a76db6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun May 18 06:35:23 2025 -0400
 
@@ -1383,7 +1402,7 @@ Date:   Fri Apr 25 03:11:27 2025 -0400
     output
 
 commit 1d14a9f32435b8131c251e03bff2af5c929bbf49
-Merge: e154d0a 612f5f9
+Merge: e154d0af 612f5f92
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 25 02:59:09 2025 -0400
 
@@ -1506,14 +1525,14 @@ Date:   Tue Apr 15 20:59:37 2025 +0000
     bumped changelog version
 
 commit e0e2a9b61c61b34a6fe10782e294d58adff15cfe
-Merge: 5e88dfe 9f2836d
+Merge: 5e88dfe8 9f2836d2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Apr 15 15:27:10 2025 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 9f2836d2baae900222cbae74d7a32bcdc69e589f
-Merge: 5e88dfe aa0ffff
+Merge: 5e88dfe8 aa0ffff4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Apr 15 15:17:25 2025 -0400
 
@@ -1528,7 +1547,7 @@ Date:   Thu Apr 10 11:38:17 2025 +0000
     bumped changelog version
 
 commit c0a18c5a7122fe3c7b52d0e02ca5e8817efb3996
-Merge: da9dd3c 74ca63d
+Merge: da9dd3c3 74ca63d1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Apr 10 06:07:55 2025 -0400
 
@@ -1620,14 +1639,14 @@ Date:   Sun Feb 9 23:04:36 2025 +0000
     bumped changelog version
 
 commit 0615e6e995eb25d8e1bff181ecc49ff51e4029cc
-Merge: 2a4a228 4d62ee3
+Merge: 2a4a228b 4d62ee3a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Feb 9 18:01:43 2025 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 4d62ee3ab31bde80eebde265c2513233f10f751a
-Merge: 2a4a228 ce4b57d
+Merge: 2a4a228b ce4b57d1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Feb 9 18:00:59 2025 -0500
 
@@ -1684,14 +1703,14 @@ Date:   Wed Jan 29 14:36:41 2025 +0000
     bumped changelog version
 
 commit 10508cb5801c28f8fff306957e867a1626aa6489
-Merge: 6b4fa1e b9dee26
+Merge: 6b4fa1ef b9dee263
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 29 09:36:28 2025 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit b9dee2633128577245763bad41cf3cb6b49751f3
-Merge: 6b4fa1e 4b1e530
+Merge: 6b4fa1ef 4b1e5306
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 29 09:35:50 2025 -0500
 
@@ -1748,14 +1767,14 @@ Date:   Wed Jan 22 08:25:14 2025 -0500
     add `.whonix` files to hardcoded files
 
 commit 9b012bdeee03e73de537e7fe65c0bb8d16b38e79
-Merge: 507130a 42f34f5
+Merge: 507130a1 42f34f5a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 22 08:23:49 2025 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/permission-hardener-symlink-fix'
 
 commit 507130a1cc0592bd4a4b280da7496dade470e637
-Merge: f1b6bff ed767e0
+Merge: f1b6bff3 ed767e00
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 22 08:21:39 2025 -0500
 
@@ -1840,7 +1859,7 @@ Date:   Fri Jan 17 07:55:54 2025 -0500
     comment
 
 commit c9e2f82bd01813682998c775f75bac0841239e5e
-Merge: 5971869 bf73f1f
+Merge: 59718697 bf73f1f2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 17 07:53:59 2025 -0500
 
@@ -1865,7 +1884,7 @@ Date:   Wed Jan 15 09:44:48 2025 -0500
     improve permission hardener migration code
 
 commit 2dfd30a44ae332faa50bc4920486cdd9480c7e5d
-Merge: a84d3ba 328f747
+Merge: a84d3ba7 328f7471
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 15 09:33:57 2025 -0500
 
@@ -2090,7 +2109,7 @@ Date:   Tue Jan 14 03:17:00 2025 -0500
     refactoring
 
 commit 69ae2d9ea0826aa81c70e957bb5a9241a84346ad
-Merge: de1f31e de9ebab
+Merge: de1f31e3 de9ebabd
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 03:15:45 2025 -0500
 
@@ -2147,14 +2166,14 @@ Date:   Fri Jan 10 15:34:21 2025 +0000
     bumped changelog version
 
 commit c17485baa118e76cc8074ce3e72ac3ac38c577cd
-Merge: 482960d e9ef360
+Merge: 482960d0 e9ef3602
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:32:26 2025 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit e9ef3602dd1661de0c0c3781d7e0246720643354
-Merge: 1b33e83 cf435a8
+Merge: 1b33e835 cf435a8f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:30:34 2025 -0500
 
@@ -2163,7 +2182,7 @@ Date:   Fri Jan 10 10:30:34 2025 -0500
     Add link to tabular comparison of CPU mitigations
 
 commit 1b33e83529d652dab4468e0b386e333b3ca4745b
-Merge: 486757b 2e6e170
+Merge: 486757bf 2e6e1701
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:29:30 2025 -0500
 
@@ -2172,7 +2191,7 @@ Date:   Fri Jan 10 10:29:30 2025 -0500
     Drop gratuitous ARP packets
 
 commit 486757bfae5e7ecc389b16c49704e742fd267565
-Merge: 17ff249 c37f4ef
+Merge: 17ff2491 c37f4efa
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:29:12 2025 -0500
 
@@ -2181,7 +2200,7 @@ Date:   Fri Jan 10 10:29:12 2025 -0500
     Respond to ARP requests only if the target IP address is on-link
 
 commit 17ff24915062736a32d4d54da7163fe34aa70fd3
-Merge: 27d19ba 1f8eee4
+Merge: 27d19ba5 1f8eee47
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:28:48 2025 -0500
 
@@ -2190,7 +2209,7 @@ Date:   Fri Jan 10 10:28:48 2025 -0500
     Enable ARP filtering
 
 commit 27d19ba568e601c37035a310ae6cdd7d953be286
-Merge: 482960d 5e3785d
+Merge: 482960d0 5e3785d7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:28:05 2025 -0500
 
@@ -2213,7 +2232,7 @@ Date:   Fri Jan 10 13:22:21 2025 +1100
     README.md: Note importance of microcode updates
 
 commit 3a31cc99b34617cdd3c5f8e8950a37158849cb56
-Merge: c4cfb85 5941195
+Merge: c4cfb859 5941195e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 9 09:30:58 2025 -0500
 
@@ -2244,7 +2263,7 @@ Date:   Tue Jan 7 14:10:46 2025 -0600
     Don't worry about files under /bin anymore, Bookworm uses a merged /usr directory
 
 commit c4cfb8597d1a8631a4cbfa7e88212b798e2bc514
-Merge: c6be621 93ebf17
+Merge: c6be6219 93ebf176
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 6 08:43:54 2025 -0500
 
@@ -2278,7 +2297,7 @@ Date:   Thu Jan 2 20:41:40 2025 -0500
     Make the main field count check in permission-hardener a bit more elegant
 
 commit 895c0f541fb34f9ebfee9c7ef79c053d5af4a7cc
-Merge: 717e6fc 40b23cf
+Merge: 717e6fcf 40b23cfa
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Wed Jan 1 15:04:01 2025 -0600
 
@@ -2327,7 +2346,7 @@ Date:   Thu Dec 26 04:12:02 2024 +0000
     bumped changelog version
 
 commit 66f8c18c65f33676d242b57ebb1d4410876461b3
-Merge: aa82202 6602fb1
+Merge: aa82202e 6602fb10
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Dec 25 22:43:04 2024 -0500
 
@@ -2352,7 +2371,7 @@ Date:   Tue Dec 24 05:16:22 2024 +0000
     bumped changelog version
 
 commit 27d015d58ebc5e750d9d06f042b761720473941d
-Merge: 3c73c0c 2f3a2bc
+Merge: 3c73c0cd 2f3a2bce
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 24 00:08:58 2024 -0500
 
@@ -2432,7 +2451,7 @@ Date:   Thu Dec 19 05:56:50 2024 -0500
     use long option name
 
 commit c99021bb0c1d5b6bf361cc483449330cdd218ee6
-Merge: 95b5357 9d69cd1
+Merge: 95b53576 9d69cd19
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 05:56:01 2024 -0500
 
@@ -2483,14 +2502,14 @@ Date:   Thu Dec 19 06:57:42 2024 +0000
     bumped changelog version
 
 commit 3135a03e21f9e5816097e25aaa7f4a1671f8f87d
-Merge: f0c611d c7f7196
+Merge: f0c611d9 c7f71964
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:34:56 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit c7f7196471b07a580c6d4a5d86739215508142cd
-Merge: e5b67e0 3749f8f
+Merge: e5b67e04 3749f8ff
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:31:25 2024 -0500
 
@@ -2505,14 +2524,14 @@ Date:   Thu Dec 19 00:18:25 2024 -0500
     comment
 
 commit 4f681be77429984695a1b0f689065051884e7bf7
-Merge: 4c3ca68 4cf5757
+Merge: 4c3ca684 4cf57575
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:17:44 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit e5b67e044bb5011dd667879a73a670f2c5f74057
-Merge: 4cf5757 c116796
+Merge: 4cf57575 c1167968
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:15:02 2024 -0500
 
@@ -2521,7 +2540,7 @@ Date:   Thu Dec 19 00:15:02 2024 -0500
     Provide network-related hardening options via `sysctl`'s
 
 commit 4cf5757575c1257a14331f0169a9d8d163e1326d
-Merge: 9d06341 1708a03
+Merge: 9d06341c 1708a03e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:08:56 2024 -0500
 
@@ -2584,7 +2603,7 @@ Date:   Mon Dec 9 12:37:11 2024 -0600
     Disable unnecessary sudoers exceptions
 
 commit 9d06341c91b51f9c737fe67457045924323635f0
-Merge: a9dd592 5b88e92
+Merge: a9dd592a 5b88e92e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Dec 14 15:18:56 2024 -0500
 
@@ -2605,7 +2624,7 @@ Date:   Tue Dec 10 19:19:10 2024 +0000
     bumped changelog version
 
 commit 58722324ec0be98c3e44938df8cb60ca9b261210
-Merge: 518224b 439fa7f
+Merge: 518224b8 439fa7f3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 10 14:18:50 2024 -0500
 
@@ -2684,7 +2703,7 @@ Date:   Mon Nov 25 15:44:00 2024 -0500
     use TMP, sponge, refactoring
 
 commit 62a551cfe39a6a640f32e6e97f3e915aa8673514
-Merge: af43472 d7475e2
+Merge: af43472d d7475e25
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 25 15:38:01 2024 -0500
 
@@ -2723,7 +2742,7 @@ Date:   Thu Nov 14 14:41:14 2024 -0500
     This reverts commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751.
 
 commit 412b371e85044962f6620386b767369b9e25d71e
-Merge: 141b84c 57e1edd
+Merge: 141b84c4 57e1edde
 Author: raja-grewal <rg_public@proton.me>
 Date:   Wed Nov 13 16:47:57 2024 +1100
 
@@ -2835,7 +2854,7 @@ Date:   Sun Nov 10 11:52:42 2024 +0000
     bumped changelog version
 
 commit 29b1f1ec5f3a4bf3991fc1b862751c8eb9769ecd
-Merge: 5bd0a27 238f32e
+Merge: 5bd0a277 238f32e8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 10 06:32:30 2024 -0500
 
@@ -2855,7 +2874,7 @@ Date:   Sun Nov 10 06:29:17 2024 -0500
     https://forums.whonix.org/t/permission-hardener-error/20719
 
 commit 238f32e81d835e5b9d3bc43a0654d05efa4c4313
-Merge: 3af2684 8107782
+Merge: 3af26841 8107782f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 8 07:39:40 2024 -0500
 
@@ -2942,7 +2961,7 @@ Date:   Mon Oct 21 05:47:25 2024 -0400
     comment
 
 commit fd34baff8ff17ed572469d9d6d884e6c0d881d20
-Merge: b643330 690e8dd
+Merge: b6433309 690e8dd8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Oct 21 05:43:53 2024 -0400
 
@@ -2967,14 +2986,14 @@ Date:   Wed Oct 16 10:57:20 2024 +0000
     bumped changelog version
 
 commit 0adb9b7c0609a51d503b61ab40ae7d8e55635043
-Merge: 263335f e50ad80
+Merge: 263335f7 e50ad807
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 16 06:31:09 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit e50ad807c01b5753c67d579126d7b79d38070c0a
-Merge: 263335f eb72163
+Merge: 263335f7 eb72163d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 16 06:29:25 2024 -0400
 
@@ -3007,14 +3026,14 @@ Date:   Tue Oct 8 11:24:56 2024 +0000
     bumped changelog version
 
 commit 9169611645d0cd5a308ff48862f351ef5ea5f7e8
-Merge: 8a2d432 8227a3d
+Merge: 8a2d432f 8227a3dd
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 8 05:54:50 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 8227a3dde2995ceb113164baf49591d52c2b53e1
-Merge: 8a2d432 0c0774f
+Merge: 8a2d432f 0c0774f6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 8 05:53:48 2024 -0400
 
@@ -3023,7 +3042,7 @@ Date:   Tue Oct 8 05:53:48 2024 -0400
     Documentation update 2
 
 commit 0c0774f6c0927ed1cc599f931175985b8f01ec30
-Merge: dc470ca 8a2d432
+Merge: dc470cac 8a2d432f
 Author: raja-grewal <rg_public@proton.me>
 Date:   Sun Oct 6 10:48:52 2024 +0000
 
@@ -3090,14 +3109,14 @@ Date:   Wed Sep 25 01:03:42 2024 +0000
     bumped changelog version
 
 commit e04f9cd4c17305d5201aa973c34778e81508734b
-Merge: 18d426f 65aa910
+Merge: 18d426f5 65aa9105
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 24 20:16:06 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 65aa910503c07f708abf20f78be2f519ef58764a
-Merge: 18d426f 870ff88
+Merge: 18d426f5 870ff886
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 24 20:15:03 2024 -0400
 
@@ -3163,14 +3182,14 @@ Date:   Wed Sep 4 14:13:15 2024 +0000
     bumped changelog version
 
 commit 5a255d4831470449a26b324a8f16594432bf834b
-Merge: d618f9f 563a898
+Merge: d618f9f3 563a8980
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:12:34 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 563a8980133e15e33ac95a631e37ecfff88f6f8f
-Merge: 175945e e61027a
+Merge: 175945ec e61027a4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:11:48 2024 -0400
 
@@ -3179,14 +3198,14 @@ Date:   Wed Sep 4 10:11:48 2024 -0400
     Set `sysctl vm.mmap_min_addr=65536`
 
 commit d618f9f35b8e8c6eee1e164a6ec300d63b1ee797
-Merge: 59374ce 175945e
+Merge: 59374ce9 175945ec
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:07:50 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 175945ec9a28bf1e5b0fa0d2ae2bd6546d6c6172
-Merge: b0a8544 3101035
+Merge: b0a85441 3101035a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:05:47 2024 -0400
 
@@ -3195,7 +3214,7 @@ Date:   Wed Sep 4 10:05:47 2024 -0400
     Enable `panic_on_warn=1`
 
 commit b0a8544182f6ff3c8c3f1068176ff5e9e4f557ef
-Merge: 59374ce 7393ba1
+Merge: 59374ce9 7393ba15
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:04:45 2024 -0400
 
@@ -3216,14 +3235,14 @@ Date:   Thu Aug 29 09:49:51 2024 +0000
     bumped changelog version
 
 commit 7e2838ec077b53e41d468d5655290152761c8745
-Merge: 9c918eb 0762794
+Merge: 9c918eb4 0762794f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 29 05:06:07 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 0762794ff684049a62b5b92b61177615a5376ad7
-Merge: 9c918eb 6294729
+Merge: 9c918eb4 6294729c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 29 04:46:26 2024 -0400
 
@@ -3263,14 +3282,14 @@ Date:   Wed Aug 28 06:49:50 2024 -0400
     https://github.com/Kicksecure/security-misc/issues/267
 
 commit 463aa58f28b6389d0925fed87096b348b652cc16
-Merge: cf824dd 328840c
+Merge: cf824ddb 328840c9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 28 06:42:49 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 328840c933a583adc5458aa08c63fb627b31b298
-Merge: cf824dd 9e91c98
+Merge: cf824ddb 9e91c98c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 28 06:38:57 2024 -0400
 
@@ -3303,7 +3322,7 @@ Date:   Mon Aug 26 11:19:20 2024 +1000
     Add detail on disabling user namespaces breaking UPower
 
 commit 9dbd200be415c86e7039463c6269fad8395a4373
-Merge: 32de5e7 cf824dd
+Merge: 32de5e7c cf824ddb
 Author: raja-grewal <rg_public@proton.me>
 Date:   Mon Aug 26 11:08:21 2024 +1000
 
@@ -3316,14 +3335,14 @@ Date:   Sun Aug 25 15:34:55 2024 +0000
     bumped changelog version
 
 commit 500568e322b2e3623fc649209d671c7b9d9fa097
-Merge: 43d13b7 73900b5
+Merge: 43d13b70 73900b59
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 25 11:01:58 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 73900b59db37d77bc24bd5088aae3cc760aacc69
-Merge: 43d13b7 1f51d4e
+Merge: 43d13b70 1f51d4ee
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 25 11:00:51 2024 -0400
 
@@ -3332,14 +3351,14 @@ Date:   Sun Aug 25 11:00:51 2024 -0400
     Provide option to disable user namespaces
 
 commit 43d13b70f12d2198a800054ce4d1ff901cc474f9
-Merge: 8353764 fae586c
+Merge: 83537641 fae586c3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 25 10:55:52 2024 -0400
 
     Merge remote-tracking branch 'raja/syntax'
 
 commit 835376418d616699023f8e638666f43d34241863
-Merge: ae85fd5 342caf8
+Merge: ae85fd5b 342caf82
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 25 10:48:25 2024 -0400
 
@@ -3448,14 +3467,14 @@ Date:   Fri Aug 16 08:38:12 2024 +0000
     bumped changelog version
 
 commit 40b12f5a2a4a40d7033569b11ad4e1c228e7389b
-Merge: 12296c6 305467c
+Merge: 12296c68 305467c6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:30:29 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 305467c652af933bb5aa5a677b10a992a5f19cab
-Merge: 12296c6 a5373af
+Merge: 12296c68 a5373afc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:25:43 2024 -0400
 
@@ -3464,14 +3483,14 @@ Date:   Fri Aug 16 04:25:43 2024 -0400
     Update `/etc/modprobe.d/*`
 
 commit 12296c68dc0aaa3703e1c36f854a02de8db412fe
-Merge: 4bc12b0 036bcea
+Merge: 4bc12b07 036bcea4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:22:43 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 036bcea4e6757de094fcafdadcf56aaa90729d79
-Merge: ef60c5b 81bf7a8
+Merge: ef60c5b1 81bf7a8f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:20:32 2024 -0400
 
@@ -3480,14 +3499,14 @@ Date:   Fri Aug 16 04:20:32 2024 -0400
     Miscellaneous updates to presentation
 
 commit 81bf7a8f90098a7107dcb3c783b87a168f5c090f
-Merge: cea8e75 ef60c5b
+Merge: cea8e753 ef60c5b1
 Author: raja-grewal <rg_public@proton.me>
 Date:   Fri Aug 16 16:57:01 2024 +1000
 
     Merge branch 'Kicksecure:master' into docs
 
 commit ef60c5b153a521e1cfd522ac471a8ca6dc076d90
-Merge: 4bc12b0 b552b92
+Merge: 4bc12b07 b552b924
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 02:43:57 2024 -0400
 
@@ -3532,7 +3551,7 @@ Date:   Fri Aug 16 12:41:36 2024 +1000
     Clarify DMA hardening
 
 commit be9308e490f79a7b7788a744524d1d91cc870726
-Merge: 73db68d 4bc12b0
+Merge: 73db68db 4bc12b07
 Author: raja-grewal <rg_public@proton.me>
 Date:   Fri Aug 16 11:45:43 2024 +1000
 
@@ -3545,14 +3564,14 @@ Date:   Thu Aug 15 17:51:18 2024 +0000
     bumped changelog version
 
 commit 9e61e37c17524b57f185b796f2ac19ba193205a8
-Merge: 89e816d dfd1c97
+Merge: 89e816dd dfd1c971
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 15 13:47:33 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit dfd1c97168249b229495cbd873d4d8493e244663
-Merge: 89e816d ec3038c
+Merge: 89e816dd ec3038c7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 15 13:46:30 2024 -0400
 
@@ -3659,14 +3678,14 @@ Date:   Tue Aug 6 14:01:39 2024 +0000
     bumped changelog version
 
 commit 967f9e257b09bc73ddb579292d507f7cb9832643
-Merge: fa90918 a25aaf9
+Merge: fa909186 a25aaf90
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:57:56 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit a25aaf900a12666046278a9fab6933b3d5670679
-Merge: 6bc039a 8559079
+Merge: 6bc039a4 85590793
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:55:20 2024 -0400
 
@@ -3675,7 +3694,7 @@ Date:   Tue Aug 6 09:55:20 2024 -0400
     Enable `vdso32=0`
 
 commit 6bc039a430289342f06857a52a5f13829d6e50f5
-Merge: ce60d56 d102ec1
+Merge: ce60d561 d102ec19
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:52:56 2024 -0400
 
@@ -3684,7 +3703,7 @@ Date:   Tue Aug 6 09:52:56 2024 -0400
     Enable `kfence.sample_interval=100`
 
 commit ce60d5615fe99e41c48d459f562d581a688c295a
-Merge: b027842 c0d140f
+Merge: b0278428 c0d140f2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:48:08 2024 -0400
 
@@ -3693,7 +3712,7 @@ Date:   Tue Aug 6 09:48:08 2024 -0400
     Enable `dev.tty.legacy_tiocsti=0`
 
 commit b0278428a73cd3d329aaa36626005e0c593331f0
-Merge: fa90918 aa34d86
+Merge: fa909186 aa34d865
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:39:04 2024 -0400
 
@@ -3732,14 +3751,14 @@ Date:   Mon Aug 5 14:16:33 2024 +1000
     Add reference
 
 commit fa9091869d417c6494840d0cb32623037d70c8be
-Merge: 06f0c27 725118c
+Merge: 06f0c271 725118c5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:20:36 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 725118c5759b45118bbd2804492526ea2a7c1a81
-Merge: 6d97408 6d211fa
+Merge: 6d97408a 6d211faf
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:19:52 2024 -0400
 
@@ -3748,14 +3767,14 @@ Date:   Sun Aug 4 16:19:52 2024 -0400
     Restrict unprivileged user namespaces
 
 commit 06f0c27128a66c1074f405de3139651519e48204
-Merge: 8abc5ae 6d97408
+Merge: 8abc5ae8 6d97408a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:15:01 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 6d97408a6d2f002461ae6ca1d647fbf24bf1b99e
-Merge: 8abc5ae 6f14d68
+Merge: 8abc5ae8 6f14d68c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:11:46 2024 -0400
 
@@ -3764,14 +3783,14 @@ Date:   Sun Aug 4 16:11:46 2024 -0400
     Restore option to enable `slub_debug=FZ`
 
 commit 8abc5ae8f0f152c68f855f0e8d993880589c5d5c
-Merge: de6f3ea eab66da
+Merge: de6f3ea7 eab66dad
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:09:52 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit eab66dad0994e408c1beaade3fdcf2cd1d605b31
-Merge: de6f3ea ca2179b
+Merge: de6f3ea7 ca2179bb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:08:32 2024 -0400
 
@@ -3836,14 +3855,14 @@ Date:   Sun Jul 28 20:50:22 2024 +0000
     bumped changelog version
 
 commit d036094089e3e3a74df981c50882481273fcb6c0
-Merge: e60ce50 0f86fbd
+Merge: e60ce50d 0f86fbd8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 28 15:44:40 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 0f86fbd8ceea3157ee035eb9f4a0ff13024f1bc9
-Merge: e60ce50 73979d4
+Merge: e60ce50d 73979d43
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 28 15:43:54 2024 -0400
 
@@ -3908,14 +3927,14 @@ Date:   Fri Jul 26 15:40:24 2024 +0000
     bumped changelog version
 
 commit 62bb4bc6269a0603c15f1efaad7ca365ea15c9d7
-Merge: 7969e86 886f609
+Merge: 7969e860 886f6095
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:10:25 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 886f6095dba71d76d5fd98277374417657e0cd31
-Merge: 7969e86 ed33366
+Merge: 7969e860 ed333669
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:08:30 2024 -0400
 
@@ -3924,14 +3943,14 @@ Date:   Fri Jul 26 11:08:30 2024 -0400
     Add details on "oopes" and kernel panics
 
 commit 7969e8607160eae0cb5a3adddeec8d07c1d6e097
-Merge: e2ae93a 0318f57
+Merge: e2ae93a9 0318f577
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:06:13 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 0318f577ab554ae2ac0f9417b18134723ea2b580
-Merge: e2ae93a 4397de0
+Merge: e2ae93a9 4397de01
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:04:29 2024 -0400
 
@@ -3976,7 +3995,7 @@ Date:   Fri Jul 26 10:16:20 2024 -0400
     use `find` with `safe_echo_nonewline`
 
 commit 20454fb81157f1f962f36d9c37d34f4ac650a1e6
-Merge: 28b25bd 6bbf176
+Merge: 28b25bda 6bbf176e
 Author: raja-grewal <rg_public@proton.me>
 Date:   Sat Jul 27 00:09:30 2024 +1000
 
@@ -4095,7 +4114,7 @@ Date:   Fri Jul 26 07:43:59 2024 -0400
     output
 
 commit bdfe764f9d805b14dca4196e623e81ce95145d9b
-Merge: 9f13523 652a06c
+Merge: 9f135231 652a06c8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 07:19:05 2024 -0400
 
@@ -4304,7 +4323,7 @@ Date:   Wed Jul 24 09:15:02 2024 -0400
     output
 
 commit 1b6161c2dcd9a0686503c84cda4c9f6a29fe4e02
-Merge: d2563ed 8be21b6
+Merge: d2563ed9 8be21b6e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 09:13:48 2024 -0400
 
@@ -4359,7 +4378,7 @@ Date:   Mon Jul 22 17:26:00 2024 +1000
     Add option to switch (back) to using kCFI in the future
 
 commit f582e543434ba20a2fb7f7300058f7c8a7d62878
-Merge: a189956 d2563ed
+Merge: a189956a d2563ed9
 Author: raja-grewal <rg_public@proton.me>
 Date:   Mon Jul 22 15:12:00 2024 +1000
 
@@ -4435,7 +4454,7 @@ Date:   Fri Jul 19 07:20:59 2024 -0400
     https://github.com/Kicksecure/security-misc/pull/244#issuecomment-2238889062
 
 commit 8791aecb38a41aa0b0c108505726bc6a1ace903e
-Merge: 2d11436 06894d1
+Merge: 2d114364 06894d1c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 19 07:19:09 2024 -0400
 
@@ -4580,14 +4599,14 @@ Date:   Wed Jul 17 10:43:16 2024 -0400
     spelling
 
 commit 9a387f95e9346030e2adc3252a45942949561b52
-Merge: fd41acd 4afe257
+Merge: fd41acdc 4afe257a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 10:32:26 2024 -0400
 
     Merge remote-tracking branch 'raja/miscellaneous'
 
 commit fd41acdc721a6463813bc347cb965b6211fb9447
-Merge: 0da22c2 1087387
+Merge: 0da22c20 1087387b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 10:27:31 2024 -0400
 
@@ -4624,14 +4643,14 @@ Date:   Wed Jul 17 09:07:31 2024 -0400
     minor
 
 commit c336b266f61528cce27e1cafac6377370927a787
-Merge: afe3c25 df80385
+Merge: afe3c25a df803852
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 09:06:44 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit df80385289717fee0266436d056c9aedd0fb06af
-Merge: afe3c25 724435e
+Merge: afe3c25a 724435e5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 09:04:18 2024 -0400
 
@@ -4662,14 +4681,14 @@ Date:   Wed Jul 17 08:52:11 2024 -0400
     https://github.com/Kicksecure/security-misc/issues/239
 
 commit daee8b900b3057235aedc17b1231c3c05599140c
-Merge: 954ff1b a4ba6e4
+Merge: 954ff1be a4ba6e48
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:47:55 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit a4ba6e485d94512fdf737b9f66137c3f692c9904
-Merge: 9a75135 abafb19
+Merge: 9a751356 abafb194
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:46:27 2024 -0400
 
@@ -4678,14 +4697,14 @@ Date:   Wed Jul 17 08:46:27 2024 -0400
     Disable more Intel ME kernel modules
 
 commit 954ff1be41288b5fa2e50d492d92544915f93bb5
-Merge: d29a616 9a75135
+Merge: d29a6161 9a751356
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:42:52 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 9a75135633ad172f7cbf318e1206865493c28bb4
-Merge: d29a616 a340899
+Merge: d29a6161 a3408990
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:41:43 2024 -0400
 
@@ -4700,7 +4719,7 @@ Date:   Wed Jul 17 08:39:20 2024 -0400
     minor
 
 commit a2802f352fc7021ead0d431c665cc16b2821ae0b
-Merge: 0b873b7 81a3715
+Merge: 0b873b76 81a3715c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:38:23 2024 -0400
 
@@ -4713,7 +4732,7 @@ Date:   Wed Jul 17 08:05:27 2024 -0400
     minor
 
 commit 070bb46a08afcd84fb638472c39bd543bad4fb17
-Merge: 6d6e547 25fd532
+Merge: 6d6e5473 25fd532c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:02:45 2024 -0400
 
@@ -4726,7 +4745,7 @@ Date:   Wed Jul 17 08:00:24 2024 -0400
     minor
 
 commit cf5f0edbb85589a72ec891e9c3e090f9e81c4fda
-Merge: fe5c840 693b47e
+Merge: fe5c840b 693b47e6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 07:59:35 2024 -0400
 
@@ -4806,7 +4825,7 @@ Date:   Mon Jul 15 21:18:55 2024 +0000
     bumped changelog version
 
 commit 6e63fc8985b97902dbae2553ded51950168dc222
-Merge: fe0846c b7796a5
+Merge: fe0846c8 b7796a53
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 15 17:14:25 2024 -0400
 
@@ -4829,7 +4848,7 @@ Date:   Mon Jul 15 12:29:52 2024 -0400
     https://github.com/Kicksecure/security-misc/pull/234#issuecomment-2228909249
 
 commit 41f0b53dd62d2968a6ff88a6fd907ca42f581847
-Merge: 5ba5a85 9300c20
+Merge: 5ba5a85a 9300c208
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 15 12:28:03 2024 -0400
 
@@ -5053,7 +5072,7 @@ Date:   Sat Jul 13 15:01:16 2024 +0000
     bumped changelog version
 
 commit ad860063aba0443a8ac8b9cf191d008617d6d904
-Merge: f34b9d7 9f58266
+Merge: f34b9d7c 9f582665
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 13 10:55:45 2024 -0400
 
@@ -5084,7 +5103,7 @@ Date:   Sat Jul 13 22:41:40 2024 +1000
     Refactor existing sysctl for clarity
 
 commit f34b9d7c45cd723535eedd3df99896ee7f852388
-Merge: 05c1711 5f10cc8
+Merge: 05c1711b 5f10cc8b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 13 06:14:43 2024 -0400
 
@@ -5145,14 +5164,14 @@ Date:   Tue Jun 11 12:56:56 2024 +0000
     bumped changelog version
 
 commit e48115588caae8e51bb980ac84b1f0f415ca0d17
-Merge: b316352 cad8d85
+Merge: b316352e cad8d857
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jun 11 07:25:47 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit cad8d857556e29544f742fdac8fe82758a4f885c
-Merge: b316352 e198447
+Merge: b316352e e1984478
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jun 11 07:25:07 2024 -0400
 
@@ -5200,14 +5219,14 @@ Date:   Tue May 28 12:04:53 2024 +0000
     bumped changelog version
 
 commit ae24a97d4d0ffcfb3d1cc92edb61e7ecf4535ee7
-Merge: bfca98e a735857
+Merge: bfca98ea a7358578
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 28 08:02:21 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit a7358578520294b51e1001199670a0bbeeb43eb1
-Merge: bfca98e 4efa293
+Merge: bfca98ea 4efa293f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 28 07:55:31 2024 -0400
 
@@ -5247,14 +5266,14 @@ Date:   Sat May 18 20:45:12 2024 +0000
     bumped changelog version
 
 commit eb82884fb2e3d3bb4fa5555d8212146042ba8aa4
-Merge: 5867b1b 12e006e
+Merge: 5867b1b0 12e006ef
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat May 18 16:42:41 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 12e006ef9cabbbcbe9cb45d9a6631e9a7a47cf3a
-Merge: 5867b1b 2f71605
+Merge: 5867b1b0 2f716050
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat May 18 16:30:07 2024 -0400
 
@@ -5299,14 +5318,14 @@ Date:   Fri May 10 06:48:26 2024 -0400
     chmod +x
 
 commit 8a28c1bc38b87bf55f25764c96a0e81e22137232
-Merge: a9886a3 0f1119f
+Merge: a9886a31 0f1119f3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:48:04 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 0f1119f326cd769db8995e8eb54ff35503c70562
-Merge: 547757f 677f75a
+Merge: 547757f4 677f75ae
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:45:57 2024 -0400
 
@@ -5315,7 +5334,7 @@ Date:   Fri May 10 06:45:57 2024 -0400
     Disable Firewire Module
 
 commit 547757f4514a54437d044656c5e2b6d413a4cc30
-Merge: 7b9fe44 06f13bb
+Merge: 7b9fe44a 06f13bb7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:45:34 2024 -0400
 
@@ -5324,7 +5343,7 @@ Date:   Fri May 10 06:45:34 2024 -0400
     Block Several GPS-related Modules
 
 commit 7b9fe44a20f3caf67f386969a5fc7c980e5f0282
-Merge: 62ea4dc 132b41a
+Merge: 62ea4dc1 132b41ae
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:43:43 2024 -0400
 
@@ -5333,7 +5352,7 @@ Date:   Fri May 10 06:43:43 2024 -0400
     Revert Logging of Martians
 
 commit 62ea4dc1768f69bb28a69c20e55c87ae692cc0c8
-Merge: a9886a3 4694268
+Merge: a9886a31 4694268b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:43:15 2024 -0400
 
@@ -5426,14 +5445,14 @@ Date:   Fri Apr 12 06:56:39 2024 +0000
     bumped changelog version
 
 commit 5cbdf3c1262d26ae03b28baee87b1d268329da40
-Merge: 7fba04d ab8b6da
+Merge: 7fba04d1 ab8b6da4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 12 02:54:17 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit ab8b6da484a90e9a62f8ba515c757aa3758baf48
-Merge: 7fba04d 4935768
+Merge: 7fba04d1 49357683
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 12 02:53:08 2024 -0400
 
@@ -5480,14 +5499,14 @@ Date:   Mon Mar 11 15:07:50 2024 +0000
     bumped changelog version
 
 commit 0a018bdebca167d671d8bda81a2b0d929d396945
-Merge: 57fc487 0b81316
+Merge: 57fc487e 0b813163
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 11 10:13:57 2024 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 0b8131630041dbd80f1aa61dcedde446208c06f7
-Merge: 57fc487 03ed546
+Merge: 57fc487e 03ed546c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 11 10:12:46 2024 -0400
 
@@ -5594,14 +5613,14 @@ Date:   Mon Feb 26 07:49:30 2024 -0500
     comment
 
 commit bc8f9edc3197e33e75ea1d691834d9abbdcdefd0
-Merge: 02d6f67 b23d167
+Merge: 02d6f677 b23d1673
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 07:48:19 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit b23d167342ef242a1e9d4e91b6a4b945e80c3e7e
-Merge: 02d6f67 ef44ece
+Merge: 02d6f677 ef44ecea
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 07:46:02 2024 -0500
 
@@ -5740,14 +5759,14 @@ Date:   Sat Feb 3 18:28:27 2024 +0000
     bumped changelog version
 
 commit 02090da08cfd411314ffeeb6df95f73c701f06c6
-Merge: 8037ce5 ba13657
+Merge: 8037ce52 ba13657d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Feb 3 12:51:07 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit ba13657d894f2f30d8deb7c08b85e5fbc1dcea21
-Merge: 8037ce5 b16c99a
+Merge: 8037ce52 b16c99ab
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Feb 3 12:50:28 2024 -0500
 
@@ -5962,7 +5981,7 @@ Date:   Tue Jan 16 08:32:52 2024 -0500
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit 862bf6b5ab29917138325023eb3507f5fbd5653c
-Merge: dc8d9ee bc02c72
+Merge: dc8d9eec bc02c720
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 08:19:28 2024 -0500
 
@@ -6021,14 +6040,14 @@ Date:   Thu Jan 4 02:03:26 2024 +0000
     bumped changelog version
 
 commit 70a86fa994c0a894643e876fc86226ad0443a741
-Merge: db0503e 71060f1
+Merge: db0503e7 71060f1f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 3 05:12:48 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 71060f1f53ca7a275f10c4b6ab3e6c25585d5440
-Merge: db0503e 74afcc9
+Merge: db0503e7 74afcc9c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 3 05:00:41 2024 -0500
 
@@ -6088,14 +6107,14 @@ Date:   Tue Jan 2 12:17:16 2024 +0100
     - Use long options for "set" command;
 
 commit a94f2a3f4626a9292660bc7f98a6513f34d0f5b2
-Merge: 94c0e26 8daf97a
+Merge: 94c0e26a 8daf97ab
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 2 05:30:49 2024 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 8daf97ab0181a9cbb9e9dec57f1f00270dbb3a50
-Merge: 94c0e26 f055fe5
+Merge: 94c0e26a f055fe5d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 2 05:29:35 2024 -0500
 
@@ -6330,14 +6349,14 @@ Date:   Mon Dec 4 11:37:02 2023 -0500
     since not mentioned on debian.org
 
 commit 69c895af09f05000ace5f273f3e5032aabf8c64e
-Merge: c9ea7a4 36850f8
+Merge: c9ea7a4d 36850f89
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:27:53 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 36850f89fb07678ca24eb580a18247e593eac608
-Merge: c9ea7a4 0d7af97
+Merge: c9ea7a4d 0d7af970
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:27:16 2023 -0500
 
@@ -6356,14 +6375,14 @@ Date:   Mon Dec 4 11:02:55 2023 -0500
     fixes https://github.com/Kicksecure/security-misc/issues/175
 
 commit e83c1d7ed662bb0533c670dd5b7a6745a75e9ca4
-Merge: c4e21ca befd21e
+Merge: c4e21ca5 befd21e0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:01:02 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit befd21e0c0c38eaf91c7096e9f60120f533a5842
-Merge: c4e21ca f2ad838
+Merge: c4e21ca5 f2ad8383
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:00:29 2023 -0500
 
@@ -6430,7 +6449,7 @@ Date:   Sun Dec 3 19:30:55 2023 +0000
     Update 20_security-misc
 
 commit 7963f811e1bb6f5e0e2ba41e96b14e4a3a70f847
-Merge: c8b9f5a 82bd913
+Merge: c8b9f5a9 82bd9138
 Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Sun Dec 3 19:30:22 2023 +0000
 
@@ -6719,14 +6738,14 @@ Date:   Sun Nov 5 17:43:07 2023 -0500
     set -e
 
 commit 18a2d814cc0c477599b276bb319ed8bdd34499ea
-Merge: 4fda9d2 36f3c30
+Merge: 4fda9d2e 36f3c304
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 17:42:28 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 36f3c30440e73c8bf4946742095f0495994fed99
-Merge: 4fda9d2 2e64d89
+Merge: 4fda9d2e 2e64d89b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 17:41:56 2023 -0500
 
@@ -6857,14 +6876,14 @@ Date:   Sun Nov 5 14:50:13 2023 -0500
     cleanup
 
 commit 811d1cd0dd0dcb9021d2f72638dd6c12b734964c
-Merge: 9343795 5a75bcf
+Merge: 93437952 5a75bcfb
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:49:43 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 5a75bcfb19ac6c555a52cb1600e4efd13a8cfc06
-Merge: 9343795 229032d
+Merge: 93437952 229032d6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:49:00 2023 -0500
 
@@ -6879,14 +6898,14 @@ Date:   Sun Nov 5 14:41:01 2023 -0500
     readme
 
 commit f32b5438872ad0b9e10cb7b0519f1f18fce1913e
-Merge: 56b90ee 4946f85
+Merge: 56b90eec 4946f85d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:38:20 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 4946f85d43083c64bc3f8f02e26b08f79b622bfe
-Merge: 817ca11 1abac79
+Merge: 817ca116 1abac794
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:37:47 2023 -0500
 
@@ -6895,14 +6914,14 @@ Date:   Sun Nov 5 14:37:47 2023 -0500
     Thunderbird Hardening
 
 commit 56b90eecbfb21e546d52d1f41ce9361f2843cd71
-Merge: 3178677 817ca11
+Merge: 31786775 817ca116
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:35:23 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 817ca116f693893e6dcb69254ee91815d200b8a1
-Merge: d9b5d77 fbd9e5d
+Merge: d9b5d770 fbd9e5d0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:34:13 2023 -0500
 
@@ -6911,14 +6930,14 @@ Date:   Sun Nov 5 14:34:13 2023 -0500
     Updated Readme
 
 commit 317867758478619fe1df4ebdb5e22240c40104c0
-Merge: dcead44 d9b5d77
+Merge: dcead44c d9b5d770
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:32:21 2023 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit d9b5d770cfd5f7747f1d606f3136a93034928f30
-Merge: dcead44 ac224b2
+Merge: dcead44c ac224b27
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:31:26 2023 -0500
 
@@ -7018,14 +7037,14 @@ Date:   Fri Nov 3 12:10:48 2023 -0400
     bumped changelog version
 
 commit 5e73f78ed9282bf0895b01d44d9c261ea0050cce
-Merge: ceffd2b 8e66a41
+Merge: ceffd2b3 8e66a417
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:10:33 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 8e66a4177868ee7b51dafdb06062b0cb7cbc7415
-Merge: ceffd2b 7dc99d5
+Merge: ceffd2b3 7dc99d54
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:10:00 2023 -0400
 
@@ -7040,7 +7059,7 @@ Date:   Fri Nov 3 12:09:39 2023 -0400
     fix
 
 commit 2a602e78d6ca0f87f11de9a30ae2114468243075
-Merge: 3ee4be6 ceffd2b
+Merge: 3ee4be65 ceffd2b3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:08:50 2023 -0400
 
@@ -7189,14 +7208,14 @@ Date:   Wed Nov 1 12:26:21 2023 -0400
     bumped changelog version
 
 commit bb14a058520b13e242fea9f3022c439c4677bd1d
-Merge: 5ed2a5c 44906e8
+Merge: 5ed2a5ce 44906e8f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 11:11:54 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 44906e8f398aae6e9565b131b82124e738e2d0d1
-Merge: 5ed2a5c f2c23a2
+Merge: 5ed2a5ce f2c23a28
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 11:11:27 2023 -0400
 
@@ -7211,14 +7230,14 @@ Date:   Wed Nov 1 11:10:36 2023 -0400
     bumped changelog version
 
 commit bb1161986b6d108c4fc5a16a48cdac55f98ab35d
-Merge: 7d57684 b7cddd6
+Merge: 7d576842 b7cddd6e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 10:31:04 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit b7cddd6e552cb5f5139de91ef2aeae6fde691136
-Merge: 7d57684 c975c3c
+Merge: 7d576842 c975c3c0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 10:30:26 2023 -0400
 
@@ -7295,14 +7314,14 @@ Date:   Thu Oct 26 19:31:14 2023 -0400
     remove duplicates
 
 commit 928cdb81d43dfd337c82917182d2914d9c9d0915
-Merge: a330a9f 39fed05
+Merge: a330a9fd 39fed058
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:29:55 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 39fed058f4734029b303fac4ea9a1b11f652fab4
-Merge: 92a6ecc 99355c6
+Merge: 92a6ecc4 99355c61
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:27:41 2023 -0400
 
@@ -7317,14 +7336,14 @@ Date:   Thu Oct 26 19:20:21 2023 -0400
     refactor permission-lockdown
 
 commit 8bf5ff82be706599f33228ecd6df42be0dc29f39
-Merge: 1123d23 92a6ecc
+Merge: 1123d231 92a6ecc4
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:15:04 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 92a6ecc40a4d3bd4d8f3cec7dd9b1334c72399dc
-Merge: ca9603a 91c4452
+Merge: ca9603af 91c44524
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:13:34 2023 -0400
 
@@ -7415,7 +7434,7 @@ Date:   Wed Oct 25 17:41:05 2023 -0400
     comment
 
 commit 5d71217e597aa3366658524ec5395c9f76dd527b
-Merge: 6a22351 a2f811a
+Merge: 6a22351d a2f811af
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 25 17:40:13 2023 -0400
 
@@ -7436,7 +7455,7 @@ Date:   Wed Oct 25 17:28:43 2023 -0400
     renamed:    etc/sysctl.d/30_silent-kernel-printk.conf -> usr/lib/sysctl.d/30_silent-kernel-printk.conf
 
 commit a2f811aff0cb4e73c3975093012c223127495707
-Merge: 3317332 ee6716e
+Merge: 3317332c ee6716e1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 25 17:26:46 2023 -0400
 
@@ -7457,14 +7476,14 @@ Date:   Tue Oct 24 05:51:11 2023 -0400
     bumped changelog version
 
 commit 42c802cd1eca3d2586abde871e4842cdf83490c4
-Merge: f3b40f1 5320c11
+Merge: f3b40f12 5320c11f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 24 05:30:15 2023 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 5320c11f3f92b66b7dcab7ca1f67fcba2de5deba
-Merge: f3b40f1 f0857fd
+Merge: f3b40f12 f0857fd5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 24 05:22:33 2023 -0400
 
@@ -8160,14 +8179,14 @@ Date:   Mon May 15 17:31:59 2023 +0000
     bumped changelog version
 
 commit b11a336b4ff6c748d20aade6e98b25c251bd8c8e
-Merge: c921d4e b0b73db
+Merge: c921d4e9 b0b73db3
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 16:58:11 2023 +0000
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit b0b73db3c84f8cc7594b6b181e0e495cd7e92571
-Merge: c921d4e cf003df
+Merge: c921d4e9 cf003dfa
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 12:57:46 2023 -0400
 
@@ -8188,14 +8207,14 @@ Date:   Mon May 15 11:56:30 2023 +0000
     bumped changelog version
 
 commit 39676395f814007f74ce1edb0aee0ada4d4fa478
-Merge: 6511dac 1f38fcf
+Merge: 6511dac1 1f38fcfe
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 11:34:57 2023 +0000
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 1f38fcfefa1ccd732e4500522cc0978bda69ab0b
-Merge: d66a9ba 6ab400c
+Merge: d66a9bac 6ab400c9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 07:34:16 2023 -0400
 
@@ -8204,7 +8223,7 @@ Date:   Mon May 15 07:34:16 2023 -0400
     mmap-rnd-bits: Fix typo in error message
 
 commit d66a9bac551e7544eed592a69f576d27880e2bf3
-Merge: 6511dac 9d23717
+Merge: 6511dac1 9d23717b
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 07:34:00 2023 -0400
 
@@ -8315,14 +8334,14 @@ Date:   Fri May 5 14:44:29 2023 +0000
     minor mmap-rnd-bits improvements
 
 commit 15d0ee100834e01e3f17ee179c3120f37eb3cae5
-Merge: 1137e6c 2d40bbc
+Merge: 1137e6c9 2d40bbc8
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 5 14:37:34 2023 +0000
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 2d40bbc8fec7ceea47b64fdebc9e751b26e0cf27
-Merge: 5c6db28 48a68ba
+Merge: 5c6db288 48a68ba2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 5 10:14:43 2023 -0400
 
@@ -8363,7 +8382,7 @@ Date:   Fri Mar 24 12:32:58 2023 +0000
     Probably fixes a bunch of other non-x86_64 arches too.
 
 commit 5c6db28881463e8c764872a8cd268c23ac64b8f1
-Merge: 8a34d6c ed5f8be
+Merge: 8a34d6c0 ed5f8be9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Mar 31 04:52:55 2023 -0400
 
@@ -8372,7 +8391,7 @@ Date:   Fri Mar 31 04:52:55 2023 -0400
     Remove outdated comment about SACK, DSACK, and FACK
 
 commit 8a34d6c067bdebc513f34cd3c434b0675f118e10
-Merge: 1137e6c 7a4212d
+Merge: 1137e6c9 7a4212dd
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Mar 31 04:52:18 2023 -0400
 
@@ -8917,7 +8936,7 @@ Date:   Sat Jan 7 12:43:07 2023 -0500
     minor
 
 commit 450ff378b067070618e4a972f8131acac5b292e0
-Merge: 929f49f b8e82ff
+Merge: 929f49f3 b8e82fff
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 12:38:14 2023 -0500
 
@@ -9086,14 +9105,14 @@ Date:   Sun Dec 18 14:37:51 2022 -0500
     bumped changelog version
 
 commit 75beb52bd5b7cee4a48eead53dbbe7fac9f6cc9e
-Merge: 98f753d 58b622f
+Merge: 98f753d8 58b622f0
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Dec 18 06:24:41 2022 -0500
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 58b622f0fe373b6e2fb30b9564b22f1064f690b0
-Merge: 98f753d f81714b
+Merge: 98f753d8 f81714be
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Dec 18 06:23:26 2022 -0500
 
@@ -9102,7 +9121,7 @@ Date:   Sun Dec 18 06:23:26 2022 -0500
     Add some framebuffer drivers into blacklist
 
 commit f81714be506d1b15c0e79cbe8378bf8a18a2256f
-Merge: d67845f 98f753d
+Merge: d67845fe 98f753d8
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Tue Dec 13 05:14:56 2022 +0000
 
@@ -9299,14 +9318,14 @@ Date:   Wed Aug 24 18:28:39 2022 -0400
     bumped changelog version
 
 commit cdfc175953a8ab358bb8e6db2610df11733ba258
-Merge: ff84514 ae4d498
+Merge: ff845146 ae4d4989
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Aug 22 06:09:30 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit ae4d4989b0e8ea79b5661f098e9814379ff9401e
-Merge: ff84514 d500205
+Merge: ff845146 d500205f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Aug 22 06:09:40 2022 -0400
 
@@ -9385,14 +9404,14 @@ Date:   Sat Jul 23 07:49:56 2022 -0400
     https://forums.whonix.org/t/set-oops-panic-kernel-parameter-or-kernel-panic-on-oops-1-sysctl-for-better-security/7713
 
 commit c1c04b4619eea4c79a0dbb5cced3ebb77482877c
-Merge: 465775c bfe6b88
+Merge: 465775c9 bfe6b888
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 23 07:43:19 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit bfe6b888395abf554623a9e530fe7e6605047e12
-Merge: 465775c ca764d8
+Merge: 465775c9 ca764d8d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 23 07:27:24 2022 -0400
 
@@ -9443,7 +9462,7 @@ Date:   Tue Jul 19 02:29:46 2022 +1000
     shuffle and rewording
 
 commit 39314b291263a93fcb11756ce12bd8691a1fa0f6
-Merge: bb831d5 c4a1094
+Merge: bb831d57 c4a10947
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Tue Jul 19 00:49:08 2022 +1000
 
@@ -9462,7 +9481,7 @@ Date:   Tue Jul 19 00:37:31 2022 +1000
     enforce default net.ipv6.icmp_ignore_bogus_error_responses
 
 commit c4a10947608b0d5508ef5b18e0ab34a2ee4f35de
-Merge: 2b23703 465775c
+Merge: 2b237039 465775c9
 Author: Raja Grewal <rg_public@proton.me>
 Date:   Mon Jul 18 13:36:23 2022 +0000
 
@@ -9475,14 +9494,14 @@ Date:   Sat Jul 16 08:00:16 2022 -0400
     bumped changelog version
 
 commit 1fafb5f53bbec57812f535e79bfb475628cc58e3
-Merge: 24d6a93 27aa523
+Merge: 24d6a93e 27aa5231
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 15 08:09:16 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 27aa5231e2d1dafd89ba19c8d6becf461e781605
-Merge: 24d6a93 a72bbb1
+Merge: 24d6a93e a72bbb18
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 15 08:06:08 2022 -0400
 
@@ -9509,14 +9528,14 @@ Date:   Wed Jul 13 22:25:53 2022 +1000
     Update README.md
 
 commit 8f31e5d1d172eb117bde63702f63081da182d5c5
-Merge: 6aa9a94 c410890
+Merge: 6aa9a947 c410890a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 13 07:26:58 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit c410890a8ade6d4be13dc99a7003f03ebded8153
-Merge: 6aa9a94 fe0cc10
+Merge: 6aa9a947 fe0cc108
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 13 07:24:12 2022 -0400
 
@@ -9647,14 +9666,14 @@ Date:   Sat Jul 9 11:38:04 2022 -0400
     fix
 
 commit 52c46e4706d5799d452f260616a3909c9a3bc78f
-Merge: 1b8500c dc41a58
+Merge: 1b8500cc dc41a581
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 9 11:37:41 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit dc41a58102a114e21209aabeef9ad6b851365898
-Merge: 1b8500c e5f8004
+Merge: 1b8500cc e5f8004a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 9 11:37:57 2022 -0400
 
@@ -9701,7 +9720,7 @@ Date:   Thu Jul 7 15:27:15 2022 -0400
     shuffle
 
 commit d018bdaf73e109a61c0687a171af843c890729e0
-Merge: 1b287a6 780dc8e
+Merge: 1b287a64 780dc8ee
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 7 15:26:08 2022 -0400
 
@@ -10221,14 +10240,14 @@ Date:   Wed Jun 8 09:04:03 2022 -0400
     remove unicode
 
 commit fcaec49675ce7e240bdd049aab184fbee0945c7d
-Merge: 5c43197 995e4ba
+Merge: 5c43197f 995e4ba7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 8 08:20:24 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 995e4ba7fafc1bf4f691b83dde415c57cebed63d
-Merge: 616fe85 6e8f584
+Merge: 616fe857 6e8f584d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 8 08:19:03 2022 -0400
 
@@ -10285,14 +10304,14 @@ Date:   Fri May 20 14:46:38 2022 -0400
     copyright
 
 commit 78a9956b73498bad471ee1cb0fa0993f2e5ce3c0
-Merge: 4a3ed17 7651308
+Merge: 4a3ed171 76513087
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu May 19 19:41:33 2022 -0400
 
     Merge remote-tracking branch 'github-kicksecure/master'
 
 commit 76513087872943442df32451de5af158c2bbe944
-Merge: 4a3ed17 93efa50
+Merge: 4a3ed171 93efa506
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu May 19 19:39:42 2022 -0400
 
@@ -10726,14 +10745,14 @@ Date:   Mon Jun 7 12:13:37 2021 -0400
     bumped changelog version
 
 commit 30d1ce36af7835d47e0b53af475f3a7e99617b77
-Merge: 0305baf 70a1eb2
+Merge: 0305baf2 70a1eb25
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jun 7 12:11:58 2021 -0400
 
     Merge remote-tracking branch 'github-whonix/master'
 
 commit 70a1eb25a5976e0461056ff2c56bd82ab5df6c2c
-Merge: 0305baf 97d8db3
+Merge: 0305baf2 97d8db3f
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jun 5 15:55:41 2021 -0400
 
@@ -10850,14 +10869,14 @@ Date:   Mon Mar 1 09:15:44 2021 -0500
     comment
 
 commit 3382192b89de3891d45261f138652bdb48c5674b
-Merge: 7f30d70 2e8e3c0
+Merge: 7f30d702 2e8e3c07
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 1 09:12:18 2021 -0500
 
     Merge remote-tracking branch 'github/master'
 
 commit 2e8e3c07c4dda7f8500237dfa7a1d2bc7aecef5d
-Merge: 7f30d70 4db7d6b
+Merge: 7f30d702 4db7d6be
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 1 14:11:28 2021 +0000
 
@@ -10983,14 +11002,14 @@ Date:   Tue Jan 12 03:19:31 2021 -0500
     new file:   README_generic.md
 
 commit 94627f0875e69c9314faab8b0dc2dbe22af5c88f
-Merge: 353e74f 79876f7
+Merge: 353e74fb 79876f7b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 12 03:18:41 2021 -0500
 
     Merge remote-tracking branch 'github/master'
 
 commit 79876f7b1261006885a713dbfda97609c8e81f3f
-Merge: 353e74f 3066b5a
+Merge: 353e74fb 3066b5ad
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 12 08:17:04 2021 +0000
 
@@ -11208,14 +11227,14 @@ Date:   Mon Oct 5 07:03:37 2020 -0400
     bumped changelog version
 
 commit 3adb2c92d9551f649b177753fede18da3cc4b0eb
-Merge: feb7cea 5856013
+Merge: feb7cea4 58560138
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 3 14:10:32 2020 -0400
 
     Merge remote-tracking branch 'github/master'
 
 commit 58560138cdc36fa5f6142f75f0fed53bcad96363
-Merge: feb7cea 06ffd5d
+Merge: feb7cea4 06ffd5d2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 3 18:09:07 2020 +0000
 
@@ -11252,14 +11271,14 @@ Date:   Mon Sep 28 10:25:57 2020 -0400
     https://github.com/Whonix/security-misc/pull/75#issuecomment-695201068
 
 commit 77d461ec08ffdf0eb6a5d124927d9f9748c0dd3c
-Merge: 5fc7b79 3684ab5
+Merge: 5fc7b791 3684ab58
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 10:24:59 2020 -0400
 
     Merge remote-tracking branch 'github/master'
 
 commit 3684ab585eeab46ff17a1d410ce1bcff1a63968c
-Merge: ae90107 a813e7d
+Merge: ae90107e a813e7da
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 14:24:15 2020 +0000
 
@@ -11268,7 +11287,7 @@ Date:   Mon Sep 28 14:24:15 2020 +0000
     Blacklist more modules (based on OpenSCAP for RHEL 8)
 
 commit ae90107e6df4d312a6734985df38b8533d1283c8
-Merge: 5fc7b79 8f7727e
+Merge: 5fc7b791 8f7727e8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 14:23:42 2020 +0000
 
@@ -11289,14 +11308,14 @@ Date:   Sat Sep 19 09:28:27 2020 -0400
     bumped changelog version
 
 commit bff6ce7abb920d55edc49b19340a1e9251a4cd8c
-Merge: 98c0dec 9239c8b
+Merge: 98c0deca 9239c8b8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Sep 19 06:54:50 2020 -0400
 
     Merge remote-tracking branch 'github/master'
 
 commit 9239c8b8074018090d4fa1381aa06e66a99359cc
-Merge: 98c0dec 8dfdec1
+Merge: 98c0deca 8dfdec1d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Sep 19 10:54:21 2020 +0000
 
@@ -11728,14 +11747,14 @@ Date:   Sat Mar 21 14:12:42 2020 -0400
     remove trailing space
 
 commit 7c25fc517e6f42d4364a55407f6bf0c84d130c8e
-Merge: 20f0c57 1cbc7f6
+Merge: 20f0c574 1cbc7f6b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 14:12:25 2020 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 1cbc7f6bed8acc112b610e05f527cffc6e9e1e87
-Merge: 20f0c57 89ada11
+Merge: 20f0c574 89ada11c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 18:11:57 2020 +0000
 
@@ -11750,14 +11769,14 @@ Date:   Sat Mar 21 17:49:07 2020 +0000
     Only remount if already mounted read-only
 
 commit 20f0c574d5424c78ab6b4d3829a6662615967ba5
-Merge: e4118cb 2938182
+Merge: e4118cb2 2938182c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 13:28:43 2020 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 2938182ce6303e6e55086e2e9e82f8263a3c8e76
-Merge: e4118cb c8826d6
+Merge: e4118cb2 c8826d67
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 17:26:37 2020 +0000
 
@@ -11786,14 +11805,14 @@ Date:   Thu Mar 12 04:43:08 2020 -0400
     bumped changelog version
 
 commit e6e7886a6e3dca1a75943c5a04c4d29ab8682cec
-Merge: 04a87f7 711e786
+Merge: 04a87f70 711e786b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Mar 11 09:08:41 2020 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 711e786be504179c832172acb39d567b323520e6
-Merge: 04a87f7 4d0de87
+Merge: 04a87f70 4d0de87f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Mar 11 13:06:23 2020 +0000
 
@@ -11888,14 +11907,14 @@ Date:   Tue Mar 3 09:07:42 2020 -0500
     readme
 
 commit 63c6405ab74f0dd5f3ec3838135b29304a3d1fc8
-Merge: e3e39f2 453aa8a
+Merge: e3e39f22 453aa8a4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 29 07:34:46 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 453aa8a4eb76fe56ad67f1aea8abfeb122e68a9c
-Merge: e3e39f2 60fbf8b
+Merge: e3e39f22 60fbf8b0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 29 12:28:32 2020 +0000
 
@@ -11904,7 +11923,7 @@ Date:   Sat Feb 29 12:28:32 2020 +0000
     Restrict the userfaultfd() syscall to root
 
 commit e3e39f22354595c9f21c243d7bdadc1487374db8
-Merge: 649ec5d bd7678c
+Merge: 649ec5df bd7678c5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 29 05:01:41 2020 -0500
 
@@ -11934,7 +11953,7 @@ Date:   Sat Feb 29 04:59:02 2020 -0500
     description
 
 commit bd7678c574819298b364185fe7e3362c7e8d4930
-Merge: d04d4bf 42d3b98
+Merge: d04d4bf0 42d3b986
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 28 12:04:05 2020 +0000
 
@@ -11979,14 +11998,14 @@ Date:   Mon Feb 24 18:23:15 2020 +0000
     Restrict the userfaultfd() syscall to root
 
 commit 221000db5b184664c09dfe9cb7055de45331a7e1
-Merge: 01eaee9 c7f2537
+Merge: 01eaee99 c7f25379
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 17 03:17:11 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit c7f2537930925e3ec250db81791a107af003079b
-Merge: 01eaee9 8ea4e50
+Merge: 01eaee99 8ea4e50c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 17 08:16:34 2020 +0000
 
@@ -12013,7 +12032,7 @@ Date:   Sat Feb 15 15:35:44 2020 -0500
     bumped changelog version
 
 commit 412a83923dd09f36a25ebf9ce1991369d09c5e34
-Merge: dce54d5 4399a51
+Merge: dce54d5d 4399a512
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 15:30:32 2020 -0500
 
@@ -12032,7 +12051,7 @@ Date:   Sat Feb 15 15:28:30 2020 -0500
     readme
 
 commit 4399a512bef77ddec428bd4150cacebb77fc22da
-Merge: 757df8f a79ce7f
+Merge: 757df8fc a79ce7fa
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 19:43:05 2020 +0000
 
@@ -12047,14 +12066,14 @@ Date:   Sat Feb 15 17:30:21 2020 +0000
     Document ldisc_autoload better
 
 commit 757df8fceb29d9b6143cf26e73cb31dde69d0a71
-Merge: 9bbae90 a9a1581
+Merge: 9bbae903 a9a15817
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 05:43:43 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit a9a1581720739966e94f18be556552e9d75d63b1
-Merge: 9bbae90 1e5946c
+Merge: 9bbae903 1e5946c7
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:42:20 2020 +0000
 
@@ -12063,7 +12082,7 @@ Date:   Sat Feb 15 10:42:20 2020 +0000
     Restrict the SysRq key
 
 commit 1e5946c795e3962fdc2229146b9331d36a1d6c41
-Merge: 0f49736 9bbae90
+Merge: 0f497369 9bbae903
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:41:52 2020 +0000
 
@@ -12076,14 +12095,14 @@ Date:   Sat Feb 15 05:29:48 2020 -0500
     remove-system.map: lower verbosity output
 
 commit cce35e5109489df44916a08722d9016bb1e578ec
-Merge: 14140ad e403517
+Merge: 14140ad4 e4035179
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 05:27:52 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit e40351796e297673e1ec45dee7483079e96d9639
-Merge: 5124f8c 31009f0
+Merge: 5124f8ce 31009f0b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:25:15 2020 +0000
 
@@ -12092,7 +12111,7 @@ Date:   Sat Feb 15 10:25:15 2020 +0000
     Shred System.map files
 
 commit 5124f8cebcf6113547d11fc5193f83af1a2b6f84
-Merge: ac8757a 9b76713
+Merge: ac8757a0 9b767139
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:18:56 2020 +0000
 
@@ -12101,7 +12120,7 @@ Date:   Sat Feb 15 10:18:56 2020 +0000
     Avoid holes in IOMMU
 
 commit ac8757a031a02c6cbad564e6a857954c0cf01a54
-Merge: ad6b766 ace6211
+Merge: ad6b7668 ace62111
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:09:46 2020 +0000
 
@@ -12146,7 +12165,7 @@ Date:   Fri Feb 14 17:50:19 2020 +0000
     Restrict loading line disciplines to CAP_SYS_MODULE
 
 commit ad6b76688677cd4f9f0b2f2524c0f6b0a381bf29
-Merge: 14140ad 14f8458
+Merge: 14140ad4 14f84583
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 18:40:58 2020 +0000
 
@@ -12167,14 +12186,14 @@ Date:   Thu Feb 13 13:38:21 2020 -0500
     readme
 
 commit 76a51a3b45113b4f771397bf32daae3fb38af6a6
-Merge: 163e20b 5ebab39
+Merge: 163e20b8 5ebab397
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 13:37:34 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 5ebab397b201f431e3d0ca3bebfb71fa61a7ed2b
-Merge: 163e20b 2796c2d
+Merge: 163e20b8 2796c2dd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 18:36:41 2020 +0000
 
@@ -12219,14 +12238,14 @@ Date:   Wed Feb 5 06:31:48 2020 -0500
     bumped changelog version
 
 commit 3024006f63be34f0c9d2968b1839a855419792dd
-Merge: 8c5cd86 024576e
+Merge: 8c5cd865 024576e3
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 4 00:24:50 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 024576e3307e45c90b97ed8658ee82ceb1ed00aa
-Merge: 8c5cd86 e4c6e89
+Merge: 8c5cd865 e4c6e897
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 4 05:24:05 2020 +0000
 
@@ -12491,14 +12510,14 @@ Date:   Wed Jan 15 15:54:06 2020 -0500
     error handling
 
 commit 7211f6e0199d2ccb50437c7a5b0842050590b5dc
-Merge: e110ea0 f6cc76a
+Merge: e110ea0b f6cc76ac
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 15:53:36 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit f6cc76acd729428f83d3497a2e83bfc4b14f1ff8
-Merge: e110ea0 1df48a2
+Merge: e110ea0b 1df48a22
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 20:52:33 2020 +0000
 
@@ -12549,14 +12568,14 @@ Date:   Wed Jan 15 10:08:57 2020 -0500
     readme
 
 commit 8ab4623f8e81ad1b67858b458f2ae4085e7c8e65
-Merge: 8015954 087465a
+Merge: 80159545 087465a0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 06:06:39 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 087465a0cdecc4765f7b659256cdd5e8cdef73ab
-Merge: 8015954 528c5fc
+Merge: 80159545 528c5fc4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 11:02:30 2020 +0000
 
@@ -12565,7 +12584,7 @@ Date:   Wed Jan 15 11:02:30 2020 +0000
     Set sysctl values in initramfs
 
 commit 528c5fc4c41026396a63ac91af7c156dd0d4f191
-Merge: 9dc43ea 8015954
+Merge: 9dc43eae 80159545
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 11:02:03 2020 +0000
 
@@ -12632,14 +12651,14 @@ Date:   Tue Jan 14 09:18:30 2020 -0500
     readme
 
 commit c377c5ff83437a5447ecc9c873150421f4f1e691
-Merge: 8341242 539f24b
+Merge: 8341242a 539f24b6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 14 09:01:38 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 539f24b65ee7739487d8038fcb1fdfb1ed62ab22
-Merge: 8341242 0953bbe
+Merge: 8341242a 0953bbe1
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 14 14:01:17 2020 +0000
 
@@ -12684,14 +12703,14 @@ Date:   Sat Jan 11 15:15:12 2020 -0500
     lintian
 
 commit 3fae8e771ffbdd3023921b296e46cf982034d2ac
-Merge: 13a1e13 e9f4dbd
+Merge: 13a1e132 e9f4dbdd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jan 11 15:14:43 2020 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit e9f4dbdda579db83f330054253100bc7c5d1e2be
-Merge: 13a1e13 6088444
+Merge: 13a1e132 6088444c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jan 11 20:14:10 2020 +0000
 
@@ -12930,14 +12949,14 @@ Date:   Tue Dec 24 06:00:41 2019 -0500
     no longer hardcode amd64
 
 commit d03a3d9ac03bc29ba349107855936dd194e12271
-Merge: 9d77d88 27a42a9
+Merge: 9d77d88a 27a42a9d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 05:57:24 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 27a42a9da82bc1f22135ffa509925f63177f25d9
-Merge: ac49c55 79241c5
+Merge: ac49c55d 79241c5d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:55:11 2019 +0000
 
@@ -12946,7 +12965,7 @@ Date:   Tue Dec 24 10:55:11 2019 +0000
     Make /lib/modules unreadable
 
 commit ac49c55d1fafff5f36bd7c595f50db295ff616a2
-Merge: 0c3d4ad 98e88d1
+Merge: 0c3d4ad2 98e88d14
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:55:03 2019 +0000
 
@@ -12955,7 +12974,7 @@ Date:   Tue Dec 24 10:55:03 2019 +0000
     Detect kernel upgrades
 
 commit 0c3d4ad255de75b57a2e316bf8a7fd77a2fc0d4d
-Merge: 9d77d88 d1a0650
+Merge: 9d77d88a d1a0650f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:54:23 2019 +0000
 
@@ -13036,7 +13055,7 @@ Date:   Mon Dec 23 03:38:49 2019 -0500
     description: lockdown not enabled yet
 
 commit b05669accfe6fac8070003bbd57939ca2c621445
-Merge: 11b4192 1ff51ee
+Merge: 11b4192f 1ff51ee0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 03:38:04 2019 -0500
 
@@ -13249,14 +13268,14 @@ Date:   Sun Dec 22 18:56:36 2019 -0500
     /lib/x86_64-linux-gnu/utempter/utempter
 
 commit 9409209b48fb8f803b88d72c0e7febaa74f5bd2c
-Merge: 008ce48 bce02ff
+Merge: 008ce481 bce02ffd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 22 10:29:08 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit bce02ffdc01c22c8d5528eb5eaa7729a6b3137dd
-Merge: 008ce48 8f11a52
+Merge: 008ce481 8f11a520
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 22 15:26:07 2019 +0000
 
@@ -13315,14 +13334,14 @@ Date:   Sat Dec 21 14:06:10 2019 -0500
     https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 
 commit 10c19d6a8fc6b6bc03067dc3be88f486aa78d438
-Merge: b2260f4 fffdf50
+Merge: b2260f48 fffdf509
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 13:00:41 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit fffdf5090c707c698de4adacfd5837809b33aa99
-Merge: 1c99b56 f5a52ae
+Merge: 1c99b56c f5a52aed
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 17:59:56 2019 +0000
 
@@ -13414,14 +13433,14 @@ Date:   Sat Dec 21 06:58:01 2019 -0500
     https://github.com/Whonix/security-misc/pull/45
 
 commit 2350e0f5d06d9625835ba1547aab0054b795c0c5
-Merge: 3ea5871 efd65a3
+Merge: 3ea58718 efd65a3f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 06:57:10 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit efd65a3f15fc9380e2019c9d7ad0bf82adcc230d
-Merge: c336bc4 c28ddf5
+Merge: c336bc4f c28ddf5c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 11:56:31 2019 +0000
 
@@ -14404,14 +14423,14 @@ Date:   Fri Dec 20 01:31:37 2019 -0500
     refactoring
 
 commit c5d1e9dda7059d18fad303128f6f09c98fe955b7
-Merge: 62eb462 a20b300
+Merge: 62eb4629 a20b3001
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 01:30:31 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit a20b30013f9ae229d1fe86cc5992aac474a9d8e6
-Merge: 62eb462 9df7407
+Merge: 62eb4629 9df74072
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 06:29:58 2019 +0000
 
@@ -14566,14 +14585,14 @@ Date:   Mon Dec 9 02:22:16 2019 -0500
     quotes
 
 commit 9bea9960173cf06dcbc0aefa2fb3b10df1f84c69
-Merge: 6f94423 af62da3
+Merge: 6f944234 af62da34
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 9 02:21:47 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit af62da34457a56fee43a6003036a3bb387b23b32
-Merge: 6f94423 d7e2dea
+Merge: 6f944234 d7e2deae
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 20:45:16 2019 +0000
 
@@ -14816,14 +14835,14 @@ Date:   Sun Dec 8 01:30:42 2019 -0500
     description
 
 commit 491dd4d93d133ca23eaf5c501b7ab3d3bbf52a27
-Merge: 9432d16 a78a7e5
+Merge: 9432d163 a78a7e55
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 01:22:16 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit a78a7e5571b178cbf4cddd065306d130431bc185
-Merge: 373e873 6846a94
+Merge: 373e8733 6846a943
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 06:21:44 2019 +0000
 
@@ -14844,14 +14863,14 @@ Date:   Sat Dec 7 12:13:42 2019 -0500
     /usr/bin/cat mrix,
 
 commit 373e8733d37cb795c7c48642346b0b6dc6dce30c
-Merge: c1800b1 447eb14
+Merge: c1800b13 447eb144
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 11:34:42 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 447eb144325a532b0aaf7ce772d5a04005b2af1f
-Merge: c1800b1 668b642
+Merge: c1800b13 668b6420
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 16:34:21 2019 +0000
 
@@ -15081,14 +15100,14 @@ Date:   Thu Dec 5 15:52:24 2019 -0500
     comment
 
 commit 19add3299c9215d05208e3c2e748527bf87e66b5
-Merge: 0c25a96 9679292
+Merge: 0c25a96b 96792928
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 5 15:46:19 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 96792928787c1c129a964bd81e97450d2edb29a6
-Merge: 0c25a96 af9e19c
+Merge: 0c25a96b af9e19c5
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 5 20:33:47 2019 +0000
 
@@ -15115,14 +15134,14 @@ Date:   Tue Dec 3 02:18:32 2019 -0500
     description / comments
 
 commit d26ba05c4776cdff0750b872f3da70fd25fca1f4
-Merge: 6ca48ff 73c6410
+Merge: 6ca48fff 73c6410a
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 3 01:52:04 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 73c6410a0e1e6e56529ba8ea98681867bd8acb37
-Merge: 6ca48ff 8d63da3
+Merge: 6ca48fff 8d63da3c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 3 06:51:31 2019 +0000
 
@@ -15183,14 +15202,14 @@ Date:   Wed Nov 27 10:22:31 2019 -0500
     https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
 
 commit 62b924eea7d50f58649e089ff9cf8d73075cac63
-Merge: 9091f69 ba02dcb
+Merge: 9091f69e ba02dcb2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 26 13:00:36 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit ba02dcb267a95d332bd01bb3fc725e051ccb3246
-Merge: 9091f69 d9d6d07
+Merge: 9091f69e d9d6d077
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 26 18:00:11 2019 +0000
 
@@ -15287,14 +15306,14 @@ Date:   Mon Nov 18 19:16:16 2019 +0000
     bumped changelog version
 
 commit 9a20b85fe16584dda909fd5f1aa6bbb62d06bcf0
-Merge: 477d476 2b17c0f
+Merge: 477d476b 2b17c0f3
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Nov 17 11:20:17 2019 -0500
 
     Merge remote-tracking branch 'origin/master'
 
 commit 2b17c0f3e4dcd7cb9f2239da649b4a885c27e7cf
-Merge: 477d476 e92022a
+Merge: 477d476b e92022a2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Nov 17 16:19:55 2019 +0000
 
@@ -15441,14 +15460,14 @@ Date:   Thu Oct 31 11:19:44 2019 -0400
     copyright
 
 commit f001250ae61789bef7b2b19d5c40831273b0acca
-Merge: d832ab9 5a3cbe8
+Merge: d832ab91 5a3cbe81
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 28 10:31:30 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 5a3cbe81000c3a9bbc69ba03c944c6c5ae9115bf
-Merge: d832ab9 0e49bdc
+Merge: d832ab91 0e49bdc4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 28 14:30:45 2019 +0000
 
@@ -15676,14 +15695,14 @@ Date:   Thu Oct 17 06:05:23 2019 -0400
     remove trailing spaces
 
 commit c8e0303d6d59e3303c0582ff8ab2664762199c81
-Merge: 4b1b3b7 8a42c5b
+Merge: 4b1b3b7d 8a42c5b0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 06:04:34 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 8a42c5b02387da454ff5661057be88a7c6fe9d9c
-Merge: 994ca02 61f7423
+Merge: 994ca024 61f74230
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 09:59:12 2019 +0000
 
@@ -15692,7 +15711,7 @@ Date:   Thu Oct 17 09:59:12 2019 +0000
     Add a whitelist for /sys and /proc/cpuinfo
 
 commit 994ca024c24cf80075b2f03bc65475a5d9980d94
-Merge: 4b1b3b7 259b1f2
+Merge: 4b1b3b7d 259b1f2c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 06:19:46 2019 +0000
 
@@ -15845,14 +15864,14 @@ Date:   Sat Oct 5 07:00:47 2019 -0400
     https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/5
 
 commit c19942f72b8d74056dd8da8c3cd9ac7e0fbe8991
-Merge: 213aef6 a33851a
+Merge: 213aef6e a33851a3
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 06:58:27 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit a33851a3c99a5eb9021d2d28b3164ed10025fbd9
-Merge: 213aef6 d0c6bb1
+Merge: 213aef6e d0c6bb1e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 10:58:08 2019 +0000
 
@@ -15891,14 +15910,14 @@ Date:   Sat Oct 5 09:14:41 2019 +0000
     chmod +x usr/lib/security-misc/hide-hardware-info
 
 commit ffe0d62c8148ec60f7528002e988b969ebb868ca
-Merge: ddc778b 7bcf73d
+Merge: ddc778b4 7bcf73de
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 04:49:05 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 7bcf73deaa1c77f9c650d8844ad94d24e38746fd
-Merge: ddc778b 7345287
+Merge: ddc778b4 73452875
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 08:46:21 2019 +0000
 
@@ -16053,14 +16072,14 @@ Date:   Mon Sep 9 12:10:24 2019 +0000
     bumped changelog version
 
 commit 1b4391417619a51cfe22d9eee21d9fa644d145b6
-Merge: 9d875d7 d0b3bc7
+Merge: 9d875d7c d0b3bc7d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 9 11:45:36 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit d0b3bc7d3da6a4e3a04adb85cc5c7aa6c22bb466
-Merge: 9d875d7 60db7e6
+Merge: 9d875d7c 60db7e62
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 9 11:45:19 2019 +0000
 
@@ -16245,7 +16264,7 @@ Date:   Fri Aug 23 16:53:55 2019 +0000
     readme
 
 commit 793c9b6801ffda5d75d389b8e7a2a6d140d8d382
-Merge: a74b983 44d62e0
+Merge: a74b9832 44d62e05
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 19 12:48:23 2019 +0000
 
@@ -16266,7 +16285,7 @@ Date:   Mon Aug 19 12:46:59 2019 +0000
     https://github.com/Whonix/security-misc/pull/29
 
 commit 44d62e05b5a60a3d45afd829fb67970afa7678b7
-Merge: 0140df8 a8b6281
+Merge: 0140df86 a8b62811
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 19 12:45:52 2019 +0000
 
@@ -16446,14 +16465,14 @@ Date:   Fri Aug 16 10:50:56 2019 -0400
     code simplification; report locked account earlier
 
 commit 5754671c460c67bd7d8e064841383ea7b7f90824
-Merge: 34672b8 9781598
+Merge: 34672b88 97815986
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 10:36:43 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 97815986321b6daf9c1f0c6f33a4b282ca05438c
-Merge: 34672b8 85502ad
+Merge: 34672b88 85502ad4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 14:36:00 2019 +0000
 
@@ -16462,7 +16481,7 @@ Date:   Fri Aug 16 14:36:00 2019 +0000
     Blacklist bluetooth
 
 commit 85502ad430f560070806c8b95b7fed3fe7028587
-Merge: 4a6f87f 34672b8
+Merge: 4a6f87f3 34672b88
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 14:35:51 2019 +0000
 
@@ -16685,14 +16704,14 @@ Date:   Wed Aug 14 07:01:25 2019 +0000
     description
 
 commit ff8c0979435b491cf462c5ef6e8e02f6d85f1d81
-Merge: 6f8acf0 a8ea379
+Merge: 6f8acf06 a8ea3795
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 06:59:50 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit a8ea37952669b3f40a452cb580442126ec44233a
-Merge: 6f8acf0 9a49b8e
+Merge: 6f8acf06 9a49b8ec
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 06:59:34 2019 +0000
 
@@ -16924,14 +16943,14 @@ Date:   Mon Jul 22 01:16:18 2019 +0000
     bumped changelog version
 
 commit f38f307b37d2efb036c5b4e85f48921b0acfadeb
-Merge: 8c538ba b2582fb
+Merge: 8c538ba3 b2582fbd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 21 09:12:33 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit b2582fbd4c2364c7bca95b4038eec2ef2a2fae41
-Merge: 8c538ba 077899c
+Merge: 8c538ba3 077899c2
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 21 12:40:37 2019 +0000
 
@@ -17292,14 +17311,14 @@ Date:   Thu Jul 11 18:26:17 2019 +0000
     fix lintian warning
 
 commit a40a04aaec0c30ceb47266a3f9b2b714e9b89888
-Merge: f5356ce 93190eb
+Merge: f5356cee 93190ebf
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 14:08:30 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 93190ebf1019f76b73cf0f1e4491f15fd36bcae1
-Merge: f5356ce 1aee08f
+Merge: f5356cee 1aee08fa
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 18:08:01 2019 +0000
 
@@ -17344,14 +17363,14 @@ Date:   Thu Jul 11 07:07:01 2019 +0000
     fix lintian warning
 
 commit 2a893c0562438aaf0c34a25538a8e21bb11ba197
-Merge: 3df6a44 a54500c
+Merge: 3df6a44e a54500c6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 06:50:35 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit a54500c6f18719520ae66c335870d3e8f03e9e14
-Merge: 7d3a615 1e4d349
+Merge: 7d3a6156 1e4d3495
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 06:41:37 2019 +0000
 
@@ -17360,7 +17379,7 @@ Date:   Thu Jul 11 06:41:37 2019 +0000
     Blacklist more uncommon network protocols
 
 commit 7d3a61564dc01b899466defe957a7bc65d38dc89
-Merge: 3df6a44 932524c
+Merge: 3df6a44e 932524cb
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 06:41:08 2019 +0000
 
@@ -17411,14 +17430,14 @@ Date:   Tue Jul 9 06:56:23 2019 -0400
     also allow members of group sudo to run /usr/lib/security-misc/panic-on-oops
 
 commit 5fb500ac32a8935ef989770b2b9d17df4fa1698c
-Merge: 8793708 e4bb770
+Merge: 87937089 e4bb7703
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 06:55:27 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit e4bb77037e9327eea7b8fd92961192613d6e0763
-Merge: a9441e7 0f15303
+Merge: a9441e7b 0f15303e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 10:54:48 2019 +0000
 
@@ -17427,21 +17446,21 @@ Date:   Tue Jul 9 10:54:48 2019 +0000
     Make the kernel panic on oopses
 
 commit 0f15303eb4dd5701cae5b3985be47918e2e4700a
-Merge: 45f8102 a9441e7
+Merge: 45f8102d a9441e7b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 10:54:24 2019 +0000
 
     Merge branch 'master' into patch-16
 
 commit 8793708906d037746a2e946177d8a4d1884b391a
-Merge: 50c00fc a9441e7
+Merge: 50c00fcf a9441e7b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 03:23:26 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit a9441e7be4794e88f782f1ff5dd95f00e3928279
-Merge: 50c00fc 24b326d
+Merge: 50c00fcf 24b326d9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 07:21:47 2019 +0000
 
@@ -17616,14 +17635,14 @@ Date:   Sat Jul 6 13:53:10 2019 +0000
     bumped changelog version
 
 commit 7b0b9da32c660e527741a56543c78ee3ac93d541
-Merge: 6df7b3c 649878f
+Merge: 6df7b3c2 649878fd
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 6 07:06:54 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 649878fdcb81ac621af9bc1481a3b6b41d3e22a0
-Merge: 6df7b3c 8888147
+Merge: 6df7b3c2 8888147e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 6 11:06:25 2019 +0000
 
@@ -17710,14 +17729,14 @@ Date:   Mon Jul 1 13:24:29 2019 +0000
     revert to Debian buster original
 
 commit 88a78b1c87e8419bbb70daa77f7ddfb2332668ae
-Merge: 24cc8e3 8c60e7c
+Merge: 24cc8e38 8c60e7c6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 09:21:05 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 8c60e7c67f692aa9e70316bdde29cdc41eff2a75
-Merge: 24cc8e3 cfaafe4
+Merge: 24cc8e38 cfaafe40
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 13:20:21 2019 +0000
 
@@ -17736,7 +17755,7 @@ Date:   Mon Jul 1 03:43:02 2019 -0400
     https://forums.whonix.org/t/kernel-hardening/7296/104
 
 commit 0bffc7a9303d0b32427da04694bbefcf6a3104c8
-Merge: 3c176ce 344d009
+Merge: 3c176ce1 344d0090
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 03:08:26 2019 -0400
 
@@ -17751,7 +17770,7 @@ Date:   Mon Jul 1 03:07:14 2019 -0400
     since required in Qubes Debian templates
 
 commit 344d00903250d699fc64d7fa9fad80475ade92e5
-Merge: f26ad14 b8f2aee
+Merge: f26ad14d b8f2aee9
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 06:39:28 2019 +0000
 
@@ -17832,14 +17851,14 @@ Date:   Sun Jun 30 04:11:38 2019 -0400
     fix package description
 
 commit e47339706170c92b8db44f014942ea7d94d1ff9e
-Merge: 24b19c5 ec78a3e
+Merge: 24b19c59 ec78a3e4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 04:11:12 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit ec78a3e42e23a270a245dc254046ac1d7fc6ceec
-Merge: 9525ff8 67de524
+Merge: 9525ff87 67de5247
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:10:28 2019 +0000
 
@@ -17848,14 +17867,14 @@ Date:   Sun Jun 30 08:10:28 2019 +0000
     Disable coredumps
 
 commit 67de5247c8e7cd68c851a3d62168e9de69000afe
-Merge: dbfb9e1 9525ff8
+Merge: dbfb9e1c 9525ff87
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:10:04 2019 +0000
 
     Merge branch 'master' into patch-13
 
 commit 9525ff87c6ae3cd6538a0a8f294e6b8610e79a32
-Merge: 24b19c5 22267c8
+Merge: 24b19c59 22267c89
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:09:23 2019 +0000
 
@@ -17930,14 +17949,14 @@ Date:   Sat Jun 29 10:34:48 2019 +0000
     fix lintian warning
 
 commit 250919b821a00c93ee4fe7d92f6f3ed812110aac
-Merge: ecf5d80 60e6dfc
+Merge: ecf5d80f 60e6dfcb
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 29 06:06:02 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 60e6dfcbff08dd4526e60c3302741e40d98c8b3e
-Merge: ecf5d80 9e9c854
+Merge: ecf5d80f 9e9c854d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 29 10:05:34 2019 +0000
 
@@ -17988,14 +18007,14 @@ Date:   Fri Jun 28 03:02:49 2019 -0400
     update files list
 
 commit ccb89cfd5574ed5a7b3802edc3bf188250edfddd
-Merge: 0a0be1a ab31223
+Merge: 0a0be1ad ab312235
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 03:00:21 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit ab312235ba89d62b7b83c26f8e9b8a8ff0ec985b
-Merge: 5e02100 3801a53
+Merge: 5e02100e 3801a53a
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:59:16 2019 +0000
 
@@ -18004,7 +18023,7 @@ Date:   Fri Jun 28 06:59:16 2019 +0000
     Add some hardening for other distributions
 
 commit 5e02100e34776bf410ba05d7a3f7ee7f696ca0fc
-Merge: 7e12e16 b809185
+Merge: 7e12e16d b8091850
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:58:32 2019 +0000
 
@@ -18013,7 +18032,7 @@ Date:   Fri Jun 28 06:58:32 2019 +0000
     Remove System.map and restrict the SysRq key.
 
 commit 7e12e16dc0513f0a6936e576e3c8fa8ee44509d2
-Merge: 0a0be1a 641407c
+Merge: 0a0be1ad 641407c8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:57:42 2019 +0000
 
@@ -18088,14 +18107,14 @@ Date:   Sun Jun 23 19:47:05 2019 +0000
     debian/control syntax fix
 
 commit a098b18560e30ef238f693bf8f05933489027dd4
-Merge: 2a62899 90d676e
+Merge: 2a628998 90d676ec
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 19:46:30 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit 90d676ec1864bd915310673d134d62d10a17a42f
-Merge: 2a62899 1a07d90
+Merge: 2a628998 1a07d90e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 19:45:31 2019 +0000
 
@@ -18120,14 +18139,14 @@ Date:   Sun Jun 23 18:46:52 2019 +0000
     https://forums.whonix.org/t/kernel-hardening/7296/70
 
 commit f1147318c04642f355eae96786c26ec1cb53977c
-Merge: cd73466 aec6da2
+Merge: cd734669 aec6da28
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:45:41 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit aec6da28e9ac4f8289d7b7aaa77bcef2562cda74
-Merge: cd73466 2178fb3
+Merge: cd734669 2178fb37
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:45:24 2019 +0000
 
@@ -18172,14 +18191,14 @@ Date:   Sun Jun 23 08:38:01 2019 +0000
     bumped changelog version
 
 commit ae50d8134294d3746235d383c18fc187c18717d7
-Merge: 5269cfe cd7172c
+Merge: 5269cfee cd7172c0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 03:59:58 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit cd7172c00cbf0cb69e159b6159ef0bfff663a507
-Merge: 5269cfe 807ac7d
+Merge: 5269cfee 807ac7d6
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 07:59:35 2019 +0000
 
@@ -18200,14 +18219,14 @@ Date:   Fri Jun 21 05:40:04 2019 +0000
     bumped changelog version
 
 commit 0a5b15ff45dc1b30867b0093d238b95dde7c0810
-Merge: ca1aa1e f9dc1b6
+Merge: ca1aa1e5 f9dc1b63
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 21 04:05:50 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit f9dc1b6322961ff0e6c7a5be122f9d1031ba87ea
-Merge: ca1aa1e 2e81885
+Merge: ca1aa1e5 2e81885f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jun 20 23:54:58 2019 -0400
 
@@ -18288,14 +18307,14 @@ Date:   Thu May 23 22:38:13 2019 +0000
     bumped changelog version
 
 commit 0a200e09ecf745d23e5e880d521f1aec2a7b25a9
-Merge: 65d7eb8 244234c
+Merge: 65d7eb81 244234c8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 23 18:25:47 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 244234c8b709a425feed4f3cfb87389f4fb2c6f5
-Merge: 65d7eb8 7177c60
+Merge: 65d7eb81 7177c604
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 23 22:25:13 2019 +0000
 
@@ -18316,14 +18335,14 @@ Date:   Thu May 16 20:25:46 2019 +0000
     bumped changelog version
 
 commit a2b184e5bb9942aa63a36fb918b203053a53f1e4
-Merge: 71bf635 7d7b899
+Merge: 71bf6351 7d7b899d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 16 19:53:27 2019 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit 7d7b899dd13f7123822bf269a639c68ff5cb737e
-Merge: 71bf635 b814f33
+Merge: 71bf6351 b814f338
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 16 19:52:52 2019 +0000
 
@@ -18376,7 +18395,7 @@ Date:   Wed May 8 21:38:25 2019 -0400
     https://forums.whonix.org/t/whonix-xfce-development/6213/84?u=patrick
 
 commit 3bd4da6794067708f517b099548c0aa2a2b65146
-Merge: c80b746 b00a264
+Merge: c80b7465 b00a264c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed May 8 21:32:29 2019 -0400
 
@@ -18425,14 +18444,14 @@ Date:   Mon May 6 05:51:14 2019 -0400
     remove trailing spaces
 
 commit 83e12f8e89cf0269daeca36946cdef07e23075b3
-Merge: 74cdecf 5177444
+Merge: 74cdecfd 5177444d
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon May 6 05:50:35 2019 -0400
 
     Merge remote-tracking branch 'origin/master'
 
 commit 5177444d624a8a935c461ebe1065d451d2f8da0f
-Merge: 74cdecf 02e8888
+Merge: 74cdecfd 02e8888b
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon May 6 05:46:03 2019 -0400
 
@@ -18577,14 +18596,14 @@ Date:   Thu Nov 8 09:55:41 2018 +0000
     bumped changelog version
 
 commit 0c020af885b3dfb2924102e6cf41a5af114cc140
-Merge: f9e1877 6f240c0
+Merge: f9e18772 6f240c0c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 8 09:53:47 2018 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit 6f240c0c4c88df2946fdd673f833ee05dd8340bb
-Merge: f9e1877 f84f988
+Merge: f9e18772 f84f9881
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 8 04:53:25 2018 -0500
 
@@ -18701,14 +18720,14 @@ Date:   Wed Jul 26 14:37:34 2017 +0000
     bumped changelog version
 
 commit dc2c9a9992551f5967e09b31a90721a9aadaf962
-Merge: 61bd4d0 91ff0c2
+Merge: 61bd4d05 91ff0c25
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Mar 14 13:43:18 2017 +0000
 
     Merge remote-tracking branch 'origin/master'
 
 commit 91ff0c2571b41710440006e770b8295c03b3a295
-Merge: 61bd4d0 6e5e5d6
+Merge: 61bd4d05 6e5e5d6e
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Mar 14 13:42:37 2017 +0000
 
@@ -18991,7 +19010,7 @@ Date:   Thu Mar 31 15:36:59 2016 +0000
     https://phabricator.whonix.org/T486
 
 commit 7b54755841907c2b86b12eed5035860e17445193
-Merge: 10c87b8 be086ae
+Merge: 10c87b84 be086aea
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:35:07 2016 +0000
 
@@ -19002,7 +19021,7 @@ Date:   Thu Mar 31 15:35:07 2016 +0000
     https://phabricator.whonix.org/T486
 
 commit be086aea597ff5e4db29f56fa57399c67568d4b6
-Merge: 10c87b8 d0eceae
+Merge: 10c87b84 d0eceae0
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:34:17 2016 +0000
 
