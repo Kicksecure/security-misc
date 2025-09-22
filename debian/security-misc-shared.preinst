@@ -52,10 +52,10 @@ user_groups_modifications() {
 }
 
 output_skip_checks() {
-   echo "security-misc '$0' INFO: Allow installation of security-misc anyway." >&2
-   echo "security-misc '$0' INFO: (technical reason: $@)" >&2
-   echo "security-misc '$0' INFO: If this is a chroot this is probably OK." >&2
-   echo "security-misc '$0' INFO: Otherwise you might not be able to login." >&2
+   echo "security-misc-shared '$0' INFO: Allow installation of security-misc-shared anyway." >&2
+   echo "security-misc-shared '$0' INFO: (technical reason: $@)" >&2
+   echo "security-misc-shared '$0' INFO: If this is a chroot this is probably OK." >&2
+   echo "security-misc-shared '$0' INFO: Otherwise you might not be able to login." >&2
 }
 
 sudo_users_check () {

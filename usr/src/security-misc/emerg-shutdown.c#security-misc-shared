@@ -318,7 +318,7 @@ void print_usage() {
   print(fd_stderr, "    not use.\n");
   print(fd_stderr, "Example:\n");
   print(fd_stderr, "  emerg-shutdown --devices=/dev/sda3 --keys=KEY_POWER\n");
-  print(fd_stderr, "See /etc/security-misc/emerg-shutdown/30_security-misc.cofn to\n");
+  print(fd_stderr, "See /etc/security-misc/emerg-shutdown/30_security-misc.conf to\n");
   print(fd_stderr, "configure the emerg-shutdown service.\n");
 }
 
