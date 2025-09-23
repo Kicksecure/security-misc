@@ -1,5 +1,7 @@
 # Enhances miscellaneous security settings
 
+Note that all the security features seen in this repository may not yet be incorporated into a public Kicksecure/Whonix release. Refer to the [forums](https://forums.kicksecure.com/c/news/5) with accompanying dates to see what is actually included in the most recent release.
+
 ## Kernel hardening
 
 This section is inspired by the Kernel Self Protection Project (KSPP). It
