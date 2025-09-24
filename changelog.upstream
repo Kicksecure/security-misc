@@ -1,3 +1,31 @@
+commit 253688039447d69eb6eaf2d8d2e1c6ed04e2f839
+Merge: 275eecc4 17ee63ac
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 24 10:32:12 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 17ee63aca445d0e41af05eb9807849fc3c0f62d3
+Merge: 275eecc4 d31f63fb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 24 10:31:31 2025 -0400
+
+    Merge pull request #319 from raja-grewal/release_notice
+    
+    Notice on public releases
+
+commit d31f63fb1052adb186c323349aa4e36fb6fc8551
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Sep 23 05:47:45 2025 +0000
+
+    README: Notice on public releases
+
+commit 275eecc4f8100fe62e64a382c0ba5e8503ad0482
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 22 17:25:48 2025 +0000
+
+    bumped changelog version
+
 commit c45a4ffdd221964cee5ee5e5b70a0e4ba02eec11
 Merge: 5738bb61 2a39d599
 Author: Patrick Schleizer <adrelanos@whonix.org>
