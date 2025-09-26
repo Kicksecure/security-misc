@@ -1,3 +1,22 @@
+commit 08199dfe9471c5bff1af3e5f065810c47cfa7a12
+Merge: 590aaec7 58cc6731
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 26 04:31:02 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 58cc6731f27446c3bfbd5df1e669b625af922efe
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Sep 25 23:55:03 2025 -0500
+
+    Additional hardening on emerg-shutdown
+
+commit 590aaec73d389ecfa2610cbf7931a2e380af3e8d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 24 14:32:35 2025 +0000
+
+    bumped changelog version
+
 commit 253688039447d69eb6eaf2d8d2e1c6ed04e2f839
 Merge: 275eecc4 17ee63ac
 Author: Patrick Schleizer <adrelanos@whonix.org>
