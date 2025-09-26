@@ -19,15 +19,37 @@ binary_prefix='/run'
 EMERG_SHUTDOWN_KEYS=''
 root_devices[0]=''
 
-## Taken from kloak/Makefile, see it for more information
 gcc_hardening_options=(
-  "-Wall" "-Wformat" "-Wformat=2" "-Wconversion"
+  "-O2" "-Wall" "-Wextra" "-Wformat" "-Wformat=2" "-Wconversion"
   "-Wimplicit-fallthrough" "-Werror=format-security" "-Werror=implicit"
   "-Werror=int-conversion" "-Werror=incompatible-pointer-types"
-  "-Wtrampolines" "-Wbidi-chars=any" "-U_FORTIFY_SOURCE" "-D_FORTIFY_SOURCE=3"
-  "-fstack-clash-protection" "-fstack-protector-strong"
-  "-fno-delete-null-pointer-checks" "-fno-strict-overflow"
-  "-fno-strict-aliasing" "-fsanitize=undefined" "-fcf-protection=full"
+  "-Wformat-overflow" "-Wformat-signedness" "-Wnull-dereference" "-Winit-self"
+  "-Wmissing-include-dirs" "-Wshift-negative-value" "-Wshift-overflow"
+  "-Wswitch-default" "-Wuninitialized" "-Walloca" "-Warray-bounds"
+  "-Wfloat-equal" "-Wshadow" "-Wpointer-arith" "-Wundef" "-Wunused-macros"
+  "-Wbad-function-cast" "-Wcast-qual" "-Wcast-align" "-Wwrite-strings"
+  "-Wdate-time" "-Wstrict-prototypes" "-Wold-style-definition"
+  "-Wredundant-decls" "-Winvalid-utf8" "-Wvla" "-Wdisabled-optimization"
+  "-Wstack-protector" "-Wdeclaration-after-statement" "-Wtrampolines"
+  "-Wbidi-chars=any,ucn" "-Wformat-overflow=2" "-Wformat-truncation=2"
+  "-Wshift-overflow=2" "-Wtrivial-auto-var-init" "-Wstringop-overflow=3"
+  "-Wstrict-flex-arrays" "-Walloc-zero" "-Warray-bounds=2"
+  "-Wattribute-alias=2" "-Wduplicated-branches" "-Wduplicated-cond"
+  "-Wcast-align=strict" "-Wjump-misses-init" "-Wlogical-op" "-U_FORTIFY_SOURCE"
+  "-D_FORTIFY_SOURCE=3" "-fstack-clash-protection" "-fstack-protector-all"
+  "-fno-delete-null-pointer-checks" "-fno-strict-aliasing"
+  "-fsanitize=address,undefined" "-fno-sanitize-recover=all"
+  "-fstrict-flex-arrays=3" "-ftrivial-auto-var-init=pattern" "-fPIE"
+)
+
+gcc_machine="$(gcc -dumpmachine)"
+if [ "${gcc_machine}" = 'x86_64-linux-gnu' ]; then
+  gcc_hardening_options+=( '-fcf-protection=full' )
+elif [ "${gcc_machine}" = 'aarch64-linux-gnu' ]; then
+  gcc_hardening_options+=( '-mbranch-protection=standard' )
+fi
+
+gcc_hardening_options+=(
   "-Wl,-z,nodlopen" "-Wl,-z,noexecstack" "-Wl,-z,relro" "-Wl,-z,now"
   "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
 )
@@ -56,11 +78,12 @@ else
   ## Build the actual emerg-shutdown executable
   if [ ! -f '/run/emerg-shutdown' ]; then
     gcc \
+      -g
+      /usr/src/security-misc/emerg-shutdown.c \
       -o \
       /run/emerg-shutdown \
       -static \
       "${gcc_hardening_options[@]}" \
-      /usr/src/security-misc/emerg-shutdown.c \
       || {
         printf "%s\n" 'Could not compile force-shutdown executable!'
         exit 1
@@ -74,6 +97,5 @@ fi
 systemd-notify --ready
 
 ## Launch emerg-shutdown
-OLDIFS="$IFS"
 IFS=','
 "${binary_prefix}/emerg-shutdown" "--devices=${root_devices[*]}" "--keys=${EMERG_SHUTDOWN_KEYS}"

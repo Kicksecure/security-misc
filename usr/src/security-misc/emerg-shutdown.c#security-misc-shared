@@ -95,9 +95,10 @@
 #include <signal.h>
 #include <errno.h>
 #include <limits.h>
+#include <assert.h>
 
-#define fd_stdin 0
-#define fd_stdout 1
+//#define fd_stdin 0
+//#define fd_stdout 1
 #define fd_stderr 2
 
 #define max_inputs 255
@@ -275,7 +276,7 @@ bool bitset_get(const uint64_t *bits, uint32_t i) {
   return (bits[i / 64] >> (i % 64)) & 1UL;
 }
 
-void print(int fd, char *str) {
+void print(int fd, const char *str) {
   size_t len = strlen(str) + 1;
   while (true) {
     ssize_t write_len = write(fd, str, len);
@@ -291,7 +292,7 @@ void print(int fd, char *str) {
   }
 }
 
-void print_usage() {
+void print_usage(void) {
   print(fd_stderr, "Usage:\n");
   print(fd_stderr, "  emerg-shutdown [OPTIONS...]\n");
   print(fd_stderr, "Options:\n");
@@ -343,7 +344,7 @@ void *safe_reallocarray(void *ptr, size_t nmemb, size_t size) {
 /* Inspired by https://www.strudel.org.uk/itoa/ */
 char *int_to_str(uint32_t val) {
   static char buf[11];
-  uint8_t i;
+  int8_t i;
   char *rslt = NULL;
   const char *digits = "0123456789";
 
@@ -356,9 +357,10 @@ char *int_to_str(uint32_t val) {
       break;
     }
   }
+  assert(i >= 0);
 
-  rslt = safe_calloc(1, 11 - i);
-  memcpy(rslt, buf + i, 11 - i);
+  rslt = safe_calloc(1, 11 - (uint8_t)(i));
+  memcpy(rslt, buf + i, 11 - (uint8_t)(i));
   return rslt;
 }
 
@@ -397,7 +399,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
   free(arg_copy);
 }
 
-long int kill_system() {
+long int kill_system(void) {
   /*
    * It isn't safe to simply call the reboot syscall here - there is a
    * graphics driver bug in the i915 driver on Bookworm that will throw a
@@ -437,14 +439,22 @@ long int kill_system() {
   /* Turn off panic_on_oops. */
   sysctl_fd = open(panic_on_oops_path, O_WRONLY);
   if (sysctl_fd != -1) {
+    /* We intentionally ignore the return from `write` here. */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
     write(sysctl_fd, "0", 1);
+#pragma GCC diagnostic pop
     close(sysctl_fd);
   }
 
   /* Turn off panic_on_warn. */
   sysctl_fd = open(panic_on_warn_path, O_WRONLY);
   if (sysctl_fd != -1) {
+    /* We intentionally ignore the return from `write` here. */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
     write(sysctl_fd, "0", 1);
+#pragma GCC diagnostic pop
     close(sysctl_fd);
   }
 
@@ -494,6 +504,11 @@ void hw_monitor(int argc, char **argv) {
   size_t efl_idx = 0;
   int ie_idx = 0;
   size_t kg_idx = 0;
+
+  /* Socket management */
+  struct sockaddr_nl sa = { 0 };
+  int ns = 0;
+  int ret = 0;
 
   for (arg_idx = 1; arg_idx < argc; arg_idx++) {
     if (strncmp(argv[arg_idx], "--devices=", strlen("--devices=")) == 0) {
@@ -599,8 +614,10 @@ void hw_monitor(int argc, char **argv) {
   for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
     size_t keygroup_str_list_len = 0;
     char **keygroup_str_list = NULL;
+    uint32_t *pkl_element = NULL;
+
     load_list(panic_key_str_list[pkl_idx], &keygroup_str_list_len, &keygroup_str_list, "|", false);
-    uint32_t *pkl_element = safe_calloc(keygroup_str_list_len + 1, sizeof(uint32_t));
+    pkl_element = safe_calloc(keygroup_str_list_len + 1, sizeof(uint32_t));
 
     pkl_element[keygroup_str_list_len] = 0;
     for (kg_idx = 0; kg_idx < keygroup_str_list_len; kg_idx++) {
@@ -621,18 +638,16 @@ void hw_monitor(int argc, char **argv) {
   }
 
   /* Device event listener setup */
-  struct sockaddr_nl sa = {
-    .nl_family = AF_NETLINK,
-    .nl_pad = 0,
-    .nl_pid = (uint32_t)getpid(),
-    .nl_groups = NETLINK_KOBJECT_UEVENT,
-  };
-  int ns = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT);
+  sa.nl_family = AF_NETLINK;
+  sa.nl_pad = 0;
+  sa.nl_pid = (uint32_t)getpid();
+  sa.nl_groups = NETLINK_KOBJECT_UEVENT;
+  ns = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT);
   if (ns < 0) {
     print(fd_stderr, "Failed to create netlink socket!\n");
     exit(1);
   }
-  int ret = bind(ns, (struct sockaddr *) &sa, sizeof(sa));
+  ret = bind(ns, (struct sockaddr *) &sa, sizeof(sa));
   if (ret < 0) {
     print(fd_stderr, "Failed to bind netlink socket!\n");
     exit(1);
@@ -711,13 +726,17 @@ void hw_monitor(int argc, char **argv) {
 
   /* Event loop */
   while (poll(pollfd_list, event_fd_list_len + 1, -1) != -1) {
+    size_t ie_max_idx = 0;
+
     /* Panic key handler */
     for (efl_idx = 0; efl_idx < event_fd_list_len; efl_idx++) {
+      ssize_t ieread_bytes = 0;
       if (!(pollfd_list[efl_idx].revents & POLLIN)) {
         continue;
       }
 
-      ssize_t ieread_bytes = read(event_fd_list[efl_idx], ie_buf, sizeof(struct input_event) * 64);
+      ieread_bytes = read(event_fd_list[efl_idx], ie_buf,
+        sizeof(struct input_event) * 64);
 
       if (ieread_bytes <= 0
         || ((size_t)ieread_bytes % sizeof(struct input_event)) != 0) {
@@ -729,8 +748,9 @@ void hw_monitor(int argc, char **argv) {
         exit(1);
       }
 
-      for (ie_idx = 0; ie_idx < (size_t)ieread_bytes / sizeof(struct input_event);
-        ie_idx++) {
+      ie_max_idx = (size_t)ieread_bytes / sizeof(struct input_event);
+      assert(ie_max_idx < INT_MAX);
+      for (ie_idx = 0; ie_idx < (int)(ie_max_idx); ie_idx++) {
         if (ie_buf[ie_idx].type != EV_KEY) {
           continue;
         }
@@ -783,6 +803,11 @@ void hw_monitor(int argc, char **argv) {
       struct iovec iov = { buf, sizeof(buf) };
       struct sockaddr_nl sa2;
       struct msghdr msg = { 0 };
+      char *tmpbuf = NULL;
+      bool device_removed = false;
+      bool device_changed = false;
+      bool disk_media_changed = false;
+
       msg.msg_name = &sa2;
       msg.msg_namelen = sizeof(sa2);
       msg.msg_iov = &iov;
@@ -790,10 +815,6 @@ void hw_monitor(int argc, char **argv) {
       msg.msg_control = NULL;
       msg.msg_controllen = 0;
       msg.msg_flags = 0;
-      char *tmpbuf = NULL;
-      bool device_removed = false;
-      bool device_changed = false;
-      bool disk_media_changed = false;
 
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
@@ -906,7 +927,7 @@ next_str:
  * - 'd': Wait 15 seconds, then kill the system. This is used to keep systemd
  *        from delaying shutdown excessively.
  */
-void fifo_monitor(int argc, char **argv) {
+void fifo_monitor(char **argv) {
   long monitor_fifo_timeout = 0;
   char *arg_copy = NULL;
   char *arg_part = NULL;
@@ -1046,7 +1067,7 @@ int main(int argc, char **argv) {
     hw_monitor(argc, argv);
   } else if (monitor_mode == fifo_monitor_val) {
     /* fifo_monitor handles its own argument parsing */
-    fifo_monitor(argc, argv);
+    fifo_monitor(argv);
   } else {
     print(fd_stderr, "Unknown monitor mode chosen!\n");
     print_usage();
