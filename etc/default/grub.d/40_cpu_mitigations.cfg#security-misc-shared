@@ -34,12 +34,17 @@
 ## https://uefi.org/revocationlistfile
 ## https://github.com/fwupd/fwupd
 
-## Enable a subset of known mitigations for some CPU vulnerabilities and disable SMT.
+## Enable a subset of known default mitigations for some CPU vulnerabilities and disable SMT.
+## Note that this redundant parameter simply applies each mitigation at the already applied default settings.
+## The default values are not always the strictest and so we reapply each below to their highest setting.
+## We retain it here for completeness as many other distributions heavily rely on this for many CPU mitigations.
 ##
-## KSPP=yes
+## https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859
+##
+## KSPP=no
 ## KSPP sets the kernel parameters.
 ##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
 
 ## Disable SMT as it has been the cause of and amplified numerous CPU exploits.
 ## The only full mitigation of cross-HT attacks is to disable SMT.

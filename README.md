@@ -141,6 +141,11 @@ Mitigations for known CPU vulnerabilities are enabled in their strictest form
 and simultaneous multithreading (SMT) is disabled. See the
 `/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
 
+Importantly, we do not rely on the use of the already enabled-by-default `mitigations=auto`
+kernel boot parameter to perform CPU mitigations like many other distributions
+as not only is it's use totally redundant, but it also does not apply all hardening
+settings to their strictest possible levels. See issue: https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859.
+
 Note, to achieve complete protection for known CPU vulnerabilities, the latest
 security microcode (BIOS/UEFI) updates must be installed on the system. Furthermore,
 if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
