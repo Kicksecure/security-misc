@@ -38,7 +38,7 @@ gcc_hardening_options=(
   "-Wcast-align=strict" "-Wjump-misses-init" "-Wlogical-op" "-U_FORTIFY_SOURCE"
   "-D_FORTIFY_SOURCE=3" "-fstack-clash-protection" "-fstack-protector-all"
   "-fno-delete-null-pointer-checks" "-fno-strict-aliasing"
-  "-fsanitize=address,undefined" "-fno-sanitize-recover=all"
+  "-fsanitize=undefined" "-fno-sanitize-recover=all"
   "-fstrict-flex-arrays=3" "-ftrivial-auto-var-init=pattern" "-fPIE"
 )
 
@@ -78,7 +78,7 @@ else
   ## Build the actual emerg-shutdown executable
   if [ ! -f '/run/emerg-shutdown' ]; then
     gcc \
-      -g
+      -g \
       /usr/src/security-misc/emerg-shutdown.c \
       -o \
       /run/emerg-shutdown \
