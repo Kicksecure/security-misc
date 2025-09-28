@@ -96,6 +96,7 @@ case "$1" in
           '/etc/usbguard/rules.d/30_security-misc.conf'
           '/etc/usbguard/usbguard-daemon.conf.security-misc'
           '/etc/usbguard/IPCAccessControl.d/:sudo'
+          '/etc/usbguard/IPCAccessControl.d/:qubes'
         )
         for usbguard_config_file in "${usbguard_config_file_list[@]}"; do
           if test -f "${usbguard_config_file}"; then

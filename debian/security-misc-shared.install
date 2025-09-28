@@ -14,6 +14,7 @@ etc/apparmor.d/tunables/home.d/security-misc#security-misc-shared => /etc/apparm
 etc/ssh/ssh_config.d/30_security-misc.conf#security-misc-shared => /etc/ssh/ssh_config.d/30_security-misc.conf
 etc/ssh/sshd_config.d/30_security-misc.conf#security-misc-shared => /etc/ssh/sshd_config.d/30_security-misc.conf
 etc/usbguard/IPCAccessControl.d/:sudo#security-misc-shared => /etc/usbguard/IPCAccessControl.d/:sudo
+etc/usbguard/IPCAccessControl.d/:qubes#security-misc-shared => /etc/usbguard/IPCAccessControl.d/:qubes
 etc/usbguard/rules.d/30_security-misc.conf#security-misc-shared => /etc/usbguard/rules.d/30_security-misc.conf
 etc/usbguard/usbguard-daemon.conf.security-misc#security-misc-shared => /etc/usbguard/usbguard-daemon.conf.security-misc
 etc/kernel/postinst.d/30_remove-system-map#security-misc-shared => /etc/kernel/postinst.d/30_remove-system-map
