@@ -1,3 +1,28 @@
+commit e6ba4dad46ba2e451fd586357913b68ad25d6004
+Merge: 22c98634 60f8153f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 28 17:00:24 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 60f8153f64667718edbf9c048d5fa1d3c2ca1980
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 28 15:05:21 2025 -0500
+
+    Fix emerg-shutdown gcc build, remove AddressSanitizer from hardening options since it is incompatible with static builds
+
+commit 7e016b563239e31c650aece115bb19af0395ec52
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 28 14:11:10 2025 -0500
+
+    Allow users in the qubes group to access USBGuard IPC
+
+commit 22c9863493b326d8ec730ecdf721593b836baf99
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 26 08:40:20 2025 +0000
+
+    bumped changelog version
+
 commit 08199dfe9471c5bff1af3e5f065810c47cfa7a12
 Merge: 590aaec7 58cc6731
 Author: Patrick Schleizer <adrelanos@whonix.org>
