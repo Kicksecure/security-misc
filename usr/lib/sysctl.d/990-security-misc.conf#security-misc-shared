@@ -227,8 +227,8 @@ kernel.io_uring_disabled=2
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl-userspace
 
-## Restrict usage of the ptrace() system call to only processes with CAP_SYS_PTRACE.
-## Limit ptrace() as it enables programs to inspect and modify other active processes.
+## Diable the usage of the ptrace() system call by all processes.
+## Restrict ptrace() as it enables programs to inspect and modify other active processes.
 ## Prevents native code debugging which some programs use as a method to detect tampering.
 ## May cause breakages in 'anti-cheat' software and programs running under Proton/WINE.
 ##
@@ -238,13 +238,10 @@ kernel.io_uring_disabled=2
 ## https://github.com/GrapheneOS/os-issue-tracker/issues/651#issuecomment-917599928
 ## https://github.com/netblue30/firejail/issues/2860
 ##
-## KSPP=partial
-## KSPP sets the stricter sysctl kernel.yama.ptrace_scope=3.
+## KSPP=yes
+## KSPP sets the sysctl.
 ##
-## It is possible to harden further by disabling ptrace() for all users, see documentation.
-## https://github.com/Kicksecure/security-misc/pull/242
-##
-kernel.yama.ptrace_scope=2
+kernel.yama.ptrace_scope=3
 
 ## Maximize bits of entropy for improved effectiveness of mmap ASLR.
 ## The maximum number of bits depends on CPU architecture (the ones shown below are for x86).
