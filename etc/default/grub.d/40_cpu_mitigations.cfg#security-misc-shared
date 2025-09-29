@@ -44,6 +44,9 @@
 ## KSPP=no
 ## KSPP sets the kernel parameters.
 ##
+## WARNING: Do not enable this parameter, it is presented here only for educational purposes.
+## WARNING: Parameters are applied consecutively and so do not ever move this setting down.
+##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
 
 ## Disable SMT as it has been the cause of and amplified numerous CPU exploits.
