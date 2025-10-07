@@ -1,3 +1,22 @@
+commit ba6ec919f0804bf8bbfaf057c86a067683cbb826
+Merge: dd961b84 718772ea
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 7 04:34:51 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 718772ea7824cd879d36e5eeff8270457df9ad33
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Oct 6 15:03:31 2025 -0500
+
+    Remove unsafe sanitizer compiler flags from emerg-shutdown
+
+commit dd961b84272247f4e8f01d3042d8ca256ccf50d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 28 21:09:46 2025 +0000
+
+    bumped changelog version
+
 commit e6ba4dad46ba2e451fd586357913b68ad25d6004
 Merge: 22c98634 60f8153f
 Author: Patrick Schleizer <adrelanos@whonix.org>
