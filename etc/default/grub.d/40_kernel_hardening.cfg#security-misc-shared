@@ -39,8 +39,8 @@ kver="$(dpkg-query --show --showformat='${Version}' "$kpkg")" 2>/dev/null || tru
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 
 ## Enable sanity checks and red zoning of slabs via debugging options to detect corruption.
-## As a by product of debugging, this will implicitly disabling kernel pointer hashing.
-## Enabling will therefore leak exact and all kernel memory addresses to root.
+## As a by product of debugging, this will implicitly disabling kernel pointer hashing unless manually re-enabled.
+## Enabling this (for now) will therefore leak exact and all kernel memory addresses to root.
 ## Has the potential to cause a noticeable performance decrease.
 ##
 ## https://www.kernel.org/doc/html/latest/mm/slub.html
@@ -48,9 +48,13 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 ## https://gitlab.tails.boum.org/tails/tails/-/issues/19613
 ## https://github.com/Kicksecure/security-misc/issues/253
 ##
-## KSPP=yes
+## KSPP=partial
 ## KSPP sets the kernel parameters and CONFIG_SLUB_DEBUG.
 ##
+## TODO: Debian 14
+## The first parameter is applicable when using Linux kernel >= 6.17 (retained here for future-proofing and completeness).
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX hash_pointers=always"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_debug=FZ"
 
 ## Zero memory at allocation time and free time.
