@@ -68,7 +68,11 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX init_on_free=1"
 ## Enable the kernel page allocator to randomize free lists.
 ## During early boot, the page allocator has predictable FIFO behavior for physical pages.
 ## Limits some data exfiltration and ROP attacks that rely on inferring sensitive data location.
-## Also improves performance by optimizing memory-side cache utilization.
+## 
+## There aren't any known CVEs that would be fully mitigated by this, but it still offers some small benefits without any major downsides.
+## This can also slightly improve performance, with the biggest benefit on high-performance computing (HPC) and server systems, but it can reduce performance in some workloads.
+## 
+## If you are experiencing performance issues, benchmarking with vs without this option can be a good place to start as it has only a small security impact.
 ##
 ## https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=e900a918b0984ec8f2eb150b8477a47b75d17692
 ## https://en.wikipedia.org/wiki/Return-oriented_programming#Attacks
@@ -101,7 +105,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX pti=on"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX randomize_kstack_offset=on"
 
 ## Disable vsyscalls to reduce attack surface as they have been replaced by vDSO.
-## Vulnerable to ROP attacks as vsyscalls are located at fixed addresses in memory.
+## Vulnerable to ROP attacks as vsyscalls are located at fixed addresses in memory, and are very rarely used.
 ##
 ## https://lwn.net/Articles/446528/
 ## https://en.wikipedia.org/wiki/VDSO
@@ -280,12 +284,19 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi=disable_early_pci_dma"
 
 ## Do not credit the CPU or bootloader seeds as entropy sources at boot.
 ## The RDRAND CPU (RNG) instructions are proprietary and closed-source.
-## Numerous implementations of RDRAND have a long history of being defective.
-## The RNG seed passed by the bootloader could also potentially be tampered.
-## Maximizing the entropy pool at boot is desirable for all cryptographic operations.
-## These settings ensure additional entropy is obtained from other sources to initialize the RNG.
-## Note that distrusting these (relatively fast) sources of entropy will increase boot time.
+## Numerous implementations of RDRAND have a long history of being defective, and the RNG seed passed by the bootloader could potentially be tampered or unreliable.
 ##
+## In recent years, the kernel has been reworked so that defective RDRAND instructions would have a limited effect on the RNG system,
+## but we will disable it here anyway as a paranoia measure.
+##
+## This doesn't prevent the RDRAND output from being mixed into the entropy pool, it just prevents it from being credited.
+## This is fine, though, because the Linux kernel always allows anything to be added to the entropy pool, 
+## but is designed in a way that unreliable data being mixed in won't have any effect.
+##
+## Note that distrusting these (relatively fast) sources of entropy may sometimes increase boot time.
+## If you experience unreasonably slow boot times, you may wish to experiment with removing some of the below lines.
+##
+## https://lkml.org/lkml/2022/6/5/271
 ## https://en.wikipedia.org/wiki/RDRAND#Reception
 ## https://systemd.io/RANDOM_SEEDS/
 ## https://www.kicksecure.com/wiki/Dev/Entropy#RDRAND
@@ -294,7 +305,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi=disable_early_pci_dma"
 ## https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/05/us/documents-reveal-nsa-campaign-against-encryption.html
 ## https://forums.whonix.org/t/entropy-config-random-trust-cpu-yes-or-no-rng-core-default-quality/8566
 ## https://github.com/NixOS/nixpkgs/pull/165355
-## https://lkml.org/lkml/2022/6/5/271
 ##
 ## KSPP=yes
 ## KSPP sets CONFIG_RANDOM_TRUST_BOOTLOADER=y and CONFIG_RANDOM_TRUST_CPU=y.
@@ -305,6 +315,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX random.trust_cpu=off"
 ## Obtain more entropy during boot as the runtime memory allocator is being initialized.
 ## Entropy will be extracted from up to the first 4GB of RAM.
 ## Requires the linux-hardened kernel patch.
+## This data isn't credited by linux-hardened because not all of it is cryptographically secure, 
+## but is mixed in as uncredited device randomness (which would usually include things like serial numbers, device configuration, current time, etc)
 ##
 ## https://www.kicksecure.com/wiki/Hardened-kernel#linux-hardened
 ## https://github.com/anthraxx/linux-hardened/commit/c3e7df1dba1eb8105d6d5143079a6a0ad9e9ebc7

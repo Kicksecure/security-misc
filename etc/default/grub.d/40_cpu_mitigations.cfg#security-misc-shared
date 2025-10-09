@@ -34,6 +34,27 @@
 ## https://uefi.org/revocationlistfile
 ## https://github.com/fwupd/fwupd
 
+## Disable SMT as it has been the cause of and amplified numerous CPU exploits that would allow a sandboxed program or VM to infer contents from the host.
+## The only full mitigation of cross-HT attacks is to disable SMT.
+## Disabling will significantly decrease system performance on multi-threaded tasks. If you need a performance increase, you can re-enable SMT at the cost of security.
+## 
+## Note, this setting will prevent re-enabling SMT via the sysfs interface.
+##
+## KSPP=yes
+## KSPP sets the kernel parameter.
+##
+## To re-enable SMT:
+## - Remove "nosmt=force" below.
+## - Remove all occurrences of ",nosmt" in this file (note the comma ",").
+## - Downgrade "l1tf=full,force" protection to "l1tf=flush".
+## - Regenerate the dracut initramfs and then reboot system.
+##
+## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/core-scheduling.html
+## https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647/17
+## https://github.com/anthraxx/linux-hardened/issues/37#issuecomment-619597365
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nosmt=force"
+
 ## Enable a subset of known mitigations for some CPU vulnerabilities and disable SMT.
 ##
 ## KSPP=yes
@@ -41,25 +62,15 @@
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
 
-## Disable SMT as it has been the cause of and amplified numerous CPU exploits.
-## The only full mitigation of cross-HT attacks is to disable SMT.
-## Disabling will significantly decrease system performance on multi-threaded tasks.
-## Note, this setting will prevent re-enabling SMT via the sysfs interface.
+## L1 Terminal Fault (L1TF):
+## Mitigate the vulnerability by disabling L1D flush runtime control and SMT.
+## If L1D flushing is conditional, mitigate the vulnerability for certain KVM hypervisor configurations.
+## Currently affects Intel CPUs.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/core-scheduling.html
-## https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647/17
-## https://github.com/anthraxx/linux-hardened/issues/37#issuecomment-619597365
+## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html
 ##
-## KSPP=yes
-## KSPP sets the kernel parameter.
-##
-## To re-enable SMT:
-## - Remove "nosmt=force".
-## - Remove all occurrences of ",nosmt" in this file (note the comma ",").
-## - Downgrade "l1tf=full,force" protection to "l1tf=flush".
-## - Regenerate the dracut initramfs and then reboot system.
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX nosmt=force"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX l1tf=full,force"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm-intel.vmentry_l1d_flush=always"
 
 ## Spectre Side Channels (BTI and BHI):
 ## Unconditionally enable mitigation for Spectre Variant 2 (branch target injection).
@@ -82,33 +93,23 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX spectre_bhi=on"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX spec_store_bypass_disable=on"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX ssbd=force-on"
 
-## L1 Terminal Fault (L1TF):
-## Mitigate the vulnerability by disabling L1D flush runtime control and SMT.
-## If L1D flushing is conditional, mitigate the vulnerability for certain KVM hypervisor configurations.
-## Currently affects Intel CPUs.
-##
-## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX l1tf=full,force"
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm-intel.vmentry_l1d_flush=always"
-
 ## Microarchitectural Data Sampling (MDS):
-## Mitigate the vulnerability by clearing the CPU buffer cache and disabling SMT.
+## Mitigate the vulnerability by clearing the CPU buffer cache.
 ## Currently affects Intel CPUs.
 ##
 ## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html
 ##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mds=full,nosmt"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mds=full"
 
 ## TSX Asynchronous Abort (TAA):
 ## Mitigate the vulnerability by disabling TSX.
-## If TSX is enabled, clear CPU buffer rings on transitions and disable SMT.
+## If TSX is enabled, clear CPU buffer rings on transitions.
 ## Currently affects Intel CPUs.
 ##
 ## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/tsx_async_abort.html
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX tsx=off"
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX tsx_async_abort=full,nosmt"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX tsx_async_abort=full"
 
 ## iTLB Multihit:
 ## Mitigate the vulnerability by marking all huge pages in the EPT as non-executable.
@@ -134,15 +135,15 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm.nx_huge_pages=force"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX l1d_flush=on"
 
 ## Processor MMIO Stale Data:
-## Mitigate the vulnerabilities by appropriately clearing the CPU buffer and disabling SMT.
+## Mitigate the vulnerabilities by appropriately clearing the CPU buffer.
 ## Currently affects Intel CPUs.
 ##
 ## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/processor_mmio_stale_data.html
 ##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mmio_stale_data=full,nosmt"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mmio_stale_data=full"
 
 ## Arbitrary Speculative Code Execution with Return Instructions (Retbleed):
-## Mitigate the vulnerability through CPU-dependent implementation and disable SMT.
+## Mitigate the vulnerability through CPU-dependent implementation.
 ## Currently affects both AMD Zen 1-2 and Intel CPUs.
 ##
 ## https://en.wikipedia.org/wiki/Retbleed
@@ -150,7 +151,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mmio_stale_data=full,nosmt"
 ## https://www.suse.com/support/kb/doc/?id=000020693
 ## https://access.redhat.com/solutions/retbleed
 ##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX retbleed=auto,nosmt"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX retbleed=auto"
 
 ## Cross-Thread Return Address Predictions:
 ## Mitigate the vulnerability for certain KVM hypervisor configurations.
