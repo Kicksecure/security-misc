@@ -51,7 +51,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 ## KSPP=partial
 ## KSPP sets the kernel parameters and CONFIG_SLUB_DEBUG.
 ##
-## TODO: Debian 14
+## TODO: Debian forky / 14
 ## The first parameter is applicable when using Linux kernel >= 6.17 (retained here for future-proofing and completeness).
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX hash_pointers=always"
