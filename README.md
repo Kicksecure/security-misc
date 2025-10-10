@@ -193,6 +193,7 @@ Kernel space:
 
 - Enable sanity checks and red zoning via slab debugging. This will implicitly
   disable kernel pointer hashing, leaking very sensitive information to root.
+  Re-enabling hashed pointers will be possible when using Linux kernel >= 6.17.
 
 - Enable memory zeroing at both allocation and free time, which mitigates some
   use-after-free vulnerabilities by erasing sensitive information in memory.
