@@ -1,3 +1,65 @@
+commit 4d9c3dc357ae92b735cf96f121491f7eed1be9f5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 08:08:10 2025 -0400
+
+    minor
+
+commit 968de33c659f971fc62b2a6a63cceb7462c3d0f8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 08:03:03 2025 -0400
+
+    Force immediate kernel panic on OOM.
+    This is to avoid security features such as the screen locker, kloak, emerg-shutdown
+    from being arbitrarily terminated when the system starts running out of memory.
+    
+    https://forums.whonix.org/t/screen-locker-in-security-can-we-disable-these-at-least-4-backdoors/8128/14
+    
+    https://github.com/Kicksecure/security-misc/issues/324
+    
+    `vm.panic_on_oom=2`
+    
+    implements https://github.com/Kicksecure/security-misc/issues/324
+
+commit 98f27c3b2e1420f6d29cabe7d0c60a92989d06e1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 06:53:04 2025 -0400
+
+    comment
+
+commit 28a88c70914ac2ce8c4cfc5b9ed558e026a6d7a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 06:52:13 2025 -0400
+
+    comment
+
+commit f4a87e77488c9034611c750d018603326cb42067
+Merge: 685070bd 6cf8a623
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 06:51:31 2025 -0400
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 6cf8a623feda09abc72a19b3e4c74c3f37b64d26
+Merge: 685070bd e89c7ae0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 06:50:46 2025 -0400
+
+    Merge pull request #325 from raja-grewal/hash_pointers
+    
+    Docs detailing future improvements to `slab_debug`
+
+commit e89c7ae0254d41ac1696e23f8b2d4a425413d888
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Oct 8 02:39:20 2025 +0000
+
+    Update docs on `slab_debug` for future improvements
+
+commit 685070bd026e52f007e27428e5479e2f1c2413fe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Oct 7 08:40:32 2025 +0000
+
+    bumped changelog version
+
 commit ba6ec919f0804bf8bbfaf057c86a067683cbb826
 Merge: dd961b84 718772ea
 Author: Patrick Schleizer <adrelanos@whonix.org>
