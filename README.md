@@ -51,7 +51,7 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial of service attacks and both cold and warm boot attacks.
-  
+
 - Force immediate kernel panic on OOM. This is to avoid security features such as the screen
   locker, kloak, emerg-shutdown from being arbitrarily terminated when the system starts
   running out of memory.
