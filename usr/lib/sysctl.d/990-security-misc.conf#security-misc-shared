@@ -241,7 +241,9 @@ kernel.io_uring_disabled=2
 ## KSPP=yes
 ## KSPP sets the sysctl.
 ##
-kernel.yama.ptrace_scope=3
+## See /usr/lib/sysctl.d/30_security_misc-ptrace-disable.conf for implementation.
+##
+#kernel.yama.ptrace_scope=3
 
 ## Maximize bits of entropy for improved effectiveness of mmap ASLR.
 ## The maximum number of bits depends on CPU architecture (the ones shown below are for x86).
