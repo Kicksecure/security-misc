@@ -16,7 +16,7 @@
 ## https://en.wikipedia.org/wiki/Ptrace
 ## https://grapheneos.org/features#attack-surface-reduction
 ## https://github.com/GrapheneOS/os-issue-tracker/issues/651#issuecomment-917599928
-## https://github.com/netblue30/firejail/issues/2860 
+## https://github.com/netblue30/firejail/issues/2860
 ##
 ## KSPP=yes
 ## KSPP sets the sysctl.
