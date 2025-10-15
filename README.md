@@ -63,7 +63,7 @@ configuration file and significant hardening is applied to a myriad of component
 #### User space
 
 - Disable the usage of `ptrace()` by all processes as it enables programs to inspect
-  and modify other active processes
+  and modify other active processes.
 
 - Maximize the bits of entropy used for mmap ASLR across all CPU architectures.
 

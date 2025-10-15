@@ -234,7 +234,7 @@ kernel.io_uring_disabled=2
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl-userspace
 
-## Diable the usage of the ptrace() system call by all processes.
+## Disable the usage of the ptrace() system call by all processes.
 ## Restrict ptrace() as it enables programs to inspect and modify other active processes.
 ## Prevents native code debugging which some programs use as a method to detect tampering.
 ## May cause breakages in 'anti-cheat' software and programs running under Proton/WINE.
@@ -248,7 +248,7 @@ kernel.io_uring_disabled=2
 ## KSPP=yes
 ## KSPP sets the sysctl.
 ##
-## See /usr/lib/sysctl.d/30_security_misc-ptrace-disable.conf for implementation.
+## See /usr/lib/sysctl.d/30_security-misc_ptrace-disable.conf for implementation.
 ##
 #kernel.yama.ptrace_scope=3
 
