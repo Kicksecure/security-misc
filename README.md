@@ -124,8 +124,9 @@ configuration file and significant hardening is applied to a myriad of component
 - Disable source routing which allows users to redirect network traffic that
   can result in man-in-the-middle attacks.
 
-- Do not accept IPv6 router advertisements and solicitations.
-
+- Do not accept IPv6 router advertisements (RAs) and solicitations which can result
+  in both man-in-the-middle and denial-of-service attacks.
+  
 - Optional - Disable SACK and DSACK as they have historically been a known
   vector for exploitation.
 
