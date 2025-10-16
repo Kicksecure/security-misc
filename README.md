@@ -126,7 +126,7 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Do not accept IPv6 router advertisements (RAs) and solicitations which can result
   in both man-in-the-middle and denial-of-service attacks.
-  
+
 - Optional - Disable SACK and DSACK as they have historically been a known
   vector for exploitation.
 
