@@ -308,6 +308,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX random.trust_cpu=off"
 
 ## Obtain more entropy during boot as the runtime memory allocator is being initialized.
 ## Entropy will be extracted from up to the first 4GB of RAM.
+## Note that entropy extracted this way is not cryptographically secure and so is not credited.
+## This will increase boot time due to interrupting the boot process.
 ## Requires the linux-hardened kernel patch.
 ##
 ## https://www.kicksecure.com/wiki/Hardened-kernel#linux-hardened
