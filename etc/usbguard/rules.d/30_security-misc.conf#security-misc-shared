@@ -66,3 +66,6 @@ reject with-interface one-of { ef:04:* }
 ## Suspicious interface combinations with mass storage are blocked.
 allow with-interface equals { 08:*:* }
 
+## Allow USB hubs, these are likely safe and are required for Qubes OS USB
+## passthrough to work.
+allow with-interface equals { 09:*:* }
