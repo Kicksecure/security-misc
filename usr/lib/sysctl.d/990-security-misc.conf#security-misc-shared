@@ -234,8 +234,8 @@ kernel.io_uring_disabled=2
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl-userspace
 
-## Restrict usage of the ptrace() system call to only processes with CAP_SYS_PTRACE.
-## Limit ptrace() as it enables programs to inspect and modify other active processes.
+## Disable the usage of the ptrace() system call by all processes.
+## Restrict ptrace() as it enables programs to inspect and modify other active processes.
 ## Prevents native code debugging which some programs use as a method to detect tampering.
 ## May cause breakages in 'anti-cheat' software and programs running under Proton/WINE.
 ##
@@ -245,13 +245,12 @@ kernel.io_uring_disabled=2
 ## https://github.com/GrapheneOS/os-issue-tracker/issues/651#issuecomment-917599928
 ## https://github.com/netblue30/firejail/issues/2860
 ##
-## KSPP=partial
-## KSPP sets the stricter sysctl kernel.yama.ptrace_scope=3.
+## KSPP=yes
+## KSPP sets the sysctl.
 ##
-## It is possible to harden further by disabling ptrace() for all users, see documentation.
-## https://github.com/Kicksecure/security-misc/pull/242
+## See /usr/lib/sysctl.d/30_security-misc_ptrace-disable.conf for implementation.
 ##
-kernel.yama.ptrace_scope=2
+#kernel.yama.ptrace_scope=3
 
 ## Maximize bits of entropy for improved effectiveness of mmap ASLR.
 ## The maximum number of bits depends on CPU architecture (the ones shown below are for x86).
@@ -522,7 +521,15 @@ net.ipv4.icmp_ignore_bogus_error_responses=1
 net.ipv4.conf.*.accept_source_route=0
 net.ipv6.conf.*.accept_source_route=0
 
-## Do not accept IPv6 router advertisements and solicitations.
+## Do not accept IPv6 router advertisements (RAs) and solicitations.
+## RAs are unsecured and unauthenticated and any device on the local link can send and accept them without verification.
+## Malicious RAs can activate IPv6 connectivity on dormant hosts leading to unauthorized access.
+## Flooding the network with malicious RAs can lead to denial of service attacks.
+## Rogue RAs can lead to interception of all network traffic by setting the attacker's system as the default gateway.
+##
+## https://datatracker.ietf.org/doc/html/rfc6104
+## https://datatracker.ietf.org/doc/html/rfc6105
+## https://archive.conference.hitb.org/hitbsecconf2012kul/materials/D1T2%20-%20Marc%20Heuse%20-%20IPv6%20Insecurity%20Revolutions.pdf
 ##
 net.ipv6.conf.*.accept_ra=0
 
