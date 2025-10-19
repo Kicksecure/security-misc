@@ -126,7 +126,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Panics may be due to false-positives such as bad drivers.
 ## Oopses are serious but non-fatal errors.
 ## Certain "oopses" can sometimes indicate and thwart potential kernel exploitation attempts.
-## Note that by forcing kernel panics on oopses, this exposes the system to targeted denial of service attacks.
+## Note that by forcing kernel panics on oopses, this exposes the system to targeted denial-of-service attacks.
 ##
 ## https://en.wikipedia.org/wiki/Kernel_panic#Linux
 ## https://en.wikipedia.org/wiki/Linux_kernel_oops
