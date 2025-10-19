@@ -1,3 +1,17 @@
+commit f555c48c51dab3eefc99085eace277f15ef72c33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 04:42:24 2025 -0400
+
+    fix USBGuard-notifier `accept` / `reject` buttons
+    
+    https://forums.kicksecure.com/t/usbguard-what-should-we-allow-or-disallow-by-default/1248/49
+
+commit 929421bd258a3c0c1f142f707aeff479f2ea3c49
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 18 09:19:07 2025 +0000
+
+    bumped changelog version
+
 commit f5b7aab87ec6640eb1969bb4be05bb5b0ff04a3c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Oct 18 05:18:55 2025 -0400
