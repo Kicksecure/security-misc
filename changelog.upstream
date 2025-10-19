@@ -1,3 +1,72 @@
+commit f5b7aab87ec6640eb1969bb4be05bb5b0ff04a3c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 18 05:18:55 2025 -0400
+
+    update
+
+commit 806eec423a7a6acb0d5eabc5872c9a5d121a4dc3
+Merge: 6cc1c27f 70fbbc23
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 18 04:44:41 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 70fbbc230c0c5366b7a09d531012d18b1e88e07b
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 17 15:49:42 2025 -0500
+
+    Set USBGuard settings to permit USB hubs and Qubes USB passthrough
+
+commit 3d5e659b78cf2588f95280c13b1ebdf24060fb6f
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Oct 15 19:02:48 2025 -0500
+
+    Remove trailing spaces
+
+commit 29639fe69e12ff71ec422a0137b5dbaade9179c3
+Merge: 026d55ac 0c8f2f1b
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Oct 15 19:01:08 2025 -0500
+
+    Merge remote-tracking branch 'raja/bad_ipv6_ra' into arraybolt3/trixie
+
+commit 026d55ac410bf747db03c0cf9475b3408bce7f8e
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Oct 15 18:30:52 2025 -0500
+
+    Typo fixes
+
+commit 35fce26476b20eda81544f583bd2b2124b8e96b0
+Merge: 4f63af42 23041741
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Oct 15 18:18:33 2025 -0500
+
+    Merge remote-tracking branch 'raja/stop_ptrace' into arraybolt3/trixie
+
+commit 4f63af4200de23e2216be6d3e7f1055af02dbc3b
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Wed Oct 15 17:53:26 2025 -0500
+
+    Allow listing USB devices via usbguard
+
+commit 23041741715cc5f3d16378d6bb34719ceaa1642c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 12 02:32:45 2025 +0000
+
+    Insert empty new line
+
+commit 7161430a6000c4ff5e15a9a8c9519529655a1444
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 12 02:27:48 2025 +0000
+
+    Seperate `ptrace()` disabling into own file
+
+commit 6cc1c27fb376d02adc6c5cddf64b030e2e694711
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 10 12:08:28 2025 +0000
+
+    bumped changelog version
+
 commit 4d9c3dc357ae92b735cf96f121491f7eed1be9f5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Oct 10 08:08:10 2025 -0400
@@ -73,6 +142,12 @@ Date:   Mon Oct 6 15:03:31 2025 -0500
 
     Remove unsafe sanitizer compiler flags from emerg-shutdown
 
+commit 0c8f2f1b44049b676251775d64e23651e9225d00
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Oct 2 07:05:00 2025 +0000
+
+    Add docs about the risks associated with IPv6 RAs
+
 commit dd961b84272247f4e8f01d3042d8ca256ccf50d2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Sep 28 21:09:46 2025 +0000
@@ -97,6 +172,12 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Sep 28 14:11:10 2025 -0500
 
     Allow users in the qubes group to access USBGuard IPC
+
+commit 194b8fce4e5a8e9c642171853d7b0491debced55
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Sep 28 03:20:24 2025 +0000
+
+    Disable the usage of `ptrace()` by all processes
 
 commit 22c9863493b326d8ec730ecdf721593b836baf99
 Author: Patrick Schleizer <adrelanos@whonix.org>
