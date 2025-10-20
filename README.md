@@ -298,8 +298,8 @@ feasible due to compatibility issues with Firefox.
 
 3. Kernel boot parameter `hash_pointers=always`
 
-Forces all exposed pointers to be hashed and must be used in combination with already enabled
-kernel boot parameter `slab_debug=FZ`. Currently not possible as requires Linux kernel >= 6.17.
+Force all exposed pointers to be hashed and must be used in combination with the already enabled
+`slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.
 
 * [security-misc issue #253](https://github.com/Kicksecure/security-misc/issues/253)
 * [security-misc pull request #325](https://github.com/Kicksecure/security-misc/pull/325)

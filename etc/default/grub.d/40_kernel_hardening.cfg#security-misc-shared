@@ -38,13 +38,17 @@ kver="$(dpkg-query --show --showformat='${Version}' "$kpkg")" 2>/dev/null || tru
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 
-## Enable sanity checks and red zoning of slabs via debugging options to detect corruption.
+## Enable sanity checks and red zoning of slabs via debugging options to detect memory corruption.
+## Sanity checks force additional verification steps on every memory allocation and free operation.
+## Red zoning adds extra metadata to each object to detect writes beyond the object's boundaries.
 ## As a by product of debugging, this will implicitly disabling kernel pointer hashing unless manually re-enabled.
 ## Enabling this (for now) will therefore leak exact and all kernel memory addresses to root.
-## Has the potential to cause a noticeable performance decrease.
+## Introduces a noticeable performance overhead during all memory allocation and deallocation operations.
 ##
 ## https://www.kernel.org/doc/html/latest/mm/slub.html
+## https://www.kernel.org/doc/Documentation/vm/slub.txt
 ## https://lore.kernel.org/all/20210601182202.3011020-5-swboyd@chromium.org/T/#u
+## https://blogs.oracle.com/linux/post/linux-slub-allocator-internals-and-debugging-2
 ## https://gitlab.tails.boum.org/tails/tails/-/issues/19613
 ## https://github.com/Kicksecure/security-misc/issues/253
 ##
