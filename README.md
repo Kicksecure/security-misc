@@ -50,11 +50,12 @@ configuration file and significant hardening is applied to a myriad of component
   and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
-  risk and impact of denial of service attacks and both cold and warm boot attacks.
+  risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
-- Force immediate kernel panic on OOM. This is to avoid security features such as the screen
-  locker, kloak, emerg-shutdown from being arbitrarily terminated when the system starts
-  running out of memory.
+- Force immediate kernel panic on OOM (out of memory) which the above setting will force
+  an immediate system reboot, as opposed to placing any reliance on the oom_killer to
+  avoid arbitrarily terminating security features based on their OOM score. Note this creates
+  the risk of userspace-based denial-of-service attacks that maliciously fill memory.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
@@ -294,6 +295,14 @@ feasible due to compatibility issues with Firefox.
 
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
+
+3. Kernel boot parameter `hash_pointers=always`
+
+Force all exposed pointers to be hashed and must be used in combination with the already enabled
+`slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.
+
+* [security-misc issue #253](https://github.com/Kicksecure/security-misc/issues/253)
+* [security-misc pull request #325](https://github.com/Kicksecure/security-misc/pull/325)
 
 ### Kernel Modules
 
