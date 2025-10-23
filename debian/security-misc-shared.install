@@ -88,6 +88,7 @@ usr/lib/systemd/system/remount-secure.service#security-misc-shared => /usr/lib/s
 usr/lib/systemd/system/ensure-shutdown.service#security-misc-shared => /usr/lib/systemd/system/ensure-shutdown.service
 usr/lib/systemd/system/sysinit-post.target#security-misc-shared => /usr/lib/systemd/system/sysinit-post.target
 usr/lib/systemd/system/ensure-shutdown-trigger.service#security-misc-shared => /usr/lib/systemd/system/ensure-shutdown-trigger.service
+usr/lib/systemd/user/usbguard-notifier.service.d/30_security-misc.conf#security-misc-shared => /usr/lib/systemd/user/usbguard-notifier.service.d/30_security-misc.conf
 usr/lib/systemd/pstore.conf.d/30_security-misc.conf#security-misc-shared => /usr/lib/systemd/pstore.conf.d/30_security-misc.conf
 usr/lib/udev/rules.d/95-emerg-shutdown.rules#security-misc-shared => /usr/lib/udev/rules.d/95-emerg-shutdown.rules
 usr/lib/issue.d/20_security-misc.issue#security-misc-shared => /usr/lib/issue.d/20_security-misc.issue
