@@ -1,3 +1,21 @@
+commit f2b33b1ad54ac94aca200c001311e0794634e6f9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 23 01:08:38 2025 -0400
+
+    update
+
+commit 1f093f817527d168ede3a682651088a051f40cb9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 22 00:37:36 2025 -0400
+
+    do not start usbguard-notifier if /sys/bus/usb does not exist
+
+commit 7969ffd4a52786f4a92f74931fff85430906a629
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 08:43:36 2025 +0000
+
+    bumped changelog version
+
 commit f555c48c51dab3eefc99085eace277f15ef72c33
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 04:42:24 2025 -0400
