@@ -8,10 +8,5 @@
 %:
 	dh $@ --with=config-package
 
-override_dh_installman:
-	mkdir --parents -- debian/security-misc-shared/usr/share/man/man8
-	gzip -c -9 -- auto-generated-man-pages/apparmor-info.8 > debian/security-misc-shared/usr/share/man/man8/apparmor-info.8.gz
-	gzip -c -9 -- auto-generated-man-pages/apparmor-watch.8 > debian/security-misc-shared/usr/share/man/man8/apparmor-watch.8.gz
-
 override_dh_installchangelogs:
 	dh_installchangelogs changelog.upstream upstream

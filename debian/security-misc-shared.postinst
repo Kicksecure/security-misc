@@ -103,9 +103,6 @@ case "$1" in
             chmod 0600 "${usbguard_config_file}"
           fi
         done
-
-        ## Enable systemd-journald audit transport
-        deb-systemd-helper enable systemd-journald-audit.socket
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
