@@ -1,0 +1,35 @@
+#!/bin/bash
+
+## Copyright (C) 2020 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## https://forums.whonix.org/t/full-system-apparmor-policy-testers-wanted/10381/22
+
+## Not using sudo hardcoded below.
+## https://forums.whonix.org/t/full-system-apparmor-policy-testers-wanted/10381/29
+if [ "$(id -u)" != "0" ]; then
+   echo "ERROR: Must run as root." >&2
+   echo "sudo $0" >&2
+   exit 112
+fi
+
+## Default.
+exit_code=0
+
+## Parses AppArmor denial logs to hide unnecessary information and remove duplicates.
+
+output_denied="$(journalctl _TRANSPORT=audit --output cat "${@}" | grep "DENIED" | sed -e 's/pid=.* comm/comm/g' | sed -e 's/ fsuid.*//g' | awk '!x[$0]++')"
+
+if [ ! "$output_denied" = "" ]; then
+   exit_code=1
+   echo "$output_denied"
+fi
+
+output_allowed="$(journalctl _TRANSPORT=audit --output cat "${@}" | grep "ALLOWED" | sed -e 's/pid=.* comm/comm/g' | sed -e 's/ fsuid.*//g' | awk '!x[$0]++')"
+
+if [ ! "$output_allowed" = "" ]; then
+   exit_code=1
+   echo "$output_allowed"
+fi
+
+exit "$exit_code"
