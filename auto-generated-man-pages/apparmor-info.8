@@ -1,0 +1,25 @@
+.\" generated with Ronn-NG/v0.10.1
+.\" http://github.com/apjanke/ronn-ng/tree/0.10.1
+.TH "APPARMOR\-INFO" "8" "January 2020" "security-misc" "security-misc Manual"
+.SH "NAME"
+\fBapparmor\-info\fR \- Shows AppArmor DENIED Log Messages
+.SH "SYNOPSIS"
+\fBapparmor\-info\fR
+.SH "DESCRIPTION"
+Shows AppArmor DENIED log messages\.
+.P
+If there are no DENIED log messages, outputs nothing\.
+.SH "RETURN VALUES"
+.IP "\(bu" 4
+\fB0\fR No DENIED messages found, OK\.
+.IP "\(bu" 4
+\fB1\fR DENIED messages found\.
+.IP "" 0
+.SH "EXAMPLE"
+\fBsudo apparmor\-info ; echo $?\fR
+.P
+\fB0\fR
+.P
+No output from \fBapparmor\-info\fR with exit code \fB0\fR\. Meaning, no \fBDENIED\fR messages found, OK\.
+.SH "AUTHOR"
+This man page has been written by Patrick Schleizer (adrelanos@whonix\.org)\.

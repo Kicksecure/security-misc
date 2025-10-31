@@ -1,0 +1,23 @@
+apparmor-watch(8) -- Watch AppArmor DENIED and ALLOWED Log Messages
+=============================================
+
+<!--
+# Copyright (C) 2020 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+# See the file COPYING for copying conditions.
+-->
+
+## SYNOPSIS
+
+`apparmor-watch`
+
+## DESCRIPTION
+
+Watches for AppArmor `DENIED` and `ALLOWED` log messages.
+
+## EXAMPLE
+
+`sudo apparmor-watch`
+
+## AUTHOR
+
+This man page has been written by Patrick Schleizer (adrelanos@whonix.org).
