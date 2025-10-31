@@ -1,3 +1,30 @@
+commit aae472d9cfb2f42a861af8a886c28acd640da545
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 10:24:31 2025 -0400
+
+    Revert "Move apparmor-info, apparmor-watch to security-misc, enable systemd-journald audit transport"
+    
+    This reverts commit d1e148eba72ff5a095e31842a70afec7f28c8724.
+
+commit 3b2092ee764fe3ab8d72b912f0dcc4726ba76f4e
+Merge: b168c37e d1e148eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 10:19:08 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit d1e148eba72ff5a095e31842a70afec7f28c8724
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Oct 30 23:05:19 2025 -0500
+
+    Move apparmor-info, apparmor-watch to security-misc, enable systemd-journald audit transport
+
+commit b168c37e841d971743a8f2fe2d64ab4187e4029b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 27 11:48:10 2025 +0000
+
+    bumped changelog version
+
 commit c9d48ef7fdd2b691a7abd880d5e695c6296332b6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Oct 27 07:07:25 2025 -0400
