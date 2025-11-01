@@ -1,3 +1,46 @@
+commit 81a279ee1f23706c2309c02da536b68f00e3eff3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 05:10:05 2025 -0400
+
+    genmkfile debinstfile
+
+commit e24eee361d1f810b2ba23b257903fe2824e7d703
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 04:10:17 2025 -0400
+
+    remove unicode
+
+commit 53d380989185b5040f94dbb628e2bae5556ed0e1
+Merge: dcccad92 8b766fc3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 04:02:46 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit dcccad926679c10355aac53326f8fd1b79c735b7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 03:58:33 2025 -0400
+
+    no longer depend on sudo
+
+commit cfaa953373f3bf8de1b51be723f210069655eb74
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 03:42:33 2025 -0400
+
+    output
+
+commit 8b766fc3ad6b0c9675670f38e886beb6b769494b
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 31 15:23:12 2025 -0500
+
+    Lock down flatpak software management
+
+commit 948c96afe93bcc87cea203dd7b45a741d46543d1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 14:38:30 2025 +0000
+
+    bumped changelog version
+
 commit aae472d9cfb2f42a861af8a886c28acd640da545
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Oct 31 10:24:31 2025 -0400
