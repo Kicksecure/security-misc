@@ -23,6 +23,11 @@ user_groups_modifications() {
    ## /usr/lib/systemd/system/proc-hidepid.service
    addgroup --system proc
 
+   ## Avoid 'debian/control' file 'Depends:' 'sudo'.
+   ##
+   ## Could use '/usr/libexec/helper-scripts/user_create.bsh' in preinst? Looks more complex. Avoided.
+   addgroup --system sudo
+
    ## group 'sudo' membership required to use 'su'
    ## /usr/share/pam-configs/wheel-security-misc
    adduser root sudo
