@@ -18,3 +18,6 @@ security-misc-shared: systemd-service-file-refers-to-unusual-wantedby-target sys
 
 ## False-positive. Unit is commented out by default.
 security-misc-shared: systemd-service-file-missing-install-key [usr/lib/systemd/system/block-shutdown.service]
+
+## Minor bug: Unknown.
+security-misc-shared: package-contains-empty-directory [usr/share/security-misc-shared/]
