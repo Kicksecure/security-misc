@@ -22,52 +22,7 @@
             removed so as to require authorization.
      -->
     <description>Install signed application</description>
-    <description xml:lang="zh-Hant-TW">安裝已簽署的應用程式</description>
-    <description xml:lang="zh-Hans-CN">安装签名的应用程序</description>
-    <description xml:lang="uk">Встановлення підписаної програми</description>
-    <description xml:lang="tr">İmzalı uygulama kur</description>
-    <description xml:lang="sv">Installera signerat program</description>
-    <description xml:lang="sk">Nainštalovanie podpísanej aplikácie</description>
-    <description xml:lang="ru">Установить подписанное приложение</description>
-    <description xml:lang="ro">Instalează aplicația semnată</description>
-    <description xml:lang="pt-BR">Instalar aplicativo assinado</description>
-    <description xml:lang="pt">Instalar aplicação assinada</description>
-    <description xml:lang="pl">Instalacja podpisanego programu</description>
-    <description xml:lang="nl">Ondertekende toepassing installeren</description>
-    <description xml:lang="ka">ხელმოწერილი აპლიკაციის დაყენება</description>
-    <description xml:lang="id">Pasang aplikasi yang bertandatangan</description>
-    <description xml:lang="hu">Aláírt alkalmazás telepítése</description>
-    <description xml:lang="hr">Instaliraj potpisani program</description>
-    <description xml:lang="hi">हस्ताक्षरित अनुप्रयोग स्थापित करें</description>
-    <description xml:lang="gl">Instalar aplicación asinada</description>
-    <description xml:lang="es">Instalar aplicación firmada</description>
-    <description xml:lang="en-GB">Install signed application</description>
-    <description xml:lang="de">Signierte Anwendung installieren</description>
-    <description xml:lang="da">Installer underskrevet program</description>
-    <description xml:lang="cs">Instalovat podepsanou aplikaci</description>
-    <description xml:lang="bg">Инсталиране на подписана програма</description>
     <message>Authentication is required to install software</message>
-    <message xml:lang="zh-Hant-TW">安裝軟體時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">安装软件需要身份验证</message>
-    <message xml:lang="uk">Для встановлення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılım kurmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att installera program</message>
-    <message xml:lang="ru">Требуется авторизация для установки программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a instala software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para instalar software</message>
-    <message xml:lang="pt">Autenticação é necessária para instalar software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zainstalować oprogramowanie</message>
-    <message xml:lang="nl">Authenticatie is vereist om software te installeren</message>
-    <message xml:lang="ka">პროგრამის დასაწყენებლად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memasang perangkat lunak</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za instaliranje softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर स्थापित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para instalar el software</message>
-    <message xml:lang="en-GB">Authentication is required to install software</message>
-    <message xml:lang="de">Legitimation ist zum Installieren von Software erforderlich</message>
-    <message xml:lang="da">Der kræves godkendelse for at installere software</message>
-    <message xml:lang="cs">K instalaci softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да инсталирате софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -86,52 +41,7 @@
             removed so as to require authorization.
     -->
     <description>Install signed runtime</description>
-    <description xml:lang="zh-Hant-TW">安裝已簽署的執行時期環境</description>
-    <description xml:lang="zh-Hans-CN">安装签名的运行时</description>
-    <description xml:lang="uk">Встановлення підписаного середовища виконання</description>
-    <description xml:lang="tr">İmzalı çalışma ortamı kur</description>
-    <description xml:lang="sv">Installera signerad exekveringsmiljö</description>
-    <description xml:lang="sk">Nainštalovanie podpísaného prostredia</description>
-    <description xml:lang="ru">Установить подписанную среду выполнения</description>
-    <description xml:lang="ro">Instalează executarea semnată</description>
-    <description xml:lang="pt-BR">Instalar runtime assinado</description>
-    <description xml:lang="pt">Instalar runtime assinado</description>
-    <description xml:lang="pl">Instalacja podpisanego środowiska wykonawczego</description>
-    <description xml:lang="nl">Ondertekende runtime installeren</description>
-    <description xml:lang="ka">ხელმოწერილი გაშვების გარემოს დაყენება</description>
-    <description xml:lang="id">Pasang runtime bertandatangan</description>
-    <description xml:lang="hu">Aláírt futtatókörnyezet telepítése</description>
-    <description xml:lang="hr">Instaliraj potpisano okruženje</description>
-    <description xml:lang="hi">हस्ताक्षरित रनटाइम स्थापित करें</description>
-    <description xml:lang="gl">Instalar runtime asinado</description>
-    <description xml:lang="es">Instalar tiempo de ejecución firmado</description>
-    <description xml:lang="en-GB">Install signed runtime</description>
-    <description xml:lang="de">Signierte Laufzeitumgebung installieren</description>
-    <description xml:lang="da">Installer underskrevet runtime</description>
-    <description xml:lang="cs">Instalovat podepsané prostředí</description>
-    <description xml:lang="bg">Инсталиране на подписана среда за изпълнение</description>
     <message>Authentication is required to install software</message>
-    <message xml:lang="zh-Hant-TW">安裝軟體時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">安装软件需要身份验证</message>
-    <message xml:lang="uk">Для встановлення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılım kurmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att installera program</message>
-    <message xml:lang="ru">Требуется авторизация для установки программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a instala software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para instalar software</message>
-    <message xml:lang="pt">Autenticação é necessária para instalar software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zainstalować oprogramowanie</message>
-    <message xml:lang="nl">Authenticatie is vereist om software te installeren</message>
-    <message xml:lang="ka">პროგრამის დასაწყენებლად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memasang perangkat lunak</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za instaliranje softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर स्थापित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para instalar el software</message>
-    <message xml:lang="en-GB">Authentication is required to install software</message>
-    <message xml:lang="de">Legitimation ist zum Installieren von Software erforderlich</message>
-    <message xml:lang="da">Der kræves godkendelse for at installere software</message>
-    <message xml:lang="cs">K instalaci softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да инсталирате софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -152,56 +62,7 @@
             using a sysmaint session if applicable.
      -->
     <description>Update signed application</description>
-    <description xml:lang="zh-Hant-TW">更新已簽署的應用程式</description>
-    <description xml:lang="zh-Hans-CN">更新签名的应用程序</description>
-    <description xml:lang="uk">Оновлення підписаної програми</description>
-    <description xml:lang="tr">İmzalı uygulamayı güncelle</description>
-    <description xml:lang="sv">Uppdatera signerat program</description>
-    <description xml:lang="sk">Aktualizovanie podpísanej aplikácie</description>
-    <description xml:lang="ru">Обновить подписанное приложение</description>
-    <description xml:lang="ro">Actualizează aplicația semnată</description>
-    <description xml:lang="pt-BR">Atualizar aplicativo assinado</description>
-    <description xml:lang="pt">Atualizar aplicação assinada</description>
-    <description xml:lang="pl">Aktualizacja podpisanego programu</description>
-    <description xml:lang="nl">Ondertekende toepassing bijwerken</description>
-    <description xml:lang="ka">ხელმოწერილი აპლიკაციის განახლება</description>
-    <description xml:lang="id">Mutakhirkan aplikasi yang bertandatangan</description>
-    <description xml:lang="hu">Aláírt alkalmazás frissítése</description>
-    <description xml:lang="hr">Aktualiziraj potpisani program</description>
-    <description xml:lang="hi">हस्ताक्षरित आवेदन अद्यतन करें</description>
-    <description xml:lang="gl">Actualizar aplicación asinada</description>
-    <description xml:lang="es">Actualizar aplicación firmada</description>
-    <description xml:lang="en-GB">Update signed application</description>
-    <description xml:lang="de">Signierte Anwendung aktualisieren</description>
-    <description xml:lang="da">Opdater underskrevet program</description>
-    <description xml:lang="cs">Aktualizovat podepsanou aplikaci</description>
-    <description xml:lang="bg">Обновяване на подписана среда за изпълнение</description>
     <message>Authentication is required to update software</message>
-    <message xml:lang="zh-Hant-TW">更新軟體時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">更新软件需要身份验证</message>
-    <message xml:lang="uk">Для оновлення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Uygulama güncellemek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera program</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za posodobitev programske opreme</message>
-    <message xml:lang="sk">Na aktualizáciu softvéru sa vyžaduje overenie totožnosti</message>
-    <message xml:lang="ru">Требуется авторизация для обновления программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a actualiza software-ul</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar software</message>
-    <message xml:lang="pt">Autenticação é necessária para atualizar software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zaktualizować oprogramowanie</message>
-    <message xml:lang="nl">Authenticatie is vereist om software bij te werken</message>
-    <message xml:lang="ka">პროგრამების განახლებისთვის ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memutakhirkan perangkat lunak</message>
-    <message xml:lang="hu">Hitelesítés szükséges a szoftver frissítéséhez</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za aktualiziranje softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर अद्यतन करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="gl">Requírese autenticación para actualizar software</message>
-    <message xml:lang="es">La autentificación es obligatoria para actualizar un programa</message>
-    <message xml:lang="en-GB">Authentication is required to update software</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Software zu aktualisieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at opdatere software</message>
-    <message xml:lang="cs">K aktualizaci softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да обновявате софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -222,57 +83,7 @@
             using a sysmaint session if applicable.
      -->
     <description>Update signed runtime</description>
-    <description xml:lang="zh-Hant-TW">更新已簽署的執行時期環境</description>
-    <description xml:lang="zh-Hans-CN">更新签名的运行时</description>
-    <description xml:lang="uk">Оновлення підписаного середовища виконання</description>
-    <description xml:lang="tr">İmzalı çalışma ortamını güncelle</description>
-    <description xml:lang="sv">Uppdatera signerad exekveringsmiljö</description>
-    <description xml:lang="sl">Posodobi podpisani izvajalnik</description>
-    <description xml:lang="sk">Aktualizovanie podpísaného prostredia</description>
-    <description xml:lang="ru">Обновить подписанную среду выполнения</description>
-    <description xml:lang="ro">Actualizează executarea semnată</description>
-    <description xml:lang="pt-BR">Atualizar runtime assinado</description>
-    <description xml:lang="pt">Atualizar runtime assinado</description>
-    <description xml:lang="pl">Aktualizacja podpisanego środowiska wykonawczego</description>
-    <description xml:lang="nl">Ondertekende runtime bijwerken</description>
-    <description xml:lang="ka">ხელმოწერილი გაშვების გარემოს განახლება</description>
-    <description xml:lang="id">Mutakhirkan runtime yang bertandatangan</description>
-    <description xml:lang="hu">Aláírt futtatókörnyezet frissítése</description>
-    <description xml:lang="hr">Aktualiziraj potpisano okruženje</description>
-    <description xml:lang="hi">हस्ताक्षरित रनटाइम अद्यतन करें</description>
-    <description xml:lang="gl">Actualizar runtime asinado</description>
-    <description xml:lang="es">Actualizar tiempo de ejecución firmado</description>
-    <description xml:lang="en-GB">Update signed runtime</description>
-    <description xml:lang="de">Signierte Laufzeitumgebung aktualisieren</description>
-    <description xml:lang="da">Opdater underskrevet runtime</description>
-    <description xml:lang="cs">Aktualizovat podepsané prostředí</description>
-    <description xml:lang="bg">Обновяване на подписана среда за изпълнение</description>
     <message>Authentication is required to update software</message>
-    <message xml:lang="zh-Hant-TW">更新軟體時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">更新软件需要身份验证</message>
-    <message xml:lang="uk">Для оновлення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Uygulama güncellemek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera program</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za posodobitev programske opreme</message>
-    <message xml:lang="sk">Na aktualizáciu softvéru sa vyžaduje overenie totožnosti</message>
-    <message xml:lang="ru">Требуется авторизация для обновления программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a actualiza software-ul</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar software</message>
-    <message xml:lang="pt">Autenticação é necessária para atualizar software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zaktualizować oprogramowanie</message>
-    <message xml:lang="nl">Authenticatie is vereist om software bij te werken</message>
-    <message xml:lang="ka">პროგრამების განახლებისთვის ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memutakhirkan perangkat lunak</message>
-    <message xml:lang="hu">Hitelesítés szükséges a szoftver frissítéséhez</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za aktualiziranje softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर अद्यतन करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="gl">Requírese autenticación para actualizar software</message>
-    <message xml:lang="es">La autentificación es obligatoria para actualizar un programa</message>
-    <message xml:lang="en-GB">Authentication is required to update software</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Software zu aktualisieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at opdatere software</message>
-    <message xml:lang="cs">K aktualizaci softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да обновявате софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -288,51 +99,7 @@
             signed repositories.
      -->
     <description>Update remote metadata</description>
-    <description xml:lang="zh-Hant-TW">更新遠端的中介資料</description>
-    <description xml:lang="zh-Hans-CN">更新远程仓库元数据</description>
-    <description xml:lang="uk">Оновити віддалені метадані</description>
-    <description xml:lang="tr">Uzaktaki üst veriyi güncelle</description>
-    <description xml:lang="sv">Uppdatera fjärrförrådmetadata</description>
-    <description xml:lang="sl">Posodobi oddaljene metapodatke</description>
-    <description xml:lang="ru">Обновить удаленные метаданные</description>
-    <description xml:lang="ro">Actualizează datele meta ale depozitului de la distanță</description>
-    <description xml:lang="pt-BR">Atualizar metadados remotos</description>
-    <description xml:lang="pt">Atualizar metadados remotos</description>
-    <description xml:lang="pl">Aktualizacja metadanych repozytorium</description>
-    <description xml:lang="nl">Remote-metadata bijwerken</description>
-    <description xml:lang="ka">დაშორებული მეტამონაცემების განახლება</description>
-    <description xml:lang="id">Mutakhirkan metadata remote</description>
-    <description xml:lang="hu">Távoli metaadatok frissítése</description>
-    <description xml:lang="hr">Aktualiziraj metapodatke udaljenog repozitorija</description>
-    <description xml:lang="hi">रिमोट मेटाडेटा अद्यतन करें</description>
-    <description xml:lang="gl">Actualizar metadatos do remoto</description>
-    <description xml:lang="es">Actualizar metadatos remotos</description>
-    <description xml:lang="en-GB">Update remote metadata</description>
-    <description xml:lang="de">Entfernte Metadaten aktualisieren</description>
-    <description xml:lang="da">Opdater metadata for eksterne</description>
-    <description xml:lang="cs">Aktualizovat vzdálená metadata</description>
-    <description xml:lang="bg">Обновяване на метаданните на отдалеченото хранилище</description>
     <message>Authentication is required to update remote info</message>
-    <message xml:lang="zh-Hant-TW">更新遠端資訊時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">更新远程仓库信息需要身份验证</message>
-    <message xml:lang="uk">Для оновлення даних віддаленого сховища слід пройти розпізнавання</message>
-    <message xml:lang="tr">Uzak bilgileri güncellemek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera fjärrförrådsinfo</message>
-    <message xml:lang="ru">Требуется авторизация для обновления удаленной информации</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a actualiza informațiile depozitului de la distanță</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar informações de remoto</message>
-    <message xml:lang="pt">Autenticação é necessária para atualizar informações de remoto</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zaktualizować informacje o repozytorium</message>
-    <message xml:lang="nl">Authenticatie is vereist om remote-info bij te werken</message>
-    <message xml:lang="ka">დაშორებული ინფორმაციის განახლებისთვის ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memutakhirkan info remote</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za aktualiziranje podataka udaljenog repozitorija</message>
-    <message xml:lang="hi">रिमोट जानकारी को अद्यतन करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para actualizar la información remota</message>
-    <message xml:lang="en-GB">Authentication is required to update remote info</message>
-    <message xml:lang="da">Der kræves godkendelse for at opdatere information for eksterne</message>
-    <message xml:lang="cs">K aktualizaci vzdálených informací je vyžadováno ověření</message>
-    <message xml:lang="bg">За обновяване на информацията за отдалеченото хранилище е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -352,50 +119,7 @@
             repository.
      -->
     <description>Update system repository</description>
-    <description xml:lang="zh-Hant-TW">更新系統軟體庫</description>
-    <description xml:lang="zh-Hans-CN">更新系统仓库</description>
-    <description xml:lang="uk">Оновлення загальносистемного сховища</description>
-    <description xml:lang="tr">Sistem deposunu güncelle</description>
-    <description xml:lang="sv">Uppdaterar systemförråd</description>
-    <description xml:lang="ru">Обновить системный репозиторий</description>
-    <description xml:lang="ro">Actualizează un depozit al sistemului</description>
-    <description xml:lang="pt-BR">Atualiza repositório do sistema</description>
-    <description xml:lang="pt">Atualiza repositório do sistema</description>
-    <description xml:lang="pl">Aktualizacja repozytorium systemu</description>
-    <description xml:lang="nl">Systeempakketbron bijwerken</description>
-    <description xml:lang="ka">სისტემური რეპოზიტორიის განახლება</description>
-    <description xml:lang="id">Mutakhirkan repositori sistem</description>
-    <description xml:lang="hu">Rendszertároló frissítése</description>
-    <description xml:lang="hr">Aktualiziraj repozitorij sustava</description>
-    <description xml:lang="hi">सिस्टम रिपोजिटरी को अद्यतन करें</description>
-    <description xml:lang="es">Actualizar el repositorio del sistema</description>
-    <description xml:lang="en-GB">Update system repository</description>
-    <description xml:lang="de">Systemquelle aktualisieren</description>
-    <description xml:lang="da">Opdater systemdepot</description>
-    <description xml:lang="cs">Aktualizovat systémový repozitář</description>
-    <description xml:lang="bg">Обновяване на хранилището за софтуер</description>
     <message>Authentication is required to modify a system repository</message>
-    <message xml:lang="zh-Hant-TW">修改系統軟體庫時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">修改系统仓库需要身份验证</message>
-    <message xml:lang="uk">Для внесення змін до загальносистемного сховища слід пройти розпізнавання</message>
-    <message xml:lang="tr">Sistem deposunu değiştirmek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att ändra ett systemförråd</message>
-    <message xml:lang="ru">Требуется авторизация для изменения системного репозитория</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a modifica un depozit al sistemului</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para modificar um repositório de sistema</message>
-    <message xml:lang="pt">Autenticação é necessária para modificar um repositório de sistema</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zmodyfikować repozytorium systemu</message>
-    <message xml:lang="nl">Authenticatie is vereist om een systeempakketbron te bewerken</message>
-    <message xml:lang="ka">სისტემური რეპოზიტორიის შესაცვლელად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memodifikasi sistem repositori</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za mijenjanje repozitorija sustava</message>
-    <message xml:lang="hi">सिस्टम रिपॉजिटरी को संशोधित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para modificar un repositorio del sistema</message>
-    <message xml:lang="en-GB">Authentication is required to modify a system repository</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um ein System-Softwaredepot zu ändern</message>
-    <message xml:lang="da">Der kræves godkendelse for at ændre et systemdepot</message>
-    <message xml:lang="cs">K úpravě systémového repozitáře je vyžadováno ověření</message>
-    <message xml:lang="bg">За да промените системно хранилище е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -409,52 +133,7 @@
             system-wide.
      -->
     <description>Install bundle</description>
-    <description xml:lang="zh-Hant-TW">安裝套組</description>
-    <description xml:lang="zh-Hans-CN">安装捆绑包</description>
-    <description xml:lang="uk">Встановити пакунок</description>
-    <description xml:lang="tr">Paket kur</description>
-    <description xml:lang="sv">Installera bunt</description>
-    <description xml:lang="sk">Nainštalovanie balíka</description>
-    <description xml:lang="ru">Установить пакет</description>
-    <description xml:lang="ro">Instalează pachetul</description>
-    <description xml:lang="pt-BR">Instalar pacote</description>
-    <description xml:lang="pt">Instalar pacote</description>
-    <description xml:lang="pl">Instalacja pakietu</description>
-    <description xml:lang="nl">Bundel installeren</description>
-    <description xml:lang="ka">პაკეტის დაყენება</description>
-    <description xml:lang="id">Pasang bundel</description>
-    <description xml:lang="hu">Csomag telepítése</description>
-    <description xml:lang="hr">Instaliraj paket</description>
-    <description xml:lang="hi">बंडल स्थापित करें</description>
-    <description xml:lang="gl">Instalar paquete</description>
-    <description xml:lang="es">Instalar paquete</description>
-    <description xml:lang="en-GB">Install bundle</description>
-    <description xml:lang="de">Bündel installieren</description>
-    <description xml:lang="da">Installer bundt</description>
-    <description xml:lang="cs">Instalovat balík</description>
-    <description xml:lang="bg">Инсталиране на пакета</description>
     <message>Authentication is required to install software from $(path)</message>
-    <message xml:lang="zh-Hant-TW">從 $(path) 安裝軟體需要通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">从 $(path) 安装软件需要身份验证</message>
-    <message xml:lang="uk">Для встановлення програмного забезпечення з $(path) слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılımı $(path) yolundan kurmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att installera program från $(path)</message>
-    <message xml:lang="ru">Требуется авторизация для установки программ из $(path)</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a instala software de la $(path)</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para instalar software de $(path)</message>
-    <message xml:lang="pt">Autenticação é necessária para instalar software de $(path)</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zainstalować oprogramowanie z $(path)</message>
-    <message xml:lang="nl">Authenticatie is vereist om software te installeren van $(path)</message>
-    <message xml:lang="ka">%{path}-დან პროგრამის დასაყენებლად ავთენტიკაცია დაგჭირდებთ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memasang perangkat lunak dari $(path)</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za instaliranje softvera iz $(path)</message>
-    <message xml:lang="hi">$(पथ) से सॉफ्टवेयर स्थापित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para instalar software desde $(path)</message>
-    <message xml:lang="en-GB">Authentication is required to install software from $(path)</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Software von $(path) zu installieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at installere software fra $(path)</message>
-    <message xml:lang="cs">K instalaci softwaru z $(path) je vyžadováno ověření</message>
-    <message xml:lang="bg">За да инсталирате софтуер от $(path) е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -473,52 +152,7 @@
             removed so as to require authorization.
      -->
     <description>Uninstall runtime</description>
-    <description xml:lang="zh-Hant-TW">解除安裝執行時期環境</description>
-    <description xml:lang="zh-Hans-CN">卸载运行时</description>
-    <description xml:lang="uk">Вилучення середовища виконання</description>
-    <description xml:lang="tr">Çalışma ortamı kaldır</description>
-    <description xml:lang="sv">Avinstallera exekveringsmiljö</description>
-    <description xml:lang="sk">Odinštalovanie prostredia</description>
-    <description xml:lang="ru">Удалить среду выполнения</description>
-    <description xml:lang="ro">Dezinstalează executarea</description>
-    <description xml:lang="pt-BR">Desinstalar runtime</description>
-    <description xml:lang="pt">Desinstalar runtime</description>
-    <description xml:lang="pl">Odinstalowanie środowiska wykonawczego</description>
-    <description xml:lang="nl">Runtime verwijderen</description>
-    <description xml:lang="ka">გაშვების გარემოს წაშლა</description>
-    <description xml:lang="id">Hapus runtime</description>
-    <description xml:lang="hu">Futtatókörnyezet eltávolítása</description>
-    <description xml:lang="hr">Deinstaliraj okruženje</description>
-    <description xml:lang="hi">रनटाइम अस्थापित करें</description>
-    <description xml:lang="gl">Desinstalar paquete</description>
-    <description xml:lang="es">Desinstalar tiempo de ejecución</description>
-    <description xml:lang="en-GB">Uninstall runtime</description>
-    <description xml:lang="de">Laufzeitumgebung deinstallieren</description>
-    <description xml:lang="da">Afinstaller runtime</description>
-    <description xml:lang="cs">Odinstalovat prostředí</description>
-    <description xml:lang="bg">Деинсталиране на средата за изпълнение</description>
     <message>Authentication is required to uninstall software</message>
-    <message xml:lang="zh-Hant-TW">解除安裝軟體時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">卸载软件需要身份验证</message>
-    <message xml:lang="uk">Для вилучення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılımı kaldırmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att avinstallera program</message>
-    <message xml:lang="ru">Требуется авторизация для удаления программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a dezinstala software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para desinstalar software</message>
-    <message xml:lang="pt">Autenticação é necessária para desinstalar software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby odinstalować oprogramowanie</message>
-    <message xml:lang="nl">Authenticatie is vereist om software te verwijderen</message>
-    <message xml:lang="ka">პროგრამის წასაშლელად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk menghapus perangkat lunak</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za deinstaliranje softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर अस्थापित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para desinstalar el software</message>
-    <message xml:lang="en-GB">Authentication is required to uninstall software</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Software zu deinstallieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at afinstallere software</message>
-    <message xml:lang="cs">K odinstalování softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да деинсталирате софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -536,54 +170,7 @@
             removed so as to require authorization.
      -->
     <description>Uninstall app</description>
-    <description xml:lang="zh-Hant-TW">解除安裝程式</description>
-    <description xml:lang="zh-Hans-CN">卸载应用</description>
-    <description xml:lang="uk">Вилучити програму</description>
-    <description xml:lang="tr">Uygulama kaldır</description>
-    <description xml:lang="sv">Avinstallera program</description>
-    <description xml:lang="sl">Odstrani aplikacijo</description>
-    <description xml:lang="ru">Удалить программу</description>
-    <description xml:lang="ro">Dezinstalează aplicația</description>
-    <description xml:lang="pt-BR">Desinstalar aplicativo</description>
-    <description xml:lang="pt">Desinstalar aplicação</description>
-    <description xml:lang="pl">Odinstalowanie programu</description>
-    <description xml:lang="nl">Toepassing verwijderen</description>
-    <description xml:lang="ka">აპის წაშლა</description>
-    <description xml:lang="id">Hapus pemasangan aplikasi</description>
-    <description xml:lang="hu">Alkalmazás eltávolítása</description>
-    <description xml:lang="hr">Deinstaliraj program</description>
-    <description xml:lang="hi">ऐप अस्थापित करें</description>
-    <description xml:lang="gl">Desactivar aplicación</description>
-    <description xml:lang="fr">Désinstaller l'appli</description>
-    <description xml:lang="es">Desinstalar aplicación</description>
-    <description xml:lang="en-GB">Uninstall app</description>
-    <description xml:lang="de">Anwendung deinstallieren</description>
-    <description xml:lang="da">Afinstaller program</description>
-    <description xml:lang="cs">Odinstalovat aplikaci</description>
-    <description xml:lang="bg">Деинсталиране на програмата</description>
     <message>Authentication is required to uninstall $(ref)</message>
-    <message xml:lang="zh-Hant-TW">解除安裝 $(ref) 時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">卸载 $(ref) 需要身份验证</message>
-    <message xml:lang="uk">Для вилучення $(ref) слід пройти розпізнавання</message>
-    <message xml:lang="tr">$(ref) kaldırmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att avinstallera $(ref)</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za odstranitev $(ref)</message>
-    <message xml:lang="ru">Требуется авторизация для удаления ${ref}</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a dezinstala $(ref)</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para desinstalar $(ref)</message>
-    <message xml:lang="pt">Autenticação é necessária para desinstalar $(ref)</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby odinstalować $(ref)</message>
-    <message xml:lang="nl">Authenticatie is vereist om $(ref) te verwijderen</message>
-    <message xml:lang="ka">${ref}-ის წასაშლელად ავთენტიკაცია დაგჭირდებთ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk menghapus $(ref)</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za deinstaliranje $(ref)</message>
-    <message xml:lang="hi">$(ref) को अस्थापित करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para desinstalar $(ref)</message>
-    <message xml:lang="en-GB">Authentication is required to uninstall $(ref)</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um $(ref) zu deinstallieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at afinstallere $(ref)</message>
-    <message xml:lang="cs">K odinstalování refu $(ref) je vyžadováno ověření</message>
-    <message xml:lang="bg">За да деинсталирате $(ref) е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -598,54 +185,7 @@
             software repositories.
      -->
     <description>Configure Remote</description>
-    <description xml:lang="zh-Hant-TW">設定遠端站點</description>
-    <description xml:lang="zh-Hans-CN">配置远程仓库</description>
-    <description xml:lang="uk">Налаштовування сховищ</description>
-    <description xml:lang="tr">Uzak Yapılandır</description>
-    <description xml:lang="sv">Konfigurera fjärrförråd</description>
-    <description xml:lang="sl">Prilagodi na daljavo</description>
-    <description xml:lang="sk">Konfigurácia vzdialeného repozitára</description>
-    <description xml:lang="ru">Настроить удалённый репозиторий</description>
-    <description xml:lang="ro">Configurează depozitul de la distanță</description>
-    <description xml:lang="pt-BR">Configurar remoto</description>
-    <description xml:lang="pt">Configurar remoto</description>
-    <description xml:lang="pl">Konfiguracja repozytorium</description>
-    <description xml:lang="nl">Remote configureren</description>
-    <description xml:lang="ka">დაშორებულის მორგება</description>
-    <description xml:lang="id">Mengkonfigurasi Remote</description>
-    <description xml:lang="hu">Távoli beállítása</description>
-    <description xml:lang="hr">Konfiguriraj udaljeni repozitorij</description>
-    <description xml:lang="hi">रिमोट विन्यस्त करें</description>
-    <description xml:lang="gl">Configurar remoto</description>
-    <description xml:lang="es">Configurar Repositorio Remoto</description>
-    <description xml:lang="en-GB">Configure Remote</description>
-    <description xml:lang="de">Gegenstelle konfigurieren</description>
-    <description xml:lang="da">Konfigurer ekstern</description>
-    <description xml:lang="cs">Nastavit vzdálený repozitář</description>
-    <description xml:lang="bg">Настройване на отдалеченото хранилище</description>
     <message>Authentication is required to configure software repositories</message>
-    <message xml:lang="zh-Hant-TW">設定軟體軟體庫時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">配置软件仓库需要身份验证</message>
-    <message xml:lang="uk">Для налаштовування сховищ програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılım depolarını yapılandırmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att konfigurera programförråd</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za prilagoditev skladišča programske opreme</message>
-    <message xml:lang="ru">Требуется авторизация для настройки репозиториев программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a configura depozitele de software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para configurar os repositórios de software</message>
-    <message xml:lang="pt">Autenticação é necessária para configurar os repositórios de software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby skonfigurować repozytoria oprogramowania</message>
-    <message xml:lang="nl">Authenticatie is vereist om softwarebronnen te configureren</message>
-    <message xml:lang="ka">პროგრამის რეპოზიტორიების მოსარგებად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk mengkonfigurasi repositori perangkat lunak</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za konfiguriranje repozitorija softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर रिपॉजिटरी को विन्यस्त करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para configurar repositorios de software</message>
-    <message xml:lang="en-GB">Authentication is required to configure software repositories</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um die Softwarequellen zu konfigurieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at konfigurere softwaredepoter</message>
-    <message xml:lang="cs">K nastavení repozitářů softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да настроите хранилищата за софтуер е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -659,54 +199,7 @@
             Flatpak installation.
      -->
     <description>Configure</description>
-    <description xml:lang="zh-Hant-TW">設定</description>
-    <description xml:lang="zh-Hans-CN">配置</description>
-    <description xml:lang="uk">Налаштувати</description>
-    <description xml:lang="tr">Yapılandır</description>
-    <description xml:lang="sv">Konfigurera</description>
-    <description xml:lang="sl">Prilagodi</description>
-    <description xml:lang="ru">Настроить</description>
-    <description xml:lang="ro">Configurează</description>
-    <description xml:lang="pt-BR">Configurar</description>
-    <description xml:lang="pt">Configurar</description>
-    <description xml:lang="pl">Konfiguracja</description>
-    <description xml:lang="oc">Configurar</description>
-    <description xml:lang="nl">Configureren</description>
-    <description xml:lang="ka">მორგება</description>
-    <description xml:lang="id">Konfigurasi</description>
-    <description xml:lang="hu">Beállítás</description>
-    <description xml:lang="hr">Konfiguriraj</description>
-    <description xml:lang="hi">विन्यस्त करें</description>
-    <description xml:lang="es">Configurar</description>
-    <description xml:lang="en-GB">Configure</description>
-    <description xml:lang="de">Konfigurieren</description>
-    <description xml:lang="da">Konfigurer</description>
-    <description xml:lang="cs">Nastavit</description>
-    <description xml:lang="bg">Настройване</description>
     <message>Authentication is required to configure software installation</message>
-    <message xml:lang="zh-Hant-TW">設定軟體安裝時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">配置软件安装需要身份验证</message>
-    <message xml:lang="uk">Для налаштовування встановлення програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılım kurulumunu yapılandırmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att konfigurera programinstallationen</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za prilagoditev namestitve programske opreme</message>
-    <message xml:lang="ru">Требуется авторизация для настройки установки программ</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a configura instalarea de software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para configurar a instalação de software</message>
-    <message xml:lang="pt">Autenticação é necessária para configurar a instalação de software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby skonfigurować instalację oprogramowania</message>
-    <message xml:lang="nl">Authenticatie is vereist om software-installatie te configureren</message>
-    <message xml:lang="ka">დაყენებული პროგრამების მოსარგებად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk mengkonfigurasi pemasangan perangkat lunak</message>
-    <message xml:lang="hu">Hitelesítés szükséges a szoftvertelepítés beállításához</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za konfiguriranje instalacije softvera</message>
-    <message xml:lang="hi">सॉफ्टवेयर स्थापना को विन्यस्त करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para configurar la instalación del software</message>
-    <message xml:lang="en-GB">Authentication is required to configure software installation</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um die Installation von Software zu konfigurieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at konfigurere softwareinstallation</message>
-    <message xml:lang="cs">K nastavení instalace softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да настроите инсталацията на софтуера е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -726,50 +219,7 @@
             using a sysmaint session if applicable.
      -->
     <description>Update appstream</description>
-    <description xml:lang="zh-Hant-TW">更新 appstream</description>
-    <description xml:lang="zh-Hans-CN">更新 appstream</description>
-    <description xml:lang="uk">Оновлення appstream</description>
-    <description xml:lang="tr">Appstream'i güncelle</description>
-    <description xml:lang="sv">Uppdatera appstream</description>
-    <description xml:lang="ru">Обновить appstream</description>
-    <description xml:lang="ro">Actualizează appstream</description>
-    <description xml:lang="pt-BR">Atualizar appstream</description>
-    <description xml:lang="pt">Atualizar appstream</description>
-    <description xml:lang="pl">Aktualizacja danych AppStream</description>
-    <description xml:lang="nl">Appstream bijwerken</description>
-    <description xml:lang="ka">Appstream-ის განახლება</description>
-    <description xml:lang="id">Mutakhirkan appstream</description>
-    <description xml:lang="hu">AppStream frissítése</description>
-    <description xml:lang="hr">Aktualiziraj podatke programa</description>
-    <description xml:lang="hi">ऐपस्ट्रीम अद्यतन करें</description>
-    <description xml:lang="gl">Actualizar appstream</description>
-    <description xml:lang="es">Actualizar appstream</description>
-    <description xml:lang="en-GB">Update appstream</description>
-    <description xml:lang="de">Appstream aktualisieren</description>
-    <description xml:lang="da">Opdater appstream</description>
-    <description xml:lang="cs">Aktualizovat appstream</description>
-    <description xml:lang="bg">Обновяване на appstream</description>
     <message>Authentication is required to update information about software</message>
-    <message xml:lang="zh-Hant-TW">更新軟體資訊時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">更新软件信息需要身份验证</message>
-    <message xml:lang="uk">Для оновлення даних щодо програмного забезпечення слід пройти розпізнавання</message>
-    <message xml:lang="tr">Yazılım hakkındaki bilgileri güncellemek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera information om program</message>
-    <message xml:lang="ru">Требуется авторизация для обновления информации о программах</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a actualiza informațiile despre software</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar informações sobre software</message>
-    <message xml:lang="pt">Autenticação é necessária para atualizar informações sobre software</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zaktualizować informacje o oprogramowaniu</message>
-    <message xml:lang="nl">Authenticatie is vereist om informatie over software bij te werken</message>
-    <message xml:lang="ka">პროგრამების შესახებ ინფორმაციის განახლებისთვის ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memutakhirkan informasi tentang perangkat lunak</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za aktualiziranje podataka o softveru</message>
-    <message xml:lang="hi">सॉफ्टवेयर के बारे में जानकारी अद्यतन करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">Se requiere autenticación para actualizar la información sobre el software</message>
-    <message xml:lang="en-GB">Authentication is required to update information about software</message>
-    <message xml:lang="da">Der kræves godkendelse for at opdatere information om software</message>
-    <message xml:lang="cs">K aktualizaci informací o softwaru je vyžadováno ověření</message>
-    <message xml:lang="bg">За да обновите информацията на софтуера е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -789,53 +239,7 @@
             using a sysmaint session if applicable.
      -->
     <description>Update metadata</description>
-    <description xml:lang="zh-Hant-TW">更新中介資料</description>
-    <description xml:lang="zh-Hans-CN">更新元数据</description>
-    <description xml:lang="uk">Оновлення метаданих</description>
-    <description xml:lang="tr">Üst veriyi güncelle</description>
-    <description xml:lang="sv">Uppdatera metadata</description>
-    <description xml:lang="sl">Posodobi metapodatke</description>
-    <description xml:lang="ru">Обновить метаданные репозитория</description>
-    <description xml:lang="ro">Actualizează datele meta</description>
-    <description xml:lang="pt-BR">Atualizar metadados</description>
-    <description xml:lang="pt">Atualizar metadados</description>
-    <description xml:lang="pl">Aktualizacja metadanych</description>
-    <description xml:lang="oc">Actualizar las metadonadas</description>
-    <description xml:lang="nl">Metagegevens bijwerken</description>
-    <description xml:lang="ka">მეტამონაცემების განახლება</description>
-    <description xml:lang="id">Mutakhirkan metadata</description>
-    <description xml:lang="hr">Aktualiziraj metapodatke</description>
-    <description xml:lang="hi">मेटाडेटा अद्यतन करें</description>
-    <description xml:lang="fr">Mettre à jour la métadonnée</description>
-    <description xml:lang="es">Actualizar metadatos</description>
-    <description xml:lang="en-GB">Update metadata</description>
-    <description xml:lang="de">Metadaten aktualisieren</description>
-    <description xml:lang="da">Opdater metadata</description>
-    <description xml:lang="cs">Aktualizovat metadata</description>
-    <description xml:lang="bg">Обновяване на метаданните</description>
     <message>Authentication is required to update metadata</message>
-    <message xml:lang="zh-Hant-TW">更新中介資料時必須通過身分核對</message>
-    <message xml:lang="zh-Hans-CN">更新元数据需要身份验证</message>
-    <message xml:lang="uk">Для оновлення метаданих слід пройти розпізнавання</message>
-    <message xml:lang="tr">Üst verileri güncellemek için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera metadata</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za posodobitev metapodatkov</message>
-    <message xml:lang="ru">Требуется авторизация для обновления метаданных</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a actualiza datele meta</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar metadados</message>
-    <message xml:lang="pt">Autenticação é necessária para atualizar metadados</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zaktualizować metadane</message>
-    <message xml:lang="nl">Authenticatie is vereist om metagegevens bij te werken</message>
-    <message xml:lang="ka">მეტამონაცემების განახლებისთვის ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memutakhirkan metadata</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za aktualiziranje metapodataka</message>
-    <message xml:lang="hi">मेटाडेटा को अद्यतन करने के लिए प्रमाणीकरण आवश्यक है</message>
-    <message xml:lang="es">La autentificación es obligatoria para actualizar los metadatos</message>
-    <message xml:lang="en-GB">Authentication is required to update metadata</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Metadaten zu aktualisieren</message>
-    <message xml:lang="da">Der kræves godkendelse for at opdatere metadata</message>
-    <message xml:lang="cs">K aktualizaci metadat je vyžadováno ověření</message>
-    <message xml:lang="bg">За да обновите метаданните е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -848,14 +252,14 @@
           - Authorisation to actually install software is controlled by
             org.freedesktop.Flatpak.app-install.
           - This action is checked after app-install, as it can only be done
-            once the app’s data (including its content rating) has been
+            once the app___s data (including its content rating) has been
             downloaded.
           - This action is checked to see if the installation should be allowed
-            based on whether the app being installed has content which doesn’t
-            comply with the user’s parental controls policy (the content is
-            ‘too extreme’).
+            based on whether the app being installed has content which doesn___t
+            comply with the user___s parental controls policy (the content is
+            ___too extreme___).
           - It is checked only if an app has too extreme content for the user
-            who is trying to install it (in which case, the app is ‘unsafe’).
+            who is trying to install it (in which case, the app is ___unsafe___).
           - Typically, normal users will need admin permission to install apps
             with extreme content; admins will be able to install it without
             additional checks.
@@ -868,7 +272,7 @@
              * Return `auth_admin` from `override-parental-controls` for users
                not in `@privileged_group@`, and `yes` for users in it.
              * Set the malcontent `is-{user,system}-installation-allowed`
-               properties of all non-admins’ parental controls policies to true.
+               properties of all non-admins___ parental controls policies to true.
           - In order to configure the policy so that admins can install safe and
             unsafe software anywhere without authorisation, and non-admins can
             install safe software in their user dir without authorisation, but
@@ -878,9 +282,9 @@
              * Return `auth_admin` from `override-parental-controls` for users
                not in `@privileged_group@`, and `yes` for users in it.
              * Set the malcontent `is-user-installation-allowed` property of all
-               non-admins’ parental controls policies to true.
+               non-admins___ parental controls policies to true.
              * Set the malcontent `is-system-installation-allowed` property of
-               all non-admins’ parental controls policies to false.
+               all non-admins___ parental controls policies to false.
           - In order to configure the policy so that all users (including
             admins) can install safe software anywhere without authorisation,
             but need authorisation to install unsafe software anywhere (i.e.
@@ -888,35 +292,12 @@
              * Unconditionally return `yes` from `app-install`.
              * Unconditionally return `auth_admin` from `override-parental-controls`.
              * Set the malcontent `is-user-installation-allowed` property of all
-               users’ parental controls policies to true.
+               users___ parental controls policies to true.
              * Set the malcontent `is-system-installation-allowed` property of
-               all users’ parental controls policies to true.
+               all users___ parental controls policies to true.
      -->
     <description>Override parental controls for installs</description>
-    <description xml:lang="sv">Åsidosätt föräldrakontroller för installationer</description>
-    <description xml:lang="pt-BR">Sobrepor controle parental para instalação</description>
     <message>Authentication is required to install software which is restricted by your parental controls policy</message>
-    <message xml:lang="zh-Hant-TW">安裝被上級控制方針限制的軟體時需要通過身分驗證</message>
-    <message xml:lang="zh-Hans-CN">安装受您的家长控制策略限制的软件需要身份验证</message>
-    <message xml:lang="uk">Для встановлення програмного забезпечення, доступ до якого обмежено вашими правилами батьківського контролю, слід пройти розпізнавання</message>
-    <message xml:lang="tr">Ebeveyn denetim politikası tarafından kısıtlanan yazılımı kurmak için kimlik doğrulaması gerekiyor</message>
-    <message xml:lang="sv">Autentisering krävs för att installera program som begränsas av din policy för föräldrakontroller</message>
-    <message xml:lang="sl">Preverjanje pristnosti je potrebno za namestitev programske opreme, ki jo omejuje pravilnik starševskega nadzora</message>
-    <message xml:lang="ru">Для установки программного обеспечения требуется аутентификация, которая ограничена вашей политикой родительского контроля</message>
-    <message xml:lang="ro">Autentificarea este necesară pentru a instala software care este restricționat de politica de control parental</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para instalar software que está restrito por sua política de controle parental</message>
-    <message xml:lang="pt">Autenticação é necessária para instalar software que está restrito por sua política de controlo parental</message>
-    <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby zainstalować oprogramowanie ograniczane przez zasady kontroli rodzicielskiej</message>
-    <message xml:lang="nl">Authenticatie is vereist om software te installeren welke is beperkt door uw beleid van ouderlijk toezicht</message>
-    <message xml:lang="ka">თქვენი მშობლების საკონტროლო პოლიტიკის მიერ შეზღუდული პროგრამის დასაყენებლად ავთენტიკაცია დაგჭირდებათ</message>
-    <message xml:lang="id">Autentikasi diperlukan untuk memasang perangkat lunak yang dibatasi oleh kebijakan kontrol orang tua Anda</message>
-    <message xml:lang="hr">Potrebna je autentifikacija za instaliranje softvera, koja je ograničena tvojim pravilima roditeljskog nadzora</message>
-    <message xml:lang="hi">सॉफ्टवेयर स्थापित करने के लिए प्रमाणीकरण आवश्यक है जो आपकी अभिभावकीय नियंत्रण नीति द्वारा प्रतिबंधित है</message>
-    <message xml:lang="es">La autentificación es obligatoria para instalar un programa que está restringido por su política de control parental</message>
-    <message xml:lang="de">Legitimierung wird benötigt, um Software zu installieren, welche durch die Kindersicherung gesperrt ist</message>
-    <message xml:lang="da">Der kræves godkendelse for at installere software som er begrænset af din politik for forælderstyringer</message>
-    <message xml:lang="cs">K instalaci softwaru, který je omezen bezpečnostní politikou rodičovské kontroly je vyžadováno ověření</message>
-    <message xml:lang="bg">За да инсталирате софтуер, който е ограничен от политиката за родителски контрол, е необходима идентификация</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
@@ -928,13 +309,13 @@
   <action id="org.freedesktop.Flatpak.override-parental-controls-update">
     <!-- SECURITY:
           - This is like org.freedesktop.Flatpak.override-parental-controls, but
-            it’s queried for app updates, whereas the former is queried for app
+            it___s queried for app updates, whereas the former is queried for app
             installs.
           - As with the above action, this one is only queried if
             org.freedesktop.Flatpak.app-update has allowed the app update, and
             only if the app being updated has too extreme content for the user
             who is trying to update it.
-          - The default policy for this is to *allow* updates to ‘too extreme’
+          - The default policy for this is to *allow* updates to ___too extreme___
             apps by default, on the basis that having an out-of-date (i.e.
             insecure or unsupported) app is a worse outcome than automatically
             installing an update which has radically different content from the
@@ -943,11 +324,7 @@
             requiring authorization to modify the system's software.
      -->
     <description>Override parental controls for updates</description>
-    <description xml:lang="sv">Åsidosätt föräldrakontroller för uppdateringar</description>
-    <description xml:lang="pt-BR">Sobrepor controle parental para atualizações</description>
     <message>Authentication is required to update software which is restricted by your parental controls policy</message>
-    <message xml:lang="sv">Autentisering krävs för att uppdatera program som begränsas av din policy för föräldrakontroller</message>
-    <message xml:lang="pt-BR">Autenticação é necessária para atualizar software que está restrito por sua política de controle parental</message>
     <icon_name>package-x-generic</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
