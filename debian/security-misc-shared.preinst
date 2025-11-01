@@ -26,7 +26,10 @@ user_groups_modifications() {
    ## Avoid 'debian/control' file 'Depends:' 'sudo'.
    ##
    ## Could use '/usr/libexec/helper-scripts/user_create.bsh' in preinst? Looks more complex. Avoided.
-   addgroup --system sudo
+   ## group 'sudo' is not a system group.
+   #addgroup --system sudo
+   ## Function 'is_group' is complex. Hence, use '2>/dev/null || true'.
+   addgroup sudo 2>/dev/null || true
 
    ## group 'sudo' membership required to use 'su'
    ## /usr/share/pam-configs/wheel-security-misc
