@@ -736,6 +736,10 @@ See:
   `/etc/ssh/ssh_config.d/30_security-misc.conf`
 - Hardens SSH server
   `/etc/ssh/sshd_config.d/30_security-misc.conf`
+- Configures flatpak to require authentication for all software installation
+  and management tasks including updates. Ships
+  `/usr/share/polkit-1/actions/org.freedesktop.Flatpak.policy.security-misc`,
+  diverts/hides `/usr/share/polkit-1/rules.d/org.freedesktop.Flatpak.rules`.
 
 ### Project scope of application-specific hardening
 
