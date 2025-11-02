@@ -60,6 +60,8 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Disable asynchronous I/O as `io_uring` has been the source of numerous kernel exploits.
 
+- Disable 32-bit vDSO mappings as they are a legacy compatibility feature.
+
 #### User space
 
 - Disable the usage of `ptrace()` by all processes as it enables programs to inspect
