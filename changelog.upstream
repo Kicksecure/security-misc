@@ -1,3 +1,34 @@
+commit 58d5f738e63d4c18048fab4e2fd134d68722d0fd
+Merge: 5121f80f 7beb19b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 06:08:46 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 5121f80f28d374d78bb3897a46fe924d750f4643
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 06:00:24 2025 -0500
+
+    comment
+
+commit 29685938bdfd5c14828091342dbe21283ed45fd1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 05:57:52 2025 -0500
+
+    move usbguard reject rules to the top
+
+commit 7beb19b64a33cb86771488ab558756fa86b577d3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 1 22:06:44 2025 -0500
+
+    Update README.md with info about flatpak auth hardening
+
+commit 5a6730450af6e3d1ab76d6e26d4fb1d7175be946
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 10:13:50 2025 +0000
+
+    bumped changelog version
+
 commit 7de05e88f57a343ac358ddbd6a8b3a5f0aa68a51
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Nov 1 06:13:37 2025 -0400
