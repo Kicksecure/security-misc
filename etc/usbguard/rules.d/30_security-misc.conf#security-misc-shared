@@ -6,28 +6,6 @@
 ## Note: Most probably superfluous.
 reject with-interface none-of { 00:*:* 01:*:* 02:*:* 03:*:* 05:*:* 06:*:* 07:*:* 08:*:* 09:*:* 0a:*:* 0b:*:* 0d:*:* 0e:*:* 0f:*:* 10:*:* 11:*:* 12:*:* 13:*:* 14:*:* 3c:*:* dc:*:* e0:*:* ef:*:* fe:*:* ff:*:* }
 
-## Allow all mouses and keyboards, in a sense, so the user can conveniently
-## change them without restrating the daemon.
-
-## Allow only one keyboard to be connected
-allow with-interface equals { 03:01:01 } if !allowed-matches(with-interface equals { 03:01:01 })
-## Allow only one mouse to be connected
-allow with-interface equals { 03:01:02 } if !allowed-matches(with-interface equals { 03:01:02 })
-## NOTE: Some HID devices will have an interface of 03:00:00 - these are HID
-## devices that do not support a "boot interface". **These are blocked
-## entirely.** It is very likely that this will cause issues with some mice
-## and keyboards. Also note, all HID devices other than mice and keyboards
-## will be blocked, **including touchscreens.**
-
-## Allow USB audio devices. The intended functionality of these devices is
-## unlikely to be usable in a malicious capacity without having already
-## compromised the machine.
-allow with-interface equals { 01:*:* }
-
-## Allow USB video devices (i.e. webcams). Also tricky to use in a malicious
-## manner without having already compromised the machine.
-allow with-interface equals { 0e:*:* }
-
 ## Explicitly reject any device with a mouse/keyboard interface in
 ## combination with some other interface.
 ## Mice and keyboards should likely never have non-HID interfaces provided
@@ -60,6 +38,28 @@ reject with-interface all-of { 03:*:* ff:*:* }
 ## Explicitly reject any device with an RNDIS interface. RNDIS is believed to
 ## have protocol-level buffer overflow vulnerabilities that cannot be fixed.
 reject with-interface one-of { ef:04:* }
+
+## Allow all mouses and keyboards, in a sense, so the user can conveniently
+## change them without restrating the daemon.
+
+## Allow only one keyboard to be connected
+allow with-interface equals { 03:01:01 } if !allowed-matches(with-interface equals { 03:01:01 })
+## Allow only one mouse to be connected
+allow with-interface equals { 03:01:02 } if !allowed-matches(with-interface equals { 03:01:02 })
+## NOTE: Some HID devices will have an interface of 03:00:00 - these are HID
+## devices that do not support a "boot interface". **These are blocked
+## entirely.** It is very likely that this will cause issues with some mice
+## and keyboards. Also note, all HID devices other than mice and keyboards
+## will be blocked, **including touchscreens.**
+
+## Allow USB audio devices. The intended functionality of these devices is
+## unlikely to be usable in a malicious capacity without having already
+## compromised the machine.
+allow with-interface equals { 01:*:* }
+
+## Allow USB video devices (i.e. webcams). Also tricky to use in a malicious
+## manner without having already compromised the machine.
+allow with-interface equals { 0e:*:* }
 
 ## Allow USB mass storage, if and only if the USB device only has the mass
 ## storage interface and nothing extra.
