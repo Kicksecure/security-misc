@@ -1,6 +1,11 @@
 ## We allow devices that were plugged in before the daemon starts. Everything
 ## is blocked as the default. Following rules apply on top of this.
 
+## First match wins. Therefore, reject rules should be on the top.
+## Quote:
+## https://usbguard.github.io/documentation/rule-language
+## > the daemon scans the existing rules sequentially
+
 ## Explicitly reject any interface that is not documented and/or defined by
 ## USB.org.
 ## Note: Most probably superfluous.
