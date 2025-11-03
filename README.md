@@ -238,6 +238,9 @@ Kernel space:
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
 
+- Restrict processes from modifying their own memory mappings unless actively done via
+  `ptrace()` in order to limit self-modification which can trigger exploits.
+
 Direct memory access:
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
