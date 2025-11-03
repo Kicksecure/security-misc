@@ -238,6 +238,9 @@ Kernel space:
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
 
+- Prevent runaway privileged processes from writing to block devices that are mounted by
+  filesystems to protect against filesystem corruption and kernel crashes.
+
 Direct memory access:
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
