@@ -156,6 +156,8 @@ CPU mitigations:
 
 - Spectre Side Channels (BTI and BHI)
 
+- Meltdown
+
 - Speculative Store Bypass (SSB)
 
 - L1 Terminal Fault (L1TF)
