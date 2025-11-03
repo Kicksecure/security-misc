@@ -88,7 +88,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kpti=1"
 ## Speculative Store Bypass (SSB):
 ## Mitigate Spectre Variant 4 by disabling speculative store bypass system-wide.
 ## Unconditionally enable the mitigation for both kernel and userspace.
-## Currently affects both AMD and Intel CPUs.
+## Currently affects AMD, ARM64, and Intel CPUs.
 ##
 ## https://en.wikipedia.org/wiki/Speculative_Store_Bypass
 ## https://www.suse.com/support/kb/doc/?id=000019189
