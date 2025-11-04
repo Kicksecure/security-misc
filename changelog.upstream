@@ -1,3 +1,190 @@
+commit 58d5f738e63d4c18048fab4e2fd134d68722d0fd
+Merge: 5121f80f 7beb19b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 06:08:46 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 5121f80f28d374d78bb3897a46fe924d750f4643
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 06:00:24 2025 -0500
+
+    comment
+
+commit 29685938bdfd5c14828091342dbe21283ed45fd1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 05:57:52 2025 -0500
+
+    move usbguard reject rules to the top
+
+commit 7beb19b64a33cb86771488ab558756fa86b577d3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 1 22:06:44 2025 -0500
+
+    Update README.md with info about flatpak auth hardening
+
+commit 5a6730450af6e3d1ab76d6e26d4fb1d7175be946
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 10:13:50 2025 +0000
+
+    bumped changelog version
+
+commit 7de05e88f57a343ac358ddbd6a8b3a5f0aa68a51
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 06:13:37 2025 -0400
+
+    fix
+
+commit fe8b7fda3d16195b7a7e7a6218e2bc12d808bcb8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 06:08:20 2025 -0400
+
+    chmod +x
+
+commit ad0053d93797aaba2f242f8e7c142eee064c1bca
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 09:41:23 2025 +0000
+
+    bumped changelog version
+
+commit 94918eeefbf962dbd66cbb052f2304496b1e2814
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 05:24:31 2025 -0400
+
+    lintian
+
+commit 6cc5eebe22d9af3591a0bd32e3ca7e9c0849fc44
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 09:18:12 2025 +0000
+
+    bumped changelog version
+
+commit 81a279ee1f23706c2309c02da536b68f00e3eff3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 05:10:05 2025 -0400
+
+    genmkfile debinstfile
+
+commit e24eee361d1f810b2ba23b257903fe2824e7d703
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 04:10:17 2025 -0400
+
+    remove unicode
+
+commit 53d380989185b5040f94dbb628e2bae5556ed0e1
+Merge: dcccad92 8b766fc3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 04:02:46 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit dcccad926679c10355aac53326f8fd1b79c735b7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 03:58:33 2025 -0400
+
+    no longer depend on sudo
+
+commit cfaa953373f3bf8de1b51be723f210069655eb74
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 03:42:33 2025 -0400
+
+    output
+
+commit 8b766fc3ad6b0c9675670f38e886beb6b769494b
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 31 15:23:12 2025 -0500
+
+    Lock down flatpak software management
+
+commit 948c96afe93bcc87cea203dd7b45a741d46543d1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 14:38:30 2025 +0000
+
+    bumped changelog version
+
+commit aae472d9cfb2f42a861af8a886c28acd640da545
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 10:24:31 2025 -0400
+
+    Revert "Move apparmor-info, apparmor-watch to security-misc, enable systemd-journald audit transport"
+    
+    This reverts commit d1e148eba72ff5a095e31842a70afec7f28c8724.
+
+commit 3b2092ee764fe3ab8d72b912f0dcc4726ba76f4e
+Merge: b168c37e d1e148eb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Oct 31 10:19:08 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit d1e148eba72ff5a095e31842a70afec7f28c8724
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Oct 30 23:05:19 2025 -0500
+
+    Move apparmor-info, apparmor-watch to security-misc, enable systemd-journald audit transport
+
+commit b168c37e841d971743a8f2fe2d64ab4187e4029b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 27 11:48:10 2025 +0000
+
+    bumped changelog version
+
+commit c9d48ef7fdd2b691a7abd880d5e695c6296332b6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Oct 27 07:07:25 2025 -0400
+
+    readme
+
+commit 2dda826e02a10a9cebabe3896fc4c850221cc423
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 26 12:30:29 2025 +0000
+
+    bumped changelog version
+
+commit cb70f198375c5b68058a3705258e78464786922b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 26 08:06:26 2025 -0400
+
+    more robust, standardized kernel_cmdline variable detection
+
+commit 53db63196432e3fdf8fc031f0e78b4666b0f1514
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 23 06:03:26 2025 +0000
+
+    bumped changelog version
+
+commit f2b33b1ad54ac94aca200c001311e0794634e6f9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Oct 23 01:08:38 2025 -0400
+
+    update
+
+commit 1f093f817527d168ede3a682651088a051f40cb9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 22 00:37:36 2025 -0400
+
+    do not start usbguard-notifier if /sys/bus/usb does not exist
+
+commit 7969ffd4a52786f4a92f74931fff85430906a629
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 08:43:36 2025 +0000
+
+    bumped changelog version
+
+commit f555c48c51dab3eefc99085eace277f15ef72c33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 04:42:24 2025 -0400
+
+    fix USBGuard-notifier `accept` / `reject` buttons
+    
+    https://forums.kicksecure.com/t/usbguard-what-should-we-allow-or-disallow-by-default/1248/49
+
+commit 929421bd258a3c0c1f142f707aeff479f2ea3c49
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Oct 18 09:19:07 2025 +0000
+
+    bumped changelog version
+
 commit f5b7aab87ec6640eb1969bb4be05bb5b0ff04a3c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Oct 18 05:18:55 2025 -0400

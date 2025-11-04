@@ -4,6 +4,8 @@ https://github.com/Kicksecure/security-misc/blob/master/README.md
 
 https://www.kicksecure.com/wiki/Security-misc
 
+Package security-misc-desktop and/or security-misc-server may also be useful.
+
 Discussion:
 
 Happening primarily in Whonix forums.

@@ -43,7 +43,6 @@ Depends: adduser,
          memlockd,
          python3,
          secure-delete,
-         sudo,
          ${misc:Depends}
 Replaces: anon-gpg-tweaks,
           security-misc,

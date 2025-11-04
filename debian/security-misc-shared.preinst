@@ -23,6 +23,14 @@ user_groups_modifications() {
    ## /usr/lib/systemd/system/proc-hidepid.service
    addgroup --system proc
 
+   ## Avoid 'debian/control' file 'Depends:' 'sudo'.
+   ##
+   ## Could use '/usr/libexec/helper-scripts/user_create.bsh' in preinst? Looks more complex. Avoided.
+   ## group 'sudo' is not a system group.
+   #addgroup --system sudo
+   ## Function 'is_group' is complex. Hence, use '2>/dev/null || true'.
+   addgroup sudo 2>/dev/null || true
+
    ## group 'sudo' membership required to use 'su'
    ## /usr/share/pam-configs/wheel-security-misc
    adduser root sudo
@@ -96,7 +104,7 @@ sudo_users_check () {
 
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-   echo "$0: ERROR: No user is a member of group 'sudo'. Installation aborted." >&2
+   echo "$0: ERROR: No account is a member of group 'sudo'. Installation aborted." >&2
    echo "$0: ERROR: You probably want to run:" >&2
    echo "$0: NOTE: Replace account 'user' with your actual Linux user account name." >&2
    echo "" >&2
@@ -146,7 +154,7 @@ console_users_check() {
    for user_with_console in $console_users $console_unrestricted_users ; do
       if [ "$user_with_console" = "root" ]; then
          ## root login is also restricted.
-         ## Therefore user "root" being member of group "console" is
+         ## Therefore account "root" being member of group "console" is
          ## considered insufficient.
          continue
       fi
@@ -163,7 +171,7 @@ console_users_check() {
       return 0
    fi
 
-   echo "$0: ERROR: No user is a member of group 'console'. Installation aborted." >&2
+   echo "$0: ERROR: No account is a member of group 'console'. Installation aborted." >&2
    echo "$0: ERROR: You probably want to run:" >&2
    echo "" >&2
    echo "sudo adduser user console" >&2
@@ -213,7 +221,7 @@ legacy() {
    user_to_be_created=user
 
    if ! id "$user_to_be_created" &>/dev/null ; then
-      true "INFO: user '$user_to_be_created' does not exist. Skipping adduser console and pam-auth-update."
+      true "INFO: Account '$user_to_be_created' does not exist. Skipping adding account '$user_to_be_created' to group 'console' and also skipping 'pam-auth-update --enable console-lockdown-security-misc'."
       return 0
    fi
 
