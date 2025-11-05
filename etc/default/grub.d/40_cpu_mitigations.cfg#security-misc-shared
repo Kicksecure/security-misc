@@ -40,6 +40,7 @@
 ## We retain it here for completeness as many other distributions heavily rely on this for many CPU mitigations.
 ##
 ## https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859
+## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/attack_vector_controls.html
 ##
 ## KSPP=no
 ## KSPP sets the kernel parameters.
