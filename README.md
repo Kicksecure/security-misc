@@ -261,6 +261,9 @@ Entropy:
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
 
+- Obtain more entropy at boot from RAM as the runtime memory allocator is being
+  initialized to maximize the absolute quantity of entropy in the combined pool.
+
 Networking:
 
 - Optional - Disable the entire IPv6 stack to reduce attack surface.
