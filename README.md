@@ -250,7 +250,9 @@ Direct memory access:
 Entropy:
 
 - Do not credit the CPU or bootloader as entropy sources at boot in order to
-  maximize the absolute quantity of entropy in the combined pool.
+  maximize the absolute quantity of entropy in the combined pool. This is desirable
+  for all cryptographic operations reliant proprietary on RDRAND and RDSEED CPU
+  instructions for random number generation that have long history of being defective.
 
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.

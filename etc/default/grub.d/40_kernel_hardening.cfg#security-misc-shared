@@ -287,19 +287,17 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi=disable_early_pci_dma"
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#rdrand
 
 ## Do not credit the CPU or bootloader seeds as entropy sources at boot.
-## The RDRAND CPU (RNG) instructions are proprietary and closed-source.
-## Numerous implementations of RDRAND have a long history of being defective.
+## The RDRAND and RDSEED CPU (RNG) instructions are proprietary and closed-source.
+## Numerous implementations of RDRAND and RDSEED have a long history of being defective.
 ## The RNG seed passed by the bootloader could also potentially be tampered.
 ## Maximizing the entropy pool at boot is desirable for all cryptographic operations.
-## These settings ensure additional entropy is obtained from other sources to initialize the RNG.
-## RDSEED instructions also rely on periodic reseeds from the same underlying entropy sources.
+## These settings ensure additional entropy is obtained from other sources to initialize the Linux CRNG.
 ## Note that distrusting these (relatively fast) sources of entropy will increase boot time.
 ##
 ## https://en.wikipedia.org/wiki/RDRAND#Reception
 ## https://systemd.io/RANDOM_SEEDS/
 ## https://www.kicksecure.com/wiki/Dev/Entropy#RDRAND
 ## https://arstechnica.com/gadgets/2019/10/how-a-months-old-amd-microcode-bug-destroyed-my-weekend/
-## https://x.com/pid_eins/status/1149649806056280069
 ## https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/05/us/documents-reveal-nsa-campaign-against-encryption.html
 ## https://forums.whonix.org/t/entropy-config-random-trust-cpu-yes-or-no-rng-core-default-quality/8566
 ## https://github.com/NixOS/nixpkgs/pull/165355
