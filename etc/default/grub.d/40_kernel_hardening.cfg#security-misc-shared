@@ -286,31 +286,42 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi=disable_early_pci_dma"
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#rdrand
 
-## Do not credit the CPU or bootloader seeds as entropy sources at boot.
+## Do not credit the CPU seeds as an entropy sources at boot.
 ## The RDRAND and RDSEED CPU (RNG) instructions are proprietary and closed-source.
 ## Numerous implementations of RDRAND and RDSEED have a long history of being defective.
-## The RNG seed passed by the bootloader could also potentially be tampered.
 ## Maximizing the entropy pool at boot is desirable for all cryptographic operations.
-## These settings ensure additional entropy is obtained from other sources to initialize the Linux CRNG.
-## Note that distrusting these (relatively fast) sources of entropy will increase boot time.
+## This ensures additional entropy is obtained from other sources to initialize the Linux CRNG.
+## Note that distrusting this (relatively fast) source of entropy will increase boot time.
 ##
-## https://en.wikipedia.org/wiki/RDRAND#Reception
+## https://en.wikipedia.org/wiki/RDRAND
 ## https://systemd.io/RANDOM_SEEDS/
 ## https://www.kicksecure.com/wiki/Dev/Entropy#RDRAND
-## https://arstechnica.com/gadgets/2019/10/how-a-months-old-amd-microcode-bug-destroyed-my-weekend/
 ## https://archive.nytimes.com/www.nytimes.com/interactive/2013/09/05/us/documents-reveal-nsa-campaign-against-encryption.html
 ## https://forums.whonix.org/t/entropy-config-random-trust-cpu-yes-or-no-rng-core-default-quality/8566
-## https://github.com/NixOS/nixpkgs/pull/165355
 ## https://lkml.org/lkml/2022/6/5/271
 ## https://lwn.net/Articles/961121/
 ## https://lore.kernel.org/lkml/aPFDn-4Cm6n0_3_e@gourry-fedora-PF4VCD3F/
 ## https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7055.html
 ##
 ## KSPP=yes
-## KSPP sets CONFIG_RANDOM_TRUST_BOOTLOADER=y and CONFIG_RANDOM_TRUST_CPU=y.
+## KSPP sets CONFIG_RANDOM_TRUST_CPU=y.
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX random.trust_cpu=off"
+
+## Do not credit the bootloader seeds as an entropy source at boot.
+## The RNG seed passed by the bootloader could potentially be tampered.
+## Maximizing the entropy pool at boot is desirable for all cryptographic operations.
+## This ensures additional entropy is obtained from other sources to initialize the Linux CRNG.
+## Note that distrusting this (relatively fast) source of entropy will increase boot time.
+##
+## https://systemd.io/RANDOM_SEEDS/
+## https://github.com/NixOS/nixpkgs/pull/165355
+## https://lkml.org/lkml/2022/6/5/271
+##
+## KSPP=yes
+## KSPP sets CONFIG_RANDOM_TRUST_BOOTLOADER=y.
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX random.trust_bootloader=off"
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX random.trust_cpu=off"
 
 ## Obtain more entropy during boot as the runtime memory allocator is being initialized.
 ## Entropy will be extracted from up to the first 4GB of RAM.
