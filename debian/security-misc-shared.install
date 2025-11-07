@@ -55,6 +55,7 @@ usr/libexec/security-misc/disable-kernel-module-loading#security-misc-shared => 
 usr/libexec/security-misc/hide-hardware-info#security-misc-shared => /usr/libexec/security-misc/hide-hardware-info
 usr/libexec/security-misc/virusforget#security-misc-shared => /usr/libexec/security-misc/virusforget
 usr/libexec/security-misc/pam_faillock_not_if_x#security-misc-shared => /usr/libexec/security-misc/pam_faillock_not_if_x
+usr/libexec/security-misc/check-for-usb-controller#security-misc-shared => /usr/libexec/security-misc/check-for-usb-controller
 usr/src/security-misc/emerg-shutdown.c#security-misc-shared => /usr/src/security-misc/emerg-shutdown.c
 usr/bin/disabled-gps-by-security-misc#security-misc-shared => /usr/bin/disabled-gps-by-security-misc
 usr/bin/disabled-netfilesys-by-security-misc#security-misc-shared => /usr/bin/disabled-netfilesys-by-security-misc
