@@ -5,7 +5,9 @@
 
 export LC_ALL='C'
 
+## Package 'pciutils' provides tool 'lspci'.
 if lspci | grep --quiet '^[^ ]* USB controller: '; then
   exit 0
 fi
+
 exit 1
