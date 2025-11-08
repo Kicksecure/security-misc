@@ -1,3 +1,46 @@
+commit 69419357e1bb2d0842ecd5db3e42bcaa011f5c11
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 8 02:42:25 2025 -0500
+
+    genmkfile debinstfile
+
+commit d50e6afc8fb0a925e07fc54b7ecc1f450d9aa176
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 8 01:34:32 2025 -0500
+
+    sanity test
+
+commit 12679608428e6927da480ca721b34bab75108687
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 8 01:32:45 2025 -0500
+
+    comments
+
+commit 1e48886c7e77fa7bccfdee3cca6f0fbdba74e4a1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 8 01:31:02 2025 -0500
+
+    long option name
+
+commit d6c949c791bcc2c76b4f2e81eb0ffd370f8f1a37
+Merge: 5b97e7bd fa32ba6c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 8 01:29:48 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit fa32ba6c4fccf35111f85ec3819e718963359d7c
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Nov 7 17:09:22 2025 -0600
+
+    Suppress usbguard startup unless a USB controller is visible to lspci
+
+commit 5b97e7bd277038b3b04c80a78ce05bb52277d4f6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 2 11:41:51 2025 +0000
+
+    bumped changelog version
+
 commit 58d5f738e63d4c18048fab4e2fd134d68722d0fd
 Merge: 5121f80f 7beb19b6
 Author: Patrick Schleizer <adrelanos@whonix.org>
