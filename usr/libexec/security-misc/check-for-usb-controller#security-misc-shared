@@ -5,7 +5,7 @@
 
 export LC_ALL='C'
 
-if lspci | grep -q '^[^ ]* USB controller: '; then
+if lspci | grep --quiet '^[^ ]* USB controller: '; then
   exit 0
 fi
 exit 1
