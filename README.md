@@ -562,8 +562,8 @@ See:
 - `/etc/systemd/system/emergency.service.d/override.conf`
 - `/etc/systemd/system/rescue.service.d/override.conf`
 
-Adverse security effects can be prevented by setting up BIOS password
-protection, GRUB password protection, and/or full disk encryption.
+Adverse security effects can be prevented by setting up [BIOS Password](https://www.kicksecure.com/wiki/Protection_Against_Physical_Attacks#BIOS_Password)
+protection, [Bootloader Password](https://www.kicksecure.com/wiki/Protection_Against_Physical_Attacks#Bootloader_Password) protection, and/or [Full Disk Encryption (FDE)](https://www.kicksecure.com/wiki/Full_Disk_Encryption).
 
 ## Console lockdown
 
