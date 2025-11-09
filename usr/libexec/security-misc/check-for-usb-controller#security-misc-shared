@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -e
+
+export LC_ALL='C'
+
+## Package 'pciutils' provides tool 'lspci'.
+command -v lspci &>/dev/null
+
+if lspci | grep --quiet '^[^ ]* USB controller: '; then
+  exit 0
+fi
+
+exit 1

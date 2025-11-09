@@ -210,8 +210,9 @@ kernel.perf_event_paranoid=3
 ## https://forums.whonix.org/t/screen-locker-in-security-can-we-disable-these-at-least-4-backdoors/8128/14
 ## https://github.com/KSPP/kspp.github.io/issues/9
 ## https://github.com/Kicksecure/security-misc/issues/324
+## Needs more work.
 ##
-vm.panic_on_oom=2
+#vm.panic_on_oom=2
 
 ## Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 ## Can lead to privilege escalation by pushing characters into a controlling TTY.

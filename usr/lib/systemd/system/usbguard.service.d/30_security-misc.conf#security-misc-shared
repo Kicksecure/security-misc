@@ -3,3 +3,4 @@
 
 [Unit]
 ConditionPathExists=/sys/bus/usb
+ExecCondition=/usr/libexec/security-misc/check-for-usb-controller

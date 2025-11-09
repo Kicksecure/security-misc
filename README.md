@@ -52,10 +52,9 @@ configuration file and significant hardening is applied to a myriad of component
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
-- Force immediate kernel panic on OOM (out of memory) which the above setting will force
-  an immediate system reboot, as opposed to placing any reliance on the oom_killer to
-  avoid arbitrarily terminating security features based on their OOM score. Note this creates
-  the risk of userspace-based denial-of-service attacks that maliciously fill memory.
+- Optional - Force immediate kernel panic on OOM. This is to avoid security features such as the screen
+  locker, kloak, emerg-shutdown from being arbitrarily terminated when the system starts
+  running out of memory.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
@@ -580,8 +579,8 @@ See:
 - `/etc/systemd/system/emergency.service.d/override.conf`
 - `/etc/systemd/system/rescue.service.d/override.conf`
 
-Adverse security effects can be prevented by setting up BIOS password
-protection, GRUB password protection, and/or full disk encryption.
+Adverse security effects can be prevented by setting up [BIOS Password](https://www.kicksecure.com/wiki/Protection_Against_Physical_Attacks#BIOS_Password)
+protection, [Bootloader Password](https://www.kicksecure.com/wiki/Protection_Against_Physical_Attacks#Bootloader_Password) protection, and/or [Full Disk Encryption (FDE)](https://www.kicksecure.com/wiki/Full_Disk_Encryption).
 
 ## Console lockdown
 
