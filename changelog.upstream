@@ -1,3 +1,17 @@
+commit 039141188558931b73a9b5897ea3422bbb201dad
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 9 05:47:00 2025 -0500
+
+    revert Force immediate kernel panic on OOM.
+    
+    https://github.com/Kicksecure/security-misc/issues/324#issuecomment-3507949741
+
+commit 26b96ce2800e794104e6d3c113c3c2c121795b39
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 9 08:12:42 2025 +0000
+
+    bumped changelog version
+
 commit 1ef974300a157235da6a6c4d1379b62acf0c4c61
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Nov 8 04:00:47 2025 -0500
