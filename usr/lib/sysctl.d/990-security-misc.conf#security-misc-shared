@@ -579,6 +579,8 @@ net.ipv4.tcp_timestamps=0
 ## Known to cause performance issues, especially on systems with multiple interfaces.
 ##
 ## https://wiki.archlinux.org/title/Sysctl#Log_martian_packets
+## https://www.cyberciti.biz/faq/linux-log-suspicious-martian-packets-un-routable-source-addresses/
+## https://support.scc.suse.com/s/kb/Martian-sources-errors-showing-in-messages-log?language=en_US
 ## https://github.com/Kicksecure/security-misc/issues/214
 ##
 ## The logging of martian packets is currently disabled.
