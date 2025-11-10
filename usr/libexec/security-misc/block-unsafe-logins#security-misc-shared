@@ -45,7 +45,7 @@ else
   ## interactive users to keep the race window as short as possible.
   if ! output="$(/usr/libexec/helper-scripts/get-password-status-list)"; then
     printf '%s\n' 'ERROR: Failed to get password status list!'
-    eixt 1
+    exit 1
   fi
   readarray -t passwd_status_list <<< "$output"
   if [ "${#passwd_status_list[@]}" = '0' ] \
