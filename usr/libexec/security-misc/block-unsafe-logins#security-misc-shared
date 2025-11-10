@@ -10,6 +10,7 @@ set -o pipefail
 
 if [ -z "${PAM_USER:-}" ]; then
   true "$0: ERROR: Environment variable PAM_USER is unset!"
+  ## 'exit 0' here to let the appropriate PAM module handle this.
   exit 0
 fi
 
