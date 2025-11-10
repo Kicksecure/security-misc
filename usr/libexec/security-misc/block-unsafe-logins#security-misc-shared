@@ -28,81 +28,81 @@ if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
   fi
   true 'INFO: Running in sysmaint session and logging into sysmaint account, allowing authentication to proceed.'
   exit 0
-else
-  if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
-    printf '%s\n' 'ERROR: Failed to get user list!'
-    exit 1
-  fi
-  readarray -t user_list <<< "$output"
-  if [ "${#user_list[@]}" = '0' ] || [ -z "${user_list[0]}" ]; then
-    printf '%s\n' 'ERROR: No user accounts found!'
-    exit 1
-  fi
+fi
 
-  ## Minor race condition here, quick deletion of users during this process
-  ## could result in user_list and passwd_status_list becoming misaligned. This
-  ## attack would require root privileges to execute though, so this is likely
-  ## not a concern. We do this before checking if $PAM_USER is in the list of
-  ## interactive users to keep the race window as short as possible.
-  if ! output="$(/usr/libexec/helper-scripts/get-password-status-list)"; then
-    printf '%s\n' 'ERROR: Failed to get password status list!'
-    exit 1
+if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
+  printf '%s\n' 'ERROR: Failed to get user list!'
+  exit 1
+fi
+readarray -t user_list <<< "$output"
+if [ "${#user_list[@]}" = '0' ] || [ -z "${user_list[0]}" ]; then
+  printf '%s\n' 'ERROR: No user accounts found!'
+  exit 1
+fi
+
+## Minor race condition here, quick deletion of users during this process
+## could result in user_list and passwd_status_list becoming misaligned. This
+## attack would require root privileges to execute though, so this is likely
+## not a concern. We do this before checking if $PAM_USER is in the list of
+## interactive users to keep the race window as short as possible.
+if ! output="$(/usr/libexec/helper-scripts/get-password-status-list)"; then
+  printf '%s\n' 'ERROR: Failed to get password status list!'
+  exit 1
+fi
+readarray -t passwd_status_list <<< "$output"
+if [ "${#passwd_status_list[@]}" = '0' ] \
+  || [ -z "${passwd_status_list[0]}" ] \
+  || (( ${#passwd_status_list[@]} != ${#user_list[@]} )); then
+  printf '%s\n' 'ERROR: Unexpected number of password status entries!'
+  exit 1
+fi
+
+if [ "$PAM_USER" = 'sysmaint' ]; then
+  printf '%s\n' 'ERROR: Rejecting sysmaint account in user session!'
+  exit 1
+fi
+
+interactive_user_idx='-1'
+for user_idx in "${!user_list[@]}"; do
+  if [ "${user_list[user_idx]}" = "$PAM_USER" ]; then
+    interactive_user_idx="$user_idx"
+    break
   fi
-  readarray -t passwd_status_list <<< "$output"
-  if [ "${#passwd_status_list[@]}" = '0' ] \
-    || [ -z "${passwd_status_list[0]}" ] \
-    || (( ${#passwd_status_list[@]} != ${#user_list[@]} )); then
-    printf '%s\n' 'ERROR: Unexpected number of password status entries!'
-    exit 1
-  fi
-
-  if [ "$PAM_USER" = 'sysmaint' ]; then
-    printf '%s\n' 'ERROR: Rejecting sysmaint account in user session!'
-    exit 1
-  fi
-
-  interactive_user_idx='-1'
-  for user_idx in "${!user_list[@]}"; do
-    if [ "${user_list[user_idx]}" = "$PAM_USER" ]; then
-      interactive_user_idx="$user_idx"
-      break
-    fi
-  done
-  if [ "$interactive_user_idx" = '-1' ]; then
-    ## This isn't a user account we care about (it's not an interactive
-    ## account), therefore allow authentication to proceed.
-    true "INFO: Account '$PAM_USER' is not an interactive account, allowing authentication to proceed."
-    exit 0
-  fi
-
-  IFS=' ' read -r -a user_gid_list < <(id --groups "$PAM_USER")
-  sensitive_group_list=( 'sudo' 'root' 'sysmaint' )
-  is_user_sensitive='false'
-
-  for sensitive_group in "${sensitive_group_list[@]}"; do
-    sensitive_gid="$(accountctl "$sensitive_group" get-entry group gid)"
-    for user_gid in "${user_gid_list[@]}"; do
-      if [ "$sensitive_gid" = "$user_gid" ]; then
-        is_user_sensitive='true'
-        break
-      fi
-    done
-    if [ "$is_user_sensitive" = 'true' ]; then
-      break
-    fi
-  done
-
-  if [ "$is_user_sensitive" = 'true' ]; then
-    if [ "${passwd_status_list[interactive_user_idx]}" = 'Absent' ]; then
-      ## User account is sensitive and passwordless, deny authentication
-      printf '%s\n' "ERROR: Rejecting passwordless sensitive account '$PAM_USER'!"
-      exit 1
-    else
-      true "INFO: Account '$PAM_USER' is sensitive but protected, allowing authentication to proceed."
-      exit 0
-    fi
-  fi
-
-  true "INFO: Account '$PAM_USER' is not sensitive, allowing authentication to proceed."
+done
+if [ "$interactive_user_idx" = '-1' ]; then
+  ## This isn't a user account we care about (it's not an interactive
+  ## account), therefore allow authentication to proceed.
+  true "INFO: Account '$PAM_USER' is not an interactive account, allowing authentication to proceed."
   exit 0
 fi
+
+IFS=' ' read -r -a user_gid_list < <(id --groups "$PAM_USER")
+sensitive_group_list=( 'sudo' 'root' 'sysmaint' )
+is_user_sensitive='false'
+
+for sensitive_group in "${sensitive_group_list[@]}"; do
+  sensitive_gid="$(accountctl "$sensitive_group" get-entry group gid)"
+  for user_gid in "${user_gid_list[@]}"; do
+    if [ "$sensitive_gid" = "$user_gid" ]; then
+      is_user_sensitive='true'
+      break
+    fi
+  done
+  if [ "$is_user_sensitive" = 'true' ]; then
+    break
+  fi
+done
+
+if [ "$is_user_sensitive" = 'true' ]; then
+  if [ "${passwd_status_list[interactive_user_idx]}" = 'Absent' ]; then
+    ## User account is sensitive and passwordless, deny authentication
+    printf '%s\n' "ERROR: Rejecting passwordless sensitive account '$PAM_USER'!"
+    exit 1
+  else
+    true "INFO: Account '$PAM_USER' is sensitive but protected, allowing authentication to proceed."
+    exit 0
+  fi
+fi
+
+true "INFO: Account '$PAM_USER' is not sensitive, allowing authentication to proceed."
+exit 0
