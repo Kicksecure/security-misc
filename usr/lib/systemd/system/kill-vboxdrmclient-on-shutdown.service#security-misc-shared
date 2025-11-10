@@ -1,0 +1,15 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=kill VBoxDRMClient during shutdown to allow /tmp to be unmounted properly
+ConditionVirtualization=oracle
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=true
+ExecStop=/usr/libexec/security-misc/kill-vboxdrmclient-on-shutdown
+
+[Install]
+WantedBy=multi-user.target
