@@ -1,0 +1,6 @@
+Name: block unsafe passwordless login (by package security-misc-shared)
+Default: yes
+Priority: 1100
+Auth-Type: Primary
+Auth:
+	requisite	pam_exec.so	seteuid stdout /usr/libexec/security-misc/block-unsafe-logins

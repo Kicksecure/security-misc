@@ -1,0 +1,29 @@
+#!/bin/bash
+
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See file COPYING for copying conditions.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+vboxdrmclient_sock='/tmp/.iprt-localipc-DRMIpcServer'
+
+if ! [ -S "$vboxdrmclient_sock" ]; then
+  printf '%s\n' "'$vboxdrmclient_sock' does not exist or is not a socket, ok."
+  exit 0
+fi
+
+sock_pid="$(/usr/libexec/helper-scripts/query-sock-pid "$vboxdrmclient_sock")" || true
+if [ -z "$sock_pid" ]; then
+  printf '%s\n' "Cannot get PID listening on '$vboxdrmclient_sock', ok."
+  exit 0
+fi
+if kill -SIGKILL "$sock_pid"; then
+  printf '%s\n' "Killed VBoxDRMClient ('$sock_pid'), ok."
+  exit 0
+fi
+
+printf '%s\n' "ERROR: Could not kill VBoxDRMClient ('$sock_pid')!"
+exit 1
