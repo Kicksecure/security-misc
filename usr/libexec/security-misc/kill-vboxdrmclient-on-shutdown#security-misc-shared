@@ -11,17 +11,17 @@ set -o pipefail
 vboxdrmclient_sock='/tmp/.iprt-localipc-DRMIpcServer'
 
 if ! [ -S "$vboxdrmclient_sock" ]; then
-  printf '%s\n' "'$vboxdrmclient_sock' does not exist or is not a socket, ok."
+  printf '%s\n' "INFO: Socket file '$vboxdrmclient_sock' does not exist or is not a socket, ok."
   exit 0
 fi
 
 sock_pid="$(/usr/libexec/helper-scripts/query-sock-pid "$vboxdrmclient_sock")" || true
 if [ -z "$sock_pid" ]; then
-  printf '%s\n' "Cannot get PID listening on '$vboxdrmclient_sock', ok."
+  printf '%s\n' "INFO: Cannot get PID listening on '$vboxdrmclient_sock', ok."
   exit 0
 fi
 if kill -SIGKILL "$sock_pid"; then
-  printf '%s\n' "Killed VBoxDRMClient ('$sock_pid'), ok."
+  printf '%s\n' "INFO: Killed VBoxDRMClient ('$sock_pid'), ok."
   exit 0
 fi
 
