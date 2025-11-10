@@ -76,7 +76,7 @@ if [ "$interactive_user_idx" = '-1' ]; then
   exit 0
 fi
 
-IFS=' ' read -r -a user_gid_list < <(id --groups "$PAM_USER")
+IFS=' ' read -r -a user_gid_list < <(id --groups -- "$PAM_USER")
 sensitive_group_list=( 'sudo' 'root' 'sysmaint' )
 is_user_sensitive='false'
 
