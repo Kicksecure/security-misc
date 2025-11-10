@@ -20,7 +20,7 @@ if [ -z "$sock_pid" ]; then
   printf '%s\n' "INFO: Cannot get PID listening on '$vboxdrmclient_sock', ok."
   exit 0
 fi
-if kill -SIGKILL "$sock_pid"; then
+if kill -SIGKILL -- "$sock_pid"; then
   printf '%s\n' "INFO: Killed VBoxDRMClient ('$sock_pid'), ok."
   exit 0
 fi
