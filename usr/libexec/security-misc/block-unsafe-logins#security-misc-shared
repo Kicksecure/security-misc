@@ -22,6 +22,7 @@ elif [ -r /proc/1/cmdline ]; then
 fi
 
 if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
+  true "INFO: session type: sysmaint session"
   if [ "$PAM_USER" != 'sysmaint' ]; then
     printf '%s\n' 'ERROR: Rejecting non-sysmaint account in sysmaint session!'
     exit 1
@@ -29,6 +30,8 @@ if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
   true 'INFO: Running in sysmaint session and logging into sysmaint account, allowing authentication to proceed.'
   exit 0
 fi
+
+true "INFO: session type: user session"
 
 if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
   printf '%s\n' 'ERROR: Failed to get user list!'
