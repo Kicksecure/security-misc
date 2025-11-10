@@ -22,10 +22,10 @@ fi
 
 if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
   if [ "$PAM_USER" != 'sysmaint' ]; then
-    printf '%s\n' 'ERROR: Rejecting non-sysmaint account in sysmaint mode!'
+    printf '%s\n' 'ERROR: Rejecting non-sysmaint account in sysmaint session!'
     exit 1
   fi
-  true 'INFO: Running in sysmaint mode and logging into sysmaint account, allowing authentication to proceed.'
+  true 'INFO: Running in sysmaint session and logging into sysmaint account, allowing authentication to proceed.'
   exit 0
 else
   if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
@@ -56,7 +56,7 @@ else
   fi
 
   if [ "$PAM_USER" = 'sysmaint' ]; then
-    printf '%s\n' 'ERROR: Rejecting sysmaint account in user mode!'
+    printf '%s\n' 'ERROR: Rejecting sysmaint account in user session!'
     exit 1
   fi
 
