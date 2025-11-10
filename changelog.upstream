@@ -1,3 +1,94 @@
+commit fc1b865dd7a7663cbea8948c06ce45e69269a3b1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:21:27 2025 -0500
+
+    debugging
+
+commit 45126cede6563a3bfe9c700543fdec09442f1cb3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:19:29 2025 -0500
+
+    end-of-options
+
+commit 61637a5ff06b69210f293bed91735a2bf80e8946
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:15:30 2025 -0500
+
+    refactoring
+
+commit ddb59a3b01444762c7a9da68d2cc34d98f3d8f96
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:13:48 2025 -0500
+
+    comment
+
+commit ae1e2e3b52ea4c18ed1d4bb2e7cf3c2adf06711c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:10:25 2025 -0500
+
+    output
+
+commit f2b765854203cfb5be15ad63a260fec860ed0620
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:09:54 2025 -0500
+
+    use long option names
+
+commit 71ca68bd4aab5adad9a8c1dd20df4dc6990885e7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:09:00 2025 -0500
+
+    end-of-options
+
+commit e9e6c12b03fd6f440232221cdf7f34e9bc7661a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:08:04 2025 -0500
+
+    output
+
+commit f5db916bf728f8d09ee48cec5cb0a0a3ee520e33
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:06:55 2025 -0500
+
+    fix
+
+commit bb0a23fcc80b7963e0fc80f6e7da6931aa88c300
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:05:47 2025 -0500
+
+    chmod +x
+
+commit 39a6ce002e9ff696104906be252afffce70dd959
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:05:03 2025 -0500
+
+    genmkfile debinstfile
+
+commit 94de949a4797be1706378a10324ec9c2522834a7
+Merge: 0939883f 5fbd42bb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 02:04:15 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 5fbd42bbec55d66197b70789b10f7cb6705207fb
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 9 18:38:54 2025 -0600
+
+    Add kill-vboxdrmclient-on-shutdown.service
+
+commit 9d86379f5624a6c2b20645c34e1621977c1d4db9
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 9 17:46:22 2025 -0600
+
+    Prevent non-sysmaint logins in sysmaint mode and unsafe passwordless logins in user mode
+
+commit 0939883f0b5e1232e9aa85e61c0cbef551a59357
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 9 10:47:45 2025 +0000
+
+    bumped changelog version
+
 commit 039141188558931b73a9b5897ea3422bbb201dad
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 9 05:47:00 2025 -0500
