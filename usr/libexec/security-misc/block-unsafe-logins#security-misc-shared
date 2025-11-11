@@ -9,7 +9,12 @@ set -o errtrace
 set -o pipefail
 
 if [ -z "${PAM_USER:-}" ]; then
-  true "$0: ERROR: Environment variable PAM_USER is unset!"
+  true "$0: ERROR: Environment variable 'PAM_USER' is unset!"
+  ## 'exit 0' here to let the appropriate PAM module handle this.
+  exit 0
+fi
+if [ -z "${PAM_SERVICE:-}" ]; then
+  true "$0: ERROR: Environment variable 'PAM_SERVICE' is unset!"
   ## 'exit 0' here to let the appropriate PAM module handle this.
   exit 0
 fi
@@ -32,6 +37,43 @@ if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
 fi
 
 true "INFO: session type: user session"
+
+if [ "$PAM_USER" = 'sysmaint' ]; then
+  printf '%s\n' 'ERROR: Rejecting sysmaint account in user session!'
+  exit 1
+fi
+
+## Threat model: If a legitimate privilege escalation executable exists on the
+## system that uses PAM, and we do not yet lock down its permissions with
+## permission-hardener, we should prevent the use of that application to
+## escalate privileges to any passwordless account that is a member of a group
+## considered to be "sensitive" while in a user session. For instance, if
+## account 'user' is a member of group 'sudo', and a su-like executable
+## exists on the system that account 'nginx' can execute, 'nginx' should not
+## be able to escalate privileges to account 'user'.
+##
+## Out of scope:
+## - Malicious privilege escalation tools. These would need to run as root or
+##   be SUID, and such an executable most likely would grant root access
+##   without authentication or by authenticating the attacker rather than a
+##   legitimate user.
+## - Legitimate privilege escalation tools that don't use PAM. Preventing
+##   these from causing issues would require manipulating password locks in
+##   /etc/passwd on bootup, which is dangerous and likely impossible to do
+##   correctly.
+## - Legitimate login tools that use PAM, such as login, greetd, sshd. These
+##   tools do not permit privilege escalation from one user to another, and
+##   passwordless login is expected to work even for sensitive accounts.
+
+login_service_list=( 'login' 'greetd' 'sshd' )
+for login_service in "${login_service_list[@]}"; do
+  if [ "$PAM_SERVICE" = "$login_service" ]; then
+    true "INFO: Login service '$PAM_SERVICE' is considered safe, allowing authentication to proceed."
+    exit 0
+  fi
+done
+
+true "INFO: Login service '$PAM_SERVICE' is potentially unsafe, checking if account is sensitive and passwordless."
 
 if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
   printf '%s\n' 'ERROR: Failed to get user list!'
@@ -57,11 +99,6 @@ if [ "${#passwd_status_list[@]}" = '0' ] \
   || [ -z "${passwd_status_list[0]}" ] \
   || (( ${#passwd_status_list[@]} != ${#user_list[@]} )); then
   printf '%s\n' 'ERROR: Unexpected number of password status entries!'
-  exit 1
-fi
-
-if [ "$PAM_USER" = 'sysmaint' ]; then
-  printf '%s\n' 'ERROR: Rejecting sysmaint account in user session!'
   exit 1
 fi
 
