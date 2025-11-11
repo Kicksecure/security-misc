@@ -208,6 +208,27 @@ kernel.perf_event_paranoid=3
 ##
 #vm.panic_on_oom=2
 
+## Force immediate kernel panic on certain NMIs (Non-Maskable Interrupts).
+## NMIs are hardware interrupts that cannot be ignored by standard interrupt-masking techniques.
+## NMIs are reserved for critical events that require immediate attention.
+## Panic upon a NMI indicating a serious hardware-level I/O issue to prevent data corruption.
+## Panic upon a NMI indicating uncorrectable memory and hardware errors to prevent data corruption.
+## Panic upon receiving an undefined or unknown NMI.
+## All three must first be tested to ensure there are no pre-existing issues on user hardware.
+## After confirming stability of each they can then be used and prevent data corruption from hardware sources.
+## These are valuable for high-reliability systems where data integrity is critical.
+##
+## https://en.wikipedia.org/wiki/Non-maskable_interrupt
+## https://www.kernel.org/doc/html/latest//trace/events-nmi.html
+## https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-6.html
+## https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/7/html/reference_guide/non-maskable_interrupts
+##
+## Note that these must be used with kernel.panic=-1 for them to function as intended.
+##
+#kernel.panic_on_io_nmi=1
+#kernel.panic_on_unrecovered_nmi=1
+#kernel.unknown_nmi_panic=1
+
 ## Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 ## Can lead to privilege escalation by pushing characters into a controlling TTY.
 ## Will break out-dated screen readers that continue to rely on this legacy functionality.
