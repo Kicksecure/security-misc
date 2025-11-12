@@ -1,3 +1,22 @@
+commit 3af891645503c62ff5510b78e5cbe73774ad72a2
+Merge: fb587f78 3070aa5d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 11 23:59:50 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 3070aa5d1f988b199030b31baa2fabc2db7b289f
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Nov 10 22:40:15 2025 -0600
+
+    Fix passwordless login for sensitive accounts, only deny passwordless privilege escalation
+
+commit fb587f78fd11e471b3169f8c67c1772c1ba3729d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 10 08:00:06 2025 +0000
+
+    bumped changelog version
+
 commit fc1b865dd7a7663cbea8948c06ce45e69269a3b1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 10 02:21:27 2025 -0500
