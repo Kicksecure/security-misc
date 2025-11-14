@@ -1,3 +1,15 @@
+commit efa06a1eae52b15978eb84f6ab4153ae88eb8d6a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 14 00:44:50 2025 -0500
+
+    port to package-installed-check
+
+commit abf5852ebabec81d553a60139fe5a15972d14ab5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 12 06:13:05 2025 +0000
+
+    bumped changelog version
+
 commit 3af891645503c62ff5510b78e5cbe73774ad72a2
 Merge: fb587f78 3070aa5d
 Author: Patrick Schleizer <adrelanos@whonix.org>
