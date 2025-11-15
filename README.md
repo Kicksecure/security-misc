@@ -225,9 +225,6 @@ Kernel space:
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
-- Optional - Reduce the the Machine Check Exception (MCE) handler tolerance level to
-  always force kernel panics on any uncorrected hardware errors detected by the CPU.
-
 - Prevent sensitive kernel information leaks in the console during boot.
 
 - Enable the kernel Electric-Fence sampling-based memory safety error detector
