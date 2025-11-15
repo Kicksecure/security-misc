@@ -219,8 +219,11 @@ Kernel space:
 - Restrict access to debugfs by not registering the file system since it can
   contain sensitive information.
 
-- Force kernel panics on "oopses" to potentially indicate and thwart certain
-  kernel exploitation attempts.
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
+
+- Force immediate system reboot on the occurrence of a single kernel panic, reducing the
+  risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
 - Optional - Modify the machine check exception handler.
 
