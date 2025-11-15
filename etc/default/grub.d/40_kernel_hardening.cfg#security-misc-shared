@@ -161,14 +161,22 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
 
-## Modify machine check exception handler.
-## Can decide whether the system should panic or not based on the occurrence of an exception.
+## Reduce the Machine Check Exception (MCE) handler tolerance level.
+## Machine checks report internal hardware error conditions detected by the CPU.
+## Force the kernel to always panic on any uncorrected errors.
+## Improves security using ECC memory against vulnerabilities like Rowhammer.
+## Note current x86 CPUs generally do not allow recovery from MCEs.
+## Must first be tested to ensure there are no pre-existing issues on user hardware.
+## The default kernel setting should be utilized until provided sufficient evidence to modify.
 ##
 ## https://www.kernel.org/doc/html/latest/arch/x86/x86_64/machinecheck.html
-## https://www.kernel.org/doc/html/latest/arch/x86/x86_64/boot-options.html#machine-check
+## https://www.kernel.org/doc/Documentation/x86/x86_64/boot-options.txt
+## https://www.kernel.org/doc/Documentation/x86/x86_64/machinecheck
+## https://en.wikipedia.org/wiki/Machine-check_exception#Linux
+## https://groups.google.com/g/rowhammer-discuss/c/9Vgso6u2GP0
 ## https://forums.whonix.org/t/kernel-hardening/7296/494
 ##
-## The default kernel setting will be utilized until provided sufficient evidence to modify.
+## Note that this must be used with panic=-1 for it to function as intended.
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mce=0"
 
