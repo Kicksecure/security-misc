@@ -243,6 +243,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## This is hardware-based encryption managed by the proprietary and closed-source AMD Platform Security Processor (PSP).
 ## Both require a compatible AMD CPU and support for SME to first be enabled in the BIOS/UEFI.
 ## Likely unavailable in consumer-grade AMD CPUs where Transparent SME (TSME) can be enabled in the BIOS/UEFI to achieve SME.
+## Note the corresponding Intel Total Memory Encryption (TME) can also be enabled via the BIOS/UEFI.
 ## May cause boot failure on certain hardware with incompatible DMA masks.
 ##
 ## https://www.kernel.org/doc/html/next/x86/amd-memory-encryption.html
