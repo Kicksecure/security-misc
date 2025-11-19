@@ -8,6 +8,8 @@ set -o nounset
 set -o errtrace
 set -o pipefail
 
+source /usr/libexec/helper-scripts/package_installed_check.sh
+
 if [ -z "${PAM_USER:-}" ]; then
   true "$0: ERROR: Environment variable 'PAM_USER' is unset!"
   ## 'exit 0' here to let the appropriate PAM module handle this.
@@ -16,6 +18,11 @@ fi
 if [ -z "${PAM_SERVICE:-}" ]; then
   true "$0: ERROR: Environment variable 'PAM_SERVICE' is unset!"
   ## 'exit 0' here to let the appropriate PAM module handle this.
+  exit 0
+fi
+
+if ! pkg_installed 'user-sysmaint-split' ; then
+  true "$0: INFO: user-sysmaint-split not installed. Proceeding, ok."
   exit 0
 fi
 
