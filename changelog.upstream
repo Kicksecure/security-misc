@@ -1,3 +1,22 @@
+commit 4e7cfb0d061810ec7c3139379a65db83abc39efc
+Merge: d267cf67 936c799c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 19 01:55:10 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 936c799cb5f48376fa259bb3b92b653526a00509
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Nov 18 23:53:03 2025 -0600
+
+    Don't break passwordless sudo in unrestricted admin mode
+
+commit d267cf6761076092c299508a0c356c05d0ee713d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Nov 14 06:21:34 2025 +0000
+
+    bumped changelog version
+
 commit efa06a1eae52b15978eb84f6ab4153ae88eb8d6a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 14 00:44:50 2025 -0500
