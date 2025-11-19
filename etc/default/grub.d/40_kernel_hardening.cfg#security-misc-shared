@@ -139,6 +139,26 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX oops=panic"
 
+## Force the kernel to immediately panic if it becomes tainted.
+## Using kernel documentation can select a subset of taints to create a security policy.
+## Requires summing the numbers for each taint state and then converting it to a hexadecimal bitmask.
+## Some example combinations are shown below.
+## Panic on using out of specification hardware: 4 = 0x4.
+## Panic on the above and bad page faults or some unexpected page flags: 36 = 0x24.
+## Panic on the above and severe firmware bugs: 2084 = 0x824.
+## Panic on the above and kernel live patching: 34852 = 0x8824.
+## Panic on the above and the loading of proprietary, out-of-tree, or unsigned modules: 47141 = 0xB7C5.
+## All must first be tested to ensure there are no pre-existing issues on user hardware.
+## After confirming stability this enforces strict user-defined kernel operation and security at runtime.
+##
+## https://www.kernel.org/doc/html/latest/admin-guide/tainted-kernels.html
+## https://support.scc.suse.com/s/kb/Tainted-kernel-1583239310621?language=en_US
+## https://lore.kernel.org/all/20200515175502.146720-1-aquini@redhat.com/T/
+##
+## Note that this must be used with panic=-1 for it to function as intended.
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic_on_taint=0x8824:
+
 ## Modify machine check exception handler.
 ## Can decide whether the system should panic or not based on the occurrence of an exception.
 ##
