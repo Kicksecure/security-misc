@@ -215,7 +215,7 @@ kernel.perf_event_paranoid=3
 ## Panic upon a NMI indicating uncorrectable memory and hardware errors to prevent data corruption.
 ## Panic upon receiving an undefined or unknown NMI.
 ## All three must first be tested to ensure there are no pre-existing issues on user hardware.
-## After confirming stability of each they can then be used and prevent data corruption from hardware sources.
+## After confirming stability of each they can then be used to prevent data corruption from hardware sources.
 ## These are valuable for high-reliability systems where data integrity is critical.
 ##
 ## https://en.wikipedia.org/wiki/Non-maskable_interrupt
