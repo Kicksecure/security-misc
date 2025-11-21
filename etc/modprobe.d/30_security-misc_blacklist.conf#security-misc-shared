@@ -26,8 +26,11 @@ blacklist sr_mod
 ## GrapheneOS:
 ## Partial selection of their infrastructure blacklist.
 ## Duplicate and already disabled modules have been omitted.
+## Currently snd_intel8x0 is required by some users for VirtualBox audio device ICH AC97.
 ##
-## https://github.com/GrapheneOS/infrastructure/blob/main/etc/modprobe.d/local.conf
+## https://github.com/GrapheneOS/infrastructure/tree/main/etc/modprobe.d
+## https://www.kicksecure.com/wiki/Dev/audio
+## https://github.com/Kicksecure/security-misc/issues/271
 ##
 #blacklist cfg80211
 #blacklist intel_agp
@@ -35,12 +38,6 @@ blacklist sr_mod
 blacklist joydev
 #blacklist mousedev
 #blacklist psmouse
-## TODO: Re-check in Debian trixie
-## In GrapheneOS list, yes, "should" be out-commented here.
-## But not actually out-commented.
-## Breaks VirtualBox audio device ICH AC97, which is unfortunately still required by some users.
-## https://www.kicksecure.com/wiki/Dev/audio
-## https://github.com/Kicksecure/security-misc/issues/271
 #blacklist snd_intel8x0
 #blacklist tls
 #blacklist virtio_balloon
