@@ -164,14 +164,14 @@ install zonefs /usr/bin/disabled-filesys-by-security-misc
 install 9p /usr/bin/disabled-netfilesys-by-security-misc
 install gfs2 /usr/bin/disabled-netfilesys-by-security-misc
 install ksmbd /usr/bin/disabled-netfilesys-by-security-misc
-##
-## Common Internet File System (CIFS):
+
+## Network File System - Common Internet File System (CIFS):
 ##
 install cifs /usr/bin/disabled-netfilesys-by-security-misc
 install cifs_arc4 /usr/bin/disabled-netfilesys-by-security-misc
 install cifs_md4 /usr/bin/disabled-netfilesys-by-security-misc
-##
-## Network File System (NFS):
+
+## Network File System - Network File System (NFS):
 ##
 install nfs /usr/bin/disabled-netfilesys-by-security-misc
 install nfs_acl /usr/bin/disabled-netfilesys-by-security-misc
@@ -209,15 +209,15 @@ install p8023 /usr/bin/disabled-network-by-security-misc
 install psnap /usr/bin/disabled-network-by-security-misc
 install rose /usr/bin/disabled-network-by-security-misc
 install x25 /usr/bin/disabled-network-by-security-misc
-##
-## Asynchronous Transfer Mode (ATM):
+
+## Network Protocol - Asynchronous Transfer Mode (ATM):
 ##
 install atm /usr/bin/disabled-network-by-security-misc
 install ueagle-atm /usr/bin/disabled-network-by-security-misc
 install usbatm /usr/bin/disabled-network-by-security-misc
 install xusbatm /usr/bin/disabled-network-by-security-misc
-##
-## Controller Area Network (CAN) Protocol:
+
+## Network Protocol - Controller Area Network (CAN):
 ##
 install c_can /usr/bin/disabled-network-by-security-misc
 install c_can_pci /usr/bin/disabled-network-by-security-misc
@@ -240,19 +240,19 @@ install slcan /usr/bin/disabled-network-by-security-misc
 install ucan /usr/bin/disabled-network-by-security-misc
 install vxcan /usr/bin/disabled-network-by-security-misc
 install vcan /usr/bin/disabled-network-by-security-misc
-##
-## Transparent Inter Process Communication (TIPC):
+
+## Network Protocol - Transparent Inter Process Communication (TIPC):
 ##
 install tipc /usr/bin/disabled-network-by-security-misc
 install tipc_diag /usr/bin/disabled-network-by-security-misc
-##
-## Reliable Datagram Sockets (RDS):
+
+## Network Protocol - Reliable Datagram Sockets (RDS):
 ##
 install rds /usr/bin/disabled-network-by-security-misc
 install rds_rdma /usr/bin/disabled-network-by-security-misc
 install rds_tcp /usr/bin/disabled-network-by-security-misc
-##
-## Stream Control Transmission Protocol (SCTP):
+
+## Network Protocol - Stream Control Transmission Protocol (SCTP):
 ##
 install sctp /usr/bin/disabled-network-by-security-misc
 install sctp_diag /usr/bin/disabled-network-by-security-misc
