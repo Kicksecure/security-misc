@@ -239,6 +239,8 @@ install hamradio /usr/bin/disabled-miscellaneous-by-security-misc
 ## https://security.stackexchange.com/questions/119712/methods-root-can-use-to-elevate-itself-to-kernel-mode
 ## https://github.com/Kicksecure/security-misc/issues/215
 ##
+#install intel_rapl_msr /usr/bin/disabled-miscellaneous-by-security-misc
+#install isst_if_mbox_msr /usr/bin/disabled-miscellaneous-by-security-misc
 #install msr /usr/bin/disabled-miscellaneous-by-security-misc
 
 ## Floppy Disks:
