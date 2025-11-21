@@ -344,6 +344,8 @@ Hardware modules:
 
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
+- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
@@ -372,8 +374,6 @@ Networking modules:
 Miscellaneous modules:
 
 - Amateur Radios: Disabled to reduce attack surface.
-
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
 
 - Floppy Disks: Disabled to reduce attack surface.
 

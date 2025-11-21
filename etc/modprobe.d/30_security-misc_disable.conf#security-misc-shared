@@ -41,6 +41,18 @@
 #install btusb /usr/bin/disabled-bluetooth-by-security-misc
 #install virtio_bt /usr/bin/disabled-bluetooth-by-security-misc
 
+## CPU Model-Specific Registers (MSRs):
+## Can disable CPU MSRs as they can be abused to write to arbitrary memory.
+##
+## https://en.wikipedia.org/wiki/Model-specific_register
+## https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/best-practices/reading-writing-msrs-in-linux.html
+## https://security.stackexchange.com/questions/119712/methods-root-can-use-to-elevate-itself-to-kernel-mode
+## https://github.com/Kicksecure/security-misc/issues/215
+##
+#install intel_rapl_msr /usr/bin/disabled-cpumsr-by-security-misc
+#install isst_if_mbox_msr /usr/bin/disabled-cpumsr-by-security-misc
+#install msr /usr/bin/disabled-cpumsr-by-security-misc
+
 ## FireWire (IEEE 1394):
 ## Disable IEEE 1394 (FireWire/i.LINK/Lynx) modules to prevent certain DMA attacks.
 ##
@@ -250,18 +262,6 @@ install sctp_diag /usr/bin/disabled-network-by-security-misc
 ## Amateur Radios:
 ##
 install hamradio /usr/bin/disabled-miscellaneous-by-security-misc
-
-## CPU Model-Specific Registers (MSRs):
-## Can disable CPU MSRs as they can be abused to write to arbitrary memory.
-##
-## https://en.wikipedia.org/wiki/Model-specific_register
-## https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/best-practices/reading-writing-msrs-in-linux.html
-## https://security.stackexchange.com/questions/119712/methods-root-can-use-to-elevate-itself-to-kernel-mode
-## https://github.com/Kicksecure/security-misc/issues/215
-##
-#install intel_rapl_msr /usr/bin/disabled-miscellaneous-by-security-misc
-#install isst_if_mbox_msr /usr/bin/disabled-miscellaneous-by-security-misc
-#install msr /usr/bin/disabled-miscellaneous-by-security-misc
 
 ## Floppy Disks:
 ##
