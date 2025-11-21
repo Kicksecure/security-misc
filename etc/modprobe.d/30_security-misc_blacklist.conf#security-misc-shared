@@ -35,7 +35,6 @@ blacklist sr_mod
 #blacklist cfg80211
 #blacklist intel_agp
 #blacklist ip_tables
-blacklist joydev
 #blacklist mousedev
 #blacklist psmouse
 #blacklist snd_intel8x0

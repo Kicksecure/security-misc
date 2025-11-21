@@ -380,6 +380,8 @@ Miscellaneous modules:
 - Framebuffer (fbdev): Disabled as these drivers are well-known to be buggy, cause
   kernel panics, and are generally only used by legacy devices.
 
+- Joysticks: Disabled to reduce attack surface.
+
 - Replaced Modules: Disabled legacy drivers that have been entirely replaced and
   superseded by newer drivers.
 
