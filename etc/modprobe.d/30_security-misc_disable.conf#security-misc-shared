@@ -163,7 +163,6 @@ install nfsv4 /usr/bin/disabled-netfilesys-by-security-misc
 install af_802154 /usr/bin/disabled-network-by-security-misc
 install appletalk /usr/bin/disabled-network-by-security-misc
 install ax25 /usr/bin/disabled-network-by-security-misc
-#install brcm80211 /usr/bin/disabled-network-by-security-misc
 install decnet /usr/bin/disabled-network-by-security-misc
 install dccp /usr/bin/disabled-network-by-security-misc
 install econet /usr/bin/disabled-network-by-security-misc
@@ -286,12 +285,13 @@ install udlfb /usr/bin/disabled-framebuffer-by-security-misc
 
 ## Replaced Modules:
 ## These legacy drivers have all been entirely replaced and superseded by newer drivers.
-## These were all previously blacklisted.
+## Many of these were previously blacklisted.
 ##
 ## https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d/blacklist.conf?h=ubuntu/disco
 ##
 install asus_acpi /usr/bin/disabled-miscellaneous-by-security-misc
 install bcm43xx /usr/bin/disabled-miscellaneous-by-security-misc
+install brcm80211 /usr/bin/disabled-miscellaneous-by-security-misc
 install de4x5 /usr/bin/disabled-miscellaneous-by-security-misc
 install prism54 /usr/bin/disabled-miscellaneous-by-security-misc
 
