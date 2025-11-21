@@ -95,6 +95,7 @@ install gnss-usb /usr/bin/disabled-gps-by-security-misc
 ## Intel Platform Monitoring Technology (PMT) Telemetry:
 ## Disable certain functionalities of the Intel PMT components.
 ##
+## https://www.intel.com/content/www/us/en/content-details/710389/intel-platform-monitoring-technology-intel-pmt-technical-specification.html
 ## https://github.com/intel/Intel-PMT
 ##
 install pmt_class /usr/bin/disabled-intelpmt-by-security-misc
