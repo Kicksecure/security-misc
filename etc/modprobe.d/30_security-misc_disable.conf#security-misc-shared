@@ -17,11 +17,10 @@
 ## 1. Hardware:
 
 ## Bluetooth:
-## Disable Bluetooth to reduce the attack surface due to its long history of security vulnerabilities.
+## Can disable Bluetooth to reduce the attack surface due to its long history of security vulnerabilities.
+## Replaced with a privacy and security preserving default Bluetooth configuration for better usability.
 ##
 ## https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
-##
-## Now replaced with a privacy- and security-preserving default Bluetooth configuration for better usability.
 ## https://github.com/Kicksecure/security-misc/pull/145
 ##
 #install bluetooth /usr/bin/disabled-bluetooth-by-security-misc
