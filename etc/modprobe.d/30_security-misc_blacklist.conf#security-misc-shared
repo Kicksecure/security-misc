@@ -11,13 +11,13 @@
 ## CD-ROM/DVD:
 ## Blacklist CD-ROM and DVD modules.
 ## Not disabled by default due to potential future ISO plans.
+## Can uncomment the bottom pair to disable both modules.
 ##
 ## https://nvd.nist.gov/vuln/detail/CVE-2018-11506
 ## https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/31
 ##
 blacklist cdrom
 blacklist sr_mod
-##
 #install cdrom /usr/bin/disabled-cdrom-by-security-misc
 #install sr_mod /usr/bin/disabled-cdrom-by-security-misc
 
