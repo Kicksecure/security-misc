@@ -308,13 +308,12 @@ install usb_f_rndis /usr/bin/disabled-miscellaneous-by-security-misc
 #install uvcvideo /usr/bin/disabled-miscellaneous-by-security-misc
 
 ## Vivid:
-## Disables the vivid kernel module since it has been the cause of multiple vulnerabilities.
+## Can disable the vivid kernel module since it has been the cause of multiple vulnerabilities.
+## Required only for running tests associated with the Qubes Video Companion.
 ##
 ## https://forums.whonix.org/t/kernel-recompilation-for-better-hardening/7598/233
 ## https://www.openwall.com/lists/oss-security/2019/11/02/1
 ## https://github.com/a13xp0p0v/kconfig-hardened-check/commit/981bd163fa19fccbc5ce5d4182e639d67e484475
-##
-## No longer disabled by default:
 ## https://forums.whonix.org/t/testing-qubes-video-companion-on-whonix/21393
 ## https://github.com/Kicksecure/security-misc/issues/298
 ##

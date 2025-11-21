@@ -388,7 +388,7 @@ Miscellaneous modules:
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
 
-- Vivid: Disabled to reduce attack surface given previous vulnerabilities.
+- Optional - Vivid: Disabled to reduce attack surface given previous vulnerabilities.
 
 ### Other
 
