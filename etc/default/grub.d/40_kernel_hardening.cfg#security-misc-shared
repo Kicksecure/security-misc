@@ -147,7 +147,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Panic on the above and bad page faults or some unexpected page flags: 36 = 0x24.
 ## Panic on the above and severe firmware bugs: 2084 = 0x824.
 ## Panic on the above and kernel live patching: 34852 = 0x8824.
-## Panic on the above and the loading of proprietary, out-of-tree, or unsigned modules: 47141 = 0xB7C5.
+## Panic on the above and the loading of proprietary, out-of-tree, or unsigned modules: 47141 = 0xB825.
 ## All must first be tested to ensure there are no pre-existing issues on user hardware.
 ## After confirming stability this enforces strict user-defined kernel operation and security at runtime.
 ##
