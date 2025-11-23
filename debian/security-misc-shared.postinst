@@ -37,13 +37,39 @@ permission_hardening() {
     echo "$0: INFO: Permission hardening success."
 }
 
+fix_pkexec_remembered_permissions() {
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
+      return 0
+   fi
+   mkdir --parents '/var/lib/security-misc/do_once'
+
+   if ! [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+      return 0
+   fi
+
+   ## The existing_mode database may incorrectly list the original permissions
+   ## of pkexec as '755'. They should be '4755'. Fix this with str_replace. If
+   ## this issue is not present, str_replace will do nothing.
+   str_replace 'root root 755 /usr/bin/pkexec' \
+      'root root 4755 /usr/bin/pkexec' \
+      /var/lib/permission-hardener-v2/existing_mode/statoverride
+
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+}
+
 install_permission_hardener_base_state() {
    local state_str
 
-   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2" ]; then
-     return 0
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
+      return 0
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
+
+   if [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+      return 0
+   fi
 
    mkdir --parents -- '/var/lib/permission-hardener-v2/existing_mode'
    state_str="root root 644 /etc/passwd-
@@ -87,7 +113,7 @@ root root 644 /etc/issue
 root root 755 /etc/cron.d"
    printf '%s\n' "$state_str" | tee /var/lib/permission-hardener-v2/existing_mode/statoverride
 
-   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2"
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
 
 case "$1" in
@@ -102,6 +128,9 @@ case "$1" in
 
         ## state dir for faillock
         mkdir -p /var/lib/security-misc/faillock
+
+        ## Fix pkexec remembered permissions if necessary.
+        fix_pkexec_remembered_permissions
 
         ## Pre-populate permission-hardener state on first postinst run.
         ## Necessary because the first permission-hardener run may occur
