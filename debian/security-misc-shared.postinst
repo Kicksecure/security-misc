@@ -44,6 +44,7 @@ fix_pkexec_remembered_permissions() {
    mkdir --parents '/var/lib/security-misc/do_once'
 
    if ! [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      ## 'statoverride' file does not exist yet. Therefore no need to fix it using 'str_replace'.
       touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
       return 0
    fi
@@ -67,6 +68,7 @@ install_permission_hardener_base_state() {
    mkdir --parents '/var/lib/security-misc/do_once'
 
    if [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      ## 'statoverride' file already exists. Therefore no need to pre-populate it.
       touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
       return 0
    fi
