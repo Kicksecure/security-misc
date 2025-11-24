@@ -37,41 +37,83 @@ permission_hardening() {
     echo "$0: INFO: Permission hardening success."
 }
 
-migrate_permission_hardener_state() {
-   local existing_mode_dir new_mode_dir dpkg_statoverride_list
-   ## If folder /var/lib/permission-hardener (version 1) does not exist, this migration is unneeded.
-   if [ ! -d '/var/lib/permission-hardener' ]; then
+fix_pkexec_remembered_permissions() {
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
       return 0
-   fi
-
-   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2" ]; then
-     return 0
    fi
    mkdir --parents '/var/lib/security-misc/do_once'
 
-   existing_mode_dir='/var/lib/permission-hardener-v2/existing_mode'
-   new_mode_dir='/var/lib/permission-hardener-v2/new_mode'
-
-   mkdir --parents "${existing_mode_dir}";
-   mkdir --parents "${new_mode_dir}";
-
-   cp --verbose '/usr/share/security-misc/permission-hardener-existing-mode-legacy-hardcoded' "${existing_mode_dir}/statoverride"
-   cp --verbose '/usr/share/security-misc/permission-hardener-new-mode-legacy-hardcoded' "${new_mode_dir}/statoverride"
-
-   dpkg_statoverride_list="$(dpkg-statoverride --admindir "${new_mode_dir}" --list)"
-
-   if [ "$(stat --format '%G' /usr/bin/sudo)" = 'sysmaint' ]; then
-      if ! [[ "${dpkg_statoverride_list}" =~ '/usr/bin/sudo' ]]; then
-         dpkg-statoverride --admindir "${new_mode_dir}" --add 'root' 'sysmaint' '4750' '/usr/bin/sudo'
-      fi
-   fi
-   if [ "$(stat --format '%G' /usr/bin/pkexec)" = 'sysmaint' ]; then
-      if ! [[ "${dpkg_statoverride_list}" =~ '/usr/bin/pkexec' ]]; then
-         dpkg-statoverride --admindir "${new_mode_dir}" --add 'root' 'sysmaint' '4750' '/usr/bin/pkexec'
-      fi
+   if ! [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+      return 0
    fi
 
-   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_2"
+   ## The existing_mode database may incorrectly list the original permissions
+   ## of pkexec as '755'. They should be '4755'. Fix this with str_replace. If
+   ## this issue is not present, str_replace will do nothing.
+   str_replace 'root root 755 /usr/bin/pkexec' \
+      'root root 4755 /usr/bin/pkexec' \
+      /var/lib/permission-hardener-v2/existing_mode/statoverride
+
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+}
+
+install_permission_hardener_base_state() {
+   local state_str
+
+   if [ -f "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1" ]; then
+      return 0
+   fi
+   mkdir --parents '/var/lib/security-misc/do_once'
+
+   if [ -f "/var/lib/permission-hardener-v2/existing_mode/statoverride" ]; then
+      touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
+      return 0
+   fi
+
+   mkdir --parents -- '/var/lib/permission-hardener-v2/existing_mode'
+   state_str="root root 644 /etc/passwd-
+root root 755 /etc/cron.monthly
+root root 755 /etc/sudoers.d
+root shadow 2755 /usr/bin/expiry
+root root 4755 /usr/bin/umount
+root root 4755 /usr/bin/gpasswd
+root root 755 /usr/lib/modules
+root root 644 /etc/issue.net
+root root 644 /etc/group-
+root root 4755 /usr/bin/newgrp
+root root 755 /etc/cron.weekly
+root root 4755 /usr/lib/polkit-1/polkit-agent-helper-1
+root root 644 /etc/hosts.deny
+root root 4755 /usr/bin/newgidmap
+root root 644 /etc/issue.kicksecure
+root root 4755 /usr/bin/pkexec
+root root 4755 /usr/bin/su
+root root 644 /etc/hosts.allow
+root root 700 /root
+root root 755 /etc/cron.daily
+root root 644 /etc/motd
+root root 4755 /usr/bin/newuidmap
+root root 755 /boot
+root root 755 /home
+root shadow 2755 /usr/bin/chage
+root root 4755 /usr/lib/openssh/ssh-keysign
+root root 4755 /usr/bin/ntfs-3g
+root root 4755 /usr/bin/chsh
+root root 644 /etc/motd.kicksecure
+root root 755 /usr/bin/su-to-root
+root root 4755 /usr/bin/passwd
+root root 4755 /usr/bin/chfn
+root root 644 /etc/group
+root root 4755 /usr/bin/sudo
+root root 644 /etc/passwd
+root root 755 /usr/src
+root root 4755 /usr/bin/mount
+root root 644 /etc/issue
+root root 755 /etc/cron.d"
+   printf '%s\n' "$state_str" | tee /var/lib/permission-hardener-v2/existing_mode/statoverride
+
+   touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
 
 case "$1" in
@@ -87,8 +129,15 @@ case "$1" in
         ## state dir for faillock
         mkdir -p /var/lib/security-misc/faillock
 
-        ## migrate permission_hardener state to v2 if applicable
-        migrate_permission_hardener_state
+        ## Fix pkexec remembered permissions if necessary.
+        fix_pkexec_remembered_permissions
+
+        ## Pre-populate permission-hardener state on first postinst run.
+        ## Necessary because the first permission-hardener run may occur
+        ## before all permissions are set properly by package postinst
+        ## scripts. In particular, pkexec is not SUID-root until after its
+        ## postinst runs.
+        install_permission_hardener_base_state
 
         ## Fix usbguard config permissions, this seemingly can't be done
         ## during the unpack stage
