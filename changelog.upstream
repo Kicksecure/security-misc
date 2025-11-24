@@ -1,3 +1,46 @@
+commit cbd35502f19e74b6f95ff40bf03f02806eef3cdc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:18:25 2025 -0500
+
+    comment
+
+commit cac73c3154b3278ad71edc0fd159afc71d5dbc45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:17:38 2025 -0500
+
+    minor
+
+commit d68988e76cda939ce200d970e19310cadba5d08e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:17:25 2025 -0500
+
+    comments
+
+commit c1ca36d75888b95835b953c3a8a122954c1e5929
+Merge: ec116795 a3417e99
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:11:19 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit a3417e997d26e9a88d30da408d470fab98f58d79
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 23 16:27:59 2025 -0600
+
+    Add pkexec remembered permissions fix for permission-hardener, fix some postinst bugs
+
+commit edda37809fb186f6d85511e774957b701483ca66
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 23 14:54:02 2025 -0600
+
+    Remove obsolete migration code for permission-hardener, add initial permission-hardener state installation code
+
+commit ec11679514d54c9a61e7c4e35ce81467b12333f4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 23 10:26:13 2025 +0000
+
+    bumped changelog version
+
 commit 5c4d3162ab3c5178502c1f48e6288dc86cc45bb1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 23 05:25:13 2025 -0500
