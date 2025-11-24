@@ -129,7 +129,7 @@ case "$1" in
         ## /usr/share/glib-2.0/schemas/30_security-misc.gschema.override
         glib-compile-schemas /usr/share/glib-2.0/schemas || true
 
-        ## state dir for faillock
+        ## state dir for PAM 'faillock'
         mkdir -p /var/lib/security-misc/faillock
 
         ## Fix pkexec remembered permissions if necessary.
