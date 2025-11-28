@@ -132,8 +132,8 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Disable TCP timestamps as they can allow detecting the system time.
 
-- Optional - Log packets with impossible source or destination addresses to
-  enable further inspection and analysis.
+- Log packets with impossible source or destination addresses to enable further
+  inspection and analysis.
 
 - Optional - Enable IPv6 Privacy Extensions.
 
