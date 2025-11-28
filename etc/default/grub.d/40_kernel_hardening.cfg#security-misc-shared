@@ -237,6 +237,28 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX ia32_emulation=0"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi_pstore.pstore_disable=1"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 
+## Enable AMD Secure Memory Encryption (SME) and Secure Encrypted Virtualization (SEV).
+## SME encrypts memory with a single key at the kernel level to protect against cold boot attacks.
+## SEV extends SME to VMs by encrypting the memory of each with a unique key for guest isolation.
+## This is hardware-based encryption managed by the proprietary and closed-source AMD Platform Security Processor (PSP).
+## Both require a compatible AMD CPU and support for SME to first be enabled in the BIOS/UEFI.
+## Likely unavailable in consumer-grade AMD CPUs where Transparent SME (TSME) can be enabled in the BIOS/UEFI to achieve SME.
+## Note the corresponding Intel Total Memory Encryption (TME) can also be enabled via the BIOS/UEFI.
+## May cause boot failure on certain hardware with incompatible DMA masks.
+##
+## https://www.kernel.org/doc/html/next/x86/amd-memory-encryption.html
+## https://www.kernel.org/doc/html/latest/virt/kvm/x86/amd-memory-encryption.html
+## https://docs.amd.com/v/u/en-US/memory-encryption-white-paper
+## https://docs.amd.com/v/u/en-US/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more
+## https://en.wikichip.org/wiki/x86/sme
+## https://lore.kernel.org/lkml/YWvy9bSRaC+m1sV+@zn.tnic/T/#m01bcb37040b6b0d119d385d9a34b9c7ac4ce5f84
+## https://mricher.fr/post/amd-memory-encryption/
+## https://www.kicksecure.com/wiki/Dev/confidential_computing#AMD
+## https://forums.whonix.org/t/enable-secure-memory-encryption-sme-kernel-parameter-mem-encrypt-by-default/10393
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
+
 ## 2. Direct Memory Access:
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#dma-attacks
