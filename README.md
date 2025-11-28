@@ -56,6 +56,10 @@ configuration file and significant hardening is applied to a myriad of component
   locker, kloak, emerg-shutdown from being arbitrarily terminated when the system starts
   running out of memory.
 
+- Optional - Force immediate kernel panics upon receiving NMIs (Non-Maskable Interrupts)
+  indicating serious hardware-level I/O issues, uncorrectable memory and hardware errors,
+  and undefined or unknowsources in order to prevent data corruption.
+
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
 - Disable asynchronous I/O as `io_uring` has been the source of numerous kernel exploits.
