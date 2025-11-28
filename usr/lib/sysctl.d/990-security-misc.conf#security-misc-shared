@@ -219,8 +219,8 @@ kernel.perf_event_paranoid=3
 ## These are valuable for high-reliability systems where data integrity is critical.
 ##
 ## https://en.wikipedia.org/wiki/Non-maskable_interrupt
-## https://www.kernel.org/doc/html/latest//trace/events-nmi.html
-## https://0xax.gitbooks.io/linux-insides/content/Interrupts/linux-interrupts-6.html
+## https://www.kernel.org/doc/html/latest/trace/events-nmi.html
+## https://0xax.gitbook.io/linux-insides/summary/interrupts/linux-interrupts-6
 ## https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/7/html/reference_guide/non-maskable_interrupts
 ##
 ## Note that these must be used with kernel.panic=-1 for them to function as intended.

@@ -57,8 +57,8 @@ configuration file and significant hardening is applied to a myriad of component
   running out of memory.
 
 - Optional - Force immediate kernel panics upon receiving NMIs (Non-Maskable Interrupts)
-  indicating serious hardware-level I/O issues, uncorrectable memory and hardware errors,
-  and undefined or unknowsources in order to prevent data corruption.
+  triggered by serious hardware-level I/O issues, uncorrectable memory and hardware errors,
+  and undefined or unknown sources in order to prevent data corruption.
 
 - Disable the use of legacy TIOCSTI operations which can be used to inject keypresses.
 
