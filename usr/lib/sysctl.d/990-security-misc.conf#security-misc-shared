@@ -586,6 +586,16 @@ net.ipv6.conf.*.accept_ra=0
 ##
 net.ipv4.tcp_timestamps=0
 
+## Disable reuse of TIME_WAIT sockets for new outgoing connections.
+## The safety of reusing of TIME_WAIT sockets requires enabling TCP timestamps.
+## The kernel uses timestamps to verify a new connection is not a duplicate segment from an older connection.
+## Hence TIME-WAIT sockets should wait the full timeout period before being made available again.
+## Can lead to port exhaustion on high-traffic networks with numerous short-lived connections.
+##
+## https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux
+##
+net.ipv4.tcp_tw_reuse=0
+
 ## Enable logging of packets with impossible source or destination addresses.
 ## Martian and unroutable packets may be used for malicious purposes.
 ## Recommended to keep a (kernel dmesg) log of these to identify suspicious packets.

@@ -136,6 +136,9 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Disable TCP timestamps as they can allow detecting the system time.
 
+- Disable reuse of `TIME_WAIT` sockets for new outgoing connections as the above
+  setting disables TCP timestamps.
+
 - Optional - Log packets with impossible source or destination addresses to
   enable further inspection and analysis.
 
