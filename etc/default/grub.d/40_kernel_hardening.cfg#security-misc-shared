@@ -274,8 +274,9 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 
 ## Restrict processes from modifying their own memory mappings.
-## Prevents the use of FULL_FORCE by a processes unless via ptrace() for debugging.
-## Limit self-modification which can be used trigger race condition vulnerabilities.
+## Prevents the use of /proc/PID/mem to write to protected pages via the kernel's
+## mem_rw() FOLL_FORCE flag. This makes it harder to trick applications into
+## overwriting their own memory.
 ##
 ## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
 ## https://lwn.net/Articles/983169/
