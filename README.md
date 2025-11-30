@@ -163,6 +163,8 @@ CPU mitigations:
 
 - Spectre Side Channels (BTI and BHI)
 
+- Meltdown
+
 - Speculative Store Bypass (SSB)
 
 - L1 Terminal Fault (L1TF)
@@ -213,8 +215,8 @@ Kernel space:
 - Enable the kernel page allocator to randomize free lists to limit some data
   exfiltration and ROP attacks, especially during the early boot process.
 
-- Enable kernel page table isolation to increase KASLR effectiveness and also
-  mitigate the Meltdown CPU vulnerability.
+- Enable kernel page table isolation on X86_64 CPUs to increase KASLR effectiveness
+  and also mitigate the Meltdown CPU vulnerability.
 
 - Enable randomization of the kernel stack offset on syscall entries to harden
   against memory corruption attacks.
