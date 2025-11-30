@@ -20,6 +20,7 @@
 ## 5. Networking
 
 ## For detailed explanations of most of the selected commands, refer to:
+## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html
 ## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html
 ## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html
 ## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html
@@ -252,6 +253,19 @@ dev.tty.legacy_tiocsti=0
 ## https://forums.whonix.org/t/io-uring-security-vulnerabilties/16890
 ##
 kernel.io_uring_disabled=2
+
+## Disable 32-bit Virtual Dynamic Shared Object (vDSO) mappings.
+## Legacy compatibility feature for superseded glibc versions.
+##
+## https://lore.kernel.org/lkml/20080409082927.BD59E26F992@magilla.localdomain/T/
+## https://lists.openwall.net/linux-kernel/2014/03/11/3
+##
+## KSPP=yes
+## KSPP sets the kernel parameter and does not set CONFIG_COMPAT_VDSO.
+##
+## See /etc/default/grub.d/40_kernel_hardening.cfg for another additional implementation.
+##
+abi.vsyscall32=0
 
 ## 2. User Space:
 ##

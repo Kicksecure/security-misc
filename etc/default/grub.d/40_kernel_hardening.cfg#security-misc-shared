@@ -188,6 +188,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kfence.sample_interval=100"
 ## KSPP=yes
 ## KSPP sets the kernel parameter and does not set CONFIG_COMPAT_VDSO.
 ##
+## See /usr/lib/sysctl.d/990-security-misc.conf for another additional implementation.
+##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX vdso32=0"
 
 ## Switch (back) to using kCFI as the default Control Flow Integrity (CFI) implementation.
