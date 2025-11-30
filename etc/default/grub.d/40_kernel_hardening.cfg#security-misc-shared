@@ -259,6 +259,18 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
 
+## Prevent processes from writing to block devices that are mounted by filesystems.
+## Enhances system stability and security by protecting against runaway privileged processes.
+## Allowing processes to write to the buffer cache can cause filesystem corruption and kernel crashes.
+## Does not prevent data modifications using direct SCSI commands or lower-level storage stack access.
+## May lead to breakages in certain limited scenarios.
+##
+## https://github.com/torvalds/linux/commit/ed5cc702d311c14b653323d76062b0294effa66e
+## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
+## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
+
 ## 2. Direct Memory Access:
 ##
 ## https://madaidans-insecurities.github.io/guides/linux-hardening.html#dma-attacks
