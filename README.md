@@ -253,6 +253,9 @@ Kernel space:
 - Prevent runaway privileged processes from writing to block devices that are mounted by
   filesystems to protect against filesystem corruption and kernel crashes.
 
+- Restrict processes from modifying their own memory mappings unless actively done via
+  `ptrace()` in order to limit self-modification which can trigger exploits.
+
 Direct memory access:
 
 - Enable strict IOMMU translation to protect against some DMA attacks via the use
