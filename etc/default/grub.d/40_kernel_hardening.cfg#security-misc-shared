@@ -141,7 +141,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## https://en.wikipedia.org/wiki/Linux_kernel_oops
 ## https://lwn.net/Articles/876209/
 ## https://git.sr.ht/~gregkh/presentation-security/tree/3fdaf81a2f8b2c8d64cdb2f529cc714624868aa8/item/security-stuff.pdf
-## https://forums.whonix.org/t/set-oops-panic-kernel-parameter-or-kernel-panisc-on-oops-1-sysctl-for-better-security/7713
+## https://forums.whonix.org/t/set-oops-panic-kernel-parameter-or-kernel-panic-on-oops-1-sysctl-for-better-security/7713
 ##
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_ON_OOPS=y.

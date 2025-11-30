@@ -270,10 +270,10 @@ Direct memory access:
 
 Entropy:
 
-- Do not credit the CPU seeds as an entropy sources at boot in order to maximize the
+- Do not credit the CPU seeds as an entropy source at boot in order to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
-  cryptographic operations reliant proprietary on RDRAND and RDSEED CPU instructions
-  for random number generation that have long history of being defective.
+  cryptographic operations, to avoid reliance on proprietary RDRAND and RDSEED CPU
+  instructions for random number generation that have long history of being defective.
 
 - Do not credit the bootloader seeds as an entropy sources at boot to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
