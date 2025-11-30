@@ -50,11 +50,12 @@ configuration file and significant hardening is applied to a myriad of component
   and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
-  risk and impact of denial of service attacks and both cold and warm boot attacks.
+  risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
-- Optional - Force immediate kernel panic on OOM. This is to avoid security features such as the screen
-  locker, kloak, emerg-shutdown from being arbitrarily terminated when the system starts
-  running out of memory.
+- Optional - Force immediate kernel panic on OOM (out of memory) which with the above setting
+  will force an immediate system reboot as opposed to placing any reliance on the oom_killer
+  to avoid arbitrarily terminating security features based on their OOM score. Note this
+  creates the risk of userspace-based denial-of-service attacks that maliciously fill memory.
 
 - Optional - Force immediate kernel panics upon receiving NMIs (Non-Maskable Interrupts)
   triggered by serious hardware-level I/O issues, uncorrectable memory and hardware errors,
@@ -229,10 +230,11 @@ Kernel space:
 - Restrict access to debugfs by not registering the file system since it can
   contain sensitive information.
 
-- Force kernel panics on "oopses" to potentially indicate and thwart certain
-  kernel exploitation attempts.
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
-- Optional - Modify the machine check exception handler.
+- Force immediate system reboot on the occurrence of a single kernel panic, reducing the
+  risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
 - Prevent sensitive kernel information leaks in the console during boot.
 
@@ -268,11 +270,20 @@ Direct memory access:
 
 Entropy:
 
-- Do not credit the CPU or bootloader as entropy sources at boot in order to
-  maximize the absolute quantity of entropy in the combined pool.
+- Do not credit the CPU seeds as an entropy sources at boot in order to maximize the
+  absolute quantity of entropy in the combined pool. This is desirable for all
+  cryptographic operations reliant proprietary on RDRAND and RDSEED CPU instructions
+  for random number generation that have long history of being defective.
+
+- Do not credit the bootloader seeds as an entropy sources at boot to maximize the
+  absolute quantity of entropy in the combined pool. This is desirable for all
+  cryptographic operations as seeds passed by the bootloader could be tampered.
 
 - Obtain more entropy at boot from RAM as the runtime memory allocator is
   being initialized.
+
+- Obtain more entropy at boot from RAM as the runtime memory allocator is being
+  initialized to maximize the absolute quantity of entropy in the combined pool.
 
 Networking:
 
@@ -314,6 +325,14 @@ feasible due to compatibility issues with Firefox.
 
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
+
+3. Kernel boot parameter `hash_pointers=always`
+
+Force all exposed pointers to be hashed and must be used in combination with the already enabled
+`slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.
+
+* [security-misc issue #253](https://github.com/Kicksecure/security-misc/issues/253)
+* [security-misc pull request #325](https://github.com/Kicksecure/security-misc/pull/325)
 
 ### Kernel Modules
 
