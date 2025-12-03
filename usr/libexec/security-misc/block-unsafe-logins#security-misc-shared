@@ -39,7 +39,7 @@ if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
     printf '%s\n' 'ERROR: Rejecting non-sysmaint account in sysmaint session!'
     exit 1
   fi
-  true 'INFO: Running in sysmaint session and logging into sysmaint account, allowing authentication to proceed.'
+  true 'INFO: Running in sysmaint session and authenticating as sysmaint account, allowing authentication to proceed.'
   exit 0
 fi
 
@@ -72,7 +72,7 @@ fi
 ##   tools do not permit privilege escalation from one user to another, and
 ##   passwordless login is expected to work even for sensitive accounts.
 
-login_service_list=( 'login' 'greetd' 'sshd' )
+login_service_list=( 'login' 'greetd' 'sshd' 'swaylock' )
 for login_service in "${login_service_list[@]}"; do
   if [ "$PAM_SERVICE" = "$login_service" ]; then
     true "INFO: Login service '$PAM_SERVICE' is considered safe, allowing authentication to proceed."
@@ -97,7 +97,17 @@ fi
 ## attack would require root privileges to execute though, so this is likely
 ## not a concern. We do this before checking if $PAM_USER is in the list of
 ## interactive users to keep the race window as short as possible.
-if ! output="$(/usr/libexec/helper-scripts/get-password-status-list)"; then
+##
+## NOTE: PAM modules may run as non-root in some instances (such as when used
+## by Swaylock).
+if [ "$(id -u)" = '0' ]; then
+  passwd_status_list_cmd=(
+    '/usr/libexec/helper-scripts/get-password-status-list'
+  )
+else
+  passwd_status_list_cmd=( 'leaprun' 'get-password-status-list' )
+fi
+if ! output="$("${passwd_status_list_cmd[@]}")"; then
   printf '%s\n' 'ERROR: Failed to get password status list!'
   exit 1
 fi
