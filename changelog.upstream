@@ -1,3 +1,22 @@
+commit ac128dd873968b1815e4113b30ea69f34fa0b088
+Merge: 17dd7af7 85761a41
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 5 06:35:03 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 85761a4153a4f19e7b18e91062e97d3376451884
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Dec 4 23:27:18 2025 -0600
+
+    permission-hardener: Fix undo warning logic, minor improvements suggested by ChatGPT Codex
+
+commit 17dd7af7d1cf37ff30a17e2eaee06732d627ed34
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Dec 3 08:31:22 2025 +0000
+
+    bumped changelog version
+
 commit c44678f92df924e4c10f08960426c526e0292aba
 Merge: 6f9732be 0534a34e
 Author: Patrick Schleizer <adrelanos@whonix.org>
