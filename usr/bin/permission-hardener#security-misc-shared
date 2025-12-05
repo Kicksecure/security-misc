@@ -89,7 +89,13 @@ output_stat() {
     return 1
   fi
 
-  block_newlines file "${file_name}"
+  if ! block_newlines file "${file_name}"; then
+    existing_mode=''
+    existing_owner=''
+    existing_group=''
+    file_name_from_stat=''
+    return 0
+  fi
 
   if [ ! -e "${file_name}" ]; then
     log info "File does not exist. file_name: '${file_name}'" >&2
@@ -217,6 +223,12 @@ add_to_policy() {
   file_capabilities="${5:-}"
   updated_entry=false
 
+  if [ -z "${file_name}" ]; then
+    exit_code=207
+    log error "Attempted to add a policy entry with an empty filename! file_mode='${file_mode}' file_onwer='${file_owner}' file_group='${file_group}' file_capabilities='${file_capabilities}'" >&2
+    exit "${exit_code}"
+  fi
+
   if [ -h "${file_name}" ]; then
     file_name="$(realpath "${file_name}")" || return 1
   fi
@@ -319,6 +331,11 @@ match_dir() {
 
   base_str="${1}"
   match_str="${2}"
+  if [ -z "${base_str}" ] || [ -z "${match_str}" ]; then
+    exit_code=207
+    log error "Empty base_str or match_str provided to match_dir! base_str: '${base_str}' match_str: '${match_str}'" >&2
+    exit "${exit_code}"
+  fi
   [[ "${base_str}" =~ '//' ]] && return 1
   [[ "${match_str}" =~ '//' ]] && return 1
 
@@ -562,8 +579,13 @@ commit_policy() {
     ## group is the string we want. BASH_REMATCH[0] is the entire string,
     ## BASH_REMATCH[1] is the first match that we want to discard, and
     ## BASH_REMATCH[2] is the desired second group.
-    [[ "${state_mode_item}" =~ ^(0*)(.*) ]] || true;
-    state_mode_item="${BASH_REMATCH[2]}"
+    if [[ "${state_mode_item}" =~ ^(0*)(.*) ]]; then
+      state_mode_item="${BASH_REMATCH[2]}"
+    else
+      exit_code=208
+      log error "'Impossible' regex match failure in commit_policy! Regex: '^(0*)(.*)' String (state_mode_item): '${state_mode_item}'" >&2
+      exit "${exit_code}"
+    fi
 
     output_stat "${state_file_item}"
     if [ -z "${file_name_from_stat}" ]; then
@@ -693,9 +715,11 @@ undo_policy_for_file() {
         state_user_owner_item="${state_user_owner_list[state_idx]}"
         state_group_owner_item="${state_group_owner_list[state_idx]}"
         state_mode_item="${state_mode_list[state_idx]}"
+        # shellcheck disable=SC2086
         chown ${verbose} -- "${state_user_owner_item}:${state_group_owner_item}" \
           "${undo_file}" || exit_code=202
         ## chmod needs to be run after chown since chown removes suid.
+        # shellcheck disable=SC2086
         chmod ${verbose} "${state_mode_item}" "${undo_file}" || exit_code=203
       else
         log info "File does not exist: '${undo_file}'"
@@ -708,8 +732,8 @@ undo_policy_for_file() {
     fi
   done
 
-  if ! [[ "${did_undo}" = 'false' ]]; then
-    log info "The specified file is not hardened, leaving unchanged.
+  if [ "${did_undo}" = 'false' ]; then
+    log notice "The specified file is not hardened, leaving unchanged.
 
   File '${undo_file}' has not been removed from SUID Disabler and Permission Hardener during this invocation. This is expected if no policy was ever applied to the file before.
 
@@ -797,7 +821,11 @@ print_raw_state() {
   for state_file in "${store_dir}/existing_mode/statoverride" \
     "${store_dir}/new_mode/statoverride"; do
     echo "*** begin ${state_file} ***"
-    cat "${state_file}"
+    if [ -f "${state_file}" ]; then
+      cat "${state_file}"
+    else
+      echo '(file does not exist)'
+    fi
     echo "***   end ${state_file} ***"
   done
 }
@@ -826,12 +854,17 @@ print_fs_audit() {
     ## group is the string we want. BASH_REMATCH[0] is the entire string,
     ## BASH_REMATCH[1] is the first match that we want to discard, and
     ## BASH_REMATCH[2] is the desired second group.
-    [[ "${state_mode_item}" =~ ^(0*)(.*) ]] || true;
-    state_mode_item="${BASH_REMATCH[2]}"
+    if [[ "${state_mode_item}" =~ ^(0*)(.*) ]]; then
+      state_mode_item="${BASH_REMATCH[2]}"
+    else
+      exit_code=208
+      log error "'Impossible' regex match failure in print_fs_audit! Regex: '^(0*)(.*)' String (state_mode_item): '${state_mode_item}'" >&2
+      exit "${exit_code}"
+    fi
 
     output_stat "${state_file_item}"
     if [ -z "${file_name_from_stat}" ]; then
-      echo "... '${file_name_from_stat}' does not exist"
+      echo "... '${state_file_item}' does not exist"
       continue
     fi
 
