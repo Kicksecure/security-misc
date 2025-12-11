@@ -1,3 +1,195 @@
+commit b7b6b6e5fbeba0cfab141bf05d7fb657879ba8e9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Dec 8 09:42:59 2025 -0500
+
+    output
+
+commit 8f99672cb24242d6cb86d985384ab4ad7d1aca54
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 5 11:39:12 2025 +0000
+
+    bumped changelog version
+
+commit ac128dd873968b1815e4113b30ea69f34fa0b088
+Merge: 17dd7af7 85761a41
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 5 06:35:03 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 85761a4153a4f19e7b18e91062e97d3376451884
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Dec 4 23:27:18 2025 -0600
+
+    permission-hardener: Fix undo warning logic, minor improvements suggested by ChatGPT Codex
+
+commit 17dd7af7d1cf37ff30a17e2eaee06732d627ed34
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Dec 3 08:31:22 2025 +0000
+
+    bumped changelog version
+
+commit c44678f92df924e4c10f08960426c526e0292aba
+Merge: 6f9732be 0534a34e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Dec 3 03:22:44 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 0534a34ed7246793db384518cfbecb3adfcb7f3e
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Dec 2 19:06:30 2025 -0600
+
+    Fix block-unsafe-logins when running as non-root, add swaylock to list of safe auth services
+
+commit 6f9732be98cbc344076b89d57491c423368172d5
+Merge: 2089b3a9 b3eb739f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 2 06:04:07 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit b3eb739fe2662acfbd844de8d87af4720727fc7a
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 30 00:20:21 2025 -0600
+
+    Link fix, change some wording
+
+commit 5f34b4146e895bb935b719071ab2762278944995
+Merge: 2c253b13 29176d2e
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 30 00:12:18 2025 -0600
+
+    Merge remote-tracking branch 'raja/docs' into arraybolt3/trixie
+
+commit 2c253b1312c034cb8395039803380c1157967061
+Merge: 17ab1bb0 c5f91eb3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 21:01:51 2025 -0600
+
+    Merge remote-tracking branch 'raja/vsyscall32' into arraybolt3/trixie
+
+commit 17ab1bb00fe287c4c941d9cd3813ee3a3ae89ade
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 20:44:30 2025 -0600
+
+    Documentation fix
+
+commit 2b2d30afce3d40eb9c2177ad67fd7d89cd4602a0
+Merge: f0d069c7 3fdfebc4
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 20:23:09 2025 -0600
+
+    Merge remote-tracking branch 'raja/limit_full_force' into arraybolt3/trixie
+
+commit f0d069c7968e2ee10d7104ce1ba502d3122b0ab2
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 20:15:03 2025 -0600
+
+    Minor README.md corrections
+
+commit b73a830b0f62fe43b38cc89d56d997bed355570c
+Merge: e54cb007 53d90b11
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 19:59:35 2025 -0600
+
+    Merge remote-tracking branch 'raja/kpti' into arraybolt3/trixie
+
+commit e54cb007f9fc351c25c292ffd68abe974be56bb0
+Merge: 84e193c4 e43d4d7f
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Nov 29 19:54:10 2025 -0600
+
+    Merge remote-tracking branch 'raja/limit_bdev_writes' into arraybolt3/trixie
+
+commit 84e193c44ec9ebf676d1fb4a32d6e2f68afd3d0d
+Merge: 65c45fc3 5ac02d2d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Nov 28 14:21:59 2025 -0600
+
+    Merge remote-tracking branch 'raja/stop_tw_reuse' into arraybolt3/trixie
+
+commit 65c45fc3d799cdf6402328cc61cbdd1949a12945
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Nov 28 00:13:45 2025 -0600
+
+    Minor fixes to NMI panic docs
+
+commit 37b1d055f18c6335e96c41c06174b66e43e4a8ff
+Merge: 7280d886 ebc011e6
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Nov 28 00:09:43 2025 -0600
+
+    Merge remote-tracking branch 'raja/panic_nmi' into arraybolt3/trixie
+
+commit 7280d8867da50e05dd7d3071123d49b15660051d
+Merge: 2089b3a9 62dc2d44
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Nov 27 23:28:53 2025 -0600
+
+    Merge remote-tracking branch 'raja/amd_encrypt_ram' into arraybolt3/trixie
+
+commit 2089b3a9b8e9d10c06850f0329f7e2eb8a8a12cc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 08:44:10 2025 +0000
+
+    bumped changelog version
+
+commit cbd35502f19e74b6f95ff40bf03f02806eef3cdc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:18:25 2025 -0500
+
+    comment
+
+commit cac73c3154b3278ad71edc0fd159afc71d5dbc45
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:17:38 2025 -0500
+
+    minor
+
+commit d68988e76cda939ce200d970e19310cadba5d08e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:17:25 2025 -0500
+
+    comments
+
+commit c1ca36d75888b95835b953c3a8a122954c1e5929
+Merge: ec116795 a3417e99
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Nov 24 03:11:19 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit a3417e997d26e9a88d30da408d470fab98f58d79
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 23 16:27:59 2025 -0600
+
+    Add pkexec remembered permissions fix for permission-hardener, fix some postinst bugs
+
+commit edda37809fb186f6d85511e774957b701483ca66
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Nov 23 14:54:02 2025 -0600
+
+    Remove obsolete migration code for permission-hardener, add initial permission-hardener state installation code
+
+commit ec11679514d54c9a61e7c4e35ce81467b12333f4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 23 10:26:13 2025 +0000
+
+    bumped changelog version
+
+commit 5c4d3162ab3c5178502c1f48e6288dc86cc45bb1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Nov 23 05:25:13 2025 -0500
+
+    fix
+
+commit 9f85a78c9919d71c3e92099cac8525ac385aea5c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Nov 19 07:02:14 2025 +0000
+
+    bumped changelog version
+
 commit 4e7cfb0d061810ec7c3139379a65db83abc39efc
 Merge: d267cf67 936c799c
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -10,6 +202,43 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Tue Nov 18 23:53:03 2025 -0600
 
     Don't break passwordless sudo in unrestricted admin mode
+
+commit ebc011e67bff659778cbca2240c5e57d663f3f41
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 19 11:35:04 2025 +1100
+
+    Typo
+
+commit 62dc2d448366d190812773ec9eeadd38e1223cbc
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Nov 18 20:31:46 2025 +1100
+
+    Add note about Intel TME
+
+commit 29176d2ed29b07c4da9b9c0df1eefd2bda70b984
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Nov 15 06:30:11 2025 +0000
+
+    Remove the option to reduce the MCE tolerance level
+
+commit 9f897c5ccda781d010077446abb3d176cf929c94
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Nov 15 05:48:33 2025 +0000
+
+    Update docs on reducing the MCE tolerance level
+
+commit b6fe1a5a6e164c7a7505b5e27ece582a1b928d82
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Nov 15 04:51:01 2025 +0000
+
+    Make panic related settings consistent
+    Ensures the `sysctl` and boot parameters are equivalent in settings and in description. This should prevent future questions regarding having omitted boot parameters that were actually redundant.
+
+commit 99e993b885ca1fa30a871120b545f9334371cd5a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Nov 15 03:16:07 2025 +0000
+
+    Provide options to enable AMD SME and SEV
 
 commit d267cf6761076092c299508a0c356c05d0ee713d
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -35,6 +264,18 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 11 23:59:50 2025 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit d891313d57b469c28c08993b05d355b29ea08397
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Nov 11 11:39:21 2025 +0000
+
+    Provide options to panic upon receiving NMIs
+
+commit 0b9b9ffb1e87850e3296d0420c305062b66868d5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Nov 11 11:32:47 2025 +0000
+
+    Improve clarity for panic on OOM
 
 commit 3070aa5d1f988b199030b31baa2fabc2db7b289f
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -121,6 +362,18 @@ Date:   Mon Nov 10 02:04:15 2025 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
 
+commit 5ac02d2d528a37fe1c162c4808b3d874a8c53159
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 10 06:13:35 2025 +0000
+
+    Set `net.ipv4.tcp_tw_reuse=0`
+
+commit b89aaea61e83aea6b23ea34a01dbb1e6bce1e2df
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 10 06:03:33 2025 +0000
+
+    Add docs on logging martian packets
+
 commit 5fbd42bbec55d66197b70789b10f7cb6705207fb
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Nov 9 18:38:54 2025 -0600
@@ -132,6 +385,19 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Sun Nov 9 17:46:22 2025 -0600
 
     Prevent non-sysmaint logins in sysmaint mode and unsafe passwordless logins in user mode
+
+commit a3830db09e3f567237caefb687ef2da877573b03
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Nov 9 13:42:31 2025 +0000
+
+    Update docs relating to panic on OOM
+
+commit 0aa0b67df6a33b84a656cfb7055c4af5ca583439
+Merge: a46f678c 0939883f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 10 00:20:48 2025 +1100
+
+    Merge branch 'master' into docs
 
 commit 0939883f0b5e1232e9aa85e61c0cbef551a59357
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -202,6 +468,61 @@ Date:   Fri Nov 7 17:09:22 2025 -0600
 
     Suppress usbguard startup unless a USB controller is visible to lspci
 
+commit a46f678c7f8715fd1cedd1102f9815b9d845ccb3
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 5 00:05:17 2025 +0000
+
+    Update docs on latent entropy
+
+commit 37b493826ec60397c6019959abb7e0631dd33ed4
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 5 00:03:54 2025 +0000
+
+    Spit distrusting entropy settings for clarity
+
+commit 019a0cf72c99f9f10fd42afbfed96c283e17e458
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 5 00:03:19 2025 +0000
+
+    Update docs on entropy
+
+commit 4c88b911415cbf57eecc93a22c6674322662db50
+Merge: d175d1be 5b97e7bd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 5 10:10:10 2025 +1100
+
+    Merge branch 'Kicksecure:master' into docs
+
+commit e43d4d7f7110de0b23996373e9462aa900b314a6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 3 05:46:07 2025 +0000
+
+    Set `bdev_allow_write_mounted=0`
+
+commit 53d90b1128d55e352b3eef8ae680a07a825b1ecf
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 3 04:32:49 2025 +0000
+
+    Update docs on `ssbd=force-on`
+
+commit 322584db3346aaa1e3d1f9782b3d22ca2153c7da
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 3 04:31:59 2025 +0000
+
+    Update docs on `pti=on`
+
+commit 5e87c9bea49b5a06c1400cb8b632f344cccb6db6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 3 04:30:58 2025 +0000
+
+    Set `kpti=1`
+
+commit 3fdfebc4646d7c1f48806d02810de44fd53482bb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Nov 3 00:48:49 2025 +0000
+
+    Set `proc_mem.force_override=ptrace`
+
 commit 5b97e7bd277038b3b04c80a78ce05bb52277d4f6
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 2 11:41:51 2025 +0000
@@ -226,6 +547,18 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 2 05:57:52 2025 -0500
 
     move usbguard reject rules to the top
+
+commit c5f91eb33a2ad745af7a6278cf49419d0b366343
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Nov 2 06:15:06 2025 +0000
+
+    Add another method to disable 32-bit legacy vsyscalls
+
+commit d175d1be525edd8fb6140680c31425c8a89cc244
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Nov 2 15:54:34 2025 +1100
+
+    Add doc on entropy related failure on AMD Zen 5 CPUs
 
 commit 7beb19b64a33cb86771488ab558756fa86b577d3
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -375,6 +708,12 @@ Date:   Wed Oct 22 00:37:36 2025 -0400
 
     do not start usbguard-notifier if /sys/bus/usb does not exist
 
+commit 8f78269949217ac11163cc8b6f17147621fef6eb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 20 05:36:54 2025 +0000
+
+    Add docs on slab_debug
+
 commit 7969ffd4a52786f4a92f74931fff85430906a629
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 08:43:36 2025 +0000
@@ -388,6 +727,19 @@ Date:   Sun Oct 19 04:42:24 2025 -0400
     fix USBGuard-notifier `accept` / `reject` buttons
     
     https://forums.kicksecure.com/t/usbguard-what-should-we-allow-or-disallow-by-default/1248/49
+
+commit 9f7480e20adf148dcb7dbe80e704f3f79691b657
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 19 01:41:58 2025 +0000
+
+    Make terminology consistent
+
+commit f2c3eba4f06c38fda7843427c352022a0f869f66
+Merge: 11d9b940 929421bd
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Oct 19 12:23:13 2025 +1100
+
+    Merge branch 'Kicksecure:master' into docs
 
 commit 929421bd258a3c0c1f142f707aeff479f2ea3c49
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -413,6 +765,18 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Oct 17 15:49:42 2025 -0500
 
     Set USBGuard settings to permit USB hubs and Qubes USB passthrough
+
+commit 11d9b9403854ae7cd2638765e8350257580be35f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Oct 17 01:01:28 2025 +0000
+
+    Add docs on entropy
+
+commit 708e1358dfbc21444f2bf39dfa81ea5053f2bb10
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Oct 17 00:48:57 2025 +0000
+
+    Add docs relating `extra_latent_entropy`
 
 commit 3d5e659b78cf2588f95280c13b1ebdf24060fb6f
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
@@ -445,6 +809,18 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Wed Oct 15 17:53:26 2025 -0500
 
     Allow listing USB devices via usbguard
+
+commit f690b58870bd90582018cec51046f4ed67a414d4
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 13 02:08:44 2025 +0000
+
+    Add docs relating to panic on OOM
+
+commit 9db63d97770e62749c0b602dd9e7d2d4d6a1128b
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Oct 13 01:01:14 2025 +0000
+
+    README: Update KSSP compliance status
 
 commit 23041741715cc5f3d16378d6bb34719ceaa1642c
 Author: raja-grewal <rg_public@proton.me>
