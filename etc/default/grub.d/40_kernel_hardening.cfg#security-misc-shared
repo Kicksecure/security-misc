@@ -256,6 +256,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## SME encrypts memory with a single key at the kernel level to protect against cold boot attacks.
 ## SEV extends SME to VMs by encrypting the memory of each with a unique key for guest isolation.
 ## SEV-ES (Encrypted State) extends SEV by encrypting each guests virtual CPU register state during VM exits.
+## SEV-SNP (Secure Nested Paging) extends SEV by activating hardware-level memory integrity.
 ## This is hardware-based encryption managed by the proprietary and closed-source AMD Platform Security Processor (PSP).
 ## Both require a compatible AMD CPU and support for SME to first be enabled in the BIOS/UEFI.
 ## Likely unavailable in consumer-grade AMD CPUs where Transparent SME (TSME) can be enabled in the BIOS/UEFI to achieve SME.
@@ -275,6 +276,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
 
 ## Prevent processes from writing to block devices that are mounted by filesystems.
 ## Enhances system stability and security by protecting against runaway privileged processes.
