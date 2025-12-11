@@ -267,6 +267,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## https://www.kernel.org/doc/html/latest/virt/kvm/x86/amd-memory-encryption.html
 ## https://docs.amd.com/v/u/en-US/memory-encryption-white-paper
 ## https://docs.amd.com/v/u/en-US/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more
+## https://github.com/AMDESE/AMDSEV
 ## https://en.wikichip.org/wiki/x86/sme
 ## https://lore.kernel.org/lkml/YWvy9bSRaC+m1sV+@zn.tnic/T/#m01bcb37040b6b0d119d385d9a34b9c7ac4ce5f84
 ## https://mricher.fr/post/amd-memory-encryption/
