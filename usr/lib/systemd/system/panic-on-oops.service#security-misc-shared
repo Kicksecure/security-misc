@@ -14,7 +14,8 @@ After=getty.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/libexec/security-misc/panic-on-oops
+ExecStart=/usr/libexec/security-misc/panic-on-oops enable
+ExecStop=/usr/libexec/security-misc/panic-on-oops disable
 
 [Install]
 WantedBy=multi-user.target
