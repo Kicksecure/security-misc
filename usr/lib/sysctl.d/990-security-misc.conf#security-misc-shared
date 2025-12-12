@@ -196,9 +196,7 @@ kernel.perf_event_paranoid=3
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
 ##
-## See /usr/libexec/security-misc/panic-on-oops for implementation.
-##
-#kernel.panic=-1
+kernel.panic=-1
 
 ## Force immediate kernel panic on OOM (out of memory) scenarios.
 ## Registers a kernel panic whenever the oom_killer is triggered to kill some rouge process based on their OOM score.
