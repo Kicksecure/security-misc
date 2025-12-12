@@ -1,3 +1,22 @@
+commit 68de32e43e5597c5bda5449cf78eeed94895a63c
+Merge: 725565c4 135ee804
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 12 04:35:53 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 135ee80450c7f7e4c3d71be861fe1b5a6c135d02
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Thu Dec 11 18:47:42 2025 -0600
+
+    Move kernel.panic=-1 setting to sysctl, allow turning panic-on-oops off with systemctl
+
+commit 725565c42e7b3e1bb5036d160cc0388cc001901b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Dec 9 14:06:55 2025 +0000
+
+    bumped changelog version
+
 commit b7b6b6e5fbeba0cfab141bf05d7fb657879ba8e9
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 8 09:42:59 2025 -0500
