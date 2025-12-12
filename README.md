@@ -383,7 +383,8 @@ Hardware modules:
 
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
+- Optional - CPU MSRs: Disabled as can be abused to access other trust domains
+  and write to arbitrary memory.
 
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
