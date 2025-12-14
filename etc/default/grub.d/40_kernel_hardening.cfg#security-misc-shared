@@ -164,7 +164,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
 
 ## Force the kernel to immediately panic if it becomes tainted.
-## Using kernel documentation can select a subset of taints to create a security policy.
+## Using kernel documentation, one can select a subset of taints to create a security policy.
 ## Requires summing the numbers for each taint state and then converting it to a hexadecimal bitmask.
 ## Some example combinations are shown below.
 ## S - Panic on using out of specification hardware: 4 = 0x4.
@@ -172,10 +172,10 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## A - On the above and ACPI tables are overridden by users: 292 = 0x124.
 ## I - On the above and severe firmware bugs: 2340 = 0x924.
 ## N - On the above and in-kernel tests have been run: 264484 = 0x40924.
-## J - On the above and userspace has used a mutating debug operation: 788772 = 0xC0924.
+## J - On the above and userspace has used a mutating debug operation in fwctl: 788772 = 0xC0924.
 ## G/P, O - On the above and the loading of proprietary or out-of-tree modules: 792869 = 0xC1925.
 ## All must first be tested to ensure there are no pre-existing issues on user hardware.
-## After confirming stability this enforces strict user-defined kernel operation and security at runtime.
+## After confirming stability this reduces attack surface.
 ##
 ## https://www.kernel.org/doc/html/latest/admin-guide/tainted-kernels.html
 ## https://support.scc.suse.com/s/kb/Tainted-kernel-1583239310621?language=en_US

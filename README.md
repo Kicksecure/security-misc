@@ -244,7 +244,7 @@ Kernel space:
 
 - Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
   upon using out of specification hardware, bad page states, ACPI tables being overridden,
-  severe firmware bugs, in-kernel tests run, or mutating debug operations. It can also
+  severe firmware bugs, in-kernel tests run, or mutating fwctl debug operations. It can also
   include the loading of proprietary or out-of-tree modules.
 
 - Prevent sensitive kernel information leaks in the console during boot.
