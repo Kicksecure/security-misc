@@ -425,7 +425,7 @@ Miscellaneous modules:
 - Replaced Modules: Disabled legacy drivers that have been entirely replaced and
   superseded by newer drivers.
 
-- RDNIS - Disabled as believed to have unfixable buffer overflow issues.
+- RNDIS - Disabled as believed to have unfixable buffer overflow issues.
 
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
