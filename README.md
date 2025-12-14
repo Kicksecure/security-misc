@@ -242,6 +242,11 @@ Kernel space:
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
+- Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
+  upon using out of specification hardware, bad page states, ACPI tables being overridden,
+  severe firmware bugs, in-kernel tests run, or mutating debug operations. It can also
+  include the loading of proprietary or out-of-tree modules.
+
 - Prevent sensitive kernel information leaks in the console during boot.
 
 - Enable the kernel Electric-Fence sampling-based memory safety error detector
