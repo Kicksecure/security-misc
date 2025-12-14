@@ -237,8 +237,9 @@ Kernel space:
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
 - Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
-  upon using out of specification hardware, bad page states, severe firmware bugs. It can also
-  include the loading of proprietary, out-of-tree, and unsigned modules.
+  upon using out of specification hardware, bad page states, ACPI tables being overridden,
+  severe firmware bugs, in-kernel tests run, or mutating debug operations. It can also
+  include the loading of proprietary or out-of-tree modules.
 
 - Prevent sensitive kernel information leaks in the console during boot.
 
