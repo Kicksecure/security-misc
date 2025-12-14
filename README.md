@@ -383,6 +383,9 @@ Hardware modules:
 
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
+- Optional - CPU MSRs: Disabled as can be abused to access other trust domains
+  and write to arbitrary memory.
+
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
@@ -412,20 +415,22 @@ Miscellaneous modules:
 
 - Amateur Radios: Disabled to reduce attack surface.
 
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
-
 - Floppy Disks: Disabled to reduce attack surface.
 
 - Framebuffer (fbdev): Disabled as these drivers are well-known to be buggy, cause
   kernel panics, and are generally only used by legacy devices.
 
+- Joysticks: Disabled to reduce attack surface.
+
 - Replaced Modules: Disabled legacy drivers that have been entirely replaced and
   superseded by newer drivers.
+
+- RDNIS - Disabled as believed to have unfixable buffer overflow issues.
 
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
 
-- Vivid: Disabled to reduce attack surface given previous vulnerabilities.
+- Optional - Vivid: Disabled to reduce attack surface given previous vulnerabilities.
 
 ### Other
 
