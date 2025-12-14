@@ -40,15 +40,16 @@
 ## We retain it here for completeness as many other distributions heavily rely on this for many CPU mitigations.
 ##
 ## https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859
+## https://github.com/secureblue/secureblue/issues/1405
 ## https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/attack_vector_controls.html
 ##
-## KSPP=no
+## KSPP=yes
 ## KSPP sets the kernel parameters.
 ##
-## WARNING: Do not enable this parameter, it is presented here only for educational purposes.
+## WARNING: Do not rely on this parameter, it is presented here only for educational purposes.
 ## WARNING: Parameters are applied consecutively and so do not ever move this setting down.
 ##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mitigations=auto,nosmt"
 
 ## Disable SMT as it has been the cause of and amplified numerous CPU exploits.
 ## The only full mitigation of cross-HT attacks is to disable SMT.
