@@ -184,7 +184,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ##
 ## Note that this must be used with panic=-1 for it to function as intended.
 ##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic_on_taint=0xC0924
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic_on_taint=0xC0924"
 
 ## Prevent sensitive kernel information leaks in the console during boot.
 ## Must be used in combination with the kernel.printk sysctl.
