@@ -36,7 +36,7 @@ fi
 if [[ "$kernel_cmdline" =~ 'boot-role=sysmaint' ]]; then
   true "INFO: session type: sysmaint session"
   if [ "$PAM_USER" != 'sysmaint' ]; then
-    printf '%s\n' 'ERROR: Rejecting non-sysmaint account '$PAM_USER' in sysmaint session!'
+    printf '%s\n' "ERROR: Rejecting non-sysmaint account '$PAM_USER' in sysmaint session!"
     exit 1
   fi
   true 'INFO: Running in sysmaint session and authenticating as sysmaint account, allowing authentication to proceed.'
