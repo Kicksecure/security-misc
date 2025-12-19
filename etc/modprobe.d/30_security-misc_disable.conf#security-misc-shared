@@ -18,10 +18,9 @@
 
 ## Bluetooth:
 ## Disable Bluetooth to reduce the attack surface due to its long history of security vulnerabilities.
+## Replaced with a privacy and security preserving default Bluetooth configuration for better usability.
 ##
 ## https://en.wikipedia.org/wiki/Bluetooth#History_of_security_concerns
-##
-## Now replaced with a privacy- and security-preserving default Bluetooth configuration for better usability.
 ## https://github.com/Kicksecure/security-misc/pull/145
 ##
 #install bluetooth /usr/bin/disabled-bluetooth-by-security-misc
@@ -41,6 +40,20 @@
 #install btsdio /usr/bin/disabled-bluetooth-by-security-misc
 #install btusb /usr/bin/disabled-bluetooth-by-security-misc
 #install virtio_bt /usr/bin/disabled-bluetooth-by-security-misc
+
+## CPU Model-Specific Registers (MSRs):
+## User-level read access to MSRs can allow malicious unprivileged applications to access other trust domains.
+## MSRs can also be abused to write to arbitrary memory.
+##
+## https://en.wikipedia.org/wiki/Model-specific_register
+## https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/advisory-guidance/running-average-power-limit-energy-reporting.html
+## https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/best-practices/reading-writing-msrs-in-linux.html
+## https://security.stackexchange.com/questions/119712/methods-root-can-use-to-elevate-itself-to-kernel-mode
+## https://github.com/Kicksecure/security-misc/issues/215
+##
+#install intel_rapl_msr /usr/bin/disabled-cpumsr-by-security-misc
+#install isst_if_mbox_msr /usr/bin/disabled-cpumsr-by-security-misc
+#install msr /usr/bin/disabled-cpumsr-by-security-misc
 
 ## FireWire (IEEE 1394):
 ## Disable IEEE 1394 (FireWire/i.LINK/Lynx) modules to prevent certain DMA attacks.
@@ -96,6 +109,7 @@ install gnss-usb /usr/bin/disabled-gps-by-security-misc
 ## Intel Platform Monitoring Technology (PMT) Telemetry:
 ## Disable certain functionalities of the Intel PMT components.
 ##
+## https://www.intel.com/content/www/us/en/content-details/710389/intel-platform-monitoring-technology-intel-pmt-technical-specification.html
 ## https://github.com/intel/Intel-PMT
 ##
 install pmt_class /usr/bin/disabled-intelpmt-by-security-misc
@@ -117,28 +131,52 @@ install thunderbolt_net /usr/bin/disabled-thunderbolt-by-security-misc
 ## Disable uncommon file systems to reduce attack surface.
 ## HFS/HFS+ are legacy Apple file systems that may be required depending on the EFI partition format.
 ##
+## https://docs.kernel.org/filesystems/index.html
+## https://github.com/secureblue/secureblue/tree/live/files/system/usr/lib/modprobe.d
+##
+install adfs /usr/bin/disabled-filesys-by-security-misc
+install affs /usr/bin/disabled-filesys-by-security-misc
+install afs /usr/bin/disabled-filesys-by-security-misc
+install befs /usr/bin/disabled-filesys-by-security-misc
+install ceph /usr/bin/disabled-filesys-by-security-misc
+install coda /usr/bin/disabled-filesys-by-security-misc
 install cramfs /usr/bin/disabled-filesys-by-security-misc
+install ecryptfs /usr/bin/disabled-filesys-by-security-misc
 install freevxfs /usr/bin/disabled-filesys-by-security-misc
 install hfs /usr/bin/disabled-filesys-by-security-misc
 install hfsplus /usr/bin/disabled-filesys-by-security-misc
 install jffs2 /usr/bin/disabled-filesys-by-security-misc
 install jfs /usr/bin/disabled-filesys-by-security-misc
+install kafs /usr/bin/disabled-filesys-by-security-misc
+install minix /usr/bin/disabled-filesys-by-security-misc
+install nilfs2 /usr/bin/disabled-filesys-by-security-misc
+install ocfs2 /usr/bin/disabled-filesys-by-security-misc
+install orangefs /usr/bin/disabled-filesys-by-security-misc
 install reiserfs /usr/bin/disabled-filesys-by-security-misc
+install romfs /usr/bin/disabled-filesys-by-security-misc
+install sysv /usr/bin/disabled-filesys-by-security-misc
+install ubifs /usr/bin/disabled-filesys-by-security-misc
 install udf /usr/bin/disabled-filesys-by-security-misc
+install ufs /usr/bin/disabled-filesys-by-security-misc
+install zonefs /usr/bin/disabled-filesys-by-security-misc
 
 ## Network File Systems:
 ## Disable uncommon network file systems to reduce attack surface.
+## Currently 9p is required for KVM shared folders in Whonix.
 ##
+## https://www.whonix.org/wiki/KVM#Shared_Folder
+##
+#install 9p /usr/bin/disabled-netfilesys-by-security-misc
 install gfs2 /usr/bin/disabled-netfilesys-by-security-misc
 install ksmbd /usr/bin/disabled-netfilesys-by-security-misc
-##
-## Common Internet File System (CIFS):
+
+## Network File System - Common Internet File System (CIFS):
 ##
 install cifs /usr/bin/disabled-netfilesys-by-security-misc
 install cifs_arc4 /usr/bin/disabled-netfilesys-by-security-misc
 install cifs_md4 /usr/bin/disabled-netfilesys-by-security-misc
-##
-## Network File System (NFS):
+
+## Network File System - Network File System (NFS):
 ##
 install nfs /usr/bin/disabled-netfilesys-by-security-misc
 install nfs_acl /usr/bin/disabled-netfilesys-by-security-misc
@@ -152,7 +190,7 @@ install nfsv4 /usr/bin/disabled-netfilesys-by-security-misc
 ## 2. Networking:
 
 ## Network Protocols:
-## Disables rare and unneeded network protocols that are a common source of unknown vulnerabilities.
+## Disable rare and unneeded network protocols that are a common source of unknown vulnerabilities.
 ## Previously had blacklisted eepro100 and eth1394.
 ##
 ## https://tails.boum.org/blueprint/blacklist_modules/
@@ -163,7 +201,6 @@ install nfsv4 /usr/bin/disabled-netfilesys-by-security-misc
 install af_802154 /usr/bin/disabled-network-by-security-misc
 install appletalk /usr/bin/disabled-network-by-security-misc
 install ax25 /usr/bin/disabled-network-by-security-misc
-#install brcm80211 /usr/bin/disabled-network-by-security-misc
 install decnet /usr/bin/disabled-network-by-security-misc
 install dccp /usr/bin/disabled-network-by-security-misc
 install econet /usr/bin/disabled-network-by-security-misc
@@ -177,15 +214,15 @@ install p8023 /usr/bin/disabled-network-by-security-misc
 install psnap /usr/bin/disabled-network-by-security-misc
 install rose /usr/bin/disabled-network-by-security-misc
 install x25 /usr/bin/disabled-network-by-security-misc
-##
-## Asynchronous Transfer Mode (ATM):
+
+## Network Protocol - Asynchronous Transfer Mode (ATM):
 ##
 install atm /usr/bin/disabled-network-by-security-misc
 install ueagle-atm /usr/bin/disabled-network-by-security-misc
 install usbatm /usr/bin/disabled-network-by-security-misc
 install xusbatm /usr/bin/disabled-network-by-security-misc
-##
-## Controller Area Network (CAN) Protocol:
+
+## Network Protocol - Controller Area Network (CAN):
 ##
 install c_can /usr/bin/disabled-network-by-security-misc
 install c_can_pci /usr/bin/disabled-network-by-security-misc
@@ -208,19 +245,19 @@ install slcan /usr/bin/disabled-network-by-security-misc
 install ucan /usr/bin/disabled-network-by-security-misc
 install vxcan /usr/bin/disabled-network-by-security-misc
 install vcan /usr/bin/disabled-network-by-security-misc
-##
-## Transparent Inter Process Communication (TIPC):
+
+## Network Protocol - Transparent Inter Process Communication (TIPC):
 ##
 install tipc /usr/bin/disabled-network-by-security-misc
 install tipc_diag /usr/bin/disabled-network-by-security-misc
-##
-## Reliable Datagram Sockets (RDS):
+
+## Network Protocol - Reliable Datagram Sockets (RDS):
 ##
 install rds /usr/bin/disabled-network-by-security-misc
 install rds_rdma /usr/bin/disabled-network-by-security-misc
 install rds_tcp /usr/bin/disabled-network-by-security-misc
-##
-## Stream Control Transmission Protocol (SCTP):
+
+## Network Protocol - Stream Control Transmission Protocol (SCTP):
 ##
 install sctp /usr/bin/disabled-network-by-security-misc
 install sctp_diag /usr/bin/disabled-network-by-security-misc
@@ -230,14 +267,6 @@ install sctp_diag /usr/bin/disabled-network-by-security-misc
 ## Amateur Radios:
 ##
 install hamradio /usr/bin/disabled-miscellaneous-by-security-misc
-
-## CPU Model-Specific Registers (MSRs):
-## Disable CPU MSRs as they can be abused to write to arbitrary memory.
-##
-## https://security.stackexchange.com/questions/119712/methods-root-can-use-to-elevate-itself-to-kernel-mode
-## https://github.com/Kicksecure/security-misc/issues/215
-##
-#install msr /usr/bin/disabled-miscellaneous-by-security-misc
 
 ## Floppy Disks:
 ##
@@ -280,43 +309,48 @@ install viafb /usr/bin/disabled-framebuffer-by-security-misc
 install vt8623fb /usr/bin/disabled-framebuffer-by-security-misc
 install udlfb /usr/bin/disabled-framebuffer-by-security-misc
 
+## Joysticks:
+##
+## https://docs.kernel.org/input/joydev/joystick.html
+##
+install joydev /usr/bin/disabled-miscellaneous-by-security-misc
+
 ## Replaced Modules:
 ## These legacy drivers have all been entirely replaced and superseded by newer drivers.
-## These were all previously blacklisted.
+## Many of these were previously blacklisted.
 ##
 ## https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d/blacklist.conf?h=ubuntu/disco
 ##
 install asus_acpi /usr/bin/disabled-miscellaneous-by-security-misc
 install bcm43xx /usr/bin/disabled-miscellaneous-by-security-misc
+install brcm80211 /usr/bin/disabled-miscellaneous-by-security-misc
 install de4x5 /usr/bin/disabled-miscellaneous-by-security-misc
 install prism54 /usr/bin/disabled-miscellaneous-by-security-misc
 
-## USB Video Device Class:
-## Disables the USB-based video streaming driver for devices like some webcams and digital camcorders.
-##
-#install uvcvideo /usr/bin/disabled-miscellaneous-by-security-misc
-
-## Vivid:
-## Disables the vivid kernel module since it has been the cause of multiple vulnerabilities.
-##
-## https://forums.whonix.org/t/kernel-recompilation-for-better-hardening/7598/233
-## https://www.openwall.com/lists/oss-security/2019/11/02/1
-## https://github.com/a13xp0p0v/kconfig-hardened-check/commit/981bd163fa19fccbc5ce5d4182e639d67e484475
-##
-## No longer disabled by default:
-## https://forums.whonix.org/t/testing-qubes-video-companion-on-whonix/21393
-## https://github.com/Kicksecure/security-misc/issues/298
-##
-#install vivid /usr/bin/disabled-miscellaneous-by-security-misc
-
 ## RNDIS:
-## Disable the RNDIS drivers used by some network devices (common with Android
-## USB tethering). RNDIS as a protocol is believed to have supposedly
-## unfixable buffer overflow issues and may be impossible to implement in a
-## secure fashion.
+## Disable as believed to have unfixable buffer overflow issues impossible to make secure.
+## Used by some network devices common with Android USB tethering.
 ##
+## https://en.wikipedia.org/wiki/RNDIS
 ## https://lkml.org/lkml/2022/11/23/728
 ## https://lore.kernel.org/lkml/2023071333-wildly-playroom-878b@gregkh/
 ##
 install rndis_host /usr/bin/disabled-miscellaneous-by-security-misc
 install usb_f_rndis /usr/bin/disabled-miscellaneous-by-security-misc
+
+## USB Video Device Class:
+## Disable the USB-based video streaming driver for devices like some webcams and digital camcorders.
+##
+#install uvcvideo /usr/bin/disabled-miscellaneous-by-security-misc
+
+## Vivid:
+## Disable the vivid kernel module since it has been the cause of multiple vulnerabilities.
+## Required only for running tests associated with the Qubes Video Companion.
+##
+## https://forums.whonix.org/t/kernel-recompilation-for-better-hardening/7598/233
+## https://www.openwall.com/lists/oss-security/2019/11/02/1
+## https://github.com/a13xp0p0v/kconfig-hardened-check/commit/981bd163fa19fccbc5ce5d4182e639d67e484475
+## https://forums.whonix.org/t/testing-qubes-video-companion-on-whonix/21393
+## https://github.com/Kicksecure/security-misc/issues/298
+##
+#install vivid /usr/bin/disabled-miscellaneous-by-security-misc

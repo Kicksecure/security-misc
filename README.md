@@ -155,6 +155,12 @@ Mitigations for known CPU vulnerabilities are enabled in their strictest form
 and simultaneous multithreading (SMT) is disabled. See the
 `/etc/default/grub.d/40_cpu_mitigations.cfg` configuration file.
 
+Importantly, we do not rely on the use of the already enabled-by-default `mitigations=auto`
+kernel boot parameter to perform CPU mitigations like many other distributions. This is
+because it's use is both totally redundant and it does not apply all hardening settings
+to their strictest possible levels. See issue:
+https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859.
+
 Note, to achieve complete protection for known CPU vulnerabilities, the latest
 security microcode (BIOS/UEFI) updates must be installed on the system. Furthermore,
 if using Secure Boot, the Secure Boot Forbidden Signature Database (DBX) must be kept
@@ -235,6 +241,11 @@ Kernel space:
 
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
+
+- Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
+  upon using out of specification hardware, bad page states, ACPI tables being overridden,
+  severe firmware bugs, in-kernel tests run, or mutating fwctl debug operations. It can also
+  include the loading of proprietary or out-of-tree modules.
 
 - Prevent sensitive kernel information leaks in the console during boot.
 
@@ -383,6 +394,9 @@ Hardware modules:
 
 - Optional - Bluetooth: Disabled to reduce attack surface.
 
+- Optional - CPU MSRs: Disabled as can be abused to access other trust domains
+  and write to arbitrary memory.
+
 - FireWire (IEEE 1394): Disabled as they are often vulnerable to DMA attacks.
 
 - GPS: Disable GPS-related modules such as those required for Global Navigation
@@ -412,20 +426,22 @@ Miscellaneous modules:
 
 - Amateur Radios: Disabled to reduce attack surface.
 
-- Optional - CPU MSRs: Disabled as can be abused to write to arbitrary memory.
-
 - Floppy Disks: Disabled to reduce attack surface.
 
 - Framebuffer (fbdev): Disabled as these drivers are well-known to be buggy, cause
   kernel panics, and are generally only used by legacy devices.
 
+- Joysticks: Disabled to reduce attack surface.
+
 - Replaced Modules: Disabled legacy drivers that have been entirely replaced and
   superseded by newer drivers.
+
+- RNDIS - Disabled as believed to have unfixable buffer overflow issues.
 
 - Optional - USB Video Device Class: Disables the USB-based video streaming driver for
   devices like some webcams and digital camcorders.
 
-- Vivid: Disabled to reduce attack surface given previous vulnerabilities.
+- Optional - Vivid: Disabled to reduce attack surface given previous vulnerabilities.
 
 ### Other
 

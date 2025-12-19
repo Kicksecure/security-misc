@@ -69,6 +69,7 @@ usr/bin/disabled-network-by-security-misc#security-misc-shared => /usr/bin/disab
 usr/bin/disabled-thunderbolt-by-security-misc#security-misc-shared => /usr/bin/disabled-thunderbolt-by-security-misc
 usr/bin/disabled-cdrom-by-security-misc#security-misc-shared => /usr/bin/disabled-cdrom-by-security-misc
 usr/bin/disabled-filesys-by-security-misc#security-misc-shared => /usr/bin/disabled-filesys-by-security-misc
+usr/bin/disabled-cpumsr-by-security-misc#security-misc-shared => /usr/bin/disabled-cpumsr-by-security-misc
 usr/bin/permission-hardener#security-misc-shared => /usr/bin/permission-hardener
 usr/bin/disabled-intelpmt-by-security-misc#security-misc-shared => /usr/bin/disabled-intelpmt-by-security-misc
 usr/bin/disabled-bluetooth-by-security-misc#security-misc-shared => /usr/bin/disabled-bluetooth-by-security-misc
