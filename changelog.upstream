@@ -1,3 +1,105 @@
+commit 29c12808682fbbd5bd63f1bb821821f5adbfdbc5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 19 04:55:41 2025 -0500
+
+    genmkfile debinstfile
+
+commit 7ed2d25def0f143dc4cb3695f0e8c5b74682a743
+Merge: b366c5e6 0bf0a73e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 19 03:42:20 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 0bf0a73eb4683bd7205eaafa692237c57e7d18ae
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 15 20:18:14 2025 -0600
+
+    Add a missing quote mark for panic_on_taint
+
+commit 2106ed5aa651d9910df9965d68cb632808423e77
+Merge: b9d4f0aa 969d4d82
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 15 19:41:36 2025 -0600
+
+    Merge remote-tracking branch 'raja/amd_encrypt_sev' into arraybolt3/trixie-raja-merge
+
+commit 969d4d82139b1c1793786b7a24c9eee3f4a1101c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 16 11:49:21 2025 +1100
+
+    Add references for AMD SME
+
+commit b9d4f0aaa565ab478a8e0ef4cef27bc49457da42
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Dec 14 14:24:33 2025 -0600
+
+    Add minor clarifications
+
+commit 005b66c265654514b6450908a75615b71003f372
+Merge: 3f097a35 eaf0f814
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Dec 14 14:05:36 2025 -0600
+
+    Merge remote-tracking branch 'raja/panic_taint' into arraybolt3/trixie-raja-merge
+
+commit 3f097a35f21582300a87ddf7c70b2698df90e5ff
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Dec 14 14:03:26 2025 -0600
+
+    Split up a line in README.md
+
+commit e7e6d6d3739bebfb8a92f6666e5f2f43ecbc2b52
+Merge: 8e56772c b8f78062
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Dec 14 14:01:54 2025 -0600
+
+    Merge remote-tracking branch 'raja/incomplete_cpu_mitigations' into arraybolt3/trixie-raja-merge
+
+commit b8f78062673ec3675ff31a0f7d34b853e9f97f04
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Dec 14 12:38:47 2025 +0000
+
+    Update usage of `mitigations=auto,nosmt`
+
+commit eaf0f814bdbe52739d3b3270bb2549bbdc2753f2
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sun Dec 14 11:18:08 2025 +0000
+
+    Update option to `panic_on_taint`
+
+commit 8e56772c2f0d26b7266403c0dfc5b7ef6d86d1fc
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 13 19:22:50 2025 -0600
+
+    README.md typo fix
+
+commit 4d0a126955e48d790c063b218540a63b514bbd24
+Merge: 39ce5919 8040ba75
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 13 18:44:03 2025 -0600
+
+    Merge remote-tracking branch 'raja/modprobe_refresh' into arraybolt3/trixie-raja-merge
+
+commit 39ce5919765b7cadac07dfeadb6cbbd29261b81c
+Merge: b366c5e6 7d901213
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 13 18:27:22 2025 -0600
+
+    Merge remote-tracking branch 'raja/amd_encrypt_sev' into arraybolt3/trixie-raja-merge
+
+commit 650b923c7a88820d3a899596e32016e1c3f6cc57
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Dec 13 04:35:02 2025 +0000
+
+    Update option to `panic_on_taint`
+
+commit b366c5e62ad375cef608f5fc435d444de52b056d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 12 13:17:09 2025 +0000
+
+    bumped changelog version
+
 commit 68de32e43e5597c5bda5449cf78eeed94895a63c
 Merge: 725565c4 135ee804
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -5,11 +107,67 @@ Date:   Fri Dec 12 04:35:53 2025 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
 
+commit 8040ba7579735cafee5fcd9ddf60ca4c88080f70
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Dec 12 02:04:38 2025 +0000
+
+    Minor fixes to docs
+
+commit fe1cfcd1a0f42b4e4938f7b327c33e89936aff76
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Dec 12 02:03:23 2025 +0000
+
+    Update docs on CPU MSRs
+
+commit ab2d44677a3198d6e421bb1c630a18fc4e85065c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Dec 12 02:01:20 2025 +0000
+
+    Correct script addition
+
+commit 5684a12d9db65474392dc9e1ebdc4646e34569eb
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Dec 12 01:59:23 2025 +0000
+
+    Whitelist `9p` module
+
 commit 135ee80450c7f7e4c3d71be861fe1b5a6c135d02
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Thu Dec 11 18:47:42 2025 -0600
 
     Move kernel.panic=-1 setting to sysctl, allow turning panic-on-oops off with systemctl
+
+commit 7d901213029f17e7d0a4dccc671b3bfd476bab13
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 11 14:12:18 2025 +0000
+
+    Add reference for AMD SEV
+
+commit 72f295a3f04e43307dea9af29657ee96fb1c47a5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 11 14:11:47 2025 +0000
+
+    Provide option to enable AMD SEV-SNP
+
+commit 6a17255307c1d3b397ad38ab8f3bb8a14a3c5ca5
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 11 14:11:26 2025 +0000
+
+    Provide option to enable AMD SEV-ES
+
+commit 22b1e3dc92c8bffca20f5d70920b6b9be042658e
+Merge: 30068ec8 725565c4
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 11 18:15:35 2025 +1100
+
+    Merge branch 'master' into panic_taint
+
+commit 53c4fdbeea0a44ca9e7ab739d80393b9c655482c
+Merge: f75e9873 725565c4
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Dec 11 12:52:14 2025 +1100
+
+    Merge branch 'Kicksecure:master' into modprobe_refresh
 
 commit 725565c42e7b3e1bb5036d160cc0388cc001901b
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -203,6 +361,91 @@ Date:   Sun Nov 23 05:25:13 2025 -0500
 
     fix
 
+commit 30068ec8cdaa7a6778f0ba0b423f7ab3c3391759
+Author: raja-grewal <rg_public@proton.me>
+Date:   Sat Nov 22 15:01:47 2025 +1100
+
+    Correct bitmask
+
+commit f75e9873375d187fbbe4b5bfd135d0cd26a93fe6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 13:06:42 2025 +0000
+
+    Relabel some disabled module headings
+
+commit 79be87ec5f2cb22a98ada179b3aa97dfd58299e0
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 13:05:13 2025 +0000
+
+    Move (optional) CPU MSR module disable list
+
+commit 1a7b0a9122cc6b6e755a540dd62fd018a1a7536d
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:43:05 2025 +0000
+
+    Disable more file systems
+
+commit 1865cafe446c6a525bc63caa7ce1097ce573b877
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:42:10 2025 +0000
+
+    Move joydev from blacklist to disable
+
+commit 28476d3d53a0e4796b4396a925c44ccf32f4fe90
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:40:12 2025 +0000
+
+    Update docs on GrapheneOS blacklisted modules
+
+commit 446d3771bf8c42aba61d248bccfe9fad4eacc88d
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:38:44 2025 +0000
+
+    Update docs on CD-ROM/DVD blacklisting
+
+commit 3646a2fefeaa774aea068d7c6e761c5b76479f55
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:37:57 2025 +0000
+
+    Move superseded brcm80211 to disabled
+    Split and replaced by brcmsmac and brcmfmac in kernel 2.6.39
+
+commit 66ba273d448ff92c249abe9dd0f83a64cc1ee823
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:36:57 2025 +0000
+
+    Add CPU MSR modules
+
+commit e6aa648d54f076c5c75d45bcd7658d502b701982
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:36:32 2025 +0000
+
+    Update docs on CPU MSR disabling
+
+commit 59869979bbc2fb16da6b3435276e4930b4088f59
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:35:51 2025 +0000
+
+    Update docs on Vivid disabling
+
+commit 4597fd16a9b94ebd6b4fae152a64288b665d9c36
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:35:03 2025 +0000
+
+    Sort RDNIS disabling and add docs
+
+commit 5adc007536578c1e70a8cc6784fbced2033b7a5c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:33:15 2025 +0000
+
+    Update docs on Intel PMT disabling
+
+commit 31e3aa0c3add48ad26e43e4b83358571843f28de
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Nov 21 12:32:30 2025 +0000
+
+    Update docs on Bluetooth disabling
+
 commit 9f85a78c9919d71c3e92099cac8525ac385aea5c
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 19 07:02:14 2025 +0000
@@ -221,6 +464,12 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Tue Nov 18 23:53:03 2025 -0600
 
     Don't break passwordless sudo in unrestricted admin mode
+
+commit 68025d3624e7543deec2fbe43ea0f010344e4160
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 19 01:16:46 2025 +0000
+
+    Provide option to `panic_on_taint`
 
 commit ebc011e67bff659778cbca2240c5e57d663f3f41
 Author: raja-grewal <rg_public@proton.me>
@@ -486,6 +735,12 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Fri Nov 7 17:09:22 2025 -0600
 
     Suppress usbguard startup unless a USB controller is visible to lspci
+
+commit 635c216d4e55eb0c6463c543202aea629c572f5e
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Nov 5 01:44:36 2025 +0000
+
+    Update docs on CPU mitigations
 
 commit a46f678c7f8715fd1cedd1102f9815b9d845ccb3
 Author: raja-grewal <rg_public@proton.me>
@@ -940,6 +1195,12 @@ Date:   Thu Oct 2 07:05:00 2025 +0000
 
     Add docs about the risks associated with IPv6 RAs
 
+commit 4340bf50b7bf9112703d78fae4e8ca4f5e458ab6
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Sep 29 15:46:06 2025 +1000
+
+    Warnings about using `mitigations=auto,nosmt`
+
 commit dd961b84272247f4e8f01d3042d8ca256ccf50d2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Sep 28 21:09:46 2025 +0000
@@ -989,6 +1250,18 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Thu Sep 25 23:55:03 2025 -0500
 
     Additional hardening on emerg-shutdown
+
+commit 78492e0e5656990ecec7ad2641d5f7e46a264aab
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Sep 25 15:35:34 2025 +1000
+
+    README: Do not rely on `mitigations=auto`
+
+commit b9deefed61b40127bbb7aaad8dd83f256b68f896
+Author: raja-grewal <rg_public@proton.me>
+Date:   Thu Sep 25 15:34:54 2025 +1000
+
+    Incompleteness of `mitigations=auto,nosmt`
 
 commit 590aaec73d389ecfa2610cbf7931a2e380af3e8d
 Author: Patrick Schleizer <adrelanos@whonix.org>
