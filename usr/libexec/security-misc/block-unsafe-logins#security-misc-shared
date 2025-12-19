@@ -82,11 +82,11 @@ done
 
 true "INFO: Login service '$PAM_SERVICE' is potentially unsafe, checking if account is sensitive and passwordless."
 
-if ! output="$(/usr/libexec/helper-scripts/get-user-list)"; then
+if ! user_list_str="$(/usr/libexec/helper-scripts/get-user-list)"; then
   printf '%s\n' 'ERROR: Failed to get user list!'
   exit 1
 fi
-readarray -t user_list <<< "$output"
+readarray -t user_list <<< "$user_list_str"
 if [ "${#user_list[@]}" = '0' ] || [ -z "${user_list[0]}" ]; then
   printf '%s\n' 'ERROR: No user accounts found!'
   exit 1
@@ -107,11 +107,11 @@ if [ "$(id -u)" = '0' ]; then
 else
   passwd_status_list_cmd=( 'leaprun' 'get-password-status-list' )
 fi
-if ! output="$("${passwd_status_list_cmd[@]}")"; then
+if ! password_status_list_str="$("${passwd_status_list_cmd[@]}")"; then
   printf '%s\n' 'ERROR: Failed to get password status list!'
   exit 1
 fi
-readarray -t passwd_status_list <<< "$output"
+readarray -t passwd_status_list <<< "$password_status_list_str"
 if [ "${#passwd_status_list[@]}" = '0' ] \
   || [ -z "${passwd_status_list[0]}" ] \
   || (( ${#passwd_status_list[@]} != ${#user_list[@]} )); then
