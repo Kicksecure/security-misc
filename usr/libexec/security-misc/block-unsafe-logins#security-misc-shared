@@ -50,27 +50,8 @@ if [ "$PAM_USER" = 'sysmaint' ]; then
   exit 1
 fi
 
-## Threat model: If a legitimate privilege escalation executable exists on the
-## system that uses PAM, and we do not yet lock down its permissions with
-## permission-hardener, we should prevent the use of that application to
-## escalate privileges to any passwordless account that is a member of a group
-## considered to be "sensitive" while in a user session. For instance, if
-## account 'user' is a member of group 'sudo', and a su-like executable
-## exists on the system that account 'nginx' can execute, 'nginx' should not
-## be able to escalate privileges to account 'user'.
-##
-## Out of scope:
-## - Malicious privilege escalation tools. These would need to run as root or
-##   be SUID, and such an executable most likely would grant root access
-##   without authentication or by authenticating the attacker rather than a
-##   legitimate user.
-## - Legitimate privilege escalation tools that don't use PAM. Preventing
-##   these from causing issues would require manipulating password locks in
-##   /etc/passwd on bootup, which is dangerous and likely impossible to do
-##   correctly.
-## - Legitimate login tools that use PAM, such as login, greetd, sshd. These
-##   tools do not permit privilege escalation from one user to another, and
-##   passwordless login is expected to work even for sensitive accounts.
+## Threat model:
+## https://www.kicksecure.com/wiki/Dev/Strong_Linux_User_Account_Isolation#Block_Unsafe_Logins
 
 login_service_list=( 'login' 'greetd' 'sshd' 'swaylock' )
 for login_service in "${login_service_list[@]}"; do
