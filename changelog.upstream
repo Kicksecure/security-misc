@@ -1,3 +1,58 @@
+commit c54d6a2258a09867e5b72a8bc1b47df67de6497d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 01:30:43 2025 -0500
+
+    readme
+
+commit 7477a6711ad2020fc9a7af19fd98fb88da5b840f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 01:29:26 2025 -0500
+
+    readme
+
+commit 885358794f2f4f196e37e6c39b6d95f3b48e325f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 00:55:20 2025 -0500
+
+    readme
+
+commit 44837c12bbf63f7e0fd41afad11e19646fd53074
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 00:48:37 2025 -0500
+
+    genmkfile debinstfile
+
+commit 7b37965c5c6689533b10e0e592100ee5b94858ee
+Merge: d2796afe dddf7979
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 00:47:49 2025 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit dddf79798cb2f2f76bf4432aa90c8a3c61402db1
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 27 19:46:55 2025 -0600
+
+    Document why we disable sudo DNS
+
+commit 5e45248eb63ecb4b7f924ff9fcba6b40f5bf1244
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 27 19:38:19 2025 -0600
+
+    genmkfile debinstfile
+
+commit 1b07fd2e73fdfc0d83bd36919080442a14a5ffdf
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sat Dec 27 19:38:02 2025 -0600
+
+    Disable sudo DNS lookups on desktop systems
+
+commit d2796afe8e4cf5dd55d549adf972e68f86903609
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Dec 19 11:38:31 2025 +0000
+
+    bumped changelog version
+
 commit 68c89cced39a5d2138e22661f4132118628aba64
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 19 06:30:00 2025 -0500
