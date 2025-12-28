@@ -780,24 +780,24 @@ See:
   `sudo unable to resolve host` errors. `security-misc-desktop` only. Not
   enabled on `security-misc-server` since there has been no research yet if
   this can break server use cases.
-- Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
+- `apt`: Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
   transient failures. - `/etc/apt/apt.conf.d/40error-on-any`.
-- Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
-- Deactivates previews in Dolphin.
-- Deactivates previews in Nautilus -
+- `apt`: Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
+- `Dolphin`: Deactivates previews in Dolphin.
+- `Nautilus`: Deactivates previews in Nautilus -
   `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
-- Deactivates thumbnails in Thunar.
+- `Thunar`: Deactivates thumbnails in Thunar.
   - Rationale: lower attack surface when using the file manager
   - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
-- Security and privacy enhancements for gnupg's config file
+- `gnupg`: Security and privacy enhancements for gnupg's config file
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
   - https://github.com/ioerror/torbirdy/pull/11
-- Hardens SSH client
+- `SSH client`: Hardens SSH client
   `/etc/ssh/ssh_config.d/30_security-misc.conf`
-- Hardens SSH server
+- `SSH server`: Hardens SSH server
   `/etc/ssh/sshd_config.d/30_security-misc.conf`
-- Configures flatpak to require authentication for all software installation
+- `flatpak`: Configures flatpak to require authentication for all software installation
   and management tasks including updates. Ships
   `/usr/share/polkit-1/actions/org.freedesktop.Flatpak.policy.security-misc`,
   diverts/hides `/usr/share/polkit-1/rules.d/org.freedesktop.Flatpak.rules`.
