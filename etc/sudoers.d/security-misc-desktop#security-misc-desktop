@@ -1,0 +1,6 @@
+## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Don't attempt to determine the local machine's FQDN via DNS. This can leak
+## the machine's hostname in cleartext to the configured DNS server.
+Defaults !fqdn
