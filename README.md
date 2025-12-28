@@ -101,7 +101,7 @@ configuration file and significant hardening is applied to a myriad of component
 
 #### Networking
 
-- Enable hardening of the BPF JIT compiler protect against JIT spraying.
+- Enable hardening of the BPF JIT compiler to protect against JIT spraying.
 
 - Enable TCP SYN cookie protection to assist against SYN flood attacks.
 
@@ -157,7 +157,7 @@ and simultaneous multithreading (SMT) is disabled. See the
 
 Importantly, we do not rely on the use of the already enabled-by-default `mitigations=auto`
 kernel boot parameter to perform CPU mitigations like many other distributions. This is
-because it's use is both totally redundant and it does not apply all hardening settings
+because its use is both totally redundant and it does not apply all hardening settings
 to their strictest possible levels. See issue:
 https://github.com/Kicksecure/security-misc/issues/199#issuecomment-3327391859.
 
@@ -286,7 +286,7 @@ Entropy:
   cryptographic operations, to avoid reliance on proprietary RDRAND and RDSEED CPU
   instructions for random number generation that have long history of being defective.
 
-- Do not credit the bootloader seeds as an entropy sources at boot to maximize the
+- Do not credit the bootloader seeds as an entropy source at boot to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
   cryptographic operations as seeds passed by the bootloader could be tampered.
 
@@ -774,9 +774,9 @@ See:
 
 ## Application-specific hardening
 
-- `sudo`: Enables "`Defaults !fqdn`", which dissebels attempts attempt to
+- `sudo`: Enables "`Defaults !fqdn`", which disables attempts to
   determine the local machine's FQDN via DNS as this can leak the machine's
-  the machine's hostname in cleartext to the configured DNS server and cause
+  hostname in cleartext to the configured DNS server and cause
   `sudo unable to resolve host` errors. `security-misc-desktop` only. Not
   enabled on `security-misc-server` since there has been no research yet if
   this can break server use cases.
@@ -937,7 +937,7 @@ See https://www.kicksecure.com/wiki/Security-misc#install
 
 ## How to Build deb Package from Source Code
 
-Can be build using standard Debian package build tools such as:
+Can be built using standard Debian package build tools such as:
 
     dpkg-buildpackage -b
 
