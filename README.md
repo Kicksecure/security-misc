@@ -774,6 +774,12 @@ See:
 
 ## Application-specific hardening
 
+- `sudo`: Enables "`Defaults !fqdn`", which dissebels attempts attempt to
+  determine the local machine's FQDN via DNS as this can leak the machine's
+  the machine's hostname in cleartext to the configured DNS server and cause
+  `sudo unable to resolve host` errors. `security-misc-desktop` only. Not
+  enabled on `security-misc-server` since there has been no research yet if
+  this can break server use cases.
 - Enables "`apt-get --error-on=any`" which makes apt exit non-zero for
   transient failures. - `/etc/apt/apt.conf.d/40error-on-any`.
 - Enables APT seccomp-BPF sandboxing - `/etc/apt/apt.conf.d/40sandbox`.
