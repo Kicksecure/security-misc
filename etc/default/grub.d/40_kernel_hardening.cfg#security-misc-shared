@@ -265,6 +265,33 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX ia32_emulation=0"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi_pstore.pstore_disable=1"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 
+## Restrict processes from modifying their own memory mappings.
+## Prevents using /proc/PID/mem to write to protected pages unless via ptrace() for debugging.
+## Increases the difficulty in tricking applications into overwriting their own memory.
+## Limit self-modification which can be used trigger race condition vulnerabilities.
+##
+## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
+## https://lwn.net/Articles/983169/
+## https://github.com/a13xp0p0v/kernel-hardening-checker/pull/201
+## https://github.com/Kicksecure/security-misc/issues/330
+##
+## KSPP=partial
+## KSPP sets the stricter kernel parameter proc_mem.force_override=never.
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
+
+## Prevent processes from writing to block devices that are mounted by filesystems.
+## Enhances system stability and security by protecting against runaway privileged processes.
+## Allowing processes to write to the buffer cache can cause filesystem corruption and kernel crashes.
+## Does not prevent data modifications using direct SCSI commands or lower-level storage stack access.
+## May lead to breakages in certain limited scenarios.
+##
+## https://github.com/torvalds/linux/commit/ed5cc702d311c14b653323d76062b0294effa66e
+## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
+## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
+
 ## Enable AMD Secure Memory Encryption (SME) and Secure Encrypted Virtualization (SEV).
 ## SME encrypts memory with a single key at the kernel level to protect against cold boot attacks.
 ## SEV extends SME to VMs by encrypting the memory of each with a unique key for guest isolation.
@@ -293,33 +320,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
-
-## Prevent processes from writing to block devices that are mounted by filesystems.
-## Enhances system stability and security by protecting against runaway privileged processes.
-## Allowing processes to write to the buffer cache can cause filesystem corruption and kernel crashes.
-## Does not prevent data modifications using direct SCSI commands or lower-level storage stack access.
-## May lead to breakages in certain limited scenarios.
-##
-## https://github.com/torvalds/linux/commit/ed5cc702d311c14b653323d76062b0294effa66e
-## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
-## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
-
-## Restrict processes from modifying their own memory mappings.
-## Prevents using /proc/PID/mem to write to protected pages unless via ptrace() for debugging.
-## Increases the difficulty in tricking applications into overwriting their own memory.
-## Limit self-modification which can be used trigger race condition vulnerabilities.
-##
-## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
-## https://lwn.net/Articles/983169/
-## https://github.com/a13xp0p0v/kernel-hardening-checker/pull/201
-## https://github.com/Kicksecure/security-misc/issues/330
-##
-## KSPP=partial
-## KSPP sets the stricter kernel parameter proc_mem.force_override=never.
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
 
 ## 2. Direct Memory Access:
 ##

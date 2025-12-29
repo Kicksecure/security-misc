@@ -259,14 +259,14 @@ Kernel space:
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
 
-- Optional - On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against
-  cold boot attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
+- Restrict processes from modifying their own memory mappings unless actively done via
+  `ptrace()` for debugging in order to limit self-modification which can trigger exploits.
 
 - Prevent runaway privileged processes from writing to block devices that are mounted by
   filesystems to protect against filesystem corruption and kernel crashes.
 
-- Restrict processes from modifying their own memory mappings unless actively done via
-  `ptrace()` for debugging in order to limit self-modification which can trigger exploits.
+- Optional - On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against
+  cold boot attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
 
 Direct memory access:
 
