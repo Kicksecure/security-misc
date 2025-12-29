@@ -241,7 +241,7 @@ Kernel space:
 
 - Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
   upon using out of specification hardware, bad page states, ACPI tables being overridden,
-  severe firmware bugs, in-kernel tests run, or mutating fwctl debug operations. It can also
+  severe firmware bugs, in-kernel tests run, or mutating `fwctl` debug operations. It can also
   include the loading of proprietary or out-of-tree modules.
 
 - Prevent sensitive kernel information leaks in the console during boot.
@@ -280,15 +280,12 @@ Entropy:
 
 - Do not credit the CPU seeds as an entropy source at boot in order to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
-  cryptographic operations, to avoid reliance on proprietary RDRAND and RDSEED CPU
+  cryptographic operations to avoid reliance on proprietary RDRAND and RDSEED CPU
   instructions for random number generation that have long history of being defective.
 
 - Do not credit the bootloader seeds as an entropy source at boot to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
   cryptographic operations as seeds passed by the bootloader could be tampered.
-
-- Obtain more entropy at boot from RAM as the runtime memory allocator is
-  being initialized.
 
 - Obtain more entropy at boot from RAM as the runtime memory allocator is being
   initialized to maximize the absolute quantity of entropy in the combined pool.
