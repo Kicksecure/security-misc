@@ -321,15 +321,24 @@ there are a few cases of partial or non-compliance due to technical limitations.
 More than 30 kernel boot parameters and over 30 sysctl settings are fully aligned with
 the KSPP's recommendations.
 
+**Partial compliance:**
+
+1. Kernel boot parameter `proc_mem.force_override=never`
+
+Restrict processes from modifying their own memory mappings by completely disables use of
+`/proc/PID/mem` to write to protected pages. Can be enabled easily if required.
+
+* [security-misc pull request #332](https://github.com/Kicksecure/security-misc/pull/332)
+
 **Non-compliance:**
 
-1. `sysctl user.max_user_namespaces=0`
+2. `sysctl user.max_user_namespaces=0`
 
 Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
 * [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
 
-2. `sysctl fs.binfmt_misc.status=0`
+3. `sysctl fs.binfmt_misc.status=0`
 
 Disables the registration of interpreters for miscellaneous binary formats. Currently not
 feasible due to compatibility issues with Firefox.
@@ -337,7 +346,7 @@ feasible due to compatibility issues with Firefox.
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
 
-3. Kernel boot parameter `hash_pointers=always`
+4. Kernel boot parameter `hash_pointers=always`
 
 Force all exposed pointers to be hashed and must be used in combination with the already enabled
 `slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.

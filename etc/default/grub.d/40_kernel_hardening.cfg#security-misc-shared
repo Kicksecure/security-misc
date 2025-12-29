@@ -326,7 +326,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 ## https://github.com/a13xp0p0v/kernel-hardening-checker/pull/201
 ## https://github.com/Kicksecure/security-misc/issues/330
 ##
-## Using "proc_mem.force_override=never" provides superior protection by never allowing overrides.
+## KSPP=partial
+## KSPP sets the stricter kernel parameter proc_mem.force_override=never.
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
 
