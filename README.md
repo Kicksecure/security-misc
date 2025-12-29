@@ -269,7 +269,7 @@ Kernel space:
   filesystems to protect against filesystem corruption and kernel crashes.
 
 - Restrict processes from modifying their own memory mappings unless actively done via
-  `ptrace()` in order to limit self-modification which can trigger exploits.
+  `ptrace()` for debugging in order to limit self-modification which can trigger exploits.
 
 Direct memory access:
 
