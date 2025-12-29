@@ -46,11 +46,11 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
-- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
-  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
-
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
+
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Optional - Force immediate kernel panic on OOM (out of memory) which with the above setting
   will force an immediate system reboot as opposed to placing any reliance on the oom_killer
@@ -236,11 +236,11 @@ Kernel space:
 - Restrict access to debugfs by not registering the file system since it can
   contain sensitive information.
 
-- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
-  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
-
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
+
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
   upon using out of specification hardware, bad page states, ACPI tables being overridden,

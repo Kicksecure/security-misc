@@ -128,6 +128,20 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX vsyscall=none"
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 
+## Force immediate system reboots on the occurrence of a single kernel panic.
+## Increases resilience and limits impact of denial of service attacks as system automatically restarts.
+## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
+## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
+##
+## KSPP=yes
+## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
+##
+## Note that this must be used with panic=-1 for it to function as intended.
+##
+## See /usr/libexec/security-misc/panic-on-oops for implementation.
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
+
 ## Force the kernel to immediately panic on "oopses" and kernel warnings in the WARN() path.
 ## Panics may be due to false-positives such as bad drivers.
 ## Both allowed limits are set to one so that panics occur on the single first instance of either scenario.
@@ -150,20 +164,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX oops=panic"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic_on_warn=1"
-
-## Force immediate system reboots on the occurrence of a single kernel panic.
-## Increases resilience and limits impact of denial of service attacks as system automatically restarts.
-## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
-## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
-##
-## KSPP=yes
-## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
-##
-## Note that this must be used with panic=-1 for it to function as intended.
-##
-## See /usr/libexec/security-misc/panic-on-oops for implementation.
-##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
 
 ## Force the kernel to immediately panic if it becomes tainted.
 ## Using kernel documentation, one can select a subset of taints to create a security policy.

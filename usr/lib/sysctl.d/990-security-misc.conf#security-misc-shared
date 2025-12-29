@@ -165,6 +165,16 @@ kernel.sysrq=0
 ##
 kernel.perf_event_paranoid=3
 
+## Force immediate system reboots on the occurrence of a single kernel panic.
+## Increases resilience and limits impact of denial-of-service attacks as system automatically restarts.
+## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
+## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
+##
+## KSPP=yes
+## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
+##
+kernel.panic=-1
+
 ## Force the kernel to immediately panic on "oopses" and kernel warnings in the WARN() path.
 ## Panics may be due to false-positives such as bad drivers.
 ## Both allowed limits are set to one so that panics occur on the single first instance of either scenario.
@@ -189,16 +199,6 @@ kernel.perf_event_paranoid=3
 ##
 #kernel.oops_limit=1
 #kernel.warn_limit=1
-
-## Force immediate system reboots on the occurrence of a single kernel panic.
-## Increases resilience and limits impact of denial-of-service attacks as system automatically restarts.
-## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
-## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
-##
-## KSPP=yes
-## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
-##
-kernel.panic=-1
 
 ## Force immediate kernel panic on OOM (out of memory) scenarios.
 ## Registers a kernel panic whenever the oom_killer is triggered to kill some rouge process based on their OOM score.
