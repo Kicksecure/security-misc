@@ -183,6 +183,8 @@ kernel.perf_event_paranoid=3
 ## KSPP=yes
 ## KSPP sets the sysctls and CONFIG_PANIC_ON_OOPS=y
 ##
+## Note that this must be used with kernel.panic=-1 for it to function as intended.
+##
 ## See /usr/libexec/security-misc/panic-on-oops for implementation.
 ##
 #kernel.oops_limit=1

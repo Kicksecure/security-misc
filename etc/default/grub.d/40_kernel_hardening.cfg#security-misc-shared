@@ -159,6 +159,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
 ##
+## Note that this must be used with panic=-1 for it to function as intended.
+##
 ## See /usr/libexec/security-misc/panic-on-oops for implementation.
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
