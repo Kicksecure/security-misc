@@ -340,6 +340,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX intel_iommu=on"
 ## https://en.wikipedia.org/wiki/Input%E2%80%93output_memory_management_unit
 ## https://en.wikipedia.org/wiki/DMA_attack
 ## https://lenovopress.lenovo.com/lp1467.pdf
+## https://www.kb.cert.org/vuls/id/382314
 ##
 ## KSPP=yes
 ## KSPP sets the kernel parameters, CONFIG_IOMMU_SUPPORT=y, CONFIG_IOMMU_DEFAULT_DMA_STRICT=y, and does not set CONFIG_IOMMU_DEFAULT_PASSTHROUGH.
