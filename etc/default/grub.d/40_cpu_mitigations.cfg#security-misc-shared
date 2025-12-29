@@ -83,17 +83,18 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX spectre_bhi=on"
 
 ## Meltdown:
 ## Mitigate Spectre Variant 3 using kernel page table isolation (PTI).
-## Force enable PTI of user and kernel address spaces on all cores.
-## Mitigations for X86_64 CPUs are done in /etc/default/grub.d/40_kernel_hardening.cfg using "pti=on".
-## Currently affects ARM64 CPUs.
+## Enables kernel PTI to harden against kernel ASLR (KASLR) bypasses.
+## Force enables PTI of user and kernel address spaces on all ARM cores.
+## Currently affects AMD, ARM64, and Intel CPUs.
 ##
 ## https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)
 ## https://en.wikipedia.org/wiki/Kernel_page-table_isolation
 ##
 ## KSPP=yes
-## KSPP sets CONFIG_UNMAP_KERNEL_AT_EL0=y.
+## KSPP sets the second kernel parameter, CONFIG_MITIGATION_PAGE_TABLE_ISOLATION=y, and CONFIG_UNMAP_KERNEL_AT_EL0=y.
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kpti=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX pti=on"
 
 ## Speculative Store Bypass (SSB):
 ## Mitigate Spectre Variant 4 by disabling speculative store bypass system-wide.

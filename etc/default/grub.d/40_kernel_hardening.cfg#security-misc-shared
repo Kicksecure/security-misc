@@ -86,18 +86,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX init_on_free=1"
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX page_alloc.shuffle=1"
 
-## Enable kernel page table isolation to harden against kernel ASLR (KASLR) bypasses.
-## Mitigates the Meltdown (Spectre Variant 3) CPU vulnerability.
-## Mitigations for ARM64 CPUs are done in /etc/default/grub.d/40_cpu_mitigations.cfg using "kpti=1".
-##
-## https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)
-## https://en.wikipedia.org/wiki/Kernel_page-table_isolation
-##
-## KSPP=yes
-## KSPP sets the kernel parameter and CONFIG_MITIGATION_PAGE_TABLE_ISOLATION=y.
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX pti=on"
-
 ## Enable randomization of the kernel stack offset on syscall entries.
 ## Hardens against memory corruption attacks due to increased entropy.
 ## Limits attacks relying on deterministic stack addresses or cross-syscall address exposure.
