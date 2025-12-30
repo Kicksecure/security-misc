@@ -20,12 +20,12 @@
 ## 5. Networking
 
 ## For detailed explanations of most of the selected commands, refer to:
-## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html
-## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html
-## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html
-## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/net.html
-## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/vm.html
-## https://www.kernel.org/doc/html/latest//networking/ip-sysctl.html
+## https://docs.kernel.org/admin-guide/sysctl/abi.html
+## https://docs.kernel.org/admin-guide/sysctl/kernel.html
+## https://docs.kernel.org/admin-guide/sysctl/fs.html
+## https://docs.kernel.org/admin-guide/sysctl/net.html
+## https://docs.kernel.org/admin-guide/sysctl/vm.html
+## https://docs.kernel.org//networking/ip-sysctl.html
 
 ## 1. Kernel Space:
 ##
@@ -55,7 +55,7 @@ kernel.dmesg_restrict=1
 ## Must be used in conjunction with kernel boot parameters.
 ## See /etc/default/grub.d/41_quiet_boot.cfg for implementation.
 ##
-## https://www.kernel.org/doc/html/latest/core-api/printk-basics.html
+## https://docs.kernel.org/core-api/printk-basics.html
 ##
 ## See /usr/lib/sysctl.d/30_silent-kernel-printk.conf for implementation.
 ##
@@ -109,7 +109,7 @@ vm.unprivileged_userfaultfd=0
 ## Disable the SysRq key to prevent leakage of kernel information.
 ## The Secure Attention Key (SAK) can no longer be utilized.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
+## https://docs.kernel.org/admin-guide/sysrq.html
 ## https://www.kicksecure.com/wiki/SysRq
 ## https://github.com/xairy/unlockdown
 ##
@@ -157,7 +157,7 @@ kernel.sysrq=0
 ## The performance events system should not be accessible by unprivileged users.
 ## Other distributions such as Ubuntu and Fedora may permit further restricting.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html#unprivileged-users
+## https://docs.kernel.org/admin-guide/perf-security.html#unprivileged-users
 ## https://lore.kernel.org/kernel-hardening/1469630746-32279-1-git-send-email-jeffv@google.com/
 ##
 ## KSPP=yes
@@ -228,7 +228,7 @@ kernel.panic=-1
 ## These are valuable for high-reliability systems where data integrity is critical.
 ##
 ## https://en.wikipedia.org/wiki/Non-maskable_interrupt
-## https://www.kernel.org/doc/html/latest/trace/events-nmi.html
+## https://docs.kernel.org/trace/events-nmi.html
 ## https://0xax.gitbook.io/linux-insides/summary/interrupts/linux-interrupts-6
 ## https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/7/html/reference_guide/non-maskable_interrupts
 ##
@@ -284,7 +284,7 @@ abi.vsyscall32=0
 ## Prevents native code debugging which some programs use as a method to detect tampering.
 ## May cause breakages in 'anti-cheat' software and programs running under Proton/WINE.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html#ptrace-scope
+## https://docs.kernel.org/admin-guide/LSM/Yama.html#ptrace-scope
 ## https://en.wikipedia.org/wiki/Ptrace
 ## https://grapheneos.org/features#attack-surface-reduction
 ## https://github.com/GrapheneOS/os-issue-tracker/issues/651#issuecomment-917599928
@@ -380,7 +380,7 @@ vm.max_map_count=1048576
 ## Can stop maliciously crafted files with specific file extensions from automatically executing.
 ## Breaks many scripts that do not have appropriate shebang interpreter directives (#!/bin/...).
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html
+## https://docs.kernel.org/admin-guide/binfmt-misc.html
 ## https://salsa.debian.org/debian/binfmt-support
 ## https://access.redhat.com/solutions/1985633
 ## https://en.wikipedia.org/wiki/Binfmt_misc

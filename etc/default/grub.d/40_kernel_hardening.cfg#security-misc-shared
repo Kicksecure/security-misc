@@ -18,7 +18,7 @@ kver="$(dpkg-query --show --showformat='${Version}' "$kpkg")" 2>/dev/null || tru
 ## 4. Networking
 
 ## See the documentation below for details on the majority of the selected commands:
-## https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+## https://docs.kernel.org/admin-guide/kernel-parameters.html
 ## https://wiki.archlinux.org/title/Kernel_parameters#GRUB
 
 ## 1. Kernel Space:
@@ -45,7 +45,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 ## Enabling this (for now) will therefore leak exact and all kernel memory addresses to root.
 ## Introduces a noticeable performance overhead during all memory allocation and deallocation operations.
 ##
-## https://www.kernel.org/doc/html/latest/mm/slub.html
+## https://docs.kernel.org/mm/slub.html
 ## https://www.kernel.org/doc/Documentation/vm/slub.txt
 ## https://lore.kernel.org/all/20210601182202.3011020-5-swboyd@chromium.org/T/#u
 ## https://blogs.oracle.com/linux/post/linux-slub-allocator-internals-and-debugging-2
@@ -167,7 +167,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## All must first be tested to ensure there are no pre-existing issues on user hardware.
 ## After confirming stability this reduces attack surface.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/tainted-kernels.html
+## https://docs.kernel.org/admin-guide/tainted-kernels.html
 ## https://support.scc.suse.com/s/kb/Tainted-kernel-1583239310621?language=en_US
 ## https://lore.kernel.org/all/20200515175502.146720-1-aquini@redhat.com/T/
 ## https://github.com/Kicksecure/security-misc/pull/339
@@ -180,7 +180,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Must be used in combination with the kernel.printk sysctl.
 ## See /usr/lib/sysctl.d/30_silent-kernel-printk.conf for implementation.
 ##
-## https://www.kernel.org/doc/html/latest/core-api/printk-basics.html
+## https://docs.kernel.org/core-api/printk-basics.html
 ## https://wiki.archlinux.org/title/silent_boot
 ##
 ## See /etc/default/grub.d/41_quiet_boot.cfg for implementation.
@@ -193,7 +193,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Aims to have very low processing overhead at each sampling interval.
 ## Sampling interval is set to occur every 100 milliseconds as per KSPP recommendation.
 ##
-## https://www.kernel.org/doc/html/latest/dev-tools/kfence.html
+## https://docs.kernel.org/dev-tools/kfence.html
 ## https://google.github.io/kernel-sanitizers/KFENCE.html
 ## https://blogs.oracle.com/linux/post/linux-slub-allocator-internals-and-debugging-4
 ## https://lwn.net/Articles/835542/
@@ -304,7 +304,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 ## May cause boot failure on certain hardware with incompatible DMA masks especially if IOMMU is disabled.
 ##
 ## https://www.kernel.org/doc/html/next/x86/amd-memory-encryption.html
-## https://www.kernel.org/doc/html/latest/virt/kvm/x86/amd-memory-encryption.html
+## https://docs.kernel.org/virt/kvm/x86/amd-memory-encryption.html
 ## https://docs.amd.com/v/u/en-US/memory-encryption-white-paper
 ## https://docs.amd.com/v/u/en-US/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more
 ## https://github.com/AMDESE/AMDSEV
@@ -424,7 +424,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX extra_latent_entropy"
 ## Disable the entire IPv6 stack functionality.
 ## Removes attack surface associated with the IPv6 module.
 ##
-## https://www.kernel.org/doc/html/latest/networking/ipv6.html
+## https://docs.kernel.org/networking/ipv6.html
 ## https://wiki.archlinux.org/title/IPv6#Disable_IPv6
 ##
 ## Enabling makes redundant many network hardening sysctl's in /usr/lib/sysctl.d/990-security-misc.conf.
