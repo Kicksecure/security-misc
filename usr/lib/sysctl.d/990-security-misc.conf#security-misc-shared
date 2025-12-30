@@ -629,7 +629,7 @@ net.ipv4.tcp_tw_reuse=0
 ##
 ## The logging of martian packets is currently disabled.
 ##
-#net.ipv4.conf.*.log_martians=1
+net.ipv4.conf.*.log_martians=1
 
 ## Enable IPv6 Privacy Extensions to prefer temporary addresses over public addresses.
 ## The temporary/privacy address is used as the source for all outgoing traffic.
