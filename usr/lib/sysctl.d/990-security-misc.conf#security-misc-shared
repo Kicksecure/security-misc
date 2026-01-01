@@ -620,16 +620,15 @@ net.ipv4.tcp_tw_reuse=0
 ## Martian and unroutable packets may be used for malicious purposes.
 ## Recommended to keep a (kernel dmesg) log of these to identify suspicious packets.
 ## Useful for troubleshooting and diagnostics but not necessary by default.
-## Known to cause performance issues, especially on systems with multiple interfaces.
+## Previously known to cause performance issues, especially on systems with multiple interfaces.
+## This no longer seems to be a problem.
 ##
 ## https://wiki.archlinux.org/title/Sysctl#Log_martian_packets
 ## https://www.cyberciti.biz/faq/linux-log-suspicious-martian-packets-un-routable-source-addresses/
 ## https://support.scc.suse.com/s/kb/Martian-sources-errors-showing-in-messages-log?language=en_US
 ## https://github.com/Kicksecure/security-misc/issues/214
 ##
-## The logging of martian packets is currently disabled.
-##
-#net.ipv4.conf.*.log_martians=1
+net.ipv4.conf.*.log_martians=1
 
 ## Enable IPv6 Privacy Extensions to prefer temporary addresses over public addresses.
 ## The temporary/privacy address is used as the source for all outgoing traffic.
