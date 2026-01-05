@@ -60,7 +60,7 @@ Description: Enhances Miscellaneous Security Settings
  Discussion:
  .
  Happening primarily in Whonix forums.
- https://forums.whonix.org/t/kernel-hardening/7296
+ https://forums.whonix.org/t/kernel-hardening-security-misc/7296
 
 Package: security-misc-desktop
 Architecture: all
