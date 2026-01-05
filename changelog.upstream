@@ -1,3 +1,25 @@
+commit 74533a7efab3f740028d04330752ce18b92dc8fa
+Merge: 8a132749 84408cb1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:09:53 2026 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 84408cb1a5228355526815814d2e01ce8d40a175
+Merge: 8a132749 52ef679c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:05:02 2026 -0500
+
+    Merge pull request #345 from Nurmagoz/patch-1
+    
+    debian/control URL fix
+
+commit 8a132749e0976803173c416cd5f8d4879b7dee3f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 17:28:25 2026 +0000
+
+    bumped changelog version
+
 commit e2d31a5b818342037a54e5c3a71ef92df95b9a32
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 1 12:28:03 2026 -0500
@@ -10,6 +32,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 1 12:01:19 2026 -0500
 
     Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 52ef679c2cd95548e1f0edf48283f0ea5e3a444c
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:51:34 2025 +0000
+
+    debian/control URL fix
 
 commit 436308ae4ec243c80262f3b43dcade0f9ca83859
 Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
