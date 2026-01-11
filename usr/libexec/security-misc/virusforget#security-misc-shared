@@ -270,7 +270,7 @@ unexpected_file() {
       elif [ "$clean" = "true" ]; then
          echo "unexpected symlink. Removing... unlink '$full_path_original'" >&2
          unlink "$full_path_original"
-         echo "Removed unexpect symlink." >&2
+         echo "Removed unexpected symlink." >&2
       fi
    else
       if [ "$test_mode" = "true" ]; then
