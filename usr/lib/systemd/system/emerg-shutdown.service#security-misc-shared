@@ -11,6 +11,11 @@ After=systemd-udevd.service
 Requires=local-fs.target
 After=local-fs.target
 ConditionPathExists=!/usr/share/qubes/marker-vm
+## Do not run emerg-shutdown.service in case 'rd.live.ram' or 'rd.live.ram=1'
+## is set.
+## https://forums.kicksecure.com/t/how-to-run-iso-live-mode-from-ram/1542/9
+ConditionKernelCommandLine=!rd.live.ram
+ConditionKernelCommandLine=!rd.live.ram=1
 
 [Service]
 Type=notify
