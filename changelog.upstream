@@ -1,3 +1,17 @@
+commit fb2d44fe2315aa467af733634c5c0bb59a5da65a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 8 05:14:38 2026 -0500
+
+    Do not run emerg-shutdown.service in case 'rd.live.ram' or 'rd.live.ram=1' is set.
+    
+    https://forums.kicksecure.com/t/how-to-run-iso-live-mode-from-ram/1542/9
+
+commit 34440d7cdf662426b147ac8fde65573927b9bfe0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 11 16:40:08 2026 +0000
+
+    bumped changelog version
+
 commit cbd91974b162cec0144804190f807976ee2788e5
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 11 10:51:46 2026 -0500
