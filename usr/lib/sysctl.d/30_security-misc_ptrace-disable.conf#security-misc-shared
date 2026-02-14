@@ -12,7 +12,7 @@
 ## Prevents native code debugging which some programs use as a method to detect tampering.
 ## May cause breakages in 'anti-cheat' software and programs running under Proton/WINE.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html#ptrace-scope
+## https://docs.kernel.org/admin-guide/LSM/Yama.html#ptrace-scope
 ## https://en.wikipedia.org/wiki/Ptrace
 ## https://grapheneos.org/features#attack-surface-reduction
 ## https://github.com/GrapheneOS/os-issue-tracker/issues/651#issuecomment-917599928
