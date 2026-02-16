@@ -9,7 +9,7 @@ Package security-misc-desktop and/or security-misc-server may also be useful.
 Discussion:
 
 Happening primarily in Whonix forums.
-https://forums.whonix.org/t/kernel-hardening/7296
+https://forums.whonix.org/t/kernel-hardening-security-misc/7296
 
 ## How to install `security-misc` using apt-get ##
 

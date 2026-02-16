@@ -1,3 +1,95 @@
+commit fb2d44fe2315aa467af733634c5c0bb59a5da65a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 8 05:14:38 2026 -0500
+
+    Do not run emerg-shutdown.service in case 'rd.live.ram' or 'rd.live.ram=1' is set.
+    
+    https://forums.kicksecure.com/t/how-to-run-iso-live-mode-from-ram/1542/9
+
+commit 34440d7cdf662426b147ac8fde65573927b9bfe0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 11 16:40:08 2026 +0000
+
+    bumped changelog version
+
+commit cbd91974b162cec0144804190f807976ee2788e5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 11 10:51:46 2026 -0500
+
+    typo
+
+commit a0fd435751e666b72b59afb6658e41ba21e892b4
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Jan 11 07:09:36 2026 -0500
+
+    readme
+
+commit 6c4e7458a10c3a262ecfc0c2f53d1b6181b80ddf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 10:28:53 2026 +0000
+
+    bumped changelog version
+
+commit 74533a7efab3f740028d04330752ce18b92dc8fa
+Merge: 8a132749 84408cb1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:09:53 2026 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit 84408cb1a5228355526815814d2e01ce8d40a175
+Merge: 8a132749 52ef679c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:05:02 2026 -0500
+
+    Merge pull request #345 from Nurmagoz/patch-1
+    
+    debian/control URL fix
+
+commit 8a132749e0976803173c416cd5f8d4879b7dee3f
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 17:28:25 2026 +0000
+
+    bumped changelog version
+
+commit e2d31a5b818342037a54e5c3a71ef92df95b9a32
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 12:28:03 2026 -0500
+
+    genmkfile debinstfile
+
+commit 6e15c683ab4a682a8ed652559632d7d1e93963c4
+Merge: 97640a9b 436308ae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jan 1 12:01:19 2026 -0500
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 52ef679c2cd95548e1f0edf48283f0ea5e3a444c
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:51:34 2025 +0000
+
+    debian/control URL fix
+
+commit 436308ae4ec243c80262f3b43dcade0f9ca83859
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 29 22:30:00 2025 -0600
+
+    Minor comment fixes
+
+commit f8ac896b87e6661704f9b13f775941ea8b4eda06
+Merge: 97640a9b ab98da95
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Mon Dec 29 22:23:34 2025 -0600
+
+    Merge remote-tracking branch 'raja/log_martians' into arraybolt3/trixie-raja-merge
+
+commit 97640a9b5768b7565daf153fbdc9a0655001b790
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 28 06:36:59 2025 +0000
+
+    bumped changelog version
+
 commit c54d6a2258a09867e5b72a8bc1b47df67de6497d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Dec 28 01:30:43 2025 -0500
@@ -629,6 +721,12 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Mon Nov 10 22:40:15 2025 -0600
 
     Fix passwordless login for sensitive accounts, only deny passwordless privilege escalation
+
+commit ab98da957c732340ddb7bb43ed445835220c21d1
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Nov 11 04:28:56 2025 +0000
+
+    Re-set `net.ipv4.conf.*.log_martians=1`
 
 commit fb587f78fd11e471b3169f8c67c1772c1ba3729d
 Author: Patrick Schleizer <adrelanos@whonix.org>

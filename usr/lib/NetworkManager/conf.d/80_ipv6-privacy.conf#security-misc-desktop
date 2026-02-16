@@ -7,7 +7,7 @@
 ## https://github.com/Kicksecure/security-misc/pull/145
 ## https://github.com/Kicksecure/security-misc/issues/184
 ##
-## The use of IPv6 Privacy Extenstions is currently diasbled due to these breakages.
+## The use of IPv6 Privacy Extensions is currently disabled due to these breakages.
 
 #[connection]
 #ipv6.ip6-privacy=2
