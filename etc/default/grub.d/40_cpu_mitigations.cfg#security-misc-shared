@@ -91,7 +91,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX spectre_bhi=on"
 ## https://en.wikipedia.org/wiki/Kernel_page-table_isolation
 ##
 ## KSPP=yes
-## KSPP sets the second kernel parameter, CONFIG_MITIGATION_PAGE_TABLE_ISOLATION=y, and CONFIG_UNMAP_KERNEL_AT_EL0=y.
+## KSPP sets "pti=on", CONFIG_MITIGATION_PAGE_TABLE_ISOLATION=y, and CONFIG_UNMAP_KERNEL_AT_EL0=y.
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kpti=1"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX pti=on"

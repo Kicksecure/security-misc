@@ -25,7 +25,7 @@
 ## https://docs.kernel.org/admin-guide/sysctl/fs.html
 ## https://docs.kernel.org/admin-guide/sysctl/net.html
 ## https://docs.kernel.org/admin-guide/sysctl/vm.html
-## https://docs.kernel.org//networking/ip-sysctl.html
+## https://docs.kernel.org/networking/ip-sysctl.html
 
 ## 1. Kernel Space:
 ##

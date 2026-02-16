@@ -124,9 +124,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
 ##
-## Note that this must be used with panic=-1 for it to function as intended.
-##
-## See /usr/libexec/security-misc/panic-on-oops for implementation.
+## See /usr/lib/sysctl.d/990-security-misc.conf for implementation.
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
 
@@ -147,6 +145,8 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ##
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_ON_OOPS=y.
+##
+## Note that this must be used with panic=-1 for it to function as intended.
 ##
 ## See /usr/libexec/security-misc/panic-on-oops for implementation.
 ##
@@ -268,7 +268,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## Restrict processes from modifying their own memory mappings.
 ## Prevents using /proc/PID/mem to write to protected pages unless via ptrace() for debugging.
 ## Increases the difficulty in tricking applications into overwriting their own memory.
-## Limit self-modification which can be used trigger race condition vulnerabilities.
+## Limit self-modification which can be used trigger existing vulnerabilities.
 ##
 ## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
 ## https://lwn.net/Articles/983169/
@@ -276,7 +276,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## https://github.com/Kicksecure/security-misc/issues/330
 ##
 ## KSPP=partial
-## KSPP sets the stricter kernel parameter proc_mem.force_override=never.
+## KSPP sets the stricter kernel parameter "proc_mem.force_override=never".
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
 
