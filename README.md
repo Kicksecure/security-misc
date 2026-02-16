@@ -172,6 +172,8 @@ CPU mitigations:
 
 - Spectre Side Channels (BTI and BHI)
 
+- Enable Kernel Page Table Isolation (PTI)
+
 - Meltdown
 
 - Speculative Store Bypass (SSB)
