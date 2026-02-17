@@ -11,7 +11,7 @@
 ## Must be used in conjunction with kernel boot parameters.
 ## See /etc/default/grub.d/41_quiet_boot.cfg for implementation.
 ##
-## https://www.kernel.org/doc/html/latest/core-api/printk-basics.html
+## https://docs.kernel.org/core-api/printk-basics.html
 ##
 kernel.printk=3 3 3 3
 

@@ -18,7 +18,7 @@ kver="$(dpkg-query --show --showformat='${Version}' "$kpkg")" 2>/dev/null || tru
 ## 4. Networking
 
 ## See the documentation below for details on the majority of the selected commands:
-## https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+## https://docs.kernel.org/admin-guide/kernel-parameters.html
 ## https://wiki.archlinux.org/title/Kernel_parameters#GRUB
 
 ## 1. Kernel Space:
@@ -45,7 +45,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX slab_nomerge"
 ## Enabling this (for now) will therefore leak exact and all kernel memory addresses to root.
 ## Introduces a noticeable performance overhead during all memory allocation and deallocation operations.
 ##
-## https://www.kernel.org/doc/html/latest/mm/slub.html
+## https://docs.kernel.org/mm/slub.html
 ## https://www.kernel.org/doc/Documentation/vm/slub.txt
 ## https://lore.kernel.org/all/20210601182202.3011020-5-swboyd@chromium.org/T/#u
 ## https://blogs.oracle.com/linux/post/linux-slub-allocator-internals-and-debugging-2
@@ -86,18 +86,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX init_on_free=1"
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX page_alloc.shuffle=1"
 
-## Enable kernel page table isolation to harden against kernel ASLR (KASLR) bypasses.
-## Mitigates the Meltdown (Spectre Variant 3) CPU vulnerability.
-## Mitigations for ARM64 CPUs are done in /etc/default/grub.d/40_cpu_mitigations.cfg using "kpti=1".
-##
-## https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)
-## https://en.wikipedia.org/wiki/Kernel_page-table_isolation
-##
-## KSPP=yes
-## KSPP sets the kernel parameter and CONFIG_MITIGATION_PAGE_TABLE_ISOLATION=y.
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX pti=on"
-
 ## Enable randomization of the kernel stack offset on syscall entries.
 ## Hardens against memory corruption attacks due to increased entropy.
 ## Limits attacks relying on deterministic stack addresses or cross-syscall address exposure.
@@ -128,6 +116,18 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX vsyscall=none"
 ##
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 
+## Force immediate system reboots on the occurrence of a single kernel panic.
+## Increases resilience and limits impact of denial of service attacks as system automatically restarts.
+## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
+## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
+##
+## KSPP=yes
+## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
+##
+## See /usr/lib/sysctl.d/990-security-misc.conf for implementation.
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
+
 ## Force the kernel to immediately panic on "oopses" and kernel warnings in the WARN() path.
 ## Panics may be due to false-positives such as bad drivers.
 ## Both allowed limits are set to one so that panics occur on the single first instance of either scenario.
@@ -146,22 +146,12 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## KSPP=yes
 ## KSPP sets CONFIG_PANIC_ON_OOPS=y.
 ##
+## Note that this must be used with panic=-1 for it to function as intended.
+##
 ## See /usr/libexec/security-misc/panic-on-oops for implementation.
 ##
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX oops=panic"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic_on_warn=1"
-
-## Force immediate system reboots on the occurrence of a single kernel panic.
-## Increases resilience and limits impact of denial of service attacks as system automatically restarts.
-## Ensures the system does not hang forever if a panic occurs, reducing susceptibility to both cold and warm boot attacks.
-## Immediate rebooting also prevents persistent information disclosure on panic details that were dumped to screen.
-##
-## KSPP=yes
-## KSPP sets CONFIG_PANIC_TIMEOUT=-1.
-##
-## See /usr/libexec/security-misc/panic-on-oops for implementation.
-##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX panic=-1"
 
 ## Force the kernel to immediately panic if it becomes tainted.
 ## Using kernel documentation, one can select a subset of taints to create a security policy.
@@ -177,7 +167,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## All must first be tested to ensure there are no pre-existing issues on user hardware.
 ## After confirming stability this reduces attack surface.
 ##
-## https://www.kernel.org/doc/html/latest/admin-guide/tainted-kernels.html
+## https://docs.kernel.org/admin-guide/tainted-kernels.html
 ## https://support.scc.suse.com/s/kb/Tainted-kernel-1583239310621?language=en_US
 ## https://lore.kernel.org/all/20200515175502.146720-1-aquini@redhat.com/T/
 ## https://github.com/Kicksecure/security-misc/pull/339
@@ -190,7 +180,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Must be used in combination with the kernel.printk sysctl.
 ## See /usr/lib/sysctl.d/30_silent-kernel-printk.conf for implementation.
 ##
-## https://www.kernel.org/doc/html/latest/core-api/printk-basics.html
+## https://docs.kernel.org/core-api/printk-basics.html
 ## https://wiki.archlinux.org/title/silent_boot
 ##
 ## See /etc/default/grub.d/41_quiet_boot.cfg for implementation.
@@ -203,7 +193,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX debugfs=off"
 ## Aims to have very low processing overhead at each sampling interval.
 ## Sampling interval is set to occur every 100 milliseconds as per KSPP recommendation.
 ##
-## https://www.kernel.org/doc/html/latest/dev-tools/kfence.html
+## https://docs.kernel.org/dev-tools/kfence.html
 ## https://google.github.io/kernel-sanitizers/KFENCE.html
 ## https://blogs.oracle.com/linux/post/linux-slub-allocator-internals-and-debugging-4
 ## https://lwn.net/Articles/835542/
@@ -275,6 +265,33 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX ia32_emulation=0"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX efi_pstore.pstore_disable=1"
 GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 
+## Restrict processes from modifying their own memory mappings.
+## Prevents using /proc/PID/mem to write to protected pages unless via ptrace() for debugging.
+## Increases the difficulty in tricking applications into overwriting their own memory.
+## Limit self-modification which can be used trigger existing vulnerabilities.
+##
+## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
+## https://lwn.net/Articles/983169/
+## https://github.com/a13xp0p0v/kernel-hardening-checker/pull/201
+## https://github.com/Kicksecure/security-misc/issues/330
+##
+## KSPP=partial
+## KSPP sets the stricter kernel parameter "proc_mem.force_override=never".
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
+
+## Prevent processes from writing to block devices that are mounted by filesystems.
+## Enhances system stability and security by protecting against runaway privileged processes.
+## Allowing processes to write to the buffer cache can cause filesystem corruption and kernel crashes.
+## Does not prevent data modifications using direct SCSI commands or lower-level storage stack access.
+## May lead to breakages in certain limited scenarios.
+##
+## https://github.com/torvalds/linux/commit/ed5cc702d311c14b653323d76062b0294effa66e
+## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
+## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
+##
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
+
 ## Enable AMD Secure Memory Encryption (SME) and Secure Encrypted Virtualization (SEV).
 ## SME encrypts memory with a single key at the kernel level to protect against cold boot attacks.
 ## SEV extends SME to VMs by encrypting the memory of each with a unique key for guest isolation.
@@ -287,7 +304,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 ## May cause boot failure on certain hardware with incompatible DMA masks especially if IOMMU is disabled.
 ##
 ## https://www.kernel.org/doc/html/next/x86/amd-memory-encryption.html
-## https://www.kernel.org/doc/html/latest/virt/kvm/x86/amd-memory-encryption.html
+## https://docs.kernel.org/virt/kvm/x86/amd-memory-encryption.html
 ## https://docs.amd.com/v/u/en-US/memory-encryption-white-paper
 ## https://docs.amd.com/v/u/en-US/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more
 ## https://github.com/AMDESE/AMDSEV
@@ -303,32 +320,6 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX erst_disable"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
 #GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
-
-## Prevent processes from writing to block devices that are mounted by filesystems.
-## Enhances system stability and security by protecting against runaway privileged processes.
-## Allowing processes to write to the buffer cache can cause filesystem corruption and kernel crashes.
-## Does not prevent data modifications using direct SCSI commands or lower-level storage stack access.
-## May lead to breakages in certain limited scenarios.
-##
-## https://github.com/torvalds/linux/commit/ed5cc702d311c14b653323d76062b0294effa66e
-## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
-## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
-
-## Restrict processes from modifying their own memory mappings.
-## Prevents the use of /proc/PID/mem to write to protected pages via the kernel's
-## mem_rw() FOLL_FORCE flag. This makes it harder to trick applications into
-## overwriting their own memory.
-##
-## https://lore.kernel.org/lkml/20240712-vfs-procfs-ce7e6c7cf26b@brauner/
-## https://lwn.net/Articles/983169/
-## https://github.com/a13xp0p0v/kernel-hardening-checker/pull/201
-## https://github.com/Kicksecure/security-misc/issues/330
-##
-## Using "proc_mem.force_override=never" provides superior protection by never allowing overrides.
-##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
 
 ## 2. Direct Memory Access:
 ##
@@ -349,6 +340,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX intel_iommu=on"
 ## https://en.wikipedia.org/wiki/Input%E2%80%93output_memory_management_unit
 ## https://en.wikipedia.org/wiki/DMA_attack
 ## https://lenovopress.lenovo.com/lp1467.pdf
+## https://www.kb.cert.org/vuls/id/382314
 ##
 ## KSPP=yes
 ## KSPP sets the kernel parameters, CONFIG_IOMMU_SUPPORT=y, CONFIG_IOMMU_DEFAULT_DMA_STRICT=y, and does not set CONFIG_IOMMU_DEFAULT_PASSTHROUGH.
@@ -432,7 +424,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX extra_latent_entropy"
 ## Disable the entire IPv6 stack functionality.
 ## Removes attack surface associated with the IPv6 module.
 ##
-## https://www.kernel.org/doc/html/latest/networking/ipv6.html
+## https://docs.kernel.org/networking/ipv6.html
 ## https://wiki.archlinux.org/title/IPv6#Disable_IPv6
 ##
 ## Enabling makes redundant many network hardening sysctl's in /usr/lib/sysctl.d/990-security-misc.conf.
