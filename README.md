@@ -149,6 +149,15 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Documentation: https://www.kicksecure.com/wiki/Networking
 
+#### CD-ROM/DVD
+
+-  Disable CD-ROM/DVD drive automatic tray closure and ejection functionality to
+   prevent scripted tray cycling attacks.
+
+-  Disable all CD-ROM/DVD drive debug messages to limit information disclosure.
+
+-  Optional - Restrict CD-ROM/DVD drives by disabling kernel checking and hardware access.
+
 ### Boot parameters
 
 Mitigations for known CPU vulnerabilities are enabled in their strictest form

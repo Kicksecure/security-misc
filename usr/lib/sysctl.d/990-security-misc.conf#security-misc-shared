@@ -18,6 +18,7 @@
 ## 3. Core Dumps
 ## 4. Swap Space
 ## 5. Networking
+## 6. CD-ROM/DVD
 
 ## For detailed explanations of most of the selected commands, refer to:
 ## https://www.kernel.org/doc/html/latest/admin-guide/sysctl/abi.html
@@ -645,3 +646,35 @@ net.ipv4.conf.*.log_martians=1
 ## The use of IPv6 Privacy Extensions is currently disabled due to these breakages.
 ##
 #net.ipv6.conf.*.use_tempaddr=2
+
+## 6. CD-ROM/DVD
+##
+## https://github.com/Kicksecure/security-misc/issues/348
+
+## Disable CD-ROM/DVD drive automatic tray closure and ejection functionality.
+## Prevents scripted tray cycling attacks.
+## Requires users to press physical hardware buttons to insert and eject media.
+##
+## https://github.com/torvalds/linux/blob/master/drivers/cdrom/cdrom.c
+## https://github.com/Kicksecure/security-misc/issues/348
+##
+dev.cdrom.autoclose=0
+dev.cdrom.autoeject=0
+
+## Disable all CD-ROM/DVD drive debug messages.
+## Prevents verbose logging that could leak drive information.
+##
+## https://github.com/torvalds/linux/blob/master/drivers/cdrom/cdrom.c
+## https://github.com/Kicksecure/security-misc/issues/348
+##
+dev.cdrom.debug=0
+
+## Restrict CD-ROM/DVD drives by disabling usage and hardware access.
+## Disable the kernel from checking for media changes to the drive bay.
+## Lock the drive bay preventing the physical eject button from opening the tray.
+##
+## https://github.com/torvalds/linux/blob/master/drivers/cdrom/cdrom.c
+## https://github.com/Kicksecure/security-misc/issues/348
+##
+#dev.cdrom.check_media=0
+#dev.cdrom.lock=1
