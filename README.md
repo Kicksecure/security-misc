@@ -46,11 +46,11 @@ configuration file and significant hardening is applied to a myriad of component
 
 - Restrict kernel profiling and the performance events system to `CAP_PERFMON`.
 
-- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
-  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
-
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
+
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
 
 - Optional - Force immediate kernel panic on OOM (out of memory) which with the above setting
   will force an immediate system reboot as opposed to placing any reliance on the oom_killer
@@ -181,6 +181,8 @@ CPU mitigations:
 
 - Spectre Side Channels (BTI and BHI)
 
+- Enable Kernel Page Table Isolation (PTI)
+
 - Meltdown
 
 - Speculative Store Bypass (SSB)
@@ -233,9 +235,6 @@ Kernel space:
 - Enable the kernel page allocator to randomize free lists to limit some data
   exfiltration and ROP attacks, especially during the early boot process.
 
-- Enable kernel page table isolation on x86_64 and ARM64 CPUs to increase
-  KASLR effectiveness and also mitigate the Meltdown CPU vulnerability.
-
 - Enable randomization of the kernel stack offset on syscall entries to harden
   against memory corruption attacks.
 
@@ -245,15 +244,15 @@ Kernel space:
 - Restrict access to debugfs by not registering the file system since it can
   contain sensitive information.
 
-- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
-  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
-
 - Force immediate system reboot on the occurrence of a single kernel panic, reducing the
   risk and impact of denial-of-service attacks and both cold and warm boot attacks.
 
+- Force the kernel to immediately panic on both "oopses" (which can potentially indicate
+  and thwart certain kernel exploitation attempts) and kernel warnings in the `WARN()` path.
+
 - Optional - Force the kernel to immediately panic if it becomes tainted. Some reasons include
   upon using out of specification hardware, bad page states, ACPI tables being overridden,
-  severe firmware bugs, in-kernel tests run, or mutating fwctl debug operations. It can also
+  severe firmware bugs, in-kernel tests run, or mutating `fwctl` debug operations. It can also
   include the loading of proprietary or out-of-tree modules.
 
 - Prevent sensitive kernel information leaks in the console during boot.
@@ -271,14 +270,14 @@ Kernel space:
 - Disable the EFI persistent storage feature which prevents the kernel from writing crash logs
   and other persistent data to either the UEFI variable storage or ACPI ERST backends.
 
-- Optional - On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against
-  cold boot attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
+- Restrict processes from modifying their own memory mappings unless actively done via
+  `ptrace()` for debugging in order to limit self-modification which can trigger exploits.
 
 - Prevent runaway privileged processes from writing to block devices that are mounted by
   filesystems to protect against filesystem corruption and kernel crashes.
 
-- Restrict processes from modifying their own memory mappings unless actively done via
-  `ptrace()` in order to limit self-modification which can trigger exploits.
+- Optional - On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against
+  cold boot attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
 
 Direct memory access:
 
@@ -292,15 +291,12 @@ Entropy:
 
 - Do not credit the CPU seeds as an entropy source at boot in order to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
-  cryptographic operations, to avoid reliance on proprietary RDRAND and RDSEED CPU
+  cryptographic operations to avoid reliance on proprietary RDRAND and RDSEED CPU
   instructions for random number generation that have long history of being defective.
 
 - Do not credit the bootloader seeds as an entropy source at boot to maximize the
   absolute quantity of entropy in the combined pool. This is desirable for all
   cryptographic operations as seeds passed by the bootloader could be tampered.
-
-- Obtain more entropy at boot from RAM as the runtime memory allocator is
-  being initialized.
 
 - Obtain more entropy at boot from RAM as the runtime memory allocator is being
   initialized to maximize the absolute quantity of entropy in the combined pool.
@@ -330,15 +326,24 @@ there are a few cases of partial or non-compliance due to technical limitations.
 More than 30 kernel boot parameters and over 30 sysctl settings are fully aligned with
 the KSPP's recommendations.
 
+**Partial compliance:**
+
+1. Kernel boot parameter `proc_mem.force_override=never`
+
+Restrict processes from modifying their own memory mappings by completely disables use of
+`/proc/PID/mem` to write to protected pages. Can be enabled easily if required.
+
+* [security-misc pull request #332](https://github.com/Kicksecure/security-misc/pull/332)
+
 **Non-compliance:**
 
-1. `sysctl user.max_user_namespaces=0`
+2. `sysctl user.max_user_namespaces=0`
 
 Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
 * [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
 
-2. `sysctl fs.binfmt_misc.status=0`
+3. `sysctl fs.binfmt_misc.status=0`
 
 Disables the registration of interpreters for miscellaneous binary formats. Currently not
 feasible due to compatibility issues with Firefox.
@@ -346,7 +351,7 @@ feasible due to compatibility issues with Firefox.
 * [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
 * [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
 
-3. Kernel boot parameter `hash_pointers=always`
+4. Kernel boot parameter `hash_pointers=always`
 
 Force all exposed pointers to be hashed and must be used in combination with the already enabled
 `slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.

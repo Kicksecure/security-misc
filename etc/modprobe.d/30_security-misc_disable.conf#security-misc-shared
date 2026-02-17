@@ -87,7 +87,7 @@ install gnss-usb /usr/bin/disabled-gps-by-security-misc
 ## Disabling it may lead to breakages in various components without clear debugging/error messages.
 ## It may affect firmware updates, security, power management, display, and DRM.
 ##
-## https://www.kernel.org/doc/html/latest/driver-api/mei/mei.html
+## https://docs.kernel.org/driver-api/mei/mei.html
 ## https://en.wikipedia.org/wiki/Intel_Management_Engine#Security_vulnerabilities
 ## https://www.kicksecure.com/wiki/Out-of-band_Management_Technology#Intel_ME_Disabling_Disadvantages
 ## https://github.com/Kicksecure/security-misc/pull/236#issuecomment-2229092813
