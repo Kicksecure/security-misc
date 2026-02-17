@@ -316,10 +316,10 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 ## https://github.com/secureblue/secureblue/pull/1631#issuecomment-3655501478
 ## https://forums.whonix.org/t/enable-secure-memory-encryption-sme-kernel-parameter-mem-encrypt-by-default/10393
 ##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
 
 ## 2. Direct Memory Access:
 ##
