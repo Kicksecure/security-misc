@@ -19,7 +19,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="$(echo "$GRUB_CMDLINE_LINUX_DEFAULT" | str_replace "
 ## Must be used in combination with the kernel.printk sysctl.
 ## See /usr/lib/sysctl.d/30_silent-kernel-printk.conf for implementation.
 ##
-## https://www.kernel.org/doc/html/latest/core-api/printk-basics.html
+## https://docs.kernel.org/core-api/printk-basics.html
 ## https://wiki.archlinux.org/title/silent_boot
 ##
 ## For easier debugging, these are not applied to the recovery boot option.
