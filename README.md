@@ -267,8 +267,8 @@ Kernel space:
 - Prevent runaway privileged processes from writing to block devices that are mounted by
   filesystems to protect against filesystem corruption and kernel crashes.
 
-- Optional - On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against
-  cold boot attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
+- On compatible AMD CPUs enable Secure Memory Encryption (SME) to protect against cold boot
+  attacks and Secure Encrypted Virtualization (SEV) for further guest memory isolation.
 
 Direct memory access:
 

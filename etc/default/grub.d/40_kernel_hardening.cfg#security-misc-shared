@@ -307,6 +307,7 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 ## https://docs.kernel.org/virt/kvm/x86/amd-memory-encryption.html
 ## https://docs.amd.com/v/u/en-US/memory-encryption-white-paper
 ## https://docs.amd.com/v/u/en-US/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more
+## https://docs.amd.com/v/u/en-US/24593_3.43
 ## https://github.com/AMDESE/AMDSEV
 ## https://en.wikichip.org/wiki/x86/sme
 ## https://lore.kernel.org/all/YWRgN63FOrQGO8jS@zn.tnic/
@@ -316,10 +317,10 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 ## https://github.com/secureblue/secureblue/pull/1631#issuecomment-3655501478
 ## https://forums.whonix.org/t/enable-secure-memory-encryption-sme-kernel-parameter-mem-encrypt-by-default/10393
 ##
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
-#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mem_encrypt=on"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_es=1"
+GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX kvm_amd.sev_snp=1"
 
 ## 2. Direct Memory Access:
 ##
