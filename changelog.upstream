@@ -1,3 +1,86 @@
+commit ff99577a0aef5b52619fdccc9e933ce8af5aaf2b
+Merge: 196ff190 df6ca04d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 23 06:31:32 2026 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit df6ca04de8c47b83e58f0c35b4736305e41f1645
+Merge: 196ff190 ad1d64fc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 23 06:30:40 2026 -0500
+
+    Merge pull request #351 from raja-grewal/cdrom
+    
+    Add CD-ROM/DVD hardening settings
+
+commit ad1d64fc4ffe53ffc0710b5d9654dfff5ff6f617
+Merge: f99e5c48 196ff190
+Author: raja-grewal <rg_public@proton.me>
+Date:   Fri Feb 20 11:04:39 2026 +1100
+
+    Merge branch 'Kicksecure:master' into cdrom
+
+commit 196ff19056dcaf3bf31174d18be728e4a29159a0
+Merge: 7df34854 c17f2404
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Feb 19 07:10:42 2026 -0500
+
+    Merge remote-tracking branch 'github-kicksecure/master'
+
+commit f99e5c48c03b6b7e9e3995e5c61c996a05108e03
+Merge: fe1d9242 c17f2404
+Author: raja-grewal <rg_public@proton.me>
+Date:   Wed Feb 18 09:15:23 2026 +1100
+
+    Merge branch 'Kicksecure:master' into cdrom
+
+commit c17f2404c4b690ba9315b396408b33c2b8eb449d
+Merge: 7df34854 7477128e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Feb 17 11:03:30 2026 -0500
+
+    Merge pull request #344 from raja-grewal/docs_update
+    
+    Update various docs
+
+commit fe1d92429d34f66cd9e2cdd085700e6a373bea5f
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Feb 17 07:31:42 2026 +0000
+
+    sysctl: add cd-rom/dvd hardening settings
+
+commit 7477128e3e1255156b1e18bb5c049cd74468e9cf
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Feb 16 21:52:39 2026 +0000
+
+    Simplify links
+
+commit 32513594d775ecb1817636cccd9b43b5f30d863c
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Feb 16 06:33:58 2026 +0000
+
+    README: add line
+
+commit 5a6002d9580373408798511807941ec37ef4aa20
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Feb 16 04:09:01 2026 +0000
+
+    Update docs
+
+commit 369c14ab0231fe605a821d96b3f4ca80fe61854a
+Merge: 73d3da10 7df34854
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Feb 16 14:26:59 2026 +1100
+
+    Merge branch 'Kicksecure:master' into docs_update
+
+commit 7df348544fc4bb484d2b955864ff0f598b1aca0b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Feb 10 12:17:16 2026 +0000
+
+    bumped changelog version
+
 commit fb2d44fe2315aa467af733634c5c0bb59a5da65a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Feb 8 05:14:38 2026 -0500
@@ -83,6 +166,73 @@ Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
 Date:   Mon Dec 29 22:23:34 2025 -0600
 
     Merge remote-tracking branch 'raja/log_martians' into arraybolt3/trixie-raja-merge
+
+commit 73d3da104b03c967c56d90d0905336caa802e416
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 30 03:51:49 2025 +0000
+
+    Sort file
+
+commit d0512e4f25ed78d0b27a62e305812dec3e00873a
+Author: raja-grewal <rg_public@proton.me>
+Date:   Tue Dec 30 03:47:47 2025 +0000
+
+    Update links to kernel docs
+
+commit 56df8b624c88b56905d945a0b247714152321c9b
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:52:15 2025 +0000
+
+    Re-order boot params as introduced
+    The ordering was changed due to different merge times.
+
+commit 8fd95a0b97f339f2609de7e7614fa8a3e86e3157
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:44:15 2025 +0000
+
+    Sort new split package install script for easier readability
+
+commit e3765131b067083c6a9a7f373cfb154a806e57ad
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:36:55 2025 +0000
+
+    Add reference on IOMMU vulnerabilities
+
+commit 31e268d6246a98d62c23a5bb9e7e4282d0fad282
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:34:53 2025 +0000
+
+    README: typos
+
+commit cd0a59fd1495db21b8da4b3e8484df61858e7f80
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:24:32 2025 +0000
+
+    Merge Meltdown mitigtions for ARM64 and X86_64 CPUs
+
+commit 61170e1c6a4869120413cf5236a2d995af26422d
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:16:54 2025 +0000
+
+    Reorder panic settings
+
+commit 6a92e956f3fd41fe416c1e41203687619c7011bc
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 07:02:24 2025 +0000
+
+    Add minor notices to panic on oopses and warnings
+
+commit 4d49ab56a4be29b03746b99cf6254ef15c93ed74
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 06:52:35 2025 +0000
+
+    Update docs on `proc_mem.force_override`
+
+commit 1472d41f030d02aba6576ef481ace35554908e8d
+Author: raja-grewal <rg_public@proton.me>
+Date:   Mon Dec 29 06:41:33 2025 +0000
+
+    Add KSPP partial compliance notice for `proc_mem.force_override=ptrace`
 
 commit 97640a9b5768b7565daf153fbdc9a0655001b790
 Author: Patrick Schleizer <adrelanos@whonix.org>
