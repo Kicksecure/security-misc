@@ -1,0 +1,263 @@
+#!/usr/bin/python3 -su
+
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+# pylint: disable=broad-exception-caught
+
+"""
+fm_shim_frontend.py - Prompts the user if they want to open one or more
+directories in the default file manager.
+"""
+
+import sys
+import os
+import signal
+import subprocess
+from pathlib import Path
+from typing import NoReturn
+from types import FrameType
+
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import (
+    QApplication,
+    QDialog,
+    QLabel,
+    QTextEdit,
+    QPushButton,
+    QVBoxLayout,
+    QHBoxLayout,
+)
+
+
+# pylint: disable=too-many-instance-attributes
+class FmShimWindow(QDialog):
+    """
+    Core fm_shim_frontend window.
+    """
+
+    def __init__(
+        self,
+        dir_list: list[Path],
+        parent: QDialog | None = None
+    ) -> None:
+        """
+        FmShimWindow constructor.
+        """
+
+        super().__init__(parent)
+
+        self.dir_list = dir_list
+
+        self.core_layout: QVBoxLayout = QVBoxLayout()
+        self.head_label: QLabel = QLabel(
+            "An application has requested to open the following directories "
+            + "with the default file manager:"
+        )
+        self.core_layout.addWidget(self.head_label)
+
+        self.dir_list_view: QTextEdit = QTextEdit()
+        self.dir_list_view.setReadOnly(True)
+        self.dir_list_view.setCurrentFont(QFont("Monospace", 10))
+        self.dir_list_view.setText("\n".join([str(x) for x in dir_list]))
+        self.core_layout.addWidget(self.dir_list_view)
+
+        self.foot_label: QLabel = QLabel("Would you like to allow this?")
+        self.core_layout.addWidget(self.foot_label)
+
+        self.button_layout: QHBoxLayout = QHBoxLayout()
+        self.button_layout.addStretch()
+        self.open_button: QPushButton = QPushButton("Open")
+        self.open_button.clicked.connect(self.open_dir_list)
+        self.cancel_button: QPushButton = QPushButton("Cancel")
+        self.cancel_button.clicked.connect(self.exit_app)
+        self.button_layout.addWidget(self.open_button)
+        self.button_layout.addWidget(self.cancel_button)
+        self.core_layout.addLayout(self.button_layout)
+
+        self.setLayout(self.core_layout)
+        self.setWindowTitle("Open Directories")
+
+        self.show()
+
+    def open_dir_list(self) -> None:
+        """
+        Opens all specified directories using the default file manager.
+        """
+
+        try:
+            default_fm_desktop_file: str = subprocess.run(
+                ["xdg-mime", "query", "default", "inode/directory"],
+                check=True,
+                capture_output=True,
+                encoding="utf-8",
+            ).stdout.strip()
+        except Exception:
+            print(
+                "ERROR: Unable to get default file manager!",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        search_dir_list: list[str] = []
+        try:
+            search_dir_list.append(os.environ["XDG_DATA_HOME"])
+        except KeyError:
+            search_dir_list.append(os.environ["HOME"] + "/.local/share")
+        try:
+            search_dir_list.extend(os.environ["XDG_DATA_DIRS"].split(":"))
+        except Exception:
+            search_dir_list.append("/usr/local/share")
+            search_dir_list.append("/usr/share")
+
+        found_desktop_file: bool = False
+        for search_dir in search_dir_list:
+            default_fm_path: Path = Path(
+                search_dir + "/applications/" + default_fm_desktop_file
+            )
+            if default_fm_path.is_file():
+                found_desktop_file = True
+                break
+        if not found_desktop_file:
+            print(
+                "ERROR: Cannot find default file manager's desktop file!",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        for target_dir in self.dir_list:
+            if target_dir.is_dir():
+                subprocess.run(
+                    ["gio", "launch", default_fm_path, target_dir],
+                    check=False,
+                )
+            else:
+                print(
+                    f"ERROR: '{target_dir}' was no longer a dir when checked "
+                    + "before opening, possible attack?",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+
+        sys.exit(0)
+
+    @staticmethod
+    def exit_app() -> None:
+        """
+        Exits the application.
+        """
+
+        sys.exit(0)
+
+
+# pylint: disable=unused-argument
+def signal_handler(sig: int, frame: FrameType | None) -> None:
+    """
+    Handles SIGINT and SIGTERM.
+    """
+
+    print("Received SIGINT or SIGTERM, exiting.", file=sys.stderr)
+    sys.exit(128 + sig)
+
+
+def get_path_list_from_uris(
+    handler_mode: str, uri_list: list[str]
+) -> list[Path]:
+    """
+    Converts a list of URIs into a list of paths, discarding any invalid URIs
+    that are encountered in the process.
+    """
+
+    path_set: set[Path] = set()
+
+    for uri in uri_list:
+        ## Only respect local file URIs.
+        if not uri.startswith("file:///"):
+            continue
+
+        ## Do not permit Unicode or control characters in URIs.
+        ## TODO: This could cause problems for non-English users, do we want
+        ## to establish a set of "safe" Unicode?
+        for uri_char in uri:
+            if not 0x20 <= ord(uri_char) <= 0x7E:
+                continue
+
+        ## "file:///" is 8 characters long, but we want to keep the leading /,
+        ## so we only remove the first 7 characters.
+        path_item: Path = Path(uri[7:])
+
+        ## Grab the parent dir if necessary. Note that we aren't able to
+        ## actually highlight items or show item properties with the API that
+        ## PCManFM-Qt provides us, but we are able to open the parent
+        ## directories, which at least gets the user closer to the intended
+        ## action.
+        if handler_mode in ("--show-items", "--show-item-properties"):
+            path_item = path_item.parent
+
+        ## Only respect directories that we can access the contents of.
+        if not path_item.is_dir():
+            continue
+        if not os.access(path_item, os.R_OK | os.X_OK):
+            continue
+
+        path_set.add(path_item)
+
+    return list(path_set)
+
+
+
+def main() -> NoReturn:
+    """
+    Main function.
+    """
+
+    handler_mode: str | None = None
+    uri_list: list[str] = []
+
+    for arg_idx, arg in enumerate(sys.argv):
+        if arg_idx == 0:
+            continue
+        if arg in ("--show-folders", "--show-items", "--show-item-properties"):
+            if handler_mode is not None:
+                print(
+                    f"ERROR: {arg} and {handler_mode} are mutually exclusive!",
+                    file=sys.stderr
+                )
+                sys.exit(1)
+            handler_mode = arg
+        elif arg == "--":
+            uri_list = sys.argv[arg_idx + 1 :]
+            break
+        else:
+            uri_list = sys.argv[arg_idx :]
+            break
+
+    if len(uri_list) == 0:
+        print("ERROR: No URIs provided!", file=sys.stderr)
+        sys.exit(1)
+    if handler_mode is None:
+        print("ERROR: No handler mode provided!", file=sys.stderr)
+        sys.exit(1)
+
+    path_list: list[Path] = get_path_list_from_uris(handler_mode, uri_list)
+    if len(path_list) == 0:
+        print("ERROR: All provided URIs were invalid!", file=sys.stderr)
+        sys.exit(1)
+
+    app: QApplication = QApplication(sys.argv)
+
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+
+    timer: QTimer = QTimer()
+    timer.timeout.connect(lambda: None)
+    timer.start(500)
+
+    # pylint: disable=unused-variable
+    fsw: FmShimWindow = FmShimWindow(path_list)
+    app.exec_()
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

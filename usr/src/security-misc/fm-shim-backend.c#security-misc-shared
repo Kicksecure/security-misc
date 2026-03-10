@@ -1,0 +1,370 @@
+/*
+ * Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org
+ * See the file COPYING for copying conditions.
+ */
+
+/*
+ * This is the backend half of an org.freedesktop.FileManager1 D-Bus interface
+ * handler. It catches method calls intended for that interface, and executes
+ * the frontend with arguments from the calls. This is intended to work around
+ * issues with PCManFM-Qt's D-Bus handling.
+ */
+
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <err.h>
+#include <string.h>
+#include <unistd.h>
+#include <assert.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <dbus/dbus.h>
+#include <systemd/sd-daemon.h>
+
+DBusError error_data = { 0 };
+DBusConnection *dbus_conn = NULL;
+
+void launch_frontend_process(const char *mode_opt, char **uri_list,
+  int uri_list_len) {
+  /*
+   * Most of the code here is inspired heavily by the qubes-gui-runuser
+   * function 'augment_pam_env_with_systemd_env()'. We need to get systemd's
+   * current set of environment variables to expose those to the frontend
+   * process, otherwise we won't know what display server to use and may run
+   * into theming issues.
+   *
+   * TODO: The environment in Non-Qubes-Whonix's user manager has some
+   * worrying discrepancies when compared to the environment of bash running
+   * in a qterminal window. In particular, 'PATH' is different. We may need to
+   * add a 'dbus-update-activation-environment --systemd --all' call to
+   * /usr/libexec/desktop-config-dist/start-lxqt-session.
+   */
+
+  DBusMessage *env_request = NULL;
+  const char *systemd_manager_str = "org.freedesktop.systemd1.Manager";
+  const char *environment_str = "Environment";
+  dbus_bool_t ret = FALSE;
+  DBusMessage *env_reply = NULL;
+  int reply_type = 0;
+  DBusMessageIter reply_iter = { 0 };
+  DBusMessageIter reply_inner_iter = { 0 };
+  char *inner_iter_typesig = NULL;
+  DBusMessageIter reply_arr_iter = { 0 };
+  const char *env_val = NULL;
+  const char **env_arr = NULL;
+  size_t env_arr_len = 0;
+  const char **arg_arr = NULL;
+  int current_type = 0;
+  size_t uri_list_idx = 0;
+  pid_t fork_pid = 0;
+
+  env_request = dbus_message_new_method_call("org.freedesktop.systemd1",
+    "/org/freedesktop/systemd1",
+    "org.freedesktop.DBus.Properties",
+    "Get");
+  if (env_request == NULL) {
+    warnx("launch_frontend_process: Failed to create D-Bus method call object!");
+    goto dbus_cleanup;
+  }
+
+  ret = dbus_message_append_args(env_request,
+    DBUS_TYPE_STRING, &systemd_manager_str,
+    DBUS_TYPE_STRING, &environment_str,
+    DBUS_TYPE_INVALID);
+  if (ret == FALSE) {
+    warnx("launch_frontend_process: Failed to append arguments to D-Bus method call object!");
+    goto dbus_cleanup;
+  }
+
+  env_reply = dbus_connection_send_with_reply_and_block(dbus_conn,
+    env_request, 500, &error_data);
+  if (env_reply == NULL) {
+    warnx("launch_frontend_process: Failed to request environment data from system! Error name: '%s'. Error contents: '%s'.",
+      error_data.name,
+      error_data.message);
+    dbus_error_free(&error_data);
+    goto dbus_cleanup;
+  }
+
+  reply_type = dbus_message_get_type(env_reply);
+  if (reply_type != DBUS_MESSAGE_TYPE_METHOD_RETURN) {
+    warnx("launch_frontend_process: Did not get method call return object from systemd!");
+    goto dbus_cleanup;
+  }
+
+  ret = dbus_message_iter_init(env_reply, &reply_iter);
+  if (ret == FALSE) {
+    warnx("launch_frontend_process: systemd returned an empty method call return object!");
+    goto dbus_cleanup;
+  }
+
+  if (dbus_message_iter_get_arg_type(&reply_iter) != DBUS_TYPE_VARIANT) {
+    warnx("launch_frontend_process: systemd did not return a variant object!");
+    goto dbus_cleanup;
+  }
+  dbus_message_iter_recurse(&reply_iter, &reply_inner_iter);
+
+  inner_iter_typesig = dbus_message_iter_get_signature(&reply_inner_iter);
+  if (inner_iter_typesig == NULL) {
+    err(1, "launch_frontend_process: Failed to allocate memory for type signature!");
+  }
+  if (strcmp(inner_iter_typesig, "as") != 0) {
+    warnx("launch_frontend_process: Variant object from systemd does not contain a string array!");
+    goto dbus_cleanup;
+  }
+  if (dbus_message_iter_get_arg_type(&reply_inner_iter) != DBUS_TYPE_ARRAY) {
+    warnx("launch_frontend_process: Variant object from systemd reported itself as a string array, but is not an array!");
+    goto dbus_cleanup;
+  }
+  dbus_message_iter_recurse(&reply_inner_iter, &reply_arr_iter);
+
+  while ((current_type = dbus_message_iter_get_arg_type(&reply_arr_iter))
+    != DBUS_TYPE_INVALID) {
+    if (current_type != DBUS_TYPE_STRING) {
+      warnx("launch_frontend_process: Non-string item found in string array!");
+      goto dbus_cleanup;
+    }
+    dbus_message_iter_get_basic(&reply_arr_iter, &env_val);
+    env_arr_len++;
+    env_arr = reallocarray(env_arr, env_arr_len, sizeof(const char *));
+    if (env_arr == NULL) {
+      err(1, "launch_frontend_process: Failed to allocate memory for environment array!");
+    }
+    env_arr[env_arr_len - 1] = env_val;
+    dbus_message_iter_next(&reply_arr_iter);
+  }
+
+  /* execve requires the environment array to be null terminated */
+  env_arr_len++;
+  env_arr = reallocarray(env_arr, env_arr_len, sizeof(const char *));
+  if (env_arr == NULL) {
+    err(1, "launch_frontend_process: Failed to allocate memory for environment array!");
+  }
+  env_arr[env_arr_len - 1] = NULL;
+
+  /* Now that we have the environment array, we can build the arg array. */
+  arg_arr = reallocarray(arg_arr, (size_t)(uri_list_len) + 4,
+    sizeof(const char *));
+  if (arg_arr == NULL) {
+    err(1, "launch_frontend_process: Failed to allocate memory for argument array!");
+  }
+  arg_arr[0] = "/usr/bin/fm-shim-frontend";
+  arg_arr[1] = mode_opt;
+  arg_arr[2] = "--";
+  for (uri_list_idx = 0; uri_list_idx < (size_t)(uri_list_len); uri_list_idx++) {
+    arg_arr[uri_list_idx + 3] = uri_list[uri_list_idx];
+  }
+  arg_arr[uri_list_len + 3] = NULL;
+
+  /* Fork and exec the frontend */
+  fork_pid = fork();
+  if (fork_pid == -1) {
+    err(1, "launch_frontend_process: fork failed");
+  } else if (fork_pid == 0) {
+    /* child */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+    if (execve(arg_arr[0], (char **)arg_arr, (char **)env_arr) == -1) {
+      warn("launch_frontend_process: Could not exec '/usr/bin/fm-shim-frontend'");
+      _exit(1);
+    }
+#pragma GCC diagnostic pop
+  }
+
+  /* parent */
+
+dbus_cleanup:
+  /* Don't free the elements of arg_arr, they are not freeable. */
+  if (arg_arr != NULL) {
+    free(arg_arr);
+  }
+  /* Ditto for env_arr */
+  if (env_arr != NULL) {
+    free(env_arr);
+  }
+  if (inner_iter_typesig != NULL) {
+    dbus_free(inner_iter_typesig);
+  }
+  if (env_reply != NULL) {
+    dbus_message_unref(env_reply);
+  }
+  if (env_request != NULL) {
+    dbus_message_unref(env_request);
+  }
+}
+
+/*
+ * All three of the method calls we handle take the same arguments, and we do
+ * the hard work in the frontend, so we can use the same function here to
+ * handle all the calls.
+ */
+void handle_dbus_method_call(DBusMessage *dbus_msg,
+  const char *method_call_name, const char *mode_opt) {
+  char **uri_list = NULL;
+  int uri_list_len = 0;
+  dbus_bool_t did_extract_args = FALSE;
+  const char *startup_id = NULL;
+  DBusMessage *method_return = NULL;
+
+  did_extract_args = dbus_message_get_args(dbus_msg,
+    &error_data,
+    DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &uri_list, &uri_list_len,
+    DBUS_TYPE_STRING, &startup_id,
+    DBUS_TYPE_INVALID);
+  if (!did_extract_args) {
+    warnx("handle_dbus_method_call: Received a D-Bus method call for method '%s', but could not get arguments. Error name: '%s'. Error contents: '%s'.",
+      method_call_name,
+      error_data.name,
+      error_data.message);
+    dbus_error_free(&error_data);
+    goto method_cleanup;
+  }
+
+  if (dbus_message_get_no_reply(dbus_msg) == TRUE) {
+    launch_frontend_process(mode_opt, uri_list, uri_list_len);
+    goto method_cleanup;
+  }
+
+  method_return = dbus_message_new_method_return(dbus_msg);
+  if (method_return == NULL) {
+    err(1, "handle_dbus_method_call: Could not allocate memory for a method return!");
+  }
+  if (dbus_connection_send(dbus_conn, method_return, NULL) == FALSE) {
+    err(1, "handle_dbus_method_call: Could not queue method return!");
+  }
+  /*
+   * We could probably get away with omitting the flush, but browsers will
+   * attempt to launch the file manager by themselves if they don't get a
+   * return message quickly enough, so push this out as quickly as possible.
+   */
+  dbus_connection_flush(dbus_conn);
+
+  launch_frontend_process(mode_opt, uri_list, uri_list_len);
+
+method_cleanup:
+  if (method_return != NULL) {
+    dbus_message_unref(method_return);
+  }
+  if (uri_list != NULL) {
+    dbus_free_string_array(uri_list);
+  }
+}
+
+int main(void) {
+  struct sigaction sigchld_act = { 0 };
+  int dbus_name_request_rslt = 0;
+
+  sigchld_act.sa_handler = SIG_IGN;
+  if (sigaction(SIGCHLD, &sigchld_act, NULL) == -1) {
+    err(1, "Failed to enable automatic child process reaping");
+  }
+
+  dbus_error_init(&error_data);
+
+  dbus_conn = dbus_bus_get(DBUS_BUS_SESSION, &error_data);
+  if (dbus_conn == NULL) {
+    errx(1, "Failed to connect to D-Bus session bus. Error name: '%s'. Error contents: '%s'.",
+      error_data.name,
+      error_data.message);
+  }
+
+  dbus_name_request_rslt = dbus_bus_request_name(dbus_conn,
+    "org.freedesktop.FileManager1",
+    DBUS_NAME_FLAG_REPLACE_EXISTING,
+    &error_data);
+  if (dbus_name_request_rslt == -1) {
+    errx(1, "Failed to request 'org.freedesktop.FileManager1' name from D-Bus. Error name: '%s'. Error contents: '%s'.",
+      error_data.name,
+      error_data.message);
+  }
+  switch(dbus_name_request_rslt) {
+  case DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER:
+    printf("Successfully obtained 'org.freedesktop.FileManager1' name from D-Bus.\n");
+    break;
+  case DBUS_REQUEST_NAME_REPLY_IN_QUEUE:
+    warnx("Requested 'org.freedesktop.FileManager1' name from D-Bus, but was placed in queue.");
+    warnx("This may be a security risk! Please report this bug!");
+    break;
+  case DBUS_REQUEST_NAME_REPLY_ALREADY_OWNER:
+    warnx("Possible bug, we already own 'org.freedesktop.FileManager1' name?");
+    break;
+  default:
+    errx(1, "Unexpected name request result '%d'!", dbus_name_request_rslt);
+    break;
+  }
+
+  sd_notify(0, "READY=1");
+
+  while (true) {
+    DBusMessage *dbus_msg = NULL;
+    int msg_type = 0;
+    const char *dbus_msg_obj_path = NULL;
+    const char *dbus_msg_iface = NULL;
+    const char *dbus_msg_method = NULL;
+    const char *dbus_msg_sender = NULL;
+
+    if ((dbus_msg = dbus_connection_pop_message(dbus_conn)) == NULL) {
+      if (!dbus_connection_read_write(dbus_conn, -1)) {
+        break;
+      }
+      continue;
+    }
+
+    msg_type = dbus_message_get_type(dbus_msg);
+    if (msg_type != DBUS_MESSAGE_TYPE_METHOD_CALL) {
+      /* Commented out because this happens normally during launch. */
+      /*warnx("Received a D-Bus message that was not a method call!");*/
+      goto cleanup;
+    }
+
+    dbus_msg_obj_path = dbus_message_get_path(dbus_msg);
+    if (dbus_msg_obj_path == NULL) {
+      warnx("Received a D-Bus method call with a NULL object path!");
+      goto cleanup;
+    }
+    if (strcmp(dbus_msg_obj_path, "/org/freedesktop/FileManager1") != 0) {
+      warnx("Received a D-Bus method call for object path '%s', rather than '/org/freedesktop/FileManager1'!",
+        dbus_msg_obj_path);
+      goto cleanup;
+    }
+
+    dbus_msg_iface = dbus_message_get_interface(dbus_msg);
+    if (dbus_msg_iface == NULL) {
+      warnx("Received a D-Bus method call with a NULL interface!");
+      goto cleanup;
+    }
+    if (strcmp(dbus_msg_iface, "org.freedesktop.FileManager1") != 0) {
+      warnx("Received a D-Bus method call for interface '%s', rather than 'org.freedesktop.FileManager1'!",
+        dbus_msg_iface);
+      goto cleanup;
+    }
+
+    dbus_msg_method = dbus_message_get_member(dbus_msg);
+    if (dbus_msg_method == NULL) {
+      warnx("Received a D-Bus method call with a NULL method!");
+      goto cleanup;
+    }
+    if (strcmp(dbus_msg_method, "ShowFolders") == 0) {
+      handle_dbus_method_call(dbus_msg, "ShowFolders", "--show-folders");
+    } else if (strcmp(dbus_msg_method, "ShowItems") == 0) {
+      handle_dbus_method_call(dbus_msg, "ShowItems", "--show-items");
+    } else if (strcmp(dbus_msg_method, "ShowItemProperties") == 0) {
+      handle_dbus_method_call(dbus_msg, "ShowItemProperties",
+        "--show-item-properties");
+    } else {
+      warnx("Received a D-Bus method call for unrecognized method '%s'!",
+        dbus_msg_method);
+    }
+
+cleanup:
+    if (dbus_msg != NULL) {
+      dbus_message_unref(dbus_msg);
+      dbus_msg = NULL;
+    }
+    dbus_msg_obj_path = NULL;
+    dbus_msg_iface = NULL;
+    dbus_msg_method = NULL;
+  }
+}
