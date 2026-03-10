@@ -303,7 +303,6 @@ int main(void) {
     const char *dbus_msg_obj_path = NULL;
     const char *dbus_msg_iface = NULL;
     const char *dbus_msg_method = NULL;
-    const char *dbus_msg_sender = NULL;
 
     if ((dbus_msg = dbus_connection_pop_message(dbus_conn)) == NULL) {
       if (!dbus_connection_read_write(dbus_conn, -1)) {
