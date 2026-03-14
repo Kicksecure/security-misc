@@ -1,3 +1,34 @@
+commit a6c8ba2c5e348ebc419d8ae8148108fba36f6fed
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Mar 14 07:03:41 2026 -0400
+
+    remove superfluous file
+
+commit f9a182cb87d16a498e65fb9cb40a3c174683fe75
+Merge: 0da8cad9 76734023
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Mar 14 07:03:11 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 767340233fa3b305ac53f56c843c348c44695bf3
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Tue Mar 10 00:17:29 2026 -0400
+
+    Fix unused variable in fm-shim-backend.c
+
+commit 0bf666a87bcfb6f452a16a37d90c813e372fea89
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Mar 9 22:28:52 2026 -0400
+
+    Add work-in-progress D-Bus shim for org.freedesktop.FileManager1
+
+commit 0da8cad962683701a77c29b6ba49a2f80e125690
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Feb 23 13:34:15 2026 +0000
+
+    bumped changelog version
+
 commit ff99577a0aef5b52619fdccc9e933ce8af5aaf2b
 Merge: 196ff190 df6ca04d
 Author: Patrick Schleizer <adrelanos@whonix.org>
