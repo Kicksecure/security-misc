@@ -119,6 +119,10 @@ root root 755 /etc/cron.d"
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
 
+build_fm_shim_backend() {
+  /usr/libexec/security-misc/build-fm-shim-backend
+}
+
 case "$1" in
     configure)
         if [ -d /etc/skel/.gnupg ]; then
@@ -155,6 +159,9 @@ case "$1" in
             chmod 0600 "${usbguard_config_file}"
           fi
         done
+
+        ## Build the org.freedesktop.FileManager1 shim backend.
+        build_fm_shim_backend
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

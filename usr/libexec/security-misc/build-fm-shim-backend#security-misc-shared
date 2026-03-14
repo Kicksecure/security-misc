@@ -1,0 +1,59 @@
+#!/bin/bash
+
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+export LC_ALL=C
+
+gcc_hardening_options=(
+  "-O2" "-Wall" "-Wextra" "-Wformat" "-Wformat=2" "-Wconversion"
+  "-Wimplicit-fallthrough" "-Werror=format-security" "-Werror=implicit"
+  "-Werror=int-conversion" "-Werror=incompatible-pointer-types"
+  "-Wformat-overflow" "-Wformat-signedness" "-Wnull-dereference" "-Winit-self"
+  "-Wmissing-include-dirs" "-Wshift-negative-value" "-Wshift-overflow"
+  "-Wswitch-default" "-Wuninitialized" "-Walloca" "-Warray-bounds"
+  "-Wfloat-equal" "-Wshadow" "-Wpointer-arith" "-Wundef" "-Wunused-macros"
+  "-Wbad-function-cast" "-Wcast-qual" "-Wcast-align" "-Wwrite-strings"
+  "-Wdate-time" "-Wstrict-prototypes" "-Wold-style-definition"
+  "-Wredundant-decls" "-Winvalid-utf8" "-Wvla" "-Wdisabled-optimization"
+  "-Wstack-protector" "-Wdeclaration-after-statement" "-Wtrampolines"
+  "-Wbidi-chars=any,ucn" "-Wformat-overflow=2" "-Wformat-truncation=2"
+  "-Wshift-overflow=2" "-Wtrivial-auto-var-init" "-Wstringop-overflow=3"
+  "-Wstrict-flex-arrays" "-Walloc-zero" "-Warray-bounds=2"
+  "-Wattribute-alias=2" "-Wduplicated-branches" "-Wduplicated-cond"
+  "-Wcast-align=strict" "-Wjump-misses-init" "-Wlogical-op" "-U_FORTIFY_SOURCE"
+  "-D_FORTIFY_SOURCE=3" "-fstack-clash-protection" "-fstack-protector-all"
+  "-fno-delete-null-pointer-checks" "-fno-strict-aliasing"
+  "-fstrict-flex-arrays=3" "-ftrivial-auto-var-init=pattern" "-fPIE"
+)
+
+gcc_machine="$(gcc -dumpmachine)"
+if [ "${gcc_machine}" = 'x86_64-linux-gnu' ]; then
+  gcc_hardening_options+=( '-fcf-protection=full' )
+elif [ "${gcc_machine}" = 'aarch64-linux-gnu' ]; then
+  gcc_hardening_options+=( '-mbranch-protection=standard' )
+fi
+
+gcc_hardening_options+=(
+  "-Wl,-z,nodlopen" "-Wl,-z,noexecstack" "-Wl,-z,relro" "-Wl,-z,now"
+  "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
+)
+
+gcc \
+  -g \
+  $(pkg-config --cflags dbus-1) \
+  $(pkg-config --cflags libsystemd) \
+  /usr/src/security-misc/fm-shim-backend.c \
+  -o /usr/bin/fm-shim-backend \
+  $(pkg-config --libs dbus-1) \
+  $(pkg-config --libs libsystemd) \
+  "${gcc_hardening_options[@]}" \
+  || {
+    printf "%s\n" 'Could not compile fm-shim-backend executable!'
+    exit 1
+  }

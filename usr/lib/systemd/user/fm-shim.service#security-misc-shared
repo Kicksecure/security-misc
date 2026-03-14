@@ -1,0 +1,12 @@
+[Unit]
+Description=org.freedesktop.FileManager1 handler
+StartLimitIntervalSec=10
+StartLimitBurst=3
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/fm-shim-backend
+Restart=always
+
+[Install]
+WantedBy=default.target
