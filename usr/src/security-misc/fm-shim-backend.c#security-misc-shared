@@ -58,6 +58,7 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   const char **arg_arr = NULL;
   int current_type = 0;
   size_t uri_list_idx = 0;
+  size_t uri_count = 0;
   pid_t fork_pid = 0;
 
   env_request = dbus_message_new_method_call("org.freedesktop.systemd1",
@@ -82,8 +83,8 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
     env_request, 500, &error_data);
   if (env_reply == NULL) {
     warnx("launch_frontend_process: Failed to request environment data from system! Error name: '%s'. Error contents: '%s'.",
-      error_data.name,
-      error_data.message);
+      error_data.name ? error_data.name : "(null)",
+      error_data.message ? error_data.message : "(null)");
     dbus_error_free(&error_data);
     goto dbus_cleanup;
   }
@@ -144,19 +145,28 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   }
   env_arr[env_arr_len - 1] = NULL;
 
+  if (uri_list_len < 0) {
+    warnx("launch_frontend_process: Negative URI list length received!");
+    goto dbus_cleanup;
+  }
+  uri_count = (size_t)(uri_list_len);
+  if (uri_count > SIZE_MAX - 4) {
+    warnx("launch_frontend_process: URI list too large!");
+    goto dbus_cleanup;
+  }
+
   /* Now that we have the environment array, we can build the arg array. */
-  arg_arr = reallocarray(arg_arr, (size_t)(uri_list_len) + 4,
-    sizeof(const char *));
+  arg_arr = reallocarray(arg_arr, uri_count + 4, sizeof(const char *));
   if (arg_arr == NULL) {
     err(1, "launch_frontend_process: Failed to allocate memory for argument array!");
   }
   arg_arr[0] = "/usr/bin/fm-shim-frontend";
   arg_arr[1] = mode_opt;
   arg_arr[2] = "--";
-  for (uri_list_idx = 0; uri_list_idx < (size_t)(uri_list_len); uri_list_idx++) {
+  for (uri_list_idx = 0; uri_list_idx < uri_count; uri_list_idx++) {
     arg_arr[uri_list_idx + 3] = uri_list[uri_list_idx];
   }
-  arg_arr[uri_list_len + 3] = NULL;
+  arg_arr[uri_count + 3] = NULL;
 
   /* Fork and exec the frontend */
   fork_pid = fork();
@@ -216,8 +226,8 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
   if (!did_extract_args) {
     warnx("handle_dbus_method_call: Received a D-Bus method call for method '%s', but could not get arguments. Error name: '%s'. Error contents: '%s'.",
       method_call_name,
-      error_data.name,
-      error_data.message);
+      error_data.name ? error_data.name : "(null)",
+      error_data.message ? error_data.message : "(null)");
     dbus_error_free(&error_data);
     goto method_cleanup;
   }
@@ -266,8 +276,8 @@ int main(void) {
   dbus_conn = dbus_bus_get(DBUS_BUS_SESSION, &error_data);
   if (dbus_conn == NULL) {
     errx(1, "Failed to connect to D-Bus session bus. Error name: '%s'. Error contents: '%s'.",
-      error_data.name,
-      error_data.message);
+      error_data.name ? error_data.name : "(null)",
+      error_data.message ? error_data.message : "(null)");
   }
 
   dbus_name_request_rslt = dbus_bus_request_name(dbus_conn,
@@ -276,8 +286,8 @@ int main(void) {
     &error_data);
   if (dbus_name_request_rslt == -1) {
     errx(1, "Failed to request 'org.freedesktop.FileManager1' name from D-Bus. Error name: '%s'. Error contents: '%s'.",
-      error_data.name,
-      error_data.message);
+      error_data.name ? error_data.name : "(null)",
+      error_data.message ? error_data.message : "(null)");
   }
   switch(dbus_name_request_rslt) {
   case DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER:
