@@ -23,11 +23,18 @@
 #include <dbus/dbus.h>
 #include <systemd/sd-daemon.h>
 
+/* 
+ * 4096 characters per URI * 256 URIs = 1 MiB of data + 256 bytes of NULLs
+ * that can be passed to the frontend at once.
+ */
+#define MAX_OPEN_PATHS 256
+#define MAX_URI_LEN 4096
+
 DBusError error_data = { 0 };
 DBusConnection *dbus_conn = NULL;
 
 void launch_frontend_process(const char *mode_opt, char **uri_list,
-  int uri_list_len) {
+  size_t uri_list_len) {
   /*
    * Most of the code here is inspired heavily by the qubes-gui-runuser
    * function 'augment_pam_env_with_systemd_env()'. We need to get systemd's
@@ -58,7 +65,6 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   const char **arg_arr = NULL;
   int current_type = 0;
   size_t uri_list_idx = 0;
-  size_t uri_count = 0;
   pid_t fork_pid = 0;
 
   env_request = dbus_message_new_method_call("org.freedesktop.systemd1",
@@ -145,28 +151,28 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   }
   env_arr[env_arr_len - 1] = NULL;
 
-  if (uri_list_len < 0) {
-    warnx("launch_frontend_process: Negative URI list length received!");
-    goto dbus_cleanup;
-  }
-  uri_count = (size_t)(uri_list_len);
-  if (uri_count > SIZE_MAX - 4) {
+  /* 
+   * This should be impossible since uri_list_len is originally a signed
+   * integer in handle_dbus_method_call and is then cast to a size_t, but we
+   * check for this anyway.
+   */
+  if (uri_list_len > SIZE_MAX - 4) {
     warnx("launch_frontend_process: URI list too large!");
     goto dbus_cleanup;
   }
 
   /* Now that we have the environment array, we can build the arg array. */
-  arg_arr = reallocarray(arg_arr, uri_count + 4, sizeof(const char *));
+  arg_arr = reallocarray(arg_arr, uri_list_len + 4, sizeof(const char *));
   if (arg_arr == NULL) {
     err(1, "launch_frontend_process: Failed to allocate memory for argument array!");
   }
   arg_arr[0] = "/usr/bin/fm-shim-frontend";
   arg_arr[1] = mode_opt;
   arg_arr[2] = "--";
-  for (uri_list_idx = 0; uri_list_idx < uri_count; uri_list_idx++) {
+  for (uri_list_idx = 0; uri_list_idx < uri_list_len; uri_list_idx++) {
     arg_arr[uri_list_idx + 3] = uri_list[uri_list_idx];
   }
-  arg_arr[uri_count + 3] = NULL;
+  arg_arr[uri_list_len + 3] = NULL;
 
   /* Fork and exec the frontend */
   fork_pid = fork();
@@ -213,14 +219,16 @@ dbus_cleanup:
 void handle_dbus_method_call(DBusMessage *dbus_msg,
   const char *method_call_name, const char *mode_opt) {
   char **uri_list = NULL;
-  int uri_list_len = 0;
+  int uri_list_len_int = 0;
+  size_t uri_list_len = 0;
   dbus_bool_t did_extract_args = FALSE;
   const char *startup_id = NULL;
   DBusMessage *method_return = NULL;
+  size_t uri_list_idx = 0;
 
   did_extract_args = dbus_message_get_args(dbus_msg,
     &error_data,
-    DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &uri_list, &uri_list_len,
+    DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &uri_list, &uri_list_len_int,
     DBUS_TYPE_STRING, &startup_id,
     DBUS_TYPE_INVALID);
   if (!did_extract_args) {
@@ -230,6 +238,25 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
       error_data.message ? error_data.message : "(null)");
     dbus_error_free(&error_data);
     goto method_cleanup;
+  }
+
+  if (uri_list_len_int > MAX_OPEN_PATHS) {
+    warnx("handle_dbus_method_call: Received a D-Bus method call attempting to open more than %d paths at once, ignoring.",
+      MAX_OPEN_PATHS);
+    goto method_cleanup;
+  }
+  if (uri_list_len_int < 0) {
+    warnx("handle_dbus_method_call: Negative URI list length received!");
+    goto method_cleanup;
+  }
+  uri_list_len = (size_t)uri_list_len_int;
+
+  for (uri_list_idx = 0; uri_list_idx < uri_list_len; uri_list_idx++) {
+    if (strnlen(uri_list[uri_list_idx], MAX_URI_LEN + 1) > MAX_URI_LEN) {
+      warnx("handle_dbus_method_call: Received a D-Bus method call attempting to open a path URI longer than %d characters, ignoring.",
+        MAX_URI_LEN);
+      goto method_cleanup;
+    }
   }
 
   if (dbus_message_get_no_reply(dbus_msg) == TRUE) {

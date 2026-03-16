@@ -14,12 +14,13 @@ import sys
 import os
 import signal
 import subprocess
+import urllib.parse
 from pathlib import Path
-from typing import NoReturn
+from typing import NoReturn, cast
 from types import FrameType
 
-from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QFont
+from PyQt5.QtCore import QTimer, QObject, QEvent
+from PyQt5.QtGui import QFontDatabase
 from PyQt5.QtWidgets import (
     QApplication,
     QDialog,
@@ -28,7 +29,59 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QHBoxLayout,
+    QWidget,
+    QScrollBar,
+    QLayout,
+    QMessageBox,
 )
+
+
+class WidgetShowBinding(QObject):
+    """
+    Detects when a widget is shown or hidden, and shows or hides another
+    widget in response.
+    """
+
+    def __init__(
+        self,
+        bound_widget: QWidget,
+        parent: QObject | None = None
+    ) -> None:
+        """
+        ScrollBarEventFilter constructor.
+        """
+
+        super().__init__(parent)
+
+        self.bound_widget = bound_widget
+
+    # pylint: disable=invalid-name, unused-argument
+    def eventFilter(self, obj: QObject | None, event: QEvent | None) -> bool:
+        """
+        Shows or hides the bound widget when the binding widget is shown or
+        hidden.
+        """
+
+        if event is None:
+            return False
+
+        # pylint: disable=no-member
+        do_recalc_layout: bool = False
+        if event.type() == QEvent.Type.Show:
+            self.bound_widget.show()
+            do_recalc_layout = True
+        # pylint: disable=no-member
+        elif event.type() == QEvent.Type.Hide:
+            self.bound_widget.hide()
+            do_recalc_layout = True
+        if do_recalc_layout:
+            parent_object: QObject | None = self.bound_widget.parent()
+            assert parent_object is not None
+            parent_widget: QWidget = cast(QWidget, parent_object)
+            parent_layout: QLayout | None = parent_widget.layout()
+            assert parent_layout is not None
+            parent_layout.update()
+        return False
 
 
 # pylint: disable=too-many-instance-attributes
@@ -59,11 +112,72 @@ class FmShimWindow(QDialog):
 
         self.dir_list_view: QTextEdit = QTextEdit()
         self.dir_list_view.setReadOnly(True)
-        self.dir_list_view.setCurrentFont(QFont("Monospace", 10))
-        self.dir_list_view.setText("\n".join([str(x) for x in dir_list]))
+        # pylint: disable=no-member
+        self.dir_list_view.setLineWrapMode(QTextEdit.LineWrapMode.NoWrap)
+        # pylint: disable=no-member
+        self.dir_list_view.setCurrentFont(
+            QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
+        )
+        self.dir_list_view.setText(
+            "\n".join([str(x) for x in dir_list]).replace(
+                " ", "\N{MIDDLE DOT}"
+            )
+        )
         self.core_layout.addWidget(self.dir_list_view)
 
-        self.foot_label: QLabel = QLabel("Would you like to allow this?")
+        self.dot_note_label: QLabel = QLabel(
+            "Note: Any spaces in the above filenames are displayed as "
+            + "\"middle dot\" (\N{MIDDLE DOT}) characters."
+        )
+        self.core_layout.addWidget(self.dot_note_label)
+
+        horiz_scroll_bar: QScrollBar | None = (
+            self.dir_list_view.horizontalScrollBar()
+        )
+        assert horiz_scroll_bar is not None
+        self.horiz_overflow_warning_label: QLabel = QLabel(
+            "<font color=\"red\">WARNING:</font> Some of the paths listed "
+            + "above are too long to display all at once. Double-check that "
+            + "the paths do not look suspicious."
+        )
+        self.horiz_overflow_warning_label.setWordWrap(True)
+        self.core_layout.addWidget(self.horiz_overflow_warning_label)
+        self.horiz_overflow_warning_label.setVisible(
+            horiz_scroll_bar.isVisible()
+        )
+        self.horiz_overflow_warning_binding: WidgetShowBinding = (
+            WidgetShowBinding(self.horiz_overflow_warning_label, self)
+        )
+        horiz_scroll_bar.installEventFilter(
+            self.horiz_overflow_warning_binding
+        )
+
+        vert_scroll_bar: QScrollBar | None = (
+            self.dir_list_view.verticalScrollBar()
+        )
+        assert vert_scroll_bar is not None
+        self.vert_overflow_warning_label: QLabel = QLabel(
+            "<font color=\"red\">WARNING:</font> Too many paths are listed "
+            + "above to display all at once. A new file manager window will "
+            + "be opened for every listed path. Double-check that this is "
+            + "what you want."
+        )
+        self.vert_overflow_warning_label.setWordWrap(True)
+        self.core_layout.addWidget(self.vert_overflow_warning_label)
+        self.vert_overflow_warning_label.setVisible(
+            vert_scroll_bar.isVisible()
+        )
+        self.vert_overflow_warning_binding: WidgetShowBinding = (
+            WidgetShowBinding(self.vert_overflow_warning_label, self)
+        )
+        vert_scroll_bar.installEventFilter(
+            self.vert_overflow_warning_binding
+        )
+
+        self.foot_label: QLabel = QLabel(
+            "Would you like to open these directories? A separate file "
+            + "manager window will be opened for every listed path."
+        )
         self.core_layout.addWidget(self.foot_label)
 
         self.button_layout: QHBoxLayout = QHBoxLayout()
@@ -81,6 +195,7 @@ class FmShimWindow(QDialog):
 
         self.show()
 
+    # pylint: disable=too-many-branches
     def open_dir_list(self) -> None:
         """
         Opens all specified directories using the default file manager.
@@ -100,16 +215,53 @@ class FmShimWindow(QDialog):
             )
             sys.exit(1)
 
+        ## Expect a plain desktop filename, not a path.
+        if (
+            default_fm_desktop_file == ""
+            or "/" in default_fm_desktop_file
+            or not default_fm_desktop_file.endswith(".desktop")
+        ):
+            print(
+                "ERROR: Invalid default file manager desktop file name!",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
         search_dir_list: list[str] = []
+
+        ## "" rather than None is intentional here, as
+        ## os.environ["XDG_DATA_HOME"] may be "", not None.
+        xdg_data_home: str = ""
         try:
-            search_dir_list.append(os.environ["XDG_DATA_HOME"])
+            xdg_data_home = os.environ["XDG_DATA_HOME"]
         except KeyError:
-            search_dir_list.append(os.environ["HOME"] + "/.local/share")
+            pass
+        if xdg_data_home == "":
+            home_env_var = ""
+            try:
+                home_env_var = os.environ["HOME"]
+            except KeyError:
+                pass
+            if home_env_var == "":
+                print(
+                    "ERROR: Both the XDG_DATA_HOME and HOME environment "
+                    + "variables are either undefined or empty!",
+                    file=sys.stderr
+                )
+                sys.exit(1)
+            xdg_data_home = home_env_var + "/.local/share"
+        search_dir_list.append(xdg_data_home)
+
+        ## Again, using "" rather than None is intentional here.
+        xdg_data_dirs: str = ""
         try:
-            search_dir_list.extend(os.environ["XDG_DATA_DIRS"].split(":"))
+            xdg_data_dirs = os.environ["XDG_DATA_DIRS"]
         except Exception:
-            search_dir_list.append("/usr/local/share")
-            search_dir_list.append("/usr/share")
+            pass
+        xdg_data_dir_list = [p for p in xdg_data_dirs.split(":") if p != ""]
+        if len(xdg_data_dir_list) == 0:
+            xdg_data_dir_list = ["/usr/local/share", "/usr/share"]
+        search_dir_list.extend(xdg_data_dir_list)
 
         found_desktop_file: bool = False
         for search_dir in search_dir_list:
@@ -129,14 +281,17 @@ class FmShimWindow(QDialog):
         for target_dir in self.dir_list:
             if target_dir.is_dir():
                 subprocess.run(
-                    ["gio", "launch", default_fm_path, target_dir],
+                    ["gio", "launch", str(default_fm_path), str(target_dir)],
                     check=False,
                 )
             else:
-                print(
+                QMessageBox.warning(
+                    self,
+                    "Open Directories",
                     f"ERROR: '{target_dir}' was no longer a dir when checked "
-                    + "before opening, possible attack?",
-                    file=sys.stderr,
+                    + "before opening! This may be the result of an "
+                    + "attempted attack. No further directories will be "
+                    + "opened."
                 )
                 sys.exit(1)
 
@@ -172,20 +327,43 @@ def get_path_list_from_uris(
     path_set: set[Path] = set()
 
     for uri in uri_list:
-        ## Only respect local file URIs.
-        if not uri.startswith("file:///"):
+        ## Do not permit Unicode or control characters in URIs. This doesn't
+        ## guarantee that the file path will be free of Unicode due to URI
+        ## escaping, but it should prevent hitting any dangerous edge-cases in
+        ## Python's unicode handling.
+        if any((not 0x20 <= ord(uri_char) <= 0x7E) for uri_char in uri):
             continue
 
-        ## Do not permit Unicode or control characters in URIs.
+        uri_components: urllib.parse.SplitResult = urllib.parse.urlsplit(uri)
+
+        ## Sanity-check the URI (must be a local file URI, must not have a
+        ## query or fragment component)
+        if (
+            uri_components.scheme != "file"
+            or uri_components.netloc not in ("", "localhost")
+            or uri_components.query != ""
+            or uri_components.fragment != ""
+        ):
+            continue
+
+        path_str: str = urllib.parse.unquote(uri_components.path)
+
+        ## Do not permit Unicode or control characters in the path.
         ## TODO: This could cause problems for non-English users, do we want
         ## to establish a set of "safe" Unicode?
-        for uri_char in uri:
-            if not 0x20 <= ord(uri_char) <= 0x7E:
-                continue
+        if any(
+            (not 0x20 <= ord(path_char) <= 0x7E) for path_char in path_str
+        ):
+            continue
 
-        ## "file:///" is 8 characters long, but we want to keep the leading /,
-        ## so we only remove the first 7 characters.
-        path_item: Path = Path(uri[7:])
+        ## Ensure path_str is absolute.
+        if not path_str.startswith("/"):
+            continue
+
+        try:
+            path_item: Path = Path(path_str).resolve(strict=True)
+        except OSError:
+            continue
 
         ## Grab the parent dir if necessary. Note that we aren't able to
         ## actually highlight items or show item properties with the API that
@@ -203,7 +381,9 @@ def get_path_list_from_uris(
 
         path_set.add(path_item)
 
-    return list(path_set)
+    output_list: list[Path] = list(path_set)
+    output_list.sort()
+    return output_list
 
 
 
