@@ -23,7 +23,7 @@
 #include <dbus/dbus.h>
 #include <systemd/sd-daemon.h>
 
-/* 
+/*
  * 4096 characters per URI * 256 URIs = 1 MiB of data + 256 bytes of NULLs
  * that can be passed to the frontend at once.
  */
@@ -151,7 +151,7 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   }
   env_arr[env_arr_len - 1] = NULL;
 
-  /* 
+  /*
    * This should be impossible since uri_list_len is originally a signed
    * integer in handle_dbus_method_call and is then cast to a size_t, but we
    * check for this anyway.
