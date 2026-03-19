@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import NoReturn, cast
 from types import FrameType
 
-from PyQt5.QtCore import QTimer, QObject, QEvent
+from PyQt5.QtCore import QTimer, QObject, QEvent, Qt
 from PyQt5.QtGui import QFontDatabase
 from PyQt5.QtWidgets import (
     QApplication,
@@ -118,7 +118,7 @@ class FmShimWindow(QDialog):
         self.dir_list_view.setCurrentFont(
             QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
         )
-        self.dir_list_view.setText(
+        self.dir_list_view.setPlainText(
             "\n".join([str(x) for x in dir_list]).replace(
                 " ", "\N{MIDDLE DOT}"
             )
@@ -288,10 +288,15 @@ class FmShimWindow(QDialog):
                 QMessageBox.warning(
                     self,
                     "Open Directories",
-                    f"ERROR: '{target_dir}' was no longer a dir when checked "
-                    + "before opening! This may be the result of an "
-                    + "attempted attack. No further directories will be "
-                    + "opened."
+                    Qt.convertFromPlainText(
+                        "ERROR: The following path was no longer a dir when "
+                        + "checked before opening:\n"
+                        + "\n"
+                        + f"{target_dir}\n"
+                        + "\n"
+                        + "This may be the result of an attempted attack. No "
+                        + "further directories will be opened."
+                    )
                 )
                 sys.exit(1)
 
@@ -360,9 +365,9 @@ def get_path_list_from_uris(
         if not path_str.startswith("/"):
             continue
 
-        try:
-            path_item: Path = Path(path_str).resolve(strict=True)
-        except OSError:
+        ## Ensure the path is valid, exists, and is accessible.
+        path_item: Path = Path(path_str)
+        if not path_item.exists(follow_symlinks=False):
             continue
 
         ## Grab the parent dir if necessary. Note that we aren't able to
@@ -372,6 +377,13 @@ def get_path_list_from_uris(
         ## action.
         if handler_mode in ("--show-items", "--show-item-properties"):
             path_item = path_item.parent
+
+        ## Resolve symlinks and '..' components of the path so the user sees
+        ## what they're actually going to open.
+        try:
+            path_item = path_item.resolve(strict=True)
+        except OSError:
+            continue
 
         ## Only respect directories that we can access the contents of.
         if not path_item.is_dir():
