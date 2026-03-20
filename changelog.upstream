@@ -1,3 +1,40 @@
+commit 89908e0938929c6ee6f39dbd510f4bc889ca31c1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Mar 19 11:24:36 2026 -0400
+
+    copyright
+
+commit 6c0b8dbc50840950756b4d28c5bb7622e035b11d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Mar 17 13:57:12 2026 -0400
+
+    remove trailing spaces
+
+commit 58555692e771846548282dd55e696117d95abff4
+Merge: ce5034d9 b34ee621
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Mar 17 13:55:43 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit b34ee6216809232cc09453f10437fd14e34ea318
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Mar 15 21:03:44 2026 -0400
+
+    Further fm-shim frontend and backend hardening and bugfixes following ChatGPT code review
+
+commit c96fb114c820625536a32be406b923055a073081
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Mar 15 13:54:30 2026 -0400
+
+    Integrate hardening suggestions from ChatGPT into fm-shim-backend.c
+
+commit ce5034d9612488728b3ed7b2a61e009762c33e63
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Mar 14 12:08:52 2026 +0000
+
+    bumped changelog version
+
 commit a6c8ba2c5e348ebc419d8ae8148108fba36f6fed
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Mar 14 07:03:41 2026 -0400
