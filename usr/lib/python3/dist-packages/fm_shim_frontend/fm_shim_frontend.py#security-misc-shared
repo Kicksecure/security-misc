@@ -5,6 +5,17 @@
 
 # pylint: disable=broad-exception-caught
 
+## Notes for reviewers:
+##
+## * Local denial-of-service is out of scope. There are easier ways for
+##   malware to pop up lots of windows or consume huge amounts of RAM.
+## * The shim's primary purpose is to ensure that files aren't accidentally
+##   opened when trying to view the contents of a directory. We do not care if
+##   the exact directory that exists at launch time is the directory that gets
+##   opened when the user chooses to open it. Therefore replacement attacks
+##   involving swapping one directory with another or with a symlink to a
+##   directory are out of scope.
+
 """
 fm_shim_frontend.py - Prompts the user if they want to open one or more
 directories in the default file manager.
@@ -250,6 +261,12 @@ class FmShimWindow(QDialog):
                 )
                 sys.exit(1)
             xdg_data_home = home_env_var + "/.local/share"
+        if not xdg_data_home.startswith("/"):
+            print(
+                "ERROR: XDG_DATA_HOME is not an absolute path!",
+                file=sys.stderr
+            )
+            sys.exit(1)
         search_dir_list.append(xdg_data_home)
 
         ## Again, using "" rather than None is intentional here.
@@ -261,6 +278,12 @@ class FmShimWindow(QDialog):
         xdg_data_dir_list = [p for p in xdg_data_dirs.split(":") if p != ""]
         if len(xdg_data_dir_list) == 0:
             xdg_data_dir_list = ["/usr/local/share", "/usr/share"]
+        if not all(x.startswith("/") for x in xdg_data_dir_list):
+            print(
+                "ERROR: XDG_DATA_DIRS contains non-absolute paths!",
+                file=sys.stderr,
+            )
+            sys.exit(1)
         search_dir_list.extend(xdg_data_dir_list)
 
         found_desktop_file: bool = False
