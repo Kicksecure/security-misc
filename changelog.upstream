@@ -1,8 +1,46 @@
+commit 92f6f30f565b1b8598199ac7d1bc35e01bf5a082
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 22 05:45:45 2026 -0400
+
+    comment
+
+commit 140c9cbc8a487585a92eca7acbbdfe18b92e0da9
+Merge: c913e3be 8a81ab4a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 22 05:44:46 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 8a81ab4af5182a124686857104118c0701e93357
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Thu Mar 19 22:17:47 2026 -0400
+
+    Comments, hardening on fm-shim frontend and backend
+
+commit 144d04cd84084508a7f1ce892ef1d00296f693de
+Merge: 58192e68 c913e3be
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Thu Mar 19 20:39:37 2026 -0400
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit c913e3bead0dfffee0a46049d30dc8d91e47f5ca
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Mar 19 18:30:25 2026 +0000
+
+    bumped changelog version
+
 commit 89908e0938929c6ee6f39dbd510f4bc889ca31c1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Mar 19 11:24:36 2026 -0400
 
     copyright
+
+commit 58192e688c0ea32bf6bb9806eb619413d26c2b12
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Mar 18 20:28:20 2026 -0400
+
+    Avoid unintentional HTML rendering in fm-shim-frontend, fix path resolution, fix wrong D-Bus protocol handling in backend, slightly harden backend
 
 commit 6c0b8dbc50840950756b4d28c5bb7622e035b11d
 Author: Patrick Schleizer <adrelanos@whonix.org>
