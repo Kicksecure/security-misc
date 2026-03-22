@@ -8,6 +8,19 @@
  * handler. It catches method calls intended for that interface, and executes
  * the frontend with arguments from the calls. This is intended to work around
  * issues with PCManFM-Qt's D-Bus handling.
+ *
+ * Notes for reviewers:
+ *
+ * - Local denial-of-service is out of scope. There are easier ways for
+ *   malware to pop up lots of windows or consume huge amounts of RAM.
+ * - The environment from systemd's user manager is considered trusted.
+ *   Attackers that can modify its environment via D-Bus can set
+ *   LD_LIBRARY_PATH in the user manager, which cannot be meaningfully
+ *   defended against.
+ * - The program intentionally return a "success" D-Bus reply even if no
+ *   frontend popup is shown. The org.freedesktop.FileManager1 spec does not
+ *   specify what errors (if any) are safe to return, so always returning
+ *   empty response messages is the safest option.
  */
 
 #include <stdlib.h>
@@ -24,7 +37,7 @@
 #include <systemd/sd-daemon.h>
 
 /*
- * 4096 characters per URI * 256 URIs = 1 MiB of data + 256 bytes of NULLs
+ * 4096 bytes per URI * 256 URIs = 1 MiB of data + 256 bytes of NULLs
  * that can be passed to the frontend at once.
  */
 #define MAX_OPEN_PATHS 256
@@ -225,6 +238,7 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
   const char *startup_id = NULL;
   DBusMessage *method_return = NULL;
   size_t uri_list_idx = 0;
+  bool do_launch_frontend = false;
 
   did_extract_args = dbus_message_get_args(dbus_msg,
     &error_data,
@@ -240,28 +254,34 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
     goto method_cleanup;
   }
 
+  if (uri_list_len_int < 0) {
+    warnx("handle_dbus_method_call: Negative URI list length received!");
+    goto method_send_reply;
+  }
   if (uri_list_len_int > MAX_OPEN_PATHS) {
     warnx("handle_dbus_method_call: Received a D-Bus method call attempting to open more than %d paths at once, ignoring.",
       MAX_OPEN_PATHS);
-    goto method_cleanup;
-  }
-  if (uri_list_len_int < 0) {
-    warnx("handle_dbus_method_call: Negative URI list length received!");
-    goto method_cleanup;
+    goto method_send_reply;
   }
   uri_list_len = (size_t)uri_list_len_int;
 
   for (uri_list_idx = 0; uri_list_idx < uri_list_len; uri_list_idx++) {
+    if (uri_list[uri_list_idx] == NULL) {
+      warnx("handle_dbus_method_call: Received a D-Bus method call with a NULL string, ignoring.");
+      goto method_send_reply;
+    }
     if (strnlen(uri_list[uri_list_idx], MAX_URI_LEN + 1) > MAX_URI_LEN) {
-      warnx("handle_dbus_method_call: Received a D-Bus method call attempting to open a path URI longer than %d characters, ignoring.",
+      warnx("handle_dbus_method_call: Received a D-Bus method call attempting to open a path URI longer than %d bytes, ignoring.",
         MAX_URI_LEN);
-      goto method_cleanup;
+      goto method_send_reply;
     }
   }
 
+  do_launch_frontend = true;
+
+method_send_reply:
   if (dbus_message_get_no_reply(dbus_msg) == TRUE) {
-    launch_frontend_process(mode_opt, uri_list, uri_list_len);
-    goto method_cleanup;
+    goto launch_frontend;
   }
 
   method_return = dbus_message_new_method_return(dbus_msg);
@@ -278,7 +298,10 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
    */
   dbus_connection_flush(dbus_conn);
 
-  launch_frontend_process(mode_opt, uri_list, uri_list_len);
+launch_frontend:
+  if (do_launch_frontend) {
+    launch_frontend_process(mode_opt, uri_list, uri_list_len);
+  }
 
 method_cleanup:
   if (method_return != NULL) {
@@ -319,20 +342,27 @@ int main(void) {
   switch(dbus_name_request_rslt) {
   case DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER:
     printf("Successfully obtained 'org.freedesktop.FileManager1' name from D-Bus.\n");
+    sd_notify(0, "READY=1");
+    sd_notify(0, "STATUS=Running");
     break;
   case DBUS_REQUEST_NAME_REPLY_IN_QUEUE:
     warnx("Requested 'org.freedesktop.FileManager1' name from D-Bus, but was placed in queue.");
     warnx("This may be a security risk! Please report this bug!");
+    /*
+     * sd_notify(0, "READY=1") is intentionally omitted here, so that
+     * systemcheck will show a warning about the system not being ready
+     */
+    sd_notify(0, "STATUS=Running, security issue detected");
     break;
   case DBUS_REQUEST_NAME_REPLY_ALREADY_OWNER:
     warnx("Possible bug, we already own 'org.freedesktop.FileManager1' name?");
+    sd_notify(0, "READY=1");
+    sd_notify(0, "STATUS=Running, possible bug detected");
     break;
   default:
     errx(1, "Unexpected name request result '%d'!", dbus_name_request_rslt);
     break;
   }
-
-  sd_notify(0, "READY=1");
 
   while (true) {
     DBusMessage *dbus_msg = NULL;
