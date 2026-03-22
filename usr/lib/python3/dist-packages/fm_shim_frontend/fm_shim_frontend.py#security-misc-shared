@@ -15,6 +15,7 @@
 ##   opened when the user chooses to open it. Therefore replacement attacks
 ##   involving swapping one directory with another or with a symlink to a
 ##   directory are out of scope.
+## * Python version lower than 3.13.5 are out of scope.
 
 """
 fm_shim_frontend.py - Prompts the user if they want to open one or more
