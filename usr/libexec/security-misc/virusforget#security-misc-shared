@@ -85,6 +85,11 @@ parse_cmd_options() {
       echo "ERROR: must set --user username" >&2
       exit 1
    fi
+
+   if [[ ! "$user_name" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+      echo "ERROR: Invalid username format. Only alphanumeric characters, dots, underscores, and hyphens are allowed." >&2
+      exit 1
+   fi
 }
 
 variables() {

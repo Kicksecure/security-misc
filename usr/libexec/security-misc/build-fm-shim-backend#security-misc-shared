@@ -46,12 +46,12 @@ gcc_hardening_options+=(
 
 gcc \
   -g \
-  $(pkg-config --cflags dbus-1) \
-  $(pkg-config --cflags libsystemd) \
+  "$(pkg-config --cflags dbus-1)" \
+  "$(pkg-config --cflags libsystemd)" \
   /usr/src/security-misc/fm-shim-backend.c \
   -o /usr/bin/fm-shim-backend \
-  $(pkg-config --libs dbus-1) \
-  $(pkg-config --libs libsystemd) \
+  "$(pkg-config --libs dbus-1)" \
+  "$(pkg-config --libs libsystemd)" \
   "${gcc_hardening_options[@]}" \
   || {
     printf "%s\n" 'Could not compile fm-shim-backend executable!'
