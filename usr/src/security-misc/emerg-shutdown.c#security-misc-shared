@@ -84,7 +84,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <poll.h>
 #include <linux/input.h>
 #include <linux/vt.h>
@@ -110,7 +109,7 @@
 
 #define max_sig_num 31
 
-int console_fd = 0;
+int console_fd = -1;
 
 /* Adapted from kloak/src/keycodes.c */
 struct name_value {
@@ -277,7 +276,7 @@ bool bitset_get(const uint64_t *bits, uint32_t i) {
 }
 
 void print(int fd, const char *str) {
-  size_t len = strlen(str) + 1;
+  size_t len = strlen(str);
   while (true) {
     ssize_t write_len = write(fd, str, len);
     if (write_len < 0) {
@@ -384,6 +383,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
 
   arg_part = strtok(arg_val, sep);
   if (arg_part == NULL) {
+    free(arg_copy);
     return;
   }
 
@@ -392,7 +392,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
     result_list = safe_reallocarray(result_list, result_list_len, sizeof(char *));
     result_list[result_list_len - 1] = safe_calloc(1, strlen(arg_part) + 1);
     strcpy(result_list[result_list_len - 1], arg_part);
-  } while ((arg_part = strtok(NULL, ",")) != NULL);
+  } while ((arg_part = strtok(NULL, sep)) != NULL);
 
   *result_list_len_ref = result_list_len;
   *result_list_ref = result_list;
@@ -691,13 +691,15 @@ void hw_monitor(int argc, char **argv) {
     }
 
     for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+      bool group_supported = false;
       for (kg_idx = 0; panic_key_list[pkl_idx][kg_idx] != 0; kg_idx++) {
-        if (!bitset_get(key_flags, panic_key_list[pkl_idx][kg_idx])) {
-          supports_panic = false;
+        if (bitset_get(key_flags, panic_key_list[pkl_idx][kg_idx])) {
+          group_supported = true;
           break;
         }
       }
-      if (!supports_panic) {
+      if (!group_supported) {
+        supports_panic = false;
         break;
       }
     }
@@ -895,6 +897,7 @@ void hw_monitor(int argc, char **argv) {
             if (paranoid_mode) {
               /* Something was removed, we don't care what, shut down now */
               kill_system();
+              exit(0);
             }
 
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
@@ -952,6 +955,11 @@ void fifo_monitor(char **argv) {
   arg_part = strtok(arg_copy, "=");
   /* returns everything after the = sign */
   arg_part = strtok(NULL, "");
+  if (arg_part == NULL) {
+    print(fd_stderr, "Timeout value is empty!\n");
+    print_usage();
+    exit(1);
+  }
   errno = 0;
   monitor_fifo_timeout = strtol(arg_part, &arg_num_end, 10);
   if (errno == ERANGE || monitor_fifo_timeout > UINT_MAX) {
@@ -1051,6 +1059,7 @@ int main(int argc, char **argv) {
     }
 
     kill_system();
+    exit(0);
   }
   if (strcmp(argv[1], "--monitor-fifo") == 0) {
     if (argc != 3) {
