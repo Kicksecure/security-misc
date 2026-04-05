@@ -85,6 +85,9 @@ parse_cmd_options() {
       echo "ERROR: must set --user username" >&2
       exit 1
    fi
+   if ! id -u "$user_name" >/dev/null 2>&1; then
+     echo "ERROR: User '$user_name' does not appear to exist!"
+   fi
 }
 
 variables() {
