@@ -277,17 +277,14 @@ bool bitset_get(const uint64_t *bits, uint32_t i) {
 }
 
 void print(int fd, const char *str) {
-  size_t len = strlen(str) + 1;
-  while (true) {
+  size_t len = strlen(str);
+  while (len > 0) {
     ssize_t write_len = write(fd, str, len);
     if (write_len < 0) {
       /* File descriptor was closed, continue regardless */
       return;
     }
     len -= (size_t)write_len;
-    if (len == 0) {
-      return;
-    }
     str += write_len;
   }
 }
@@ -392,7 +389,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
     result_list = safe_reallocarray(result_list, result_list_len, sizeof(char *));
     result_list[result_list_len - 1] = safe_calloc(1, strlen(arg_part) + 1);
     strcpy(result_list[result_list_len - 1], arg_part);
-  } while ((arg_part = strtok(NULL, ",")) != NULL);
+  } while ((arg_part = strtok(NULL, sep)) != NULL);
 
   *result_list_len_ref = result_list_len;
   *result_list_ref = result_list;
@@ -476,6 +473,13 @@ long int kill_system(void) {
 trykill:
   return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
     LINUX_REBOOT_CMD_POWER_OFF, NULL);
+  /* 
+   * This syscall can return, and if we exit after it returns but before the
+   * system shuts down, the system may not shut down. Wait for shutdown to
+   * occur.
+   */
+  sleep(60);
+  exit(0);
 }
 
 /* Monitor for device removal and emergency shutdown key combos. */
@@ -774,8 +778,6 @@ void hw_monitor(int argc, char **argv) {
           }
           if (pkl_idx == (panic_key_list_len - 1)) {
             kill_system();
-            /*print(fd_stderr, "SHUTDOWN!!!\n");*/
-            exit(0);
           }
         }
       }
@@ -799,7 +801,11 @@ void hw_monitor(int argc, char **argv) {
        */
 
       ssize_t len;
-      char buf[16384];
+      /*
+       * 32 kB buffer is recommended by
+       * https://www.kernel.org/doc/html/v6.12/userspace-api/netlink/intro.html
+       */
+      char buf[32768];
       struct iovec iov = { buf, sizeof(buf) };
       struct sockaddr_nl sa2;
       struct msghdr msg = { 0 };
@@ -807,6 +813,8 @@ void hw_monitor(int argc, char **argv) {
       bool device_removed = false;
       bool device_changed = false;
       bool disk_media_changed = false;
+
+      memset(buf, 0, 32768);
 
       msg.msg_name = &sa2;
       msg.msg_namelen = sizeof(sa2);
@@ -819,8 +827,6 @@ void hw_monitor(int argc, char **argv) {
       len = recvmsg(ns, &msg, 0);
       if (len == -1) {
         kill_system();
-        /*print(fd_stderr, "SHUTDOWN!!!\n");*/
-        exit(0);
       }
 
       if (len < 8) {
@@ -834,7 +840,14 @@ void hw_monitor(int argc, char **argv) {
       }
 
       tmpbuf = buf;
+      /*
+       * Ensure buffer is NUL-terminated to prevent out-of-bounds reads on
+       * truncated netlink messages.
+       */
+      buf[sizeof(buf) - 1] = '\0';
       while (len > 0) {
+        size_t entry_len = strlen(tmpbuf) + 1;
+
         if (strcmp(tmpbuf, "ACTION=remove") == 0) {
           device_removed = true;
           goto next_str;
@@ -900,8 +913,6 @@ void hw_monitor(int argc, char **argv) {
             for (tdl_idx = 0; tdl_idx < target_dev_list_len; tdl_idx++) {
               if (strcmp(rem_dev_name, target_dev_list[tdl_idx]) == 0) {
                 kill_system();
-                /*print(fd_stderr, "SHUTDOWN!!!\n");*/
-                exit(0);
               }
             }
 
@@ -910,8 +921,8 @@ void hw_monitor(int argc, char **argv) {
         }
 
 next_str:
-        len = len - (ssize_t)(strlen(tmpbuf) + 1);
-        tmpbuf += strlen(tmpbuf) + 1;
+        len -= (ssize_t)entry_len;
+        tmpbuf += entry_len;
       }
     }
   }
@@ -952,6 +963,11 @@ void fifo_monitor(char **argv) {
   arg_part = strtok(arg_copy, "=");
   /* returns everything after the = sign */
   arg_part = strtok(NULL, "");
+  if (arg_part == NULL) {
+    print(fd_stderr, "Timeout value is missing!\n");
+    print_usage();
+    exit(1);
+  }
   errno = 0;
   monitor_fifo_timeout = strtol(arg_part, &arg_num_end, 10);
   if (errno == ERANGE || monitor_fifo_timeout > UINT_MAX) {
@@ -975,7 +991,7 @@ void fifo_monitor(char **argv) {
   arg_part = NULL;
   arg_num_end = NULL;
 
-  if (mkfifo(trigger_fifo_path, 0777) == -1) {
+  if (mkfifo(trigger_fifo_path, 0600) == -1) {
     print(fd_stderr, "Cannot create trigger fifo!\n");
     exit(1);
   }

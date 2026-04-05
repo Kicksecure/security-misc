@@ -44,16 +44,26 @@ gcc_hardening_options+=(
   "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
 )
 
+## Compile to a temporary file first, then atomically move into place.
+## This prevents leaving a corrupted binary if compilation is interrupted.
+tmp_output="$(mktemp -- /usr/bin/fm-shim-backend.XXXXXX)"
+trap 'rm -f -- "${tmp_output}"' EXIT
+
 gcc \
   -g \
   $(pkg-config --cflags dbus-1) \
   $(pkg-config --cflags libsystemd) \
   /usr/src/security-misc/fm-shim-backend.c \
-  -o /usr/bin/fm-shim-backend \
+  -o "${tmp_output}" \
   $(pkg-config --libs dbus-1) \
   $(pkg-config --libs libsystemd) \
   "${gcc_hardening_options[@]}" \
   || {
     printf "%s\n" 'Could not compile fm-shim-backend executable!'
+    rm -f -- "${tmp_output}"
     exit 1
   }
+
+chmod 0755 -- "${tmp_output}"
+mv -f -- "${tmp_output}" /usr/bin/fm-shim-backend
+trap - EXIT
