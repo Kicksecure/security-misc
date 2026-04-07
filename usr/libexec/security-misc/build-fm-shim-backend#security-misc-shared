@@ -49,6 +49,9 @@ gcc_hardening_options+=(
 tmp_output="$(mktemp -- /usr/bin/fm-shim-backend.XXXXXX)"
 trap 'rm -f -- "${tmp_output}"' EXIT
 
+## NOTE: pkg-config subshells intentionally are not surrounded in quotes, as
+## pkg-config's output is designed to be word-split by shells safely and would
+## be broken by quoting.
 gcc \
   -g \
   $(pkg-config --cflags dbus-1) \
