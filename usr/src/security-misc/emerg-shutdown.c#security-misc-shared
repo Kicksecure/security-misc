@@ -80,7 +80,6 @@
 #include <asm/types.h>
 #include <linux/netlink.h>
 #include <string.h>
-#include <stdbool.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -110,7 +109,7 @@
 
 #define max_sig_num 31
 
-int console_fd = 0;
+int console_fd = -1;
 
 /* Adapted from kloak/src/keycodes.c */
 struct name_value {
@@ -381,6 +380,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
 
   arg_part = strtok(arg_val, sep);
   if (arg_part == NULL) {
+    free(arg_copy);
     return;
   }
 
@@ -695,13 +695,15 @@ void hw_monitor(int argc, char **argv) {
     }
 
     for (pkl_idx = 0; pkl_idx < panic_key_list_len; pkl_idx++) {
+      bool group_supported = false;
       for (kg_idx = 0; panic_key_list[pkl_idx][kg_idx] != 0; kg_idx++) {
-        if (!bitset_get(key_flags, panic_key_list[pkl_idx][kg_idx])) {
-          supports_panic = false;
+        if (bitset_get(key_flags, panic_key_list[pkl_idx][kg_idx])) {
+          group_supported = true;
           break;
         }
       }
-      if (!supports_panic) {
+      if (!group_supported) {
+        supports_panic = false;
         break;
       }
     }
