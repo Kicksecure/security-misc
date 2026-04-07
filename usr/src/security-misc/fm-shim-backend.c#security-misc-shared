@@ -20,7 +20,9 @@
  * - The program intentionally return a "success" D-Bus reply even if no
  *   frontend popup is shown. The org.freedesktop.FileManager1 spec does not
  *   specify what errors (if any) are safe to return, so always returning
- *   empty response messages is the safest option.
+ *   empty response messages is the safest option. We do however return errors
+ *   if a D-Bus call points to the wrong D-Bus object path, interface, or
+ *   method.
  */
 
 #define _GNU_SOURCE
@@ -197,7 +199,8 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   } else if (fork_pid == 0) {
     /* child - close inherited fds (except stdin/stdout/stderr) */
     if (close_range(3, ~0U, CLOSE_RANGE_UNSHARE) == -1) {
-      err(1, "launch_frontend_process: close_range failed");
+      warn("launch_frontend_process: close_range failed");
+      _exit(1);
     }
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
@@ -329,6 +332,7 @@ void send_error_message_maybe(DBusMessage *dbus_msg, const char *error_name,
     if (dbus_connection_send(dbus_conn, err_reply, NULL) == FALSE) {
       errx(1, "send_error_message_maybe: Could not queue unknown object error!");
     }
+    dbus_connection_flush(dbus_conn);
     dbus_message_unref(err_reply);
   }
 }
