@@ -473,7 +473,7 @@ long int kill_system(void) {
 trykill:
   return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
     LINUX_REBOOT_CMD_POWER_OFF, NULL);
-  /* 
+  /*
    * This syscall can return, and if we exit after it returns but before the
    * system shuts down, the system may not shut down. Wait for shutdown to
    * occur.
