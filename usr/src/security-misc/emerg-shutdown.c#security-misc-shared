@@ -396,7 +396,7 @@ void load_list(const char *arg, size_t *result_list_len_ref, char ***result_list
   free(arg_copy);
 }
 
-long int kill_system(void) {
+void kill_system(void) {
   /*
    * It isn't safe to simply call the reboot syscall here - there is a
    * graphics driver bug in the i915 driver on Bookworm that will throw a
@@ -471,7 +471,7 @@ long int kill_system(void) {
   ioctl(console_fd, VT_WAITACTIVE, tgt_vt);
 
 trykill:
-  return syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+  syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
     LINUX_REBOOT_CMD_POWER_OFF, NULL);
   /*
    * This syscall can return, and if we exit after it returns but before the
