@@ -1,3 +1,64 @@
+commit 7b443582fe845d2a6c76c74f96df837bb56ef624
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Apr 8 10:07:01 2026 -0400
+
+    remove trailing space
+
+commit cbcf722f5a895697364891f15d37349d68f8054e
+Merge: 3949bf35 17a9da5b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Apr 8 10:06:09 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 17a9da5bada135774ff71cf094e56d2557048540
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Apr 6 22:21:51 2026 -0400
+
+    More emerg-shutdown bugfixes (from Claude Code)
+
+commit 55e42610c2949c1f15bc6802dab1006f8d74159e
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Apr 6 21:28:28 2026 -0400
+
+    Document reason for not quoting pkg-config subshells
+
+commit 5c0641795a33a9bd0a01dbbce66fa243978bb59a
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Apr 6 20:29:12 2026 -0400
+
+    Minor fixes on fm-shim-backend
+
+commit af4f229046b8ff64eeea599bc72fe47bd35784fc
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 5 19:21:41 2026 -0400
+
+    Improve fm-shim-backend security and D-Bus error handling (mostly from Claude Code)
+
+commit 83fba23b6f95cda25c7839ac43ae2e02e52b59a1
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 5 18:33:50 2026 -0400
+
+    Only allow the primary fm-shim-backend process to use sd_notify
+
+commit 3b3b5862cd168d75c768220408314040562cf020
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 5 18:15:31 2026 -0400
+
+    Security hardening: fix buffer handling, input validation, misc bugs (mostly taken from Claude Code)
+
+commit 4d0ccf65acec9c2ee15608d8b6b601293b8f98da
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 5 15:45:06 2026 -0400
+
+    Add user existence check to virusforget (inspired by Claude Code)
+
+commit 3949bf35e90a50b8ebc534b71fd3ece834f23b8b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Mar 22 11:13:50 2026 +0000
+
+    bumped changelog version
+
 commit 92f6f30f565b1b8598199ac7d1bc35e01bf5a082
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Mar 22 05:45:45 2026 -0400
