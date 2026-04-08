@@ -786,6 +786,38 @@ See:
   by the user to function properly, see notes in
   `/etc/security-misc/emerg-shutdown/30_security_misc.conf`.
 
+## File Manager D-Bus shim
+
+A D-Bus shim intercepts `org.freedesktop.FileManager1` method calls to prevent
+applications from silently opening directories in the default file manager. Instead
+of allowing unrestricted access to the file manager via D-Bus, a confirmation dialog
+is presented to the user before any directories are opened. This works around issues
+with PCManFM-Qt's D-Bus handling and provides an additional layer of user control.
+
+The shim consists of two components:
+
+- A C backend that claims the `org.freedesktop.FileManager1` D-Bus name on the session
+  bus, intercepts `ShowFolders`, `ShowItems`, and `ShowItemProperties` method calls, and
+  forwards them to the frontend. The backend is compiled with comprehensive GCC hardening
+  flags including `_FORTIFY_SOURCE=3`, full stack protector, PIE, RELRO, and
+  architecture-specific control-flow integrity protections.
+
+- A Python/PyQt5 frontend that validates received URIs (restricting to local `file://`
+  URIs, rejecting Unicode and control characters, verifying paths exist and are accessible
+  directories), resolves symlinks so the user sees the actual target, and presents a
+  confirmation dialog before opening the directories with the system's default file manager
+  via `gio launch`.
+
+The backend runs as a systemd user service that starts automatically on login.
+
+See:
+
+- `/usr/src/security-misc/fm-shim-backend.c`
+- `/usr/lib/python3/dist-packages/fm_shim_frontend/fm_shim_frontend.py`
+- `/usr/bin/fm-shim-frontend`
+- `/usr/libexec/security-misc/build-fm-shim-backend`
+- `/usr/lib/systemd/user/fm-shim.service`
+
 ## Application-specific hardening
 
 - `sudo`: Enables "`Defaults !fqdn`", which disables attempts to
