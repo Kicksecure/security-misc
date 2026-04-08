@@ -20,8 +20,12 @@
  * - The program intentionally return a "success" D-Bus reply even if no
  *   frontend popup is shown. The org.freedesktop.FileManager1 spec does not
  *   specify what errors (if any) are safe to return, so always returning
- *   empty response messages is the safest option.
+ *   empty response messages is the safest option. We do however return errors
+ *   if a D-Bus call points to the wrong D-Bus object path, interface, or
+ *   method.
  */
+
+#define _GNU_SOURCE
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -33,6 +37,7 @@
 #include <assert.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <linux/close_range.h>
 #include <dbus/dbus.h>
 #include <systemd/sd-daemon.h>
 
@@ -192,7 +197,11 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   if (fork_pid == -1) {
     err(1, "launch_frontend_process: fork failed");
   } else if (fork_pid == 0) {
-    /* child */
+    /* child - close inherited fds (except stdin/stdout/stderr) */
+    if (close_range(3, ~0U, CLOSE_RANGE_UNSHARE) == -1) {
+      warn("launch_frontend_process: close_range failed");
+      _exit(1);
+    }
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
     if (execve(arg_arr[0], (char **)arg_arr, (char **)env_arr) == -1) {
@@ -286,10 +295,10 @@ method_send_reply:
 
   method_return = dbus_message_new_method_return(dbus_msg);
   if (method_return == NULL) {
-    err(1, "handle_dbus_method_call: Could not allocate memory for a method return!");
+    errx(1, "handle_dbus_method_call: Could not allocate memory for a method return!");
   }
   if (dbus_connection_send(dbus_conn, method_return, NULL) == FALSE) {
-    err(1, "handle_dbus_method_call: Could not queue method return!");
+    errx(1, "handle_dbus_method_call: Could not queue method return!");
   }
   /*
    * We could probably get away with omitting the flush, but browsers will
@@ -309,6 +318,22 @@ method_cleanup:
   }
   if (uri_list != NULL) {
     dbus_free_string_array(uri_list);
+  }
+}
+
+void send_error_message_maybe(DBusMessage *dbus_msg, const char *error_name,
+  const char *error_message) {
+  if (dbus_message_get_no_reply(dbus_msg) == FALSE) {
+    DBusMessage *err_reply = dbus_message_new_error(dbus_msg,
+      error_name, error_message);
+    if (err_reply == NULL) {
+      errx(1, "send_error_message_maybe: Could not allocate memory for an unknown object error!");
+    }
+    if (dbus_connection_send(dbus_conn, err_reply, NULL) == FALSE) {
+      errx(1, "send_error_message_maybe: Could not queue unknown object error!");
+    }
+    dbus_connection_flush(dbus_conn);
+    dbus_message_unref(err_reply);
   }
 }
 
@@ -393,6 +418,8 @@ int main(void) {
     if (strcmp(dbus_msg_obj_path, "/org/freedesktop/FileManager1") != 0) {
       warnx("Received a D-Bus method call for object path '%s', rather than '/org/freedesktop/FileManager1'!",
         dbus_msg_obj_path);
+      send_error_message_maybe(dbus_msg, DBUS_ERROR_UNKNOWN_OBJECT,
+        "Unknown object path");
       goto cleanup;
     }
 
@@ -404,6 +431,8 @@ int main(void) {
     if (strcmp(dbus_msg_iface, "org.freedesktop.FileManager1") != 0) {
       warnx("Received a D-Bus method call for interface '%s', rather than 'org.freedesktop.FileManager1'!",
         dbus_msg_iface);
+      send_error_message_maybe(dbus_msg, DBUS_ERROR_UNKNOWN_INTERFACE,
+        "Unknown interface");
       goto cleanup;
     }
 
@@ -422,6 +451,8 @@ int main(void) {
     } else {
       warnx("Received a D-Bus method call for unrecognized method '%s'!",
         dbus_msg_method);
+      send_error_message_maybe(dbus_msg, DBUS_ERROR_UNKNOWN_METHOD,
+        "Unknown method");
     }
 
 cleanup:
@@ -433,4 +464,7 @@ cleanup:
     dbus_msg_iface = NULL;
     dbus_msg_method = NULL;
   }
+
+  dbus_connection_unref(dbus_conn);
+  dbus_error_free(&error_data);
 }

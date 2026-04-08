@@ -8,6 +8,7 @@ StartLimitBurst=3
 
 [Service]
 Type=notify
+NotifyAccess=main
 ExecStart=/usr/bin/fm-shim-backend
 Restart=always
 

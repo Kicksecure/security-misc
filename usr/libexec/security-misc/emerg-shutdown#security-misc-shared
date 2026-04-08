@@ -3,6 +3,11 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## TODO: Move most of this to a build script that will compile and place under
+## /usr/bin rather than /run. Then turn this script into something that simply
+## copies emerg-shutdown to /run and then runs it. This will reduce resource
+## consumption for end users.
+
 set -o errexit
 set -o nounset
 set -o errtrace
