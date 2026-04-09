@@ -290,7 +290,12 @@ GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX proc_mem.force_override=ptrace"
 ## https://lore.kernel.org/lkml/20240105-vfs-super-4092d802972c@brauner/
 ## https://github.com/a13xp0p0v/kernel-hardening-checker/issues/186
 ##
-GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
+## https://github.com/Kicksecure/security-misc/pull/334
+## https://forums.whonix.org/t/kernel-hardening-security-misc/7296/609
+## https://forums.whonix.org/t/how-to-compress-and-prevent-vdi-from-ballooning-after-each-update-deleting-large-files/22675/9
+## https://forums.kicksecure.com/t/resizing-disk-for-guest-in-kvm/1657
+##
+#GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX bdev_allow_write_mounted=0"
 
 ## Enable AMD Secure Memory Encryption (SME) and Secure Encrypted Virtualization (SEV).
 ## SME encrypts memory with a single key at the kernel level to protect against cold boot attacks.
