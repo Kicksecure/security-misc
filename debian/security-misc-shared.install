@@ -6,7 +6,6 @@
 ## This file was generated using 'genmkfile debinstfile'.
 
 etc/apparmor.d/tunables/home.d/security-misc#security-misc-shared => /etc/apparmor.d/tunables/home.d/security-misc
-etc/xdg/autostart/security-misc-dbus-env-sync.desktop#security-misc-shared => /etc/xdg/autostart/security-misc-dbus-env-sync.desktop
 etc/apt/apt.conf.d/40error-on-any#security-misc-shared => /etc/apt/apt.conf.d/40error-on-any
 etc/apt/apt.conf.d/40sandbox#security-misc-shared => /etc/apt/apt.conf.d/40sandbox
 etc/default/grub.d/40_cpu_mitigations.cfg#security-misc-shared => /etc/default/grub.d/40_cpu_mitigations.cfg
