@@ -49,13 +49,16 @@ gcc_hardening_options=(
 gcc_machine="$(gcc -dumpmachine)"
 if [ "${gcc_machine}" = 'x86_64-linux-gnu' ]; then
   gcc_hardening_options+=( '-fcf-protection=full' )
+  gcc_hardening_options+=( '-fzero-call-used-regs=all' )
 elif [ "${gcc_machine}" = 'aarch64-linux-gnu' ]; then
   gcc_hardening_options+=( '-mbranch-protection=standard' )
+  gcc_hardening_options+=( '-fzero-call-used-regs=all' )
 fi
 
 gcc_hardening_options+=(
   "-Wl,-z,nodlopen" "-Wl,-z,noexecstack" "-Wl,-z,relro" "-Wl,-z,now"
-  "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries" "-pie"
+  "-Wl,-z,separate-code" "-Wl,--as-needed" "-Wl,--no-copy-dt-needed-entries"
+  "-pie"
 )
 
 ## Read emergency shutdown key configuration
