@@ -1,3 +1,34 @@
+commit 4c3d4267a19ef56c488779ad28d82eef87b967d9
+Merge: 46c171e4 e718203d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 9 07:53:33 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit e718203d075ba73ecb7a89e31db6ca4ac588cf78
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Apr 8 17:20:10 2026 -0400
+
+    Add additional compiler hardening flags for fm-shim-backend
+
+commit cf518cbabae41c6608006adcdf38128c902486c2
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Apr 8 17:19:19 2026 -0400
+
+    Add additional compiler hardening flags for emerg-shutdown
+
+commit 83b360edf6c3d8a0d1714a3f2d6e9865ae225b64
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Apr 8 17:06:00 2026 -0400
+
+    Fix dead code in emerg-shutdown.c
+
+commit 46c171e42ab66b0ec3bc10e715e6c54974966a8e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Apr 8 17:51:28 2026 +0000
+
+    bumped changelog version
+
 commit 7b443582fe845d2a6c76c74f96df837bb56ef624
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Apr 8 10:07:01 2026 -0400
