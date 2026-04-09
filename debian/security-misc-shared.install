@@ -6,6 +6,7 @@
 ## This file was generated using 'genmkfile debinstfile'.
 
 etc/apparmor.d/tunables/home.d/security-misc#security-misc-shared => /etc/apparmor.d/tunables/home.d/security-misc
+etc/xdg/autostart/security-misc-dbus-env-sync.desktop#security-misc-shared => /etc/xdg/autostart/security-misc-dbus-env-sync.desktop
 etc/apt/apt.conf.d/40error-on-any#security-misc-shared => /etc/apt/apt.conf.d/40error-on-any
 etc/apt/apt.conf.d/40sandbox#security-misc-shared => /etc/apt/apt.conf.d/40sandbox
 etc/default/grub.d/40_cpu_mitigations.cfg#security-misc-shared => /etc/default/grub.d/40_cpu_mitigations.cfg
@@ -126,6 +127,7 @@ usr/libexec/security-misc/panic-on-oops#security-misc-shared => /usr/libexec/sec
 usr/libexec/security-misc/permission-lockdown#security-misc-shared => /usr/libexec/security-misc/permission-lockdown
 usr/libexec/security-misc/remove-system.map#security-misc-shared => /usr/libexec/security-misc/remove-system.map
 usr/libexec/security-misc/virusforget#security-misc-shared => /usr/libexec/security-misc/virusforget
+usr/share/dbus-1/services/org.freedesktop.FileManager1.service#security-misc-shared => /usr/share/dbus-1/services/org.freedesktop.FileManager1.service
 usr/share/doc/security-misc/fstab-vm#security-misc-shared => /usr/share/doc/security-misc/fstab-vm
 usr/share/glib-2.0/schemas/30_security-misc.gschema.override#security-misc-shared => /usr/share/glib-2.0/schemas/30_security-misc.gschema.override
 usr/share/lintian/overrides/security-misc-shared#security-misc-shared => /usr/share/lintian/overrides/security-misc-shared

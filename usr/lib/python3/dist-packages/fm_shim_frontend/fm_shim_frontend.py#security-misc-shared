@@ -9,29 +9,28 @@
 ##
 ## * Local denial-of-service is out of scope. There are easier ways for
 ##   malware to pop up lots of windows or consume huge amounts of RAM.
-## * The shim's primary purpose is to ensure that files aren't accidentally
-##   opened when trying to view the contents of a directory. We do not care if
-##   the exact directory that exists at launch time is the directory that gets
-##   opened when the user chooses to open it. Therefore replacement attacks
-##   involving swapping one directory with another or with a symlink to a
-##   directory are out of scope.
+## * The frontend is now a confirmation-only dialog. The actual file manager
+##   launch is handled by the backend via D-Bus forwarding to pcmanfm-qt,
+##   which eliminates the TOCTOU vulnerability that existed with CLI
+##   invocation. Exit code 0 = user confirmed, exit code 1 = user cancelled.
 ## * Python version lower than 3.13.5 are out of scope.
 
 """
 fm_shim_frontend.py - Prompts the user if they want to open one or more
-directories in the default file manager.
+directories in the default file manager. This is a confirmation-only dialog;
+the backend handles the actual file manager launch via D-Bus forwarding.
+Exit code 0 means user confirmed, exit code 1 means user cancelled.
 """
 
 import sys
 import os
 import signal
-import subprocess
 import urllib.parse
 from pathlib import Path
 from typing import NoReturn, cast
 from types import FrameType
 
-from PyQt5.QtCore import QTimer, QObject, QEvent, Qt
+from PyQt5.QtCore import QTimer, QObject, QEvent
 from PyQt5.QtGui import QFontDatabase
 from PyQt5.QtWidgets import (
     QApplication,
@@ -44,7 +43,6 @@ from PyQt5.QtWidgets import (
     QWidget,
     QScrollBar,
     QLayout,
-    QMessageBox,
 )
 
 
@@ -207,132 +205,23 @@ class FmShimWindow(QDialog):
 
         self.show()
 
-    # pylint: disable=too-many-branches
     def open_dir_list(self) -> None:
         """
-        Opens all specified directories using the default file manager.
+        User confirmed opening the listed directories.
+        Exit with code 0 to signal confirmation to the backend, which
+        handles the actual file manager launch via D-Bus forwarding.
         """
-
-        try:
-            default_fm_desktop_file: str = subprocess.run(
-                ["xdg-mime", "query", "default", "inode/directory"],
-                check=True,
-                capture_output=True,
-                encoding="utf-8",
-            ).stdout.strip()
-        except Exception:
-            print(
-                "ERROR: Unable to get default file manager!",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-
-        ## Expect a plain desktop filename, not a path.
-        if (
-            default_fm_desktop_file == ""
-            or "/" in default_fm_desktop_file
-            or not default_fm_desktop_file.endswith(".desktop")
-        ):
-            print(
-                "ERROR: Invalid default file manager desktop file name!",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-
-        search_dir_list: list[str] = []
-
-        ## "" rather than None is intentional here, as
-        ## os.environ["XDG_DATA_HOME"] may be "", not None.
-        xdg_data_home: str = ""
-        try:
-            xdg_data_home = os.environ["XDG_DATA_HOME"]
-        except KeyError:
-            pass
-        if xdg_data_home == "":
-            home_env_var = ""
-            try:
-                home_env_var = os.environ["HOME"]
-            except KeyError:
-                pass
-            if home_env_var == "":
-                print(
-                    "ERROR: Both the XDG_DATA_HOME and HOME environment "
-                    + "variables are either undefined or empty!",
-                    file=sys.stderr
-                )
-                sys.exit(1)
-            xdg_data_home = home_env_var + "/.local/share"
-        if not xdg_data_home.startswith("/"):
-            print(
-                "ERROR: XDG_DATA_HOME is not an absolute path!",
-                file=sys.stderr
-            )
-            sys.exit(1)
-        search_dir_list.append(xdg_data_home)
-
-        ## Again, using "" rather than None is intentional here.
-        xdg_data_dirs: str = ""
-        try:
-            xdg_data_dirs = os.environ["XDG_DATA_DIRS"]
-        except Exception:
-            pass
-        xdg_data_dir_list = [p for p in xdg_data_dirs.split(":") if p != ""]
-        if len(xdg_data_dir_list) == 0:
-            xdg_data_dir_list = ["/usr/local/share", "/usr/share"]
-        if not all(x.startswith("/") for x in xdg_data_dir_list):
-            print(
-                "ERROR: XDG_DATA_DIRS contains non-absolute paths!",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-        search_dir_list.extend(xdg_data_dir_list)
-
-        found_desktop_file: bool = False
-        for search_dir in search_dir_list:
-            default_fm_path: Path = Path(
-                search_dir + "/applications/" + default_fm_desktop_file
-            )
-            if default_fm_path.is_file():
-                found_desktop_file = True
-                break
-        if not found_desktop_file:
-            print(
-                "ERROR: Cannot find default file manager's desktop file!",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-
-        for target_dir in self.dir_list:
-            if target_dir.is_dir():
-                subprocess.run(
-                    ["gio", "launch", str(default_fm_path), str(target_dir)],
-                    check=False,
-                )
-            else:
-                QMessageBox.warning(
-                    self,
-                    "Open Directories",
-                    Qt.convertFromPlainText(
-                        "ERROR: The following path was no longer a dir when "
-                        + "checked before opening:\n"
-                        + "\n"
-                        + f"{target_dir}\n"
-                        + "\n"
-                        + "This may be the result of an attempted attack. No "
-                        + "further directories will be opened."
-                    )
-                )
-                sys.exit(1)
 
         sys.exit(0)
 
     @staticmethod
     def exit_app() -> None:
         """
-        Exits the application.
+        User cancelled. Exit with code 1 to signal cancellation to the
+        backend.
         """
 
-        sys.exit(0)
+        sys.exit(1)
 
 
 # pylint: disable=unused-argument

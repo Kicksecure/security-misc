@@ -1,13 +1,26 @@
 /*
- * Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org
+ * Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
  * See the file COPYING for copying conditions.
  */
 
 /*
  * This is the backend half of an org.freedesktop.FileManager1 D-Bus interface
- * handler. It catches method calls intended for that interface, and executes
- * the frontend with arguments from the calls. This is intended to work around
- * issues with PCManFM-Qt's D-Bus handling.
+ * handler. It claims the org.freedesktop.FileManager1 name, shows a
+ * confirmation dialog via the frontend, and then forwards confirmed requests
+ * to pcmanfm-qt via D-Bus (rather than CLI invocation), avoiding the TOCTOU
+ * vulnerability described in:
+ * https://forums.whonix.org/t/is-catfish-the-new-default-in-the-qubes-domain-open-file-manager-quick-widget-for-whonix/20233/39
+ *
+ * The approach follows marmarek's suggestion:
+ * https://forums.whonix.org/t/is-catfish-the-new-default-in-the-qubes-domain-open-file-manager-quick-widget-for-whonix/20233/40
+ *
+ * The shim acts as a "smarter D-Bus activation proxy":
+ *   1. Claims org.freedesktop.FileManager1
+ *   2. On request: shows confirmation dialog (frontend)
+ *   3. If confirmed: releases name, starts pcmanfm-qt --daemon-mode,
+ *      waits for it to claim the name, forwards the request via D-Bus
+ *   4. Re-requests the name (queued behind pcmanfm-qt)
+ *   5. When pcmanfm-qt exits, the shim becomes primary owner again
  *
  * Notes for reviewers:
  *
@@ -17,10 +30,13 @@
  *   Attackers that can modify its environment via D-Bus can set
  *   LD_LIBRARY_PATH in the user manager, which cannot be meaningfully
  *   defended against.
- * - The program intentionally return a "success" D-Bus reply even if no
+ * - The program intentionally returns a "success" D-Bus reply even if no
  *   frontend popup is shown. The org.freedesktop.FileManager1 spec does not
  *   specify what errors (if any) are safe to return, so always returning
  *   empty response messages is the safest option.
+ * - Using D-Bus ShowFolders to communicate with pcmanfm-qt eliminates the
+ *   TOCTOU vulnerability that existed with CLI invocation. pcmanfm-qt
+ *   handles ShowFolders correctly (opens folders, does not open files).
  */
 
 #include <stdlib.h>
@@ -43,25 +59,42 @@
 #define MAX_OPEN_PATHS 256
 #define MAX_URI_LEN 4096
 
+/* Maximum time to wait for pcmanfm-qt to claim the D-Bus name (microseconds) */
+#define PCMANFM_WAIT_TIMEOUT_US 10000000
+
+/* Polling interval when waiting for pcmanfm-qt (microseconds) */
+#define PCMANFM_POLL_INTERVAL_US 100000
+
 DBusError error_data = { 0 };
 DBusConnection *dbus_conn = NULL;
 
-void launch_frontend_process(const char *mode_opt, char **uri_list,
-  size_t uri_list_len) {
-  /*
-   * Most of the code here is inspired heavily by the qubes-gui-runuser
-   * function 'augment_pam_env_with_systemd_env()'. We need to get systemd's
-   * current set of environment variables to expose those to the frontend
-   * process, otherwise we won't know what display server to use and may run
-   * into theming issues.
-   *
-   * TODO: The environment in Non-Qubes-Whonix's user manager has some
-   * worrying discrepancies when compared to the environment of bash running
-   * in a qterminal window. In particular, 'PATH' is different. We may need to
-   * add a 'dbus-update-activation-environment --systemd --all' call to
-   * /usr/libexec/desktop-config-dist/start-lxqt-session.
-   */
+/*
+ * Free a NULL-terminated array of strdup'd strings.
+ */
+void free_env_array(char **env_arr) {
+  size_t i = 0;
 
+  if (env_arr == NULL) {
+    return;
+  }
+  for (i = 0; env_arr[i] != NULL; i++) {
+    free(env_arr[i]);
+  }
+  free(env_arr);
+}
+
+/*
+ * Fetch the current environment from systemd's user manager via D-Bus.
+ * Returns a NULL-terminated array of strdup'd "KEY=VALUE" strings.
+ * The caller must free the result with free_env_array().
+ * Returns NULL on error.
+ *
+ * This is inspired by qubes-gui-runuser's augment_pam_env_with_systemd_env().
+ * We fetch the environment on each request so that environment updates
+ * (e.g. from dbus-update-activation-environment --systemd --all) are
+ * picked up without restarting the service.
+ */
+char **get_systemd_environment(void) {
   DBusMessage *env_request = NULL;
   const char *systemd_manager_str = "org.freedesktop.systemd1.Manager";
   const char *environment_str = "Environment";
@@ -73,20 +106,18 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
   char *inner_iter_typesig = NULL;
   DBusMessageIter reply_arr_iter = { 0 };
   const char *env_val = NULL;
-  const char **env_arr = NULL;
+  char **env_arr = NULL;
   size_t env_arr_len = 0;
-  const char **arg_arr = NULL;
   int current_type = 0;
-  size_t uri_list_idx = 0;
-  pid_t fork_pid = 0;
+  char *env_val_copy = NULL;
 
   env_request = dbus_message_new_method_call("org.freedesktop.systemd1",
     "/org/freedesktop/systemd1",
     "org.freedesktop.DBus.Properties",
     "Get");
   if (env_request == NULL) {
-    warnx("launch_frontend_process: Failed to create D-Bus method call object!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: Failed to create D-Bus method call object!");
+    goto env_cleanup;
   }
 
   ret = dbus_message_append_args(env_request,
@@ -94,125 +125,83 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
     DBUS_TYPE_STRING, &environment_str,
     DBUS_TYPE_INVALID);
   if (ret == FALSE) {
-    warnx("launch_frontend_process: Failed to append arguments to D-Bus method call object!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: Failed to append arguments to D-Bus method call object!");
+    goto env_cleanup;
   }
 
   env_reply = dbus_connection_send_with_reply_and_block(dbus_conn,
     env_request, 500, &error_data);
   if (env_reply == NULL) {
-    warnx("launch_frontend_process: Failed to request environment data from system! Error name: '%s'. Error contents: '%s'.",
+    warnx("get_systemd_environment: Failed to request environment data from system! Error name: '%s'. Error contents: '%s'.",
       error_data.name ? error_data.name : "(null)",
       error_data.message ? error_data.message : "(null)");
     dbus_error_free(&error_data);
-    goto dbus_cleanup;
+    goto env_cleanup;
   }
 
   reply_type = dbus_message_get_type(env_reply);
   if (reply_type != DBUS_MESSAGE_TYPE_METHOD_RETURN) {
-    warnx("launch_frontend_process: Did not get method call return object from systemd!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: Did not get method call return object from systemd!");
+    goto env_cleanup;
   }
 
   ret = dbus_message_iter_init(env_reply, &reply_iter);
   if (ret == FALSE) {
-    warnx("launch_frontend_process: systemd returned an empty method call return object!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: systemd returned an empty method call return object!");
+    goto env_cleanup;
   }
 
   if (dbus_message_iter_get_arg_type(&reply_iter) != DBUS_TYPE_VARIANT) {
-    warnx("launch_frontend_process: systemd did not return a variant object!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: systemd did not return a variant object!");
+    goto env_cleanup;
   }
   dbus_message_iter_recurse(&reply_iter, &reply_inner_iter);
 
   inner_iter_typesig = dbus_message_iter_get_signature(&reply_inner_iter);
   if (inner_iter_typesig == NULL) {
-    err(1, "launch_frontend_process: Failed to allocate memory for type signature!");
+    err(1, "get_systemd_environment: Failed to allocate memory for type signature!");
   }
   if (strcmp(inner_iter_typesig, "as") != 0) {
-    warnx("launch_frontend_process: Variant object from systemd does not contain a string array!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: Variant object from systemd does not contain a string array!");
+    goto env_cleanup;
   }
   if (dbus_message_iter_get_arg_type(&reply_inner_iter) != DBUS_TYPE_ARRAY) {
-    warnx("launch_frontend_process: Variant object from systemd reported itself as a string array, but is not an array!");
-    goto dbus_cleanup;
+    warnx("get_systemd_environment: Variant object from systemd reported itself as a string array, but is not an array!");
+    goto env_cleanup;
   }
   dbus_message_iter_recurse(&reply_inner_iter, &reply_arr_iter);
 
   while ((current_type = dbus_message_iter_get_arg_type(&reply_arr_iter))
     != DBUS_TYPE_INVALID) {
     if (current_type != DBUS_TYPE_STRING) {
-      warnx("launch_frontend_process: Non-string item found in string array!");
-      goto dbus_cleanup;
+      warnx("get_systemd_environment: Non-string item found in string array!");
+      free_env_array(env_arr);
+      env_arr = NULL;
+      goto env_cleanup;
     }
     dbus_message_iter_get_basic(&reply_arr_iter, &env_val);
-    env_arr_len++;
-    env_arr = reallocarray(env_arr, env_arr_len, sizeof(const char *));
-    if (env_arr == NULL) {
-      err(1, "launch_frontend_process: Failed to allocate memory for environment array!");
+    env_val_copy = strdup(env_val);
+    if (env_val_copy == NULL) {
+      err(1, "get_systemd_environment: Failed to strdup environment variable!");
     }
-    env_arr[env_arr_len - 1] = env_val;
+    env_arr_len++;
+    env_arr = reallocarray(env_arr, env_arr_len, sizeof(char *));
+    if (env_arr == NULL) {
+      err(1, "get_systemd_environment: Failed to allocate memory for environment array!");
+    }
+    env_arr[env_arr_len - 1] = env_val_copy;
     dbus_message_iter_next(&reply_arr_iter);
   }
 
-  /* execve requires the environment array to be null terminated */
+  /* NULL-terminate the array (required by execve) */
   env_arr_len++;
-  env_arr = reallocarray(env_arr, env_arr_len, sizeof(const char *));
+  env_arr = reallocarray(env_arr, env_arr_len, sizeof(char *));
   if (env_arr == NULL) {
-    err(1, "launch_frontend_process: Failed to allocate memory for environment array!");
+    err(1, "get_systemd_environment: Failed to allocate memory for environment array!");
   }
   env_arr[env_arr_len - 1] = NULL;
 
-  /*
-   * This should be impossible since uri_list_len is originally a signed
-   * integer in handle_dbus_method_call and is then cast to a size_t, but we
-   * check for this anyway.
-   */
-  if (uri_list_len > SIZE_MAX - 4) {
-    warnx("launch_frontend_process: URI list too large!");
-    goto dbus_cleanup;
-  }
-
-  /* Now that we have the environment array, we can build the arg array. */
-  arg_arr = reallocarray(arg_arr, uri_list_len + 4, sizeof(const char *));
-  if (arg_arr == NULL) {
-    err(1, "launch_frontend_process: Failed to allocate memory for argument array!");
-  }
-  arg_arr[0] = "/usr/bin/fm-shim-frontend";
-  arg_arr[1] = mode_opt;
-  arg_arr[2] = "--";
-  for (uri_list_idx = 0; uri_list_idx < uri_list_len; uri_list_idx++) {
-    arg_arr[uri_list_idx + 3] = uri_list[uri_list_idx];
-  }
-  arg_arr[uri_list_len + 3] = NULL;
-
-  /* Fork and exec the frontend */
-  fork_pid = fork();
-  if (fork_pid == -1) {
-    err(1, "launch_frontend_process: fork failed");
-  } else if (fork_pid == 0) {
-    /* child */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcast-qual"
-    if (execve(arg_arr[0], (char **)arg_arr, (char **)env_arr) == -1) {
-      warn("launch_frontend_process: Could not exec '/usr/bin/fm-shim-frontend'");
-      _exit(1);
-    }
-#pragma GCC diagnostic pop
-  }
-
-  /* parent */
-
-dbus_cleanup:
-  /* Don't free the elements of arg_arr, they are not freeable. */
-  if (arg_arr != NULL) {
-    free(arg_arr);
-  }
-  /* Ditto for env_arr */
-  if (env_arr != NULL) {
-    free(env_arr);
-  }
+env_cleanup:
   if (inner_iter_typesig != NULL) {
     dbus_free(inner_iter_typesig);
   }
@@ -222,12 +211,164 @@ dbus_cleanup:
   if (env_request != NULL) {
     dbus_message_unref(env_request);
   }
+  return env_arr;
+}
+
+/*
+ * Fork and exec the frontend confirmation dialog.
+ * Returns the child PID on success, or -1 on failure.
+ * The caller should waitpid() on the returned PID.
+ */
+pid_t launch_frontend(const char *mode_opt, char **uri_list,
+  size_t uri_list_len, char **env_arr) {
+  const char **arg_arr = NULL;
+  size_t uri_list_idx = 0;
+  pid_t fork_pid = 0;
+
+  if (uri_list_len > SIZE_MAX - 4) {
+    warnx("launch_frontend: URI list too large!");
+    return -1;
+  }
+
+  arg_arr = reallocarray(arg_arr, uri_list_len + 4, sizeof(const char *));
+  if (arg_arr == NULL) {
+    err(1, "launch_frontend: Failed to allocate memory for argument array!");
+  }
+  arg_arr[0] = "/usr/bin/fm-shim-frontend";
+  arg_arr[1] = mode_opt;
+  arg_arr[2] = "--";
+  for (uri_list_idx = 0; uri_list_idx < uri_list_len; uri_list_idx++) {
+    arg_arr[uri_list_idx + 3] = uri_list[uri_list_idx];
+  }
+  arg_arr[uri_list_len + 3] = NULL;
+
+  fork_pid = fork();
+  if (fork_pid == -1) {
+    warn("launch_frontend: fork failed");
+    free(arg_arr);
+    return -1;
+  } else if (fork_pid == 0) {
+    /* child */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+    if (execve(arg_arr[0], (char **)arg_arr, (char **)env_arr) == -1) {
+      warn("launch_frontend: Could not exec '/usr/bin/fm-shim-frontend'");
+      _exit(1);
+    }
+#pragma GCC diagnostic pop
+  }
+
+  /* parent */
+  free(arg_arr);
+  return fork_pid;
+}
+
+/*
+ * Start pcmanfm-qt in daemon mode using double-fork to avoid zombies.
+ * The grandchild process is orphaned and adopted by init.
+ */
+void launch_pcmanfm_qt_daemon(char **env_arr) {
+  pid_t pid1 = 0;
+  pid_t pid2 = 0;
+  const char *argv[] = {
+    "/usr/bin/pcmanfm-qt",
+    "--daemon-mode",
+    NULL
+  };
+
+  pid1 = fork();
+  if (pid1 == -1) {
+    warn("launch_pcmanfm_qt_daemon: first fork failed");
+    return;
+  }
+  if (pid1 == 0) {
+    /* first child: fork again and exit immediately */
+    pid2 = fork();
+    if (pid2 == -1) {
+      _exit(1);
+    }
+    if (pid2 == 0) {
+      /* grandchild: exec pcmanfm-qt */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+      execve(argv[0], (char **)argv, (char **)env_arr);
+#pragma GCC diagnostic pop
+      /* If execve returns, it failed */
+      _exit(1);
+    }
+    /* first child exits so grandchild is orphaned */
+    _exit(0);
+  }
+  /* parent: wait for first child (which exits immediately) */
+  waitpid(pid1, NULL, 0);
+}
+
+/*
+ * Poll until org.freedesktop.FileManager1 has an owner on D-Bus,
+ * or until the timeout expires.
+ * Returns true if the name has an owner, false on timeout.
+ */
+bool wait_for_dbus_name_owner(void) {
+  int elapsed_us = 0;
+
+  while (elapsed_us < PCMANFM_WAIT_TIMEOUT_US) {
+    if (dbus_bus_name_has_owner(dbus_conn,
+      "org.freedesktop.FileManager1", NULL) == TRUE) {
+      return true;
+    }
+    usleep((unsigned int)PCMANFM_POLL_INTERVAL_US);
+    elapsed_us += PCMANFM_POLL_INTERVAL_US;
+  }
+  return false;
+}
+
+/*
+ * Forward a ShowFolders/ShowItems/ShowItemProperties request to
+ * whichever process now owns org.freedesktop.FileManager1 (pcmanfm-qt).
+ * This uses D-Bus method call rather than CLI invocation, which
+ * eliminates the TOCTOU vulnerability.
+ */
+void forward_dbus_request(const char *method_name, char **uri_list,
+  int uri_list_len, const char *startup_id) {
+  DBusMessage *fwd_msg = NULL;
+  dbus_bool_t ret = FALSE;
+  const char *sid = NULL;
+
+  sid = (startup_id != NULL) ? startup_id : "";
+
+  fwd_msg = dbus_message_new_method_call(
+    "org.freedesktop.FileManager1",
+    "/org/freedesktop/FileManager1",
+    "org.freedesktop.FileManager1",
+    method_name);
+  if (fwd_msg == NULL) {
+    warnx("forward_dbus_request: Failed to create D-Bus method call!");
+    return;
+  }
+
+  ret = dbus_message_append_args(fwd_msg,
+    DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &uri_list, uri_list_len,
+    DBUS_TYPE_STRING, &sid,
+    DBUS_TYPE_INVALID);
+  if (ret == FALSE) {
+    warnx("forward_dbus_request: Failed to append arguments!");
+    dbus_message_unref(fwd_msg);
+    return;
+  }
+
+  /* Fire-and-forget: we don't need a reply */
+  dbus_message_set_no_reply(fwd_msg, TRUE);
+  if (dbus_connection_send(dbus_conn, fwd_msg, NULL) == FALSE) {
+    warnx("forward_dbus_request: Failed to send method call!");
+  }
+  dbus_connection_flush(dbus_conn);
+  dbus_message_unref(fwd_msg);
 }
 
 /*
  * All three of the method calls we handle take the same arguments, and we do
- * the hard work in the frontend, so we can use the same function here to
- * handle all the calls.
+ * the hard work in the frontend and via D-Bus forwarding, so we can use the
+ * same function here to handle all the calls.
  */
 void handle_dbus_method_call(DBusMessage *dbus_msg,
   const char *method_call_name, const char *mode_opt) {
@@ -238,7 +379,11 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
   const char *startup_id = NULL;
   DBusMessage *method_return = NULL;
   size_t uri_list_idx = 0;
-  bool do_launch_frontend = false;
+  bool do_process = false;
+  char **env_arr = NULL;
+  pid_t frontend_pid = -1;
+  int frontend_status = 0;
+  int dbus_name_re_request = 0;
 
   did_extract_args = dbus_message_get_args(dbus_msg,
     &error_data,
@@ -277,11 +422,11 @@ void handle_dbus_method_call(DBusMessage *dbus_msg,
     }
   }
 
-  do_launch_frontend = true;
+  do_process = true;
 
 method_send_reply:
   if (dbus_message_get_no_reply(dbus_msg) == TRUE) {
-    goto launch_frontend;
+    goto process_request;
   }
 
   method_return = dbus_message_new_method_return(dbus_msg);
@@ -292,18 +437,82 @@ method_send_reply:
     err(1, "handle_dbus_method_call: Could not queue method return!");
   }
   /*
-   * We could probably get away with omitting the flush, but browsers will
-   * attempt to launch the file manager by themselves if they don't get a
-   * return message quickly enough, so push this out as quickly as possible.
+   * Push the reply out immediately so the calling application (e.g. browser)
+   * does not attempt to launch its own file manager due to timeout.
    */
   dbus_connection_flush(dbus_conn);
 
-launch_frontend:
-  if (do_launch_frontend) {
-    launch_frontend_process(mode_opt, uri_list, uri_list_len);
+process_request:
+  if (!do_process) {
+    goto method_cleanup;
+  }
+
+  /* Fetch current environment from systemd's user manager */
+  env_arr = get_systemd_environment();
+  if (env_arr == NULL) {
+    warnx("handle_dbus_method_call: Could not get environment from systemd, cannot process request.");
+    goto method_cleanup;
+  }
+
+  /* Launch frontend confirmation dialog and wait for user response */
+  frontend_pid = launch_frontend(mode_opt, uri_list, uri_list_len, env_arr);
+  if (frontend_pid <= 0) {
+    warnx("handle_dbus_method_call: Could not launch frontend.");
+    goto method_cleanup;
+  }
+
+  if (waitpid(frontend_pid, &frontend_status, 0) == -1) {
+    warn("handle_dbus_method_call: waitpid for frontend failed");
+    goto method_cleanup;
+  }
+
+  if (!WIFEXITED(frontend_status) || WEXITSTATUS(frontend_status) != 0) {
+    /* User cancelled or frontend encountered an error */
+    goto method_cleanup;
+  }
+
+  /*
+   * User confirmed. Forward the request to pcmanfm-qt via D-Bus.
+   *
+   * 1. Release our D-Bus name so pcmanfm-qt can claim it
+   * 2. Start pcmanfm-qt --daemon-mode (double-fork to avoid zombies)
+   * 3. Wait for pcmanfm-qt to claim the name
+   * 4. Forward the original request via D-Bus
+   * 5. Re-request the name (we'll be queued behind pcmanfm-qt)
+   */
+
+  dbus_bus_release_name(dbus_conn, "org.freedesktop.FileManager1",
+    &error_data);
+  dbus_error_free(&error_data);
+
+  launch_pcmanfm_qt_daemon(env_arr);
+
+  if (!wait_for_dbus_name_owner()) {
+    warnx("handle_dbus_method_call: pcmanfm-qt did not claim D-Bus name within timeout.");
+    /* Re-claim the name ourselves since pcmanfm-qt failed to start */
+    dbus_bus_request_name(dbus_conn, "org.freedesktop.FileManager1",
+      DBUS_NAME_FLAG_REPLACE_EXISTING, &error_data);
+    dbus_error_free(&error_data);
+    goto method_cleanup;
+  }
+
+  forward_dbus_request(method_call_name, uri_list, uri_list_len_int,
+    startup_id);
+
+  /* Re-request the name; we'll be queued behind pcmanfm-qt */
+  dbus_name_re_request = dbus_bus_request_name(dbus_conn,
+    "org.freedesktop.FileManager1", 0, &error_data);
+  dbus_error_free(&error_data);
+  if (dbus_name_re_request == DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
+    printf("Re-acquired 'org.freedesktop.FileManager1' name.\n");
+  } else {
+    printf("Queued behind pcmanfm-qt for 'org.freedesktop.FileManager1' name.\n");
   }
 
 method_cleanup:
+  if (env_arr != NULL) {
+    free_env_array(env_arr);
+  }
   if (method_return != NULL) {
     dbus_message_unref(method_return);
   }
@@ -316,9 +525,13 @@ int main(void) {
   struct sigaction sigchld_act = { 0 };
   int dbus_name_request_rslt = 0;
 
-  sigchld_act.sa_handler = SIG_IGN;
+  /*
+   * Use default SIGCHLD handling so we can waitpid() for the frontend
+   * process. pcmanfm-qt is started via double-fork to avoid zombies.
+   */
+  sigchld_act.sa_handler = SIG_DFL;
   if (sigaction(SIGCHLD, &sigchld_act, NULL) == -1) {
-    err(1, "Failed to enable automatic child process reaping");
+    err(1, "Failed to set SIGCHLD handler");
   }
 
   dbus_error_init(&error_data);
@@ -346,13 +559,17 @@ int main(void) {
     sd_notify(0, "STATUS=Running");
     break;
   case DBUS_REQUEST_NAME_REPLY_IN_QUEUE:
-    warnx("Requested 'org.freedesktop.FileManager1' name from D-Bus, but was placed in queue.");
-    warnx("This may be a security risk! Please report this bug!");
     /*
-     * sd_notify(0, "READY=1") is intentionally omitted here, so that
-     * systemcheck will show a warning about the system not being ready
+     * Another process (e.g. pcmanfm-qt in daemon mode) already owns the
+     * name. This is normal and not a security issue. We stay running
+     * and will automatically become the primary owner when the current
+     * owner exits.
+     *
+     * We send READY=1 so that systemd does not time out the service.
      */
-    sd_notify(0, "STATUS=Running, security issue detected");
+    printf("Another process already owns 'org.freedesktop.FileManager1'. Queued as backup handler.\n");
+    sd_notify(0, "READY=1");
+    sd_notify(0, "STATUS=Queued, another file manager handler is active");
     break;
   case DBUS_REQUEST_NAME_REPLY_ALREADY_OWNER:
     warnx("Possible bug, we already own 'org.freedesktop.FileManager1' name?");

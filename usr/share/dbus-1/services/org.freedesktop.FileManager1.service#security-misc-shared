@@ -1,0 +1,14 @@
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## D-Bus service activation file for the fm-shim backend.
+## When an application calls org.freedesktop.FileManager1 methods
+## (e.g. ShowFolders) and no process owns the name, D-Bus will
+## activate this service via the systemd user unit.
+##
+## https://forums.whonix.org/t/is-catfish-the-new-default-in-the-qubes-domain-open-file-manager-quick-widget-for-whonix/20233
+
+[D-BUS Service]
+Name=org.freedesktop.FileManager1
+Exec=/usr/bin/fm-shim-backend
+SystemdService=fm-shim.service
