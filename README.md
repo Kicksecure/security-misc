@@ -786,6 +786,23 @@ See:
   by the user to function properly, see notes in
   `/etc/security-misc/emerg-shutdown/30_security_misc.conf`.
 
+## File Manager D-Bus shim
+
+To prevent malicious applications from opening malicious content using D-Bus,
+a shim is present that listens for `org.freedesktop.FileManager1` D-Bus method
+calls. This shim displays a confirmation window for every request an
+application makes to open one or more directories, while also ensuring
+applications can only try to open directories (not files), and cannot try to
+open directories that the user cannot access.
+
+See:
+
+- `/usr/src/security-misc/fm-shim-backend.c`
+- `/usr/lib/python3/dist-packages/fm_shim_frontend/fm_shim_frontend.py`
+- `/usr/bin/fm-shim-frontend`
+- `/usr/libexec/security-misc/build-fm-shim-backend`
+- `/usr/lib/systemd/user/fm-shim.service`
+
 ## Application-specific hardening
 
 - `sudo`: Enables "`Defaults !fqdn`", which disables attempts to
