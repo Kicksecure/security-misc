@@ -319,7 +319,7 @@ Networking:
 `security-misc` is in full compliance with KSPP recommendations wherever feasible. However,
 there are a few cases of partial or non-compliance due to technical limitations.
 
-* [KSPP Recommended Settings](https://kspp.github.io/Recommended_Settings)
+- [KSPP Recommended Settings](https://kspp.github.io/Recommended_Settings)
 
 **Full compliance:**
 
@@ -333,7 +333,7 @@ the KSPP's recommendations.
 Restrict processes from modifying their own memory mappings by completely disables use of
 `/proc/PID/mem` to write to protected pages. Can be enabled easily if required.
 
-* [security-misc pull request #332](https://github.com/Kicksecure/security-misc/pull/332)
+- [security-misc pull request #332](https://github.com/Kicksecure/security-misc/pull/332)
 
 **Non-compliance:**
 
@@ -341,23 +341,23 @@ Restrict processes from modifying their own memory mappings by completely disabl
 
 Disables user namespaces entirely. Not recommended due to the potential for widespread breakages.
 
-* [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
+- [security-misc pull request #263](https://github.com/Kicksecure/security-misc/pull/263)
 
 3. `sysctl fs.binfmt_misc.status=0`
 
 Disables the registration of interpreters for miscellaneous binary formats. Currently not
 feasible due to compatibility issues with Firefox.
 
-* [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
-* [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
+- [security-misc pull request #249](https://github.com/Kicksecure/security-misc/pull/249)
+- [security-misc issue #267](https://github.com/Kicksecure/security-misc/issues/267)
 
 4. Kernel boot parameter `hash_pointers=always`
 
 Force all exposed pointers to be hashed and must be used in combination with the already enabled
 `slab_debug=FZ` kernel boot parameter. Currently is not possible as requires Linux kernel >= 6.17.
 
-* [security-misc issue #253](https://github.com/Kicksecure/security-misc/issues/253)
-* [security-misc pull request #325](https://github.com/Kicksecure/security-misc/pull/325)
+- [security-misc issue #253](https://github.com/Kicksecure/security-misc/issues/253)
+- [security-misc pull request #325](https://github.com/Kicksecure/security-misc/pull/325)
 
 ### Kernel Modules
 
@@ -753,12 +753,12 @@ the boot process too much.
 
 See:
 
-* `/usr/bin/permission-hardener`
-* `debian/security-misc.postinst`
-* `/lib/systemd/system/permission-hardener.service`
-* `/etc/permission-hardener.d`
-* https://forums.whonix.org/t/disable-suid-binaries/7706
-* https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
+- `/usr/bin/permission-hardener`
+- `debian/security-misc.postinst`
+- `/lib/systemd/system/permission-hardener.service`
+- `/etc/permission-hardener.d`
+- https://forums.whonix.org/t/disable-suid-binaries/7706
+- https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 
 ### Access rights relaxations
 
@@ -769,9 +769,9 @@ incompatible with `hidepid=2`.
 
 See:
 
-* `/usr/bin/pkexec.security-misc`
-* https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
-* https://forums.whonix.org/t/cannot-use-pkexec/8129
+- `/usr/bin/pkexec.security-misc`
+- https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
+- https://forums.whonix.org/t/cannot-use-pkexec/8129
 
 ## Emergency shutdown
 
@@ -785,6 +785,23 @@ See:
   than a user-configurable number of seconds (30 by default). Requires tuning
   by the user to function properly, see notes in
   `/etc/security-misc/emerg-shutdown/30_security_misc.conf`.
+
+## File Manager D-Bus shim
+
+To prevent malicious applications from opening malicious content using D-Bus,
+a shim is present that listens for `org.freedesktop.FileManager1` D-Bus method
+calls. This shim displays a confirmation window for every request an
+application makes to open one or more directories, while also ensuring
+applications can only try to open directories (not files), and cannot try to
+open directories that the user cannot access.
+
+See:
+
+- `/usr/src/security-misc/fm-shim-backend.c`
+- `/usr/lib/python3/dist-packages/fm_shim_frontend/fm_shim_frontend.py`
+- `/usr/bin/fm-shim-frontend`
+- `/usr/libexec/security-misc/build-fm-shim-backend`
+- `/usr/lib/systemd/user/fm-shim.service`
 
 ## Application-specific hardening
 
@@ -897,9 +914,9 @@ https://github.com/Kicksecure/security-misc/pull/167
 
 The `security-misc` source code repository builds three different software packages:
 
-* `security-misc-shared`
-* `security-misc-desktop`
-* `security-misc-server`
+- `security-misc-shared`
+- `security-misc-desktop`
+- `security-misc-server`
 
 The guiding principle has been: if there are no adverse effects, or if it is unclear whether a file belongs in the `desktop` or `server` package, then it will be placed in the `shared` package.
 
@@ -907,9 +924,9 @@ The hash symbol ("`#`") is used as a separator character.
 
 Some clear examples where files belong only in `security-misc-desktop`:
 
-* `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy#security-misc-desktop.conf`
-* `/usr/lib/NetworkManager/conf.d/80_randomize-mac#security-misc-desktop.conf`
-* `./usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf#security-misc-desktop`
+- `/usr/lib/NetworkManager/conf.d/80_ipv6-privacy#security-misc-desktop.conf`
+- `/usr/lib/NetworkManager/conf.d/80_randomize-mac#security-misc-desktop.conf`
+- `./usr/lib/systemd/networkd.conf.d/80_ipv6-privacy-extensions.conf#security-misc-desktop`
 
 This is because enabling IPv6 privacy extensions or MAC randomization on a server will not increase privacy but instead carries a high risk of breaking connectivity.
 
@@ -921,10 +938,10 @@ Some clear examples where files belong only in `security-misc-shared`:
 
 Other considerations have been:
 
-* Just because it's a server, it does not follow that there is no GUI (graphical user interface) desktop environment.
-* Just because it's a desktop computer, it doesn't mean it's a GUI and not a CLI (command line interface).
-* Therefore, the split is between `security-misc-desktop` and `security-misc-server`.
-* Therefore, the split is not between `security-misc-gui` and `security-misc-cli`.
+- Just because it's a server, it does not follow that there is no GUI (graphical user interface) desktop environment.
+- Just because it's a desktop computer, it doesn't mean it's a GUI and not a CLI (command line interface).
+- Therefore, the split is between `security-misc-desktop` and `security-misc-server`.
+- Therefore, the split is not between `security-misc-gui` and `security-misc-cli`.
 
 \[1\] https://github.com/Kicksecure/security-misc/issues/187
 
