@@ -1,3 +1,28 @@
+commit 1e23d62307d17fc6ecc86ae923332c07bfc52d60
+Merge: f64fc3e1 972f4c95
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 10 04:21:34 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 972f4c95fb31d41140d3a30fbdba5c49dbd6bd73
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Thu Apr 9 23:37:21 2026 -0400
+
+    Document fm-shim in README.md
+
+commit 61dd797310b257fd7614b1769b84d62ce62ef80b
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Thu Apr 9 23:29:26 2026 -0400
+
+    Standardize on one form of bullets in README.md
+
+commit f64fc3e1645ec2661b518e64f4454dc9ef85cf49
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 9 11:57:57 2026 +0000
+
+    bumped changelog version
+
 commit 4c3d4267a19ef56c488779ad28d82eef87b967d9
 Merge: 46c171e4 e718203d
 Author: Patrick Schleizer <adrelanos@whonix.org>
