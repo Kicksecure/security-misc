@@ -5,8 +5,10 @@
 ## https://github.com/Kicksecure/security-misc/issues/225
 
 [core]
-## https://github.com/git/git/security/advisories/GHSA-8prw-h3cq-mghm
+	## https://github.com/git/git/security/advisories/GHSA-8prw-h3cq-mghm
 	symlinks = false
+
+	#hooksPath = /home/user/.config/git/hooks
 
 ## https://forums.whonix.org/t/git-users-enable-fsck-by-default-for-better-security/2066
 [transfer]
@@ -20,7 +22,7 @@
 ## Listed here as suggestions what users should put into their ~/.gitconfig
 ## file.
 
-## Not enabled by default because it requires essential knowledge about OpenPG
+## Not enabled by default because it requires essential knowledge about OpenPGP
 ## and an already existing local signing key. Otherwise would prevent all new
 ## commits.
 #[commit]
