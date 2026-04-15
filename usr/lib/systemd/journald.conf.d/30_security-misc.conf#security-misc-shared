@@ -1,0 +1,7 @@
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## Mitigation for https://www.openwall.com/lists/oss-security/2026/04/08/1
+
+[Journal]
+ForwardToWall=no
