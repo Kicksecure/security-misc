@@ -976,16 +976,32 @@ See:
 ## Systemd preset defaults
 
 The following services are explicitly disabled by default in the systemd
-preset and must be opted-in by the user:
+preset because these are work-in-progress or can severely break functionality.
+These can be opted-in by the user:
 
 - `hide-hardware-info.service` - Restricts `/sys` and `/proc` hardware info.
+  Testers-only. See [hide-hardware-info.service](https://www.kicksecure.com/wiki/Security-misc#hide-hardware-info.service).
+
 - `permission-hardener.service` - Applies permission hardening at boot.
+  See [permission-hardener.service](https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener#permission-hardener.service).
+
 - `remount-secure.service` - Remounts filesystems with hardened options.
+  In development. See [Remount Secure](https://www.kicksecure.com/wiki/Dev/remount-secure).
+  
 - `proc-hidepid.service` - Mounts `/proc` with `hidepid=2`.
+  See [hidepid](https://www.kicksecure.com/wiki/Security-misc#hidepid).
+  
 - `harden-module-loading.service` - Disables kernel module loading after boot.
+  [Harden Module Loading](https://www.kicksecure.com/wiki/Security-misc#Harden_Module_Loading) can cause major breakage.
+  
 - `ensure-shutdown.service` - Forced shutdown watchdog.
+  In development.
+  
 - `ensure-shutdown-trigger.service` - Companion trigger for forced shutdown.
-- `memlockd.service` - Memory locking daemon (used by emerg-shutdown).
+  In development.
+  
+- `memlockd.service` - Memory locking daemon (used internally by `emerg-shutdown`).
+  Can be enabled if the user intents to use `memlockd.service`.
 
 See: `/usr/lib/systemd/system-preset/50-security-misc.preset`
 
