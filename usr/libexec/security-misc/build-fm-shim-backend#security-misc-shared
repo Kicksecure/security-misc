@@ -14,7 +14,8 @@ gcc_hardening_options=(
   "-O2" "-Wall" "-Wextra" "-Wformat" "-Wformat=2" "-Wconversion"
   "-Wimplicit-fallthrough" "-Werror=format-security" "-Werror=implicit"
   "-Werror=int-conversion" "-Werror=incompatible-pointer-types"
-  "-Wformat-overflow" "-Wformat-signedness" "-Wnull-dereference" "-Winit-self"
+  "-Wformat-overflow" "-Wformat-signedness" "-Wformat-truncation"
+  "-Wnull-dereference" "-Winit-self"
   "-Wmissing-include-dirs" "-Wshift-negative-value" "-Wshift-overflow"
   "-Wswitch-default" "-Wuninitialized" "-Walloca" "-Warray-bounds"
   "-Wfloat-equal" "-Wshadow" "-Wpointer-arith" "-Wundef" "-Wunused-macros"
@@ -29,7 +30,8 @@ gcc_hardening_options=(
   "-Wcast-align=strict" "-Wjump-misses-init" "-Wlogical-op" "-U_FORTIFY_SOURCE"
   "-D_FORTIFY_SOURCE=3" "-fstack-clash-protection" "-fstack-protector-all"
   "-fno-delete-null-pointer-checks" "-fno-strict-aliasing"
-  "-fstrict-flex-arrays=3" "-ftrivial-auto-var-init=pattern" "-fPIE"
+  "-fno-strict-overflow" "-fstrict-flex-arrays=3"
+  "-ftrivial-auto-var-init=pattern" "-fPIE"
 )
 
 gcc_machine="$(gcc -dumpmachine)"

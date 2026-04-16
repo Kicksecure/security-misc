@@ -205,7 +205,7 @@ CPU mitigations:
 
 - Cross-Thread Return Address Predictions
 
-- Speculative Return Stack Overflow (SRSO)
+- Optional - Speculative Return Stack Overflow (SRSO)
 
 - Gather Data Sampling (GDS)
 
@@ -491,6 +491,22 @@ Miscellaneous modules:
   by the author of this part of the readme. This is no longer implemented for
   `initramfs-tools` as `initramfs-tools` support has been deprecated.
 
+- Kernel console output is suppressed during boot by setting `loglevel=0` and
+  `quiet` boot parameters to prevent sensitive kernel information from being
+  visible to physical observers. Must be paired with the `kernel.printk` sysctl
+  for complete effect. See:
+
+  `/etc/default/grub.d/41_quiet_boot.cfg`
+
+  `/usr/lib/sysctl.d/30_silent-kernel-printk.conf`
+
+- Recovery mode is restricted by removing GRUB recovery entries, halting
+  instead of dropping to an emergency shell during initramfs failures, and
+  disabling the dracut recovery shell entirely. This prevents physical attackers
+  from booting into a root shell via recovery options. See:
+
+  `/etc/default/grub.d/41_recovery_restrict.cfg`
+
 ## Network hardening
 
 Not yet implemented due to issues:
@@ -538,7 +554,15 @@ See:
 
 ### Configuration Details
 
-- See configuration: `/etc/bluetooth/30_security-misc.conf`
+- Bluetooth controllers are not automatically enabled at boot (`AutoEnable=false`).
+- Pairable and discoverable modes time out after 30 seconds of inactivity.
+- Only one Bluetooth controller is exposed to the system (`MaxControllers=1`).
+- Resolvable Private Addresses (RPAs) are enforced (`Privacy=network/on`),
+  preventing MAC-based tracking.
+
+See:
+
+- `/etc/bluetooth/30_security-misc.conf`
 - For more information and discussion: [GitHub Pull Request](https://github.com/Kicksecure/security-misc/pull/145)
 
 ### Understanding Bluetooth Terms
@@ -599,7 +623,7 @@ Not enabled by default yet. In development. Help welcome.
 
 - Add user `root` to group `sudo`. This is required due to the above
   restriction so that logging in from a virtual console is still possible -
-  `debian/security-misc.postinst`
+  `debian/security-misc-shared.preinst`
 
 - Abort login for users with locked passwords -
   `/usr/libexec/security-misc/pam-abort-on-locked-password`.
@@ -653,6 +677,13 @@ See:
 
 User accounts are locked after 50 failed login attempts using `pam_faillock`.
 
+- The failure tracking window is 7 days (`fail_interval=604800`).
+- Locked accounts never auto-unlock (`unlock_time=never`) and require manual
+  administrator intervention via the `faillock` command.
+- The root account can also be locked (`even_deny_root`).
+- Faillock is skipped for certain remote services (e.g. `sshd`, `dovecot`) to
+  prevent remote lockout attacks.
+
 Informational output during Linux PAM:
 
 - Show failed and remaining password attempts.
@@ -662,9 +693,12 @@ Informational output during Linux PAM:
 
 See:
 
-- `/usr/share/pam-configs/tally2-security-misc`
+- `/usr/share/pam-configs/faillock-preauth-security-misc`
+- `/usr/share/pam-configs/unix-faillock-security-misc`
+- `/etc/security/faillock.conf.security-misc`
 - `/usr/libexec/security-misc/pam-info`
 - `/usr/libexec/security-misc/pam-abort-on-locked-password`
+- `/usr/libexec/security-misc/pam_faillock_not_if_x`
 
 ## Access rights restrictions
 
@@ -687,7 +721,7 @@ of this package.
 
 See:
 
-- `debian/security-misc.postinst`
+- `debian/security-misc-shared.postinst`
 - `/usr/libexec/security-misc/permission-lockdown`
 - `/usr/share/pam-configs/mkhomedir-security-misc`
 
@@ -754,9 +788,9 @@ the boot process too much.
 See:
 
 - `/usr/bin/permission-hardener`
-- `debian/security-misc.postinst`
-- `/lib/systemd/system/permission-hardener.service`
-- `/etc/permission-hardener.d`
+- `debian/security-misc-shared.postinst`
+- `/usr/lib/systemd/system/permission-hardener.service`
+- `/usr/lib/permission-hardener.d`
 - https://forums.whonix.org/t/disable-suid-binaries/7706
 - https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
 
@@ -778,13 +812,21 @@ See:
 - Forcibly powers off the system if the drive the system booted from is
   removed from the system.
 - Forcibly powers off the system if a user-configurable "panic key sequence"
-  is pressed (Ctrl+Alt+Delete by default).
+  is pressed (Ctrl+Alt+End by default).
 - Forcibly powers off the system if
   `sudo /run/emerg-shutdown --instant-shutdown` is called.
 - Optional - Forcibly powers off the system if shutdown gets stuck for longer
   than a user-configurable number of seconds (30 by default). Requires tuning
   by the user to function properly, see notes in
   `/etc/security-misc/emerg-shutdown/30_security_misc.conf`.
+
+A dracut module bundles the emergency shutdown binary, its systemd service,
+and configuration files into the initramfs so the panic key sequence is
+available even during early boot. A udev rule restarts the service whenever
+a keyboard is added or removed. See:
+
+- `/usr/lib/dracut/modules.d/99emerg-shutdown/module-setup.sh`
+- `/usr/lib/udev/rules.d/95-emerg-shutdown.rules`
 
 ## File Manager D-Bus shim
 
@@ -817,21 +859,31 @@ See:
 - `Dolphin`: Deactivates previews in Dolphin.
 - `Nautilus`: Deactivates previews in Nautilus -
   `/usr/share/glib-2.0/schemas/30_security-misc.gschema.override`.
-- `Thunar`: Deactivates thumbnails in Thunar.
+- `Thunar`: Deactivates thumbnails, disables automatic volume management,
+  hides the network bookmark, and sets the date format to ISO in Thunar.
   - Rationale: lower attack surface when using the file manager
   - https://forums.whonix.org/t/disable-preview-in-file-manager-by-default/18904
 - `gnupg`: Security and privacy enhancements for gnupg's config file
   `/etc/skel/.gnupg/gpg.conf`. See also:
   - https://raw.github.com/ioerror/torbirdy/master/gpg.conf
   - https://github.com/ioerror/torbirdy/pull/11
-- `SSH client`: Hardens SSH client
+- `SSH client`: Hardens the SSH client by restricting key exchange to
+  post-quantum-hybrid and modern algorithms, limiting host and public key
+  authentication to Ed25519 only, requiring the use of strong ciphers, and
+  enforcing encrypt-then-MAC.
   `/etc/ssh/ssh_config.d/30_security-misc.conf`
-- `SSH server`: Hardens SSH server
+- `SSH server`: Hardens the SSH server with the same cryptographic restrictions
+  as the client. Additionally disables password and keyboard-interactive
+  authentication, disables agent/TCP/X11 forwarding, limits authentication
+  attempts to 3, and suppresses the Debian version banner.
   `/etc/ssh/sshd_config.d/30_security-misc.conf`
 - `flatpak`: Configures flatpak to require authentication for all software installation
   and management tasks including updates. Ships
   `/usr/share/polkit-1/actions/org.freedesktop.Flatpak.policy.security-misc`,
   diverts/hides `/usr/share/polkit-1/rules.d/org.freedesktop.Flatpak.rules`.
+- `git`: Disables symlinks to protect against known CVEs and enables object
+  integrity checking (`fsckObjects`) on transfer, fetch, and receive operations.
+  `/etc/gitconfig`
 
 ### Project scope of application-specific hardening
 
@@ -897,12 +949,106 @@ default.
   break many things, it is disabled by default and can optionally be enabled
   by executing `systemctl enable hide-hardware-info.service` as root.
 
+## USBGuard
+
+USB device authorization rules are shipped for USBGuard. All unrecognized USB
+devices plugged in at runtime are blocked by default
+(`ImplicitPolicyTarget=block`), while devices connected at boot time and some
+likely-safe devices are allowed. The service is suppressed if the system lacks
+a USB controller.
+
+- Reject USB devices with undefined or non-standard interface classes.
+- Reject devices that combine a keyboard/mouse (HID) interface with
+  non-HID interfaces, which is a common indicator of a BadUSB attack.
+- Reject devices with RNDIS interfaces due to suspected protocol-level
+  buffer overflow vulnerabilities.
+- Allow only one keyboard and one mouse at a time.
+- Allow USB audio, video, mass storage, and hub devices.
+- IPC access is granted to members of the `sudo` and `qubes` groups.
+
+See:
+
+- `/etc/usbguard/usbguard-daemon.conf.security-misc`
+- `/etc/usbguard/rules.d/30_security-misc.conf`
+- `/etc/usbguard/IPCAccessControl.d/`
+- `/usr/lib/systemd/system/usbguard.service.d/30_security-misc.conf`
+
+## Systemd preset defaults
+
+The following services are explicitly disabled by default in the systemd
+preset and must be opted-in by the user:
+
+- `hide-hardware-info.service` - Restricts `/sys` and `/proc` hardware info.
+- `permission-hardener.service` - Applies permission hardening at boot.
+- `remount-secure.service` - Remounts filesystems with hardened options.
+- `proc-hidepid.service` - Mounts `/proc` with `hidepid=2`.
+- `harden-module-loading.service` - Disables kernel module loading after boot.
+- `ensure-shutdown.service` - Forced shutdown watchdog.
+- `ensure-shutdown-trigger.service` - Companion trigger for forced shutdown.
+- `memlockd.service` - Memory locking daemon (used by emerg-shutdown).
+
+See: `/usr/lib/systemd/system-preset/50-security-misc.preset`
+
 ## Miscellaneous
 
 - Hardened malloc compatibility for haveged workaround
-  `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
+  `/usr/lib/systemd/system/haveged.service.d/30_security-misc.conf`
 
-- Set `dracut` `reproducible=yes` setting
+- Set `dracut` `reproducible=yes` setting.
+  `/etc/dracut.conf.d/30-security-misc.conf`
+
+- A `virusforget` script detects unauthorized changes to a set of sensitive
+  files by comparing them against a stored baseline. Work in progress - the
+  implementation will likely change significantly.
+  `/usr/libexec/security-misc/virusforget`
+
+- A custom `askpass` helper provides a GUI password prompt via `yad` for
+  superuser actions.
+  `/usr/libexec/security-misc/askpass`
+
+- A helper script checks whether a USB controller is present on the system,
+  used as a conditional for USBGuard services.
+  `/usr/libexec/security-misc/check-for-usb-controller`
+
+- A VirtualBox-specific workaround kills the `VBoxDRMClient` process during
+  shutdown to prevent it from blocking a clean unmount of `/tmp`. Only
+  activates inside VirtualBox VMs.
+  `/usr/lib/systemd/system/kill-vboxdrmclient-on-shutdown.service`
+
+- PAM conditional helpers (`pam_only_if_login`, `pam_only_if_su`) allow
+  specific PAM rules to apply only to certain services.
+  `/usr/libexec/security-misc/pam_only_if_login`
+  `/usr/libexec/security-misc/pam_only_if_su`
+
+- Unsafe logins (such as logging into non-sysmaint accounts while booted in
+  sysmaint mode, or elevating privileges from an unprivileged account to a
+  passwordless privileged account) are blocked. Enforces account/session
+  separation between `sysmaint` and regular user accounts.
+  `/usr/libexec/security-misc/block-unsafe-logins`
+  `/usr/share/pam-configs/block-unsafe-logins-security-misc`
+
+- `/usr/share/security-misc/` is added to `XDG_CONFIG_DIRS` at login via
+  `/etc/profile.d/30_security-misc.sh` so that security-misc XDG
+  configuration overrides (e.g. Dolphin, Thunar) are available system-wide.
+
+- An AppArmor tunable creates aliases for security-misc's config-package-dev
+  displaced files (e.g. `common-session`, `login.defs`, `securetty`) so that
+  AppArmor policies continue to work with the diverted paths.
+  `/etc/apparmor.d/tunables/home.d/security-misc`
+
+- A custom `sysinit-post.target` provides a synchronization point between
+  `sysinit.target` and `basic.target` for services that must run after
+  early-boot initialization but before general services.
+  `/usr/lib/systemd/system/sysinit-post.target`
+
+- A systemd drop-in adds the `sysfs` supplementary group to all user session
+  managers (`user@.service`), granting users group-based read access to `/sys`
+  entries restricted by `hide-hardware-info.service`.
+  `/usr/lib/systemd/system/user@.service.d/sysfs.conf`
+
+- LKRG (Linux Kernel Runtime Guard) VirtualBox compatibility: automatically
+  manages LKRG sysctl settings when VirtualBox host software is detected.
+  `/usr/share/security-misc/lkrg/lkrg-virtualbox`
 
 ## Legal
 

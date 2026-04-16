@@ -85,6 +85,7 @@ usr/lib/sysctl.d/30_security-misc_ptrace-disable.conf#security-misc-shared => /u
 usr/lib/sysctl.d/30_silent-kernel-printk.conf#security-misc-shared => /usr/lib/sysctl.d/30_silent-kernel-printk.conf
 usr/lib/sysctl.d/990-security-misc.conf#security-misc-shared => /usr/lib/sysctl.d/990-security-misc.conf
 usr/lib/systemd/coredump.conf.d/30_security-misc.conf#security-misc-shared => /usr/lib/systemd/coredump.conf.d/30_security-misc.conf
+usr/lib/systemd/journald.conf.d/30_security-misc.conf#security-misc-shared => /usr/lib/systemd/journald.conf.d/30_security-misc.conf
 usr/lib/systemd/pstore.conf.d/30_security-misc.conf#security-misc-shared => /usr/lib/systemd/pstore.conf.d/30_security-misc.conf
 usr/lib/systemd/system-preset/50-security-misc.preset#security-misc-shared => /usr/lib/systemd/system-preset/50-security-misc.preset
 usr/lib/systemd/system/block-shutdown.service#security-misc-shared => /usr/lib/systemd/system/block-shutdown.service
