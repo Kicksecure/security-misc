@@ -504,8 +504,10 @@ Miscellaneous modules:
   instead of dropping to an emergency shell during initramfs failures, and
   disabling the dracut recovery shell entirely. This prevents physical attackers
   from booting into a root shell via recovery options. See:
-
-  `/etc/default/grub.d/41_recovery_restrict.cfg`
+  - `/etc/default/grub.d/41_recovery_restrict.cfg`
+  - [Recovery Mode](https://www.kicksecure.com/wiki/Recovery#Recovery_Mode)
+  - [Emergency Recovery Console](https://www.kicksecure.com/wiki/Recovery#Emergency_Recovery_Console)
+  - Is not an implementation of [Protecting the Kernel Command Line](https://www.kicksecure.com/wiki/Verified_Boot#Protecting_the_Kernel_Command_Line).
 
 ## Network hardening
 
@@ -1109,13 +1111,8 @@ Other considerations have been:
 
 ## Related
 
--   Linux Kernel Runtime Guard (LKRG)
--   tirdad - TCP ISN CPU Information Leak Protection.
--   Kicksecure (TM) - a security-hardened Linux Distribution
--   And more.
--   https://www.kicksecure.com/wiki/Linux_Kernel_Runtime_Guard_LKRG
--   https://github.com/Kicksecure/tirdad
--   https://www.kicksecure.com
+-   [`tirdad` - TCP ISN CPU Information Leak Protection.](https://www.kicksecure.com/wiki/Tirdad)
+-   [Kicksecure (TM) - a security-hardened Linux Distribution](https://www.kicksecure.com)
 -   https://github.com/Kicksecure
 
 ## Discussion
