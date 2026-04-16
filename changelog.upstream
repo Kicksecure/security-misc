@@ -1,3 +1,113 @@
+commit 36438ea84e610895c7bdd7de8a556f7c5a0c86aa
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 01:53:02 2026 -0400
+
+    readme
+
+commit a0a6ef0ab92da68460b53b3c304f3c200ee2576e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 01:50:33 2026 -0400
+
+    readme
+
+commit 766710a05a83edf128c02041ce5a18a9a76cc9e1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 01:43:35 2026 -0400
+
+    readme
+
+commit d44d9caac299a35d22d2240c2cfd42cefec22850
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 01:30:01 2026 -0400
+
+    agents
+
+commit ec3fd3bf2abd81f546b08c351b868218dbffcc68
+Merge: f511bb92 019e8415
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 01:22:03 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 019e84154a516e9a97bc284f2dc90ecf677e8531
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Apr 15 01:07:45 2026 -0400
+
+    Prevent using systemd-journald to write text to other user's terminals
+
+commit 187129cdebecae9c4906483f01f2d7341c1071f3
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Apr 15 00:47:52 2026 -0400
+
+    Add more compiler hardening flags
+
+commit b9d5480d9d7ee90c75523548bc69e9d467fda7b0
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Apr 13 18:51:43 2026 -0400
+
+    Remove unused AppArmor aliases
+
+commit f7a432f4e12407d920e787fcdd1937ae2100b3c9
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 12 20:53:09 2026 -0400
+
+    Fix sysinit-post.target description
+
+commit fcefea6d468a7f4524c0f78e17bd9311692ce3bc
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 12 20:52:10 2026 -0400
+
+    Remove preset block on emerg-shutdown.service
+
+    The block didn't actually work, and the bug that kept emerg-shutdown
+    from being usable with Calamares appears to no longer be a problem.
+
+commit 0e8f654d3af4613ca0346d8c9524fb1d116468b7
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 12 20:48:24 2026 -0400
+
+    Documentation updates (mostly from Claude Code)
+
+commit 1baaaea4bc40e0e67d47ff904fea74f2b241dcdb
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 12 19:27:00 2026 -0400
+
+    Modified and squashed commit of the following:
+
+    commit 518290c64b01d3890639b7b22cf90ababb163565
+    Author: Claude <noreply@anthropic.com>
+    Date:   Fri Apr 10 10:33:35 2026 +0000
+
+        Add agents docs for fm-shim security review notes
+
+        Document fm-shim architecture, accepted threat model, and rejected
+        review suggestions to preserve context for future security reviews.
+
+        https://claude.ai/code/session_01HJPNe7hjMrPvPtuJmPBhNa
+
+commit b6f5cf1787d2ab12832892ab38b79825a1748e9b
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 12 15:30:06 2026 -0400
+
+    Modified and squashed commit of the following:
+
+    commit 63606cd8a818570143ea73211a74bbb5db38242a
+    Author: Claude <noreply@anthropic.com>
+    Date:   Fri Apr 10 11:03:29 2026 +0000
+
+        Add AGENTS.md with fm-shim review guidelines
+
+        Captures lessons from PR #358 review feedback to prevent repeating
+        rejected patterns in future contributions.
+
+        https://claude.ai/code/session_01CgrrFhhVWtqtfhvJdEcBWm
+
+commit f511bb9218a68c2c027107f5b898eb795302e9c9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Apr 12 14:03:30 2026 +0000
+
+    bumped changelog version
+
 commit e9d672a5e6a2c76a3668aebd46dcb42c04b97fdc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Apr 12 03:35:31 2026 -0400
@@ -246,7 +356,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 23 06:30:40 2026 -0500
 
     Merge pull request #351 from raja-grewal/cdrom
-    
+
     Add CD-ROM/DVD hardening settings
 
 commit ad1d64fc4ffe53ffc0710b5d9654dfff5ff6f617
@@ -276,7 +386,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Feb 17 11:03:30 2026 -0500
 
     Merge pull request #344 from raja-grewal/docs_update
-    
+
     Update various docs
 
 commit fe1d92429d34f66cd9e2cdd085700e6a373bea5f
@@ -321,7 +431,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Feb 8 05:14:38 2026 -0500
 
     Do not run emerg-shutdown.service in case 'rd.live.ram' or 'rd.live.ram=1' is set.
-    
+
     https://forums.kicksecure.com/t/how-to-run-iso-live-mode-from-ram/1542/9
 
 commit 34440d7cdf662426b147ac8fde65573927b9bfe0
@@ -361,7 +471,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 5 03:05:02 2026 -0500
 
     Merge pull request #345 from Nurmagoz/patch-1
-    
+
     debian/control URL fix
 
 commit 8a132749e0976803173c416cd5f8d4879b7dee3f
@@ -1240,7 +1350,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 9 05:47:00 2025 -0500
 
     revert Force immediate kernel panic on OOM.
-    
+
     https://github.com/Kicksecure/security-misc/issues/324#issuecomment-3507949741
 
 commit 26b96ce2800e794104e6d3c113c3c2c121795b39
@@ -1486,7 +1596,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Oct 31 10:24:31 2025 -0400
 
     Revert "Move apparmor-info, apparmor-watch to security-misc, enable systemd-journald audit transport"
-    
+
     This reverts commit d1e148eba72ff5a095e31842a70afec7f28c8724.
 
 commit 3b2092ee764fe3ab8d72b912f0dcc4726ba76f4e
@@ -1561,7 +1671,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 04:42:24 2025 -0400
 
     fix USBGuard-notifier `accept` / `reject` buttons
-    
+
     https://forums.kicksecure.com/t/usbguard-what-should-we-allow-or-disallow-by-default/1248/49
 
 commit 9f7480e20adf148dcb7dbe80e704f3f79691b657
@@ -1689,13 +1799,13 @@ Date:   Fri Oct 10 08:03:03 2025 -0400
     Force immediate kernel panic on OOM.
     This is to avoid security features such as the screen locker, kloak, emerg-shutdown
     from being arbitrarily terminated when the system starts running out of memory.
-    
+
     https://forums.whonix.org/t/screen-locker-in-security-can-we-disable-these-at-least-4-backdoors/8128/14
-    
+
     https://github.com/Kicksecure/security-misc/issues/324
-    
+
     `vm.panic_on_oom=2`
-    
+
     implements https://github.com/Kicksecure/security-misc/issues/324
 
 commit 98f27c3b2e1420f6d29cabe7d0c60a92989d06e1
@@ -1723,7 +1833,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Oct 10 06:50:46 2025 -0400
 
     Merge pull request #325 from raja-grewal/hash_pointers
-    
+
     Docs detailing future improvements to `slab_debug`
 
 commit e89c7ae0254d41ac1696e23f8b2d4a425413d888
@@ -1844,7 +1954,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 24 10:31:31 2025 -0400
 
     Merge pull request #319 from raja-grewal/release_notice
-    
+
     Notice on public releases
 
 commit d31f63fb1052adb186c323349aa4e36fb6fc8551
@@ -1889,7 +1999,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 14:41:05 2025 -0400
 
     `security-misc` -> `security-misc-shared` package migration
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 02d0ba49bb187f46dbc5969fa00d26f668446a71
@@ -1915,7 +2025,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 12:05:29 2025 -0400
 
     `Replaces: security-misc`
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 4bd08f8c818cc862ffb45cd47b7346f7cf89dd4f
@@ -1935,7 +2045,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 11:54:04 2025 -0400
 
     security-misc-server placeholder
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 4eb9ec15e11548bd472977c411fecd2bd1c527c0
@@ -1943,7 +2053,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 11:51:14 2025 -0400
 
     packaging
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit c2594a022e86c79a44e2023e518da3f1294346aa
@@ -1951,7 +2061,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 11:29:55 2025 -0400
 
     rename
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 41ba668d23efb5f052394cfd9ab494e595058c17
@@ -1959,7 +2069,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 11:23:10 2025 -0400
 
     rename
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 1b194f9fd6de847b3450ea5b9b3cd51a3fbfb81f
@@ -1967,7 +2077,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 10:59:23 2025 -0400
 
     adjust lintian overrides file
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 80562557ef5ac360aea2ea7c7a5c6faf76bdb2f0
@@ -1975,7 +2085,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 10:53:25 2025 -0400
 
     make install files executable
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit c99ea95410ef8fd8fd5d6134a914c344c8eea174
@@ -1989,7 +2099,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 19 10:30:42 2025 -0400
 
     packaging
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 55a8ec685d87a1327ac73d942370409b38e9ad3a
@@ -1997,7 +2107,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 18 10:53:21 2025 -0400
 
     packaging split
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit b4a7d84bf507600cd181081fa85aaab26a3c7c59
@@ -2029,7 +2139,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 14:49:28 2025 -0400
 
     Split the `security-misc` into `security-misc-shared`, `security-misc-desktop` and `security-misc-server`: rename files
-    
+
     https://github.com/Kicksecure/security-misc/issues/187
 
 commit 2de10d5b7b7589a6da03a6554b231ab55f7cc83c
@@ -2045,7 +2155,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 13:31:27 2025 -0400
 
     Merge pull request #318 from raja-grewal/vmscape
-    
+
     Enable `vmscape=force`
 
 commit 2d3b4ee12425182c88f1bf7ac632f7672b25e00c
@@ -2054,7 +2164,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 17 13:27:13 2025 -0400
 
     Merge pull request #317 from raja-grewal/srso_docs
-    
+
     Update SRSO docs
 
 commit ad367c0bbc230357098d246f0fa88d19dad412a1
@@ -2207,7 +2317,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:43:07 2025 -0400
 
     Merge pull request #313 from raja-grewal/panic_limits
-    
+
     Upgrade `sysctl` settings and docs on kernel panics
 
 commit 2baf5cfc0bf061b2cc772dfceadaef84a36d9c1e
@@ -2216,7 +2326,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:42:28 2025 -0400
 
     Merge pull request #314 from raja-grewal/trixie_docs
-    
+
     Update documentation
 
 commit f6f4fd77e5bd3a7a7d00c33543fc4ce5a685a3d1
@@ -2232,7 +2342,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 21 06:40:11 2025 -0400
 
     Merge pull request #311 from nrz-21/master
-    
+
     Set soft limit for core dumps to 0
 
 commit 19b7e4b4d0b625b8505de122e790a14de63fafdf
@@ -2537,7 +2647,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Aug 9 05:40:11 2025 -0400
 
     `disable emerg-shutdown.service`:
-    
+
     Disabled due to bug: breaks ISO Live Mode Calamares installer
 
 commit 2ada07cf66727ea66283c55c0ba078489b3db94e
@@ -2739,7 +2849,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 21 05:58:44 2025 -0400
 
     Merge pull request #310 from raja-grewal/its
-    
+
     Enable `indirect_target_selection=force`
 
 commit 5889d134a23b3d4f8db5d81171ea12907bb10d4d
@@ -2798,7 +2908,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 2 13:45:28 2025 -0400
 
     Merge pull request #306 from raja-grewal/erst
-    
+
     Set `erst_disable`
 
 commit 865a052bf47f28c0084b2bbd51e3c606df9eda96
@@ -2807,7 +2917,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 2 13:44:17 2025 -0400
 
     Merge pull request #309 from RebornRider/patch-1
-    
+
     remove  TemporaryTimeout=0 in Bluetooth config
 
 commit bb208fb134fe25fc3539494f331072a851369064
@@ -2891,7 +3001,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 28 07:21:31 2025 -0400
 
     Merge pull request #307 from maybebyte/ssh-agent-to-allowlist
-    
+
     fix(permission-hardener): ssh-agent gets 2755 perms
 
 commit 3559bc86b7aed8122ff7996ce0ab4a65bdaf05c0
@@ -2899,7 +3009,7 @@ Author: Ashlen <dev@anthes.is>
 Date:   Tue May 27 15:32:41 2025 -0600
 
     fix(permission-hardener): ssh-agent gets 2755 perms
-    
+
     Change from exactwhitelist to matchwhitelist. Discussion revealed that
     there's a good reason to leave setgid in here, which is essentially
     defense-in-depth (sometimes users may want to revert Kicksecure's
@@ -2952,7 +3062,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 27 10:58:50 2025 -0400
 
     Merge pull request #308 from maybebyte/permission-hardener-speedboost
-    
+
     perf(permission-hardener): optimize string match
 
 commit 1c353032046f556bb11c32506019310c9f6d47c0
@@ -3069,7 +3179,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 07:20:13 2025 -0400
 
     test that `wc` is functional
-    
+
     https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
 
 commit 5930e270521e0e5d6a0a3877c813accbf5253051
@@ -3077,7 +3187,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed May 21 07:05:25 2025 -0400
 
     pam-info: improve error handling
-    
+
     https://github.com/Kicksecure/security-misc/pull/305#issuecomment-2892378246
 
 commit 5c981e0891ef009c5c2355f5f6383aca22c45638
@@ -3091,21 +3201,21 @@ Author: Ashlen <dev@anthes.is>
 Date:   Tue May 20 21:34:03 2025 -0600
 
     perf(permission-hardener): optimize string match
-    
+
     Replace subprocess grep calls with bash substring matching in
     check_nosuid_whitelist function. This eliminates ~10k unneeded
     subprocess spawns that were causing significant performance
     degradation.
-    
+
     In testing, it improves overall script execution speed by an
     order of magnitude:
-    
+
     Before patch:
     $ sudo hyperfine -- './permission-hardener enable'
     Benchmark 1: ./permission-hardener enable
       Time (mean ± σ):     11.906 s ±  0.974 s    [User: 3.639 s, System: 8.728 s]
       Range (min … max):   10.430 s … 14.090 s    10 runs
-    
+
     After patch:
     $ sudo hyperfine -- './permission-hardener enable'
     Benchmark 1: ./permission-hardener enable
@@ -3117,7 +3227,7 @@ Author: Ashlen <dev@anthes.is>
 Date:   Tue May 20 18:41:48 2025 -0600
 
     fix(permission-hardener): add exactwhitelist here
-    
+
     Without this, the permissions for ssh-agent won't be changed properly.
 
 commit 94dc9da4ab8fb93760dbb3b325bdeaa155e492cb
@@ -3125,17 +3235,17 @@ Author: Ashlen <dev@anthes.is>
 Date:   Tue May 20 17:07:51 2025 -0600
 
     fix(permission-hardener): ssh-agent gets 755 perms
-    
+
     Replace the commented-out matchwhitelist entry for ssh-agent with an
     explicit permission entry (755) for /usr/bin/ssh-agent.
-    
+
     When ssh-agent's matchwhitelist entry was commented out in commit
     7a5f8b87af, permission-hardener began resetting it to restrictive
     defaults (744), preventing non-root users from executing ssh-agent. This
     broke split SSH functionality in Qubes OS for me because I was using
     Kicksecure in the vault qube, and ssh-agent runs under a non-root user in
     that configuration (see https://forum.qubes-os.org/t/split-ssh/19060).
-    
+
     As noted in the comment, Debian installs with 2755 permissions as a way
     to mitigate ptrace attacks, but this rationale doesn't apply due to
     kernel.yama.ptrace_scope=2 being set in Kicksecure.
@@ -3189,7 +3299,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun May 18 06:35:23 2025 -0400
 
     Merge pull request #305 from DMHalford/pam-info-failed_login_counter-fix
-    
+
     Prevent erroneous "Login blocked after [negative number] attempts" errors
 
 commit 35fa32e4ed6333f3ab87d09828f13155aa1e7a72
@@ -3209,13 +3319,13 @@ Author: DMHalford <161769419+DMHalford@users.noreply.github.com>
 Date:   Thu May 15 15:42:50 2025 -0400
 
     Prevent erroneous "Login blocked after [negative number] attempts" errors
-    
+
     For root, faillock appears to always* return an empty string (i.e. no table headers are present), yielding a zero-initialized pam_faillock_output_count and thus resulting in the calculation of a negative failed_login_counter value.
-    
+
     This can cause erroneous errors of the form "ERROR: Login blocked after [negative number] attempts" during sudo-ing and screen unlocking.
-    
+
     This commit modifies the initialization of failed_login_counter such that it cannot be negative and prevents the display of these incorrect warnings.
-    
+
     * Only rudimentary local tests were conducted
 
 commit 6c3be9ced071e73e78451c82e8def9c5a5b02598
@@ -3223,13 +3333,13 @@ Author: DMHalford <161769419+DMHalford@users.noreply.github.com>
 Date:   Thu May 15 15:06:10 2025 -0400
 
     Prevent erroneous "Login blocked after [negative number] attempts" errors
-    
+
     For root, faillock appears to always* return an empty string (i.e. no table headers are present), yielding a zero-initialized pam_faillock_output_count and thus resulting in the calculation of a negative failed_login_counter value.
-    
+
     This can cause erroneous errors of the form "ERROR: Login blocked after [negative number] attempts" during sudo-ing and screen unlocking.
-    
+
     This commit modifies the initialization of failed_login_counter such that it cannot be negative and prevents the display of these incorrect warnings.
-    
+
     * Only rudimentary tests were conducted
 
 commit f3d46ee56233c4ef0552c20304413d137e90acfe
@@ -3364,7 +3474,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Apr 19 12:47:40 2025 -0400
 
     /usr/libexec/security-misc/apt-get-update: use `/run/helper-scripts` folder for pid file instead of `$TMP`
-    
+
     to avoid permission issues
 
 commit 96ff7c8dc67809a3199d0b7f22d9e50483634a9c
@@ -3398,7 +3508,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Apr 15 15:17:25 2025 -0400
 
     Merge pull request #304 from raja-grewal/stop_pstore
-    
+
     Disable PStore
 
 commit 5e88dfe809a762aeebf62ea2de131cfbdea9ae32
@@ -3486,11 +3596,11 @@ Date:   Mon Mar 3 05:57:59 2025 -0500
 
     no longer disable `vivid` kernel module by default,
     because it breaks Qubes Video Companion
-    
+
     Thanks to @marmarek for the bug report!
-    
+
     https://forums.whonix.org/t/testing-qubes-video-companion-on-whonix/21393
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/298
 
 commit 3e7d1b4e23e1e8ef4ad138dbe4119eee7e72511c
@@ -3512,7 +3622,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Feb 9 18:00:59 2025 -0500
 
     Merge pull request #297 from raja-grewal/warn_path
-    
+
     Update docs on kernel panics
 
 commit ce4b57d1cb179f18c1ac41681626d01054355fe6
@@ -3576,7 +3686,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 29 09:35:50 2025 -0500
 
     Merge pull request #296 from raja-grewal/cpu_details
-    
+
     Hardware-related Documentation
 
 commit 6b4fa1ef0055d36a45d65481129dabfee77027e4
@@ -3900,7 +4010,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 14 04:06:44 2025 -0500
 
     permission hardener: disable SUID for `ssh-agent`, `ssh-keysign`, `/lib/openssh/*`
-    
+
     This might break SSH host-based authentication.
 
 commit d89ffcde30f6115c25c1bc807eb30b18c21e2b6e
@@ -4017,7 +4127,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 12 05:36:16 2025 -0500
 
     formatting.
-    
+
     use chapter to make allow for deep linking
 
 commit 485d9abd1d14e445b48f0fd63290a985b05a5ac7
@@ -4039,7 +4149,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:30:34 2025 -0500
 
     Merge pull request #292 from raja-grewal/cpu_table
-    
+
     Add link to tabular comparison of CPU mitigations
 
 commit 1b33e83529d652dab4468e0b386e333b3ca4745b
@@ -4048,7 +4158,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:29:30 2025 -0500
 
     Merge pull request #291 from raja-grewal/drop_gratuitous_arp
-    
+
     Drop gratuitous ARP packets
 
 commit 486757bfae5e7ecc389b16c49704e742fd267565
@@ -4057,7 +4167,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:29:12 2025 -0500
 
     Merge pull request #290 from raja-grewal/arp_ignore
-    
+
     Respond to ARP requests only if the target IP address is on-link
 
 commit 17ff24915062736a32d4d54da7163fe34aa70fd3
@@ -4066,7 +4176,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:28:48 2025 -0500
 
     Merge pull request #289 from raja-grewal/arp_filter
-    
+
     Enable ARP filtering
 
 commit 27d19ba568e601c37035a310ae6cdd7d953be286
@@ -4075,7 +4185,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:28:05 2025 -0500
 
     Merge pull request #288 from raja-grewal/shared_media
-    
+
     Deny sending and receiving shared media redirects
 
 commit 482960d056ec8d624f127bfe9b1c69a4c30c7e34
@@ -4083,7 +4193,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jan 10 10:21:12 2025 -0500
 
     permission-hardener: move to new state folder `/var/lib/permission-hardener-v2` without migration
-    
+
     https://github.com/Kicksecure/security-misc/pull/294
 
 commit cf435a8fa8e6f795a25ef004cf44a65d461dd32c
@@ -4141,7 +4251,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 6 05:29:40 2025 -0500
 
     increase priority of pam wheel so it is checked even before faillock
-    
+
     in case of attemtping to use `su` without being a member of the required group `sudo`, it's useful to abort the PAM stack as early as possible to avoid needlessly propmting for a password to later
     be rejected tu to lack of group membership
 
@@ -4353,7 +4463,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 04:39:34 2024 -0500
 
     fix apt-get-update for non-English locale
-    
+
     https://forums.kicksecure.com/t/systemcheck-reports-warning-debian-package-update-check-result-apt-get-reports-that-packages-can-be-updated-but-system-is-already-fully-upgraded/785
 
 commit e9a5b14a0db6f071424c19e6f4b006386afb6ab4
@@ -4375,7 +4485,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:31:25 2024 -0500
 
     Merge pull request #287 from raja-grewal/patch
-    
+
     Refactor and add two CPU mitigations
 
 commit f0c611d9edb5fd7a3e00d13b248c65abda2c9d8a
@@ -4397,7 +4507,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:15:02 2024 -0500
 
     Merge pull request #279 from raja-grewal/arp
-    
+
     Provide network-related hardening options via `sysctl`'s
 
 commit 4cf5757575c1257a14331f0169a9d8d163e1326d
@@ -4406,7 +4516,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Dec 19 00:08:56 2024 -0500
 
     Merge pull request #282 from ArrayBolt3/arraybolt3/umask
-    
+
     Enable umask hardening
 
 commit 9d69cd1912ab657e7916b38f56b477c2b7abd0a3
@@ -4469,7 +4579,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Dec 14 15:18:56 2024 -0500
 
     Merge pull request #285 from Kicksecure/permission-hardener-mount
-    
+
     Permission Hardener: treat mount same as umount
 
 commit c1167968542a62d0677517e11505f6e9222ec378
@@ -4520,9 +4630,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 6 09:48:58 2024 -0500
 
     permission hardner: treat `mount` the same way we treat `umount`
-    
+
     Thanks to @the-moog for the bug report!
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/284
 
 commit 93b51819d4693955936456916188b4118fe68a66
@@ -4530,7 +4640,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 6 09:47:08 2024 -0500
 
     permission hardener mount chmod change from `745` to `755`
-    
+
     https://github.com/Kicksecure/security-misc/issues/284
 
 commit 1708a03e1edda821ef091f10c46d32f740511d38
@@ -4599,7 +4709,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Nov 14 14:41:14 2024 -0500
 
     Revert "fix `panic-on-oops.service`"
-    
+
     This reverts commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751.
 
 commit 412b371e85044962f6620386b767369b9e25d71e
@@ -4668,14 +4778,14 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 11 05:43:25 2024 -0500
 
     deleted `/usr/bin/pkexec.security-misc`
-    
+
     This was not used anymore for anything. In the past, we used to `config-package-dev` `replace` `/usr/bin/pkexec` with `/usr/bin/pkexec.security-misc` for the purpose of:
-    
+
     > Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with hidepid.
-    
+
     * https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
     * https://forums.whonix.org/t/cannot-use-pkexec/8129
-    
+
     This was a worthwhile effort, interesting approach but ultimately a dead-end.
 
 commit ef05b1a160b24d5aa42da9cc15009d94a37cf120
@@ -4683,9 +4793,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 11 05:40:41 2024 -0500
 
     disable legacy matroxfb_base framebuffer driver
-    
+
     fix typo matroxfb_bases -> matroxfb_base
-    
+
     Thanks to @ArrayBolt3 for the bug report!
 
 commit 862d23cb10b7687084f8e7e207d1e2c9c1ef6751
@@ -4693,9 +4803,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 11 05:36:41 2024 -0500
 
     fix `panic-on-oops.service`
-    
+
     remove `After=multi-user.target` because already using `WantedBy=multi-user.target`
-    
+
     Thanks to @ArrayBolt3 for the bug report!
 
 commit 29ae5f5980d521f6a4b468f5bf41210f78fdf10a
@@ -4703,9 +4813,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 11 05:28:31 2024 -0500
 
     fix optional opt-in `harden-module-loading.service`
-    
+
     by making `/usr/libexec/security-misc/disable-kernel-module-loading` executable
-    
+
     Thanks to @ArrayBolt3 for the bug report!
 
 commit 4c649577f053af12bcd02c20576bf2d8aec1476d
@@ -4726,12 +4836,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 10 06:29:17 2024 -0500
 
     fix permission-hardener issue "Removing capabilities failed. File: '/bin/ping'"
-    
+
     no longer user end-of-options marker (`--`) for `setcap`
     since setcap does not support it
-    
+
     Fixes https://github.com/QubesOS/qubes-issues/issues/9569
-    
+
     https://forums.whonix.org/t/permission-hardener-error/20719
 
 commit 238f32e81d835e5b9d3bc43a0654d05efa4c4313
@@ -4740,7 +4850,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 8 07:39:40 2024 -0500
 
     Merge pull request #280 from raja-grewal/ssbd
-    
+
      Enable `ssbd=force-on`
 
 commit 8107782fa54ec0e21893e6bd4a6baabb71eb864b
@@ -4859,7 +4969,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 16 06:29:25 2024 -0400
 
     Merge pull request #276 from raja-grewal/KSPP_header
-    
+
     Clarify KSPP compliance header
 
 commit eb72163d5707c7673db1f12405d2e04261bd43c8
@@ -4899,7 +5009,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 8 05:53:48 2024 -0400
 
     Merge pull request #273 from raja-grewal/text_2
-    
+
     Documentation update 2
 
 commit 0c0774f6c0927ed1cc599f931175985b8f01ec30
@@ -4926,9 +5036,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 3 02:58:58 2024 -0400
 
     no longer set `kernel.unprivileged_userns_clone=0`
-    
+
     because it breaks too much
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/274
 
 commit f401d94d5e0d0f26e93be55deda440fe565a6b22
@@ -4936,7 +5046,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 3 02:44:06 2024 -0400
 
     expand documentation on `kernel.unprivileged_userns_clone=0` sysctl
-    
+
     https://github.com/Kicksecure/security-misc/issues/274
 
 commit ac1378743c7448c9a7e7e02bebcf3270592d42a5
@@ -4982,7 +5092,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 24 20:15:03 2024 -0400
 
     Merge pull request #272 from raja-grewal/text
-    
+
     Documentation update
 
 commit 870ff88605b8167c8882162cc3da005d71ca0cd3
@@ -5008,12 +5118,12 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Sep 13 22:52:47 2024 -0400
 
     Fix VirtualBox audio device ICH AC97.
-    
+
     no longer `blacklist snd_intel8x0`
-    
+
     Breaks VirtualBox audio device ICH AC97, which is unfortunately still required by some users.
     https://www.kicksecure.com/wiki/Dev/audio
-    
+
     Fixes https://github.com/Kicksecure/security-misc/issues/271
 
 commit 1bc694fa124eaeb6e1517d2191a8fd97446872c4
@@ -5033,7 +5143,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 5 06:03:05 2024 -0400
 
     add KSPP compliance status to readme based on comment by @raja-grewal
-    
+
     https://github.com/Kicksecure/security-misc/issues/256#issuecomment-2330376651
 
 commit 40fb14c654df94e9bdfb30ae55fc3bc4f0a0aef4
@@ -5055,7 +5165,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:11:48 2024 -0400
 
     Merge pull request #265 from raja-grewal/mmap_min_addr
-    
+
     Set `sysctl vm.mmap_min_addr=65536`
 
 commit d618f9f35b8e8c6eee1e164a6ec300d63b1ee797
@@ -5071,7 +5181,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:05:47 2024 -0400
 
     Merge pull request #268 from raja-grewal/panic_on_warn
-    
+
     Enable `panic_on_warn=1`
 
 commit b0a8544182f6ff3c8c3f1068176ff5e9e4f557ef
@@ -5080,7 +5190,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 4 10:04:45 2024 -0400
 
     Merge pull request #270 from raja-grewal/typo
-    
+
     Small typo
 
 commit 7393ba159192fdfc45ef31a3fa60786f899dbf25
@@ -5108,7 +5218,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 29 04:46:26 2024 -0400
 
     Merge pull request #269 from raja-grewal/tidy
-    
+
     Minor correction
 
 commit 6294729c8ef24077cd342b4557653806c3aacd34
@@ -5135,11 +5245,11 @@ Date:   Wed Aug 28 06:49:50 2024 -0400
 
     no longer set sysctl `fs.binfmt_misc.status=0` /
     no longer disallow registering interpreters for miscellaneous binary formats
-    
+
     causing file/folder permissions issue `d????????? ? ? ? ?            ? .`
-    
+
     Firefox no longer starting (probably not not a Firefox issue)
-    
+
     https://github.com/Kicksecure/security-misc/issues/267
 
 commit 463aa58f28b6389d0925fed87096b348b652cc16
@@ -5155,7 +5265,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 28 06:38:57 2024 -0400
 
     Merge pull request #264 from raja-grewal/kspp_compliance
-    
+
     Add KSPP compliance notices to corresponding parameters and `sysctls`
 
 commit 9e91c98cc926e7a166458cd78e3c1d1ced23c753
@@ -5208,7 +5318,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 25 11:00:51 2024 -0400
 
     Merge pull request #263 from raja-grewal/max_user_namespaces
-    
+
     Provide option to disable user namespaces
 
 commit 43d13b70f12d2198a800054ce4d1ff901cc474f9
@@ -5340,7 +5450,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:25:43 2024 -0400
 
     Merge pull request #245 from raja-grewal/blacklist_to_disable
-    
+
     Update `/etc/modprobe.d/*`
 
 commit 12296c68dc0aaa3703e1c36f854a02de8db412fe
@@ -5356,7 +5466,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 04:20:32 2024 -0400
 
     Merge pull request #262 from raja-grewal/docs
-    
+
     Miscellaneous updates to presentation
 
 commit 81bf7a8f90098a7107dcb3c783b87a168f5c090f
@@ -5372,7 +5482,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Aug 16 02:43:57 2024 -0400
 
     Merge pull request #249 from raja-grewal/binfmt_misc
-    
+
     Disallow registering interpreters for miscellaneous binary formats
 
 commit cea8e753786d100ebe961ad74a99925e54d47771
@@ -5437,7 +5547,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Aug 15 13:46:30 2024 -0400
 
     Merge pull request #248 from raja-grewal/secure_redirects
-    
+
     Re-enable (default) `secure_redirects` for ICMP redirect messages
 
 commit b552b92401f67d59e12ac6fda2f7fe1c54b0c8a7
@@ -5451,7 +5561,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Thu Aug 15 11:46:56 2024 +1000
 
     Revert "Provide optional `sysctl fs.binfmt_misc.status=0`"
-    
+
     This reverts commit debd7a7b7ae8b03e04d2c8597bcccf2c79000570.
 
 commit 73db68dbf9a1f9ded95a593db36a4960ce06a173
@@ -5551,7 +5661,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:55:20 2024 -0400
 
     Merge pull request #260 from raja-grewal/vdso32
-    
+
     Enable `vdso32=0`
 
 commit 6bc039a430289342f06857a52a5f13829d6e50f5
@@ -5560,7 +5670,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:52:56 2024 -0400
 
     Merge pull request #259 from raja-grewal/kfence
-    
+
     Enable `kfence.sample_interval=100`
 
 commit ce60d5615fe99e41c48d459f562d581a688c295a
@@ -5569,7 +5679,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:48:08 2024 -0400
 
     Merge pull request #258 from raja-grewal/legacy_tiocsti
-    
+
     Enable `dev.tty.legacy_tiocsti=0`
 
 commit b0278428a73cd3d329aaa36626005e0c593331f0
@@ -5578,7 +5688,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 6 09:39:04 2024 -0400
 
     Merge pull request #257 from raja-grewal/slab_debug
-    
+
     Enable `slab_debug=FZ`
 
 commit 8559079312adb4ed92e5f478120b408dfe7a1124
@@ -5624,7 +5734,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:19:52 2024 -0400
 
     Merge pull request #243 from raja-grewal/namespaces
-    
+
     Restrict unprivileged user namespaces
 
 commit 06f0c27128a66c1074f405de3139651519e48204
@@ -5640,7 +5750,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:11:46 2024 -0400
 
     Merge pull request #255 from raja-grewal/SLUB
-    
+
     Restore option to enable `slub_debug=FZ`
 
 commit 8abc5ae8f0f152c68f855f0e8d993880589c5d5c
@@ -5656,7 +5766,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 4 16:08:32 2024 -0400
 
     Merge pull request #254 from raja-grewal/patch
-    
+
     Updates to kernel and `sysctl` hardening
 
 commit 6f14d68cdcad3784311e33029eba6906ea0784c2
@@ -5676,7 +5786,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Sat Aug 3 14:49:48 2024 +1000
 
     Revert "Remove the optional `slub_debug` parameter since it is no longer recommended"
-    
+
     This reverts commit 48e1ac416314d2c66f3a0d5044a3c51cb6fb4093.
 
 commit ca2179bb6a01e3ebbb1e04e3507cc305f25bca4e
@@ -5728,7 +5838,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 28 15:43:54 2024 -0400
 
     Merge pull request #242 from raja-grewal/ptrace
-    
+
     Disable the usage of `ptrace()` by all processes
 
 commit 9cabaa1bd15a0639c87bf2e965755d06ff0a7bb4
@@ -5778,7 +5888,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Sat Jul 27 13:24:08 2024 +1000
 
     Revert "Disable the usage of `ptrace()` by all processes"
-    
+
     This reverts commit b04828f858fa6d101099773d3156841fd6d33b6f.
 
 commit 330cf14eab248d035fa467dba4f7bc3eb92a33bb
@@ -5800,7 +5910,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:08:30 2024 -0400
 
     Merge pull request #250 from raja-grewal/Panik-Kalm
-    
+
     Add details on "oopes" and kernel panics
 
 commit 7969e8607160eae0cb5a3adddeec8d07c1d6e097
@@ -5816,7 +5926,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 11:04:29 2024 -0400
 
     Merge pull request #246 from raja-grewal/cfi
-    
+
     Provide the option to change the default CFI implementation in the future
 
 commit e2ae93a9571f2f0c9077ea61436a540a3be5a894
@@ -5885,7 +5995,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 08:58:44 2024 -0400
 
     Skip file names starting with '--',
-    
+
     because this would be interpreted by dpkg-statoverride as an option.
 
 commit 82d401a7de58b74448113bed36c8f0cc073c7f82
@@ -5965,7 +6075,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 08:07:08 2024 -0400
 
     code simplification
-    
+
     https://github.com/Kicksecure/security-misc/pull/251
 
 commit 9694cf0cd1a225c68d45814e0f4d6995659a0066
@@ -5986,11 +6096,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 26 06:43:01 2024 -0400
 
     no longer disable Intel ME related kernel modules
-    
+
     because that might break firmware updates
-    
+
     This reverts commit 64f8b2eb5870664fca06aa060f2f50af358ced55.
-    
+
     https://github.com/Kicksecure/security-misc/issues/239
 
 commit f616da7c0690fc0dffc21be59174ed8754ec55fb
@@ -6082,7 +6192,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 11:45:13 2024 -0400
 
     cannot use NULL inside a bash variable
-    
+
     use custom delimiter instead
 
 commit 4a5312b3a9419c8b3e07dda2b650d5fbf9a38d34
@@ -6096,7 +6206,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 11:20:26 2024 -0400
 
     downgrade warning of non-existing folders to info
-    
+
     to avoid all users by default getting a warning for expected non-existing folders
 
 commit 151ca659a9f5565744ff57f3b581c8c051def148
@@ -6110,7 +6220,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 11:13:35 2024 -0400
 
     downgrade warning of non-existing files to info
-    
+
     to avoid all users by default getting a warning for expected non-existing files
 
 commit 721392901be384014298f59deb57747b825c8b37
@@ -6130,7 +6240,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 11:10:56 2024 -0400
 
     modify call of stat to use NUL delimiter
-    
+
     for more robust string parsing
 
 commit d5366835112cc5fabef7ec46a9c582c08121cb14
@@ -6168,7 +6278,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 24 10:56:08 2024 -0400
 
     modify call of stat to use NUL delimiter
-    
+
     for more robust string parsing
 
 commit 1135d34ab334c9b39e51a147dc94df568f982512
@@ -6256,11 +6366,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 21 06:36:22 2024 -0400
 
     Revert "no longer disable Intel ME related kernel modules"
-    
+
     This reverts commit 6157e328f40a7f3780208489b1ffecef8e6d738a.
-    
+
     https://www.kicksecure.com/wiki/Out-of-band_Management_Technology#Intel_ME_Kernel_Modules
-    
+
     https://github.com/Kicksecure/security-misc/issues/239
 
 commit 4cae74d610ad37066e8a334019cfa5c82f088a2e
@@ -6280,7 +6390,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 20 12:57:56 2024 -0400
 
     permission hardener: allow postfix
-    
+
     postqueue matchwhitelist
     postdrop matchwhitelist
 
@@ -6309,9 +6419,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 19 07:20:59 2024 -0400
 
     undo io_uring related changes
-    
+
     as these should be done in a separate pull request (if apprpriate)
-    
+
     https://github.com/Kicksecure/security-misc/pull/244#issuecomment-2238889062
 
 commit 8791aecb38a41aa0b0c108505726bc6a1ace903e
@@ -6516,7 +6626,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 09:04:18 2024 -0400
 
     Merge pull request #237 from raja-grewal/intel_pmt
-    
+
     Disable some Intel PMT kernel modules
 
 commit afe3c25a49940f7f322414c08e8dbd631e696215
@@ -6524,7 +6634,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:58:00 2024 -0400
 
     update readme
-    
+
     https://github.com/Kicksecure/security-misc/issues/239
 
 commit f7772fb85a1fe6d3c0749e5f34fc29111b6a8125
@@ -6538,7 +6648,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:52:11 2024 -0400
 
     no longer disable Intel ME related kernel modules
-    
+
     https://github.com/Kicksecure/security-misc/issues/239
 
 commit daee8b900b3057235aedc17b1231c3c05599140c
@@ -6554,7 +6664,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:46:27 2024 -0400
 
     Merge pull request #236 from raja-grewal/intel_me
-    
+
     Disable more Intel ME kernel modules
 
 commit 954ff1be41288b5fa2e50d492d92544915f93bb5
@@ -6570,7 +6680,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 17 08:41:43 2024 -0400
 
     Merge pull request #238 from raja-grewal/uvcvideo_2
-    
+
     Minor additions to `30_security-misc_disable.conf`
 
 commit d29a616142562492db6c45c299f002100e905828
@@ -6697,7 +6807,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 15 12:30:38 2024 -0400
 
     fix
-    
+
     https://github.com/Kicksecure/security-misc/pull/234#discussion_r1678065395
 
 commit 94df2e3d244f5e6e8e4320c1f28cc11dba00dd36
@@ -6705,7 +6815,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jul 15 12:29:52 2024 -0400
 
     further discussion required
-    
+
     https://github.com/Kicksecure/security-misc/pull/234#issuecomment-2228909249
 
 commit 41f0b53dd62d2968a6ff88a6fd907ca42f581847
@@ -7037,7 +7147,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jun 11 07:25:07 2024 -0400
 
     Merge pull request #227 from 3uryd1ce/fix-pam.d-path
-    
+
     fix(etc): delete typo in /etc/apparmor.d tunables
 
 commit e1984478662fc51e6eacc989bc6bba0ca1fc07cd
@@ -7045,7 +7155,7 @@ Author: Ashlen <dev@anthes.is>
 Date:   Sat Jun 8 22:17:05 2024 -0600
 
     fix(etc): delete typo in /etc/apparmor.d tunables
-    
+
     /etc/pam.d was present twice in a row ("/etc/pam.d//etc/pam.d") in this
     file: /etc/apparmor.d/tunables/home.d/security-misc.
 
@@ -7092,7 +7202,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 28 07:55:31 2024 -0400
 
     Merge pull request #226 from Kicksecure/gitconfig
-    
+
     add `/etc/gitconfig` by default for better `git` security
 
 commit 4efa293f3b76814bc5399a959482d7db6e7431ec
@@ -7100,11 +7210,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue May 28 07:51:06 2024 -0400
 
     add `/etc/gitconfig` by default for better `git` security
-    
+
     ```
     [core]
             symlinks = false
-    
+
     [transfer]
             fsckobjects = true
             fsckobjects = true
@@ -7115,9 +7225,9 @@ Date:   Tue May 28 07:51:06 2024 -0400
             fsckobjects = true
             fsckobjects = true
     ```
-    
+
     + additional suggestions as comments
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/225
 
 commit bfca98ea89cea0f8604ecca0c8640860320e8e33
@@ -7139,7 +7249,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat May 18 16:30:07 2024 -0400
 
     Merge pull request #222 from raja-grewal/text
-    
+
     Update Readme and Copyright
 
 commit 2f716050d17016be6f550a7de8e0c1030e869e8f
@@ -7191,7 +7301,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:45:57 2024 -0400
 
     Merge pull request #221 from raja-grewal/firewire
-    
+
     Disable Firewire Module
 
 commit 547757f4514a54437d044656c5e2b6d413a4cc30
@@ -7200,7 +7310,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:45:34 2024 -0400
 
     Merge pull request #220 from raja-grewal/block_gps
-    
+
     Block Several GPS-related Modules
 
 commit 7b9fe44a20f3caf67f386969a5fc7c980e5f0282
@@ -7209,7 +7319,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:43:43 2024 -0400
 
     Merge pull request #219 from raja-grewal/logging_martians
-    
+
     Revert Logging of Martians
 
 commit 62ea4dc1768f69bb28a69c20e55c87ae692cc0c8
@@ -7218,7 +7328,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 10 06:43:15 2024 -0400
 
     Merge pull request #218 from raja-grewal/secure_cpu
-    
+
     More CPU Mitigations and Additional References
 
 commit 677f75ae8ed64af599f837ced15f34990df498e5
@@ -7318,7 +7428,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 12 02:53:08 2024 -0400
 
     Merge pull request #216 from raja-grewal/spectre_bhi
-    
+
     BHI mitigation on Intel CPUs
 
 commit 493576836c90653f9c3514fcd5b3bf816e56d689
@@ -7338,7 +7448,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Apr 1 02:55:59 2024 -0400
 
     no longer disable MSR by default
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/215
 
 commit d9ac01ba5c26f9730feb17fe573d447e625e59f8
@@ -7372,7 +7482,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 11 10:12:46 2024 -0400
 
     Merge pull request #211 from wryMitts/patch-1
-    
+
     Create proc group on install
 
 commit 03ed546cd8992b29855ca1c2748ed988dd3c765d
@@ -7380,7 +7490,7 @@ Author: wryMitts <158655396+wryMitts@users.noreply.github.com>
 Date:   Sun Mar 10 16:55:10 2024 -0400
 
     Create proc group on install
-    
+
     Fixes https://github.com/Kicksecure/security-misc/issues/210
 
 commit 57fc487e5e5ffad765f1418236744319cc666871
@@ -7394,9 +7504,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Mar 10 08:44:53 2024 -0400
 
     `proc-hidepid.service` add `gid=proc`
-    
+
     This allows users that are a member of the `proc` group to be excluded from `hidepid` protections.
-    
+
     https://github.com/Kicksecure/security-misc/issues/208
 
 commit 0f0d9ca2a42cf9fc04e405ae90f3d67bc0794e12
@@ -7410,11 +7520,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 4 06:44:26 2024 -0500
 
     fix panic-on-oops started every 10s in Qubes-Whonix
-    
+
     by changing from a /etc/profile.d etc. related mechanism to start to a systemd unit file based approach
-    
+
     Thanks to @marmarek for the bug report!
-    
+
     https://forums.whonix.org/t/panic-on-oops-started-every-10s/19450
 
 commit af6c6971a741c69a584ba3f92dbfed12e40784dc
@@ -7440,7 +7550,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 08:11:26 2024 -0500
 
     use long options
-    
+
     https://github.com/Kicksecure/security-misc/issues/172
 
 commit 2d1d1b246f3fe061d4f817da5cecf46010839e1d
@@ -7448,7 +7558,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 08:07:29 2024 -0500
 
     improve output
-    
+
     https://github.com/Kicksecure/security-misc/issues/172
 
 commit d8f5376c4f36f5deb734e6dead42a62566d13480
@@ -7456,7 +7566,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 07:58:06 2024 -0500
 
     improve output
-    
+
     https://github.com/Kicksecure/security-misc/issues/172
 
 commit cf84762a3a84d2be3b9510dddb32bdc433170dfa
@@ -7464,7 +7574,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 07:52:41 2024 -0500
 
     improve output
-    
+
     https://github.com/Kicksecure/security-misc/issues/172
 
 commit f2958bbfa5e67ee10380a25d996826233469080a
@@ -7486,7 +7596,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Feb 26 07:46:02 2024 -0500
 
     Merge pull request #204 from DanWin/sysfs-mount
-    
+
     Make /sys hardening optional and allow access to /sys/fs to make polkit work
 
 commit 02d6f67741ef93d9ab39e02ac56b27c551a19dca
@@ -7578,7 +7688,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 09:13:56 2024 -0500
 
     mount --make-private
-    
+
     https://github.com/Kicksecure/security-misc/issues/172
 
 commit c0f98b05b609c7c8ac6f86e123af9e0642d82697
@@ -7586,7 +7696,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 06:03:59 2024 -0500
 
     comment
-    
+
     https://github.com/Kicksecure/security-misc/pull/202
 
 commit 1e1613aa93dca1e7fe7f24dbd32028a0cadd21fd
@@ -7594,7 +7704,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 06:02:28 2024 -0500
 
     allow /opt exec as usually optional binaries are placed there such as firefox
-    
+
     https://github.com/Kicksecure/security-misc/pull/202
 
 commit 7c7b4b24b4959f3ef96ff7ef0b11fa4c0bd48c8e
@@ -7602,7 +7712,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 06:01:00 2024 -0500
 
     fix home_noexec_maybe -> most_noexec_maybe
-    
+
     https://github.com/Kicksecure/security-misc/pull/202
 
 commit 38783faf60b85c4e855bf78c87e1c07765776b50
@@ -7610,7 +7720,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 22 05:58:53 2024 -0500
 
     add more bind mounts of mount options hardening
-    
+
     as suggested in https://github.com/Kicksecure/security-misc/pull/202
 
 commit ad9d913902d7e696f1114da74d84f9cdcb22bc25
@@ -7632,7 +7742,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Feb 3 12:50:28 2024 -0500
 
     Merge pull request #197 from raja-grewal/mitigations
-    
+
     Additional Explicit CPU Mitigations
 
 commit b16c99ab62a902b1f61b9d4fe63273cd614e757c
@@ -7676,7 +7786,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jan 25 06:54:36 2024 -0500
 
     use `interest-noawait` instead of `interest-await`
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/196
 
 commit 64e41b113cae893d1f27f441f99340389ba8b9b3
@@ -7702,9 +7812,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 14:03:09 2024 -0500
 
     use wildcards
-    
+
     instead of outdated, incomplete list
-    
+
     https://github.com/Kicksecure/security-misc/issues/160
 
 commit 08619d6a7307b6ab05a3ba7e71ea33b00db20b27
@@ -7712,7 +7822,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:59:36 2024 -0500
 
     minor RPM updates
-    
+
     https://github.com/Kicksecure/security-misc/issues/160
 
 commit 3048e0ac76e4eba1c53b43ba2424157505578cdd
@@ -7720,7 +7830,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:54:07 2024 -0500
 
     usrmerge
-    
+
     https://github.com/Kicksecure/security-misc/issues/190
 
 commit 5a6cd4c2abd243c91575e9477a921aa290c68ba5
@@ -7728,7 +7838,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:51:30 2024 -0500
 
     remove now empty /bin from copying since it is empty after usrmerge
-    
+
     https://github.com/Kicksecure/security-misc/issues/190
 
 commit 071b984a1eaaa8a8ea6a40e4ee36eabcde2d630d
@@ -7736,7 +7846,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:49:05 2024 -0500
 
     `sort -d`
-    
+
     https://github.com/Kicksecure/security-misc/issues/190
 
 commit 011e55e3e52485ccd728b4bb249efbc816f38806
@@ -7744,7 +7854,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:45:17 2024 -0500
 
     remove duplicates after usrmerge
-    
+
     https://github.com/Kicksecure/security-misc/issues/190
 
 commit 0efee2f50fd38feade7700c2f033cc3d4c200d34
@@ -7752,7 +7862,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:39:56 2024 -0500
 
     usrmerge
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/190
 
 commit 18a06935e0cca3dc090643aad406d861e4583085
@@ -7760,9 +7870,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 17 13:23:20 2024 -0500
 
     run permission hardener when new packages are install files to /usr or /opt
-    
+
     (basically anywhere)
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/189
 
 commit 66e6371221c3395a0523e30e8ef1a051d3e6cdd0
@@ -7782,11 +7892,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 09:23:54 2024 -0500
 
     update permission-hardener.service
-    
+
     Which is now only an additional opt-in systemd unit,
     because permission-hardener is run by default at security-misc
     package installation time.
-    
+
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit 186f6015da7b3314c95c2833032c6fe953a71afd
@@ -7800,7 +7910,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 09:10:59 2024 -0500
 
     delete legacy folder /etc/permission-hardening.d if empty
-    
+
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit 9cafd78fe21baa3c2a36853f57e0638b2facfe5c
@@ -7808,7 +7918,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 09:05:09 2024 -0500
 
     rm_conffile /etc/permission-hardening.d
-    
+
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit fa53848b5cda135fbb8a3855e8508692084fc7e9
@@ -7828,9 +7938,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 08:45:13 2024 -0500
 
     permission-hardening -> permission-hardener migration
-    
+
     mv --verbose /var/lib/permission-hardening /var/lib/permission-hardener
-    
+
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit a90cd43631216f28a18a1b3f066b9f6ef3301ac4
@@ -7838,7 +7948,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 16 08:32:52 2024 -0500
 
     fix postinst for new permission-hardener
-    
+
     https://github.com/Kicksecure/security-misc/pull/181
 
 commit 862bf6b5ab29917138325023eb3507f5fbd5653c
@@ -7859,7 +7969,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 7 06:37:34 2024 -0500
 
     undo IPv6 privacy due to potential server issues
-    
+
     https://github.com/Kicksecure/security-misc/issues/184
 
 commit 128bb01b35d20e97351dfb53768f35482f9756a2
@@ -7867,7 +7977,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jan 7 06:36:25 2024 -0500
 
     undo IPv6 privacy due to potential server issues
-    
+
     https://github.com/Kicksecure/security-misc/issues/184
 
 commit df0f9d3267644c4aea87add2dcade86044c496f0
@@ -7881,9 +7991,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 6 09:10:45 2024 -0500
 
     revert umask 027 by default
-    
+
     because broken because this also happens for root while it should not
-    
+
     https://github.com/Kicksecure/security-misc/issues/185
 
 commit 3f1304403fbf04f15dac01963c66f82cd84452d4
@@ -7891,7 +8001,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 6 08:15:31 2024 -0500
 
     disable MAC randomization in Network Manager (NM) because it breaks VirtualBox DHCP
-    
+
     https://github.com/Kicksecure/security-misc/issues/184
 
 commit e8f8dcd0fb1c23a62974849f55516da9dce5948e
@@ -7913,7 +8023,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 3 05:00:41 2024 -0500
 
     Merge pull request #182 from raja-grewal/io_uring
-    
+
     Clarify validity of disabling io_uring
 
 commit 74afcc9c63ad064f20778ad2870690925c3cee81
@@ -7927,7 +8037,7 @@ Author: Ben Grande <ben.grande.b@gmail.com>
 Date:   Tue Jan 2 17:08:45 2024 +0100
 
     Fix unbound variable
-    
+
     - Run messages preceded by INFO;
     - Comment unknown unused variables;
     - Remove unnecessary variables; and
@@ -7944,7 +8054,7 @@ Author: Ben Grande <ben.grande.b@gmail.com>
 Date:   Tue Jan 2 13:34:29 2024 +0100
 
     Rename file permission hardening script
-    
+
     Hardener as the script is the agent that is hardening the file
     permissions.
 
@@ -7953,7 +8063,7 @@ Author: Ben Grande <ben.grande.b@gmail.com>
 Date:   Tue Jan 2 12:17:16 2024 +0100
 
     Refactor permission-hardener
-    
+
     - Organize comments from default configuration;
     - Apply and undo changes from a single file controlled by parameters;
     - Arrays should be evaluated as arrays and not normal variables;
@@ -7980,7 +8090,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Jan 2 05:29:35 2024 -0500
 
     Merge pull request #178 from raja-grewal/io_uring
-    
+
     Disable asynchronous I/O
 
 commit 94c0e26a082f61f71e89b1fb7386a58166ffa411
@@ -7994,7 +8104,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 29 14:57:38 2023 -0500
 
     /dev/, /dev/shm, /tmp
-    
+
     https://github.com/Kicksecure/security-misc/issues/157#issuecomment-1869073716
 
 commit e15596e7af6fc645dd652c043397baaa91954915
@@ -8014,7 +8124,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 10:31:58 2023 -0500
 
     formatting
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 971ff687b1423499c54495a03e5e6fafcbfefb2a
@@ -8022,7 +8132,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 10:30:35 2023 -0500
 
     do not mount /dev/cdrom by default
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 9fce67fcd942a7e3e0dd2e874226fcdab5e33ba3
@@ -8030,7 +8140,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 10:28:47 2023 -0500
 
     remove superfluous, broken `remount` mount option
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 40fd8cb6081512e2bc0ef1a7a1ee17cd317024c2
@@ -8038,9 +8148,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:51:09 2023 -0500
 
     no `nofail` mount option to avoid breaking the boot of a system
-    
+
     unit testing belongs elsewhere
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 4aa645f29ff741b6e5cdf629deade1923fdcc234
@@ -8048,7 +8158,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:46:33 2023 -0500
 
     comment
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 2b7aeedb4a543d0a43a35918999338097d13bb16
@@ -8057,10 +8167,10 @@ Date:   Mon Dec 25 09:44:51 2023 -0500
 
     mount /dev/cdrom to /mnt/cdrom (instead of /mnt/cdrom0) and
     nodev,nosuid,noexec
-    
+
     as per:
     https://www.debian.org/doc/manuals/securing-debian-manual/ch04s10.en.html
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 0d9e9780daca563a726470a3a5d6fa8c20487240
@@ -8068,7 +8178,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:37:14 2023 -0500
 
     formatting
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 00f9ab43947795c1144d797547968c7c149d6f21
@@ -8076,7 +8186,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:36:05 2023 -0500
 
     /dev devtmpfs
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 55709b3aa0acd6cad0c9fedb8782c49fbea79689
@@ -8084,7 +8194,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:30:57 2023 -0500
 
     /tmp tmpfs
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit b0dd967611c27f5b8e2472bb74a664aead7a229e
@@ -8092,7 +8202,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:27:45 2023 -0500
 
     usrmerge
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 269fada14a616c53d7421e88e662f6893eb1fd88
@@ -8100,7 +8210,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:25:14 2023 -0500
 
     combine bind lines
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit 0810c1ce3c9e19c745b8f0d2cd9410353b172779
@@ -8108,7 +8218,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 09:10:31 2023 -0500
 
     fix bluetooth in readme
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/180
 
 commit 37b4ab15a823134e616a2a0fe1dda18d5ebfa3c0
@@ -8140,9 +8250,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 25 08:26:03 2023 -0500
 
     improve bluetooth in readme
-    
+
     as suggested by @monsieuremre
-    
+
     https://github.com/Kicksecure/security-misc/issues/180
 
 commit 7fa597deca7ff2b2932a5f5fad56be57bd78b6cf
@@ -8156,7 +8266,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Dec 22 08:31:58 2023 -0500
 
     exclude hardened malloc from SUID disabler
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/179
 
 commit f055fe5da2219b68f46c3c577d79fcfd7e79cfc6
@@ -8164,7 +8274,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Fri Dec 15 08:33:36 2023 +0000
 
     Disable asynchronous I/O
-    
+
     io_uring creation is disabled for all processes. io_uring_setup always fails with -EPERM. Existing io_uring instances can still be used.
 
 commit 99f2edd4f685cdc9a47b32107125408e12a294c2
@@ -8178,13 +8288,13 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Dec 12 11:50:11 2023 -0500
 
     add hardened fstab `/usr/share/doc/security-misc/fstab-vm`
-    
+
     to the documentation folder as an example
-    
+
     not directly used by security-misc
-    
+
     will later be used by Kicksecure VM build process
-    
+
     https://github.com/Kicksecure/security-misc/issues/157
 
 commit dcaafa6c8bf380dd990942e9c10e280943b442a6
@@ -8198,7 +8308,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:38:49 2023 -0500
 
     move to `/usr/lib/issue.d/20_security-misc.issue`
-    
+
     https://github.com/Kicksecure/security-misc/pull/167
 
 commit dfaea492c76a277b9cbe84982a135cb4f03a557c
@@ -8206,7 +8316,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:37:02 2023 -0500
 
     remove `etc/issue.net.d/20_security-misc`
-    
+
     since not mentioned on debian.org
 
 commit 69c895af09f05000ace5f273f3e5032aabf8c64e
@@ -8222,7 +8332,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:27:16 2023 -0500
 
     Merge pull request #167 from monsieuremre/patch-4
-    
+
     Non-Identifiable and Generic Issue Banners that include the Recommended Keywords
 
 commit c9ea7a4dca6e985c3a1044a3b4ddda83909fbc51
@@ -8230,9 +8340,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:02:55 2023 -0500
 
     use `amd_iommu=force_isolation` instead of `amd_iommu=force_enable`
-    
+
     because we set `iommu=force` already anyhow
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/175
 
 commit e83c1d7ed662bb0533c670dd5b7a6745a75e9ca4
@@ -8248,7 +8358,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 11:00:29 2023 -0500
 
     Merge pull request #176 from monsieuremre/patch-1
-    
+
     Iommu Kernel Parameters
 
 commit c4e21ca5f49fbc2d67853eebca647539acbca815
@@ -8256,7 +8366,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 10:58:16 2023 -0500
 
     added development philosophy
-    
+
     https://github.com/Kicksecure/security-misc/issues/154
 
 commit feab1432f9d0966118ca233c9f88270b98c3f120
@@ -8264,7 +8374,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Dec 4 10:48:27 2023 -0500
 
     clarify scope
-    
+
     https://github.com/Kicksecure/security-misc/issues/154
 
 commit dc04040cb3644c9e3be9b44a34da4a5f7b61f2cc
@@ -8327,7 +8437,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 20 04:40:28 2023 -0500
 
     moved libpam-tmpdir dependency to kicksecure-meta-packages
-    
+
     https://github.com/Kicksecure/security-misc/pull/147
 
 commit c8b9f5a917e6c415575d6763a65930f1a91a7c78
@@ -8383,7 +8493,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Nov 11 13:41:28 2023 -0500
 
     change license to AGPL-3+
-    
+
     https://forums.whonix.org/t/license-change-to-agplv3/17455
 
 commit 20f804f19c046e3ef2b38c367de9d5c80cccccd9
@@ -8469,7 +8579,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 6 16:22:42 2023 -0500
 
     remount-secure systemd unit
-    
+
     https://github.com/Kicksecure/security-misc/pull/152
 
 commit 79f9c1fb3adac319342a22c099401cb21af4429f
@@ -8477,7 +8587,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 6 15:48:09 2023 -0500
 
     add sysinit-post.target
-    
+
     https://github.com/Kicksecure/security-misc/pull/152
 
 commit 2de5ab41201c561a2684f15196ce37b0f34038a9
@@ -8485,7 +8595,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Nov 6 13:47:30 2023 -0500
 
     clarify scope of application specific hardening
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/154
 
 commit 5a96616b39e7188903bd0d35c9812a02fddc02f9
@@ -8499,7 +8609,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:55:55 2023 -0500
 
     readme
-    
+
     https://github.com/Kicksecure/security-misc/pull/152
 
 commit be023c77223c4ec0e26ffe2a88acd94653efee9a
@@ -8507,7 +8617,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:54:43 2023 -0500
 
     readme
-    
+
     https://github.com/Kicksecure/security-misc/issues/159
 
 commit e1f413c1ee5107468cb2a9c4aa8bd061d0dc911b
@@ -8515,9 +8625,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:53:26 2023 -0500
 
     disable harden-module-loading.service for now
-    
+
     due to issues
-    
+
     https://github.com/Kicksecure/security-misc/issues/159
 
 commit f2ea1abc9b3efc035f4d1381bece458de9b89ff3
@@ -8531,9 +8641,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:49:36 2023 -0500
 
     Revert "remove no longer required remount-service systemd unit"
-    
+
     This reverts commit 479ab61a1d0c91d26c2cd200d97b39b2b786e073.
-    
+
     https://github.com/Kicksecure/security-misc/pull/152
 
 commit 24b4d59ce41bc95e0b0aadf401223dc40b0f9c8f
@@ -8553,7 +8663,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 20:12:03 2023 -0500
 
     fix systemd unit
-    
+
     https://github.com/Kicksecure/security-misc/issues/159
 
 commit 2571bbf315693f65f564ef4ad1b2ff4941f2ebc3
@@ -8611,7 +8721,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 17:41:56 2023 -0500
 
     Merge pull request #148 from monsieuremre/module-loading-hardening
-    
+
     Harden the loading of new modules to the kernel after install
 
 commit 4fda9d2e8459c043ec27178ceb87483229b45d5f
@@ -8685,9 +8795,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 15:27:09 2023 -0500
 
     disable remount-secure dracut modules
-    
+
     pending new systemd based implementation
-    
+
     https://github.com/Kicksecure/security-misc/pull/152
 
 commit 949c1633701ac168e908794d4dd74c5a9b09a437
@@ -8707,7 +8817,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 15:09:29 2023 -0500
 
     lower verbosity of permission hardener
-    
+
     fixes https://github.com/Kicksecure/security-misc/issues/158
 
 commit 0544657123100b333211a91ef32054dc7e14c7db
@@ -8749,7 +8859,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:49:00 2023 -0500
 
     Merge pull request #145 from monsieuremre/wifi-and-bluetooth
-    
+
     Wifi and Bluetooth Patch | Security and Privacy
 
 commit 93437952b4f64866dfe6067d8caf19415112418d
@@ -8771,7 +8881,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:37:47 2023 -0500
 
     Merge pull request #146 from monsieuremre/thunderbird
-    
+
     Thunderbird Hardening
 
 commit 56b90eecbfb21e546d52d1f41ce9361f2843cd71
@@ -8787,7 +8897,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:34:13 2023 -0500
 
     Merge pull request #153 from monsieuremre/readme
-    
+
     Updated Readme
 
 commit 317867758478619fe1df4ebdb5e22240c40104c0
@@ -8803,7 +8913,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Nov 5 14:31:26 2023 -0500
 
     Merge pull request #150 from monsieuremre/sysreq
-    
+
     Disable SysRq by default
 
 commit dcead44cc6d4272b0966562046f9dab1792845b6
@@ -8847,11 +8957,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 15:55:17 2023 -0400
 
     revert enabling kernel module signature enforcement
-    
+
     due to issues
-    
+
     https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/63
-    
+
     https://github.com/dell/dkms/issues/359
 
 commit 978e3e4abd8f55a877dfe0d6e39b45ee9f58ba6d
@@ -8865,7 +8975,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 14:51:14 2023 -0400
 
     port to DKMS drop-in folder
-    
+
     undisplace /etc/dkms/framework.conf.security-misc
     moved to /etc/dkms/framework.conf.d/30_security-misc.conf
 
@@ -8874,7 +8984,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:55:34 2023 -0400
 
     /usr/sbin/pam-tmpdir-helper exactwhitelist
-    
+
     https://github.com/Kicksecure/security-misc/pull/147
 
 commit 48adb44c6fd157673cdf7fab3b86ecf7c6b31966
@@ -8888,7 +8998,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:17:00 2023 -0400
 
     Revert "allow loading unsigned modules due to issues"
-    
+
     This reverts commit 661bcd8603425934188cf139f33e20675ff4b765.
 
 commit 04b210ee88589ef9e6e214d3a5a614780244abc9
@@ -8910,7 +9020,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 12:10:00 2023 -0400
 
     Merge pull request #147 from monsieuremre/PAM-tmp-files-hardening
-    
+
     Depend on libpam-tmpdir for very solid extra security
 
 commit 7dc99d54c0358842745ee48c7cc24f589fd63d14
@@ -8961,9 +9071,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 10:31:59 2023 -0400
 
     do not change default umask for root
-    
+
     since this causes permission issues in `/etc/`
-    
+
     https://github.com/Kicksecure/security-misc/pull/151
 
 commit 07540db90d60b10cbd10881b0024d8e8871330de
@@ -8971,7 +9081,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 09:45:12 2023 -0400
 
     Revert "Revert "set default umask to 027""
-    
+
     This reverts commit f8913ceb2e2fdd274011377c41b5d08e7459e4af.
 
 commit f8913ceb2e2fdd274011377c41b5d08e7459e4af
@@ -8979,7 +9089,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 09:43:44 2023 -0400
 
     Revert "set default umask to 027"
-    
+
     This reverts commit cd216095eb8d9387437e653d7764ec765ce42a10.
 
 commit 43bd789c30a562aa60349d019107277a428aece8
@@ -8993,11 +9103,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Nov 3 09:12:24 2023 -0400
 
     set default umask to 027
-    
+
     using package libpam-umask
-    
+
     https://www.debian.org/doc/manuals/securing-debian-manual/ch04s11.en.html#id-1.5.14.19
-    
+
     https://github.com/Kicksecure/security-misc/pull/151
 
 commit ac224b270a3a0945d187202f8cca89af0e71a166
@@ -9011,7 +9121,7 @@ Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Thu Nov 2 10:44:19 2023 +0000
 
     enable service on install
-    
+
     not sure if this would be the right way to do it
 
 commit 9f063584c1f96267b04f8f7fe0eee773f9345370
@@ -9081,7 +9191,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 11:11:27 2023 -0400
 
     Merge pull request #142 from monsieuremre/patch-5
-    
+
     ssh config
 
 commit 5ed2a5ce4a24a1a9c3e722a30aa9c6af1dc5d78a
@@ -9103,7 +9213,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Nov 1 10:30:26 2023 -0400
 
     Merge pull request #143 from monsieuremre/patch-6
-    
+
     new lines 990-security-misc.conf
 
 commit fc8e201e84e4c777c087fd113c539ca368fd3a31
@@ -9153,7 +9263,7 @@ Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Fri Oct 27 11:07:53 2023 +0000
 
     new lines 990-security-misc.conf
-    
+
     added new recommended hardening settings with comments
 
 commit f2c23a28319e359c642da2dde424456a1064763f
@@ -9187,7 +9297,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:27:41 2023 -0400
 
     Merge pull request #140 from monsieuremre/patch-3
-    
+
     New lines in default permission config
 
 commit a330a9fd75314931639e7e873adc31c5cc65d555
@@ -9209,7 +9319,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 19:13:34 2023 -0400
 
     Merge pull request #141 from monsieuremre/patch-4
-    
+
     New permission-lockdown
 
 commit 1123d23114201988ac3f5f50ab6e74a5307d3d52
@@ -9271,9 +9381,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Oct 26 12:20:48 2023 -0400
 
     enable SUID Disabler and Permission Hardener by default
-    
+
     https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener
-    
+
     https://forums.whonix.org/t/suid-disabler-and-permission-hardener/7706
 
 commit e5d989af5ac2899985c48d60311856fb86e0ddeb
@@ -9321,7 +9431,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 25 17:26:46 2023 -0400
 
     Merge pull request #135 from monsieuremre/kernel-fix
-    
+
     Kernel hardening fix
 
 commit ee6716e178806912da08b671ae31504ed2f3ac56
@@ -9349,7 +9459,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Oct 24 05:22:33 2023 -0400
 
     Merge pull request #134 from monsieuremre/patch-1
-    
+
     Fix double mount issue for /var/log and /var/tmp
 
 commit 1f489719efb37492b9c040ba4e332e8dd70fde1f
@@ -9375,7 +9485,7 @@ Author: monsieuremre <130907164+monsieuremre@users.noreply.github.com>
 Date:   Mon Oct 23 15:33:05 2023 +0000
 
     Fix double mount issue for /var/log and /var/tmp
-    
+
     Mounting var with bind and mounting a subdirectory causes /var/tmp and /var/log bind mounted twice each. can be checked with lsblk. When we bind mount var only after having mounted the subdirectories, everything is mounted only one.
 
 commit f3b40f12cb4bad0f2f00d4ba2dec59fb315c0798
@@ -10052,7 +10162,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 12:57:46 2023 -0400
 
     Merge pull request #126 from raja-grewal/Comment
-    
+
     Update comments
 
 commit cf003dfad85434f5a52524fdd97a7f619ba82429
@@ -10080,7 +10190,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 07:34:16 2023 -0400
 
     Merge pull request #125 from JeremyRand/typo
-    
+
     mmap-rnd-bits: Fix typo in error message
 
 commit d66a9bac551e7544eed592a69f576d27880e2bf3
@@ -10089,7 +10199,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon May 15 07:34:00 2023 -0400
 
     Merge pull request #124 from JeremyRand/doc-aslr
-    
+
     README: Document mmap-rnd-bits
 
 commit 6ab400c9d982bde16271052f181c87255046037e
@@ -10207,7 +10317,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri May 5 10:14:43 2023 -0400
 
     Merge pull request #120 from JeremyRand/aslr-ppc64le
-    
+
     vm.mmap_rnd_bits: Fix ppc64le
 
 commit 48a68ba237895c0c6c24ebd256ae6a9adec2628f
@@ -10239,7 +10349,7 @@ Author: Jeremy Rand <jeremyrand@danwin1210.de>
 Date:   Fri Mar 24 12:32:58 2023 +0000
 
     vm.mmap_rnd_bits: Fix ppc64le
-    
+
     Probably fixes a bunch of other non-x86_64 arches too.
 
 commit 5c6db28881463e8c764872a8cd268c23ac64b8f1
@@ -10248,7 +10358,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Mar 31 04:52:55 2023 -0400
 
     Merge pull request #122 from raja-grewal/tcp
-    
+
     Remove outdated comment about SACK, DSACK, and FACK
 
 commit 8a34d6c067bdebc513f34cd3c434b0675f118e10
@@ -10257,7 +10367,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Mar 31 04:52:18 2023 -0400
 
     Merge pull request #121 from raja-grewal/copyright
-    
+
     Update Copyright
 
 commit ed5f8be9ebd4f34c8b8de78abe0a8df0775b80aa
@@ -10289,7 +10399,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 25 15:13:19 2023 -0500
 
     move kexec disabling to dedicated file `/etc/sysctl.d/30_security-misc_kexec-disable.conf`
-    
+
     so ram-wipe can `config-package-dev` `hide` this config file
 
 commit 56c7c57b3a3929f57c9173f9156b2b9f7f7f854e
@@ -10345,7 +10455,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 9 06:37:45 2023 -0500
 
     disable kexec (revert enabling kexec)
-    
+
     remove kexec-utils for ram-wipe since moved to its own package
 
 commit 87c4e77c017aba7d57ae1fc7cf41a1f3143f1a04
@@ -10365,7 +10475,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Jan 9 05:34:07 2023 -0500
 
     use warn instead of info for now
-    
+
     because dracut does not show info messages when kernel parameter quiet is set
 
 commit 7fa6946694a997e04b17ecb3a167d767543093a2
@@ -10595,7 +10705,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jan 7 15:32:25 2023 -0500
 
     Depends: kexec-tools
-    
+
     required for cold boot attack defense second RAM wipe after reboot
 
 commit b0630f58c136d6c7a964447806ec8ee603a73aa8
@@ -10978,7 +11088,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Dec 18 06:23:26 2022 -0500
 
     Merge pull request #114 from raja-grewal/framebuffer
-    
+
     Add some framebuffer drivers into blacklist
 
 commit f81714be506d1b15c0e79cbe8378bf8a18a2256f
@@ -11149,7 +11259,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 15 12:29:41 2022 -0500
 
     pam-info: create debug log file ~/pam-info-debug.txt
-    
+
     when file /etc/pam-info-debug exists
 
 commit 2872c2ab52ae9a1eaa25ea8b9852401e82d5616a
@@ -11169,7 +11279,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Nov 9 20:43:59 2022 +1100
 
     Include several framebuffer drivers into blacklist
-    
+
     These were previously commented out to test for compatibility issues.
 
 commit 2319458e9f1a0ae2b60cf5786122c19459bbaea1
@@ -11191,7 +11301,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Aug 22 06:09:40 2022 -0400
 
     Merge pull request #113 from raja-grewal/master
-    
+
     Comment out machine check exception
 
 commit d500205f556ba896417eb0bae1df0144b00ef7b9
@@ -11259,9 +11369,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 23 07:49:56 2022 -0400
 
     undo `"force kernel to panic on "oopses"`
-    
+
     because implemented differently already
-    
+
     https://forums.whonix.org/t/set-oops-panic-kernel-parameter-or-kernel-panic-on-oops-1-sysctl-for-better-security/7713
 
 commit c1c04b4619eea4c79a0dbb5cced3ebb77482877c
@@ -11277,7 +11387,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 23 07:27:24 2022 -0400
 
     Merge pull request #111 from raja-grewal/harden
-    
+
     Increased kernel hardening at boot
 
 commit ca764d8de0f17bb7e6d44e3d79ea1805276fc521
@@ -11367,7 +11477,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Jul 15 08:06:08 2022 -0400
 
     Merge pull request #112 from raja-grewal/blacklist
-    
+
     Corrected kernel module disabling
 
 commit a72bbb1883613ee56be29949c153e0edb2d72a29
@@ -11401,7 +11511,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jul 13 07:24:12 2022 -0400
 
     Merge pull request #110 from raja-grewal/master
-    
+
     Incorporated Ubuntu’s kernel module blacklists and more verbose errors
 
 commit 4e93b4d37e4c6d23a0ac76ddb2144c6504a66ad1
@@ -11409,7 +11519,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Wed Jul 13 21:10:39 2022 +1000
 
     Revert "enforce defualt net.ipv4.ip_forward"
-    
+
     This reverts commit 57b5b2145c4e6779f0b879ee4199d46938f20965.
 
 commit a47922ad28fc9ebba93615a6ffdaaeb4887cc140
@@ -11539,7 +11649,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 9 11:37:57 2022 -0400
 
     Merge pull request #108 from Krish-sysadmin/master
-    
+
     Continue for loop if unable to change one directory's permission
 
 commit 1b8500cc22fdd6a51ec66ae1b04abccb9a529150
@@ -11565,7 +11675,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jul 7 15:39:40 2022 -0400
 
     not blacklist CD-ROM / DVD yet
-    
+
     https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/31
 
 commit d5c16503411bee4199c35a51226fc59924d6e142
@@ -11604,7 +11714,7 @@ Author: Raja Grewal <rg_public@proton.me>
 Date:   Fri Jul 8 02:12:04 2022 +1000
 
     Revert "replace /bin/false ->  /bin/true"
-    
+
     This reverts commit f0511635a9725f79863c41a7b8d9f8a077ba8788.
 
 commit 28381e81d4a57c59929a37745fa8ba5f3e0b25cb
@@ -11714,10 +11824,10 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 2 18:12:36 2022 -0400
 
     wipe RAM at shutdown: Ensure any remaining disk cache is erased by Linux' memory poisoning
-    
+
     by running:
     `echo 3 > /proc/sys/vm/drop_caches`
-    
+
     Inspired by Tails:
     https://gitlab.tails.boum.org/tails/tails/-/blob/master/config/chroot_local-includes/usr/local/lib/initramfs-pre-shutdown-hook
 
@@ -11805,7 +11915,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Jun 30 13:50:18 2022 -0400
 
     skip ram wipe inside VMs
-    
+
     https://forums.whonix.org/t/is-ram-wipe-possible-inside-whonix-cold-boot-attack-defense/5596/40
 
 commit e06405c7be683450e6c6f737171b4f10513254e7
@@ -11969,9 +12079,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 14:13:30 2022 -0400
 
     ram wipe on shutdown: fix, added `need_shutdown` hook
-    
+
     Otherwise dracut does not run on shutdown.
-    
+
     Without `need_shutdown` file `/run/initramfs/.need_shutdown` does not get created.
     And without that file `/usr/lib/dracut/dracut-initramfs-restore`,
     which itself is started by `/lib/systemd/system/dracut-shutdown.service` does nothing.
@@ -12065,7 +12175,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 29 09:35:08 2022 -0400
 
     add shebang /bin/sh
-    
+
     to fix lintian warning
     security-misc: executable-not-elf-or-script usr/lib/dracut/modules.d/40sdmem-security-misc/wipe.sh
 
@@ -12075,11 +12185,11 @@ Date:   Wed Jun 29 09:32:55 2022 -0400
 
     - Wipe LUKS Disk Encryption Key for Root Disk from RAM during Shutdown to defeat Cold Boot Attacks
     - Confirm in console output if encrypted mounts (root disk) is unmounted. (Because that is a pre-condition for wiping the LUKS full disk encryption key from RAM.)
-    
+
     Thanks to @friedy10!
-    
+
     https://github.com/friedy10/dracut/tree/master/modules.d/40sdmem
-    
+
     https://forums.whonix.org/t/is-ram-wipe-possible-inside-whonix-cold-boot-attack-defense/5596
 
 commit adca1ebdf6c83c5c1c846cdb29f3e16ea9cdf32f
@@ -12113,7 +12223,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jun 8 08:19:03 2022 -0400
 
     Merge pull request #104 from ntninja/patch-1
-    
+
     Fix issues found with permission-hardening on my system
 
 commit 5c43197f10df3a49704a66ef3e3d56f122be4775
@@ -12177,7 +12287,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu May 19 19:39:42 2022 -0400
 
     Merge pull request #103 from 0xC0ncord/bugfix/selinuxfs_restrictions
-    
+
     hide-hardware-info: re-enable restrictions on sysfs when using SELinux
 
 commit 4a3ed17160c14ba7122d770665b53bde96038307
@@ -12221,11 +12331,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Feb 10 13:44:55 2022 -0500
 
     fix, skip deletion of system.map files on read-only filesystems
-    
+
     This is required for Qubes /lib/modules read-only implementation at time of writing.
-    
+
     Thanks to @marmarek for the bug report!
-    
+
     https://forums.whonix.org/t/remove-system-map-cannot-work-lib-modules-is-mounted-read-only/13324
 
 commit 356232677a036cd1a673d805caa4d74a327ea096
@@ -12245,7 +12355,7 @@ Author: 0xC0ncord <me@concord.sh>
 Date:   Fri Oct 8 22:11:58 2021 -0400
 
     hide-hardware-info: re-enable restrictions on sysfs when using SELinux
-    
+
     When using SELinux, restrict the parts of sysfs explicitly to ensure
     restrictions are working as expected.
 
@@ -12302,7 +12412,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Sep 6 08:22:55 2021 -0400
 
     do not set kernel parameter `quiet loglevel=0` for recovery boot option
-    
+
     for easier debugging
 
 commit 49902b8c56512c3ee8b3d16b0ca513e44349c66d
@@ -12370,7 +12480,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 1 15:55:53 2021 -0400
 
     fix faillock implementation
-    
+
     dovecot / ssh are exempted
 
 commit 8b104f544a9e4e8da1691659fefa4999a4f6f085
@@ -12378,7 +12488,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 1 15:45:36 2021 -0400
 
     fix, add sshd to pam_service_exclusion_list
-    
+
     to avoid faillock
 
 commit 224ae730c13f4add672fffaf58206eeb7ae24090
@@ -12410,11 +12520,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 17 15:21:26 2021 -0400
 
     add hardened malloc compatibility for haveged workaround
-    
+
     `/lib/systemd/system/haveged.service.d/30_security-misc.conf`
-    
+
     `SystemCallFilter=getrandom`
-    
+
     Otherwise haveged will exit with a core dump.
 
 commit 8676beef90040bdf0782e0a9c683c6463ddb48b5
@@ -12428,7 +12538,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 10 17:13:00 2021 -0400
 
     port from pam_tally2 to pam_faillock
-    
+
     since pam_tally2 was deprecated upstream
 
 commit 2bf0e7471cbd3b813ce385d994e43e48636f7a0b
@@ -12436,7 +12546,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 10 15:11:01 2021 -0400
 
     port from pam_tally2 to pam_faillock
-    
+
     since pam_tally2 was deprecated upstream
 
 commit 2aea74bd715d865f44f91aaab6ca1bf0a00a2b0b
@@ -12458,7 +12568,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 3 13:04:34 2021 -0400
 
     `lintian --suppress-tags obsolete-command-in-modprobe.d-file`
-    
+
     https://forums.whonix.org/t/blacklist-more-kernel-modules-to-reduce-attack-surface/7989/24
 
 commit 50bdd097df4c87cd4507311df9c0b14d237c534b
@@ -12484,11 +12594,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 3 12:37:39 2021 -0400
 
     enable "`apt-get --error-on=any`" by default
-    
+
     makes apt exit non-zero for transient failures
-    
+
     `/etc/apt/apt.conf.d/40error-on-any`
-    
+
     https://forums.whonix.org/t/debian-bullseye-apt-get-error-on-any/12068
 
 commit 240ec7672a4d513e7e6cca280aca3d67c265d1cc
@@ -12556,7 +12666,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jul 25 11:26:20 2021 -0400
 
     improve LKRG VirtualBox host configuration
-    
+
     as per https://github.com/openwall/lkrg/issues/82#issuecomment-886188999
 
 commit 3ebe9e7c530b39f1b0429a97eab2627f2bbd1635
@@ -12570,7 +12680,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jul 24 18:03:40 2021 -0400
 
     add LKRG compatibility settings automation for VirtualBox hosts
-    
+
     https://github.com/openwall/lkrg/issues/82
 
 commit 0f86ffef04e533be1c88584b6419c276d176fc05
@@ -12584,7 +12694,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Jun 20 11:18:56 2021 -0400
 
     pam-abort-on-locked-password: more descriptive error handling
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/1
 
 commit 0f3dbfc4a1fb08b5542e265dfbeab4e7f401549d
@@ -12618,7 +12728,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Jun 5 15:55:41 2021 -0400
 
     Merge pull request #101 from madaidan/sudo
-    
+
     Restrict sudo's file permissions
 
 commit 97d8db3f74b9fc00c8f4416cb72966e62c7de88e
@@ -12656,7 +12766,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Apr 29 11:17:30 2021 -0400
 
     config-package-dev displace /etc/dkms/framework.conf
-    
+
     https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
 
 commit e2afd00627b097f75467cd0e2fe7e15977141026
@@ -12664,17 +12774,17 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Apr 29 11:14:30 2021 -0400
 
     modify DKMS configuration file `/etc/dkms/framework.conf`
-    
+
     Lower parallel compilation jobs to 1 if less than 2 GB RAM to avoid freezing of virtual machines.
-    
+
     `parallel_jobs=1`
-    
+
     This does not necessarily belong into security-misc, however likely
     security-misc will need to modify `/etc/dkms/framework.conf` in the future to
     enable kernel module signing.
-    
+
     https://forums.whonix.org/t/linux-kernel-runtime-guard-lkrg-linux-kernel-runtime-integrity-checking-and-exploit-detection/8477/26
-    
+
     https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
 
 commit 3ba3b371873d221db6845fb0fe52191b8b349b0a
@@ -12682,11 +12792,11 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Apr 29 11:08:30 2021 -0400
 
     add `/etc/dkms/framework.conf.security-misc`
-    
+
     original, from
     - https://github.com/dell/dkms/blob/master/dkms_framework.conf
     - https://raw.githubusercontent.com/dell/dkms/master/dkms_framework.conf
-    
+
     https://forums.whonix.org/t/enforce-kernel-module-software-signature-verification-module-signing-disallow-kernel-module-loading-by-default/7880/58
 
 commit 1d35bdf2912d1dfd0b49ce727338f86d17decd72
@@ -12700,9 +12810,9 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Apr 3 11:44:13 2021 -0400
 
     systemd RemainAfterExit=yes
-    
+
     for better usability
-    
+
     https://forums.whonix.org/t/restrict-hardware-information-to-root-testers-wanted/8618/33
 
 commit e8ea94325b1df7bc0c47eabdfbd7c24b2fe51539
@@ -12742,7 +12852,7 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Mon Mar 1 14:11:28 2021 +0000
 
     Merge pull request #100 from 0xC0ncord/bugfix/selinuxfs_restrictions
-    
+
     hide-hardware-info: allow unrestricting selinuxfs
 
 commit 7f30d702953b2e46255e3e8e71ee47af3f5a5725
@@ -12762,7 +12872,7 @@ Author: Kenton Groombridge <me@concord.sh>
 Date:   Sat Feb 6 03:02:08 2021 -0500
 
     hide-hardware-info: allow unrestricting selinuxfs
-    
+
     On SELinux systems, the /sys/fs/selinux directory must be visible to
     userspace utilities in order to function properly.
 
@@ -12801,9 +12911,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 27 05:49:34 2021 -0500
 
     skip counting failed login attempts from dovecot
-    
+
     Failed dovecot logins should not result in account getting locked.
-    
+
     revert "use pam_tally2 only for login"
 
 commit 480f74cab6d79886fe29eeecc5b7ebc1f138f8dd
@@ -12817,7 +12927,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jan 24 05:04:48 2021 -0500
 
     use pam_tally2 only for login
-    
+
     to skip counting failed login attempts over ssh and mail login
 
 commit 126c31c37d17a55b0980dcae8c546aeed4282a99
@@ -12875,7 +12985,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 12 08:17:04 2021 +0000
 
     Merge pull request #99 from madaidan/docs
-    
+
     Overhaul documentation
 
 commit 3066b5ad972f16069361999afbca0978986db862
@@ -12931,7 +13041,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 6 04:08:58 2020 -0500
 
     /opt
-    
+
     https://forums.whonix.org/t/suid-disabler-and-permission-hardener/7706/68
 
 commit 261ef85c14ff9c13d3d7734d8c9eba5a54497187
@@ -12945,7 +13055,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 05:14:48 2020 -0500
 
     SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists
-    
+
     `whitelists_disable_all=true`
 
 commit b09cc0de6af2d7e12110a0f3030234539288abad
@@ -12953,7 +13063,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 05:10:26 2020 -0500
 
     Revert "SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists"
-    
+
     This reverts commit 36a471ebce883f7a1660977f486b21ece320d0c2.
 
 commit 704f0500ba4e23a1e5b33688db02e03b1169046d
@@ -12961,7 +13071,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 05:03:16 2020 -0500
 
     fix, rename 40_default_whitelist_[...].conf to 25_default_whitelist_[...].conf
-    
+
     since whitelist needs to be defined before SUID removal commands
 
 commit 36a471ebce883f7a1660977f486b21ece320d0c2
@@ -12969,7 +13079,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 05:02:34 2020 -0500
 
     SUID Disabler and Permission Hardener: introduce configuration option to disable all whitelists
-    
+
     `whitelists_disable_all=true`
 
 commit 318ab570aacd48b7f163331dc2ba8b012e0d2336
@@ -12977,11 +13087,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 1 04:28:15 2020 -0500
 
     simplify disabling of SUID Disabler and Permission Hardener whitelist
-    
+
     split `/etc/permission-hardening.d/30_default.conf` into multiple files
-    
+
     `/etc/permission-hardening.d/40_default_whitelist_[...].conf`
-    
+
     therefore make it easier to delete any whitelisted SUID binaries
 
 commit cf07e977bd6697af7a4326d7705447d500d35593
@@ -12989,7 +13099,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Nov 29 09:09:42 2020 -0500
 
     add `/bin/pkexec exactwhitelist` for consistency
-    
+
     since there is already `/usr/bin/pkexec exactwhitelist`
 
 commit fe274838861ada125eccdca11ba044123fdae663
@@ -13003,9 +13113,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 28 05:31:12 2020 -0500
 
     add feature `/usr/lib/security-misc/permission-hardening-undo /path/to/filename`
-    
+
     to allow removing 1 SUID
-    
+
     fix, show INFO message if file does not exist during removal rather than ERROR
 
 commit 0ef35f877066ddac21737e707829c4571bb76abd
@@ -13031,11 +13141,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 5 06:42:47 2020 -0500
 
     fix, no longer unconditionally abort pam for user accounts with locked passwords
-    
+
     as locked user accounts might have valid sudoers exceptions
-    
+
     Thanks to @mimp for the bug report!
-    
+
     https://forums.whonix.org/t/pam-abort-on-locked-password-and-running-privileged-command-from-web-browser/10521
 
 commit 211769dc65a5c98cbdb55ce62e83c9e2a9fa1540
@@ -13100,7 +13210,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 3 18:09:07 2020 +0000
 
     Merge pull request #77 from madaidan/debugfs
-    
+
     Restrict access to debugfs
 
 commit 06ffd5d2201152c60eb4309860b8c42be386dccb
@@ -13120,7 +13230,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 10:29:50 2020 -0400
 
     unblacklist squashfs as this would likely break Whonix-Host ISO
-    
+
     https://github.com/Whonix/security-misc/pull/75#issuecomment-700044182
 
 commit 4070133ed65af409adeb6f8c7970d3bc7074b02b
@@ -13128,7 +13238,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 10:25:57 2020 -0400
 
     unblacklist vfat
-    
+
     https://github.com/Whonix/security-misc/pull/75#issuecomment-695201068
 
 commit 77d461ec08ffdf0eb6a5d124927d9f9748c0dd3c
@@ -13144,7 +13254,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 14:24:15 2020 +0000
 
     Merge pull request #75 from flawedworld/patch-1
-    
+
     Blacklist more modules (based on OpenSCAP for RHEL 8)
 
 commit ae90107e6df4d312a6734985df38b8533d1283c8
@@ -13153,7 +13263,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 28 14:23:42 2020 +0000
 
     Merge pull request #76 from flawedworld/patch-2
-    
+
     Add IPv6 sysctl options and enforce kernel.perf_event_paranoid=3
 
 commit a813e7da07a39e96e0cd7937aee7568307a00287
@@ -13181,7 +13291,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Sep 19 10:54:21 2020 +0000
 
     Merge pull request #71 from onions-knight/patch-1
-    
+
     Update thunar.xml
 
 commit 8f7727e823a86a1826686d5c95d0070721c7acba
@@ -13195,7 +13305,7 @@ Author: flawedworld <38294951+flawedworld@users.noreply.github.com>
 Date:   Fri Sep 18 23:29:04 2020 +0100
 
     Disallow kernel profiling by users without CAP_SYS_ADMIN
-    
+
     It's the default on a lot of stuff, but still nice to have.
 
 commit 98c0decaa46c6fb839062ff9af0556d821c254e6
@@ -13209,11 +13319,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 3 08:12:19 2020 -0400
 
     fix, allow group `sudo` and `console` to use consoles
-    
+
     fix /etc/security/access-security-misc.conf syntax error
-    
+
     Thanks to @81a989 for the bug report!
-    
+
     https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/31
 
 commit b09f5ddc154d6561fd97b436feeb6a6225f89206
@@ -13239,9 +13349,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 14 13:47:58 2020 -0400
 
     move "kernel.printk = 3 3 3 3" to separate file /etc/sysctl.d/30_silent-kernel-printk.conf
-    
+
     so package debug-misc can easily disable it
-    
+
     https://phabricator.whonix.org/T950
 
 commit 81cb6ad2462a900f9c5193278de70ada62a5585b
@@ -13255,9 +13365,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 23 12:26:31 2020 -0400
 
     Prevent kernel info leaks in console during boot.
-    
+
     add kernel parameter `quiet loglevel=0`
-    
+
     https://phabricator.whonix.org/T950
 
 commit aa5631b02b0127b4681ae08c973b08b23befd701
@@ -13271,11 +13381,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 16 08:00:31 2020 -0400
 
     Prevent kernel info leaks in console during boot.
-    
+
     By setting `kernel.printk = 3 3 3 3`.
-    
+
     https://phabricator.whonix.org/T950
-    
+
     Thanks to @madaidan for the suggestion!
 
 commit 4898a9e753e9399e83e4a39d8fa340e1ad9d4f6d
@@ -13283,9 +13393,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 16 07:54:33 2020 -0400
 
     fix, sysctl-initramfs: switch log to /run/initramfs/sysctl-initramfs-error.log
-    
+
     since ephemeral, in RAM, not written to disk, no conflict with grub-live
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/435
 
 commit 701da5f6cc911e3946904c152078dc6c637e5070
@@ -13329,13 +13439,13 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Apr 13 06:50:32 2020 -0400
 
     /etc/security/access-security-misc.conf white list ttyS0 etc.
-    
+
     ttyS0 ttyS1 ttyS2 ttyS3 ttyS4 ttyS5 ttyS6 ttyS7 ttyS8 ttyS9
-    
+
     Thanks to @subpar_marlin for the bug report and helping to fix this!
-    
+
     https://forums.whonix.org/t/how-do-i-enter-the-whonix-shell-from-cli/7271/43
-    
+
     https://forums.whonix.org/t/etc-security-hardening/8592
 
 commit b3ce18f0f9f1da0552a4a1bd882a5b5dda13626e
@@ -13343,7 +13453,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Apr 12 16:54:10 2020 -0400
 
     disable proc-hidepid by default because incompatible with pkexec
-    
+
     and undo pkexec wrapper
 
 commit 442931529121e9e402e7ac56e27df3dcec43167b
@@ -13351,7 +13461,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Apr 12 16:52:55 2020 -0400
 
     disable proc-hidepid by default because incompatible with pkexec
-    
+
     and undo pkexec wrapper
 
 commit 72be31e870057b035651c1b5a7e9a9db149e9d25
@@ -13359,7 +13469,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Apr 12 16:48:13 2020 -0400
 
     disable proc-hidepid by default because incompatible with pkexec
-    
+
     and undo pkexec wrapper
 
 commit 938e929f39ff68296ab01a4b619f963ad3bdf535
@@ -13367,7 +13477,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Apr 12 16:37:51 2020 -0400
 
     add pkexec to suid default whitelist
-    
+
     /usr/bin/pkexec exactwhitelist
     /usr/bin/pkexec.security-misc-orig exactwhitelist
 
@@ -13388,9 +13498,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Apr 8 21:04:02 2020 +0000
 
     vm.swappiness=1
-    
+
     import from swappiness-lowest
-    
+
     https://forums.whonix.org/t/vm-swappiness-1-set-swapiness-to-lowest-setting-still-useful-swappiness-lowest/9278
 
 commit 642d4d8d939f33c19564dcc5a0ed46d85feb80aa
@@ -13416,7 +13526,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Apr 8 16:46:11 2020 +0000
 
     fix etc/default/grub.d/40_kernel_hardening.cfg
-    
+
     in Qubes if no kernel package is installed
 
 commit bfd6018d8d108ee8691556529121fe2a679de1d2
@@ -13484,11 +13594,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Apr 2 06:04:45 2020 -0400
 
     console lockdown: allow members of group `sudo` to use console
-    
+
     https://forums.whonix.org/t/etc-security-hardening/8592
-    
+
     https://github.com/Whonix/security-misc/pull/74#issuecomment-607748407
-    
+
     https://www.whonix.org/wiki/Dev/Strong_Linux_User_Account_Isolation#Console_Lockdown
 
 commit 7764ee0d202193dc67f5805fc23be2b804962186
@@ -13620,7 +13730,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 18:11:57 2020 +0000
 
     Merge pull request #73 from madaidan/sysctl-initramfs
-    
+
     Only remount in sysctl-initramfs if already mounted read-only
 
 commit 89ada11cf9a76cf02b3d5f92fd5c66194fe40ff0
@@ -13642,7 +13752,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Mar 21 17:26:37 2020 +0000
 
     Merge pull request #72 from madaidan/master
-    
+
     Fix sysctl-initramfs logs
 
 commit c8826d6702ebaf280994effb22aea39b4cfd2dac
@@ -13656,7 +13766,7 @@ Author: onions-knight <38859709+onions-knight@users.noreply.github.com>
 Date:   Tue Mar 17 16:38:53 2020 +0000
 
     Update thunar.xml
-    
+
     Adding Delete option for thunar on right mouse click (removed in Debian 10). See https://forums.whonix.org/t/whonix-host-calamares-branding-suggestion/7772/26
 
 commit e4118cb21eb8765bc8f4e7b5e05d464d72575824
@@ -13678,7 +13788,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Mar 11 13:06:23 2020 +0000
 
     Merge pull request #70 from madaidan/userfaultfd
-    
+
     Fix unprivileged_userfaultfd
 
 commit 4d0de87f799d8032731140e9a5815d4773d91baa
@@ -13704,13 +13814,13 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Mar 8 08:07:10 2020 -0400
 
     disable `vm.unprivileged_userfaultfd=0` for now
-    
+
     because broken
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/406
-    
+
     reverts "Restrict the userfaultfd() syscall to root as it can make heap sprays easier."
-    
+
     https://duasynt.com/blog/linux-kernel-heap-spray
 
 commit 44351ec9b78d59aeeef44675e8e203c7ace243f0
@@ -13780,7 +13890,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 29 12:28:32 2020 +0000
 
     Merge pull request #65 from madaidan/userfaultfd
-    
+
     Restrict the userfaultfd() syscall to root
 
 commit e3e39f22354595c9f21c243d7bdadc1487374db8
@@ -13795,10 +13905,10 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 29 04:59:56 2020 -0500
 
     pkexec wrapper: fix gdebi / synaptic
-    
+
     but at cost of checking for passwordless sudo /etc/suders /etc/sudoers.d
     exceptions.
-    
+
     http://forums.whonix.org/t/cannot-use-pkexec/8129/53
 
 commit 32269d32b63e549f76b4090b675dd53256fbc42d
@@ -13819,7 +13929,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 28 12:04:05 2020 +0000
 
     Merge pull request #66 from madaidan/mce
-    
+
     Fix docs
 
 commit 42d3b986c41854fc2990557d2333874e9379793b
@@ -13871,7 +13981,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 17 08:16:34 2020 +0000
 
     Merge pull request #64 from madaidan/extra_latent_entropy
-    
+
     Gather more entropy during boot
 
 commit 8ea4e50c8e9c3c9ee650b665a32b78f67aedc1aa
@@ -13917,7 +14027,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 19:43:05 2020 +0000
 
     Merge pull request #63 from madaidan/ldisc_autoload
-    
+
     Document ldisc_autoload better
 
 commit a79ce7fa68c22048d3e10789fe209b14b818d0fb
@@ -13939,7 +14049,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:42:20 2020 +0000
 
     Merge pull request #60 from madaidan/sysrq
-    
+
     Restrict the SysRq key
 
 commit 1e5946c795e3962fdc2229146b9331d36a1d6c41
@@ -13968,7 +14078,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:25:15 2020 +0000
 
     Merge pull request #62 from madaidan/shred
-    
+
     Shred System.map files
 
 commit 5124f8cebcf6113547d11fc5193f83af1a2b6f84
@@ -13977,7 +14087,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:18:56 2020 +0000
 
     Merge pull request #61 from madaidan/disable_early_pci_dma
-    
+
     Avoid holes in IOMMU
 
 commit ac8757a031a02c6cbad564e6a857954c0cf01a54
@@ -13986,7 +14096,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Feb 15 10:09:46 2020 +0000
 
     Merge pull request #59 from madaidan/ldisc
-    
+
     Restrict loading line disciplines to CAP_SYS_MODULE
 
 commit 31009f0bfa10e7b67f5823a5be92273e5414fff3
@@ -14031,7 +14141,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 18:40:58 2020 +0000
 
     Merge pull request #57 from madaidan/sysctl
-    
+
     Prevent symlink/hardlink TOCTOU races
 
 commit 14140ad41ba45b2457570a7df28b42cfd3bf3155
@@ -14059,7 +14169,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Feb 13 18:36:41 2020 +0000
 
     Merge pull request #58 from madaidan/mitigations
-    
+
     Improve CPU mitigations documentation
 
 commit 2796c2dd00fca0bb458bdb4ea5c2cdbd35854bef
@@ -14111,7 +14221,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 4 05:24:05 2020 +0000
 
     Merge pull request #56 from HulaHoop0/patch-1
-    
+
     kvm.nx_huge_pages=force
 
 commit e4c6e897cf37cbf5de6d90888a0ddbe56db11c2f
@@ -14173,16 +14283,16 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 30 05:55:13 2020 -0500
 
     unconditionally enable all CPU bugs (spectre, meltdown, L1TF, ...)
-    
+
     this might reduce performance
-    
+
     * `spectre_v2=on`
     * `spec_store_bypass_disable=on`
     * `tsx=off`
     * `tsx_async_abort=full,nosmt`
-    
+
     Thanks to @madaidan for the suggestion!
-    
+
     https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647
 
 commit 2711d0f7f08362f97383fbae81ce9d520b19dcbc
@@ -14202,7 +14312,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 30 00:46:48 2020 -0500
 
     set kernel boot parameter `l1tf=full,force` and `nosmt=force`
-    
+
     https://forums.whonix.org/t/should-all-kernel-patches-for-cpu-bugs-be-unconditionally-enabled-vs-performance-vs-applicability/7647/17
 
 commit efc40da4fb1fffcc760685cda0e49dc04da4c5fe
@@ -14270,9 +14380,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 24 04:30:36 2020 -0500
 
     merge the many modprobe.d config files into 1
-    
+
     and use a name starting with double digits
-    
+
     to make it easier to disable settings using a lexically higher config file
 
 commit 6a4c493213929b354a3c8d2acf2325473ae63cfd
@@ -14280,9 +14390,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jan 24 04:26:36 2020 -0500
 
     merge the many sysctl config files into 1
-    
+
     and use a name starting with double digits
-    
+
     to make it easier to disable settings using a lexically higher config file
 
 commit f653b94e7747436323e2083d416ab86560e3cd71
@@ -14320,7 +14430,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 22 07:08:08 2020 -0500
 
     add update initramfs trigger
-    
+
     https://github.com/Whonix/security-misc/pull/53
 
 commit df0b2afda1e1d5a3fddfd8c48b62a5de8295d687
@@ -14346,10 +14456,10 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jan 20 08:49:02 2020 -0500
 
     fix Whonix / Kicksecure
-    
+
     /var/lib/dpkg/tmp.ci/preinst: ERROR: No user is a member of group 'console'. Installation aborted.
     /var/lib/dpkg/tmp.ci/preinst: ERROR: You probably want to run:
-    
+
     sudo adduser user console
 
 commit 960e1ff6e82f8593c2d242a6a0f1e1cf5805c85b
@@ -14383,7 +14493,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 20:52:33 2020 +0000
 
     Merge pull request #55 from madaidan/sysctl.conf
-    
+
     Process sysctl.conf in initramfs
 
 commit 1df48a226d83b98dadc8bfb8dbc479dd656e2313
@@ -14441,7 +14551,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 11:02:30 2020 +0000
 
     Merge pull request #53 from madaidan/sysctl-initramfs
-    
+
     Set sysctl values in initramfs
 
 commit 528c5fc4c41026396a63ac91af7c156dd0d4f191
@@ -14456,11 +14566,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 15 02:42:10 2020 -0500
 
     fix xfce4-power-manager xfpm-power-backlight-helper pkexec lxsudo popup
-    
+
     https://forums.whonix.org/t/xfce4-power-manager-xfpm-power-backlight-helper-pkexec-lxsudo-popup/8764
-    
+
     do show lxqt-sudo password prompt if there is a sudoers exceptoin
-    
+
     improved pkexec wrapper logging
 
 commit d90ca4b1ad18289d6bcfcef51cfb032a0b4423eb
@@ -14524,7 +14634,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jan 14 14:01:17 2020 +0000
 
     Merge pull request #54 from madaidan/panic_on_oops
-    
+
     Document panic_on_oops
 
 commit 0953bbe1d7f3e789aef2218a65c14c586dab4bcb
@@ -14576,7 +14686,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jan 11 20:14:10 2020 +0000
 
     Merge pull request #52 from madaidan/vivid
-    
+
     Blacklist the vivid kernel module
 
 commit 6088444c371f021ca23daa3a0ab1ee431d429a61
@@ -14626,7 +14736,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 31 05:55:44 2019 -0500
 
     add user "user" to group "console" in Whonix and Kicksecure
-    
+
     enable Console Lockdown in Whonix and Kicksecure
 
 commit b5a2d1dc581b53974aaa148f6d8f3054c9d1c5fe
@@ -14646,7 +14756,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 31 02:46:32 2019 -0500
 
     group ssh check was removed
-    
+
     https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/27
 
 commit 06ed728d791abe0ad3c93091fd8ebc088f73c4ef
@@ -14660,15 +14770,15 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 30 06:39:24 2019 -0500
 
     Protect /bin/mount from 'chmod -x'.
-    
+
     /bin/mount exactwhitelist
     /usr/bin/mount exactwhitelist
-    
+
     Remove SUID from 'mount' but keep executable.
-    
+
     /bin/mount 745 root root
     /usr/bin/mount 745 root root
-    
+
     https://forums.whonix.org/t/disable-suid-binaries/7706/61
 
 commit e4e9c4e3b09138af25e94a6db81b0f759ddb4d1b
@@ -14742,7 +14852,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 29 04:35:46 2019 -0500
 
     exit with error if a config line cannot be processed rather than skipping
-    
+
     https://forums.whonix.org/t/disable-suid-binaries/7706/59
 
 commit d5c99f3a60372a00ded4b1b4340775aab1421d31
@@ -14768,9 +14878,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 26 05:44:35 2019 -0500
 
     /fusermount matchwhitelist
-    
+
     unbreak AppImages such as electrum Bitcoin wallet
-    
+
     https://forums.whonix.org/t/disable-suid-binaries/7706/57
 
 commit 507a30d6e39f17fcb09b92033fe1d831e7d4baf4
@@ -14822,7 +14932,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:55:11 2019 +0000
 
     Merge pull request #50 from madaidan/modules
-    
+
     Make /lib/modules unreadable
 
 commit ac49c55d1fafff5f36bd7c595f50db295ff616a2
@@ -14831,7 +14941,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:55:03 2019 +0000
 
     Merge pull request #49 from madaidan/kver
-    
+
     Detect kernel upgrades
 
 commit 0c3d4ad255de75b57a2e316bf8a7fd77a2fc0d4d
@@ -14840,7 +14950,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 24 10:54:23 2019 +0000
 
     Merge pull request #48 from madaidan/kernel-hardening
-    
+
     Use only one slub_debug parameter
 
 commit 79241c5d09c4a7123cf90b45289b53d893135efb
@@ -14963,9 +15073,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 02:29:47 2019 -0500
 
     rename keyword whitelist to exactwhitelist
-    
+
     add new keyword disablewhitelist
-    
+
     refactoring
 
 commit 175d1c284552a08881286e8c3ca5d8eb9b97a144
@@ -14985,7 +15095,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 01:42:03 2019 -0500
 
     polkit-agent-helper-1 matchwhitelist to match both
-    
+
     - /usr/lib/policykit-1/polkit-agent-helper-1 matchwhitelist
     - /lib/policykit-1/polkit-agent-helper-1
 
@@ -14994,7 +15104,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 01:38:31 2019 -0500
 
     matchwhitelist /qubes/qfile-unpacker to match both
-    
+
     - /usr/lib/qubes/qfile-unpacker whitelist
     - /lib/qubes/qfile-unpacker
 
@@ -15075,7 +15185,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 23 00:47:49 2019 -0500
 
     fix capability removal error handling
-    
+
     https://forums.whonix.org/t/disable-suid-binaries/7706/45
 
 commit b631e2ecd8ae0e08850edd81bf64b02666fb6234
@@ -15095,14 +15205,14 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 22 19:42:40 2019 -0500
 
     Remove suid / gid and execute permission for 'group' and 'others'.
-    
+
     Similar to: chmod og-ugx /path/to/filename
-    
+
     Removing execution permission is useful to make binaries such as 'su' fail closed rather
     than fail open if suid was removed from these.
-    
+
     Do not remove read access since no security benefit and easier to manually undo for users.
-    
+
     chmod 744
 
 commit 58a4e0bc7d1b87d4d169f31dc5935c75e929c0b4
@@ -15122,9 +15232,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 22 18:56:36 2019 -0500
 
     suid utempter/utempter matchwhitelist
-    
+
     to cover both:
-    
+
     /usr/lib/x86_64-linux-gnu/utempter/utempter
     /lib/x86_64-linux-gnu/utempter/utempter
 
@@ -15141,7 +15251,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 22 15:26:07 2019 +0000
 
     Merge pull request #47 from madaidan/msr
-    
+
     Blacklist CPU MSRs
 
 commit 8f11a520f4c406fa3187ad530f945a564b78a28c
@@ -15191,7 +15301,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 14:06:10 2019 -0500
 
     no longer remount /lib
-    
+
     https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/25
 
 commit 10c19d6a8fc6b6bc03067dc3be88f486aa78d438
@@ -15207,7 +15317,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 17:59:56 2019 +0000
 
     Merge pull request #46 from madaidan/remount-secure
-    
+
     Don't remount /sys/kernel/security
 
 commit f5a52aeddc4742b4dbd8a0075d759b2ceaaae691
@@ -15221,7 +15331,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 08:03:33 2019 -0500
 
     add support for /etc/exec / /usr/local/etc/exec
-    
+
     to allow enabling exec on a per VM basis
 
 commit 1c99b56c9b99cceab6fe38580d06197dd4bcfb77
@@ -15290,7 +15400,7 @@ Date:   Sat Dec 21 06:58:01 2019 -0500
 
     rm_conffile /etc/apparmor.d/usr.lib.security-misc.pam_tally2-info
     rm_conffile /etc/apparmor.d/usr.lib.security-misc.permission-lockdown
-    
+
     https://github.com/Whonix/security-misc/pull/45
 
 commit 2350e0f5d06d9625835ba1547aab0054b795c0c5
@@ -15306,7 +15416,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 11:56:31 2019 +0000
 
     Merge pull request #45 from madaidan/apparmor
-    
+
     Delete apparmor profiles
 
 commit 3ea587187e9d0a927799a66d15d163ee56a41978
@@ -15314,7 +15424,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 06:53:07 2019 -0500
 
     no need to exclude xorg nosuid on Debian
-    
+
     http://forums.whonix.org/t/permission-hardening/8655/25
 
 commit c336bc4fd229d9a6370df5520aaa4e872465de5a
@@ -15526,7 +15636,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 21 04:08:35 2019 -0500
 
     record existing modes in separate dpkg-statoverwrite databases
-    
+
     to have a history of what was modified and to allow to undo changes
 
 commit 89be5f2ecb998c46ff4864996cd86b97fa56d176
@@ -15564,9 +15674,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 12:59:27 2019 -0500
 
     add "/usr/lib/xorg/Xorg.wrap whitelist"
-    
+
     until this is researched
-    
+
     https://manpages.debian.org/buster/xserver-xorg-legacy/Xorg.wrap.1.en.html
     https://lwn.net/Articles/590315/
 
@@ -15575,7 +15685,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 12:57:24 2019 -0500
 
     add matchwhitelist feature
-    
+
     add "/usr/lib/virtualbox/ matchwhitelist"
 
 commit 3fab3876693f20303c95f03c45af9adb9ae680e2
@@ -15583,7 +15693,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 12:50:35 2019 -0500
 
     suid /usr/bin/firejail whitelist
-    
+
     There is a controversy about firejail but those who choose to install it
     should be able to use it.
     https://www.whonix.org/wiki/Dev/Firejail#Security
@@ -15611,9 +15721,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 11:58:07 2019 -0500
 
     fix terminology, sguid -> sgid
-    
+
     Thanks to @madaidan for the bug report!
-    
+
     https://forums.whonix.org/t/permission-hardening/8655/21
 
 commit 1cd5fb6a0020504c7897acf169772d39b67f4bd4
@@ -15729,7 +15839,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 10:31:26 2019 -0500
 
     speed up setuid removal by using find with '-perm /u=s,g=s'
-    
+
     https://forums.whonix.org/t/permission-hardening/8655/19
 
 commit 4cfdf2c65b57f410163653304871ee3eb1d3f6ea
@@ -15761,7 +15871,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 09:43:23 2019 -0500
 
     fix missing processing files bug
-    
+
     https://forums.whonix.org/t/permission-hardening/8655/16
 
 commit fbe2479f486add30cd29f5c4063a140c42c502fe
@@ -15769,7 +15879,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 08:54:56 2019 -0500
 
     count processed file system objects
-    
+
     to be able to verify if any were "forgotten"
 
 commit 195ea522f5a8582851792b53047185717a6f679e
@@ -15801,7 +15911,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 08:13:23 2019 -0500
 
     do not remove suid from whitelisted binaries ever
-    
+
     https://forums.whonix.org/t/permission-hardening/8655/13
 
 commit d5f1bd8dd29a4f9e1ccb6fed82a255f7b7abfe6f
@@ -15809,9 +15919,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 08:02:30 2019 -0500
 
     fix mode sanity check
-    
+
     no longer use seq due to issue
-    
+
     https://forums.whonix.org/t/permission-hardening/8655/13
 
 commit ddc0eec63d744e4600f3b1b8cdf60fef6d647cbe
@@ -15939,9 +16049,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 05:32:26 2019 -0500
 
     remove hardening-enable
-    
+
     please invent package security-paranoid instead
-    
+
     https://forums.whonix.org/t/security-hardening-tool-usr-bin-hardening-enable-by-security-misc/8609
 
 commit 6c8127e3cd32c04a6eb4641ad856c7bf2c777fee
@@ -15949,7 +16059,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 05:29:37 2019 -0500
 
     remove "/lib/ nosuid" from permission hardening
-    
+
     Takes 1 minute to parse. No SUID binaries there by default.
     remount-secure mounts it with nosuid anyhow.
     Therefore no processing it here.
@@ -15959,7 +16069,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 05:27:11 2019 -0500
 
     remount /lib with nosuid,nodev
-    
+
     https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707/22
 
 commit 7f201604779e442660c4c13798b2b48d706576ac
@@ -15973,7 +16083,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 05:22:59 2019 -0500
 
     use must manually enable permission-hardening.service
-    
+
     until development finished
 
 commit fa6f1e156898572513cacb1d65b042482896011a
@@ -15999,10 +16109,10 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 04:48:02 2019 -0500
 
     fix
-    
+
     fso: /lib/
     usr/lib/security-misc/permission-hardening: line 19: /usr/bin/stat: Argument list too long
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/326
 
 commit e74d2e4f94f4cdb2f3a83f27e17e19e9e4078961
@@ -16160,7 +16270,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 02:57:57 2019 -0500
 
     skip symlinks
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/323?
 
 commit cc8f795799e76d61b60f31e718effb88478b0fea
@@ -16186,7 +16296,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 02:39:53 2019 -0500
 
     check string length of permission variable
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/322
 
 commit a89befd902f6976ebef303b22ee9f9cbc3a1cc23
@@ -16254,9 +16364,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 02:01:36 2019 -0500
 
     exit non-zero if some line cannot be parsed
-    
+
     therefore make systemd notice this
-    
+
     therefore allow the sysadmin to notice this
 
 commit 66bcba831317cf4810e9123b305597ee85fc94bf
@@ -16296,7 +16406,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 20 06:29:58 2019 +0000
 
     Merge pull request #44 from madaidan/permission-hardening
-    
+
     Remove SUID bits
 
 commit 9df74072862b31871d0aad7bed8333fc8344ffec
@@ -16340,9 +16450,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 16 03:52:09 2019 -0500
 
     remount /sys/kernel/security with nodev,nosuid[,noexec]
-    
+
     as suggested by @madaidan
-    
+
     http://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/238
 
 commit 2c4170e6f3366709c391db396a74547d4fed9589
@@ -16362,11 +16472,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 12 09:29:00 2019 -0500
 
     increase priority of pam-abort-on-locked-password-security-misc
-    
+
     since it has its own user help output
-    
+
     so it shows before pam tally2 info
-    
+
     to avoid duplicate non-applicable help text
 
 commit a10597de92c316cc32ab552865a6658b38b19f5e
@@ -16436,7 +16546,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Dec 9 02:23:43 2019 -0500
 
     read -r; refactoring
-    
+
     as per https://mywiki.wooledge.org/BashFAQ/001
 
 commit 7467252122cb2e7600ce5ab3dce9dac2aa7a0676
@@ -16458,7 +16568,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 20:45:16 2019 +0000
 
     Merge pull request #42 from madaidan/permission-hardening
-    
+
     File permission hardening
 
 commit d7e2deae9250abd79ab83c2025b98476dde710d3
@@ -16496,20 +16606,20 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 05:21:35 2019 -0500
 
     security-misc `/usr/share/pam-configs/permission-lockdown-security-misc` is no longer required, removed.
-    
+
     Thereby fix apparmor issue.
-    
+
     > Dec 08 09:47:50 host audit[3232]: AVC apparmor="DENIED" operation="exec" profile="/usr/bin/whonixcheck" name="/usr/lib/security-misc/permission-lockdown" pid=3232 comm="sudo" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
     > Dec 08 09:47:50 host sudo[3232]: pam_exec(sudo:session): execve(/usr/lib/security-misc/permission-lockdown,...) failed: Permission denied
-    
+
     It is no longer required, because...
-    
+
     existing linux user accounts:
-    
+
     * Get permission lock down because security-misc `debian/security-misc.postinst` calls `/usr/lib/security-misc/permission-lockdown`.
-    
+
     new linux user accounts (created at first boot):
-    
+
     * security-misc `/usr/share/pam-configs/mkhomedir-security-misc` pam mkhomedir sets secure permissions using `umask=027`.
 
 commit edcc2de71dea9cf2f94ec008d2817a0cdfdf5b7c
@@ -16535,9 +16645,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 04:25:19 2019 -0500
 
     skip sudo_users_check in Qubes
-    
+
     Qubes users can use dom0 to get a root terminal emulator.
-    
+
     For example:
     qvm-run -u root debian-10 xterm
 
@@ -16576,7 +16686,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 03:15:53 2019 -0500
 
     higher priority usr/share/pam-configs/tally2-security-misc
-    
+
     so it can give info before pam stack gets aborted by other pam modules
 
 commit 3bd0b3f837d5ad8c87e59b99c6baef1e2c74507b
@@ -16608,7 +16718,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 02:38:19 2019 -0500
 
     abort installation if no user is a member of group "console"; output
-    
+
     https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/7
 
 commit 1dbca1ea2d80ff7f60a0f426b444994d6bd97d30
@@ -16708,7 +16818,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Dec 8 06:21:44 2019 +0000
 
     Merge pull request #41 from madaidan/system.map
-    
+
     Check for more locations of System.map
 
 commit 6846a943277c5ad9049cbf3e21fcd739c316cf44
@@ -16736,7 +16846,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 16:34:21 2019 +0000
 
     Merge pull request #40 from madaidan/system.map
-    
+
     Remove hyphen from remove-system.map
 
 commit c1800b13fe33a1c129dcb30c51dbead7f894b818
@@ -16744,9 +16854,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 11:26:39 2019 -0500
 
     separate group "ssh" for incoming ssh console permission
-    
+
     Thanks to @madaidan
-    
+
     https://forums.whonix.org/t/etc-security-hardening-console-lockdown-pam-access-access-conf/8592/16
 
 commit 668b6420de8024fdeaf948f1750beb8b62d9ffb7
@@ -16844,22 +16954,22 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Dec 7 05:40:20 2019 -0500
 
     Console Lockdown.
-    
+
     Allow members of group 'console' to use tty1 to tty7. Everyone else except
     members of group 'console-unrestricted' are restricted from using console
     using ancient, unpopular login methods such as using /bin/login over networks,
     which might be exploitable. (CVE-2001-0797)
-    
+
     Not enabled by default in this package since this package does not know which
     users shall be added to group 'console'.
-    
+
     In new Whonix builds, user 'user" will be added to group 'console' and
     pam console-lockdown enabled by package anon-base-files.
-    
+
     /usr/share/pam-configs/console-lockdown
-    
+
     /etc/security/access-security-misc.conf
-    
+
     https://forums.whonix.org/t/etc-security-hardening/8592
 
 commit 52934c9288a596b233c1ce3b5f68a29248602c96
@@ -16951,7 +17061,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Dec 6 05:14:02 2019 -0500
 
     remount /home /tmp /dev/shm /run with nosuid,nodev (default) and noexec (opt-in)
-    
+
     https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
 commit 8cf5ed990a3940c108d661c6c169b5720b1459d1
@@ -16973,7 +17083,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 5 20:33:47 2019 +0000
 
     Merge pull request #39 from madaidan/rp_filter
-    
+
     Enable reverse path filtering
 
 commit af9e19c51f256504c5c2206e31da1911872b6ef8
@@ -17007,7 +17117,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 3 06:51:31 2019 +0000
 
     Merge pull request #38 from madaidan/distrust-cpu
-    
+
     Distrust the CPU for initial entropy
 
 commit 8d63da3cef6e114deaa6943ea9a633d6620a974b
@@ -17057,9 +17167,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Nov 27 10:22:31 2019 -0500
 
     fix, make sure to undo pam changes on package removal
-    
+
     Thanks to minimal for the bug report!
-    
+
     https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
 
 commit 62b924eea7d50f58649e089ff9cf8d73075cac63
@@ -17075,7 +17185,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 26 18:00:11 2019 +0000
 
     Merge pull request #37 from madaidan/apparmor-fixes
-    
+
     Fix permission-lockdown
 
 commit d9d6d0771433700f49c4ddf156a0b5bc7098d94b
@@ -17101,7 +17211,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 25 01:39:53 2019 -0500
 
     Lock user accounts after 50 rather than 100 failed login attempts.
-    
+
     https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698/19
 
 commit 6277db1383451822769948bbebac31f719e98e74
@@ -17121,11 +17231,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 23 11:20:32 2019 +0000
 
     load jitterentropy_rng kernel module for better entropy collection
-    
+
     https://www.whonix.org/wiki/Dev/Entropy
-    
+
     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=927972
-    
+
     https://forums.whonix.org/t/jitterentropy-rngd/7204
 
 commit d32024a3da3cdfbb07f61dd3e9a52535e747de6b
@@ -17133,7 +17243,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Nov 23 05:53:19 2019 -0500
 
     /usr/sbin/pam_tally2 mrix,
-    
+
     https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/152
 
 commit 03e80238477bef26cf14a86a136d2ab688c87d08
@@ -17179,7 +17289,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Nov 17 16:19:55 2019 +0000
 
     Merge pull request #36 from madaidan/hidepid-fix
-    
+
     Remove proc-hidepid systemd sandboxing
 
 commit e92022a21cbe2df76026b36482f5c71e3471b344
@@ -17235,7 +17345,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Nov 5 10:02:55 2019 -0500
 
     do not set kernel boot parameter page_poison=1 in Qubes since does not work
-    
+
     https://github.com/QubesOS/qubes-issues/issues/5212#issuecomment-533873012
 
 commit f57702c1589047f5d0eff7a7bdffb928117532f6
@@ -17273,9 +17383,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Nov 3 04:34:31 2019 -0500
 
     add /var/cache/security-misc/state-files/placeholder file
-    
+
     to make sure folder already exists to avoid AppArmor issue
-    
+
     https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/76
 
 commit 7c0ec7e50797c0da719f389e61445ff7d8e252b3
@@ -17291,7 +17401,7 @@ Date:   Sun Nov 3 02:50:51 2019 -0500
     Enables punycode (`network.IDN_show_punycode`) by default in Thunderbird
     to make phising attacks more difficult. Fixing URL not showing real Domain
     Name (Homograph attack).
-    
+
     https://forums.whonix.org/t/enable-network-idn-show-punycode-by-default-in-thunderbird-to-fix-url-not-showing-real-domain-name-homograph-attack-punycode/8415
 
 commit bf62306d4fc3b3168204254ca354028a1fe857a7
@@ -17305,7 +17415,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 31 16:32:28 2019 +0000
 
     apparmor fix
-    
+
     https://forums.whonix.org/t/apparmor-for-complete-system-including-init-pid1-systemd-everything-full-system-mac-policy/8339/67
 
 commit 6e5d8b357d977991953e153d618dbdda2b05c0e6
@@ -17333,7 +17443,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 28 14:30:45 2019 +0000
 
     Merge pull request #35 from madaidan/apparmor
-    
+
     Apparmor profiles
 
 commit 0e49bdc45f6c94b3f6c2874fd48a6b1c75519790
@@ -17449,11 +17559,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 21 05:46:49 2019 -0400
 
     Redirect calls for pkexec to lxqt-sudo because pkexec is incompatible with hidepid.
-    
+
     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=860040
-    
+
     https://forums.whonix.org/t/cannot-use-pkexec/8129
-    
+
     Thanks to AnonymousUser for the bug report!
 
 commit 31b771ac2e1cd692851f0d58191c3147d4a09335
@@ -17473,7 +17583,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Oct 18 10:38:25 2019 +0000
 
     fix lintian warning
-    
+
     W: security-misc: maintainer-script-should-not-parse-etc-passwd-or-group preinst:19
 
 commit d301e7f3653bdb4b56c42deab9d0566ff1b27380
@@ -17499,9 +17609,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 06:46:47 2019 -0400
 
     abort installation if no user is part of group sudo
-    
+
     https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-    
+
     Thanks to minimal for the bug report!
 
 commit a5045dc26e3b7d6acd6ae2c5727920824f992cc7
@@ -17540,7 +17650,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 06:08:55 2019 -0400
 
     shuffle
-    
+
     https://forums.whonix.org/t/restrict-hardware-information-to-root/7329/80
 
 commit 28a440091dd98fd4f3284cce01d692c08aa96bf1
@@ -17568,7 +17678,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 09:59:12 2019 +0000
 
     Merge pull request #34 from madaidan/whitelist
-    
+
     Add a whitelist for /sys and /proc/cpuinfo
 
 commit 994ca024c24cf80075b2f03bc65475a5d9980d94
@@ -17577,7 +17687,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Oct 17 06:19:46 2019 +0000
 
     Merge pull request #33 from madaidan/documentation
-    
+
     Improve documentation
 
 commit 61f742304d26e73df8433bd6fa03d33d39e39625
@@ -17693,7 +17803,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 13:15:34 2019 +0000
 
     comment out sack by default
-    
+
     https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/8?u=patrick
 
 commit 02096f8d7c7ee1f61285cf96564616f2828aa6c2
@@ -17701,7 +17811,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 13:13:46 2019 +0000
 
     Revert "undo Disabling TCP SACK, DSACK, FACK"
-    
+
     This reverts commit 5fb4eb8e561e7c37cea977072944501fc32ee883.
 
 commit 62a0239207ee355e3d07e0097c963a0ded496e76
@@ -17721,7 +17831,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 07:00:47 2019 -0400
 
     undo Disabling TCP SACK, DSACK, FACK
-    
+
     https://forums.whonix.org/t/disabling-tcp-sack-dsack-fack/8109/5
 
 commit c19942f72b8d74056dd8da8c3cd9ac7e0fbe8991
@@ -17737,7 +17847,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 10:58:08 2019 +0000
 
     Merge pull request #32 from madaidan/disable-dsack-fack
-    
+
     Disable TCP DSACK and FACK
 
 commit 213aef6eb9288efffe9fb0458f0aa8a44a6dafa6
@@ -17783,7 +17893,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 5 08:46:21 2019 +0000
 
     Merge pull request #31 from madaidan/hide-hardware-info
-    
+
     Restrict /proc/cpuinfo, /proc/bus, /proc/scsi and /sys to root
 
 commit d0c6bb1e9064ffdf45f7ac606f708c3f5e7dc247
@@ -17863,17 +17973,17 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 16 12:30:23 2019 +0000
 
     pam_tally2-info: fix, do nothing when started as user "user"
-    
+
     xscreensaver runs as user "user", therefore pam_tally2 cannot function.
     xscreensaver has its own failed login counter.
-    
+
     as user "user"
     /sbin/pam_tally2 -u user
     pam_tally2: Error opening /var/log/tallylog for update: Permission denied
     /sbin/pam_tally2: Authentication error
-    
+
     https://askubuntu.com/questions/983183/how-lock-the-unlock-screen-after-wrong-password-attempts
-    
+
     https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698
 
 commit c2e444479cf723a7ddb3c51cd6394795daba108e
@@ -17917,7 +18027,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Sep 10 12:35:42 2019 -0400
 
     undo SysRq restrictions
-    
+
     https://forums.whonix.org/t/sysrq-magic-sysrq-key/8079
 
 commit fbd1a5bde922be9c571d54567c977618e2c4bfc5
@@ -17945,7 +18055,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Sep 9 11:45:19 2019 +0000
 
     Merge pull request #30 from madaidan/patch-23
-    
+
     fix typo
 
 commit 60db7e6294ab405a862c1cbc62140c9e89208b25
@@ -17971,7 +18081,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Sep 7 05:47:34 2019 +0000
 
     blacklist modules with /bin/false rather than /bin/true to fail with error
-    
+
     message rather than failing without notification
 
 commit 8132052ce01215a98cb4464e5f78d75349e77b10
@@ -17985,7 +18095,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Sep 7 05:39:56 2019 +0000
 
     allow loading unsigned modules due to issues
-    
+
     https://forums.whonix.org/t/allow-loading-signed-kernel-modules-by-default-disallow-kernel-module-loading-by-default/7880/23
 
 commit 9ee9309f542472a8c8045df44573a5ec38e32a90
@@ -18107,9 +18217,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 24 12:14:22 2019 -0400
 
     remove umask changes since these are causing issues are are not needed anymore
-    
+
     thanks to home folder permission lockdown
-    
+
     https://forums.whonix.org/t/change-default-umask/7416/45
 
 commit 41c4682280b7bc8e700d9ed41b55e464c0511b69
@@ -18136,13 +18246,13 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 19 12:46:59 2019 +0000
 
     remove LLC - IEEE 802.2 from blacklist
-    
+
     since required by KVM
-    
+
     https://forums.whonix.org/t/whonix-desktop-installer-with-calamares-field-report/7350/107
-    
+
     https://forums.whonix.org/t/blacklist-uncommon-network-protocols/7391/22
-    
+
     https://github.com/Whonix/security-misc/pull/29
 
 commit 44d62e05b5a60a3d45afd829fb67970afa7678b7
@@ -18151,7 +18261,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 19 12:45:52 2019 +0000
 
     Merge pull request #29 from onions-knight/patch-1
-    
+
     Update uncommon-network-protocols.conf
 
 commit a8b62811199b6c4e5d86439cd0fc9e9c18dc027b
@@ -18159,7 +18269,7 @@ Author: onions-knight <38859709+onions-knight@users.noreply.github.com>
 Date:   Mon Aug 19 11:30:57 2019 +0000
 
     Update uncommon-network-protocols.conf
-    
+
     Removing llc from blacklisted network protocols as it is needed by KVM for networking.
     See https://hub.packtpub.com/kvm-networking-libvirt/ and https://forums.whonix.org/t/whonix-desktop-installer-with-calamares-field-report/7350/107
 
@@ -18198,7 +18308,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Aug 19 07:47:20 2019 +0000
 
     keep cache folder outside of reach of user since even user can remove files
-    
+
     owned by root in its home folder
 
 commit 1fa1efa58e6f719766394bc8b94d4aa4076bdc0d
@@ -18254,9 +18364,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 17 10:33:47 2019 +0000
 
     PAM: abort on locked password
-    
+
     to avoid needlessly bumping pam_tally2 counter
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/1
 
 commit e0e25364e2d14459b918eea2cb63cbe10b8371f3
@@ -18276,9 +18386,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 17 09:55:20 2019 +0000
 
     change default umask to 027
-    
+
     as per:
-    
+
     https://forums.whonix.org/t/change-default-umask/7416/47
 
 commit b9127faac300024f7d8851d41037bebd5d3fe05c
@@ -18316,7 +18426,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 11:15:25 2019 -0400
 
     sudo default umask 006
-    
+
     https://forums.whonix.org/t/change-default-umask/7416/43
 
 commit 17cfcb63b6358f51a65df9623bc23ddf869b06cc
@@ -18338,7 +18448,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Aug 16 14:36:00 2019 +0000
 
     Merge pull request #27 from madaidan/patch-21
-    
+
     Blacklist bluetooth
 
 commit 85502ad430f560070806c8b95b7fed3fe7028587
@@ -18365,7 +18475,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Aug 15 13:37:28 2019 +0000
 
     informational output during PAM:
-    
+
     * Show failed and remaining password attempts.
     * Document unlock procedure if Linux user account got locked.
     * Point out, that there is no password feedback for `su`.
@@ -18384,7 +18494,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Aug 15 07:30:56 2019 +0000
 
     use requisite rather than required to avoid asking for password needlessly
-    
+
     if login will fail anyhow
 
 commit ce4a30d3cecb7e9bddb96c79aab871804cb90bd4
@@ -18410,7 +18520,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 11:10:18 2019 +0000
 
     add Depends: apparmor-profile-anondist to fix apparmor issue
-    
+
     sudo[19806]: pam_exec(sudo:session): execve(/usr/lib/security-misc/permission-lockdown,...) failed: Permission denied
     sudo[18961]: pam_exec(sudo:session): /usr/lib/security-misc/permission-lockdown failed: exit code 13
     kernel: audit: type=1400 audit(1565780860.972:224): apparmor="DENIED" operation="exec" profile="/usr/bin/whonixcheck" name="/usr/lib/security-misc/permission-lockdown" pid=19806 comm="sudo" requested_mask="x" denied_mask="x" fsuid=0 ouid=0
@@ -18510,7 +18620,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 08:34:03 2019 +0000
 
     run permission lockdown during pam
-    
+
     https://forums.whonix.org/t/change-default-umask/7416
 
 commit 42f2d5f6664f15baebdaf200a5690cf32cdbe284
@@ -18536,12 +18646,12 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 07:22:14 2019 +0000
 
     add hook etc/kernel/postinst.d/30_remove-system-map to remove system.map
-    
+
     on kernel package upgrade;
-    
+
     self-document this package: during upgrade the following will be written
     to stdout:
-    
+
     Setting up linux-image-4.19.0-5-amd64 (4.19.37-5+deb10u2) ...
     /etc/kernel/postinst.d/30_remove-system-map:
     removed '/boot/System.map-4.19.0-5-amd64
@@ -18577,7 +18687,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Aug 14 06:59:34 2019 +0000
 
     Merge pull request #28 from madaidan/patch-22
-    
+
     Require all loaded kernel modules to be signed with a valid key.
 
 commit 9a49b8ecbb863a995862a4d380c6a03f6c0991ac
@@ -18585,7 +18695,7 @@ Author: madaidan <50278627+madaidan@users.noreply.github.com>
 Date:   Tue Aug 13 13:33:07 2019 +0000
 
     Create 40_only_allow_signed_modules.cfg
-    
+
     Require all loaded kernel modules to be signed with a valid key.
 
 commit 6f8acf06d79c77e3bee15cc8696a433271e2b7c9
@@ -18648,11 +18758,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 10 07:07:28 2019 -0400
 
     pam_tally2.so deny=100
-    
+
     during testing, due to issues
-    
+
     https://github.com/Whonix/security-misc/commit/d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
-    
+
     https://forums.whonix.org/t/how-strong-do-linux-user-account-passwords-have-to-be-when-using-full-disk-encryption-fde-too/7698/12
 
 commit d17e25272b9b7bbb6abc4dccd500a6b34311a7dd
@@ -18660,12 +18770,12 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Aug 10 06:06:39 2019 -0400
 
     effectively (not directly) add "required        pam_tally2.so debug" to /etc/pam.d/common-account
-    
+
     This is required because otherwise something like "sudo bash" would count as a
     failed login for pam_tally2 even though it was successful.
-    
+
     https://bugzilla.redhat.com/show_bug.cgi?id=707660
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658
 
 commit 0f896a9d8d6f7c125311a0e226755f8a00214f3c
@@ -18816,7 +18926,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 21 12:40:37 2019 +0000
 
     Merge pull request #26 from fepitre/fix-files
-    
+
     Fix files
 
 commit 077899c23d518416cd9ee801a3607585d3a51aab
@@ -18830,7 +18940,7 @@ Author: Frédéric Pierret (fepitre) <frederic.pierret@qubes-os.org>
 Date:   Sun Jul 21 11:19:35 2019 +0200
 
     spec: update %files section
-    
+
     QubesOS/qubes-issues#1885
 
 commit 8c538ba318e5524d07034f2f718e4b5ae483176d
@@ -18910,10 +19020,10 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 17 20:36:51 2019 +0000
 
     passwordless recovery / emergency console
-    
+
     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=802211
     https://salsa.debian.org/ah/user-setup/commit/bc5ca2de85ec27845d0b46059cb7cc02bae7b44d
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/46
 
 commit 50036b2934410b57936a4909d022d436cd27cdfc
@@ -18927,7 +19037,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jul 17 14:25:19 2019 -0400
 
     Revert "set back to default group "root" rather than group "sudo" membership required to use su"
-    
+
     This reverts commit 2f276cdb10aedf0d30c01d25e50b17cac7d1c62c.
 
 commit 1b772c6a9aac9e6c203c0c89b49e589a2b6e83d3
@@ -18983,11 +19093,11 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 15 08:44:28 2019 -0400
 
     set back to default group "root" rather than group "sudo" membership required to use su
-    
+
     since root login will be locked by default anyhow
-    
+
     Thanks to @madaidan for providing the rationale!
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/42
 
 commit 6d1e8ac9a4657bb3d49a9674ce3a1500350d4bba
@@ -19001,7 +19111,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 14 11:11:59 2019 +0000
 
     fix, add 'group=sudo' and 'debug' for debugging
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658
 
 commit 1731196c9fda93233917bcf6dba48834be03a448
@@ -19070,9 +19180,9 @@ Date:   Sat Jul 13 16:21:34 2019 +0000
 
     removed: The amount of hashing rounds used by shadow is bumped to 65536.
     This increases the security of hashed passwords.
-    
+
     Since we do not do that currently.
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/37
 
 commit 3f031a297dc2d54346e9c9b3d566c3fa3a469240
@@ -19128,7 +19238,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 10:35:10 2019 -0400
 
     port umask from /etc/pam.d to /usr/share/pam-configs implementation
-    
+
     https://forums.whonix.org/t/change-default-umask/7416
 
 commit ac25733de871b0da5ef42e2e0283a44d94ac3112
@@ -19136,9 +19246,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 14:01:53 2019 +0000
 
     remove etc/pam.d/common-password.security-misc rounds=65536
-    
+
     due to unclean implementation, see:
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/37
 
 commit 69b97981f3b5e4efc75954d6957659f1bb8e7d18
@@ -19146,7 +19256,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 13 12:33:51 2019 +0000
 
     convert etc/pam.d/su.security-misc to usr/share/pam-configs/wheel
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/32
 
 commit 4079632d1aed4f3e50ea21de674a9b6d537d3e05
@@ -19156,7 +19266,7 @@ Date:   Sat Jul 13 11:41:37 2019 +0000
     remove modifying to /etc/pam.d directly (unrelased)
     config-package-dev displace /etc/securetty
     remove trailing spaces
-    
+
     https://forums.whonix.org/t/restrict-root-access/7658/31
 
 commit cdb7c6f7eb8e61bd203c9a4cb755da0b97cc9a3d
@@ -19184,7 +19294,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 18:08:01 2019 +0000
 
     Merge pull request #25 from madaidan/patch-20
-    
+
     Improve documentation of blacklisting uncommon network protocols
 
 commit 1aee08fa5e46cbd9439c36df9bcbb7a513270e1b
@@ -19236,7 +19346,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 06:41:37 2019 +0000
 
     Merge pull request #23 from madaidan/patch-18
-    
+
     Blacklist more uncommon network protocols
 
 commit 7d3a61564dc01b899466defe957a7bc65d38dc89
@@ -19245,7 +19355,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jul 11 06:41:08 2019 +0000
 
     Merge pull request #24 from madaidan/patch-19
-    
+
     Move disable-coredumps.conf to correct position
 
 commit 932524cbd1b15df06bd4e395dc391dd489ba100f
@@ -19303,7 +19413,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 10:54:48 2019 +0000
 
     Merge pull request #21 from madaidan/patch-16
-    
+
     Make the kernel panic on oopses
 
 commit 0f15303eb4dd5701cae5b3985be47918e2e4700a
@@ -19326,7 +19436,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jul 9 07:21:47 2019 +0000
 
     Merge pull request #22 from madaidan/patch-17
-    
+
     Restrict access to the root account
 
 commit 24b326d906375bb543b936936519231f51154dcd
@@ -19400,7 +19510,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 23:39:58 2019 +0000
 
     add 'Depends: libpam-cgfs'
-    
+
     https://forums.whonix.org/t/change-default-umask/7416/30?u=patrick
 
 commit d31a16f264ea23a2fc890ffd6664deac3f4c4bdf
@@ -19420,7 +19530,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 21:31:56 2019 +0000
 
     move to pam-auth-update --force
-    
+
     --package hangs in Qubes updater since it starts whiptail for interactive dpkg configuration dialog.
 
 commit 8399a1136788dfbbfd5dfb5c11356776e90326cc
@@ -19434,7 +19544,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 21:09:26 2019 +0000
 
     add "Depends: libpam-runtime" so pam-auth-update is available
-    
+
     for Debian maintainer script
 
 commit f68b96241c6afc7dffa8831f35d38bf1bf49508a
@@ -19450,7 +19560,7 @@ Date:   Sun Jul 7 16:51:40 2019 -0400
     Due to error:
     Jul 07 20:35:39 host sudo[16090]: PAM unable to dlopen(pam_cgfs.so): /lib/security/pam_cgfs.so: cannot open shared object file: No such file or directory
     Jul 07 20:35:39 host sudo[16090]: PAM adding faulty module: pam_cgfs.so
-    
+
     run:
     pam-auth-update --package
     from Debian maintainer scripts
@@ -19472,9 +19582,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jul 7 09:37:25 2019 +0000
 
     Enable APT seccomp sandboxing.
-    
+
     Thanks to @torjunkie for the suggestion!
-    
+
     https://forums.whonix.org/t/apt-seccomp-bpf-sandboxing/7702
 
 commit 93e81b433036ef2f226d0a2b1422034aba54ea3a
@@ -19508,7 +19618,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jul 6 11:06:25 2019 +0000
 
     Merge pull request #20 from madaidan/patch-15
-    
+
     Blacklist HDLC and use "install" for blacklisting firewire/thunderbolt
 
 commit 8888147e1e1102fa852dce14c3ca1cb91cd1ff3b
@@ -19570,7 +19680,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 13:35:45 2019 +0000
 
     config-package-dev displace files for change umask
-    
+
     https://forums.whonix.org/t/change-default-umask/7416
 
 commit a73f0566e978afb6d5b9693bf432a2496bedd61f
@@ -19578,9 +19688,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 13:25:23 2019 +0000
 
     change default umask to 006
-    
+
     session optional  pam_umask.so usergroups
-    
+
     https://forums.whonix.org/t/change-default-umask/7416/17
 
 commit 41b61e32776c15a8dcde4479841b71c7e9ca28d4
@@ -19602,7 +19712,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 13:20:21 2019 +0000
 
     Merge pull request #18 from madaidan/patch-14
-    
+
     Change the default umask to 006
 
 commit 24cc8e380df8706cd8e9765d89bd44ac78c58936
@@ -19610,9 +19720,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 03:43:02 2019 -0400
 
     comment out proc-hidepid.service hardening for now
-    
+
     since broken in Qubes Debian AppVMs
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/104
 
 commit 0bffc7a9303d0b32427da04694bbefcf6a3104c8
@@ -19627,7 +19737,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 03:07:14 2019 -0400
 
     allow permissions openat mkdir
-    
+
     since required in Qubes Debian templates
 
 commit 344d00903250d699fc64d7fa9fad80475ade92e5
@@ -19636,7 +19746,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jul 1 06:39:28 2019 +0000
 
     Merge pull request #19 from madaidan/patch-15
-    
+
     Add licensing to proc-hidepid.service
 
 commit b8f2aee905b78034a115e1e2c1d6ecb7fa624122
@@ -19724,7 +19834,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:10:28 2019 +0000
 
     Merge pull request #17 from madaidan/patch-13
-    
+
     Disable coredumps
 
 commit 67de5247c8e7cd68c851a3d62168e9de69000afe
@@ -19740,7 +19850,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 30 08:09:23 2019 +0000
 
     Merge pull request #16 from madaidan/patch-12
-    
+
     Mount /proc with hidepid=2
 
 commit dbfb9e1cdf1e042c8985e2e69b7f5f5f1eaed860
@@ -19822,7 +19932,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Jun 29 10:05:34 2019 +0000
 
     Merge pull request #15 from madaidan/patch-11
-    
+
     Update control
 
 commit 9e9c854d274d7322759a9e5d2c49bcbd60e63e0d
@@ -19880,7 +19990,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:59:16 2019 +0000
 
     Merge pull request #14 from madaidan/patch-10
-    
+
     Add some hardening for other distributions
 
 commit 5e02100e34776bf410ba05d7a3f7ee7f696ca0fc
@@ -19889,7 +19999,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:58:32 2019 +0000
 
     Merge pull request #13 from madaidan/patch-9
-    
+
     Remove System.map and restrict the SysRq key.
 
 commit 7e12e16dc0513f0a6936e576e3c8fa8ee44509d2
@@ -19898,7 +20008,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 28 06:57:42 2019 +0000
 
     Merge pull request #11 from madaidan/patch-7
-    
+
     Protect against DMA attacks
 
 commit 3801a53a9e01aafa3783276059a7907f5b20b96e
@@ -19980,7 +20090,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 19:45:31 2019 +0000
 
     Merge pull request #12 from madaidan/patch-8
-    
+
     Update control
 
 commit 1a07d90ed2da597db6d58c5f2da6dc3b32a8104b
@@ -19994,9 +20104,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:46:52 2019 +0000
 
     syntax fix
-    
+
     GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX mds=full,nosmt"
-    
+
     https://forums.whonix.org/t/kernel-hardening/7296/70
 
 commit f1147318c04642f355eae96786c26ec1cb53977c
@@ -20012,7 +20122,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 18:45:24 2019 +0000
 
     Merge pull request #10 from madaidan/patch-6
-    
+
     Enable more kernel hardening parameters
 
 commit 641407c8e9c728429ec86e7c89e431896d88e116
@@ -20064,7 +20174,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 23 07:59:35 2019 +0000
 
     Merge pull request #9 from madaidan/patch-5
-    
+
     Disables SACK.
 
 commit 807ac7d65916071e4294f42d62b8b2353255c4bc
@@ -20092,7 +20202,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jun 20 23:54:58 2019 -0400
 
     Merge pull request #8 from marmarek/packaging
-    
+
     qubes-builder integration
 
 commit 2e81885f691201e2229dadfd5ec7b554980ac689
@@ -20100,7 +20210,7 @@ Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 Date:   Fri Jun 21 04:52:01 2019 +0200
 
     Add rpm packaging
-    
+
     QubesOS/qubes-issues#1885
 
 commit 27e68a39fe005a58cac02336fc6c468a4b2f5d31
@@ -20108,7 +20218,7 @@ Author: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
 Date:   Fri Jun 21 04:51:33 2019 +0200
 
     Add Makefile.builder for qubes-builder (Debian)
-    
+
     QubesOS/qubes-issues#1885
 
 commit ca1aa1e577179d92f4ec002221b8c4207e6ce1d6
@@ -20134,7 +20244,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jun 9 10:06:58 2019 +0000
 
     solve package file conflict
-    
+
     https://github.com/QubesOS/qubes-issues/issues/1885#issuecomment-500200375
 
 commit d5127e716632af2f494e9b41571c44a56a887667
@@ -20180,7 +20290,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 23 22:25:13 2019 +0000
 
     Merge pull request #7 from madaidan/patch-3
-    
+
     Disable uncommon network protocols
 
 commit 7177c6041a9b086a4cb90504a492136b4da732a2
@@ -20208,7 +20318,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu May 16 19:52:52 2019 +0000
 
     Merge pull request #6 from madaidan/patch-2
-    
+
     Even more kernel hardening
 
 commit b814f338b803ae33380551919b00144bb63a53b8
@@ -20252,7 +20362,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed May 8 21:38:25 2019 -0400
 
     port to /etc/xdg/xfce4/xfconf/xfce-perchannel-xml
-    
+
     https://forums.whonix.org/t/whonix-xfce-development/6213/84?u=patrick
 
 commit 3bd4da6794067708f517b099548c0aa2a2b65146
@@ -20317,7 +20427,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon May 6 05:46:03 2019 -0400
 
     Merge pull request #5 from madaidan/patch-1
-    
+
     More kernel hardening
 
 commit 02e8888b0bc4f0dfadccbebc9e6e75849d32ba76
@@ -20415,18 +20525,18 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Mar 1 14:32:41 2019 +0000
 
     add improved legal protections clauses
-    
+
     The license for software created by Whonix is the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version with additional terms applicable per GNU GPL version 3 section 7.
-    
+
     The additional terms are based on the Doom 3 license which is Debian refers to as `GPL-3+-with-id-software-additional-terms`, which is Debian DFSG [1] (The Debian Free Software Guidelines) approved and which is therefore suitable for Debian `main`. Whonix made applied minimal changes to it:
-    
+
     * Rewrite `The Doom 3 BFG Edition GPL Source Code` to the more common `this program` which is used throughout the GPL.
     * Added a "trump clause" [2], in other words, any conflicts or disputes between the additional terms and the GPLv3 shall be resolved in favor of the GPLv3 by adding `Notwithstanding any other provision of this License` (as mentioned in GPL FAQ [3]) at the beginning of the additional terms.
-    
+
     [1] https://www.debian.org/social_contract#guidelines
     [2] https://www.fsf.org/news/canonical-updated-licensing-terms
     [3] https://www.gnu.org/licenses/gpl-faq.html#v3Notwithstanding
-    
+
     For more considerations, see also:
     https://www.whonix.org/wiki/Dev/Licensing
 
@@ -20441,7 +20551,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 19 06:27:52 2018 -0500
 
     fix hiding network bookmark in thunar by default
-    
+
     Thanks to @Algernon for suggesting the fix!
 
 commit daf7fc002b2d946c2946b9effe3fecc5cebe4cf2
@@ -20469,7 +20579,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Nov 8 04:53:25 2018 -0500
 
     Merge pull request #4 from Algernon-01/master
-    
+
     Enable hidden files and volume management again.
 
 commit f84f988118e30a2a3d4d74ed008c1a626c35c365
@@ -20593,7 +20703,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Mar 14 13:42:37 2017 +0000
 
     Merge pull request #2 from HulaHoopWhonix/patch-2
-    
+
     Update README.md
 
 commit 6e5e5d6ea65a0fee4c76e5ad74c444344ff1f462
@@ -20631,7 +20741,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 27 23:57:04 2017 +0000
 
     No longer ignore duplicate apt sources in apt-get-wrapper.
-    
+
     No longer acceptable because these generate lots of noise in the terminal.
 
 commit 191918027c1971bfb871abb438c4917e5b98bb74
@@ -20645,7 +20755,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Feb 27 23:16:32 2017 +0000
 
     use python rather than unbuffer
-    
+
     because unbuffer eats exit code when process is killed
 
 commit cc351165dc78a8b7158a2b9bfdd9e4f0b3866239
@@ -20673,7 +20783,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 26 23:57:17 2017 +0000
 
     fix, show progress during apt-get-wrapper
-    
+
     fix, propagate signals to apt-get child process
 
 commit 49cde21078ccc9f623add6f587ee719843647ee7
@@ -20681,7 +20791,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 21 19:54:41 2017 +0000
 
     Whonix 14 KDE plasma 5 fixes
-    
+
     https://phabricator.whonix.org/T633
 
 commit 0228e87d477f634d1e1db7c1cf6f213275d40dd9
@@ -20695,7 +20805,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 19 22:32:04 2017 +0000
 
     override glib-compile-schemas with || true in postinst
-    
+
     https://phabricator.whonix.org/T500
 
 commit 5ba2a5b6ff53df37ad38f082ad86ff2227158d93
@@ -20703,13 +20813,13 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Feb 19 22:25:28 2017 +0000
 
     disable previews in nautilus by default for better security
-    
+
     copied solution by @unman
-    
+
     https://github.com/QubesOS/qubes-issues/issues/1108
-    
+
     https://github.com/QubesOS/qubes-core-agent-linux/pull/39
-    
+
     https://phabricator.whonix.org/T500
 
 commit 91adab0d1bab6c6b31903f1e165944b3f8c8adb1
@@ -20723,7 +20833,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 15 20:46:22 2017 +0000
 
     Debian stretch / kde plasma5 fix: KDEDIRS -> XDG_CONFIG_DIRS
-    
+
     https://phabricator.whonix.org/T633
 
 commit bddbba84a6fad680359bc8eee0c395fcc4d79ca9
@@ -20737,7 +20847,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Feb 14 02:37:08 2017 +0000
 
     add usr/lib/security-misc/apt-get-update-sanity-test
-    
+
     a CVE-2016-1252 sanity test script
 
 commit 5e076415536e1513463c59dba6e8afc4e90b7f1a
@@ -20751,7 +20861,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Feb 10 15:47:52 2017 +0000
 
     remove faketime from Build-Depends:
-    
+
     since no longer used for reproducible builds
 
 commit be8084ad1c136ee4a18cb24abcc0c14c522b8089
@@ -20765,7 +20875,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Feb 8 14:26:26 2017 +0000
 
     double apt-get-update wrapper timeout from 120 to 240 seconds
-    
+
     since it takes a bit longer than 120 seconds for me on a fast connection
 
 commit 1e66e03da14ae2e3f7b315e443836c35f954b84f
@@ -20833,7 +20943,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 10 16:10:30 2016 +0000
 
     disable conntrack helper for better security
-    
+
     https://phabricator.whonix.org/T486
 
 commit 0d66fc60b9ea65e826560986698c11cea7ca4ea6
@@ -20847,7 +20957,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Apr 25 23:19:54 2016 +0000
 
     /etc/sysctl.d/nf_conntrack_helper.conf disabled for now as it needs more work
-    
+
     https://phabricator.whonix.org/T486
 
 commit 492ce128909cfda8645738b092fd9e8722c64aa0
@@ -20867,7 +20977,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:36:59 2016 +0000
 
     added 'Replaces: tcp-timestamps-disable'
-    
+
     https://phabricator.whonix.org/T486
 
 commit 7b54755841907c2b86b12eed5035860e17445193
@@ -20876,9 +20986,9 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:35:07 2016 +0000
 
     merged tcp-timestamps-disable package into security-misc package
-    
+
     disable conntrack helper for better security
-    
+
     https://phabricator.whonix.org/T486
 
 commit be086aea597ff5e4db29f56fa57399c67568d4b6
@@ -20887,7 +20997,7 @@ Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Mar 31 15:34:17 2016 +0000
 
     Merge pull request #1 from HulaHoopWhonix/patch-1
-    
+
     Create tcp_timestamps.conf
 
 commit d0eceae0c84a42bce4ade28c593fd6ba002a67b9
