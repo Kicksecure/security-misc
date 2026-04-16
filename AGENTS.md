@@ -1,31 +1,24 @@
 # Agent Guidelines for security-misc
 
-## fm-shim
+## General Guidelines
 
-### D-Bus name acquisition
+- Check `./agents/` for component-specific notes before reviewing or commenting.
+- Upstream repository: Kicksecure/security-misc
+- No need to mention accepted/fixed/done things unless there is a specific
+  reason why it is needed in memory.
 
-The fm-shim-backend intentionally uses `DBUS_NAME_FLAG_REPLACE_EXISTING`
-**without** `DBUS_NAME_FLAG_DO_NOT_QUEUE`. When the name cannot be acquired,
-the process warns and omits `READY=1` so that systemcheck alerts the user.
-Hard-failing (via `errx`) removes the service entirely, which is worse than
-running in a degraded-but-monitored state. Do not change this to a fatal error.
+## Component Notes
 
-### Systemd sandboxing on services that spawn user-facing apps
+- [fm-shim](./agents/fm-shim.md) - FileManager1 D-Bus shim (backend + frontend)
 
-Do not add restrictive systemd sandboxing directives (`ProtectHome`,
-`MemoryDenyWriteExecute`, `ProtectSystem=strict`, etc.) to the fm-shim
-service. These restrictions are inherited by child processes - the file
-manager and anything it launches. `MemoryDenyWriteExecute` may break JIT,
-`ProtectHome=read-only` breaks normal file manager operations, etc.
+## pkg-config quoting in build script
 
-### Closing inherited file descriptors in forked children
+`pkg-config` output is designed to be word-split by shells. Quoting it via bash
+arrays just reimplements word splitting manually. The unquoted
+`$(pkg-config ...)` is intentional. Upstream has a NOTE comment explaining this.
+Do not re-propose this change.
 
-Use the `close_range(3, ~0U, CLOSE_RANGE_UNSHARE)` syscall (requires
-`#define _GNU_SOURCE` and `#include <linux/close_range.h>`). Do not iterate
-`/proc/self/fd` manually.
+## Accepted Threat Model
 
-### D-Bus error replies
-
-When sending D-Bus error replies in multiple places, use the shared helper
-function `send_error_message_maybe()` rather than duplicating the pattern
-inline.
+- systemd user manager environment is trusted.
+- Python >= 3.13.5 required.
