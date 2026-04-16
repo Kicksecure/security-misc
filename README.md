@@ -989,19 +989,19 @@ These can be opted-in by the user:
 
 - `remount-secure.service` - Remounts filesystems with hardened options.
   In development. See [Remount Secure](https://www.kicksecure.com/wiki/Dev/remount-secure).
-  
+
 - `proc-hidepid.service` - Mounts `/proc` with `hidepid=2`.
   See [hidepid](https://www.kicksecure.com/wiki/Security-misc#hidepid).
-  
+
 - `harden-module-loading.service` - Disables kernel module loading after boot.
   [Harden Module Loading](https://www.kicksecure.com/wiki/Security-misc#Harden_Module_Loading) can cause major breakage.
-  
+
 - `ensure-shutdown.service` - Forced shutdown watchdog.
   In development.
-  
+
 - `ensure-shutdown-trigger.service` - Companion trigger for forced shutdown.
   In development.
-  
+
 - `memlockd.service` - Memory locking daemon (used internally by `emerg-shutdown`).
   Can be enabled if the user intents to use `memlockd.service`.
 
