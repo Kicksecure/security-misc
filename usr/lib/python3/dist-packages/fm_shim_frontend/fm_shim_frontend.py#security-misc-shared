@@ -26,19 +26,24 @@ import sys
 import os
 import signal
 import subprocess
+import traceback
 import urllib.parse
 from pathlib import Path
 from typing import NoReturn, cast
 from types import FrameType
 
 from PyQt5.QtCore import QTimer, QObject, QEvent, Qt
-from PyQt5.QtGui import QFontDatabase
+from PyQt5.QtGui import QFontDatabase, QBrush, QColor
 from PyQt5.QtWidgets import (
     QApplication,
+    QCheckBox,
     QDialog,
     QLabel,
-    QTextEdit,
+    QListWidget,
+    QListWidgetItem,
     QPushButton,
+    QSizePolicy,
+    QTextEdit,
     QVBoxLayout,
     QHBoxLayout,
     QWidget,
@@ -57,9 +62,7 @@ class WidgetShowBinding(QObject):
     """
 
     def __init__(
-        self,
-        bound_widget: QWidget,
-        parent: QObject | None = None
+        self, bound_widget: QWidget, parent: QObject | None = None
     ) -> None:
         """
         ScrollBarEventFilter constructor.
@@ -98,16 +101,119 @@ class WidgetShowBinding(QObject):
         return False
 
 
+class AnalyzePathsWindow(QDialog):
+    """
+    Helper window for analyzing unsafe characters in paths.
+    """
+
+    def __init__(
+        self, dir_list: list[Path], parent: QDialog | None = None
+    ) -> None:
+        """
+        AnalyzePathsWindow constructor.
+        """
+
+        super().__init__(parent)
+
+        self.dir_list: list[Path] = dir_list
+        self.has_unsafe_chars_list: list[bool] = []
+
+        self.core_layout: QVBoxLayout = QVBoxLayout()
+        self.dir_list_view: QListWidget = QListWidget()
+        self.dir_list_view.resize(1, 50)
+        # pylint: disable=no-member
+        self.dir_list_view.setSizePolicy(
+            QSizePolicy.Policy.Expanding,
+            QSizePolicy.Policy.Fixed,
+        )
+        self.dir_list_view.currentRowChanged.connect(
+            self.populate_unicode_show_view
+        )
+        self.core_layout.addWidget(self.dir_list_view)
+
+        self.unicode_show_view: QTextEdit = QTextEdit()
+        self.unicode_show_view.setReadOnly(True)
+        # pylint: disable=no-member
+        self.unicode_show_view.setLineWrapMode(QTextEdit.LineWrapMode.NoWrap)
+        # pylint: disable=no-member
+        self.unicode_show_view.setCurrentFont(
+            QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
+        )
+        self.core_layout.addWidget(self.unicode_show_view)
+
+        self.button_layout: QHBoxLayout = QHBoxLayout()
+        self.button_layout.addStretch()
+        self.done_button: QPushButton = QPushButton("Done")
+        self.done_button.clicked.connect(self.accept)
+        self.button_layout.addWidget(self.done_button)
+        self.core_layout.addLayout(self.button_layout)
+
+        self.setLayout(self.core_layout)
+        self.setWindowTitle("Analyze Paths")
+        self.resize(690, 500)
+
+        for dir_path in self.dir_list:
+            qlwi: QListWidgetItem = QListWidgetItem(
+                stdisplay(str(dir_path), sgr=-1)
+            )
+            if any(
+                (not 0x20 <= ord(path_char) <= 0x7E)
+                for path_char in str(dir_path)
+            ):
+                qlwi.setBackground(QBrush(QColor(255, 128, 128)))
+                self.has_unsafe_chars_list.append(True)
+            else:
+                self.has_unsafe_chars_list.append(False)
+            self.dir_list_view.addItem(qlwi)
+
+        self.populate_unicode_show_view(-1)
+
+    def populate_unicode_show_view(self, path_idx: int) -> None:
+        """
+        Runs the path through unicode-show and populates info about it in the
+        unicode_show_view widget.
+        """
+
+        if path_idx < 0 or path_idx >= len(self.dir_list):
+            self.unicode_show_view.setPlainText(
+                "Select a file path to analyze above.\n"
+                + "Paths highlighted in red contain potentially unsafe "
+                + "characters."
+            )
+            return
+
+        if self.has_unsafe_chars_list[path_idx]:
+            try:
+                unicode_show_output: str = subprocess.run(
+                    ["/usr/bin/unicode-show"],
+                    input=str(self.dir_list[path_idx]),
+                    capture_output=True,
+                    check=False,
+                    encoding="utf-8",
+                ).stdout
+                self.unicode_show_view.setPlainText(unicode_show_output)
+            except Exception:
+                traceback.print_exc(file=sys.stderr)
+                self.unicode_show_view.setPlainText(
+                    "Unable to check this path for unsafe chars!\n"
+                    + "See logs in 'journalctl --user --boot fm-shim.service' "
+                    + "for more information."
+                )
+        else:
+            self.unicode_show_view.setPlainText(
+                "No unsafe chars found in the selected path."
+            )
+
+
 # pylint: disable=too-many-instance-attributes
 class FmShimWindow(QDialog):
     """
     Core fm_shim_frontend window.
     """
 
+    # pylint: disable=too-many-statements
     def __init__(
-        self,
-        dir_list: list[Path],
-        parent: QDialog | None = None
+        self, dir_list: list[Path], parent: QDialog | None = None
     ) -> None:
         """
         FmShimWindow constructor.
@@ -115,7 +221,7 @@ class FmShimWindow(QDialog):
 
         super().__init__(parent)
 
-        self.dir_list = dir_list
+        self.dir_list: list[Path] = dir_list
 
         self.core_layout: QVBoxLayout = QVBoxLayout()
         self.head_label: QLabel = QLabel(
@@ -132,25 +238,34 @@ class FmShimWindow(QDialog):
         self.dir_list_view.setCurrentFont(
             QFontDatabase.systemFont(QFontDatabase.SystemFont.FixedFont)
         )
-        self.dir_list_view.setPlainText(
-            "\n".join([str(x) for x in dir_list]).replace(
-                " ", "\N{MIDDLE DOT}"
-            )
-        )
         self.core_layout.addWidget(self.dir_list_view)
 
-        self.dot_note_label: QLabel = QLabel(
+        self.sanitized_text_label: QLabel = QLabel(
             "Note: Any spaces in the above filenames are displayed as "
-            + "\"middle dot\" (\N{MIDDLE DOT}) characters."
+            + '"middle dot" (\N{MIDDLE DOT}) characters. Potentially '
+            + "unsafe characters are displayed as underscores (_)."
         )
-        self.core_layout.addWidget(self.dot_note_label)
+        self.sanitized_text_label.setWordWrap(True)
+        self.sanitized_text_label.setVisible(False)
+        self.core_layout.addWidget(self.sanitized_text_label)
+
+        self.unsafe_text_label: QLabel = QLabel(
+            '<font color="red">WARNING:</font> Some of the listed paths '
+            + "contain Unicode or ASCII control characters. These can be "
+            + 'malicious. Use the "Analyze Paths" button for more details. '
+            + 'If you are sure the text is safe, check "Display raw path '
+            + 'text" below.'
+        )
+        self.unsafe_text_label.setWordWrap(True)
+        self.unsafe_text_label.setVisible(False)
+        self.core_layout.addWidget(self.unsafe_text_label)
 
         horiz_scroll_bar: QScrollBar | None = (
             self.dir_list_view.horizontalScrollBar()
         )
         assert horiz_scroll_bar is not None
         self.horiz_overflow_warning_label: QLabel = QLabel(
-            "<font color=\"red\">WARNING:</font> Some of the paths listed "
+            '<font color="red">WARNING:</font> Some of the paths listed '
             + "above are too long to display all at once. Double-check that "
             + "the paths do not look suspicious."
         )
@@ -162,31 +277,25 @@ class FmShimWindow(QDialog):
         self.horiz_overflow_warning_binding: WidgetShowBinding = (
             WidgetShowBinding(self.horiz_overflow_warning_label, self)
         )
-        horiz_scroll_bar.installEventFilter(
-            self.horiz_overflow_warning_binding
-        )
+        horiz_scroll_bar.installEventFilter(self.horiz_overflow_warning_binding)
 
         vert_scroll_bar: QScrollBar | None = (
             self.dir_list_view.verticalScrollBar()
         )
         assert vert_scroll_bar is not None
         self.vert_overflow_warning_label: QLabel = QLabel(
-            "<font color=\"red\">WARNING:</font> Too many paths are listed "
+            '<font color="red">WARNING:</font> Too many paths are listed '
             + "above to display all at once. A new file manager window will "
             + "be opened for every listed path. Double-check that this is "
             + "what you want."
         )
         self.vert_overflow_warning_label.setWordWrap(True)
         self.core_layout.addWidget(self.vert_overflow_warning_label)
-        self.vert_overflow_warning_label.setVisible(
-            vert_scroll_bar.isVisible()
-        )
+        self.vert_overflow_warning_label.setVisible(vert_scroll_bar.isVisible())
         self.vert_overflow_warning_binding: WidgetShowBinding = (
             WidgetShowBinding(self.vert_overflow_warning_label, self)
         )
-        vert_scroll_bar.installEventFilter(
-            self.vert_overflow_warning_binding
-        )
+        vert_scroll_bar.installEventFilter(self.vert_overflow_warning_binding)
 
         self.foot_label: QLabel = QLabel(
             "Would you like to open these directories? A separate file "
@@ -195,7 +304,18 @@ class FmShimWindow(QDialog):
         self.core_layout.addWidget(self.foot_label)
 
         self.button_layout: QHBoxLayout = QHBoxLayout()
+        self.display_raw_checkbox: QCheckBox = QCheckBox(
+            "Display raw path text"
+        )
+        self.display_raw_checkbox.stateChanged.connect(self.toggle_display_raw)
+        self.button_layout.addWidget(self.display_raw_checkbox)
+
+        self.analyze_paths_button: QPushButton = QPushButton("Analyze Paths")
+        self.analyze_paths_button.clicked.connect(self.analyze_paths)
+        self.analyze_paths_button.setVisible(False)
+        self.button_layout.addWidget(self.analyze_paths_button)
         self.button_layout.addStretch()
+
         self.open_button: QPushButton = QPushButton("Open")
         self.open_button.clicked.connect(self.open_dir_list)
         self.cancel_button: QPushButton = QPushButton("Cancel")
@@ -207,7 +327,63 @@ class FmShimWindow(QDialog):
         self.setLayout(self.core_layout)
         self.setWindowTitle("Open Directories")
 
+        for dir_path in self.dir_list:
+            if any(
+                (not 0x20 <= ord(path_char) <= 0x7E)
+                for path_char in str(dir_path)
+            ):
+                self.unsafe_text_label.setVisible(True)
+                self.analyze_paths_button.setVisible(True)
+
+        self.resize(690, 500)
+
+        self.display_sanitized_dir_paths()
         self.show()
+
+    def display_sanitized_dir_paths(self) -> None:
+        """
+        Sanitizes the paths in the dir list from all unsafe characters,
+        replaces spaces with middle dot characters, displays them to the user,
+        and displays a note about text sanitization.
+        """
+
+        sanitized_string: str = stdisplay(
+            "\n".join([str(x) for x in self.dir_list]), sgr=-1
+        )
+        self.dir_list_view.setPlainText(
+            sanitized_string.replace(" ", "\N{MIDDLE DOT}")
+        )
+        self.sanitized_text_label.setVisible(True)
+
+    def display_unsanitized_dir_paths(self) -> None:
+        """
+        Displays the paths in the dir list unsanitized, and hides the text
+        sanitization note.
+        """
+
+        self.dir_list_view.setPlainText(
+            "\n".join([str(x) for x in self.dir_list])
+        )
+        self.sanitized_text_label.setVisible(False)
+
+    def toggle_display_raw(self, new_state: int) -> None:
+        """
+        Turns text sanitization on or off.
+        """
+
+        if new_state == 0:
+            self.display_sanitized_dir_paths()
+        else:
+            self.display_unsanitized_dir_paths()
+
+    def analyze_paths(self) -> None:
+        """
+        Opens a new window where the user can analyze potentially unsafe paths
+        before opening them with PCManFM-Qt.
+        """
+
+        apw: AnalyzePathsWindow = AnalyzePathsWindow(self.dir_list)
+        apw.exec()
 
     # pylint: disable=too-many-branches
     def open_dir_list(self) -> None:
@@ -260,14 +436,13 @@ class FmShimWindow(QDialog):
                 print(
                     "ERROR: Both the XDG_DATA_HOME and HOME environment "
                     + "variables are either undefined or empty!",
-                    file=sys.stderr
+                    file=sys.stderr,
                 )
                 sys.exit(1)
             xdg_data_home = home_env_var + "/.local/share"
         if not xdg_data_home.startswith("/"):
             print(
-                "ERROR: XDG_DATA_HOME is not an absolute path!",
-                file=sys.stderr
+                "ERROR: XDG_DATA_HOME is not an absolute path!", file=sys.stderr
             )
             sys.exit(1)
         search_dir_list.append(xdg_data_home)
@@ -314,15 +489,15 @@ class FmShimWindow(QDialog):
                 QMessageBox.warning(
                     self,
                     "Open Directories",
-                    Qt.convertFromPlainText(
+                    Qt.convertFromPlainText(  # type: ignore
                         "ERROR: The following path was no longer a dir when "
                         + "checked before opening:\n"
                         + "\n"
-                        + f"{target_dir}\n"
+                        + f"{stdisplay(str(target_dir), sgr=-1)}\n"
                         + "\n"
                         + "This may be the result of an attempted attack. No "
                         + "further directories will be opened."
-                    )
+                    ),
                 )
                 sys.exit(1)
 
@@ -358,14 +533,16 @@ def get_path_list_from_uris(
     path_set: set[Path] = set()
 
     for uri in uri_list:
-        ## Do not permit Unicode or control characters in URIs. This doesn't
-        ## guarantee that the file path will be free of Unicode due to URI
-        ## escaping, but it should prevent hitting any dangerous edge-cases in
-        ## Python's unicode handling.
+        ## Do not permit Unicode or control characters in URIs. While the
+        ## files pointed to by URIs may contain Unicode in their filenames,
+        ## Unicode characters beyond 7-bit ASCII are forbidden in URIs. The
+        ## org.freedesktop.FileManager1 spec says that we should expect URI
+        ## strings here, not IRI strings (which can contain Unicode), so this
+        ## is safe.
         if any((not 0x20 <= ord(uri_char) <= 0x7E) for uri_char in uri):
             print(
                 "WARNING: Path URI contains Unicode or control characters, "
-                + f"skipping. Sanitized path: '{stdisplay(uri, sgr=-1)}'",
+                + f"skipping. Sanitized URI: '{stdisplay(uri, sgr=-1)}'",
                 file=sys.stderr,
             )
             continue
@@ -389,16 +566,22 @@ def get_path_list_from_uris(
 
         path_str: str = urllib.parse.unquote(uri_components.path)
 
-        ## Do not permit Unicode or control characters in the path.
-        ## TODO: This could cause problems for non-English users, do we want
-        ## to establish a set of "safe" Unicode?
-        if any(
-            (not 0x20 <= ord(path_char) <= 0x7E) for path_char in path_str
-        ):
+        ## Do not permit newlines in the path. It is unlikely that these will
+        ## be used in practice, and they can easily be used to confuse the
+        ## user.
+        if "\n" in path_str:
             print(
-                "WARNING: Decoded path string contains Unicode or control "
-                + "characters, skipping. Sanitized path: "
-                + f"'{stdisplay(path_str, sgr=-1)}'",
+                "WARNING: Decoded path string contains newlines, skipping. "
+                + f"Path: {stdisplay(path_str, sgr=-1)}",
+                file=sys.stderr,
+            )
+            continue
+
+        ## Do not permit NUL characters in the path.
+        if "\x00" in path_str:
+            print(
+                "WARNING: Decoded path string contains NUL characters, "
+                + f"skipping. Path: {stdisplay(path_str, sgr=-1)}",
                 file=sys.stderr,
             )
             continue
@@ -406,7 +589,8 @@ def get_path_list_from_uris(
         ## Ensure path_str is absolute.
         if not path_str.startswith("/"):
             print(
-                f"WARNING: Path '{path_str}' is not absolute, skipping.",
+                f"WARNING: Path '{stdisplay(path_str, sgr=-1)}' is not "
+                + "absolute, skipping.",
                 file=sys.stderr,
             )
             continue
@@ -415,7 +599,8 @@ def get_path_list_from_uris(
         path_item: Path = Path(path_str)
         if not path_item.exists(follow_symlinks=False):
             print(
-                f"WARNING: Path '{path_str}' does not exist, skipping.",
+                f"WARNING: Path '{stdisplay(path_str, sgr=-1)}' does not "
+                + "exist, skipping.",
                 file=sys.stderr,
             )
             continue
@@ -434,8 +619,8 @@ def get_path_list_from_uris(
             path_item = path_item.resolve(strict=True)
         except OSError:
             print(
-                f"WARNING: Could not resolve path '{str(path_item)}', "
-                + "skipping.",
+                "WARNING: Could not resolve path "
+                + f"'{stdisplay(str(path_item), sgr=-1)}', skipping.",
                 file=sys.stderr,
             )
             continue
@@ -443,15 +628,15 @@ def get_path_list_from_uris(
         ## Only respect directories that we can access the contents of.
         if not path_item.is_dir():
             print(
-                f"WARNING: Path '{str(path_item)}' does not point to a "
-                + "directory, skipping.",
+                f"WARNING: Path '{stdisplay(str(path_item), sgr=-1)}' does "
+                + "not point to a directory, skipping.",
                 file=sys.stderr,
             )
             continue
         if not os.access(path_item, os.R_OK | os.X_OK):
             print(
-                f"WARNING: Path '{str(path_item)}' cannot be accessed by us, "
-                + "skipping.",
+                f"WARNING: Path '{stdisplay(str(path_item), sgr=-1)}' cannot "
+                + "be accessed by us, skipping.",
                 file=sys.stderr,
             )
             continue
@@ -461,7 +646,6 @@ def get_path_list_from_uris(
     output_list: list[Path] = list(path_set)
     output_list.sort()
     return output_list
-
 
 
 def main() -> NoReturn:
@@ -479,7 +663,7 @@ def main() -> NoReturn:
             if handler_mode is not None:
                 print(
                     f"ERROR: {arg} and {handler_mode} are mutually exclusive!",
-                    file=sys.stderr
+                    file=sys.stderr,
                 )
                 sys.exit(1)
             handler_mode = arg
@@ -487,7 +671,7 @@ def main() -> NoReturn:
             uri_list = sys.argv[arg_idx + 1 :]
             break
         else:
-            uri_list = sys.argv[arg_idx :]
+            uri_list = sys.argv[arg_idx:]
             break
 
     if len(uri_list) == 0:
@@ -515,6 +699,7 @@ def main() -> NoReturn:
     fsw: FmShimWindow = FmShimWindow(path_list)
     app.exec_()
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
