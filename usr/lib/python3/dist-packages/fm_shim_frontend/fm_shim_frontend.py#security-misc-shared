@@ -47,6 +47,8 @@ from PyQt5.QtWidgets import (
     QMessageBox,
 )
 
+from stdisplay.stdisplay import stdisplay
+
 
 class WidgetShowBinding(QObject):
     """
@@ -361,6 +363,11 @@ def get_path_list_from_uris(
         ## escaping, but it should prevent hitting any dangerous edge-cases in
         ## Python's unicode handling.
         if any((not 0x20 <= ord(uri_char) <= 0x7E) for uri_char in uri):
+            print(
+                "WARNING: Path URI contains Unicode or control characters, "
+                + f"skipping. Sanitized path: '{stdisplay(uri, sgr=-1)}'",
+                file=sys.stderr,
+            )
             continue
 
         uri_components: urllib.parse.SplitResult = urllib.parse.urlsplit(uri)
@@ -373,6 +380,11 @@ def get_path_list_from_uris(
             or uri_components.query != ""
             or uri_components.fragment != ""
         ):
+            print(
+                f"WARNING: Path URI '{uri}' does not look like a local file "
+                + "URI, skipping.",
+                file=sys.stderr,
+            )
             continue
 
         path_str: str = urllib.parse.unquote(uri_components.path)
@@ -383,15 +395,29 @@ def get_path_list_from_uris(
         if any(
             (not 0x20 <= ord(path_char) <= 0x7E) for path_char in path_str
         ):
+            print(
+                "WARNING: Decoded path string contains Unicode or control "
+                + "characters, skipping. Sanitized path: "
+                + f"'{stdisplay(path_str, sgr=-1)}'",
+                file=sys.stderr,
+            )
             continue
 
         ## Ensure path_str is absolute.
         if not path_str.startswith("/"):
+            print(
+                f"WARNING: Path '{path_str}' is not absolute, skipping.",
+                file=sys.stderr,
+            )
             continue
 
         ## Ensure the path is valid, exists, and is accessible.
         path_item: Path = Path(path_str)
         if not path_item.exists(follow_symlinks=False):
+            print(
+                f"WARNING: Path '{path_str}' does not exist, skipping.",
+                file=sys.stderr,
+            )
             continue
 
         ## Grab the parent dir if necessary. Note that we aren't able to
@@ -407,12 +433,27 @@ def get_path_list_from_uris(
         try:
             path_item = path_item.resolve(strict=True)
         except OSError:
+            print(
+                f"WARNING: Could not resolve path '{str(path_item)}', "
+                + "skipping.",
+                file=sys.stderr,
+            )
             continue
 
         ## Only respect directories that we can access the contents of.
         if not path_item.is_dir():
+            print(
+                f"WARNING: Path '{str(path_item)}' does not point to a "
+                + "directory, skipping.",
+                file=sys.stderr,
+            )
             continue
         if not os.access(path_item, os.R_OK | os.X_OK):
+            print(
+                f"WARNING: Path '{str(path_item)}' cannot be accessed by us, "
+                + "skipping.",
+                file=sys.stderr,
+            )
             continue
 
         path_set.add(path_item)
