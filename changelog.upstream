@@ -1,3 +1,28 @@
+commit 324ee4fdf63a8945af3f1125fab1403bdf87b5e4
+Merge: e5df9643 b43e11e5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Apr 22 06:35:15 2026 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit b43e11e59e9f7b50fd1e84d5630c4c10a3f6cf69
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 19 19:23:58 2026 -0400
+
+    Add better Unicode handling to fm-shim-frontend
+
+commit 9b058e0618062b345e9bd29e5c51f7b5e0df3191
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Apr 19 01:23:59 2026 -0400
+
+    Add better logging to fm_shim_frontend
+
+commit e5df9643ad2b060f74ed519dd7acc913692724d8
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Apr 16 12:27:58 2026 +0000
+
+    bumped changelog version
+
 commit 36438ea84e610895c7bdd7de8a556f7c5a0c86aa
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Apr 16 01:53:02 2026 -0400
