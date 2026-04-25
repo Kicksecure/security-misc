@@ -30,6 +30,8 @@ delimiter="#permission-hardener-delimiter#"
 source /usr/libexec/helper-scripts/safe_echo.sh
 # shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/log_run_die.sh
+# shellcheck disable=SC1091
+source /usr/libexec/helper-scripts/strings.bsh
 
 ## Functions
 echo_wrapper_ignore() {
@@ -152,6 +154,17 @@ line: '${processed_config_line}'
   existing_group="${arr[2]}"
   file_name_from_stat="${arr[3]}"
   hardlink_count="${arr[4]}"
+
+  if ! is_whole_number "${hardlink_count}"; then
+    log error "\
+hardlink_count returned by stat is not an integer.
+Stat output: '${stat_output}'
+stat_output_newlined: '${stat_output_newlined}'
+line: '${processed_config_line}'
+hardlink_count: '${hardlink_count}'
+" >&2
+    return 1
+  fi
 
   if [ "$file_name" != "$file_name_from_stat" ]; then
     log error "\
