@@ -12,31 +12,44 @@ fi
 
 shopt -s nullglob
 
-system_map_location="/boot/System.map* /usr/src/*/System.map* /lib/modules/*/*/System.map* /System.map*"
+system_map_list=( /boot/System.map* /usr/src/*/System.map* /lib/modules/*/*/System.map* /System.map* )
 
-counter=0
-for filename in ${system_map_location} ; do
-   counter=$(( counter + 1 ))
-done
-
-if [ "$counter" -ge "1" ]; then
+if (( ${#system_map_list[@]} > 0 )); then
    echo "INFO: Deleting system.map files..."
 fi
 
+failed_list=()
+
 ## Removes the System.map files as they are only used for debugging or malware.
-for filename in ${system_map_location} ; do
-   if [ -f "${filename}" ]; then
-      if [ -w "${filename}" ]; then
-         ## 'shred' with '--verbose' is too chatty. (7 lines)
-         shred --force --zero -u "${filename}"
-         echo "INFO: removed '${filename}'"
-      else
-         echo "NOTE: Cannot delete '${filename}' - read-only. For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
-         exit 0
-      fi
+for filename in "${system_map_list[@]}"; do
+   if [[ ! -f "${filename}" ]]; then
+      continue
    fi
+   ## The immutable and append-only file attributes ('chattr +i', 'chattr +a')
+   ## prevent deletion. Clear them. A System.map file has no legitimate
+   ## reason to carry either and they would possibly complicate kernel
+   ## package removal.
+   chattr -ia -- "${filename}" &>/dev/null || true
+
+   ## 'shred' with '--verbose' is too chatty. (7 lines)
+   ## 'shred' stderr is suppressed because failure is expected on read-only
+   ## file systems. Failures are reported below instead.
+   if shred --force --zero -u -- "${filename}" 2>/dev/null; then
+      echo "INFO: removed '${filename}'"
+      continue
+   fi
+   failed_list+=( "${filename}" )
 done
 
-if [ "$counter" -ge "1" ]; then
+if (( ${#failed_list[@]} > 0 )); then
+   for filename in "${failed_list[@]}"; do
+      echo "NOTE: Could not remove '${filename}'."
+   done
+   echo "NOTE: For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
+elif (( ${#system_map_list[@]} > 0 )); then
    echo "INFO: Done. Success."
 fi
+
+## Deliberately exits 0 even on partial failure. A non-zero exit code would fail
+## the kernel package's postinst hook and the oneshot unit on every boot.
+exit 0
