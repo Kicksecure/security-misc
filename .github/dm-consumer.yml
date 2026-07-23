@@ -12,9 +12,8 @@
 ## https://github.com/org-ai-assisted/developer-meta-files/blob/master/agents/github-actions-consumer-templates.md
 
 coverity:
-  ## scan.coverity.com project name. The URL renders the slash as
-  ## a dash for display ('/projects/Kicksecure-security-misc') but
-  ## the API form-parameter requires the actual slash.
+  ## scan.coverity.com project name (org-ai-assisted-owned; the "/" is
+  ## rejected in manual registration so the name is slash-free).
   project-name:    "org-ai-assisted-security-misc"
   canonical-repos: "org-ai-assisted/security-misc"
 

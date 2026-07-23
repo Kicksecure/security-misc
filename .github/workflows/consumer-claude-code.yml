@@ -70,9 +70,9 @@ jobs:
     ## Explicit secret forwarding (NOT 'secrets: inherit'). With
     ## inherit, every caller-side secret would flow into the
     ## reusable; the explicit map caps the reusable's secrets
-    ## context to exactly ANTHROPIC_API_KEY.
+    ## context to exactly CLAUDE_CODE_OAUTH_TOKEN.
     secrets:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
     permissions:
       contents: read
       pull-requests: write
