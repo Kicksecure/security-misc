@@ -248,6 +248,10 @@ deny=3
 if test -f /etc/security/faillock.conf ; then
    deny_line=$(grep --invert-match "#" -- /etc/security/faillock.conf | grep -- "deny =") || true
    deny="$(printf '%s\n' "$deny_line" | str_replace "=" "" | str_replace "deny" "" | str_replace " " "")"
+   ## Restore the default if no uncommented 'deny =' line was found; an empty
+   ## value would slip past the numeric guard below and incorrectly report a
+   ## lockout.
+   [ -n "$deny" ] || deny=3
    ## Example:
    #deny=50
 fi
