@@ -1,3 +1,84 @@
+commit ec941913e9bf1ad4e33a8146812cfe3c07cde956
+Merge: d1381a0c a5420ffb
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 28 08:12:04 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
+
+commit d1381a0c16ca62d8ac61fa00dcc5d760b8f5d106
+Merge: 2ac7df95 dc1a17c2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 28 07:44:23 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit a5420ffb35edf92c0c953b09cd31580cd74c1d27
+Author: claude <noreply@anthropic.com>
+Date:   Tue Jul 28 06:17:17 2026 -0400
+
+    consumer-codex-review: drop OPENAI_API_KEY forward to the disabled reusable
+
+    Propagates org-ai-assisted/developer-meta-files#167. The reusable is a no-op
+    stub (job 'if: false') and no longer declares an OPENAI_API_KEY secret;
+    forwarding an undeclared secret is rejected by GitHub at workflow startup
+    (startup_failure). Dropping the forward lets the no-op run green; Codex review
+    stays cleanly disabled.
+
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit dc1a17c2c3047cc985a121275792460f1dbb5730
+Merge: 7f55b21b da942f8b
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Mon Jul 27 21:04:57 2026 -0400
+
+    Merge remote-tracking branch 'maybebyte/fix/pam-info-empty-deny-fallback' into arraybolt3/trixie
+
+commit da942f8b9dcbbc9fd62777181b99d3b6e97b41a0
+Author: Ashlen <dev@anthes.is>
+Date:   Wed Jul 15 13:23:54 2026 -0600
+
+    fix(pam-info): restore deny default when faillock.conf lacks it
+
+    When /etc/security/faillock.conf has no uncommented "deny =" line
+    (commented out, or written without spaces), the parse overwrites the
+    deny=3 default with an empty string. The empty value slips past the
+    [[ "$deny" == *[!0-9]* ]] numeric guard, then evaluates to 0 in the
+    remaining-attempts arithmetic, producing a false "Login blocked, boot
+    into recovery mode" message for users still well below the threshold.
+
+    Fall back to the documented default of 3 when the parse yields empty.
+
+commit 2ac7df95d287e98bccae5c583f4d3ac33575da36
+Merge: 7f55b21b e645c7c1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Jul 23 08:18:02 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
+
+commit e645c7c17913ca72ed1a4c593d9c6edc95c0457c
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Wed Jul 22 10:21:24 2026 -0400
+
+    consumer-claude-code: forward CLAUDE_CODE_OAUTH_TOKEN (claude review OAuth port)
+
+commit b684685bd03755c79b823076d111b29541469491
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Tue Jul 21 09:05:41 2026 -0400
+
+    Coverity: point CI at the org-ai-assisted-security-misc project (#22)
+
+    project-name -> org-ai-assisted-security-misc; canonical-repos -> org-ai-assisted/security-misc. Project registered + repo COVERITY_SCAN_TOKEN set.
+
+    AI-Assisted
+
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+commit 7f55b21b018a8133a2ab5cc82bc5145caa8f0174
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 21 09:23:19 2026 +0000
+
+    bumped changelog version
+
 commit 2b0422a2dab93fd29393b7e400a07dc5b75a8da4
 Merge: f5e6783a 545c9430
 Author: Patrick Schleizer <adrelanos@whonix.org>
