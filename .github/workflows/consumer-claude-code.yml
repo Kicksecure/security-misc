@@ -33,10 +33,14 @@ on:
 permissions:
   contents: read
 
-## Comment events fire with github.ref = default branch (NOT the PR
-## head ref). Plain ${{ github.ref }} would queue unrelated PRs'
+## The two comment events differ: issue_comment fires with
+## github.ref = the default branch, pull_request_review_comment with
+## the PR merge ref (refs/pull/<number>/merge). Neither is the PR head
+## ref, and plain ${{ github.ref }} would queue unrelated PRs'
 ## comment-triggered runs into the same group. The PR/issue-number
-## fallback chain isolates per-PR.
+## chain below is what actually applies: one of those two number
+## fields is populated for every event this workflow accepts, so
+## github.ref is a fallback that is never reached here.
 ##
 ## Bot-vs-human split via the trailing actor-class suffix: when the
 ## Claude action posts a review comment, it does so as claude[bot],
