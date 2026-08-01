@@ -1,3 +1,49 @@
+commit 83b8f6650bae86e75258e4643ec7c8a273993919
+Merge: f8c82a87 f0478e7b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Jul 31 13:16:34 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
+
+commit f0478e7b7cff57d8002501d17c8196889de66a27
+Merge: f8c82a87 4b410ccd
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Fri Jul 31 10:22:34 2026 -0400
+
+    Merge pull request from org-ai-assisted/ai
+
+    ci: gate the local workflows on CI_ENABLED_ORG_AI_ASSISTED
+
+commit 4b410ccda527cf1f28d9d5eb8a4ea2a0ad7965ee
+Author: claude (dev138 9b889944-0a22-45e7-8fd6-c189113e33b9) <noreply@anthropic.com>
+Date:   Fri Jul 31 09:38:10 2026 -0400
+
+    ci: gate the local workflows on CI_ENABLED_ORG_AI_ASSISTED
+
+    Our workflows ran wherever the branch landed. Merged upstream they burn
+    Kicksecure/Whonix runner quota and post our CI into repos that never
+    asked for it; on a contributor fork they run the whole suite unbidden.
+    Only 5 of 136 workflow files across the fleet carried any owner gate.
+
+    Gate: a job-level `vars.CI_ENABLED_ORG_AI_ASSISTED == 'true'`, set once
+    as an organization variable on org-ai-assisted. Zero runner cost -- a job
+    whose `if:` is false never allocates one -- and the run still reports
+    green, so upstream and forks are not handed a red X for a lane they did
+    not opt into. A fork that WANTS the lane sets the same variable in its
+    own repo; no patch to these files, no fork of our workflows.
+
+    ANDed in front of any existing fork-PR guard rather than replacing it.
+
+    Verified: the workflow-yaml validator reports 0 findings for this repo.
+
+    Generated with assistance from Claude Code.
+
+commit f8c82a87f207eee40dad64e0d090be5cd2858b76
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Jul 28 13:20:23 2026 +0000
+
+    bumped changelog version
+
 commit ec941913e9bf1ad4e33a8146812cfe3c07cde956
 Merge: d1381a0c a5420ffb
 Author: Patrick Schleizer <adrelanos@whonix.org>
