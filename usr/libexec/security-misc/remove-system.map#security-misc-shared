@@ -3,6 +3,13 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    ## pre.bsh would `source` the following folders:
    ## /etc/remove-system.map_pre.d/*.conf
@@ -19,8 +26,8 @@ for filename in ${system_map_location} ; do
    counter=$(( counter + 1 ))
 done
 
-if [ "$counter" -ge "1" ]; then
-   echo "INFO: Deleting system.map files..."
+if [ "${counter}" -ge "1" ]; then
+   printf '%s\n' "INFO: Deleting system.map files..."
 fi
 
 ## Removes the System.map files as they are only used for debugging or malware.
@@ -29,14 +36,14 @@ for filename in ${system_map_location} ; do
       if [ -w "${filename}" ]; then
          ## 'shred' with '--verbose' is too chatty. (7 lines)
          shred --force --zero -u "${filename}"
-         echo "INFO: removed '${filename}'"
+         printf '%s\n' "INFO: removed '${filename}'"
       else
-         echo "NOTE: Cannot delete '${filename}' - read-only. For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
+         printf '%s\n' "NOTE: Cannot delete '${filename}' - read-only. For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
          exit 0
       fi
    fi
 done
 
-if [ "$counter" -ge "1" ]; then
-   echo "INFO: Done. Success."
+if [ "${counter}" -ge "1" ]; then
+   printf '%s\n' "INFO: Done. Success."
 fi
