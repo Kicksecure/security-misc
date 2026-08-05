@@ -6,8 +6,18 @@
 ## https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
 
 set -x
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
-true "PAM_SERVICE: $PAM_SERVICE"
+## PAM_SERVICE is supplied by pam_exec; read it nounset-safely so an absent
+## value falls through the exclusion loop as before instead of aborting.
+PAM_SERVICE="${PAM_SERVICE:-}"
+
+true "PAM_SERVICE: ${PAM_SERVICE}"
 
 ## PAM configuration notes
 ##
@@ -23,8 +33,8 @@ true "PAM_SERVICE: $PAM_SERVICE"
 ## This list can later be extended as needed.
 pam_service_exclusion_list="dovecot sshd"
 
-for pam_service_exclusion_item in $pam_service_exclusion_list ; do
-   if [ "$PAM_SERVICE" = "$pam_service_exclusion_item" ]; then
+for pam_service_exclusion_item in ${pam_service_exclusion_list} ; do
+   if [ "${PAM_SERVICE}" = "${pam_service_exclusion_item}" ]; then
       ## exit success so [success=1 default=ignore] will result in skipping the
       ## next PAM module (the pam_faillock module).
       exit 0
