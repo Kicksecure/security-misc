@@ -13,6 +13,9 @@ shopt -s shift_verbose
 
 ## security-misc-shared Depends on helper-scripts.
 # shellcheck source=../../../../helper-scripts/usr/libexec/helper-scripts/has.sh
+## Sibling repo: absent in an isolated CI checkout, so shellcheck cannot
+## follow it there. The source= path above still documents where it lives.
+# shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/has.sh
 
 ## Check if the VirtualBox host software is installed.
