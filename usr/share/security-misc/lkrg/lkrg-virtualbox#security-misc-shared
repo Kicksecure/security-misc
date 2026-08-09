@@ -4,14 +4,26 @@
 ## See the file COPYING for copying conditions.
 
 #set -x
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
+## security-misc-shared Depends on helper-scripts.
+# shellcheck source=../../../../helper-scripts/usr/libexec/helper-scripts/has.sh
+## Sibling repo: absent in an isolated CI checkout, so shellcheck cannot
+## follow it there. The source= path above still documents where it lives.
+# shellcheck disable=SC1091
+source /usr/libexec/helper-scripts/has.sh
 
 ## Check if the VirtualBox host software is installed.
-if ! command -v vboxmanage &>/dev/null ; then
+if ! has vboxmanage ; then
    ## VirtualBox host software is not installed.
    if test -f /etc/sysctl.d/30-lkrg-virtualbox.conf ; then
       ## Delete using '--verbose' so user is notified.
-      rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
+      safe-rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
    fi
    exit 0
 fi

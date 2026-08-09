@@ -41,8 +41,6 @@ jobs:
     uses: org-ai-assisted/developer-meta-files/.github/workflows/reusable-codex-review.yml@master
     with:
       pr-ref: ${{ inputs.pr_ref || '' }}
-    secrets:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     permissions:
       contents: read
       pull-requests: write
