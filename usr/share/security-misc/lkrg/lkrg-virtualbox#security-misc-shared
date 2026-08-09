@@ -11,10 +11,15 @@ set -o errtrace
 shopt -s inherit_errexit
 shopt -s shift_verbose
 
-## security-misc-shared Depends on helper-scripts.
-# shellcheck source=../../../../helper-scripts/usr/libexec/helper-scripts/has.sh
+# shellcheck source=../../../../../helper-scripts/usr/libexec/helper-scripts/has.sh
 ## Sibling repo: absent in an isolated CI checkout, so shellcheck cannot
 ## follow it there. The source= path above still documents where it lives.
+##
+## TODO: We really should get rid of these "not following" silence directives
+## and just run shellcheck only when a derivative-maker checkout is available.
+## The above source directive had a bug (one too few "../") previously, but AI
+## didn't catch it, most likely because it silenced the error that bug
+## triggered with the below directive.
 # shellcheck disable=SC1091
 source /usr/libexec/helper-scripts/has.sh
 
@@ -23,7 +28,7 @@ if ! has vboxmanage ; then
    ## VirtualBox host software is not installed.
    if test -f /etc/sysctl.d/30-lkrg-virtualbox.conf ; then
       ## Delete using '--verbose' so user is notified.
-      safe-rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
+      safe-rm --force --verbose -- /etc/sysctl.d/30-lkrg-virtualbox.conf
    fi
    exit 0
 fi
@@ -41,4 +46,4 @@ if ! package-installed-check "lkrg" ; then
 fi
 
 ## Delete using '--verbose' so user is notified.
-cp --verbose /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf
+cp --verbose -- /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf

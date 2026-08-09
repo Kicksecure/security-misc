@@ -13,8 +13,6 @@ set -o errtrace
 shopt -s inherit_errexit
 shopt -s shift_verbose
 
-## PAM_SERVICE is supplied by pam_exec; read it nounset-safely so an absent
-## value falls through the exclusion loop as before instead of aborting.
 PAM_SERVICE="${PAM_SERVICE:-}"
 
 true "PAM_SERVICE: ${PAM_SERVICE}"
