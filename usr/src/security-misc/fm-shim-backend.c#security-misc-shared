@@ -85,11 +85,15 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
    * process, otherwise we won't know what display server to use and may run
    * into theming issues.
    *
-   * TODO: The environment in Non-Qubes-Whonix's user manager has some
-   * worrying discrepancies when compared to the environment of bash running
-   * in a qterminal window. In particular, 'PATH' is different. We may need to
-   * add a 'dbus-update-activation-environment --systemd --all' call to
-   * /usr/libexec/desktop-config-dist/start-lxqt-session.
+   * NOTE: Non-Qubes-Whonix's systemd --user manager exports a minimal PATH
+   * (the systemd default) rather than the profile-derived PATH an interactive
+   * qterminal bash has, because the graphical session start does not import
+   * the desktop environment into the user manager. fm-shim-frontend no longer
+   * depends on that PATH for launching (it invokes xdg-mime and gio by
+   * absolute path). The complete fix -- reconciling the whole session PATH --
+   * belongs in desktop-config-dist's start-lxqt-session (e.g. a
+   * 'dbus-update-activation-environment --systemd --all' call after PATH is
+   * set) and is out of scope for this package.
    */
 
   DBusMessage *env_request = NULL;
