@@ -477,6 +477,10 @@ load_state() {
       ## mode/owner/group[/capability] tail whose first field is the octal mode
       ## -- so recover the filename by parsing options from the right and
       ## rejoining everything before them. Space-free lines are left unchanged.
+      ## Limitation: a single internal space is supported; consecutive spaces
+      ## collapse, and a space-delimited path chunk that is itself a bare octal
+      ## mode (e.g. '744') can misanchor. Such a filename does not exist, so the
+      ## entry is skipped, not misapplied. Quoting/escaping is not supported.
       field_count="${#field_list[@]}"
       if (( field_count > 2 )); then
         case "${field_list[field_count-1]}" in
@@ -731,10 +735,10 @@ undo_policy_for_file() {
 
   undo_file="${1}"
   undo_all=false
-  verbose='--verbose'
+  verbose=('--verbose')
   if [ "${undo_file}" = 'all' ]; then
     undo_all=true
-    verbose=''
+    verbose=()
   fi
 
   if [ ! -f "${state_file}" ]; then
@@ -773,12 +777,10 @@ undo_policy_for_file() {
         state_user_owner_item="${state_user_owner_list[state_idx]}"
         state_group_owner_item="${state_group_owner_list[state_idx]}"
         state_mode_item="${state_mode_list[state_idx]}"
-        # shellcheck disable=SC2086
-        chown "${verbose}" -- "${state_user_owner_item}:${state_group_owner_item}" \
+        chown "${verbose[@]}" -- "${state_user_owner_item}:${state_group_owner_item}" \
           "${undo_file}" || exit_code=202
         ## chmod needs to be run after chown since chown removes suid.
-        # shellcheck disable=SC2086
-        chmod "${verbose}" "${state_mode_item}" "${undo_file}" || exit_code=203
+        chmod "${verbose[@]}" "${state_mode_item}" "${undo_file}" || exit_code=203
       else
         log info "File does not exist: '${undo_file}'"
       fi

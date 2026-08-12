@@ -53,15 +53,20 @@ else
   ## into /run (tmpfs) so it is memory-resident for the emergency; memlockd
   ## then locks it into RAM.
   if [ ! -f '/run/emerg-shutdown' ]; then
-    if [ ! -f '/usr/bin/emerg-shutdown' ]; then
-      ## Fallback: build was skipped or removed. Compile now so the emergency
-      ## shutdown capability is never silently absent.
-      /usr/libexec/security-misc/build-emerg-shutdown || {
-        printf '%s\n' 'Could not build emerg-shutdown executable!'
-        exit 1
-      }
+    if [ -f '/usr/bin/emerg-shutdown' ]; then
+      cp -- /usr/bin/emerg-shutdown /run/emerg-shutdown
+    else
+      ## Fallback: prebuilt binary absent (build skipped/removed). Compile
+      ## straight into /run (tmpfs, writable even when /usr is read-only) so the
+      ## emergency-shutdown capability is never silently absent.
+      /usr/libexec/security-misc/compile-emerg-shutdown \
+        /usr/src/security-misc/emerg-shutdown.c \
+        /run/emerg-shutdown \
+        || {
+          printf '%s\n' 'Could not compile emerg-shutdown executable!'
+          exit 1
+        }
     fi
-    cp -- /usr/bin/emerg-shutdown /run/emerg-shutdown
   fi
 
   ## memlockd daemonizes itself, so no need to background it.
