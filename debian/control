@@ -32,7 +32,6 @@ Package: security-misc-shared
 Architecture: all
 Depends: adduser,
          apparmor-profile-dist,
-         bash (>= 4.4),
          build-essential,
          dmsetup,
          helper-scripts,
