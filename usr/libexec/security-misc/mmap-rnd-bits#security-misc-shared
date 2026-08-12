@@ -8,6 +8,13 @@
 ## See also:
 ## https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-ppc64el/16514
 
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
 set -euo pipefail
 shopt -s failglob
 
@@ -15,19 +22,19 @@ more_info_link="https://forums.whonix.org/t/automate-mmap-randomisation-to-fix-p
 aslr_mmap_config_file="/etc/sysctl.d/30_security-misc_aslr-mmap.conf"
 
 exit_with_error() {
-  echo "$0: SEE ALSO:" >&2
-  echo "" >&2
-  echo "$more_info_link" >&2
+  printf '%s\n' "$0: SEE ALSO:" >&2
+  printf '%s\n' "" >&2
+  printf '%s\n' "${more_info_link}" >&2
   exit 1
 }
 
 if ! test -d /etc/sysctl.d ; then
-  echo "$0: ERROR: Folder /etc/sysctl.d does not exist!" >&2
+  printf '%s\n' "$0: ERROR: Folder /etc/sysctl.d does not exist!" >&2
   exit_with_error
 fi
 
 if ! test -w /etc/sysctl.d ; then
-  echo "$0: ERROR: Folder /etc/sysctl.d not writeable! This script is supposed to be run as root." >&2
+  printf '%s\n' "$0: ERROR: Folder /etc/sysctl.d not writeable! This script is supposed to be run as root." >&2
   exit_with_error
 fi
 
@@ -37,19 +44,23 @@ BITS_MAX_DEFAULT=32
 COMPAT_BITS_MAX_DEFAULT=16
 
 ## Find the most recently modified Linux config file.
+## Kernel config filenames are /boot/config-<version>: no spaces or newlines,
+## so the ls-parsing hazard SC2012 warns about is not reachable here, and a
+## find-based newest-file rewrite would be a behaviour risk for no gain.
+# shellcheck disable=SC2012
 if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* | head -n 1) ; then
   ## Find the relevant config options.
   if ! BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
-   echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAX! Using built-in default." >&2
+   printf '%s\n' "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAX! Using built-in default." >&2
    BITS_MAX="${BITS_MAX_DEFAULT}"
   fi
   if ! COMPAT_BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
-   echo "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX! Using built-in default." >&2
+   printf '%s\n' "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX! Using built-in default." >&2
    COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
   fi
 else
   ## Could be a chroot.
-  echo "$0: INFO: No Linux config file detected in folder /boot/ (starting with 'config-'). Therefore using built-in defaults." >&2
+  printf '%s\n' "$0: INFO: No Linux config file detected in folder /boot/ (starting with 'config-'). Therefore using built-in defaults." >&2
   BITS_MAX="${BITS_MAX_DEFAULT}"
   COMPAT_BITS_MAX="${COMPAT_BITS_MAX_DEFAULT}"
 fi
@@ -63,19 +74,19 @@ SYSCTL="\
 ## $0
 ## Do not edit!
 ## See also:
-## $more_info_link
+## ${more_info_link}
 
 ## Improves ASLR effectiveness for mmap.
 vm.mmap_rnd_bits=${BITS_MAX}
 vm.mmap_rnd_compat_bits=${COMPAT_BITS_MAX}"
 
 ## Write the sysctl.d conf file.
-if echo "${SYSCTL}" | tee "$aslr_mmap_config_file" > /dev/null ; then
-  echo "$0: INFO: Successfully written ASLR map config file:
-$aslr_mmap_config_file"
+if printf '%s\n' "${SYSCTL}" | tee "${aslr_mmap_config_file}" > /dev/null ; then
+  printf '%s\n' "$0: INFO: Successfully written ASLR map config file:
+${aslr_mmap_config_file}"
   exit 0
 fi
 
-echo "$0: ERROR: Error writing ASLR map config file:
-$aslr_mmap_config_file" >&2
+printf '%s\n' "$0: ERROR: Error writing ASLR map config file:
+${aslr_mmap_config_file}" >&2
 exit_with_error

@@ -6,10 +6,16 @@
 ## https://serverfault.com/questions/134471/success-n-control-syntax-in-pam-conf-pam-d-files
 
 set -x
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
-true "PAM_SERVICE: $PAM_SERVICE"
+true "PAM_SERVICE: ${PAM_SERVICE:-}"
 
-if [ "$PAM_SERVICE" = "login" ]; then
+if [ "${PAM_SERVICE:-}" = "login" ]; then
    ## FIXME:
    ## Creates unwanted journal log entry.
    ## pam_exec(login:account): /usr/libexec/security-misc/pam_only_if_login failed: exit code 1
