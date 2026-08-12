@@ -16,9 +16,12 @@ shopt -s shift_verbose
 true "PAM_SERVICE: ${PAM_SERVICE:-}"
 
 if [ "${PAM_SERVICE:-}" = "login" ]; then
-   ## FIXME:
-   ## Creates unwanted journal log entry.
-   ## pam_exec(login:account): /usr/libexec/security-misc/pam_only_if_login failed: exit code 1
+   ## exit 1 drives the [success=1 default=ignore] control flow (fall through
+   ## to the next PAM module). It previously emitted a journal line
+   ##   pam_exec(login:account): ... pam_only_if_login failed: exit code 1
+   ## now suppressed by 'quiet_log' on the pam_exec.so line in
+   ## /usr/share/pam-configs/console-lockdown-security-misc (linux-pam >= 1.5.2;
+   ## plain 'quiet' only hides the user-facing message, not the log).
    exit 1
 else
    ## exit success so [success=1 default=ignore] will result in skipping the
