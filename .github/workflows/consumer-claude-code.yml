@@ -14,58 +14,59 @@
 
 name: Claude Code Review
 
+## Mention-driven only. claude-code-action picks its mode from the
+## event: comment events with no 'prompt' input select tag mode,
+## where the '@claude' phrase is the trigger and the model runs.
+## Every other event (pull_request, workflow_dispatch, schedule)
+## selects agent mode, whose trigger is a non-empty 'prompt' - which
+## this workflow does not pass - so those events can only spin up a
+## runner and exit without calling the model. Listing them here
+## would put a green "Claude Code Review" check on every PR that
+## never reviewed anything. See the reusable's header for the full
+## rationale and for what enabling real auto-review would cost.
 on:
-  pull_request:
-    branches: [master]
   issue_comment:
     types: [created]
   pull_request_review_comment:
     types: [created]
-  workflow_dispatch:
 
 permissions:
   contents: read
 
-## issue_comment / pull_request_review_comment fire with
-## github.ref = default branch (NOT the PR head ref). Plain
-## ${{ github.ref }} would queue unrelated PRs' comment-triggered
-## runs into the same group. The PR/issue-number fallback chain
-## isolates per-PR.
+## The two comment events differ: issue_comment fires with
+## github.ref = the default branch, pull_request_review_comment with
+## the PR merge ref (refs/pull/<number>/merge). Neither is the PR head
+## ref, and plain ${{ github.ref }} would queue unrelated PRs'
+## comment-triggered runs into the same group. The PR/issue-number
+## chain below is what actually applies: one of those two number
+## fields is populated for every event this workflow accepts, so
+## github.ref is a fallback that is never reached here.
 ##
-## Bot-vs-human split via the trailing actor-class suffix: when
-## the Claude action posts a review comment, it does so as
-## claude[bot], which fires this workflow again. Without the
-## split, that bot-triggered run would land in the same
-## concurrency group as the in-flight human @claude request, and
-## 'cancel-in-progress: true' below would cancel the review
-## mid-flight before any output reached the PR. The job-level
-## 'if:' filter further down catches the bot run (claude[bot]'s
-## own comment body does not contain '@claude'), but by then
-## concurrency has already done the damage. GitHub's standard
-## '[bot]' suffix on App accounts (claude[bot],
-## github-advanced-security[bot], dependabot[bot], ...) lets a
-## single endsWith() check isolate all bot-authored events into
-## a separate group so they only cancel each other.
+## Bot-vs-human split via the trailing actor-class suffix: when the
+## Claude action posts a review comment, it does so as claude[bot],
+## which fires this workflow again. Without the split, that
+## bot-triggered run would land in the same concurrency group as the
+## in-flight human @claude request, and 'cancel-in-progress: true'
+## below would cancel the review mid-flight before any output
+## reached the PR. The job-level 'if:' filter further down catches
+## the bot run (claude[bot]'s own comment body does not contain
+## '@claude'), but by then concurrency has already done the damage.
+## GitHub's standard '[bot]' suffix on App accounts (claude[bot],
+## github-advanced-security[bot], dependabot[bot], ...) lets a single
+## endsWith() check isolate all bot-authored events into a separate
+## group so they only cancel each other.
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.ref }}-${{ endsWith(github.actor, '[bot]') && 'bot' || 'human' }}
   cancel-in-progress: true
 
 jobs:
   review:
-    ## Pre-filter comment events for the '@claude' substring before
-    ## the runner spins up. The reusable's job-level 'if:' enforces
-    ## the same gate plus the allowed-users roster check, but doing
-    ## the cheap substring test here too prevents a runner from
-    ## starting (and stopping seconds later) for every unrelated
-    ## comment on every issue/PR. pull_request and workflow_dispatch
-    ## events pass through unconditionally.
-    if: |
-      github.event_name == 'pull_request' ||
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'issue_comment'
-        && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment'
-        && contains(github.event.comment.body, '@claude'))
+    ## Pre-filter for the '@claude' substring before the runner spins
+    ## up. The reusable's job-level 'if:' enforces the same gate plus
+    ## the allowed-users roster check, but doing the cheap substring
+    ## test here too prevents a runner from starting (and stopping
+    ## seconds later) for every unrelated comment on every issue/PR.
+    if: contains(github.event.comment.body, '@claude')
     uses: org-ai-assisted/developer-meta-files/.github/workflows/reusable-claude-code-review.yml@master
     ## Explicit secret forwarding (NOT 'secrets: inherit'). With
     ## inherit, every caller-side secret would flow into the
@@ -73,6 +74,10 @@ jobs:
     ## context to exactly CLAUDE_CODE_OAUTH_TOKEN.
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+    ## 'contents: read' does NOT bound what Claude can do - the
+    ## action swaps the runner token for an OIDC-minted claude[bot]
+    ## App token carrying contents/issues/pull-requests write. The
+    ## block is required for 'id-token: write'. See the reusable.
     permissions:
       contents: read
       pull-requests: write
