@@ -3,15 +3,19 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## TODO: Move most of this to a build script that will compile and place under
-## /usr/bin rather than /run. Then turn this script into something that simply
-## copies emerg-shutdown to /run and then runs it. This will reduce resource
-## consumption for end users.
+## emerg-shutdown.c is compiled once to /usr/bin/emerg-shutdown at package
+## postinst (by build-emerg-shutdown), not shipped prebuilt -- compiling
+## on-target keeps security-misc-shared Architecture: all while still producing
+## a correct per-architecture, statically linked binary. This script copies
+## that binary into /run (tmpfs, memlockd-resident) at boot and runs it, rather
+## than recompiling on every boot.
 
 set -o errexit
 set -o nounset
-set -o errtrace
 set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 ## Make sure globs sort in a predictable, reproducible fashion
 export LC_ALL=C
@@ -45,15 +49,19 @@ else
   ## Find the devices that make up the root device
   readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-for-mountpoint '/') || true;
 
-  ## Build the actual emerg-shutdown executable
+  ## Copy the prebuilt binary (compiled at postinst by build-emerg-shutdown)
+  ## into /run (tmpfs) so it is memory-resident for the emergency; memlockd
+  ## then locks it into RAM.
   if [ ! -f '/run/emerg-shutdown' ]; then
-    /usr/libexec/security-misc/compile-emerg-shutdown \
-      /usr/src/security-misc/emerg-shutdown.c \
-      /run/emerg-shutdown \
-      || {
-        printf "%s\n" 'Could not compile force-shutdown executable!'
+    if [ ! -f '/usr/bin/emerg-shutdown' ]; then
+      ## Fallback: build was skipped or removed. Compile now so the emergency
+      ## shutdown capability is never silently absent.
+      /usr/libexec/security-misc/build-emerg-shutdown || {
+        printf '%s\n' 'Could not build emerg-shutdown executable!'
         exit 1
       }
+    fi
+    cp -- /usr/bin/emerg-shutdown /run/emerg-shutdown
   fi
 
   ## memlockd daemonizes itself, so no need to background it.

@@ -3,6 +3,10 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## style-ok: allow-echo  (Debian maintainer-script convention)
+## style-ok: no-has  (has.sh not reliably available this early in maintainer scripts)
+## style-ok: no-strict  (debconf maintainer script; full strict block would leak into APT/debconf)
+
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
 fi
@@ -11,11 +15,11 @@ fi
 ## the postinst itself does not use debconf commands.
 source /usr/share/debconf/confmodule
 
-set -e
+set -o errexit
 
 true "
 #####################################################################
-## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $*
+## INFO: BEGIN: ${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} $*
 #####################################################################
 "
 
@@ -116,13 +120,17 @@ root root 4755 /usr/bin/mount
 root root 644 /etc/issue
 root root 755 /etc/cron.d"
 
-   printf '%s\n' "$state_str" | tee /var/lib/permission-hardener-v2/existing_mode/statoverride
+   printf '%s\n' "${state_str}" | tee /var/lib/permission-hardener-v2/existing_mode/statoverride
 
    touch "/var/lib/security-misc/do_once/${FUNCNAME[0]}_version_1"
 }
 
 build_fm_shim_backend() {
   /usr/libexec/security-misc/build-fm-shim-backend
+}
+
+build_emerg_shutdown() {
+  /usr/libexec/security-misc/build-emerg-shutdown
 }
 
 case "$1" in
@@ -164,13 +172,18 @@ case "$1" in
 
         ## Build the org.freedesktop.FileManager1 shim backend.
         build_fm_shim_backend
+
+        ## Compile emerg-shutdown into /usr/bin (on-target, so an
+        ## Architecture: all package still gets a correct per-arch binary);
+        ## the boot-time script then only copies it into /run.
+        build_emerg_shutdown
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
     triggered)
-      echo "INFO: triggered $DPKG_MAINTSCRIPT_PACKAGE: '$DPKG_MAINTSCRIPT_PACKAGE' $DPKG_MAINTSCRIPT_PACKAGE DPKG_MAINTSCRIPT_NAME: '$DPKG_MAINTSCRIPT_NAME' $\*: '$*' 2: '$2'"
+      echo "INFO: triggered ${DPKG_MAINTSCRIPT_PACKAGE}: '${DPKG_MAINTSCRIPT_PACKAGE}' ${DPKG_MAINTSCRIPT_PACKAGE} DPKG_MAINTSCRIPT_NAME: '${DPKG_MAINTSCRIPT_NAME}' $\*: '$*' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
       /usr/libexec/security-misc/mmap-rnd-bits || true
       permission_hardening
@@ -178,7 +191,7 @@ case "$1" in
     ;;
 
     *)
-        echo "$DPKG_MAINTSCRIPT_NAME called with unknown argument \`$1'" >&2
+        echo "${DPKG_MAINTSCRIPT_NAME} called with unknown argument \`$1'" >&2
         exit 1
     ;;
 esac
@@ -194,8 +207,8 @@ permission_hardening
 ## https://bugs.debian.org/481542
 if command -v update-grub >/dev/null 2>&1; then
    update-grub || \
-      echo "$DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME ERROR: Running \
-'update-grub' failed with exit code $?. $DPKG_MAINTSCRIPT_PACKAGE is most \
+      echo "${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} ERROR: Running \
+'update-grub' failed with exit code $?. ${DPKG_MAINTSCRIPT_PACKAGE} is most \
 likely only the trigger, not the cause. Unless you know this is not an issue, \
 you should fix running 'update-grub', otherwise your system might no longer \
 boot." >&2
@@ -213,7 +226,7 @@ permission_hardening_legacy_config_folder
 
 true "
 #####################################################################
-## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $*
+## INFO: END  : ${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} $*
 #####################################################################
 "
 
