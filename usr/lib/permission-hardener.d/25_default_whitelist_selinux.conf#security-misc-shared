@@ -6,5 +6,14 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research and document
+## utempter (libutempter0): privileged back-end that terminal emulators (xterm,
+## screen, tmux) fork to add/remove their pty login records in /var/run/utmp and
+## /var/log/wtmp so who/w/last see the session. Installed SGID group "utmp" (NOT
+## setuid root) -- the utmp group owns those files, so SGID utmp is the minimum
+## privilege to update them. Stripping the bit breaks terminal login accounting
+## (who/w miss sessions); no root privilege lost. Old CVEs only (CVE-2004-0233
+## path traversal, fixed in 0.5.3+). Whitelisted under "selinux" because SELinux
+## policy references this path.
+## Ref: https://bugzilla.redhat.com/show_bug.cgi?id=246063
+## TODO-HUMAN-DEVELOPER-ONLY: keep-vs-strip SGID is a human trust decision.
 /utempter/utempter matchwhitelist

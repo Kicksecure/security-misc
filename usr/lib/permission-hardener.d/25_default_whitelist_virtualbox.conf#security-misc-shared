@@ -6,7 +6,21 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research
+## VirtualBox ships several helpers under /usr/lib/virtualbox/. The NETWORKING
+## helpers carry the SUID-root bit; they need root only to create/configure host
+## virtual NICs and run the userspace net stacks, then drop privileges:
+##   - VBoxNetAdpCtl  : creates/removes vboxnetN adapters, assigns IPs
+##                      (CAP_NET_ADMIN operations).
+##   - VBoxNetDHCP / VBoxNetNAT : userspace DHCP server / NAT engine.
+## The front-ends (VBoxHeadless, VBoxSDL, VirtualBoxVM) are generally NOT SUID in
+## stock builds; whitelisted defensively for distro/"hardened" builds that
+## setuid-root them to load the ring-0 VMM driver. Stripping SUID from the net
+## helpers breaks host-only/NAT networking for non-root users.
+## SUID history (why the surface is sensitive): CVE-2009-3692 (VBoxNetAdpCtl
+## popen() metachar injection -> local root), CVE-2017-3316, recurring Oracle CPU
+## local-EoP fixes. Verify on-image bits: find /usr/lib/virtualbox -perm -4000
+## Ref: https://nvd.nist.gov/vuln/detail/CVE-2009-3692
+## TODO-HUMAN-DEVELOPER-ONLY: keep-vs-strip SUID is a human trust decision.
 /usr/lib/virtualbox/ matchwhitelist
 VirtualBoxVM matchwhitelist
 VBoxSDL matchwhitelist
