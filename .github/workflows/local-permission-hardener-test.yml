@@ -1,0 +1,59 @@
+---
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## AI-Assisted
+
+## Regression test for the permission-hardener config parser.
+##
+## Scope is intentionally narrow: it exercises load_state()'s
+## right-anchored option parsing so a config filename containing a
+## space is parsed as one entry instead of being split and silently
+## dropped. See ci/tests/permission_hardener/test_whitespace_filename.sh.
+
+name: Test permission-hardener
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test permission-hardener
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    ## CI runs only where we enabled it; ANDed with the existing guard.
+    ## Unset variable -> skipped, no runner, run stays green.
+    if: >-
+      vars.CI_ENABLED_ORG_AI_ASSISTED == 'true'
+      && (github.event.pull_request.head.repo.full_name == github.repository || github.event_name != 'pull_request')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          persist-credentials: false
+
+      ## permission-hardener sources helper-scripts (log_run_die.sh,
+      ## safe_echo.sh, strings.bsh) at startup; install-deps provides
+      ## them under /usr/libexec/helper-scripts/.
+      - name: Install genmkfile + helper-scripts + safe-rm
+        uses: org-ai-assisted/developer-meta-files/.github/actions/install-deps@master
+        with:
+          apt-packages: 'safe-rm'
+
+      - name: Whitespace-in-filename parser regression test
+        ## Root: the test writes a temp config under
+        ## /etc/permission-hardener.d/ and runs 'print-policy'.
+        run: sudo -E ci/tests/permission_hardener/test_whitespace_filename.sh
