@@ -430,7 +430,7 @@ load_state() {
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
-  local field_count recovered_file_name mode_index already_wellformed
+  local field_count recovered_file_name mode_index
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -484,20 +484,16 @@ load_state() {
       ## (mode owner group capability) -- so anchor the mode from the RIGHT. A
       ## left-to-right scan misanchors when a space-delimited filename chunk is
       ## itself a bare octal (e.g. '/path/a 744 name 0744 root root').
+      ## Two readings can be lexically valid when a filename component OR a
+      ## numeric owner looks octal ('/a 744 0644 root root' wants the spaced
+      ## name; '/foo 0744 1000 root cap' wants no recovery). Disambiguate by
+      ## which candidate exists on disk -- the tool skips nonexistent targets
+      ## anyway -- keeping the no-recovery reading when field 1 is really the mode.
       ## Limitation: consecutive spaces collapse and quoting/escaping is not
       ## supported; a line whose field count is still invalid after recovery is
       ## rejected loudly (exit 200 below), not silently skipped.
       field_count="${#field_list[@]}"
-      ## A no-space entry already has an octal mode at field 1 (total fields 4 or
-      ## 5). Recovering such a line would fold a numeric owner into the mode
-      ## position, so only attempt filename recovery when it is NOT already well
-      ## formed.
-      already_wellformed=false
-      if (( field_count == 4 || field_count == 5 )) \
-        && [[ "${field_list[1]}" =~ ^0?[0-7]{3,4}$ ]]; then
-        already_wellformed=true
-      fi
-      if (( field_count > 2 )) && [ "${already_wellformed}" = 'false' ]; then
+      if (( field_count > 2 )); then
         case "${field_list[field_count-1]}" in
           exactwhitelist|matchwhitelist|disablewhitelist|nosuid)
             recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:field_count-1}")"
@@ -514,7 +510,17 @@ load_state() {
             fi
             if [ -n "${mode_index}" ] && (( mode_index > 1 )); then
               recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:mode_index}")"
-              field_list=( "${recovered_file_name}" "${field_list[@]:mode_index}" )
+              ## Keep the no-recovery reading when field 1 is an octal mode and
+              ## only the un-recovered name exists (field 1 is the mode, not a
+              ## filename component).
+              if (( field_count == 4 || field_count == 5 )) \
+                && [[ "${field_list[1]}" =~ ^0?[0-7]{3,4}$ ]] \
+                && [ ! -e "${recovered_file_name}" ] \
+                && [ -e "${field_list[0]}" ]; then
+                true 'DEBUG: field 1 is the mode; no filename recovery'
+              else
+                field_list=( "${recovered_file_name}" "${field_list[@]:mode_index}" )
+              fi
             fi
             ;;
         esac

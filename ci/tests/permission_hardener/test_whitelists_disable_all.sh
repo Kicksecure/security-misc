@@ -68,7 +68,7 @@ if [ "${ph_rc}" -ne 0 ]; then
   printf '%s\n' "FAIL: print-policy exited ${ph_rc} (directive rejected as invalid characters)." >&2
   test_status=1
 fi
-if printf '%s\n' "${policy_output}" | grep -qF -- "${ordinary_file}"; then
+if printf '%s\n' "${policy_output}" | grep -qF -- "${ordinary_file}"$'\t'; then
   printf '%s\n' "PASS: whitelists_disable_all=true accepted; ordinary entry present."
 else
   printf '%s\n' "FAIL: ordinary entry '${ordinary_file}' missing from print-policy output." >&2
