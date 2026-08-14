@@ -63,6 +63,13 @@ touch -- "${numeric_owner_file}"
 octal_second_file="${test_dir}/a 744"
 touch -- "${octal_second_file}"
 
+## Six fields: a SPACED filename plus a numeric octal-looking owner and a
+## capability tail. The rightmost octal candidate (field_count-3) is the owner,
+## not the mode; anchoring there folds the mode into the filename and drops the
+## entry. Existence must select field_count-4 (the real mode) instead.
+numeric_owner_spaced_file="${test_dir}/x y"
+touch -- "${numeric_owner_spaced_file}"
+
 config_dir="/etc/permission-hardener.d"
 config_file="${config_dir}/zz-ai-whitespace-regression-test.conf"
 mkdir -p -- "${config_dir}"
@@ -81,6 +88,7 @@ trap cleanup EXIT
   printf '%s\n' "${octal_chunk_file} 0744 root root"
   printf '%s\n' "${numeric_owner_file} 0744 0755 root cap_net_raw"
   printf '%s\n' "${octal_second_file} 0644 root root"
+  printf '%s\n' "${numeric_owner_spaced_file} 0744 0755 root cap_net_raw"
 } > "${config_file}"
 
 ## A parse failure on any line aborts the whole run with exit 200; capture the
@@ -100,7 +108,7 @@ fi
 ## print-policy prints tab-separated columns (File<TAB>User<TAB>...), so match
 ## each filename as the whole first field (trailing TAB). A bare substring match
 ## would let '/a 744' spuriously match the '/a 744 name' entry.
-for expected_file in "${spaced_file}" "${octal_chunk_file}" "${numeric_owner_file}" "${octal_second_file}"; do
+for expected_file in "${spaced_file}" "${octal_chunk_file}" "${numeric_owner_file}" "${octal_second_file}" "${numeric_owner_spaced_file}"; do
   if printf '%s\n' "${policy_output}" | grep -qF -- "${expected_file}"$'\t'; then
     printf '%s\n' "PASS: filename '${expected_file}' parsed and present in policy."
   else
