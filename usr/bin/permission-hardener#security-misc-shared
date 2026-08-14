@@ -430,7 +430,7 @@ load_state() {
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
-  local field_count recovered_file_name mode_index field_index
+  local field_count recovered_file_name mode_index
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -477,10 +477,13 @@ load_state() {
       ## mode/owner/group[/capability] tail whose first field is the octal mode
       ## -- so recover the filename by parsing options from the right and
       ## rejoining everything before them. Space-free lines are left unchanged.
-      ## Limitation: a single internal space is supported; consecutive spaces
-      ## collapse, and a space-delimited path chunk that is itself a bare octal
-      ## mode (e.g. '744') can misanchor. Such a filename does not exist, so the
-      ## entry is skipped, not misapplied. Quoting/escaping is not supported.
+      ## The mode tail has a fixed width -- 3 fields (mode owner group) or 4
+      ## (mode owner group capability) -- so anchor the mode from the RIGHT. A
+      ## left-to-right scan misanchors when a space-delimited filename chunk is
+      ## itself a bare octal (e.g. '/path/a 744 name 0744 root root').
+      ## Limitation: consecutive spaces collapse and quoting/escaping is not
+      ## supported; a line whose field count is still invalid after recovery is
+      ## rejected loudly (exit 200 below), not silently skipped.
       field_count="${#field_list[@]}"
       if (( field_count > 2 )); then
         case "${field_list[field_count-1]}" in
@@ -489,13 +492,14 @@ load_state() {
             field_list=( "${recovered_file_name}" "${field_list[field_count-1]}" )
             ;;
           *)
+            ## Prefer the 3-field reading (field_count-3) so a filename ending
+            ## in an octal chunk is not mistaken for a 4-field capability tail.
             mode_index=''
-            for (( field_index=1; field_index < field_count; field_index++ )); do
-              if [[ "${field_list[field_index]}" =~ ^0?[0-7]{3,4}$ ]]; then
-                mode_index="${field_index}"
-                break
-              fi
-            done
+            if (( field_count >= 4 )) && [[ "${field_list[field_count-3]}" =~ ^0?[0-7]{3,4}$ ]]; then
+              mode_index="$(( field_count - 3 ))"
+            elif (( field_count >= 5 )) && [[ "${field_list[field_count-4]}" =~ ^0?[0-7]{3,4}$ ]]; then
+              mode_index="$(( field_count - 4 ))"
+            fi
             if [ -n "${mode_index}" ] && (( mode_index > 1 )); then
               recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:mode_index}")"
               field_list=( "${recovered_file_name}" "${field_list[@]:mode_index}" )

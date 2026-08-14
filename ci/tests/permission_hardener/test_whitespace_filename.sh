@@ -41,6 +41,13 @@ spaced_file="${test_dir}/some space/binary"
 mkdir -p -- "${test_dir}/some space"
 touch -- "${spaced_file}"
 
+## A filename whose space-split yields a BARE octal chunk ('744'). The mode
+## must be anchored from the RIGHT: a left-to-right scan anchors on that chunk
+## instead of the real mode at the end, fails the field-count check, and aborts
+## the whole hardener (exit 200) rather than parsing the entry.
+octal_chunk_file="${test_dir}/a 744 name"
+touch -- "${octal_chunk_file}"
+
 config_dir="/etc/permission-hardener.d"
 config_file="${config_dir}/zz-ai-whitespace-regression-test.conf"
 mkdir -p -- "${config_dir}"
@@ -53,17 +60,37 @@ cleanup() {
 }
 trap cleanup EXIT
 
-## mode-form entry: <filename> <mode> <owner> <group>
-printf '%s\n' "${spaced_file} 0744 root root" > "${config_file}"
+## mode-form entries: <filename> <mode> <owner> <group>
+{
+  printf '%s\n' "${spaced_file} 0744 root root"
+  printf '%s\n' "${octal_chunk_file} 0744 root root"
+} > "${config_file}"
 
-policy_output="$( "${ph_bin}" print-policy )"
-
-if printf '%s\n' "${policy_output}" | grep -qF -- "${spaced_file}"; then
-  printf '%s\n' "PASS: space-containing filename parsed and present in policy."
-  exit 0
+## A parse failure on any line aborts the whole run with exit 200; capture the
+## status via an 'if' condition (errexit stays enabled) so the failure is
+## reported cleanly rather than aborting the test.
+if policy_output="$( "${ph_bin}" print-policy 2>/dev/null )"; then
+  ph_rc=0
+else
+  ph_rc=$?
 fi
 
-printf '%s\n' "FAIL: space-containing filename '${spaced_file}' missing from print-policy output." >&2
-printf '%s\n' "----- print-policy output -----" >&2
-printf '%s\n' "${policy_output}" >&2
-exit 1
+test_status=0
+if [ "${ph_rc}" -ne 0 ]; then
+  printf '%s\n' "FAIL: print-policy exited ${ph_rc} (parse aborted the whole run)." >&2
+  test_status=1
+fi
+for expected_file in "${spaced_file}" "${octal_chunk_file}"; do
+  if printf '%s\n' "${policy_output}" | grep -qF -- "${expected_file}"; then
+    printf '%s\n' "PASS: filename '${expected_file}' parsed and present in policy."
+  else
+    printf '%s\n' "FAIL: filename '${expected_file}' missing from print-policy output." >&2
+    test_status=1
+  fi
+done
+
+if [ "${test_status}" -ne 0 ]; then
+  printf '%s\n' "----- print-policy output -----" >&2
+  printf '%s\n' "${policy_output}" >&2
+fi
+exit "${test_status}"
