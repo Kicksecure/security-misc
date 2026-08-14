@@ -400,21 +400,24 @@ load_late_nosuid_policy() {
 }
 
 load_state_without_policy() {
-  local line field_list
+  local line sf_owner sf_group sf_mode sf_path
 
-  ## Load the state file from disk
+  ## Load the state file from disk. Each dpkg-statoverride entry is
+  ## 'owner group mode path'; the path is last and may contain spaces, so read
+  ## the three fixed fields and take the remainder as the path. A plain 4-way
+  ## split would drop any spaced path -- it could then never be un-hardened.
   if [ -f "${state_file}" ]; then
     while read -r line; do
-      read -r -a field_list <<< "${line}"
-      if (( ${#field_list[@]} != 4 )); then
+      read -r sf_owner sf_group sf_mode sf_path <<< "${line}"
+      if [ -z "${sf_path}" ]; then
         log info \
           "Invalid number of fields in state file line: '${line}'. Skipping."
         continue
       fi
-      state_user_owner_list+=( "${field_list[0]}" )
-      state_group_owner_list+=( "${field_list[1]}" )
-      state_mode_list+=( "${field_list[2]}" )
-      state_file_list+=( "${field_list[3]}" )
+      state_user_owner_list+=( "${sf_owner}" )
+      state_group_owner_list+=( "${sf_group}" )
+      state_mode_list+=( "${sf_mode}" )
+      state_file_list+=( "${sf_path}" )
     done < "${state_file}"
   fi
 }

@@ -42,9 +42,16 @@ config_dir="/etc/permission-hardener.d"
 config_file="${config_dir}/zz-ai-whitelists-disable-all-test.conf"
 mkdir -p -- "${config_dir}"
 
+## print-policy captures the file's current mode into this DB (must match
+## store_dir in the script under test); remove the entry so a test run does not
+## leave a stale root-owned override pointing at a deleted temp file.
+existing_mode_admindir='/var/lib/permission-hardener-v2/existing_mode'
+
 ## invoked indirectly via 'trap ... EXIT'
 # shellcheck disable=SC2317
 cleanup() {
+  dpkg-statoverride --admindir "${existing_mode_admindir}" --remove \
+    "${ordinary_file}" >/dev/null 2>&1 || true
   safe-rm -f -- "${config_file}"
   safe-rm -rf -- "${test_dir}"
 }

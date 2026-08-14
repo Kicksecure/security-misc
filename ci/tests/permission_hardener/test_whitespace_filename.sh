@@ -74,9 +74,21 @@ config_dir="/etc/permission-hardener.d"
 config_file="${config_dir}/zz-ai-whitespace-regression-test.conf"
 mkdir -p -- "${config_dir}"
 
+## print-policy captures each file's current mode into this DB (must match
+## store_dir in the script under test); remove the entries so a test run does
+## not leave stale root-owned overrides pointing at deleted temp files.
+existing_mode_admindir='/var/lib/permission-hardener-v2/existing_mode'
+
 ## invoked indirectly via 'trap ... EXIT'
 # shellcheck disable=SC2317
 cleanup() {
+  local leaked_file
+  for leaked_file in "${spaced_file}" "${octal_chunk_file}" \
+    "${numeric_owner_file}" "${octal_second_file}" \
+    "${numeric_owner_spaced_file}"; do
+    dpkg-statoverride --admindir "${existing_mode_admindir}" --remove \
+      "${leaked_file}" >/dev/null 2>&1 || true
+  done
   safe-rm -f -- "${config_file}"
   safe-rm -rf -- "${test_dir}"
 }
