@@ -12,9 +12,11 @@
 ## the recipient dir and setfsuid()/drop to the unprivileged user before writing
 ## -- both need root, so SUID cannot simply be stripped. It parses attacker-
 ## influenced input from another qube => high-value local-EoP target. The issue
-## below (#8633) is now CLOSED: upstream HARDENED the unpacker (path sanitization,
-## qubes-linux-utils PR #87) rather than dropping SUID. Keep the package patched;
-## residual risk is the parser itself.
+## below (#8633) is now CLOSED: upstream HARDENED the unpacker rather than
+## dropping SUID -- qfile-unpacker (qubes-core-agent-linux) now refuses a UID
+## change to anything but the caller's own UID, and libqubes-pure adds path,
+## symlink and filename sanitization (qubes-linux-utils PR #87). Keep the
+## package patched; residual risk is the parser itself.
 ## https://github.com/QubesOS/qubes-core-agent-linux/blob/master/qubes-rpc/qfile-unpacker.c
 ## https://github.com/QubesOS/qubes-issues/issues/8633 (historic local-root EoP)
 ##
