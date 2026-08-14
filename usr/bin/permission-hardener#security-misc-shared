@@ -423,14 +423,14 @@ load_state() {
   ## Config format:
   ##   path options
   ## where options is one of:
-  ##   user_owner group_owner filemode [capability-setting]
+  ##   filemode user_owner group_owner [capability-setting]
   ##   [nosuid|exactwhitelist|matchwhitelist|disablewhitelist]
   ##
   ## Additionally, the special value 'whitelists_disable_all=true' is understood
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
-  local field_count recovered_file_name mode_index
+  local field_count recovered_file_name mode_index already_wellformed
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -454,18 +454,21 @@ load_state() {
         continue
       fi
 
+      ## Recognize the special directive before the character-class check below,
+      ## whose allowed set excludes '=' and would otherwise reject and abort on
+      ## this documented line.
+      if [ "${line}" = 'whitelists_disable_all=true' ]; then
+        whitelists_disable_all=true
+        log info "whitelists_disable_all=true"
+        continue
+      fi
+
       if ! [[ "${line}" =~ ^[-0-9a-zA-Z._/[:space:]]*$ ]]; then
         exit_code=200
         log error "Line contains invalid characters: '${line}'" >&2
         ## Safer to exit with error in this case.
         ## https://forums.whonix.org/t/disable-suid-binaries/7706/59
         exit "${exit_code}"
-      fi
-
-      if [ "${line}" = 'whitelists_disable_all=true' ]; then
-        whitelists_disable_all=true
-        log info "whitelists_disable_all=true"
-        continue
       fi
 
       processed_config_line="${line}"
@@ -485,7 +488,16 @@ load_state() {
       ## supported; a line whose field count is still invalid after recovery is
       ## rejected loudly (exit 200 below), not silently skipped.
       field_count="${#field_list[@]}"
-      if (( field_count > 2 )); then
+      ## A no-space entry already has an octal mode at field 1 (total fields 4 or
+      ## 5). Recovering such a line would fold a numeric owner into the mode
+      ## position, so only attempt filename recovery when it is NOT already well
+      ## formed.
+      already_wellformed=false
+      if (( field_count == 4 || field_count == 5 )) \
+        && [[ "${field_list[1]}" =~ ^0?[0-7]{3,4}$ ]]; then
+        already_wellformed=true
+      fi
+      if (( field_count > 2 )) && [ "${already_wellformed}" = 'false' ]; then
         case "${field_list[field_count-1]}" in
           exactwhitelist|matchwhitelist|disablewhitelist|nosuid)
             recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:field_count-1}")"

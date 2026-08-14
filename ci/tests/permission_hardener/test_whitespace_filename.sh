@@ -48,6 +48,14 @@ touch -- "${spaced_file}"
 octal_chunk_file="${test_dir}/a 744 name"
 touch -- "${octal_chunk_file}"
 
+## A space-free filename with a 4-option (capability) tail whose OWNER is a
+## numeric id that looks octal ('0755'). Right-anchoring must NOT treat that
+## owner as the mode: it would fold the real mode into the filename, the folded
+## path does not exist, and the entry is silently dropped -- leaving the file
+## un-hardened. The line is already well formed, so no recovery must happen.
+numeric_owner_file="${test_dir}/numowner"
+touch -- "${numeric_owner_file}"
+
 config_dir="/etc/permission-hardener.d"
 config_file="${config_dir}/zz-ai-whitespace-regression-test.conf"
 mkdir -p -- "${config_dir}"
@@ -60,10 +68,11 @@ cleanup() {
 }
 trap cleanup EXIT
 
-## mode-form entries: <filename> <mode> <owner> <group>
+## mode-form entries: <filename> <mode> <owner> <group> [capability]
 {
   printf '%s\n' "${spaced_file} 0744 root root"
   printf '%s\n' "${octal_chunk_file} 0744 root root"
+  printf '%s\n' "${numeric_owner_file} 0744 0755 root cap_net_raw"
 } > "${config_file}"
 
 ## A parse failure on any line aborts the whole run with exit 200; capture the
@@ -80,7 +89,7 @@ if [ "${ph_rc}" -ne 0 ]; then
   printf '%s\n' "FAIL: print-policy exited ${ph_rc} (parse aborted the whole run)." >&2
   test_status=1
 fi
-for expected_file in "${spaced_file}" "${octal_chunk_file}"; do
+for expected_file in "${spaced_file}" "${octal_chunk_file}" "${numeric_owner_file}"; do
   if printf '%s\n' "${policy_output}" | grep -qF -- "${expected_file}"; then
     printf '%s\n' "PASS: filename '${expected_file}' parsed and present in policy."
   else
