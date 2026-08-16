@@ -1,3 +1,208 @@
+commit f1e9da8fb911b1e3962f219290df14753794aee8
+Merge: 52e18f72 1fcf4967
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Aug 15 12:55:45 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
+
+commit 52e18f723e37b5e5616ae6681f9e3cd28369e88c
+Merge: 2da1f21c eb5b301d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 12 03:02:01 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit eb5b301db6069a5ccabf327745a000053ece1475
+Merge: a5655e63 2da1f21c
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Aug 9 12:06:37 2026 -0400
+
+    Merge branch 'master' into arraybolt3/trixie
+
+commit a5655e632e2d67a1ef9ff1c1b998d179fc9c71d8
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Aug 9 01:46:03 2026 -0400
+
+    Fixes and TODOs
+
+commit 21048819c7b1c06c3f7ebee845e2332fa7c93ba8
+Merge: dc1a17c2 1ec153c3
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Aug 9 01:04:49 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit 1ec153c3f0db147e82f9d6c4c82b5a1026eada7b
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Fri Aug 7 07:17:03 2026 -0400
+
+    fix shellcheck directives for an isolated CI checkout
+
+    The gate passed locally but failed (or would fail) in CI. Cause: CI checks
+    each repo out ALONE, while locally they sit side by side as submodules
+    under derivative-maker/packages. A '# shellcheck source=' climbing out of
+    the repo ('../../../../helper-scripts/...') therefore resolves here and
+    not there, so shellcheck reports SC1091 and the gate fails on a commit
+    that looked clean.
+
+    The source= paths are kept -- they document where the file actually lives
+    -- and each is paired with a 'disable=SC1091' so an absent sibling is
+    tolerated. Same shape already used in security-misc master.
+
+    Follow-on findings from the same isolated run, each with a stated reason
+    rather than a blanket waiver:
+    - SC2154 on systemd_notify: assigned by the sourced systemd-notify.bsh,
+      which shellcheck can no longer follow.
+    - SC2034 on SCRIPTNAME and output_cmd: genuinely unused. suspend-pre's
+      output_cmd toggle is vestigial -- unlike suspend-post the script prints
+      directly -- flagged rather than removed, since wiring it up or dropping
+      it is a maintainer call.
+    - SC1090 on the uwt.d conf glob: a dynamic source, which R-081 prescribes
+      SC1090 for.
+
+    Verified with a new reproducer, ~/strict-pass-tests/ci-repro.sh, which
+    clones the repo on its own and runs the real gate there -- the condition
+    CI actually sees. All six repos: gate exit 0.
+
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+commit 9d6c4634a056c0711d3a42b8c3e4c876b93ec001
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Wed Aug 5 13:57:59 2026 -0400
+
+    security-misc: R-010 strict for the remaining standalone scripts
+
+    Covers the eleven remaining standalones, plus the whole-file debt the gate
+    surfaces on each: echo -> printf (R-034), 'has' instead of 'command -v'
+    (R-090, sourcing has.sh -- security-misc-shared already Depends on
+    helper-scripts), safe-rm (R-120), SC2250 braces.
+
+    permission-lockdown needed care. Its loop chmods every home directory and
+    records a state file per user, and it tolerated per-user failures: a
+    directory it could not chmod did not stop the ones after it. Under errexit
+    the first failure aborted the whole loop, so every remaining home directory
+    silently stayed un-locked-down -- observed in the sandbox as 1 user
+    processed instead of 11, and the script exiting 1 rather than 0. The two
+    per-user operations are now explicitly best-effort, restoring the original
+    behaviour (including that a failed chmod still records the state file --
+    arguably wrong, but changing it is not this pass's business).
+
+    mmap-rnd-bits keeps its 'ls -1 -t /boot/config-* | head -n 1' with a
+    reasoned SC2012 disable: kernel config filenames carry no spaces or
+    newlines, so the parsing hazard is unreachable, and rewriting newest-file
+    detection in a security package is risk without gain.
+
+    Not touched, deliberately: the dracut modules under
+    usr/lib/dracut/modules.d*. 'module-setup.sh' is SOURCED by dracut at
+    initramfs build time, and remount-secure.sh is installed with 'inst_hook'
+    and SOURCED by dracut-lib at BOOT. A strict-mode block in either runs in
+    dracut's own shell; in the boot case that risks an unbootable system.
+
+    Sandbox differential vs the pre-change scripts, comparing output AND exit
+    code: 36 cases identical. The only two remaining deltas are 'set -x' traces
+    of the preamble and of echo -> printf, both at unchanged exit codes.
+
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+commit 59b3e60b2627a9eeda0f4e7cbd4804958cabedd3
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Wed Aug 5 13:57:39 2026 -0400
+
+    security-misc: R-010 strict for the PAM helpers, preserving exit codes
+
+    These four scripts are invoked by pam_exec and their EXIT CODE is the
+    security decision: the PAM stacks use '[success=1 default=ignore]', so the
+    code selects whether the next module runs. Strict mode must not perturb it.
+
+    PAM_SERVICE and PAM_USER come from pam_exec's environment. Read bare under
+    nounset they abort the script with a NONZERO status, which PAM then reads
+    as a control-flow decision. Each is now read as '${VAR:-}', which
+    reproduces today's semantics exactly (an unset value falls through to the
+    same branch it already took).
+
+    pam-abort-on-locked-password was the sharp case. It documents "identifiable
+    exit codes in case stdout / stderr is not logged in journal"; with PAM_USER
+    absent it returned 3 ("user does not exist"), and a bare read turned that
+    into 1. Verified restored.
+
+    Exit-code matrix, old vs new, all matching:
+      PAM_SERVICE=login  -> pam_only_if_login 1, pam_only_if_su 0
+      PAM_SERVICE=su     -> pam_only_if_login 0, pam_only_if_su 1
+      PAM_SERVICE=sshd   -> both 0
+      PAM_SERVICE empty  -> both 0
+      PAM_SERVICE absent -> pam_only_if_login 0, pam_only_if_su 0,
+                            pam_faillock_not_if_x 1
+      PAM_USER root / nonexistent / absent -> pam-abort 3 in every case
+
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+commit a2b13848b6a2189c0bda2b478f5ac1b0f9c88819
+Author: claude (dev163 38f9745c-aed1-4fb4-b6ae-9899f20f8de2) <noreply@anthropic.com>
+Date:   Wed Aug 5 13:57:22 2026 -0400
+
+    security-misc: R-010 strict for the module-disabled alert scripts
+
+    The thirteen disabled-*-by-security-misc scripts are near-identical: they
+    warn that a kernel module was blocked and exit 1. Add the strict preamble
+    and convert echo -> printf (R-034).
+
+    The '$@' inside the message becomes '$*' deliberately. Under printf,
+    "...$@" expands to one argument per positional parameter, so a multi-word
+    invocation would print one word per line; '$*' joins with spaces, which is
+    what echo did.
+
+    Sandbox differential vs the pre-change scripts: all thirteen byte-identical
+    in output and still exit 1.
+
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+commit 1fcf496705dd9b44ca62d01f737ffb9c6355e715
+Merge: e59019a5 e8e9fd4f
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Sat Aug 1 05:01:13 2026 -0400
+
+    Merge pull request #23 from org-ai-assisted/ai-claude-review-mention-only
+
+    consumer-claude-code: mention-only triggers (propagated from template)
+
+commit e59019a54fb525d7cf884f10d26226efb1d8ab21
+Merge: 2da1f21c 32cb7a2f
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Sat Aug 1 05:01:08 2026 -0400
+
+    Merge pull request #26 from org-ai-assisted/ai
+
+    CI: add codeql-actions + secrets-audit scanner workflows
+
+commit 2da1f21cb66cd52b04c7d25b7053524cd6cd6611
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Aug 1 08:12:04 2026 +0000
+
+    bumped changelog version
+
+commit 32cb7a2f36105a23bed0562293901e3799cd7892
+Author: claude (dev142 b93fb2c6-e15f-4d45-8566-f3ded893b70e) <noreply@anthropic.com>
+Date:   Fri Jul 31 16:23:30 2026 -0400
+
+    CI: propagate codeql-actions + secrets-audit consumer workflows
+
+    Byte-identical propagation from developer-meta-files
+    consumer-templates. Closes scanner-coverage gaps
+    (bandit already present):
+
+    - consumer-codeql-actions.yml: CodeQL 'actions' language --
+      workflow-YAML security analysis (script-injection, missing
+      permissions, unpinned actions).
+    - consumer-secrets-audit.yml: manual-dispatch secrets surface
+      audit (presence flags only, values never emitted).
+
+    Managed files -- do not hand-edit; regenerated on the next
+    propagation pass.
+
+    ## AI-Assisted
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
 commit 83b8f6650bae86e75258e4643ec7c8a273993919
 Merge: f8c82a87 f0478e7b
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -37,6 +242,38 @@ Date:   Fri Jul 31 09:38:10 2026 -0400
     Verified: the workflow-yaml validator reports 0 findings for this repo.
 
     Generated with assistance from Claude Code.
+
+commit e8e9fd4fae34474d5d1a96c516ddfd1913b7fd82
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Thu Jul 30 11:59:15 2026 -0400
+
+    consumer-claude-code: propagate the corrected template
+
+    Byte-identical to developer-meta-files consumer-templates.
+
+    The github.ref comment was wrong for one of the two events it described:
+    issue_comment fires with the default branch ref, pull_request_review_comment
+    with the PR merge ref (refs/pull/<number>/merge). No behaviour change -- the
+    concurrency group reaches github.ref only if neither number field is set, and
+    one always is for the events this workflow accepts.
+
+    Generated with assistance from Claude Code.
+
+commit 5daefde4e8cb4705d8fbe7886f2e003e61e0b974
+Author: claude (dev118 bd22decd-3027-4ab5-9e48-11adfe39b279) <noreply@anthropic.com>
+Date:   Tue Jul 28 13:50:24 2026 -0400
+
+    consumer-claude-code: mention-only triggers (propagated from template)
+
+    Byte-identical cp from developer-meta-files/consumer-templates.
+
+    pull_request and workflow_dispatch resolve to claude-code-action's
+    agent mode, whose trigger is a non-empty 'prompt' input that this
+    workflow does not pass, so those events could only spin up a runner
+    and exit without calling the model - a green "Claude Code Review"
+    check that reviewed nothing.
+
+    Co-Authored-By: Claude <noreply@anthropic.com>
 
 commit f8c82a87f207eee40dad64e0d090be5cd2858b76
 Author: Patrick Schleizer <adrelanos@whonix.org>
