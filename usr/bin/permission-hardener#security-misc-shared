@@ -20,6 +20,7 @@ set -o pipefail
 set -o errtrace
 shopt -s inherit_errexit
 shopt -s shift_verbose
+export LC_ALL=C
 
 ## Constants
 # shellcheck disable=SC2034
@@ -31,12 +32,12 @@ dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 delimiter="#permission-hardener-delimiter#"
 
 ## Library imports
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/safe_echo.sh
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/log_run_die.sh
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/strings.bsh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/safe_echo.sh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/safe_echo.sh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/log_run_die.sh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/log_run_die.sh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/strings.bsh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/strings.bsh
 
 ## Functions
 echo_wrapper_ignore() {
