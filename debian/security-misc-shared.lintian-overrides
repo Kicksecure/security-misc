@@ -1,4 +1,0 @@
-## The postinst enables errexit via the long-form 'set -o errexit'. lintian's
-## scripts check only matches the short 'set -e', so it wrongly reports the
-## script as ignoring errors. False positive (same as tb-updater's override).
-security-misc-shared: maintainer-script-ignores-errors [postinst]
