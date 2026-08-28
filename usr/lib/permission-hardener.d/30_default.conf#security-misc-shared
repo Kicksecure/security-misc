@@ -12,7 +12,10 @@
 ## [filename] [mode] [owner] [group] [capability]
 ## [filename] [exactwhitelist|matchwhitelist|disablewhitelist|nosuid]
 ##
-## TODO: white spaces inside file name untested and probably will not work.
+## White spaces inside a file name are supported: the parser recovers the file
+## name by reading the option fields from the right (a trailing whitelist
+## keyword, or the mode/owner/group[/capability] tail anchored by the octal
+## mode). Quoting/escaping is still not supported; a literal space is fine.
 
 ######################################################################
 # Global Settings
@@ -25,7 +28,9 @@
 ######################################################################
 
 ## For example, if you are not using SELinux the following might make sense to
-## enable. TODO: research
+## enable (utempter is SGID utmp for terminal login accounting; see
+## 25_default_whitelist_selinux.conf for the full rationale).
+## TODO-HUMAN-DEVELOPER-ONLY: disabling utempter's SGID is a human trust decision.
 #/utempter/utempter disablewhitelist
 
 ## If you are not going to use AppImages such as electrum Bitcoin wallet.
@@ -119,5 +124,11 @@
 ## anon-apps-config does this.
 #/usr/bin/ping 0744 root root none
 
-## TODO: research
-#/usr/lib/x86_64-linux-gnu/gstreamer1.0/grstreamer-1.0/gst-ptp-helper 0744 root root none
+## gst-ptp-helper (libgstreamer1.0-0): started by gst_ptp_init() for PTP
+## (IEEE 1588) network clock sync; SUID root or cap_net_bind_service+cap_net_admin
+## to bind privileged UDP ports 319/320, then drops privileges. Removing it only
+## disables PTP clock sync; ordinary audio/video playback is unaffected, so this
+## is a low-risk hardening candidate (cf. Red Hat bug 1724677). Prefer stripping
+## to capabilities over setuid-root if kept.
+## TODO-HUMAN-DEVELOPER-ONLY: enabling this SUID/caps strip is a human trust decision.
+#/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper 0744 root root none

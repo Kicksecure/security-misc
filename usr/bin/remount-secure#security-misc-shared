@@ -26,24 +26,33 @@
 ## https://www.kicksecure.com/wiki/Dev/remount-secure
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
+## style-ok: no-has  (runs in dracut where helper-scripts has.sh is unavailable; id itself may be absent)
+
+## Mount helper functions (_boot, _sys, _usr, ...) are invoked indirectly via
+## the dispatch in main(); shellcheck cannot see the calls.
+# shellcheck disable=SC2317
+
 #set -x
-set -e
-set -o pipefail
+set -o errexit
 set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 init() {
    if test -o xtrace ; then
-      output_command=true
+      output_command=( true )
    else
-      output_command=echo
+      output_command=( printf '%s\n' )
    fi
 
-   $output_command "$0: INFO: START"
+   "${output_command[@]}" "$0: INFO: START"
 
    ## dracut does not have id. Saving space in initial ramdisk.
    if command -v id &>/dev/null ; then
       if [ "$(id -u)" != "0" ]; then
-         $output_command "ERROR: must be run as root! sudo $0"
+         "${output_command[@]}" "ERROR: must be run as root! sudo $0"
          exit 1
       fi
    fi
@@ -53,10 +62,10 @@ init() {
 
    ## dracut sets NEWROOT=/sysroot
    [[ -v NEWROOT ]] || NEWROOT=""
-   if [ "$NEWROOT" = "" ]; then
-      $output_command "INFO: dracut detected: no"
+   if [ "${NEWROOT}" = "" ]; then
+      "${output_command[@]}" "INFO: dracut detected: no"
    else
-      $output_command "INFO: dracut detected: yes - NEWROOT: '$NEWROOT'"
+      "${output_command[@]}" "INFO: dracut detected: yes - NEWROOT: '${NEWROOT}'"
    fi
 
    ## Debugging.
@@ -76,33 +85,33 @@ parse_options() {
    do
        case ${1:-} in
            0)
-               $output_command "WARNING: Not using remount-secure."
+               "${output_command[@]}" "WARNING: Not using remount-secure."
                exit 0
                shift
                ;;
            1)
-               $output_command "INFO: level 1/3 (low)"
+               "${output_command[@]}" "INFO: level 1/3 (low)"
                most_noexec_maybe=""
                home_noexec_maybe=""
                parsed=true
                shift
                ;;
            2)
-               $output_command "INFO: level 2/3 (medium)"
+               "${output_command[@]}" "INFO: level 2/3 (medium)"
                most_noexec_maybe=",noexec"
                home_noexec_maybe=""
                parsed=true
                shift
                ;;
            3)
-               $output_command "INFO: level 3/3 (high)"
+               "${output_command[@]}" "INFO: level 3/3 (high)"
                most_noexec_maybe=",noexec"
                home_noexec_maybe=",noexec"
                parsed=true
                shift
                ;;
            --force)
-               $output_command "INFO: --force"
+               "${output_command[@]}" "INFO: --force"
                option_force=true
                shift
                ;;
@@ -111,7 +120,7 @@ parse_options() {
                break
                ;;
            -*)
-               echo "ERROR: unknown option: $1" >&2
+               printf '%s\n' "ERROR: unknown option: ${1}" >&2
                exit 1
                ;;
            *)
@@ -125,27 +134,27 @@ parse_options() {
    [[ -v home_noexec_maybe ]] || home_noexec_maybe=""
    [[ -v most_noexec_maybe ]] || most_noexec_maybe=""
 
-   $output_command "INFO: using nosuid,nodev: yes"
+   "${output_command[@]}" "INFO: using nosuid,nodev: yes"
 
-   if [ "$home_noexec_maybe" = "" ]; then
-      $output_command "INFO: using noexec for all: no"
+   if [ "${home_noexec_maybe}" = "" ]; then
+      "${output_command[@]}" "INFO: using noexec for all: no"
    else
-      $output_command "INFO: using noexec for all: yes"
+      "${output_command[@]}" "INFO: using noexec for all: yes"
       return 0
    fi
 
-   if [ "$most_noexec_maybe" = "" ]; then
-      $output_command "INFO: using noexec for most: no"
+   if [ "${most_noexec_maybe}" = "" ]; then
+      "${output_command[@]}" "INFO: using noexec for most: no"
    else
-      $output_command "INFO: using noexec for most (not all): yes"
+      "${output_command[@]}" "INFO: using noexec for most (not all): yes"
       return 0
    fi
 
-   if [ "$parsed" = "true" ]; then
+   if [ "${parsed}" = "true" ]; then
       return 0
    fi
 
-   $output_command "ERROR: syntax error. use either:
+   "${output_command[@]}" "ERROR: syntax error. use either:
 $0 0
 $0 1
 $0 2
@@ -156,14 +165,14 @@ $0 3"
 
 preparation() {
    ## Debugging.
-   #$output_command "INFO: 'findmnt --list' output at the START."
-   #$output_command "$(findmnt --list)"
-   #$output_command ""
+   #"${output_command[@]}" "INFO: 'findmnt --list' output at the START."
+   #"${output_command[@]}" "$(findmnt --list)"
+   #"${output_command[@]}" ""
    true
 }
 
 remount_secure() {
-   $output_command ""
+   "${output_command[@]}" ""
 
    ## ${FUNCNAME[1]} is the name of the calling function. I.e. the function
    ## which called this function.
@@ -174,52 +183,52 @@ remount_secure() {
    ## example status_file_full_path:
    ## /run/remount-secure/_home
 
-   old_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
+   old_mount_options="$(findmnt --noheadings --output options -- "${mount_folder}")" || true
    ## example old_mount_options:
    ## rw,nosuid,nodev,relatime,discard
 
-   $output_command "INFO: '$mount_folder' old_mount_options: '$old_mount_options'"
+   "${output_command[@]}" "INFO: '${mount_folder}' old_mount_options: '${old_mount_options}'"
 
-   if printf '%s\n' "$old_mount_options" | grep "$intended_mount_options" >/dev/null 2>/dev/null ; then
-      $output_command "INFO: '$mount_folder' has already intended mount options. ('$intended_mount_options')"
+   if printf '%s\n' "${old_mount_options}" | grep "${intended_mount_options}" >/dev/null 2>/dev/null ; then
+      "${output_command[@]}" "INFO: '${mount_folder}' has already intended mount options. ('${intended_mount_options}')"
       return 0
    fi
 
    ## When this package is upgraded, the systemd unit will run again.
    ## If the user meanwhile manually relaxed mount options, this should not be undone.
 
-   if [ ! "$option_force" == "true" ]; then
-      if [ -e "$status_file_full_path" ]; then
-         $output_command "INFO: '$mount_folder' already remounted earlier. Not remounting again. Use --force if this is what you want."
+   if [ ! "${option_force}" == "true" ]; then
+      if [ -e "${status_file_full_path}" ]; then
+         "${output_command[@]}" "INFO: '${mount_folder}' already remounted earlier. Not remounting again. Use --force if this is what you want."
          return 0
       fi
    fi
 
-   if ! test -d "$mount_folder" ; then
+   if ! test -d "${mount_folder}" ; then
       ## For example /boot/efi does not always exist on all systems.
-      $output_command "INFO: '$mount_folder' folder exists: no"
+      "${output_command[@]}" "INFO: '${mount_folder}' folder exists: no"
       return 0
    fi
-   $output_command "INFO: '$mount_folder' folder exists: yes"
+   "${output_command[@]}" "INFO: '${mount_folder}' folder exists: yes"
 
-   if findmnt --noheadings "$mount_folder" >/dev/null ; then
-      $output_command "INFO: '$mount_folder' already mounted, therefore using remount."
-      $output_command INFO: Executing: mount --make-private --options "remount,${intended_mount_options}" "$mount_folder"
-      mount --make-private --options "remount,${intended_mount_options}" "$mount_folder" || exit_code=100
+   if findmnt --noheadings "${mount_folder}" >/dev/null ; then
+      "${output_command[@]}" "INFO: '${mount_folder}' already mounted, therefore using remount."
+      "${output_command[@]}" "INFO: Executing: mount --make-private --options remount,${intended_mount_options} ${mount_folder}"
+      mount --make-private --options "remount,${intended_mount_options}" "${mount_folder}" || exit_code=100
    else
-      $output_command "INFO: '$mount_folder' not yet mounted, therefore using mount bind."
-      $output_command INFO: Executing: mount --make-private --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder"
-      mount --make-private --options "$intended_mount_options" --bind "$mount_folder" "$mount_folder" || exit_code=101
+      "${output_command[@]}" "INFO: '${mount_folder}' not yet mounted, therefore using mount bind."
+      "${output_command[@]}" "INFO: Executing: mount --make-private --options ${intended_mount_options} --bind ${mount_folder} ${mount_folder}"
+      mount --make-private --options "${intended_mount_options}" --bind "${mount_folder}" "${mount_folder}" || exit_code=101
    fi
 
-   new_mount_options="$(findmnt --noheadings --output options -- "$mount_folder")" || true
-   $output_command "INFO: '$mount_folder' new_mount_options: '$new_mount_options'"
+   new_mount_options="$(findmnt --noheadings --output options -- "${mount_folder}")" || true
+   "${output_command[@]}" "INFO: '${mount_folder}' new_mount_options: '${new_mount_options}'"
 
-   touch "$status_file_full_path"
+   touch "${status_file_full_path}"
 }
 
 _boot() {
-   mount_folder="$NEWROOT/boot"
+   mount_folder="${NEWROOT}/boot"
    ## https://lists.freedesktop.org/archives/systemd-devel/2015-February/028456.html
    intended_mount_options="nosuid,nodev,noexec"
    remount_secure
@@ -227,7 +236,7 @@ _boot() {
 
 _boot_efi() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/boot/efi"
+   mount_folder="${NEWROOT}/boot/efi"
    intended_mount_options="nosuid,nodev,noexec"
    remount_secure
 }
@@ -261,25 +270,25 @@ _sys() {
 }
 
 _tmp() {
-   mount_folder="$NEWROOT/tmp"
+   mount_folder="${NEWROOT}/tmp"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _var_tmp() {
-   mount_folder="$NEWROOT/var/tmp"
+   mount_folder="${NEWROOT}/var/tmp"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _var_log() {
-   mount_folder="$NEWROOT/var/log"
+   mount_folder="${NEWROOT}/var/log"
    intended_mount_options="nosuid,nodev,noexec"
    remount_secure
 }
 
 _var() {
-   mount_folder="$NEWROOT/var"
+   mount_folder="${NEWROOT}/var"
    ## noexec: Not possible. Reason:
    ## Debian stores executable maintainer scripts in /var/lib/dpkg/info folder.
    intended_mount_options="nosuid,nodev"
@@ -288,48 +297,48 @@ _var() {
 
 _usr() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/usr"
+   mount_folder="${NEWROOT}/usr"
    intended_mount_options="nodev"
    remount_secure
 }
 
 _home() {
-   mount_folder="$NEWROOT/home"
+   mount_folder="${NEWROOT}/home"
    intended_mount_options="nosuid,nodev${home_noexec_maybe}"
    remount_secure
 }
 
 _root() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/root"
+   mount_folder="${NEWROOT}/root"
    intended_mount_options="nosuid,nodev${home_noexec_maybe}"
    remount_secure
 }
 
 _srv() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/srv"
+   mount_folder="${NEWROOT}/srv"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _media() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/media"
+   mount_folder="${NEWROOT}/media"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _mnt() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/mnt"
+   mount_folder="${NEWROOT}/mnt"
    intended_mount_options="nosuid,nodev${most_noexec_maybe}"
    remount_secure
 }
 
 _opt() {
    ## TODO: new, test
-   mount_folder="$NEWROOT/opt"
+   mount_folder="${NEWROOT}/opt"
    ## Allow /opt exec as usually optional binaries are placed there such as Firefox
    ## when manually installed from tarball.
    intended_mount_options="nosuid,nodev"
@@ -340,20 +349,20 @@ _etc() {
    ## TODO: new, test
    ## /etc cannot be noexec because various executables are there. To find, run:
    ## sudo find /etc -executable
-   mount_folder="$NEWROOT/etc"
+   mount_folder="${NEWROOT}/etc"
    intended_mount_options="nosuid,nodev"
    remount_secure
 }
 
 end() {
    ## Debugging.
-   #$output_command "INFO: 'findmnt --list' output at the END."
-   #$output_command "$(findmnt --list)"
+   #"${output_command[@]}" "INFO: 'findmnt --list' output at the END."
+   #"${output_command[@]}" "$(findmnt --list)"
 
-   $output_command ""
-   $output_command "INFO: exit_code: $exit_code"
-   $output_command "$0: INFO: END"
-   exit $exit_code
+   "${output_command[@]}" ""
+   "${output_command[@]}" "INFO: exit_code: ${exit_code}"
+   "${output_command[@]}" "$0: INFO: END"
+   exit "${exit_code}"
 }
 
 main() {
@@ -382,7 +391,7 @@ main() {
    end
 }
 
-## TODO: see also hidepid /usr/lib/systemd/system/proc-hidepid.service
+## REMINDER: see also hidepid /usr/lib/systemd/system/proc-hidepid.service
 #mount --options defaults,nosuid,nodev,noexec,remount,subset=pid /proc
 
 main "$@"

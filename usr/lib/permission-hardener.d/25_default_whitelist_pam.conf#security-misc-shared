@@ -19,5 +19,9 @@
 ##
 ## Without this, LXQt fails to start with a dbus-launch error.
 ##
-## TODO: audit pam-tmpdir-helper
+## Confirmed: installed SUID root, mode 4755. Takes NO command-line/user input --
+## derives the directory purely from the caller's real UID/GID. No upstream git
+## repo and no known CVE. A source audit is worthwhile given it is SUID root, but
+## risk is low given zero attacker-controlled input.
+## TODO-HUMAN-DEVELOPER-ONLY: source audit of pam-tmpdir-helper (SUID root).
 pam-tmpdir-helper matchwhitelist

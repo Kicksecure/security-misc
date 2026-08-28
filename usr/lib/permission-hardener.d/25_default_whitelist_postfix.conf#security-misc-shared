@@ -6,6 +6,14 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research and document
+## postqueue(1) / postdrop(1): Postfix mail-submission helpers. Installed SGID
+## group "postdrop" (Postfix setgid_group), NOT setuid root. The SGID bit lets
+## an unprivileged user write into the group-writable maildrop queue and reach
+## the Postfix daemon sockets, with no user-level privilege granted. Stripping
+## SGID breaks local mail submission ("Permission denied" on maildrop; postqueue
+## cannot reach the queue manager). SGID-group is already the minimal-privilege
+## design; no notable current CVE tied to the bit.
+## Ref: https://www.postfix.org/postconf.5.html (setgid_group)
+## TODO-HUMAN-DEVELOPER-ONLY: keep-vs-strip SGID is a human trust decision.
 postqueue matchwhitelist
 postdrop matchwhitelist

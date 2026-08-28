@@ -3,15 +3,17 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## style-ok: no-strict  (dracut sources this module; top-level strict mode would leak into dracut)
+
 ## called by dracut
 check() {
-  require_binaries /run/emerg-shutdown || return 1
+  require_binaries /usr/bin/emerg-shutdown || return 1
   return 255
 }
 
 ## called by dracut
 depends() {
-  echo 'systemd bash'
+  printf '%s\n' 'systemd bash'
   return 0
 }
 
@@ -23,7 +25,7 @@ install() {
 
   inst_simple /usr/libexec/security-misc/emerg-shutdown
   inst_simple /usr/share/security-misc/emerg-shutdown-initramfs.service /usr/lib/systemd/system/emerg-shutdown-initramfs.service
-  inst_simple /run/emerg-shutdown /emerg-shutdown
+  inst_simple /usr/bin/emerg-shutdown /emerg-shutdown
 
   for config_file in /etc/security-misc/emerg-shutdown/*.conf; do
     if [ -f "${config_file}" ]; then

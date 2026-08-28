@@ -6,18 +6,25 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research
+## qfile-unpacker (qubes-core-agent-linux, qubes-rpc): receiver side of the
+## inter-qube file copy (qvm-copy/qvm-move); reads the qrexec stream and unpacks
+## incoming files into the target qube. SUID root because it must chroot() into
+## the recipient dir and setfsuid()/drop to the unprivileged user before writing
+## -- both need root, so SUID cannot simply be stripped. It parses attacker-
+## influenced input from another qube => high-value local-EoP target. The issue
+## below (#8633) is now CLOSED: upstream HARDENED the unpacker rather than
+## dropping SUID -- qfile-unpacker (qubes-core-agent-linux) now refuses a UID
+## change to anything but the caller's own UID, and libqubes-pure adds path,
+## symlink and filename sanitization (qubes-linux-utils PR #87). Keep the
+## package patched; residual risk is the parser itself.
 ## https://github.com/QubesOS/qubes-core-agent-linux/blob/master/qubes-rpc/qfile-unpacker.c
-##
-## Historic Qubes upstream security issue:
-## qfile-unpacker allows unprivileged users in VMs to gain root privileges
-## https://github.com/QubesOS/qubes-issues/issues/8633
+## https://github.com/QubesOS/qubes-issues/issues/8633 (historic local-root EoP)
 ##
 ## matches both:
 ## - /usr/lib/qubes/qfile-unpacker whitelist
 ##   - Not bit-for-bit identical to /usr/lib/qubes/qfile-unpacker.
 ##   - Stripping SUID from this does *not* break file copying.
-##   - TODO: further research required on its purpose
+##   - TODO-HUMAN-DEVELOPER-ONLY: further research required on its purpose
 ## - /usr/bin/qfile-unpacker
 ##   - Appears to be an integral part of file transfer between qubes, stripping
 ##     SUID from this in an AppVM results in that AppVM being unable to receive

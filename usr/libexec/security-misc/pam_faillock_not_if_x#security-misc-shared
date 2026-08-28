@@ -42,7 +42,10 @@ done
 ## exit failure so [success=1 default=ignore] will result in running the
 ## next PAM module (the pam_faillock module).
 ##
-## Causes confusing error message:
-## pam_exec(sudo:auth): /usr/libexec/security-misc/pam_faillock_not_if_x failed: exit code 1
+## This previously emitted a confusing journal line:
+## pam_exec(sudo:auth): ... pam_faillock_not_if_x failed: exit code 1
+## now suppressed by 'quiet_log' on the pam_exec.so lines in
+## /usr/share/pam-configs/{unix-faillock,faillock-preauth}-security-misc
+## (linux-pam >= 1.5.2; plain 'quiet' only hides the user-facing message).
 ## https://github.com/linux-pam/linux-pam/issues/329
 exit 1

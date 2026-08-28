@@ -14,7 +14,13 @@
 ## works very well for literal matching, and it is used that way extensively
 ## throughout this script.
 
-set -o errexit -o nounset -o pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+export LC_ALL=C
 
 ## Constants
 # shellcheck disable=SC2034
@@ -26,12 +32,12 @@ dpkg_admindir_parameter_new_mode="--admindir ${store_dir}/new_mode"
 delimiter="#permission-hardener-delimiter#"
 
 ## Library imports
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/safe_echo.sh
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/log_run_die.sh
-# shellcheck disable=SC1091
-source /usr/libexec/helper-scripts/strings.bsh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/safe_echo.sh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/safe_echo.sh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/log_run_die.sh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/log_run_die.sh
+# shellcheck source=../../../helper-scripts/usr/libexec/helper-scripts/strings.bsh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/strings.bsh
 
 ## Functions
 echo_wrapper_ignore() {
@@ -115,7 +121,7 @@ output_stat() {
     return 1
   fi
 
-  if [ -z "$stat_output" ]; then
+  if [ -z "${stat_output}" ]; then
     log error "stat_output is empty.
 File name: '${file_name}'
 Stat output: '${stat_output}'
@@ -166,7 +172,7 @@ hardlink_count: '${hardlink_count}'
     return 1
   fi
 
-  if [ "$file_name" != "$file_name_from_stat" ]; then
+  if [ "${file_name}" != "${file_name_from_stat}" ]; then
     log error "\
 File name is different from file name received from stat:
 File name: '${file_name}'
@@ -279,7 +285,7 @@ check_nosuid_whitelist() {
   ## literal matching is intentional here too
   [[ " ${policy_exact_white_list[*]} " =~ " ${target_file} " ]] && return 1
 
-  for match_white_list_entry in ${policy_match_white_list[@]+"${policy_match_white_list[@]}"}; do
+  for match_white_list_entry in "${policy_match_white_list[@]}"; do
     if [[ "${target_file}" == *"${match_white_list_entry}"* ]]; then
       return 1
     fi
@@ -395,21 +401,24 @@ load_late_nosuid_policy() {
 }
 
 load_state_without_policy() {
-  local line field_list
+  local line sf_owner sf_group sf_mode sf_path
 
-  ## Load the state file from disk
+  ## Load the state file from disk. Each dpkg-statoverride entry is
+  ## 'owner group mode path'; the path is last and may contain spaces, so read
+  ## the three fixed fields and take the remainder as the path. A plain 4-way
+  ## split would drop any spaced path -- it could then never be un-hardened.
   if [ -f "${state_file}" ]; then
     while read -r line; do
-      read -r -a field_list <<< "${line}"
-      if (( ${#field_list[@]} != 4 )); then
+      read -r sf_owner sf_group sf_mode sf_path <<< "${line}"
+      if [ -z "${sf_path}" ]; then
         log info \
           "Invalid number of fields in state file line: '${line}'. Skipping."
         continue
       fi
-      state_user_owner_list+=( "${field_list[0]}" )
-      state_group_owner_list+=( "${field_list[1]}" )
-      state_mode_list+=( "${field_list[2]}" )
-      state_file_list+=( "${field_list[3]}" )
+      state_user_owner_list+=( "${sf_owner}" )
+      state_group_owner_list+=( "${sf_group}" )
+      state_mode_list+=( "${sf_mode}" )
+      state_file_list+=( "${sf_path}" )
     done < "${state_file}"
   fi
 }
@@ -418,13 +427,14 @@ load_state() {
   ## Config format:
   ##   path options
   ## where options is one of:
-  ##   user_owner group_owner filemode [capability-setting]
+  ##   filemode user_owner group_owner [capability-setting]
   ##   [nosuid|exactwhitelist|matchwhitelist|disablewhitelist]
   ##
   ## Additionally, the special value 'whitelists_disable_all=true' is understood
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
+  local field_count recovered_file_name mode_index fallback_index candidate_index
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -448,6 +458,15 @@ load_state() {
         continue
       fi
 
+      ## Recognize the special directive before the character-class check below,
+      ## whose allowed set excludes '=' and would otherwise reject and abort on
+      ## this documented line.
+      if [ "${line}" = 'whitelists_disable_all=true' ]; then
+        whitelists_disable_all=true
+        log info "whitelists_disable_all=true"
+        continue
+      fi
+
       if ! [[ "${line}" =~ ^[-0-9a-zA-Z._/[:space:]]*$ ]]; then
         exit_code=200
         log error "Line contains invalid characters: '${line}'" >&2
@@ -456,18 +475,67 @@ load_state() {
         exit "${exit_code}"
       fi
 
-      if [ "${line}" = 'whitelists_disable_all=true' ]; then
-        whitelists_disable_all=true
-        log info "whitelists_disable_all=true"
-        continue
-      fi
-
       processed_config_line="${line}"
 
       IFS=' ' read -r -a field_list <<< "${line}"
 
+      ## A filename may contain spaces. The option grammar is unambiguous at the
+      ## END of a line -- either a single trailing whitelist keyword, or a
+      ## mode/owner/group[/capability] tail whose first field is the octal mode
+      ## -- so recover the filename by parsing options from the right and
+      ## rejoining everything before them. Space-free lines are left unchanged.
+      ## The mode tail has a fixed width -- 3 fields (mode owner group) or 4
+      ## (mode owner group capability) -- so anchor the mode from the RIGHT. A
+      ## left-to-right scan misanchors when a space-delimited filename chunk is
+      ## itself a bare octal (e.g. '/path/a 744 name 0744 root root').
+      ## Two readings can be lexically valid when a filename component OR a
+      ## numeric owner looks octal ('/a 744 0644 root root' wants the spaced
+      ## name; '/foo 0744 1000 root cap' wants no recovery). Disambiguate by
+      ## which candidate exists on disk -- the tool skips nonexistent targets
+      ## anyway -- keeping the no-recovery reading when field 1 is really the mode.
+      ## Limitation: consecutive spaces collapse and quoting/escaping is not
+      ## supported; a line whose field count is still invalid after recovery is
+      ## rejected loudly (exit 200 below), not silently skipped.
+      field_count="${#field_list[@]}"
+      if (( field_count > 2 )); then
+        case "${field_list[field_count-1]}" in
+          exactwhitelist|matchwhitelist|disablewhitelist|nosuid)
+            recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:field_count-1}")"
+            field_list=( "${recovered_file_name}" "${field_list[field_count-1]}" )
+            ;;
+          *)
+            ## The octal mode sits at field_count-3 (3-field tail) or
+            ## field_count-4 (4-field tail with capability). Both positions can
+            ## look octal -- a numeric owner, or a filename component -- so pick
+            ## the candidate whose recovered filename exists on disk (the tool
+            ## skips nonexistent targets anyway). A mode at field 1 means a
+            ## single-field, no-space filename: nothing to recover. Fall back to
+            ## the first (rightmost) octal candidate when neither name exists.
+            mode_index=''
+            fallback_index=''
+            for candidate_index in "$(( field_count - 3 ))" "$(( field_count - 4 ))"; do
+              (( candidate_index >= 1 )) || continue
+              [[ "${field_list[candidate_index]}" =~ ^0?[0-7]{3,4}$ ]] || continue
+              [ -z "${fallback_index}" ] && fallback_index="${candidate_index}"
+              recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:candidate_index}")"
+              if (( candidate_index == 1 )) || [ -e "${recovered_file_name}" ]; then
+                mode_index="${candidate_index}"
+                break
+              fi
+            done
+            [ -z "${mode_index}" ] && mode_index="${fallback_index}"
+            if [ -n "${mode_index}" ] && (( mode_index > 1 )); then
+              recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:mode_index}")"
+              field_list=( "${recovered_file_name}" "${field_list[@]:mode_index}" )
+            fi
+            ;;
+        esac
+      fi
+
       case "${#field_list[@]}" in
-        2|4|5) true;;
+        2|4|5)
+          true
+          ;;
         *)
           exit_code=200
           log error "Line contains an invalid number of fields: '${line}'" >&2
@@ -695,10 +763,10 @@ undo_policy_for_file() {
 
   undo_file="${1}"
   undo_all=false
-  verbose='--verbose'
+  verbose=('--verbose')
   if [ "${undo_file}" = 'all' ]; then
     undo_all=true
-    verbose=''
+    verbose=()
   fi
 
   if [ ! -f "${state_file}" ]; then
@@ -737,12 +805,10 @@ undo_policy_for_file() {
         state_user_owner_item="${state_user_owner_list[state_idx]}"
         state_group_owner_item="${state_group_owner_list[state_idx]}"
         state_mode_item="${state_mode_list[state_idx]}"
-        # shellcheck disable=SC2086
-        chown ${verbose} -- "${state_user_owner_item}:${state_group_owner_item}" \
+        chown "${verbose[@]}" -- "${state_user_owner_item}:${state_group_owner_item}" \
           "${undo_file}" || exit_code=202
         ## chmod needs to be run after chown since chown removes suid.
-        # shellcheck disable=SC2086
-        chmod ${verbose} "${state_mode_item}" "${undo_file}" || exit_code=203
+        chmod "${verbose[@]}" "${state_mode_item}" "${undo_file}" || exit_code=203
       else
         log info "File does not exist: '${undo_file}'"
       fi
@@ -788,6 +854,7 @@ print_columns() {
   done
   format_str="${format_str}\n"
   ## Using a dynamically generated format string on purpose.
+  ## style-ok: printf-format
   # shellcheck disable=SC2059
   printf "${format_str}" "$@"
 }
@@ -832,9 +899,9 @@ print_raw_policy_config() {
     if [ ! -f "${config_file}" ]; then
       continue
     fi
-    echo "*** begin ${config_file} ***"
+    printf '%s\n' "*** begin ${config_file} ***"
     cat "${config_file}"
-    echo "***   end ${config_file} ***"
+    printf '%s\n' "***   end ${config_file} ***"
   done
 }
 
@@ -842,13 +909,13 @@ print_raw_state() {
   local state_file
   for state_file in "${store_dir}/existing_mode/statoverride" \
     "${store_dir}/new_mode/statoverride"; do
-    echo "*** begin ${state_file} ***"
+    printf '%s\n' "*** begin ${state_file} ***"
     if [ -f "${state_file}" ]; then
       cat "${state_file}"
     else
-      echo '(file does not exist)'
+      printf '%s\n' '(file does not exist)'
     fi
-    echo "***   end ${state_file} ***"
+    printf '%s\n' "***   end ${state_file} ***"
   done
 }
 
@@ -856,13 +923,13 @@ print_fs_audit() {
   local state_idx state_file_item state_user_owner_item state_group_owner_item \
     state_mode_item
 
-  echo 'Legend:'
-  echo '... - Warning about an unusual, but not necessarily wrong, condition'
-  echo '!!! - Warning about an unusual and definitely wrong condition'
-  echo '*** - File permission data, actual state on filesystem is consistent with policy'
-  echo '^^^ - File permission data, actual state on filesystem is inconsistent with policy'
-  echo 'vvv - File permissions specified by state, always shown after a ^^^ item'
-  echo
+  printf '%s\n' 'Legend:'
+  printf '%s\n' '... - Warning about an unusual, but not necessarily wrong, condition'
+  printf '%s\n' '!!! - Warning about an unusual and definitely wrong condition'
+  printf '%s\n' '*** - File permission data, actual state on filesystem is consistent with policy'
+  printf '%s\n' '^^^ - File permission data, actual state on filesystem is inconsistent with policy'
+  printf '%s\n' 'vvv - File permissions specified by state, always shown after a ^^^ item'
+  printf '%s\n' ''
 
   for (( state_idx=0; state_idx < ${#state_file_list[@]}; state_idx++ )); do
     state_file_item="${state_file_list[state_idx]}"
@@ -886,7 +953,7 @@ print_fs_audit() {
 
     output_stat "${state_file_item}"
     if [ -z "${file_name_from_stat}" ]; then
-      echo "... '${state_file_item}' does not exist or has multiple hardlinks"
+      printf '%s\n' "... '${state_file_item}' does not exist or has multiple hardlinks"
       continue
     fi
 
@@ -895,20 +962,20 @@ print_fs_audit() {
       || [ "${existing_mode}" != "${state_mode_item}" ]; then
       if ! [[ $'\n'"${passwd_file_contents}" \
         =~ $'\n'"${state_user_owner_item}:" ]]; then
-        echo "!!! Owner from config does not exist: '${state_user_owner_item}'"
+        printf '%s\n' "!!! Owner from config does not exist: '${state_user_owner_item}'"
         continue
       fi
 
       if ! [[ $'\n'"${group_file_contents}" \
         =~ $'\n'"${state_group_owner_item}:" ]]; then
-        echo "!!! Group from config does not exist: '${state_group_owner_item}'"
+        printf '%s\n' "!!! Group from config does not exist: '${state_group_owner_item}'"
         continue
       fi
 
-      echo "^^^ ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
-      echo "vvv ${file_name_from_stat} ${state_user_owner_item}:${state_group_owner_item} ${state_mode_item}"
+      printf '%s\n' "^^^ ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
+      printf '%s\n' "vvv ${file_name_from_stat} ${state_user_owner_item}:${state_group_owner_item} ${state_mode_item}"
     else
-      echo "*** ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
+      printf '%s\n' "*** ${file_name_from_stat} ${existing_owner}:${existing_group} ${existing_mode}"
     fi
   done
 }
@@ -988,49 +1055,49 @@ case "${1:-}" in
     print_state
     ;;
   print-diagnostics)
-    echo '=== BEGIN PERMISSION-HARDENER DIAGNOSTICS ==='
+    printf '%s\n' '=== BEGIN PERMISSION-HARDENER DIAGNOSTICS ==='
 
-    echo '--- BEGIN State without policy ---'
+    printf '%s\n' '--- BEGIN State without policy ---'
     load_state_without_policy
     print_state
-    echo '---   END State without policy ---'
+    printf '%s\n' '---   END State without policy ---'
 
     reset_global_vars
 
-    echo '--- BEGIN Policy without state ---'
+    printf '%s\n' '--- BEGIN Policy without state ---'
     load_state
     print_policy
-    echo '---   END Policy without state ---'
+    printf '%s\n' '---   END Policy without state ---'
 
     reset_global_vars
 
-    echo '--- BEGIN Policy-applied-state ---'
+    printf '%s\n' '--- BEGIN Policy-applied-state ---'
     load_state
     apply_policy
     print_state
-    echo '---   END Policy-applied state ---'
+    printf '%s\n' '---   END Policy-applied state ---'
 
     reset_global_vars
 
-    echo '--- BEGIN Master dpkg-statoverride database ---'
+    printf '%s\n' '--- BEGIN Master dpkg-statoverride database ---'
     dpkg-statoverride --list
-    echo '---   END Master dpkg-statoverride database ---'
+    printf '%s\n' '---   END Master dpkg-statoverride database ---'
 
-    echo '--- BEGIN Raw policy configuration ---'
+    printf '%s\n' '--- BEGIN Raw policy configuration ---'
     print_raw_policy_config
-    echo '---   END Raw policy configuration ---'
+    printf '%s\n' '---   END Raw policy configuration ---'
 
-    echo '--- BEGIN Raw state data ---'
+    printf '%s\n' '--- BEGIN Raw state data ---'
     print_raw_state
-    echo '---   END Raw state data ---'
+    printf '%s\n' '---   END Raw state data ---'
 
-    echo '--- BEGIN Filesystem state audit ---'
+    printf '%s\n' '--- BEGIN Filesystem state audit ---'
     load_state
     apply_policy
     print_fs_audit
-    echo '---   END Filesystem state audit ---'
+    printf '%s\n' '---   END Filesystem state audit ---'
 
-    echo '===  END PERMISSION-HARDENER DIAGNOSTICS ==='
+    printf '%s\n' '===  END PERMISSION-HARDENER DIAGNOSTICS ==='
     ;;
   -h|--help)
     print_usage
