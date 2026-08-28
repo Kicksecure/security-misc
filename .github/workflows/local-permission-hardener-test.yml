@@ -11,6 +11,11 @@
 ## space is parsed as one entry instead of being split and silently
 ## dropped. See ci/tests/permission_hardener/test_whitespace_filename.sh.
 
+## FIXME: The actual scripts run here should be in dist-ai.
+
+## WARNING: The new test scripts will not be reviewed by humans as they are
+## slated to be moved to dist-ai. This workflow file has been reviewed.
+
 name: Test permission-hardener
 
 on:

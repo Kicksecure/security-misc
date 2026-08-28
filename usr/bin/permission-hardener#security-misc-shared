@@ -403,10 +403,7 @@ load_late_nosuid_policy() {
 load_state_without_policy() {
   local line sf_owner sf_group sf_mode sf_path
 
-  ## Load the state file from disk. Each dpkg-statoverride entry is
-  ## 'owner group mode path'; the path is last and may contain spaces, so read
-  ## the three fixed fields and take the remainder as the path. A plain 4-way
-  ## split would drop any spaced path -- it could then never be un-hardened.
+  ## Load the state file from disk.
   if [ -f "${state_file}" ]; then
     while read -r line; do
       read -r sf_owner sf_group sf_mode sf_path <<< "${line}"
@@ -434,7 +431,7 @@ load_state() {
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
-  local field_count recovered_file_name mode_index fallback_index candidate_index
+  local one_field field_count fso_name meta_list field_index hit_barrier
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -458,9 +455,6 @@ load_state() {
         continue
       fi
 
-      ## Recognize the special directive before the character-class check below,
-      ## whose allowed set excludes '=' and would otherwise reject and abort on
-      ## this documented line.
       if [ "${line}" = 'whitelists_disable_all=true' ]; then
         whitelists_disable_all=true
         log info "whitelists_disable_all=true"
@@ -477,63 +471,42 @@ load_state() {
 
       processed_config_line="${line}"
 
-      IFS=' ' read -r -a field_list <<< "${line}"
-
-      ## A filename may contain spaces. The option grammar is unambiguous at the
-      ## END of a line -- either a single trailing whitelist keyword, or a
-      ## mode/owner/group[/capability] tail whose first field is the octal mode
-      ## -- so recover the filename by parsing options from the right and
-      ## rejoining everything before them. Space-free lines are left unchanged.
-      ## The mode tail has a fixed width -- 3 fields (mode owner group) or 4
-      ## (mode owner group capability) -- so anchor the mode from the RIGHT. A
-      ## left-to-right scan misanchors when a space-delimited filename chunk is
-      ## itself a bare octal (e.g. '/path/a 744 name 0744 root root').
-      ## Two readings can be lexically valid when a filename component OR a
-      ## numeric owner looks octal ('/a 744 0644 root root' wants the spaced
-      ## name; '/foo 0744 1000 root cap' wants no recovery). Disambiguate by
-      ## which candidate exists on disk -- the tool skips nonexistent targets
-      ## anyway -- keeping the no-recovery reading when field 1 is really the mode.
-      ## Limitation: consecutive spaces collapse and quoting/escaping is not
-      ## supported; a line whose field count is still invalid after recovery is
-      ## rejected loudly (exit 200 below), not silently skipped.
+      ## We can handle filenames with spaces. This is because the first item
+      ## after a filename is an octal file mode, and we only support user/group
+      ## names, not UIDs and GIDs, as owner identifiers. This means that we can
+      ## scan from right to left for the furthest-right octal integer field and
+      ## use it to separate the filename from the rest of the options. (If
+      ## usernames could themselves be octal integers, this would break, but
+      ## adduser.conf's default NAME_REGEX forbids this. This is definitely a
+      ## hack, but the alternative is to change the format of the policy files,
+      ## which would break custom config for users.
+      ##
+      ## 'read' will collapse consecutive spaces when splitting on spaces.
+      ## Convert spaces into newlines first, then split on newlines with a
+      ## loop.
+      field_list=()
+      while read IFS= -r one_field; do
+         field_list+=( "${one_field}" )
+      done < <(printf '%s\n' "${line}" | tr ' ' '\n')
       field_count="${#field_list[@]}"
-      if (( field_count > 2 )); then
-        case "${field_list[field_count-1]}" in
-          exactwhitelist|matchwhitelist|disablewhitelist|nosuid)
-            recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:field_count-1}")"
-            field_list=( "${recovered_file_name}" "${field_list[field_count-1]}" )
-            ;;
-          *)
-            ## The octal mode sits at field_count-3 (3-field tail) or
-            ## field_count-4 (4-field tail with capability). Both positions can
-            ## look octal -- a numeric owner, or a filename component -- so pick
-            ## the candidate whose recovered filename exists on disk (the tool
-            ## skips nonexistent targets anyway). A mode at field 1 means a
-            ## single-field, no-space filename: nothing to recover. Fall back to
-            ## the first (rightmost) octal candidate when neither name exists.
-            mode_index=''
-            fallback_index=''
-            for candidate_index in "$(( field_count - 3 ))" "$(( field_count - 4 ))"; do
-              (( candidate_index >= 1 )) || continue
-              [[ "${field_list[candidate_index]}" =~ ^0?[0-7]{3,4}$ ]] || continue
-              [ -z "${fallback_index}" ] && fallback_index="${candidate_index}"
-              recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:candidate_index}")"
-              if (( candidate_index == 1 )) || [ -e "${recovered_file_name}" ]; then
-                mode_index="${candidate_index}"
-                break
-              fi
-            done
-            [ -z "${mode_index}" ] && mode_index="${fallback_index}"
-            if [ -n "${mode_index}" ] && (( mode_index > 1 )); then
-              recovered_file_name="$(IFS=' '; printf '%s' "${field_list[*]:0:mode_index}")"
-              field_list=( "${recovered_file_name}" "${field_list[@]:mode_index}" )
-            fi
-            ;;
-        esac
-      fi
 
-      case "${#field_list[@]}" in
-        2|4|5)
+      hit_barrier='false'
+      fso_name=""
+      meta_list=()
+      for (( field_index = field_count - 1; field_index <= 0; \
+         field_index-- )); do
+         if [ "${hit_barrier}" = 'false' ]; then
+            if [[ "${field_list[field_index]}" =~ ^[0-7]{3,4}$ ]]; then
+               hit_barrier='true'
+            fi
+            meta_list=( "${field_list[field_index]}" "${meta_list[@]}" )
+         else
+            fso_name="${field_list[field_index]}${fso_name:+" ${fso_name}"}"
+         fi
+      done
+
+      case "${#meta_list[@]}" in
+        1|3|4)
           true
           ;;
         *)
@@ -544,29 +517,29 @@ load_state() {
       esac
 
       # Strip trailing slash if appropriate
-      field_list[0]="${field_list[0]%/}"
+      fso_name="${fso_name%/}"
 
-      case "${field_list[1]}" in
+      case "${meta_list[0]}" in
         'exactwhitelist')
-          [ ! -e "${field_list[0]}" ] && continue
-          policy_exact_white_list+=( "${field_list[0]}" )
+          [ ! -e "${fso_name}" ] && continue
+          policy_exact_white_list+=( "${fso_name}" )
           continue
           ;;
         'matchwhitelist')
-          policy_match_white_list+=( "${field_list[0]}" )
+          policy_match_white_list+=( "${fso_name}" )
           continue
           ;;
         'disablewhitelist')
-          policy_disable_white_list+=( "${field_list[0]}" )
+          policy_disable_white_list+=( "${fso_name}" )
           continue
           ;;
         'nosuid')
-          [ ! -e "${field_list[0]}" ] && continue
-          policy_nosuid_file_list+=( "${field_list[0]}" )
+          [ ! -e "${fso_name}" ] && continue
+          policy_nosuid_file_list+=( "${fso_name}" )
           ;;
         *)
-          [ ! -e "${field_list[0]}" ] && continue
-          add_to_policy "${field_list[@]}"
+          [ ! -e "${fso_name}" ] && continue
+          add_to_policy "${fso_name}" "${meta_list[@]}"
           ;;
       esac
     done < "${config_file}"

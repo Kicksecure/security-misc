@@ -22,6 +22,5 @@ security-misc-shared: systemd-service-file-missing-install-key [usr/lib/systemd/
 ## Minor bug: Unknown.
 security-misc-shared: package-contains-empty-directory [usr/share/security-misc-shared/]
 
-## The postinst enables errexit via long-form 'set -o errexit'; lintian's
-## scripts check only matches short 'set -e'. False-positive (like tb-updater).
+## Lintian doesn't know that set -o errexit is the same as set -e.
 security-misc-shared: maintainer-script-ignores-errors [postinst]

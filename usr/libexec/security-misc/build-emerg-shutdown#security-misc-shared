@@ -5,15 +5,6 @@
 
 ## AI-Assisted
 
-## Compile emerg-shutdown.c into /usr/bin/emerg-shutdown at package postinst
-## time. Compiling on the target (rather than shipping a prebuilt binary) keeps
-## security-misc-shared Architecture: all while still producing a correct
-## per-architecture, statically linked binary. The boot-time emerg-shutdown
-## script then only copies this binary into /run instead of recompiling on
-## every boot.
-
-## style-ok: no-safe-rm  (only ever removes our own just-created mktemp temp)
-
 set -o errexit
 set -o nounset
 set -o pipefail

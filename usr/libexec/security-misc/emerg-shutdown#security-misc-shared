@@ -3,13 +3,6 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## emerg-shutdown.c is compiled once to /usr/bin/emerg-shutdown at package
-## postinst (by build-emerg-shutdown), not shipped prebuilt -- compiling
-## on-target keeps security-misc-shared Architecture: all while still producing
-## a correct per-architecture, statically linked binary. This script copies
-## that binary into /run (tmpfs, memlockd-resident) at boot and runs it, rather
-## than recompiling on every boot.
-
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -49,16 +42,10 @@ else
   ## Find the devices that make up the root device
   readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-for-mountpoint '/') || true;
 
-  ## Copy the prebuilt binary (compiled at postinst by build-emerg-shutdown)
-  ## into /run (tmpfs) so it is memory-resident for the emergency; memlockd
-  ## then locks it into RAM.
   if [ ! -f '/run/emerg-shutdown' ]; then
     if [ -f '/usr/bin/emerg-shutdown' ]; then
       cp -- /usr/bin/emerg-shutdown /run/emerg-shutdown
     else
-      ## Fallback: prebuilt binary absent (build skipped/removed). Compile
-      ## straight into /run (tmpfs, writable even when /usr is read-only) so the
-      ## emergency-shutdown capability is never silently absent.
       /usr/libexec/security-misc/compile-emerg-shutdown \
         /usr/src/security-misc/emerg-shutdown.c \
         /run/emerg-shutdown \

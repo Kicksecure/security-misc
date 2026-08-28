@@ -4,6 +4,8 @@
 
 ## AI-Assisted
 
+## WARNING: Not human-reviewed, MUST be moved to dist-ai.
+
 ## Regression test: a hardened file whose path contains spaces must be
 ## un-hardenable via 'disable'.
 ##

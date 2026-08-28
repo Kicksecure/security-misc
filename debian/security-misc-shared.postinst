@@ -3,9 +3,8 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## style-ok: allow-echo  (Debian maintainer-script convention)
-## style-ok: no-has  (has.sh not reliably available this early in maintainer scripts)
-## style-ok: no-strict  (debconf maintainer script; full strict block would leak into APT/debconf)
+## style-ok: no-has - has.sh isn't reliably available in maintainer scripts
+## style-ok: no-strict - full strict block could leak into APT/debconf
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
@@ -31,16 +30,16 @@ permission_hardening_legacy_config_folder() {
 }
 
 permission_hardening() {
-    echo "Running SUID Disabler and Permission Hardener... See also:"
-    echo "https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener"
-    echo "$0: INFO: running: permission-hardener enable"
+    printf '%s\n' "Running SUID Disabler and Permission Hardener... See also:"
+    printf '%s\n' "https://www.kicksecure.com/wiki/SUID_Disabler_and_Permission_Hardener"
+    printf '%s\n' "$0: INFO: running: permission-hardener enable"
     ## By design: report error but return 0 to avoid breaking APT.
     ## A failing postinst would leave the package in a broken state.
     if ! permission-hardener enable ; then
-        echo "$0: ERROR: Permission hardening failed." >&2
+        printf '%s\n' "$0: ERROR: Permission hardening failed." >&2
         return 0
     fi
-    echo "$0: INFO: Permission hardening success."
+    printf '%s\n' "$0: INFO: Permission hardening success."
 }
 
 fix_pkexec_remembered_permissions() {
@@ -173,9 +172,7 @@ case "$1" in
         ## Build the org.freedesktop.FileManager1 shim backend.
         build_fm_shim_backend
 
-        ## Compile emerg-shutdown into /usr/bin (on-target, so an
-        ## Architecture: all package still gets a correct per-arch binary);
-        ## the boot-time script then only copies it into /run.
+        ## Pre-compile emerg-shutdown.
         build_emerg_shutdown
     ;;
 
@@ -183,7 +180,7 @@ case "$1" in
     ;;
 
     triggered)
-      echo "INFO: triggered ${DPKG_MAINTSCRIPT_PACKAGE}: '${DPKG_MAINTSCRIPT_PACKAGE}' ${DPKG_MAINTSCRIPT_PACKAGE} DPKG_MAINTSCRIPT_NAME: '${DPKG_MAINTSCRIPT_NAME}' $\*: '$*' 2: '$2'"
+      printf '%s\n' "INFO: triggered ${DPKG_MAINTSCRIPT_PACKAGE}: '${DPKG_MAINTSCRIPT_PACKAGE}' ${DPKG_MAINTSCRIPT_PACKAGE} DPKG_MAINTSCRIPT_NAME: '${DPKG_MAINTSCRIPT_NAME}' $\*: '$*' 2: '$2'"
       /usr/share/security-misc/lkrg/lkrg-virtualbox || true
       /usr/libexec/security-misc/mmap-rnd-bits || true
       permission_hardening
@@ -191,7 +188,7 @@ case "$1" in
     ;;
 
     *)
-        echo "${DPKG_MAINTSCRIPT_NAME} called with unknown argument \`$1'" >&2
+        printf '%s\n' "${DPKG_MAINTSCRIPT_NAME} called with unknown argument \`$1'" >&2
         exit 1
     ;;
 esac
@@ -207,7 +204,7 @@ permission_hardening
 ## https://bugs.debian.org/481542
 if command -v update-grub >/dev/null 2>&1; then
    update-grub || \
-      echo "${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} ERROR: Running \
+      printf '%s\n' "${DPKG_MAINTSCRIPT_PACKAGE} ${DPKG_MAINTSCRIPT_NAME} ERROR: Running \
 'update-grub' failed with exit code $?. ${DPKG_MAINTSCRIPT_PACKAGE} is most \
 likely only the trigger, not the cause. Unless you know this is not an issue, \
 you should fix running 'update-grub', otherwise your system might no longer \

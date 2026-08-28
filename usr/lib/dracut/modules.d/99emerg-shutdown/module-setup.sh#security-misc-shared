@@ -3,7 +3,7 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## style-ok: no-strict  (dracut sources this module; top-level strict mode would leak into dracut)
+## style-ok: no-strict (sourced by dracut)
 
 ## called by dracut
 check() {
