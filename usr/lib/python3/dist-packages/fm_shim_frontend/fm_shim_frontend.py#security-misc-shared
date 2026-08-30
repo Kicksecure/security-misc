@@ -393,7 +393,7 @@ class FmShimWindow(QDialog):
 
         try:
             default_fm_desktop_file: str = subprocess.run(
-                ["xdg-mime", "query", "default", "inode/directory"],
+                ["/usr/bin/xdg-mime", "query", "default", "inode/directory"],
                 check=True,
                 capture_output=True,
                 encoding="utf-8",
@@ -482,7 +482,7 @@ class FmShimWindow(QDialog):
         for target_dir in self.dir_list:
             if target_dir.is_dir():
                 subprocess.run(
-                    ["gio", "launch", str(default_fm_path), str(target_dir)],
+                    ["/usr/bin/gio", "launch", str(default_fm_path), str(target_dir)],
                     check=False,
                 )
             else:
