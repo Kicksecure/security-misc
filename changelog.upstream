@@ -1,3 +1,96 @@
+commit 0088727e4a9ca17d07916a30544ffa6e13890bfc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 6 12:56:41 2026 -0400
+
+    cleanup
+
+commit ebd72d593c81fad95d09a055d4e839b6eecca332
+Merge: 78491468 87506b1e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 30 10:02:32 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 87506b1eaf45fa7501d54cf83b9be13578f86ecb
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Fri Aug 28 01:03:22 2026 -0400
+
+    Polish, add TODOs
+
+commit 0f1f701b5c413b1ab2229577261fe6e0187d84ca
+Merge: eb5b301d bb399ba7
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Thu Aug 27 21:02:55 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit bb399ba73704e4c20fbc6965d13bee4f2c63626c
+Author: claude (dev352 385b930f-4313-4883-93d5-e6857c3f7ea7) <noreply@anthropic.com>
+Date:   Thu Aug 27 12:07:58 2026 -0400
+
+    lintian: override maintainer-script-ignores-errors in the shipped file
+
+    The postinst uses long-form 'set -o errexit' (style R-013); lintian's
+    scripts check only matches short 'set -e'. Add the false-positive
+    override to the package's own usr/share/lintian/overrides file -- a
+    separate debian/*.lintian-overrides displaces it (dh_lintian installs to
+    the same path), losing the etc-skel and other overrides it carries.
+
+commit d1b9f4c0517f03936af556445fedd2ee22d14e98
+Merge: cc7a93d1 908cadc6
+Author: claude (dev352 385b930f-4313-4883-93d5-e6857c3f7ea7) <noreply@anthropic.com>
+Date:   Thu Aug 27 11:22:32 2026 -0400
+
+    Merge branch 'ai' of ssh://github.com/org-ai-assisted/security-misc into ai
+
+commit cc7a93d10a30e19631c64437b5c6078ba5d74f77
+Author: claude (dev352 385b930f-4313-4883-93d5-e6857c3f7ea7) <noreply@anthropic.com>
+Date:   Thu Aug 27 11:21:51 2026 -0400
+
+    lintian: override false-positive maintainer-script-ignores-errors
+
+    The postinst enables errexit via long-form 'set -o errexit' (project
+    style, R-013); lintian's check only matches short 'set -e'. Same
+    override tb-updater already carries.
+
+commit 908cadc6177c00d4ff3465b33b20b3c971ce246a
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Mon Aug 24 23:31:21 2026 -0400
+
+    ci: drop orphaned consumer-secrets-audit.yml (reusable decommissioned)
+
+commit a6d7a3585f8905bc3f898d8dd83c3b07cb04cba9
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Mon Aug 24 23:31:19 2026 -0400
+
+    ci: drop orphaned consumer-codex-review.yml (reusable decommissioned)
+
+commit e6a81266555130673dc7d8bcb85ea50bbad9e852
+Author: assisted-by-ai (Bot Account) (Machine Account) <228987186+assisted-by-ai@users.noreply.github.com>
+Date:   Mon Aug 24 23:31:16 2026 -0400
+
+    ci: drop orphaned consumer-claude-code.yml (reusable decommissioned)
+
+commit 1c9f144b9ebe58daa174de05f5b0c0e42038bfc1
+Author: claude (dev272 e8b76afb-795c-4739-8ebd-023de854021e) <noreply@anthropic.com>
+Date:   Fri Aug 21 04:41:27 2026 -0400
+
+    security-misc: source helper-scripts via HELPER_SCRIPTS_PATH, drop SC1091 disable
+
+    - check-for-usb-controller, permission-hardener, lkrg-virtualbox: use
+      source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/<f>;
+      drop the dead '# shellcheck disable=SC1091' and the stale sibling note.
+    - completed pre-existing whole-file style debt: R-010 export LC_ALL=C in
+      the strict-mode block (dropping the duplicate single-quoted mid-file one).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 78491468a7c209f423f48f74de015f1df2b9a980
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 16 08:24:20 2026 +0000
+
+    bumped changelog version
+
 commit f1e9da8fb911b1e3962f219290df14753794aee8
 Merge: 52e18f72 1fcf4967
 Author: Patrick Schleizer <adrelanos@whonix.org>
@@ -5,12 +98,325 @@ Date:   Sat Aug 15 12:55:45 2026 -0400
 
     Merge remote-tracking branch 'refs/remotes/org-ai-assisted/master'
 
+commit f2c1e7517cf8a8017db91ef7cf42784e93e14ae8
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 13:28:37 2026 -0400
+
+    permission-hardener: read spaced paths back from the state DB
+
+    Fresh-claude review of the whitespace feature found the write/read sides
+    disagree: parsing now accepts space-containing filenames into the policy, but
+    load_state_without_policy split the dpkg-statoverride DB line on whitespace and
+    required exactly 4 fields, silently dropping any spaced path. A spaced SUID file
+    then got hardened but could never be un-hardened ('disable' never found it), and
+    repeated 'enable' failed with exit 203.
+
+    - Read the three fixed fields (owner group mode) and take the remainder as the
+      path, matching the DB's 'owner group mode path' format.
+    - Regression test test_state_spaced_filename.sh: seed a spaced entry, disable,
+      assert the mode is restored (fails on the old reader: file stays un-restored).
+    - Test hygiene: print-policy captures modes into the state DB, so the two
+      print-policy tests now remove the entries they create instead of leaving stale
+      root-owned overrides for deleted temp files.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 6dcffee4bf717bfac9a4c13153dcaa1a25cdc89f
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 13:12:25 2026 -0400
+
+    permission-hardener: unify mode anchoring across all field widths
+
+    Fresh-claude follow-up: the field_count==4/5 existence override did not cover a
+    6-field line (spaced filename + numeric octal-looking owner + capability), which
+    anchored the mode on the owner and silently dropped the entry. No hardening
+    bypass -- numeric owners are rejected later against passwd names -- but a silent
+    drop instead of a loud rejection, and the ==4 disjunct was dead code.
+
+    Replace the special-case override with one existence-based loop: among the octal
+    candidates at field_count-3 and field_count-4, pick the one whose recovered
+    filename exists; a mode at field 1 means no-space (no recovery); fall back to
+    the rightmost octal candidate when neither name exists. Handles the 3-field,
+    4-field, spaced, numeric-owner and 6-field cases uniformly.
+
+    - Regression test: 6-field spaced numeric-owner case; the suite now
+      distinguishes this fix from all three prior parser iterations.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 73cc7889b271e2f3733daed276ba235dde04dc20
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 13:00:51 2026 -0400
+
+    permission-hardener: disambiguate octal-ambiguous entries by file existence
+
+    Fresh-claude review found the earlier field-1 guard reintroduced a symmetric
+    misparse: a spaced filename whose second component is a bare octal (e.g.
+    '/srv/a 744 0644 root root') got dropped because the guard mistook the octal
+    component for the mode.
+
+    The 5-field reading is genuinely ambiguous lexically -- '/a 744 0644 root root'
+    (spaced name) vs '/foo 0744 1000 root cap' (numeric owner). Resolve by which
+    candidate filename exists on disk, consistent with the tool skipping
+    nonexistent targets. Keep the no-recovery reading only when field 1 is an octal
+    mode and only the un-recovered name exists.
+
+    - Replace the lexical guard with the existence check inside the right-anchor
+      branch; the whitelist-keyword branch is no longer gated (it was wrongly
+      skipped for '/x 744 y matchwhitelist').
+    - Regression test: spaced octal-second-component case; the assertion now matches
+      the whole first column (trailing TAB) so '/a 744' cannot substring-match the
+      '/a 744 name' entry.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 780561e61a6bf1c8d110d1105a5102b59ceb14ea
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 12:49:10 2026 -0400
+
+    permission-hardener: fix disable-all directive + numeric-owner misparse
+
+    Both surfaced by a fresh-claude review of the right-anchor change.
+
+    - whitelists_disable_all=true was unreachable: the character-class check (which
+      excludes '=') ran before the directive check, so the documented line tripped
+      "invalid characters" and aborted the whole run (exit 200). Recognize the
+      directive first.
+    - Numeric octal-looking owner in a capability entry (e.g. '<f> 0744 0755 root
+      cap'): right-anchoring folded the owner into the mode position, the folded
+      path did not exist, and the entry was silently dropped -- file left
+      un-hardened. Skip recovery when the line is already a well-formed no-space
+      entry (octal mode at field 1, count 4 or 5).
+    - Correct the stale field-order comment: the tail is
+      'filemode user_owner group_owner [capability]', mode first (per add_to_policy).
+    - Regression tests: numeric-owner case in the whitespace test; new
+      test_whitelists_disable_all.sh. Both fail on the pre-fix code.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit fca4984733e4aff6b90e8dd248d38b8cbb3889cc
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 12:40:52 2026 -0400
+
+    permission-hardener confs: correct gst-ptp-helper path/pkg and #8633 fix credit
+
+    - 30_default.conf: gst-ptp-helper ships in libgstreamer1.0-0, not
+      gstreamer1.0-plugins-base; fix the disabled entry's path to
+      .../gstreamer1.0/gstreamer-1.0/... (first component was gstreamer-1.0,
+      which does not exist). Verified via dpkg -S.
+    - 25_default_whitelist_qubes.conf: the #8633 EoP fix is qfile-unpacker
+      (qubes-core-agent-linux) refusing a UID change other than the caller's;
+      libqubes-pure path/symlink sanitization (qubes-linux-utils PR #87) is a
+      separate layer. The comment credited only PR #87.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 37ad483b25c43b93bb350983c2534f9d775e977a
+Author: claude (reviewdrain4 8d32e35d-2a57-4379-829c-6ef986f68cd4) <noreply@anthropic.com>
+Date:   Fri Aug 14 12:34:17 2026 -0400
+
+    permission-hardener: anchor mode tail from the right for spaced filenames
+
+    - Space filenames are recovered from the option tail; the mode/owner/group
+      [/capability] tail has a fixed width (3 or 4 fields).
+    - Old left-to-right octal scan misanchored when a space-delimited filename
+      chunk was itself a bare octal (e.g. '/path/a 744 name 0744 root root'): the
+      field-count check then failed and the WHOLE hardener aborted (exit 200),
+      contradicting the comment that claimed such a line was skipped.
+    - Anchor the mode from the right (field_count-3, else field_count-4); prefer
+      the 3-field reading so a filename ending in an octal chunk is not mistaken
+      for a 4-field capability tail.
+    - Regression test: config line with a bare-octal filename chunk must parse via
+      print-policy; fails on the old code (exit 200 / entry missing).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit c2fcb2d893bf26a59c1b25415333fafcad8682dc
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 05:15:00 2026 -0400
+
+    security-misc: drop versioned bash dependency
+
+    - Revert the bash (>= 4.4) Depends. Supported Debian (trixie+) always
+      ships bash >= 4.4 and earlier is unsupported, so the inherit_errexit
+      builtin is always present; the dependency adds nothing. Policy bans it
+      (bash-style-guide R-010b).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit a66fa50019f95326fef372ec5b3d1cde3b59b4a9
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:55:18 2026 -0400
+
+    security-misc: fix undo chown empty-arg + emerg fallback (ai-review)
+
+    - undo_policy_for_file: the strict-mode brace pass quoted "${verbose}",
+      so 'permission-hardener disable all' ran 'chown "" -- ...' (invalid
+      empty owner) and 'chmod "" ...'. Make verbose an array so an empty
+      value expands to zero arguments. Canary-verified.
+    - emerg-shutdown fallback: when the prebuilt binary is absent, compile
+      straight into /run (tmpfs, writable even if /usr is read-only) rather
+      than via build-emerg-shutdown into /usr/bin.
+    - Document the space-filename parser limitations (consecutive spaces
+      collapse; an octal-looking path chunk can misanchor -> entry skipped).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit c4bf5403d0dbda87b2e1fe165ade7c81bf4e1b30
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:44:07 2026 -0400
+
+    security-misc: declare bash (>= 4.4) for inherit_errexit
+
+    - Many scripts use 'shopt -s inherit_errexit' (bash 4.4+) in their
+      strict-mode preamble; ${misc:Depends} does not supply the baseline, so
+      an older /bin/bash would die in the preamble before the script's logic.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 5b34c9406198a47ce0c8d78a143606056e9d51b0
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:40:49 2026 -0400
+
+    security-misc: dfuzzer commit pin, marker rewords, remount-secure cleanup
+
+    - ci/dfuzzer-build.sh: pin dfuzzer to the exact upstream commit and
+      verify the tag resolves to it (a moved tag now fails loudly).
+    - grub 40_kernel_hardening + remount-secure hidepid: reword standing
+      'TODO' notes to 'REMINDER' (tracking, not pending work).
+    - remount-secure: replace the echo/true toggle with a printf-array
+      output helper; bring the file to strict-mode / shellcheck compliance
+      (6-directive block, braces) as required to touch it.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 9f12941585d5b18ae79f5d8dfd9f94cc0cd2507d
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:40:35 2026 -0400
+
+    security-misc: document whitelisted SUID/SGID helpers, flag human-only
+
+    - Replace the bare 'TODO: research' markers on the permission-hardener
+      whitelist entries (postfix, selinux/utempter, spice, virtualbox,
+      qubes/qfile-unpacker, pam-tmpdir-helper, gst-ptp-helper) with concise
+      documentation: what each helper is, why it is SUID/SGID, what breaks if
+      stripped, and relevant CVE/hardening notes.
+    - Retag the keep-vs-strip decisions TODO-HUMAN-DEVELOPER-ONLY -- a
+      security-trust call for a human maintainer, not AI-resolvable.
+    - 30_default.conf: fix the commented gst-ptp-helper path typo
+      (gstreamer1.0/grstreamer-1.0 -> gstreamer-1.0/gstreamer-1.0); note that
+      filenames with spaces are now parsed.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 8aef705e63595beaa90f70e9c8a4f297fd7a08ee
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:40:20 2026 -0400
+
+    security-misc: fm-shim frontend calls xdg-mime/gio by absolute path
+
+    - fm-shim-frontend invoked xdg-mime and gio by bare name, depending on
+      the systemd --user manager's PATH (minimal, profile-derived entries
+      absent) that fm-shim-backend hands it. Use /usr/bin/xdg-mime and
+      /usr/bin/gio, matching the existing /usr/bin/unicode-show call.
+    - Reword the backend TODO: the whole-session PATH fix belongs in
+      desktop-config-dist's start-lxqt-session (out of this repo); the
+      frontend absolute-path change is the in-repo mitigation.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 8ba6ca134e52411ce18f29b553dbfedb42b8ed3e
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:40:08 2026 -0400
+
+    security-misc: silence expected pam_exec journal noise via quiet_log
+
+    - The [success=1 default=ignore] pam_exec lines run helper scripts that
+      exit 1 on their expected control-flow path, emitting an alarming
+      'pam_exec(...): ... failed: exit code 1' journal line. Plain 'quiet'
+      suppresses only the user-facing message, not the log.
+    - Add 'quiet_log' (linux-pam >= 1.5.2, present on bookworm+) to every
+      skip-logic pam_exec line (console-lockdown, unix-faillock,
+      faillock-preauth, wheel), leaving the control flow byte-identical.
+    - Update the scripts' comments to point at the resolution.
+
+    Note: not verified on a live login journal (needs a real PAM stack);
+    the change is additive and semantics-preserving regardless.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 8c991dd34247e7cc43843a1dff6d5300330646f1
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:39:52 2026 -0400
+
+    security-misc: compile emerg-shutdown once at postinst, not every boot
+
+    - emerg-shutdown.c was recompiled into /run on every boot. Move the
+      compile to a standalone build-emerg-shutdown run from postinst, which
+      installs /usr/bin/emerg-shutdown. Compiling on-target keeps the package
+      Architecture: all while still producing a correct per-arch static binary.
+    - Boot-time emerg-shutdown now just copies /usr/bin/emerg-shutdown into
+      /run (memlockd-resident), with a fallback build if the binary is absent.
+    - dracut module ships /usr/bin/emerg-shutdown (exists right after install,
+      fixing the require_binaries /run chicken-and-egg).
+    - Sandbox-verified: build-emerg-shutdown produces a static ELF in /usr/bin.
+    - Strict/style compliance on the touched scripts (waivers for the debconf
+      maintainer script and the dracut-sourced module).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit 942ba8a1902c2c8a0d6cd1921f2b540eb413a217
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 04:39:33 2026 -0400
+
+    security-misc: permission-hardener parse filenames with spaces
+
+    - load_state() split config lines on every space, so any entry whose
+      filename contains a space was mis-fielded: silently skipped (a SUID
+      binary left un-hardened) or mapped to a corrupted policy entry.
+    - Recover the filename by parsing options from the right -- a trailing
+      whitelist keyword, or the mode/owner/group[/capability] tail anchored
+      by the octal mode. Space-free lines unchanged.
+    - Add regression test (drives the real script via print-policy) plus its
+      CI workflow. Canary-verified: fails on the pre-fix parser, passes now.
+    - Bring the file to strict-mode / shellcheck compliance as required to
+      touch it (6-directive block, printf, braces).
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+commit ec78b99bb1be3be87fb07b3c269d54dc4f1db113
+Merge: a8f26061 1fcf4967
+Author: claude (dev188 4c9dda7c-c359-4064-afa5-2ec7ed54398c) <noreply@anthropic.com>
+Date:   Wed Aug 12 03:30:39 2026 -0400
+
+    Merge branch 'master' into ai
+
+    Absorb upstream + fork-trunk work (merged PRs #23/#26, CI-workflow
+    propagation, changelog bump) so the PR diff carries only our own commits.
+
 commit 52e18f723e37b5e5616ae6681f9e3cd28369e88c
 Merge: 2da1f21c eb5b301d
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 12 03:02:01 2026 -0400
 
     Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit a8f26061e0e199b95077aa20696257bddc3db73d
+Author: claude (dev182 e09ec5cf-4ebf-4e1b-88e5-55fbac6ef1d3) <noreply@anthropic.com>
+Date:   Mon Aug 10 13:56:04 2026 -0400
+
+    Drain input in USB-controller and config-file lookups
+
+    check-for-usb-controller: grep --quiet exits on the first match and closes
+    the pipe, sending SIGPIPE to lspci. Under pipefail the pipeline then reports
+    141, so the guarding if takes the false branch even when a USB controller is
+    present. Let grep read the whole stream and redirect to /dev/null instead.
+
+    mmap-rnd-bits: head -n 1 has the same early-close hazard against ls; use
+    sed -n '1p', which consumes all input, for consistency. Drop the redundant
+    duplicate set -euo pipefail line already covered by the long-form preamble.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 
 commit eb5b301db6069a5ccabf327745a000053ece1475
 Merge: a5655e63 2da1f21c
