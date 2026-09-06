@@ -71,7 +71,6 @@ usr/lib/permission-hardener.d/25_default_whitelist_passwd.conf#security-misc-sha
 usr/lib/permission-hardener.d/25_default_whitelist_policykit.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_policykit.conf
 usr/lib/permission-hardener.d/25_default_whitelist_postfix.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_postfix.conf
 usr/lib/permission-hardener.d/25_default_whitelist_qubes.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_qubes.conf
-usr/lib/permission-hardener.d/25_default_whitelist_selinux.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_selinux.conf
 usr/lib/permission-hardener.d/25_default_whitelist_spice.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_spice.conf
 usr/lib/permission-hardener.d/25_default_whitelist_ssh.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_ssh.conf
 usr/lib/permission-hardener.d/25_default_whitelist_sudo.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_sudo.conf
