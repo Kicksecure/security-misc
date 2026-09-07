@@ -21,40 +21,38 @@ shopt -s nullglob
 
 system_map_list=( /boot/System.map* /usr/src/*/System.map* /lib/modules/*/*/System.map* /System.map* )
 
-if (( ${#system_map_list[@]} > 0 )); then
-   echo "INFO: Deleting system.map files..."
+if [ "${#system_map_list[@]}" -gt 0 ]; then
+   printf '%s\n' "INFO: Deleting system.map files..."
 fi
 
 failed_list=()
 
 ## Removes the System.map files as they are only used for debugging or malware.
 for filename in "${system_map_list[@]}"; do
-   if [[ ! -f "${filename}" ]]; then
+   if ! [ -f "${filename}" ]; then
       continue
    fi
-   ## The immutable and append-only file attributes ('chattr +i', 'chattr +a')
-   ## prevent deletion. Clear them. A System.map file has no legitimate
-   ## reason to carry either and they would possibly complicate kernel
-   ## package removal.
-   chattr -ia -- "${filename}" &>/dev/null || true
+   ## The immutable and append-only file attributes prevent deletion.
+   ## System.map files have no reason to have either.
+   chattr -ia -- "${filename}" >/dev/null 2>&1 || true
 
    ## 'shred' with '--verbose' is too chatty. (7 lines)
    ## 'shred' stderr is suppressed because failure is expected on read-only
-   ## file systems. Failures are reported below instead.
+   ## file systems.
    if shred --force --zero -u -- "${filename}" 2>/dev/null; then
-      echo "INFO: removed '${filename}'"
+      printf '%s\n' "INFO: removed '${filename}'"
       continue
    fi
    failed_list+=( "${filename}" )
 done
 
-if (( ${#failed_list[@]} > 0 )); then
+if [ "${#failed_list[@]}" -gt 0 ]; then
    for filename in "${failed_list[@]}"; do
-      echo "NOTE: Could not remove '${filename}'."
+      printf '%s\n' "NOTE: Could not remove '${filename}'."
    done
-   echo "NOTE: For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
-elif (( ${#system_map_list[@]} > 0 )); then
-   echo "INFO: Done. Success."
+   printf '%s\n' "NOTE: For details, see: https://www.kicksecure.com/wiki/security-misc#system_map"
+elif [ "${#system_map_list[@]}" -gt 0 ]; then
+   printf '%s\n' "INFO: Done. Success."
 fi
 
 ## Deliberately exits 0 even on partial failure. A non-zero exit code would fail
