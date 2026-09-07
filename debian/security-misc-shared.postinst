@@ -4,7 +4,7 @@
 ## See the file COPYING for copying conditions.
 
 ## style-ok: allow-echo  (Debian maintainer-script convention)
-## style-ok: no-has  (has.sh not reliably available this early in maintainer scripts)
+## style-ok: no-has  (has.bsh not reliably available this early in maintainer scripts)
 ## style-ok: no-strict  (debconf maintainer script; full strict block would leak into APT/debconf)
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
