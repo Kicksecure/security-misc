@@ -1,3 +1,29 @@
+commit 24a55b78fe94ef69bb866f71b86d54e3a659b83c
+Merge: 94ea3994 aa458bac
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 7 01:11:01 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit aa458bac395d6fd450c749d0934f4a63d4a76c17
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 6 23:11:56 2026 -0400
+
+    Fix coding style, shorten comments
+
+commit 97f78d8262aeea854cef3d654ab6aeb57e1f08ec
+Merge: 94ea3994 077d41a6
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 6 22:38:54 2026 -0400
+
+    Merge remote-tracking branch 'maybebyte/fix/remove-system-map-readonly-continue' into arraybolt3/trixie
+
+commit 94ea3994027115b02bdcc8d8246c4c5b5c40a776
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 6 16:58:23 2026 +0000
+
+    bumped changelog version
+
 commit 0088727e4a9ca17d07916a30544ffa6e13890bfc
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Sep 6 12:56:41 2026 -0400
@@ -664,6 +690,45 @@ Date:   Thu Jul 30 11:59:15 2026 -0400
     one always is for the events this workflow accepts.
 
     Generated with assistance from Claude Code.
+
+commit 077d41a6b193787dc31718370c1532d6638569bc
+Author: Ashlen <dev@anthes.is>
+Date:   Wed Jul 15 12:54:05 2026 -0600
+
+    fix(remove-system.map): continue past undeletable files
+
+    The deletion loop called `exit 0` on the first System.map that `[ -w ]`
+    rejected, so copies in later locations were never shredded. Where
+    `[ -w ]` passed but shred failed anyway, shred ran as a bare command and
+    tripped the ERR trap that pre.bsh installs, aborting with a "## Please
+    report this bug!" banner and exit 1.
+
+    Branch on shred's exit status instead of `[ -w ]`, which does not
+    predict removability. Unlinking depends on write permission on the
+    parent directory rather than on the file itself, and an append-only file
+    passes the test yet cannot be unlinked at all. For a full-capability
+    root process the check is also true on a mode 444 file, so it only ever
+    failed on read-only file systems and on files carrying the immutable
+    attribute.
+
+    Clear the immutable and append-only attributes before each attempt. Per
+    review, a System.map should never be immutable and `chattr +i` would
+    possibly complicate kernel package removal; append-only is cleared on
+    the same grounds, since it blocks removal without affecting `[ -w ]`.
+
+    Report the files that remain once at the end, under a single wiki link
+    rather than repeating it on every line, and withhold "Done. Success."
+    when anything failed. A file reachable under two names, such as
+    /lib/modules/<version>/build and the source symlink beside it, is listed
+    under each, since both matched and both failed.
+
+    Iterate an array rather than word-splitting a string with IFS, which a
+    /etc/remove-system.map_pre.d drop-in can set; under `IFS=:` the globs
+    matched nothing, so the script deleted nothing and still exited 0.
+
+    The removal loop no longer exits early on failure and the script ends in
+    an explicit `exit 0`; a non-zero status would fail the kernel package's
+    postinst hook and the oneshot unit on every boot.
 
 commit 5daefde4e8cb4705d8fbe7886f2e003e61e0b974
 Author: claude (dev118 bd22decd-3027-4ab5-9e48-11adfe39b279) <noreply@anthropic.com>
