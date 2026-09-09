@@ -10,5 +10,4 @@ set -o errtrace
 shopt -s inherit_errexit
 shopt -s shift_verbose
 
-printf '%s
-' "${PATH}"
+printf '%s\n' "${PATH}"

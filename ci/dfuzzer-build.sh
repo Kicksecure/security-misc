@@ -44,15 +44,12 @@ if [ "${CI:-}" != "true" ] && [ "${ALLOW_LOCAL:-}" != "true" ]; then
 fi
 
 DFUZZER_TAG="${DFUZZER_TAG:-v2.6}"
-## Pin the exact upstream commit. A tag is mutable; verifying the
-## resolved commit hash detects a re-pointed tag (supply-chain guard).
-## Keep in sync with DFUZZER_TAG on every version bump.
 DFUZZER_COMMIT="${DFUZZER_COMMIT:-a955a80f7dd20fd7aeffad91da1c495aab5dbbd3}"
 
 git clone --depth 1 --branch "${DFUZZER_TAG}" \
   https://github.com/dbus-fuzzer/dfuzzer /tmp/dfuzzer
 
-dfuzzer_actual_commit="$(git -C /tmp/dfuzzer rev-parse HEAD)"
+dfuzzer_actual_commit="$(git -C /tmp/dfuzzer rev-parse --verify HEAD)"
 if [ "${dfuzzer_actual_commit}" != "${DFUZZER_COMMIT}" ]; then
   printf '%s\n' "${BASH_SOURCE[0]}: dfuzzer tag ${DFUZZER_TAG} resolved to ${dfuzzer_actual_commit}, expected ${DFUZZER_COMMIT} -- refusing (tag moved?)." >&2
   exit 1

@@ -59,10 +59,6 @@ home_folder_access_rights_lockdown() {
       ## See also: user private groups UPGs
       ## https://wiki.debian.org/UserPrivateGroups
       printf '%s\n' "$0: chmod o-rwx \"${folder_name}\""
-      ## Best-effort PER USER, deliberately: without these, errexit would abort
-      ## the whole loop on the first failure and leave every remaining home
-      ## directory un-locked-down. Failures were already tolerated here before
-      ## strict mode; keep that, including still recording the state file.
       chmod o-rwx "${folder_name}" || true
       touch "/var/cache/security-misc/state-files/${user}" || true
    done

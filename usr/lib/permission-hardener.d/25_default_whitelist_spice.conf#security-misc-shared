@@ -6,14 +6,6 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## spice-client-glib-usb-acl-helper (spice-gtk): SUID root helper a SPICE client
-## (virt-viewer, GNOME Boxes) calls during USB redirection to grant the invoking
-## user a POSIX ACL on a /dev/bus/usb node so it can pass through to a VM. Needs
-## root to set the ACL; consults polkit for an active local session first, so
-## access is session-scoped rather than a permanent group grant. Stripping SUID
-## breaks USB redirection ("Error setting facl: Operation not permitted"). It is
-## a setuid-root C helper reachable by any desktop user -- a legitimate hardening
-## candidate to disable where USB-to-VM redirection is unused.
-## Ref: https://packages.debian.org/bookworm/spice-client-glib-usb-acl-helper
-## TODO-HUMAN-DEVELOPER-ONLY: keep-vs-strip SUID is a human trust decision.
+## Ref: https://packages.debian.org/trixie/spice-client-glib-usb-acl-helper
+## TODO-HUMAN-DEVELOPER-ONLY: research
 spice-client-glib-usb-acl-helper matchwhitelist

@@ -4,6 +4,8 @@
 
 ## AI-Assisted
 
+## WARNING: Not human-reviewed, MUST be moved to dist-ai.
+
 ## Regression test: the documented special directive 'whitelists_disable_all=true'
 ## must be honored, not rejected.
 ##

@@ -4,6 +4,8 @@
 
 ## AI-Assisted
 
+## WARNING: Not human-reviewed, MUST be moved to dist-ai.
+
 ## Regression test: permission-hardener must parse a config filename that
 ## contains spaces.
 ##

@@ -29,7 +29,7 @@
 ## style-ok: no-has  (runs in dracut where helper-scripts has.bsh is unavailable; id itself may be absent)
 
 ## Mount helper functions (_boot, _sys, _usr, ...) are invoked indirectly via
-## the dispatch in main(); shellcheck cannot see the calls.
+## the dispatch in main().
 # shellcheck disable=SC2317
 
 #set -x
@@ -120,7 +120,7 @@ parse_options() {
                break
                ;;
            -*)
-               printf '%s\n' "ERROR: unknown option: ${1}" >&2
+               "${output_command[@]}" "ERROR: unknown option: ${1}" >&2
                exit 1
                ;;
            *)

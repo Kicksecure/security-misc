@@ -46,7 +46,7 @@ COMPAT_BITS_MAX_DEFAULT=16
 ## so the ls-parsing hazard SC2012 warns about is not reachable here, and a
 ## find-based newest-file rewrite would be a behaviour risk for no gain.
 # shellcheck disable=SC2012
-if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* | sed -n '1p') ; then
+if compgen -G "/boot/config-*" > /dev/null && CONFIG=$(ls -1 -t /boot/config-* | head -n1) ; then
   ## Find the relevant config options.
   if ! BITS_MAX=$(grep -E '^CONFIG_ARCH_MMAP_RND_BITS_MAX=[0-9]+$' "${CONFIG}" | cut -d "=" -f 2) ; then
    printf '%s\n' "$0: ERROR: Error detecting CONFIG_ARCH_MMAP_RND_BITS_MAX! Using built-in default." >&2

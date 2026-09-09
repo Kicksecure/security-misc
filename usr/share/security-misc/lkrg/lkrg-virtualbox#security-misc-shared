@@ -13,7 +13,7 @@ shopt -s shift_verbose
 export LC_ALL=C
 
 ## security-misc-shared Depends on helper-scripts.
-# shellcheck source=../../../../helper-scripts/usr/libexec/helper-scripts/has.bsh
+# shellcheck source=../../../../../helper-scripts/usr/libexec/helper-scripts/has.bsh
 source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/has.bsh
 
 ## Check if the VirtualBox host software is installed.
@@ -21,7 +21,7 @@ if ! has vboxmanage ; then
    ## VirtualBox host software is not installed.
    if test -f /etc/sysctl.d/30-lkrg-virtualbox.conf ; then
       ## Delete using '--verbose' so user is notified.
-      safe-rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
+      safe-rm --force --verbose -- /etc/sysctl.d/30-lkrg-virtualbox.conf
    fi
    exit 0
 fi
@@ -39,4 +39,4 @@ if ! package-installed-check "lkrg" ; then
 fi
 
 ## Delete using '--verbose' so user is notified.
-cp --verbose /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf
+cp --verbose -- /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf
