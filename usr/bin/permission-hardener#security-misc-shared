@@ -475,7 +475,7 @@ load_state() {
       ## after a filename is either an octal file mode or a keyword, and we
       ## only support user/group names, not UIDs and GIDs, as owner
       ## identifiers. This means that we can scan from right to left for the
-      ## furthest-right octal integer rr keyword field and use it to separate
+      ## furthest-right octal integer or keyword field and use it to separate
       ## the filename from the rest of the options. (If usernames could
       ## themselves be octal integers, this would break, but adduser.conf's
       ## default NAME_REGEX forbids this. This is definitely a hack, but the

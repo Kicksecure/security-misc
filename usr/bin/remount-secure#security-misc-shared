@@ -26,7 +26,7 @@
 ## https://www.kicksecure.com/wiki/Dev/remount-secure
 ## https://forums.whonix.org/t/re-mount-home-and-other-with-noexec-and-nosuid-among-other-useful-mount-options-for-better-security/7707
 
-## style-ok: no-has - may run in dracut without helper-scripts
+## style-ok: no-has  (runs in dracut where helper-scripts has.bsh is unavailable; id itself may be absent)
 
 ## Mount helper functions (_boot, _sys, _usr, ...) are invoked indirectly via
 ## the dispatch in main().

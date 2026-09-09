@@ -3,8 +3,9 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## style-ok: no-has - has.sh isn't reliably available in maintainer scripts
-## style-ok: no-strict - full strict block could leak into APT/debconf
+## style-ok: allow-echo  (Debian maintainer-script convention)
+## style-ok: no-has  (has.bsh not reliably available this early in maintainer scripts)
+## style-ok: no-strict  (debconf maintainer script; full strict block would leak into APT/debconf)
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
    source /usr/libexec/helper-scripts/pre.bsh
