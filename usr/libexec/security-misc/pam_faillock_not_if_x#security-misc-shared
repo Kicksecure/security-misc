@@ -41,8 +41,4 @@ done
 
 ## exit failure so [success=1 default=ignore] will result in running the
 ## next PAM module (the pam_faillock module).
-##
-## Causes confusing error message:
-## pam_exec(sudo:auth): /usr/libexec/security-misc/pam_faillock_not_if_x failed: exit code 1
-## https://github.com/linux-pam/linux-pam/issues/329
 exit 1

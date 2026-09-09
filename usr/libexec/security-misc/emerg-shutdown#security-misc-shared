@@ -3,15 +3,12 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## TODO: Move most of this to a build script that will compile and place under
-## /usr/bin rather than /run. Then turn this script into something that simply
-## copies emerg-shutdown to /run and then runs it. This will reduce resource
-## consumption for end users.
-
 set -o errexit
 set -o nounset
-set -o errtrace
 set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 ## Make sure globs sort in a predictable, reproducible fashion
 export LC_ALL=C
@@ -45,15 +42,18 @@ else
   ## Find the devices that make up the root device
   readarray -t root_devices < <(/usr/libexec/helper-scripts/get-backing-devices-for-mountpoint '/') || true;
 
-  ## Build the actual emerg-shutdown executable
   if [ ! -f '/run/emerg-shutdown' ]; then
-    /usr/libexec/security-misc/compile-emerg-shutdown \
-      /usr/src/security-misc/emerg-shutdown.c \
-      /run/emerg-shutdown \
-      || {
-        printf "%s\n" 'Could not compile force-shutdown executable!'
-        exit 1
-      }
+    if [ -f '/usr/bin/emerg-shutdown' ]; then
+      cp -- /usr/bin/emerg-shutdown /run/emerg-shutdown
+    else
+      /usr/libexec/security-misc/compile-emerg-shutdown \
+        /usr/src/security-misc/emerg-shutdown.c \
+        /run/emerg-shutdown \
+        || {
+          printf '%s\n' 'Could not compile emerg-shutdown executable!'
+          exit 1
+        }
+    fi
   fi
 
   ## memlockd daemonizes itself, so no need to background it.

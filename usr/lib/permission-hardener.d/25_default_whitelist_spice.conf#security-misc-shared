@@ -6,5 +6,6 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research and document
+## Ref: https://packages.debian.org/trixie/spice-client-glib-usb-acl-helper
+## TODO-HUMAN-DEVELOPER-ONLY: research
 spice-client-glib-usb-acl-helper matchwhitelist

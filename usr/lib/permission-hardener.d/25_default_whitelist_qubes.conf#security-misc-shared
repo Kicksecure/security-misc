@@ -6,7 +6,8 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research
+## qfile-unpacker is written by Qubes and is trusted. Needed as part of copying
+## files between VMs.
 ## https://github.com/QubesOS/qubes-core-agent-linux/blob/master/qubes-rpc/qfile-unpacker.c
 ##
 ## Historic Qubes upstream security issue:
@@ -17,7 +18,7 @@
 ## - /usr/lib/qubes/qfile-unpacker whitelist
 ##   - Not bit-for-bit identical to /usr/lib/qubes/qfile-unpacker.
 ##   - Stripping SUID from this does *not* break file copying.
-##   - TODO: further research required on its purpose
+##   - TODO-HUMAN-DEVELOPER-ONLY: further research required on its purpose
 ## - /usr/bin/qfile-unpacker
 ##   - Appears to be an integral part of file transfer between qubes, stripping
 ##     SUID from this in an AppVM results in that AppVM being unable to receive

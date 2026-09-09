@@ -6,7 +6,7 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research
+## TODO-HUMAN-DEVELOPER-ONLY: research
 /usr/lib/virtualbox/ matchwhitelist
 VirtualBoxVM matchwhitelist
 VBoxSDL matchwhitelist

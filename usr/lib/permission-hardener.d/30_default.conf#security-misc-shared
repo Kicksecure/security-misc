@@ -12,7 +12,8 @@
 ## [filename] [mode] [owner] [group] [capability]
 ## [filename] [exactwhitelist|matchwhitelist|disablewhitelist|nosuid]
 ##
-## TODO: white spaces inside file name untested and probably will not work.
+## White spaces inside a file name are supported, no quoting or escaping is
+## necessary (or permitted).
 
 ######################################################################
 # Global Settings
@@ -23,10 +24,6 @@
 ######################################################################
 # SUID disables below (or in lexically higher) files: disablewhitelist
 ######################################################################
-
-## For example, if you are not using SELinux the following might make sense to
-## enable. TODO: research
-#/utempter/utempter disablewhitelist
 
 ## If you are not going to use AppImages such as electrum Bitcoin wallet.
 #/fusermount disablewhitelist
@@ -119,5 +116,5 @@
 ## anon-apps-config does this.
 #/usr/bin/ping 0744 root root none
 
-## TODO: research
-#/usr/lib/x86_64-linux-gnu/gstreamer1.0/grstreamer-1.0/gst-ptp-helper 0744 root root none
+## TODO-HUMAN-DEVELOPER-ONLY: research
+#/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper 0744 root root none
