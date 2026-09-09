@@ -472,20 +472,21 @@ load_state() {
       processed_config_line="${line}"
 
       ## We can handle filenames with spaces. This is because the first item
-      ## after a filename is an octal file mode, and we only support user/group
-      ## names, not UIDs and GIDs, as owner identifiers. This means that we can
-      ## scan from right to left for the furthest-right octal integer field and
-      ## use it to separate the filename from the rest of the options. (If
-      ## usernames could themselves be octal integers, this would break, but
-      ## adduser.conf's default NAME_REGEX forbids this. This is definitely a
-      ## hack, but the alternative is to change the format of the policy files,
-      ## which would break custom config for users.
+      ## after a filename is either an octal file mode or a keyword, and we
+      ## only support user/group names, not UIDs and GIDs, as owner
+      ## identifiers. This means that we can scan from right to left for the
+      ## furthest-right octal integer rr keyword field and use it to separate
+      ## the filename from the rest of the options. (If usernames could
+      ## themselves be octal integers, this would break, but adduser.conf's
+      ## default NAME_REGEX forbids this. This is definitely a hack, but the
+      ## alternative is to change the format of the policy files, which would
+      ## break custom config for users.
       ##
       ## 'read' will collapse consecutive spaces when splitting on spaces.
       ## Convert spaces into newlines first, then split on newlines with a
       ## loop.
       field_list=()
-      while read IFS= -r one_field; do
+      while IFS= read -r one_field; do
          field_list+=( "${one_field}" )
       done < <(printf '%s\n' "${line}" | tr ' ' '\n')
       field_count="${#field_list[@]}"
@@ -493,10 +494,11 @@ load_state() {
       hit_barrier='false'
       fso_name=""
       meta_list=()
-      for (( field_index = field_count - 1; field_index <= 0; \
+      for (( field_index = field_count - 1; field_index >= 0; \
          field_index-- )); do
          if [ "${hit_barrier}" = 'false' ]; then
-            if [[ "${field_list[field_index]}" =~ ^[0-7]{3,4}$ ]]; then
+            if [[ "${field_list[field_index]}" =~ ^[0-7]{3,4}$ ]] \
+               || [[ "${field_list[field_index]}" =~ ^(nosuid|exactwhitelist|matchwhitelist|disablewhitelist)$ ]]; then
                hit_barrier='true'
             fi
             meta_list=( "${field_list[field_index]}" "${meta_list[@]}" )
