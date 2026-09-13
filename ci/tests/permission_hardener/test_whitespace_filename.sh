@@ -123,7 +123,7 @@ fi
 ## each filename as the whole first field (trailing TAB). A bare substring match
 ## would let '/a 744' spuriously match the '/a 744 name' entry.
 for expected_file in "${spaced_file}" "${octal_chunk_file}" "${numeric_owner_file}" "${octal_second_file}" "${numeric_owner_spaced_file}"; do
-  if printf '%s\n' "${policy_output}" | grep -qF -- "${expected_file}"$'\t'; then
+  if printf '%s\n' "${policy_output}" | grep --quiet --fixed-strings -- "${expected_file}"$'\t'; then
     printf '%s\n' "PASS: filename '${expected_file}' parsed and present in policy."
   else
     printf '%s\n' "FAIL: filename '${expected_file}' missing from print-policy output." >&2
