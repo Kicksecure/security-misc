@@ -1,14 +1,18 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
+## WARNING: Do not add ANY "Requires" dependencies to this unit. If a required
+## dependency terminates, systemd will terminate emerg-shutdown, and many
+## services crash when the boot drive is removed. Use "Wants" instead.
+
 [Unit]
 Description=Emergency shutdown when boot media is removed
 Documentation=https://github.com/Kicksecure/security-misc
 DefaultDependencies=no
 Before=sysinit.target
-Requires=systemd-udevd.service
+Wants=systemd-udevd.service
 After=systemd-udevd.service
-Requires=local-fs.target
+Wants=local-fs.target
 After=local-fs.target
 ConditionPathExists=!/usr/share/qubes/marker-vm
 ## Do not run emerg-shutdown.service in case 'rd.live.ram' or 'rd.live.ram=1'

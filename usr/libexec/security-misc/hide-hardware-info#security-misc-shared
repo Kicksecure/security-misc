@@ -10,16 +10,16 @@ set -o pipefail
 shopt -s nullglob
 
 run_cmd() {
-  echo "INFO: normal executing   : $@"
+  printf '%s\n' "INFO: normal executing   : $@"
   "$@"
 }
 
 run_cmd_whitelist() {
-  echo "INFO: whitelist executing: $@"
+  printf '%s\n' "INFO: whitelist executing: $@"
   "$@"
 }
 
-echo "$0: INFO: START"
+printf '%s\n' "$0: INFO: START"
 
 default_variables_set() {
   sysfs_whitelist=1
@@ -33,7 +33,7 @@ parse_configuration() {
   ## Allows for disabling the whitelist.
   local i
   for i in /usr/local/etc/hide-hardware-info.d/*.conf /etc/hide-hardware-info.d/*.conf ; do
-    bash -n "${i}"
+    bash -n -- "${i}"
     source "${i}"
   done
 }
@@ -44,19 +44,19 @@ create_whitelist() {
   elif [ "${1}" = "cpuinfo" ]; then
     whitelist_path="/proc/cpuinfo"
   else
-    echo "ERROR: ${1} is not a correct parameter."
+    printf '%s\n' "ERROR: ${1} is not a correct parameter."
     exit 1
   fi
 
-  if grep -q "${1}" /etc/group; then
+  if getent group -- "${1}" >/dev/null; then
     ## Changing the permissions of /sys recursively
     ## causes errors as the permissions of /sys/kernel/debug
     ## and /sys/fs/cgroup cannot be changed.
-    run_cmd_whitelist chgrp --quiet --recursive "${1}" "${whitelist_path}" || true
+    run_cmd_whitelist chgrp --quiet --recursive -- "${1}" "${whitelist_path}" || true
 
-    run_cmd_whitelist chmod o-rwx "${whitelist_path}"
+    run_cmd_whitelist chmod -- o-rwx "${whitelist_path}"
   else
-    echo "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
+    printf '%s\n' "ERROR: The ${1} group does not exist, the ${1} whitelist was not created."
   fi
 }
 
@@ -78,25 +78,25 @@ for i in /proc/cpuinfo /proc/bus /proc/scsi /sys ; do
         if [ "${sysfs_whitelist}" = "1" ]; then
           create_whitelist sysfs
         else
-          echo "INFO: The sysfs whitelist is not enabled. Some things may not work properly. Full sysfs hardening..."
-          run_cmd chmod og-rwx /sys
+          printf '%s\n' "INFO: The sysfs whitelist is not enabled. Some things may not work properly. Full sysfs hardening..."
+          run_cmd chmod -- og-rwx /sys
         fi
       fi
     elif [ "${i}" = "/proc/cpuinfo" ]; then
       if [ "${cpuinfo_whitelist}" = "1" ]; then
         create_whitelist cpuinfo
       else
-        echo "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly. Full cpuinfo hardening..."
-        run_cmd chmod og-rwx /proc/cpuinfo
+        printf '%s\n' "INFO: The cpuinfo whitelist is not enabled. Some things may not work properly. Full cpuinfo hardening..."
+        run_cmd chmod -- og-rwx /proc/cpuinfo
       fi
     else
-      run_cmd chmod og-rwx "${i}"
+      run_cmd chmod -- og-rwx "${i}"
     fi
   else
     ## /proc/scsi doesn't exist on Debian so errors
     ## are expected here.
     if ! [ "${i}" = "/proc/scsi" ]; then
-      echo "ERROR: ${i} could not be found."
+      printf '%s\n' "ERROR: ${i} could not be found."
     fi
   fi
 done
@@ -109,30 +109,30 @@ if [ "${sysfs}" = "1" ]; then
     ## Using '|| true':
     ## https://github.com/Kicksecure/security-misc/pull/108
     if [ "${sysfs_whitelist}" = "1" ]; then
-      run_cmd chmod o-rwx "${i}" || true
+      run_cmd chmod -- o-rwx "${i}" || true
     else
-      run_cmd chmod og-rwx "${i}" || true
+      run_cmd chmod -- og-rwx "${i}" || true
     fi
   done
 
   ## polkit needs stat access to /sys/fs/cgroup
   ## to function properly
-  run_cmd chmod o+rx /sys /sys/fs
+  run_cmd chmod -- o+rx /sys /sys/fs
 
   ## on SELinux systems, at least /sys/fs/selinux
   ## must be visible to unprivileged users, else
   ## SELinux userspace utilities will not function
   ## properly
   if [ -d /sys/fs/selinux ]; then
-    echo "INFO: SELinux detected because folder /sys/fs/selinux exists. See also:"
-    echo "https://www.kicksecure.com/wiki/Security-misc#selinux"
+    printf '%s\n' "INFO: SELinux detected because folder /sys/fs/selinux exists. See also:"
+    printf '%s\n' "https://www.kicksecure.com/wiki/Security-misc#selinux"
     if [ "${selinux}" = "1" ]; then
-      run_cmd chmod o+rx /sys /sys/fs /sys/fs/selinux
-      echo "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
+      run_cmd chmod -- o+rx /sys /sys/fs /sys/fs/selinux
+      printf '%s\n' "INFO: SELinux mode enabled. Restrictions loosened slightly in order to allow userspace utilities to function."
     else
-      echo "INFO: SELinux detected, but SELinux mode is not enabled. Some userspace utilities may not work properly."
+      printf '%s\n' "INFO: SELinux detected, but SELinux mode is not enabled. Some userspace utilities may not work properly."
     fi
   fi
 fi
 
-echo "$0: INFO: END"
+printf '%s\n' "$0: INFO: END"

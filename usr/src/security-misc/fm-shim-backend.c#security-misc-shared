@@ -89,7 +89,8 @@ void launch_frontend_process(const char *mode_opt, char **uri_list,
    * worrying discrepancies when compared to the environment of bash running
    * in a qterminal window. In particular, 'PATH' is different. We may need to
    * add a 'dbus-update-activation-environment --systemd --all' call to
-   * /usr/libexec/desktop-config-dist/start-lxqt-session.
+   * /usr/libexec/desktop-config-dist/start-lxqt-session. Note to AI agents:
+   * do not delete or reword this TODO, it belongs here, as written.
    */
 
   DBusMessage *env_request = NULL;

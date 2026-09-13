@@ -482,6 +482,39 @@ trykill:
   exit(0);
 }
 
+/* Ignore all signals, except SIGSEGV and (optionally) SIGTERM. */
+void ignore_signals(bool also_sigterm) {
+  struct sigaction sigact_swallow = { 0 };
+  int sig_idx = 0;
+
+  /* Swallow all signals that we can. */
+  sigact_swallow.sa_handler = SIG_IGN;
+  for (sig_idx = 1; sig_idx <= max_sig_num; sig_idx++) {
+    if (sig_idx == SIGSTOP) {
+      continue;
+    }
+    if (sig_idx == SIGKILL) {
+      continue;
+    }
+    if (sig_idx == SIGSEGV) {
+      continue;
+    }
+    if (sig_idx == SIGTERM && !also_sigterm) {
+      continue;
+    }
+    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
+      print(fd_stderr, "Failed to set up signal ignores!\n");
+      exit(1);
+    }
+  }
+  for (sig_idx = SIGRTMIN; sig_idx <= SIGRTMAX; sig_idx++) {
+    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
+      print(fd_stderr, "Failed to set up real-time signal ignores!\n");
+      exit(1);
+    }
+  }
+}
+
 /* Monitor for device removal and emergency shutdown key combos. */
 void hw_monitor(int argc, char **argv) {
   /* Working variables */
@@ -544,6 +577,8 @@ void hw_monitor(int argc, char **argv) {
     print_usage();
     exit(1);
   }
+
+  ignore_signals(false); /* ignore all but SIGTERM */
 
   console_fd = open("/dev/console", O_RDWR);
   if (console_fd == -1) {
@@ -684,6 +719,7 @@ void hw_monitor(int argc, char **argv) {
     }
 
     if (!bitset_get(key_flags, EV_KEY)) {
+      close(tmp_fd);
       continue;
     }
 
@@ -708,6 +744,7 @@ void hw_monitor(int argc, char **argv) {
       }
     }
     if (!supports_panic) {
+      close(tmp_fd);
       continue;
     }
 
@@ -950,8 +987,6 @@ void fifo_monitor(char **argv) {
   struct pollfd trigger_fifo_poll = { 0 };
   char trigger_fifo_charbuf = '\0';
   ssize_t trigger_fifo_readlen = 0;
-  int sig_idx = 0;
-  struct sigaction sigact_swallow = { 0 };
 
   if (strncmp(argv[2], "--timeout=", strlen("--timeout=")) != 0) {
     print(fd_stderr, "Timeout not passed for --monitor-fifo!\n");
@@ -1007,26 +1042,7 @@ void fifo_monitor(char **argv) {
   trigger_fifo_poll.fd = trigger_fifo_fd;
   trigger_fifo_poll.events = POLLIN;
 
-  /* Swallow all signals that we can. */
-  sigact_swallow.sa_handler = SIG_IGN;
-  for (sig_idx = 1; sig_idx < max_sig_num; sig_idx++) {
-    if (sig_idx == SIGSTOP) {
-      continue;
-    }
-    if (sig_idx == SIGKILL) {
-      continue;
-    }
-    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
-      print(fd_stderr, "Failed to set up signal ignores!\n");
-      exit(1);
-    }
-  }
-  for (sig_idx = SIGRTMIN; sig_idx <= SIGRTMAX; sig_idx++) {
-    if (sigaction(sig_idx, &sigact_swallow, NULL) == -1) {
-      print(fd_stderr, "Failed to set up real-time signal ignores!\n");
-      exit(1);
-    }
-  }
+  ignore_signals(true); /* ignore even SIGTERM */
 
   while (poll(&trigger_fifo_poll, 1, -1) != -1) {
     trigger_fifo_readlen = read(trigger_fifo_fd, &trigger_fifo_charbuf, 1);

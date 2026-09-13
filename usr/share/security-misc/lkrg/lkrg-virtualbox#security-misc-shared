@@ -4,14 +4,24 @@
 ## See the file COPYING for copying conditions.
 
 #set -x
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+export LC_ALL=C
+
+## security-misc-shared Depends on helper-scripts.
+# shellcheck source=../../../../../helper-scripts/usr/libexec/helper-scripts/has.bsh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/has.bsh
 
 ## Check if the VirtualBox host software is installed.
-if ! command -v vboxmanage &>/dev/null ; then
+if ! has vboxmanage ; then
    ## VirtualBox host software is not installed.
    if test -f /etc/sysctl.d/30-lkrg-virtualbox.conf ; then
       ## Delete using '--verbose' so user is notified.
-      rm --force --verbose /etc/sysctl.d/30-lkrg-virtualbox.conf
+      safe-rm --force --verbose -- /etc/sysctl.d/30-lkrg-virtualbox.conf
    fi
    exit 0
 fi
@@ -29,4 +39,4 @@ if ! package-installed-check "lkrg" ; then
 fi
 
 ## Delete using '--verbose' so user is notified.
-cp --verbose /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf
+cp --verbose -- /usr/share/security-misc/lkrg/30-lkrg-virtualbox.conf /etc/sysctl.d/30-lkrg-virtualbox.conf

@@ -20,7 +20,7 @@ for config_file in /etc/security-misc/emerg-shutdown/*.conf /usr/local/etc/secur
     source "${config_file}"
   fi
 done
-if [ -z "${ENSURE_SHUTDOWN_TIMEOUT}" ] \
+if [ -z "${ENSURE_SHUTDOWN_TIMEOUT:-}" ] \
   || ! is_whole_number "${ENSURE_SHUTDOWN_TIMEOUT}"; then
   ENSURE_SHUTDOWN_TIMEOUT=30;
 fi

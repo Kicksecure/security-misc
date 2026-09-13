@@ -86,7 +86,8 @@ parse_cmd_options() {
       exit 1
    fi
    if ! id -u "$user_name" >/dev/null 2>&1; then
-     echo "ERROR: User '$user_name' does not appear to exist!"
+      echo "ERROR: User '$user_name' does not appear to exist!" >&2
+      exit 1
    fi
 }
 
@@ -297,6 +298,13 @@ unexpected_file() {
 }
 
 restore_file() {
+   ## An extraneous file has no baseline backup to restore from; the caller
+   ## has already removed it, which is the correct action. Return early so the
+   ## 'cp' below does not fail on the missing backup and abort the entire
+   ## '--clean' run (via 'set -e') on the first extraneous file encountered.
+   if [ ! -e "$full_path_backup" ]; then
+      return 0
+   fi
    if [ "$test_mode" = "true" ]; then
       echo "Simulate restoring file... $full_path_original" >&2
       echo cp --no-dereference --archive "$full_path_backup" "$full_path_original"

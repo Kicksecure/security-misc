@@ -3,14 +3,22 @@
 ## Copyright (C) 2025 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+export LC_ALL=C
 
-export LC_ALL='C'
+## security-misc-shared Depends on helper-scripts.
+# shellcheck source=../../../../helper-scripts/usr/libexec/helper-scripts/has.bsh
+source "${HELPER_SCRIPTS_PATH:-}"/usr/libexec/helper-scripts/has.bsh
 
 ## Package 'pciutils' provides tool 'lspci'.
-command -v lspci &>/dev/null
+has lspci
 
-if lspci | grep --quiet '^[^ ]* USB controller: '; then
+if lspci | grep -- '^[^ ]* USB controller: ' >/dev/null; then
   exit 0
 fi
 

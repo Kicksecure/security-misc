@@ -1,7 +1,10 @@
-#!/usr/bin/python3 -u
+#!/usr/bin/python3 -Bsu
 
 ## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
+
+## Shell-invocation guard.
+"exec" "bash" "-c" "printf '%s\n' 'Do not execute this script with bash'; exit 1"
 
 from fm_shim_frontend.fm_shim_frontend import main
 main()

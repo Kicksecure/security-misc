@@ -71,7 +71,6 @@ usr/lib/permission-hardener.d/25_default_whitelist_passwd.conf#security-misc-sha
 usr/lib/permission-hardener.d/25_default_whitelist_policykit.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_policykit.conf
 usr/lib/permission-hardener.d/25_default_whitelist_postfix.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_postfix.conf
 usr/lib/permission-hardener.d/25_default_whitelist_qubes.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_qubes.conf
-usr/lib/permission-hardener.d/25_default_whitelist_selinux.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_selinux.conf
 usr/lib/permission-hardener.d/25_default_whitelist_spice.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_spice.conf
 usr/lib/permission-hardener.d/25_default_whitelist_ssh.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_ssh.conf
 usr/lib/permission-hardener.d/25_default_whitelist_sudo.conf#security-misc-shared => /usr/lib/permission-hardener.d/25_default_whitelist_sudo.conf
@@ -109,6 +108,7 @@ usr/lib/systemd/user/usbguard-notifier.service.d/30_security-misc.conf#security-
 usr/lib/udev/rules.d/95-emerg-shutdown.rules#security-misc-shared => /usr/lib/udev/rules.d/95-emerg-shutdown.rules
 usr/libexec/security-misc/askpass#security-misc-shared => /usr/libexec/security-misc/askpass
 usr/libexec/security-misc/block-unsafe-logins#security-misc-shared => /usr/libexec/security-misc/block-unsafe-logins
+usr/libexec/security-misc/build-emerg-shutdown#security-misc-shared => /usr/libexec/security-misc/build-emerg-shutdown
 usr/libexec/security-misc/build-fm-shim-backend#security-misc-shared => /usr/libexec/security-misc/build-fm-shim-backend
 usr/libexec/security-misc/check-for-usb-controller#security-misc-shared => /usr/libexec/security-misc/check-for-usb-controller
 usr/libexec/security-misc/compile-emerg-shutdown#security-misc-shared => /usr/libexec/security-misc/compile-emerg-shutdown

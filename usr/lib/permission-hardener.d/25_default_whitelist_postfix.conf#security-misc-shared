@@ -6,6 +6,7 @@
 ## configuration. When security-misc-shared is updated, this file may be
 ## overwritten.
 
-## TODO: research and document
+## Ref: https://www.postfix.org/postconf.5.html (setgid_group)
+## TODO-HUMAN-DEVELOPER-ONLY: research
 postqueue matchwhitelist
 postdrop matchwhitelist

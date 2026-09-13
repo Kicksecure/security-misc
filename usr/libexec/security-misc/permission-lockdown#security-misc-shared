@@ -4,6 +4,13 @@
 ## See the file COPYING for copying conditions.
 
 ## Doing this for all users would create many issues.
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
 # /usr/libexec/security-misc/permission-lockdown: user: root | chmod o-rwx "/root"
 # /usr/libexec/security-misc/permission-lockdown: user: daemon | chmod o-rwx "/usr/sbin"
 # /usr/libexec/security-misc/permission-lockdown: user: bin | chmod o-rwx "/bin"
@@ -36,10 +43,10 @@ home_folder_access_rights_lockdown() {
    mkdir --parents /var/cache/security-misc/state-files
    local user
    for user in $(dir /home); do ## lists directories only
-      if [ -f "/var/cache/security-misc/state-files/$user" ]; then
+      if [ -f "/var/cache/security-misc/state-files/${user}" ]; then
          continue
       fi
-      folder_name="/home/$user"
+      folder_name="/home/${user}"
       ## chmod:
       ## The 'g' for 'group' is not needed.
       ## Debian by default uses USERGROUPS=yes in /etc/adduser.conf.
@@ -51,9 +58,9 @@ home_folder_access_rights_lockdown() {
       ## required to run is sudo addgroup user1 user2.
       ## See also: user private groups UPGs
       ## https://wiki.debian.org/UserPrivateGroups
-      echo "$0: chmod o-rwx \"$folder_name\""
-      chmod o-rwx "$folder_name"
-      touch "/var/cache/security-misc/state-files/$user"
+      printf '%s\n' "$0: chmod o-rwx \"${folder_name}\""
+      chmod o-rwx "${folder_name}" || true
+      touch "/var/cache/security-misc/state-files/${user}" || true
    done
 }
 

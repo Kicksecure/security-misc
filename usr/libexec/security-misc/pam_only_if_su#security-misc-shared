@@ -7,10 +7,16 @@
 ## /usr/libexec/security-misc/pam_only_if_login
 
 set -x
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
-true "PAM_SERVICE: $PAM_SERVICE"
+true "PAM_SERVICE: ${PAM_SERVICE:-}"
 
-if [ "$PAM_SERVICE" = "su" ]; then
+if [ "${PAM_SERVICE:-}" = "su" ]; then
    exit 1
 else
    exit 0

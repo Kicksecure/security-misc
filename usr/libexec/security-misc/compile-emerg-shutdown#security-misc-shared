@@ -6,29 +6,21 @@
 ## AI-Assisted
 
 ## Compile emerg-shutdown.c with the project's standard hardening
-## flag set, statically linked (the binary is intended to run after
-## the root device has been yanked - libc can't be paged in from a
-## gone disk, so libc must be in the image already).
-##
-## Pure compile - the helper does not chmod, mv, or otherwise install
-## the produced binary; the caller decides.
+## flag set, statically linked.
 ##
 ## Usage:
 ##   compile-emerg-shutdown <source.c> <output-binary>
 ##
 ## Used by:
-##   * usr/libexec/security-misc/emerg-shutdown (first-run on the
-##     user's machine: compiles C code into /run/emerg-shutdown then
-##     execs it)
+##   * usr/libexec/security-misc/build-emerg-shutdown
 ##   * ci/codeql-build.sh (CodeQL static analysis prebuild)
-##
-## Holding the gcc command in one place keeps the runtime build path
-## and the CI analysis path from drifting on hardening flags.
 
 set -o errexit
 set -o nounset
-set -o errtrace
 set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 export LC_ALL=C
 

@@ -187,7 +187,7 @@ install nfsv2 /usr/bin/disabled-netfilesys-by-security-misc
 install nfsv3 /usr/bin/disabled-netfilesys-by-security-misc
 install nfsv4 /usr/bin/disabled-netfilesys-by-security-misc
 
-## 2. Networking:
+## 3. Networking:
 
 ## Network Protocols:
 ## Disable rare and unneeded network protocols that are a common source of unknown vulnerabilities.

@@ -19,5 +19,5 @@
 ##
 ## Without this, LXQt fails to start with a dbus-launch error.
 ##
-## TODO: audit pam-tmpdir-helper
+## TODO-HUMAN-DEVELOPER-ONLY: source audit pam-tmpdir-helper
 pam-tmpdir-helper matchwhitelist

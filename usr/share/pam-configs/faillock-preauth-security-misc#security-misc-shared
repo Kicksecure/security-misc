@@ -4,5 +4,5 @@ Priority: 1024
 Auth-Type: Primary
 Auth:
 	optional	pam_exec.so	debug stdout seteuid /usr/libexec/security-misc/pam-info
-	[success=1 default=ignore]	pam_exec.so	seteuid quiet /usr/libexec/security-misc/pam_faillock_not_if_x
+	[success=1 default=ignore]	pam_exec.so	seteuid quiet quiet_log /usr/libexec/security-misc/pam_faillock_not_if_x
 	required	pam_faillock.so preauth

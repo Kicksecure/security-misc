@@ -1,0 +1,36 @@
+#!/bin/bash
+
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## AI-Assisted
+
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+
+export LC_ALL=C
+
+## Compile to a temporary file first, then atomically move into place.
+## This prevents leaving a corrupted binary if compilation is interrupted.
+tmp_output="$(mktemp -- /usr/bin/emerg-shutdown.XXXXXX)"
+
+cleanup() {
+  rm -f -- "${tmp_output}"
+}
+trap cleanup EXIT
+
+/usr/libexec/security-misc/compile-emerg-shutdown \
+  /usr/src/security-misc/emerg-shutdown.c \
+  "${tmp_output}" \
+  || {
+    printf '%s\n' 'Could not compile emerg-shutdown executable!'
+    exit 1
+  }
+
+chmod 0755 -- "${tmp_output}"
+mv -f -- "${tmp_output}" /usr/bin/emerg-shutdown
+trap - EXIT

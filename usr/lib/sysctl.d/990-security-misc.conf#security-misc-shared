@@ -12,7 +12,7 @@
 ## KSPP=no: not (currently) compliant with recommendations by the KSPP
 ## If there is no explicit KSPP compliance notice, the setting is not mentioned by the KSPP.
 
-## This configuration file is divided into 5 sections:
+## This configuration file is divided into 6 sections:
 ## 1. Kernel Space
 ## 2. User Space
 ## 3. Core Dumps

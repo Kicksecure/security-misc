@@ -30,6 +30,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
 
 repo_root="$(git rev-parse --show-toplevel)"
 cd -- "${repo_root}"
@@ -41,8 +43,11 @@ while IFS= read -r tagged; do
   ## source-language extension. Other tagged files (config files,
   ## scripts without an extension, etc.) need no rename.
   case "${tagged}" in
-    *'.py#'*|*'.c#'*|*'.h#'*) ;;
-    *) continue ;;
+    *'.py#'*|*'.c#'*|*'.h#'*)
+      ;;
+    *)
+      continue
+      ;;
   esac
 
   clean="${tagged%#*}"

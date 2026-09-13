@@ -56,7 +56,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name != 'pull_request'
+    ## CI runs only where we enabled it; ANDed with the existing guard.
+    ## Unset variable -> skipped, no runner, run stays green.
+    if: >-
+      vars.CI_ENABLED_ORG_AI_ASSISTED == 'true'
+      && (github.event.pull_request.head.repo.full_name == github.repository || github.event_name != 'pull_request')
 
     steps:
       - name: Checkout repository

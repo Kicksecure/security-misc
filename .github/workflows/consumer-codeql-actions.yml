@@ -1,0 +1,48 @@
+## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+## AI-Assisted
+
+## Managed by pkg_update_consumer_workflows. Byte-identical
+## across consumers; this file is `cp`-ed from
+## developer-meta-files/consumer-templates/.github/workflows/consumer-codeql-actions.yml.
+## DO NOT hand-edit this file in the consumer repo - changes
+## will be overwritten on the next propagation pass.
+##
+## Consumer wrapper for the 'actions' CodeQL language - workflow
+## YAML security analysis (missing-permissions, script-injection,
+## unversioned-immutable-actions, etc.).
+##
+## Cronless on purpose: byte-identical propagation forbids
+## per-repo cron rewrites at propagation time. Push / PR /
+## workflow_dispatch triggers cover the scan-on-change cases;
+## rule-refresh re-scans can be kicked manually from the Actions
+## tab.
+##
+## Reusable docs:
+## https://github.com/org-ai-assisted/developer-meta-files/blob/master/.github/workflows/reusable-codeql.yml
+
+name: CodeQL Actions
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  actions:
+    uses: org-ai-assisted/developer-meta-files/.github/workflows/reusable-codeql.yml@master
+    with:
+      language: actions
+    permissions:
+      security-events: write
+      contents: read
