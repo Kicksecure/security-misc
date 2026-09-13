@@ -3,7 +3,7 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## style-ok: no-has - has.sh isn't reliably available in maintainer scripts
+## style-ok: no-has - has.bsh isn't reliably available in maintainer scripts
 ## style-ok: no-strict - full strict block could leak into APT/debconf
 
 if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
