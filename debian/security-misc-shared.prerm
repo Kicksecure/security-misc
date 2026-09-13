@@ -16,7 +16,20 @@ true "
 "
 
 if [ "$1" = remove ]; then
-   pam-auth-update --package --remove "$DPKG_MAINTSCRIPT_PACKAGE"
+   ## 'pam-auth-update --remove' matches pam-config FILENAMES under
+   ## /usr/share/pam-configs/, not the package name. Disable while the helper
+   ## scripts under /usr/libexec/security-misc/ still exist. Keep in sync with
+   ## security-misc-shared.install and usr/share/pam-configs/.
+   ## See pam-auth-update(8).
+   pam-auth-update --package --remove \
+      block-unsafe-logins-security-misc \
+      console-lockdown-security-misc \
+      faillock-preauth-security-misc \
+      mkhomedir-security-misc \
+      pam-abort-on-locked-password-security-misc \
+      umask-security-misc \
+      unix-faillock-security-misc \
+      wheel-security-misc
 fi
 
 true "INFO: debhelper beginning here."

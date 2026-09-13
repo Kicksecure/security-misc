@@ -16,7 +16,11 @@ true "
 "
 
 ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/11
-pam-auth-update --package --remove "$DPKG_MAINTSCRIPT_PACKAGE"
+## Debian Policy 7.2: there is no guarantee that dependencies (here
+## libpam-runtime) are available when postrm runs; skip gracefully then.
+if command -v pam-auth-update >/dev/null 2>&1; then
+   pam-auth-update --package
+fi
 
 rm -f /etc/sysctl.d/30_security-misc_aslr-mmap.conf
 
