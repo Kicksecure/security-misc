@@ -3,10 +3,8 @@
 ## Copyright (C) 2026 - 2026 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## Shell-invocation guard: under bash/sh the shebang is ignored and the `import`
-## lines below would run as shell commands (`import` is ImageMagick -> XGrabServer,
-## which freezes X). Re-exec under python3; inert as a string literal in python3.
-"exec" "python3" "-Bsu" "$0" "$@"
+## Shell-invocation guard.
+"exec" "bash" "-c" "printf '%s\n' 'Do not execute this script with bash'; exit 1"
 
 from fm_shim_frontend.fm_shim_frontend import main
 main()
