@@ -16,11 +16,8 @@ true "
 "
 
 if [ "$1" = remove ]; then
-   ## 'pam-auth-update --remove' matches pam-config FILENAMES under
-   ## /usr/share/pam-configs/, not the package name. Disable while the helper
-   ## scripts under /usr/libexec/security-misc/ still exist. Keep in sync with
-   ## security-misc-shared.install and usr/share/pam-configs/.
-   ## See pam-auth-update(8).
+   ## REMINDER: This list of policies must be kept in sync with the contents of
+   ## usr/share/pam-configs.
    pam-auth-update --package --remove \
       block-unsafe-logins-security-misc \
       console-lockdown-security-misc \
