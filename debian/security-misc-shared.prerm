@@ -16,7 +16,17 @@ true "
 "
 
 if [ "$1" = remove ]; then
-   pam-auth-update --package --remove "$DPKG_MAINTSCRIPT_PACKAGE"
+   ## REMINDER: This list of policies must be kept in sync with the contents of
+   ## usr/share/pam-configs.
+   pam-auth-update --package --remove \
+      block-unsafe-logins-security-misc \
+      console-lockdown-security-misc \
+      faillock-preauth-security-misc \
+      mkhomedir-security-misc \
+      pam-abort-on-locked-password-security-misc \
+      umask-security-misc \
+      unix-faillock-security-misc \
+      wheel-security-misc
 fi
 
 true "INFO: debhelper beginning here."
