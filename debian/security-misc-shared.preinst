@@ -12,8 +12,9 @@ shopt -s shift_verbose
 export LC_ALL=C
 
 ## helper-scripts is a Pre-Depends, so it is fully configured and source-able
-## here (accountctl.sh provides group_has_nonroot_member; pulls in has.bsh).
+## here (accountctl.sh provides group_has_nonroot_member).
 source /usr/libexec/helper-scripts/pre.bsh
+source /usr/libexec/helper-scripts/has.bsh
 source /usr/libexec/helper-scripts/accountctl.sh
 
 true "
