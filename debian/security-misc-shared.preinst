@@ -7,8 +7,18 @@
 ## runs, so its libraries are guaranteed present and source-able here. Source
 ## pre.bsh (error handler) and accountctl.sh (group_has_nonroot_member; also
 ## pulls in has.bsh, so 'has' is available).
-source /usr/libexec/helper-scripts/pre.bsh
-source /usr/libexec/helper-scripts/accountctl.sh
+##
+## Fail CLOSED, loudly: a source failure (unreadable/partial/syntax) here would
+## otherwise be swallowed (errexit is not set yet), and a missing
+## group_has_nonroot_member would degrade the lockout check into a misleading
+## 'no account is a member of sudo' abort. A security check that cannot load its
+## verifier must stop with the TRUE cause, not skip or mislead.
+source /usr/libexec/helper-scripts/pre.bsh || { printf '%s\n' "${0}: ERROR: failed to source /usr/libexec/helper-scripts/pre.bsh; helper-scripts is broken or missing." >&2; exit 1; }
+source /usr/libexec/helper-scripts/accountctl.sh || { printf '%s\n' "${0}: ERROR: failed to source /usr/libexec/helper-scripts/accountctl.sh; helper-scripts is broken or missing." >&2; exit 1; }
+if ! type -t group_has_nonroot_member >/dev/null 2>&1; then
+   printf '%s\n' "${0}: ERROR: helper-scripts accountctl.sh did not provide group_has_nonroot_member; cannot verify account lockout safety. helper-scripts is too old or incomplete." >&2
+   exit 1
+fi
 
 set -o errexit
 set -o nounset
