@@ -1,9 +1,141 @@
+commit 0a004b6675d22e4e54f79f07b086cebe78177280
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 15 10:27:21 2026 -0400
+
+    output
+
+commit edbaf1c198cb727ab00ff57ef573edc8c7974fd6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 15 12:00:55 2026 +0000
+
+    bumped changelog version
+
+commit 4db7b41bda5f7f2a1d0c1f163a070c998a5a284e
+Merge: 81d6905a 827e5ee1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 14 02:29:46 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 827e5ee1f8a250ba8b04e08c91892b1887e83d61
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:50:16 2026 -0400
+
+    comments
+
+commit a85c5b57045e95a840c4059e66d8296b8e51c155
+Merge: d108f60a 28d05b0c
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:40:14 2026 -0400
+
+    Merge branch 'arraybolt3/maybebyte-pam-auth-update' into arraybolt3/trixie
+
+commit 28d05b0cd17c9f3d77786cf14798c1cdec912d0c
+Merge: 86780917 d108f60a
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:39:32 2026 -0400
+
+    Merge branch 'arraybolt3/trixie' into arraybolt3/maybebyte-pam-auth-update
+
+commit d108f60a20cfc51cbe3d98f6200e8387a47f7488
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:25:53 2026 -0400
+
+    comment
+
+commit ac4b5023ae7c0ca034b8e85dda91d34de4e2e920
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:21:40 2026 -0400
+
+    Polish
+
+commit 81ed36c2e3e5777ca81e33f8a40edd1cd952e001
+Merge: 439ddce5 db8f36fd
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Sun Sep 13 17:11:40 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit db8f36fd5ab660ad1c2dd02fffa998a2b3f1ee58
+Merge: e64a2c7d b8e218c6
+Author: claude <noreply@anthropic.com>
+Date:   Sun Sep 13 06:07:26 2026 -0400
+
+    Merge branch 'master' into ai
+
+commit b8e218c6438b862acd881eac9599ff40224fe862
+Merge: c77beac7 b9cf5081
+Author: claude <noreply@anthropic.com>
+Date:   Sun Sep 13 06:07:25 2026 -0400
+
+    Merge remote-tracking branch 'upstream/master'
+
+commit e64a2c7d0481dfd38c8a575a49ddf55248e6230d
+Author: claude (dev541 abd2cdfa-632f-4eda-bd69-14b67be2017e) <noreply@anthropic.com>
+Date:   Sun Sep 13 05:28:23 2026 -0400
+
+    Python -Bsu shebangs; grep --quiet in tests
+
+commit 81d6905af8bd14a21163a1ab308c996e38869f74
+Merge: b9cf5081 439ddce5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 12 09:49:38 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 439ddce5bf08465710b81bd2353ac105b1e522c4
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Fri Sep 11 17:06:29 2026 -0400
+
+    Revert some faulty changes to style-ok comments (uglier style, excessive verbosity, allow-echo in a script that did not use echo)
+
+commit d4e50dc6d74b6cf13c3dff2ef2b7d16a2b682ec2
+Merge: b9cf5081 409e0483
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Fri Sep 11 16:58:09 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit b9cf508116757b7fff13c199a142742246162877
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Sep 9 11:05:44 2026 +0000
+
+    bumped changelog version
+
 commit 0ba912995c461446bf527cf0c6a9db47e8aaab08
 Merge: fc2afb15 dd05179e
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Sep 9 06:56:30 2026 -0400
 
     Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 409e0483071c2ca6a313272ec1957aab80a8cc3f
+Merge: 24b39b0c c77beac7
+Author: claude (dev490 427cd1a1-bb80-4a36-9e14-2b6cec600780) <noreply@anthropic.com>
+Date:   Tue Sep 8 23:45:54 2026 -0400
+
+    Merge branch 'master' into ai
+
+    # Conflicts:
+    #       debian/security-misc-shared.postinst
+    #       usr/bin/remount-secure#security-misc-shared
+    #       usr/libexec/security-misc/check-for-usb-controller#security-misc-shared
+    #       usr/share/lintian/overrides/security-misc-shared#security-misc-shared
+    #       usr/share/security-misc/lkrg/lkrg-virtualbox#security-misc-shared
+
+commit c77beac7b4db560cd6d58abbc8943b77ee0ae62c
+Merge: 6355b72c dd05179e
+Author: claude (dev490 427cd1a1-bb80-4a36-9e14-2b6cec600780) <noreply@anthropic.com>
+Date:   Tue Sep 8 23:43:07 2026 -0400
+
+    Merge remote-tracking branch 'ab/trixie'
+
+commit 6355b72c6d9de2002506a3ab797b153f83c92a9d
+Merge: 78491468 fc2afb15
+Author: claude (dev490 427cd1a1-bb80-4a36-9e14-2b6cec600780) <noreply@anthropic.com>
+Date:   Tue Sep 8 23:43:06 2026 -0400
+
+    Merge remote-tracking branch 'up/master'
 
 commit dd05179ea3310d0cac4d2de9db220ebbd5224fbf
 Author: Aaron Rainbolt <arraybolt3@gmail.com>
@@ -16,6 +148,14 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 8 15:30:04 2026 +0000
 
     bumped changelog version
+
+commit 24b39b0ca1b6c5a0fd35036703f56a2a1f5b9225
+Author: claude (dev474 c7439536-fad8-4884-b71a-d2f3c4c23905) <noreply@anthropic.com>
+Date:   Mon Sep 7 11:49:54 2026 -0400
+
+    rename has.sh to has.bsh (bashism convention)
+
+    Sourced helper-scripts lib uses bashisms; .bsh marks it. Scoped to has.sh consumers (repo carries unrelated concurrent WIP).
 
 commit 24a55b78fe94ef69bb866f71b86d54e3a659b83c
 Merge: 94ea3994 aa458bac
@@ -55,6 +195,16 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Aug 30 10:02:32 2026 -0400
 
     Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 3e3d7453e3318ac79ea36ae14ed90442ded0c165
+Author: claude (dev371 3fff1819-b77d-4dde-be19-8c01e09d3394) <noreply@anthropic.com>
+Date:   Fri Aug 28 01:23:45 2026 -0400
+
+    lintian: drop redundant maintainer-script-ignores-errors override
+
+    Now suppressed globally in genmkfile; the false positive is the same errexit long-form case.
+
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 
 commit 87506b1eaf45fa7501d54cf83b9be13578f86ecb
 Author: Aaron Rainbolt <arraybolt3@gmail.com>
@@ -709,6 +859,49 @@ Date:   Thu Jul 30 11:59:15 2026 -0400
     one always is for the events this workflow accepts.
 
     Generated with assistance from Claude Code.
+
+commit 867809170a265b269a34f6d704c97ec53744cd4d
+Author: Ashlen <dev@anthes.is>
+Date:   Wed Jul 15 19:06:42 2026 -0600
+
+    fix(pam): pass profile names to pam-auth-update --remove
+
+    'pam-auth-update --remove' matches pam-config filenames under
+    /usr/share/pam-configs/, but prerm and postrm passed
+    $DPKG_MAINTSCRIPT_PACKAGE -- the package name security-misc-shared --
+    which matches no profile. An unknown target is stored without
+    validation and simply never matches, so the --remove was inert in
+    both calls: the prerm call was an effective no-op, while the postrm
+    call still performed a plain reconciliation.
+
+    The prerm early-disable was therefore dead. On removal
+    /etc/pam.d/common-* kept referencing helper scripts under
+    /usr/libexec/security-misc/ that dpkg then deleted;
+    block-unsafe-logins is a Priority 1100 'requisite' entry, so a
+    dangling reference fails all authentication until postrm's
+    reconciliation regenerates common-* -- permanently, if postrm fails
+    before that point.
+
+    prerm now passes the eight profile filenames explicitly. postrm
+    drops the ineffective '--remove <package>' for a plain
+    reconciliation and guards it with 'command -v': Debian Policy 7.2
+    gives no guarantee that dependencies are available when postrm runs
+    and requires postrm to gracefully skip such actions, and an absent
+    pam-auth-update would abort the script under 'set -e'. prerm stays
+    unguarded: Policy names Depends (here libpam-runtime) as the
+    mechanism prerm scripts rely on, dependencies there normally being
+    at least unpacked.
+
+    One consequence of a '--remove' that now takes effect: it also drops
+    the eight names from /var/lib/pam/seen. If a removal is aborted,
+    postinst's 'pam-auth-update --package' re-enables the seven
+    'Default: yes' profiles among them, including any of them an
+    administrator had deliberately disabled (other packages' profiles
+    remain in seen and are unaffected), while
+    console-lockdown-security-misc ('Default: no') stays off until an
+    administrator re-enables it -- reinstalling does not restore it,
+    since preinst's enable is behind a do_once stamp. Both are new
+    relative to the previous inert behavior.
 
 commit 077d41a6b193787dc31718370c1532d6638569bc
 Author: Ashlen <dev@anthes.is>
