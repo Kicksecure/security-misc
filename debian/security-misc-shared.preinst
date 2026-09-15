@@ -3,12 +3,12 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-## style-ok: no-has -- a preinst runs at unpack time, before helper-scripts (a
-## plain Depends) is guaranteed configured, so it must not source has.bsh; it
-## uses 'command -v' and a vendored group_has_nonroot_member instead.
-if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
-   source /usr/libexec/helper-scripts/pre.bsh
-fi
+## helper-scripts is a Pre-Depends: it is fully configured before this preinst
+## runs, so its libraries are guaranteed present and source-able here. Source
+## pre.bsh (error handler) and accountctl.sh (group_has_nonroot_member; also
+## pulls in has.bsh, so 'has' is available).
+source /usr/libexec/helper-scripts/pre.bsh
+source /usr/libexec/helper-scripts/accountctl.sh
 
 set -o errexit
 set -o nounset
@@ -75,46 +75,8 @@ output_skip_checks() {
    printf '%s\n' "security-misc-shared '${0}' INFO: Otherwise you might not be able to login." >&2
 }
 
-## VENDORED verbatim from helper-scripts accountctl.sh group_has_nonroot_member.
-## A preinst runs before helper-scripts is guaranteed installed, so it cannot be
-## sourced. Keep in sync with accountctl.sh; drift is caught by the dist-ai
-## 'group_has_nonroot_member_drift' test.
-group_has_nonroot_member() {
-   local group group_gid members member entry_name entry_gid
-   local -a member_list
-   group="${1:-}"
-   [ -n "${group}" ] || return 1
-   ## A group NAME starts with a letter or underscore (per is_name_valid).
-   ## Reject anything else so a numeric argument is not silently reinterpreted
-   ## by getent as a GID lookup (answering about the wrong group). Kept
-   ## self-contained -- no is_name_valid call -- for vendoring.
-   if [[ "${group}" != [a-z_]* ]]; then
-      return 1
-   fi
-   group_gid="$(getent group -- "${group}" 2>/dev/null | cut -d: -f3)" || true
-   [ -n "${group_gid}" ] || return 1
-
-   ## Primary-GID members: a passwd account whose GID equals the group's GID
-   ## (such accounts are absent from the group's supplementary member field).
-   while IFS=":" read -r entry_name _ _ entry_gid _; do
-      if [ "${entry_gid}" = "${group_gid}" ] && [ "${entry_name}" != "root" ]; then
-         return 0
-      fi
-   done < <(getent passwd)
-
-   ## Supplementary members (comma-separated member field).
-   members="$(getent group -- "${group}" 2>/dev/null | cut -d: -f4)" || true
-   IFS="," read -r -a member_list <<< "${members}" || true
-   for member in "${member_list[@]}"; do
-      if [ -n "${member}" ] && [ "${member}" != "root" ]; then
-         return 0
-      fi
-   done
-   return 1
-}
-
 sudo_users_check () {
-   if command -v qubesdb-read >/dev/null 2>&1; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
@@ -160,7 +122,7 @@ console_users_check() {
       || [ "${dist_build_iso:-}" = "true" ] ; then
       return 0
    fi
-   if command -v qubesdb-read >/dev/null 2>&1; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
@@ -214,7 +176,7 @@ legacy() {
       return 0
    fi
 
-   if command -v qubesdb-read >/dev/null 2>&1; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
