@@ -431,8 +431,7 @@ load_state() {
   ## to mean that all whitelisting should be ignored.
 
   local config_file line field_list policy_nosuid_file_item policy_file_item
-  local one_field field_count fso_name meta_list
-  local split_index candidate_index fallback_index
+  local one_field field_count fso_name meta_list field_index hit_barrier
 
   ## Load configuration, deferring whitelist handling until later
   for config_file in \
@@ -472,12 +471,20 @@ load_state() {
 
       processed_config_line="${line}"
 
-      ## We can handle filenames with spaces. The options after a filename are a
-      ## fixed-width tail: either a lone whitelist keyword, or an octal mode +
-      ## owner + group + optional capability. The filename is whatever precedes
-      ## that tail, recovered by anchoring the tail from the right (see the field
-      ## split below). An owner that itself looks octal is disambiguated by which
-      ## recovered filename exists on disk.
+      ## We can handle filenames with spaces. This is because the first item
+      ## after a filename is either an octal file mode or a keyword, and we
+      ## only support user/group names, not UIDs and GIDs, as owner
+      ## identifiers. This means that we can scan from right to left for the
+      ## furthest-right octal integer or keyword field and use it to separate
+      ## the filename from the rest of the options. (If usernames could
+      ## themselves be octal integers, this would break, but adduser.conf's
+      ## default NAME_REGEX forbids this. This is definitely a hack, but the
+      ## alternative is to change the format of the policy files, which would
+      ## break custom config for users.
+      ##
+      ## Do not attempt to reimplement this in a way that copes with usernames
+      ## that look identical to UIDs. Systems containing such usernames are
+      ## very broken and unsupported.
       ##
       ## 'read' will collapse consecutive spaces when splitting on spaces.
       ## Convert spaces into newlines first, then split on newlines with a
@@ -488,48 +495,21 @@ load_state() {
       done < <(printf '%s\n' "${line}" | tr ' ' '\n')
       field_count="${#field_list[@]}"
 
-      ## The option tail is fixed-width: a lone trailing whitelist keyword, or a
-      ## mode/owner/group[/capability] tail whose FIRST field is the octal mode.
-      ## Anchor the tail from the RIGHT. Two readings can be lexically valid when
-      ## a filename component OR a numeric owner looks octal (mode at field
-      ## count-3 vs count-4), so disambiguate by which recovered filename exists
-      ## on disk -- the tool skips nonexistent targets anyway. Fall back to the
-      ## rightmost octal candidate when neither recovered name exists.
+      hit_barrier='false'
       fso_name=""
       meta_list=()
-      split_index=''
-      case "${field_list[field_count-1]}" in
-        nosuid|exactwhitelist|matchwhitelist|disablewhitelist)
-          split_index=$(( field_count - 1 ))
-          ;;
-        *)
-          fallback_index=''
-          for candidate_index in "$(( field_count - 3 ))" "$(( field_count - 4 ))"; do
-            (( candidate_index >= 1 )) || continue
-            [[ "${field_list[candidate_index]}" =~ ^[0-7]{3,4}$ ]] || continue
-            if [ -z "${fallback_index}" ]; then
-              fallback_index="${candidate_index}"
+      for (( field_index = field_count - 1; field_index >= 0; \
+         field_index-- )); do
+         if [ "${hit_barrier}" = 'false' ]; then
+            if [[ "${field_list[field_index]}" =~ ^[0-7]{3,4}$ ]] \
+               || [[ "${field_list[field_index]}" =~ ^(nosuid|exactwhitelist|matchwhitelist|disablewhitelist)$ ]]; then
+               hit_barrier='true'
             fi
-            fso_name="$(IFS=' '; printf '%s' "${field_list[*]:0:candidate_index}")"
-            if (( candidate_index == 1 )) || [ -e "${fso_name}" ]; then
-              split_index="${candidate_index}"
-              break
-            fi
-          done
-          if [ -z "${split_index}" ]; then
-            split_index="${fallback_index}"
-          fi
-          ;;
-      esac
-      if [ -n "${split_index}" ]; then
-        fso_name="$(IFS=' '; printf '%s' "${field_list[*]:0:split_index}")"
-        meta_list=( "${field_list[@]:split_index}" )
-      else
-        ## No recoverable mode/keyword tail: hand every field to the field-count
-        ## check below, which rejects the line loudly (exit 200).
-        fso_name=""
-        meta_list=( "${field_list[@]}" )
-      fi
+            meta_list=( "${field_list[field_index]}" "${meta_list[@]}" )
+         else
+            fso_name="${field_list[field_index]}${fso_name:+" ${fso_name}"}"
+         fi
+      done
 
       case "${#meta_list[@]}" in
         1|3|4)

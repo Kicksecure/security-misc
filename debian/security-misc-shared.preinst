@@ -11,8 +11,7 @@ shopt -s inherit_errexit
 shopt -s shift_verbose
 export LC_ALL=C
 
-## helper-scripts is a Pre-Depends, so it is fully configured and source-able
-## here (accountctl.sh provides group_has_nonroot_member).
+## helper-scripts is a Pre-Depends.
 source /usr/libexec/helper-scripts/pre.bsh
 source /usr/libexec/helper-scripts/has.bsh
 source /usr/libexec/helper-scripts/accountctl.sh
@@ -82,8 +81,6 @@ sudo_users_check () {
       return 0
    fi
 
-   ## Any non-root account with sudo access (supplementary member OR primary
-   ## GID) prevents a lockout, so it satisfies the check.
    if group_has_nonroot_member sudo; then
       return 0
    fi
@@ -128,8 +125,7 @@ console_users_check() {
       return 0
    fi
 
-   ## A non-root member (supplementary OR primary GID) of either console group
-   ## prevents a lockout.
+   ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
    if group_has_nonroot_member console \
       || group_has_nonroot_member console-unrestricted; then
