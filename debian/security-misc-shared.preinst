@@ -3,15 +3,23 @@
 ## Copyright (C) 2012 - 2025 ENCRYPTED SUPPORT LLC <adrelanos@whonix.org>
 ## See the file COPYING for copying conditions.
 
-if [ -f /usr/libexec/helper-scripts/pre.bsh ]; then
-   source /usr/libexec/helper-scripts/pre.bsh
-fi
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o errtrace
+shopt -s inherit_errexit
+shopt -s shift_verbose
+export LC_ALL=C
 
-set -e
+## helper-scripts is a Pre-Depends, so it is fully configured and source-able
+## here (accountctl.sh provides group_has_nonroot_member).
+source /usr/libexec/helper-scripts/pre.bsh
+source /usr/libexec/helper-scripts/has.bsh
+source /usr/libexec/helper-scripts/accountctl.sh
 
 true "
 #####################################################################
-## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: BEGIN: ${DPKG_MAINTSCRIPT_PACKAGE:-} ${DPKG_MAINTSCRIPT_NAME:-} $*
 #####################################################################
 "
 
@@ -60,66 +68,45 @@ user_groups_modifications() {
 }
 
 output_skip_checks() {
-   echo "security-misc-shared '$0' INFO: Allow installation of security-misc-shared anyway." >&2
-   echo "security-misc-shared '$0' INFO: (technical reason: $@)" >&2
-   echo "security-misc-shared '$0' INFO: If this is a chroot this is probably OK." >&2
-   echo "security-misc-shared '$0' INFO: Otherwise you might not be able to login." >&2
+   printf '%s\n' "security-misc-shared '${0}' INFO: Allow installation of security-misc-shared anyway." >&2
+   printf '%s\n' "security-misc-shared '${0}' INFO: (technical reason: $*)" >&2
+   printf '%s\n' "security-misc-shared '${0}' INFO: If this is a chroot this is probably OK." >&2
+   printf '%s\n' "security-misc-shared '${0}' INFO: Otherwise you might not be able to login." >&2
 }
 
 sudo_users_check () {
-   if command -v "qubesdb-read" &>/dev/null; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
       return 0
    fi
 
-   local sudo_users user_with_sudo are_there_any_sudo_users OLD_IFS
-
-   sudo_users="$(getent group sudo | cut -d: -f4)"
-   ## example sudo_users:
-   ## user,root
-
-   OLD_IFS="$IFS"
-   IFS=","
-   export IFS
-
-   for user_with_sudo in $sudo_users ; do
-      if [ "$user_with_sudo" = "root" ]; then
-         ## root login is also restricted.
-         ## Therefore user "root" being member of group "sudo" is
-         ## considered insufficient.
-         continue
-      fi
-      are_there_any_sudo_users=yes
-      break
-   done
-
-   IFS="$OLD_IFS"
-   export IFS
-
-   if [ "$are_there_any_sudo_users" = "yes" ]; then
+   ## Any non-root account with sudo access (supplementary member OR primary
+   ## GID) prevents a lockout, so it satisfies the check.
+   if group_has_nonroot_member sudo; then
       return 0
    fi
 
    ## Prevent users from locking themselves out.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-   echo "$0: ERROR: No account is a member of group 'sudo'. Installation aborted." >&2
-   echo "$0: ERROR: You probably want to run:" >&2
-   echo "$0: NOTE: Replace account 'user' with your actual Linux user account name." >&2
-   echo "" >&2
-   echo "sudo adduser user sudo" >&2
-   echo "sudo adduser user console" >&2
-   echo "" >&2
-   echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.kicksecure.com/wiki/security-misc#install" >&2
+   printf '%s\n' "${0}: ERROR: No account is a member of group 'sudo'. Installation aborted." >&2
+   printf '%s\n' "${0}: ERROR: You probably want to run:" >&2
+   printf '%s\n' "${0}: NOTE: Replace account 'user' with your actual Linux user account name." >&2
+   printf '%s\n' "" >&2
+   printf '%s\n' "sudo adduser user sudo" >&2
+   printf '%s\n' "sudo adduser user console" >&2
+   printf '%s\n' "" >&2
+   printf '%s\n' "${0}: ERROR: See also installation instructions:" >&2
+   printf '%s\n' "https://www.kicksecure.com/wiki/security-misc#install" >&2
 
-   if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
+   if [ "${SECURITY_MISC_INSTALL:-}" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
       return 0
    fi
-   if test -f "/var/lib/security-misc/skip_install_check" ; then
-      output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists."
+   if test -f "/var/lib/security-misc/skip_install_check" \
+      || [ "${dist_build_iso:-}" = "true" ] ; then
+      output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists or this is an ISO/live build (dist_build_iso=true)."
       return 0
    fi
 
@@ -127,64 +114,43 @@ sudo_users_check () {
 }
 
 console_users_check() {
-   if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
+   if [ "${SECURITY_MISC_INSTALL:-}" = "force" ]; then
       return 0
    fi
-   if test -f "/var/lib/security-misc/skip_install_check" ; then
+   if test -f "/var/lib/security-misc/skip_install_check" \
+      || [ "${dist_build_iso:-}" = "true" ] ; then
       return 0
    fi
-   if command -v "qubesdb-read" &>/dev/null; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
       return 0
    fi
 
-   local console_users console_unrestricted_users user_with_console are_there_any_console_users OLD_IFS
-
-   console_users="$(getent group console | cut -d: -f4)"
-   ## example console_users:
-   ## user
-   console_unrestricted_users="$(getent group console-unrestricted | cut -d: -f4)"
-
-   OLD_IFS="$IFS"
-   IFS=","
-   export IFS
-
-   for user_with_console in $console_users $console_unrestricted_users ; do
-      if [ "$user_with_console" = "root" ]; then
-         ## root login is also restricted.
-         ## Therefore account "root" being member of group "console" is
-         ## considered insufficient.
-         continue
-      fi
-      are_there_any_console_users=yes
-      break
-   done
-
-   IFS="$OLD_IFS"
-   export IFS
-
-   ## Prevent users from locking themselves out.
+   ## A non-root member (supplementary OR primary GID) of either console group
+   ## prevents a lockout.
    ## https://forums.whonix.org/t/is-security-misc-suitable-for-hardening-bridges-and-relays/8299/4
-   if [ "$are_there_any_console_users" = "yes" ]; then
+   if group_has_nonroot_member console \
+      || group_has_nonroot_member console-unrestricted; then
       return 0
    fi
 
-   echo "$0: ERROR: No account is a member of group 'console'. Installation aborted." >&2
-   echo "$0: ERROR: You probably want to run:" >&2
-   echo "" >&2
-   echo "sudo adduser user console" >&2
-   echo "" >&2
-   echo "$0: ERROR: See also installation instructions:" >&2
-   echo "https://www.whonix.org/wiki/security-misc#install" >&2
+   printf '%s\n' "${0}: ERROR: No account is a member of group 'console'. Installation aborted." >&2
+   printf '%s\n' "${0}: ERROR: You probably want to run:" >&2
+   printf '%s\n' "" >&2
+   printf '%s\n' "sudo adduser user console" >&2
+   printf '%s\n' "" >&2
+   printf '%s\n' "${0}: ERROR: See also installation instructions:" >&2
+   printf '%s\n' "https://www.whonix.org/wiki/security-misc#install" >&2
 
-   if [ "$SECURITY_MISC_INSTALL" = "force" ]; then
+   if [ "${SECURITY_MISC_INSTALL:-}" = "force" ]; then
       output_skip_checks "Environment variable SECURITY_MISC_INSTALL is set to 'force'."
       return 0
    fi
-   if test -f "/var/lib/security-misc/skip_install_check" ; then
-      output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists."
+   if test -f "/var/lib/security-misc/skip_install_check" \
+      || [ "${dist_build_iso:-}" = "true" ] ; then
+      output_skip_checks "File '/var/lib/security-misc/skip_install_check' exists or this is an ISO/live build (dist_build_iso=true)."
       return 0
    fi
 
@@ -192,7 +158,7 @@ console_users_check() {
 }
 
 legacy() {
-   if [ -f "/var/lib/legacy/do_once/${FUNCNAME}_version_1" ]; then
+   if [ -f "/var/lib/legacy/do_once/${FUNCNAME[0]}_version_1" ]; then
       return 0
    fi
 
@@ -205,11 +171,11 @@ legacy() {
       continue_yes=true
    fi
 
-   if [ ! "$continue_yes" = "true" ]; then
+   if [ ! "${continue_yes:-}" = "true" ]; then
       return 0
    fi
 
-   if command -v "qubesdb-read" &>/dev/null; then
+   if has qubesdb-read; then
       ## Qubes users can use dom0 to get a root terminal emulator.
       ## For example:
       ## qvm-run -u root debian-10 xterm
@@ -220,23 +186,23 @@ legacy() {
 
    user_to_be_created=user
 
-   if ! id "$user_to_be_created" &>/dev/null ; then
-      true "INFO: Account '$user_to_be_created' does not exist. Skipping adding account '$user_to_be_created' to group 'console' and also skipping 'pam-auth-update --enable console-lockdown-security-misc'."
+   if ! id "${user_to_be_created}" &>/dev/null ; then
+      true "INFO: Account '${user_to_be_created}' does not exist. Skipping adding account '${user_to_be_created}' to group 'console' and also skipping 'pam-auth-update --enable console-lockdown-security-misc'."
       return 0
    fi
 
-   adduser "$user_to_be_created" console
+   adduser "${user_to_be_created}" console
 
    pam-auth-update --enable console-lockdown-security-misc
 
    mkdir --parents "/var/lib/legacy/do_once"
-   touch "/var/lib/legacy/do_once/${FUNCNAME}_version_1"
+   touch "/var/lib/legacy/do_once/${FUNCNAME[0]}_version_1"
 }
 
 user_groups_modifications
 legacy
 
-if [ "$1" = "install" ] || [ "$1" = "upgrade" ]; then
+if [ "${1:-}" = "install" ] || [ "${1:-}" = "upgrade" ]; then
    sudo_users_check
    console_users_check
 fi
@@ -249,7 +215,7 @@ true "INFO: Done with debhelper."
 
 true "
 #####################################################################
-## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+## INFO: END  : ${DPKG_MAINTSCRIPT_PACKAGE:-} ${DPKG_MAINTSCRIPT_NAME:-} $*
 #####################################################################
 "
 

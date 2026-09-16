@@ -30,11 +30,11 @@ Rules-Requires-Root: no
 ## >  security-misc is to be removed
 Package: security-misc-shared
 Architecture: all
+Pre-Depends: helper-scripts
 Depends: adduser,
          apparmor-profile-dist,
          build-essential,
          dmsetup,
-         helper-scripts,
          libcap2-bin,
          libdbus-1-dev,
          libglib2.0-bin,
