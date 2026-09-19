@@ -482,6 +482,10 @@ load_state() {
       ## alternative is to change the format of the policy files, which would
       ## break custom config for users.
       ##
+      ## Do not attempt to reimplement this in a way that copes with usernames
+      ## that look identical to UIDs. Systems containing such usernames are
+      ## very broken and unsupported.
+      ##
       ## 'read' will collapse consecutive spaces when splitting on spaces.
       ## Convert spaces into newlines first, then split on newlines with a
       ## loop.
