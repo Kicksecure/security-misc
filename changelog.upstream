@@ -1,3 +1,52 @@
+commit f7e4aa5ed2dbf0cd0d9155695ad4fdf315a1181f
+Merge: a70c168d 87ff42a1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Sep 19 10:00:10 2026 -0400
+
+    Merge remote-tracking branch 'refs/remotes/ArrayBolt3/arraybolt3/trixie'
+
+commit 87ff42a19c786050471b5350e228a26a82bd61eb
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Wed Sep 16 00:01:44 2026 -0400
+
+    Comments, revert an unreliable feature addition in permission-hardener's state file parsing
+
+commit 3bc6ec2a046f20d292273095c40352ec6d914a52
+Merge: a70c168d 00bad984
+Author: Aaron Rainbolt <arraybolt3@gmail.com>
+Date:   Tue Sep 15 23:26:46 2026 -0400
+
+    Merge branch 'ai' into arraybolt3/trixie
+
+commit 00bad98497794d461fe4923e4ff182a61b918df7
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Tue Sep 15 10:56:10 2026 -0400
+
+    security-misc: source has.bsh explicitly in preinst
+
+commit 57a6530574d21307d77a371a1fb53259bfbe22fa
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Tue Sep 15 10:52:46 2026 -0400
+
+    security-misc: simplify preinst helper-scripts sourcing
+
+    - helper-scripts is a Pre-Depends, configured before this preinst; strict
+      options first, then plain source -- errexit turns any load failure into a
+      hard stop, so the bespoke fail-closed handling + type -t check are redundant
+
+commit f0ea22f6b0f631485fb8f405eb352d35a3d33d84
+Merge: 888a5f67 a70c168d
+Author: assisted-by-ai <assisted-by-ai@users.noreply.github.com>
+Date:   Tue Sep 15 10:45:48 2026 -0400
+
+    Merge master into ai (remaster)
+
+commit a70c168da6730ce86d1ea12f29bff2448734a8a9
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 15 14:32:35 2026 +0000
+
+    bumped changelog version
+
 commit 0a004b6675d22e4e54f79f07b086cebe78177280
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 15 10:27:21 2026 -0400
@@ -9,6 +58,79 @@ Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Sep 15 12:00:55 2026 +0000
 
     bumped changelog version
+
+commit 888a5f679d816aeb8c50fc14ab604d27d158863d
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Tue Sep 15 04:27:13 2026 -0400
+
+    permission-hardener: restore octal-owner filename disambiguation
+
+    - the right-to-left octal scan mis-anchors on a numeric octal-looking owner
+      (e.g. 0755), folding the real mode into the filename; the nonexistent path is
+      then silently dropped, leaving a SUID binary un-hardened.
+    - restore fixed-width tail anchoring + disambiguation by on-disk existence;
+      test_whitespace_filename.sh (numowner, 'x y') parses again.
+
+commit c894bbcf75bbe3c63f17b75f0ffc8a0ae2f98ef3
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Tue Sep 15 02:37:02 2026 -0400
+
+    preinst: fail closed loudly if helper-scripts library missing
+
+    - source failures were swallowed (errexit not set yet); abort with the real
+      cause instead.
+    - a missing group_has_nonroot_member now aborts with the true reason rather
+      than degrading the lockout check into a misleading 'no account is a member of
+      sudo' abort.
+
+commit 239532762966b9fc57f158bb02fb19b04bf1e1bc
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Tue Sep 15 02:16:06 2026 -0400
+
+    Pre-Depend on helper-scripts; source accountctl.sh, drop vendored copy
+
+    - helper-scripts moved from Depends to Pre-Depends: it is configured before this
+      package is unpacked, so the preinst can source its libraries. Reuse the real
+      group_has_nonroot_member from accountctl.sh instead of a vendored copy (and its
+      drift guard).
+    - accountctl.sh pulls in has.bsh, so 'has' is available: use it, drop the
+      no-has waiver and the command -v fallbacks.
+
+commit 497a23fbb31e2550fc858e6139e84b595be49d20
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Mon Sep 14 12:49:30 2026 -0400
+
+    Sync vendored group_has_nonroot_member (reject numeric arg)
+
+commit 88abbcaa436a86dcd15a37c8ba4f4351b565c050
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Mon Sep 14 11:13:01 2026 -0400
+
+    Detect primary-GID members in the install checks
+
+    - sudo_users_check / console_users_check now count a non-root account
+      whose PRIMARY group is sudo/console (via a vendored
+      group_has_nonroot_member), not only supplementary members; a
+      supplementary-only scan falsely aborted install for such an admin.
+    - Revert the qubesdb-read probe to 'command -v' (no-has waiver): a
+      preinst runs at unpack time, before helper-scripts is guaranteed
+      configured, so it must not source has.bsh.
+    - group_has_nonroot_member is VENDORED from helper-scripts accountctl.sh
+      (same reason it cannot be sourced); a dist-ai drift guard keeps them
+      in sync.
+
+commit dc103b260b2dfd8b94ccdd23aaaaa54000d8d56c
+Author: claude (dev556 4bdc306f-7204-4d7f-ba68-0c897dcf0291) <noreply@anthropic.com>
+Date:   Mon Sep 14 09:35:22 2026 -0400
+
+    Also skip install checks on dist_build_iso; house-style
+
+    - Skip the sudo/console-user install checks when dist_build_iso=true (an
+      ISO/live build) in addition to the existing skip_install_check file, so
+      the derivative-maker build no longer needs to write that marker file.
+      The manual file-based bypass is kept for non-derivative-maker users.
+    - Modernize to dist-ai house style: strict-mode block, printf not echo,
+      has not command -v, braced + nounset-guarded variables.
 
 commit 4db7b41bda5f7f2a1d0c1f163a070c998a5a284e
 Merge: 81d6905a 827e5ee1
