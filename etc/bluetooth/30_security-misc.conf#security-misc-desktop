@@ -16,13 +16,13 @@ DiscoverableTimeout = 30
 # Default=0 (unlimited)
 MaxControllers=1
 
+# network/on: A device will only accept advertising packets from peer
+# devices that contain private addresses. It may not be compatible with some
+# legacy devices since it requires the use of RPA(s) all the time.
+Privacy=network
+
 [Policy]
 # AutoEnable defines option to enable all controllers when they are found.
 # This includes adapters present on start as well as adapters that are plugged
 # in later on. Defaults to 'true'.
 AutoEnable=false
-
-# network/on: A device will only accept advertising packets from peer
-# devices that contain private addresses. It may not be compatible with some
-# legacy devices since it requires the use of RPA(s) all the time.
-Privacy=network/on

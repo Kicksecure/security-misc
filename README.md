@@ -560,7 +560,7 @@ See:
 - Bluetooth controllers are not automatically enabled at boot (`AutoEnable=false`).
 - Pairable and discoverable modes time out after 30 seconds of inactivity.
 - Only one Bluetooth controller is exposed to the system (`MaxControllers=1`).
-- Resolvable Private Addresses (RPAs) are enforced (`Privacy=network/on`),
+- Resolvable Private Addresses (RPAs) are enforced (`Privacy=network`),
   preventing MAC-based tracking.
 
 See:
